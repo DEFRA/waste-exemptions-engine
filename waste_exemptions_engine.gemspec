@@ -9,16 +9,16 @@ require "waste_exemptions_engine/version"
 Gem::Specification.new do |s|
   s.name        = "waste_exemptions_engine"
   s.version     = WasteExemptionsEngine::VERSION
-  s.authors     = [""]
-  s.email       = [""]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of WasteExemptionsEngine."
-  s.description = "TODO: Description of WasteExemptionsEngine."
-  s.license     = "MIT"
+  s.authors     = ["Defra"]
+  s.email       = ["alan.cruikshanks@environment-agency.gov.uk"]
+  s.homepage    = "https://github.com/DEFRA/waste-exemptions-engine"
+  s.summary     = "Rails engine for the Waste Exemptions service."
+  s.description = "Rails engine for the Waste Exemptions service."
+  s.license     = "The Open Government Licence (OGL) Version 3"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 4.2.11"
+  s.add_dependency "rails", "4.2.11"
 
-  s.add_development_dependency "pg"
+  s.add_dependency "pg", "~> 0.18.4"
 end
