@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "high_voltage"
+
 module WasteExemptionsEngine
   class Engine < ::Rails::Engine
     isolate_namespace WasteExemptionsEngine

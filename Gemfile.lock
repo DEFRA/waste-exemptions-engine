@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     waste_exemptions_engine (0.0.1)
+      high_voltage (~> 3.1)
       pg (~> 0.18.4)
       rails (= 4.2.11)
 
@@ -79,6 +80,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashdiff (0.3.7)
+    high_voltage (3.1.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     json (2.1.0)
