@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
   # https://github.com/skywinder/github-changelog-generator#github-token
   s.add_development_dependency "github_changelog_generator"
 
+  s.add_development_dependency "factory_bot_rails"
   s.add_development_dependency "rspec-rails", "~> 3.8.0"
 end
