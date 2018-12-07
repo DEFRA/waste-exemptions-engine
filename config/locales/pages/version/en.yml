@@ -1,0 +1,5 @@
+en:
+  pages:
+    version:
+      commit: "Commit hash:"
+      render_time: "Page rendered at:"
