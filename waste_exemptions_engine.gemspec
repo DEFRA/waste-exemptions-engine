@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
+  # Use AASM to manage states and transitions
+  s.add_dependency "aasm", "~> 4.12"
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "4.2.11"
 

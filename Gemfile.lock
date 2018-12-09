@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     waste_exemptions_engine (0.0.1)
+      aasm (~> 4.12)
       high_voltage (~> 3.1)
       pg (~> 0.18.4)
       rails (= 4.2.11)
@@ -9,6 +10,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.12.3)
+      concurrent-ruby (~> 1.0)
     actionmailer (4.2.11)
       actionpack (= 4.2.11)
       actionview (= 4.2.11)
