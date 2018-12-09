@@ -19,5 +19,13 @@ module WasteExemptionsEngine
       engine_locales = Dir["#{config.root}/config/locales/**/*.yml"]
       config.i18n.load_path = engine_locales + config.i18n.load_path
     end
+
+    initializer :append_migrations do |app|
+      unless app.root.to_s.match root.to_s
+        config.paths["db/migrate"].expanded.each do |expanded_path|
+          app.config.paths["db/migrate"] << expanded_path
+        end
+      end
+    end
   end
 end
