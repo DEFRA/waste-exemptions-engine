@@ -1,0 +1,6 @@
+en:
+  pages:
+    invalid:
+      title: Invalid registration number
+      heading_h1: The registration number you entered is not valid
+      text: Maybe you should try searching again.
