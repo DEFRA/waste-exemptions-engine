@@ -1,0 +1,41 @@
+<div class="text">
+  <%= form_for(@start_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @start_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <% if @start_form.errors[:start].any? %>
+    <div class="form-group form-group-error">
+    <% else %>
+    <div class="form-group">
+    <% end %>
+      <fieldset id="start">
+        <legend class="visuallyhidden">
+          <%= t(".heading") %>
+        </legend>
+
+        <% if @start_form.errors[:start].any? %>
+        <span class="error-message"><%= @start_form.errors[:start].join(", ") %></span>
+        <% end %>
+
+        <div class="multiple-choice">
+          <%= f.radio_button :start, 'new' %>
+          <%= f.label :start, t(".options.new"), value: 'new' %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :start, 'reregister' %>
+          <%= f.label :start, t(".options.reregister"), value: 'reregister' %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :start, 'change' %>
+          <%= f.label :start, t(".options.change"), value: 'change' %>
+        </div>
+      </fieldset>
+    </div>
+
+    <%= f.hidden_field :id, value: @start_form.id %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+  <% end %>
+</div>
