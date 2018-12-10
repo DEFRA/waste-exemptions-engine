@@ -6,3 +6,8 @@ en:
         back_link: Back
       errors:
         heading: A problem to fix
+
+  # Custom error pages
+  invalid_id_title: Invalid ID
+  invalid_id_heading: The exemption registration ID is not valid
+  invalid_id_text: Maybe you should try again.
