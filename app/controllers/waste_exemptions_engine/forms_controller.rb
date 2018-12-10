@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     end
 
     def go_back
-      set_enrollment(params[:id])
+      find_or_initialize_enrollment(params[:id])
 
       @enrollment.back! if form_matches_state?
       redirect_to_correct_form
@@ -28,7 +28,7 @@ module WasteExemptionsEngine
 
     private
 
-    def set_enrollment(id)
+    def find_or_initialize_enrollment(id)
       @enrollment = Enrollment.where(
         id: id
       ).first || Enrollment.new
@@ -37,7 +37,7 @@ module WasteExemptionsEngine
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
     # and the id param
     def set_up_form(form_class, form, id, get_request = false)
-      set_enrollment(id)
+      find_or_initialize_enrollment(id)
       set_workflow_state if get_request
 
       return false unless setup_checks_pass?
