@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     end
 
     def go_back
-      set_transient_registration(params[:id])
+      set_enrollment(params[:id])
 
       @enrollment.back! if form_matches_state?
       redirect_to_correct_form
