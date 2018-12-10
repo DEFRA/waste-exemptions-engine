@@ -1,0 +1,17 @@
+en:
+  waste_exemptions_engine:
+    register_in_scotland_forms:
+      new:
+        title: Register in Scotland
+        heading: You cannot register your exemption here
+        paragraph_1: This service only covers waste operations in England. So you will need to register with the appropriate authority for your region.
+        paragraph_2: In Scotland you need to register with the Scottish Environment Protection Agency (SEPA). For details on how, visit
+        service_link: Register your waste exemptions (Scotland)
+        paragraph_3: If you have any questions about this, please contact our helpline on 03708 506 506.
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/register_in_scotland_form:
+          attributes:
+            id:
+              invalid_format: "The registration ID is not in a valid format"

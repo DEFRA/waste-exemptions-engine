@@ -1,0 +1,58 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_location_forms_path(@location_form.id)) %>
+
+<div class="text">
+  <%= form_for(@location_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @location_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <div class="form-group">
+      <details>
+        <summary>
+          <span class="summary"><%= t(".location_detail_subheading") %></span>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <p><%= t(".location_detail_paragraph") %></p>
+        </div>
+      </details>
+    </div>
+
+    <% if @location_form.errors[:location].any? %>
+    <div class="form-group form-group-error">
+    <% else %>
+    <div class="form-group">
+    <% end %>
+      <fieldset id="location">
+        <legend class="visuallyhidden">
+          <%= t(".heading") %>
+        </legend>
+
+        <% if @location_form.errors[:location].any? %>
+        <span class="error-message"><%= @location_form.errors[:location].join(", ") %></span>
+        <% end %>
+
+        <div class="multiple-choice">
+          <%= f.radio_button :location, 'england' %>
+          <%= f.label :location, t(".options.england"), value: 'england' %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :location, 'wales' %>
+          <%= f.label :location, t(".options.wales"), value: 'wales' %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :location, 'scotland' %>
+          <%= f.label :location, t(".options.scotland"), value: 'scotland' %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :location, 'northern_ireland' %>
+          <%= f.label :location, t(".options.northern_ireland"), value: 'northern_ireland' %>
+        </div>
+      </fieldset>
+    </div>
+
+    <%= f.hidden_field :id, value: @location_form.id %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+  <% end %>
+</div>
