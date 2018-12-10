@@ -19,7 +19,7 @@ module WasteExemptionsEngine
 
       attributes = strip_whitespace(attributes)
 
-      # Update the transient registration with params from the registration if valid
+      # Update the enrollment with params from the registration if valid
       if valid?
         @enrollment.update_attributes(attributes)
         @enrollment.save!

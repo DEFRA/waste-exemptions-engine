@@ -20,6 +20,8 @@ module WasteExemptionsEngine
         state :register_in_scotland_form
         state :register_in_wales_form
 
+        state :applicant_name_form
+
         # Transitions
         event :next do
           transitions from: :start_form,
@@ -39,7 +41,7 @@ module WasteExemptionsEngine
                       if: :should_register_in_wales?
 
           transitions from: :location_form,
-                      to: :business_type_form
+                      to: :applicant_name_form
         end
 
         event :back do
@@ -55,6 +57,11 @@ module WasteExemptionsEngine
                       to: :location_form
 
           transitions from: :register_in_wales_form,
+                      to: :location_form
+
+          # End location
+
+          transitions from: :applicant_name_form,
                       to: :location_form
         end
       end
