@@ -1,0 +1,8 @@
+---
+en:
+  waste_exemptions_engine:
+    shared:
+      back:
+        back_link: Back
+      errors:
+        heading: A problem to fix
