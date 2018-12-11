@@ -1,0 +1,23 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_contact_agency_forms_path(@contact_agency_form.id)) %>
+
+<div class="text">
+  <%= form_for(@contact_agency_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @contact_agency_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <div class="form-group">
+      <p><%= t(".paragraph_1") %></p>
+
+      <ul class="list-bullet">
+        <% t('.contact_reasons').each do |reason| %>
+        <li><%= reason %></li>
+        <% end %>
+      </ul>
+
+      <p><%= t(".paragraph_2") %></p>
+    </div>
+
+    <%= f.hidden_field :id, value: @contact_agency_form.id %>
+  <% end %>
+</div>

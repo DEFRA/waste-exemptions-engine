@@ -13,19 +13,29 @@ module WasteExemptionsEngine
 
       aasm column: :workflow_state do
         # States / forms
-        state :start_form, initial: true
 
+        # Start
+        state :start_form, initial: true
+        state :contact_agency_form
+
+        # Location
         state :location_form
         state :register_in_northern_ireland_form
         state :register_in_scotland_form
         state :register_in_wales_form
 
+        # Applicant details
         state :applicant_name_form
         state :applicant_phone_form
         state :applicant_email_form
 
         # Transitions
         event :next do
+          # Start
+          transitions from: :start_form,
+                      to: :contact_agency_form,
+                      if: :should_contact_the_agency?
+
           transitions from: :start_form,
                       to: :location_form
 
@@ -53,8 +63,11 @@ module WasteExemptionsEngine
         end
 
         event :back do
-          # Location
+          # Start
+          transitions from: :contact_agency_form,
+                      to: :start_form
 
+          # Location
           transitions from: :location_form,
                       to: :start_form
 
@@ -83,6 +96,10 @@ module WasteExemptionsEngine
     # rubocop:enable Metrics/BlockLength
 
     private
+
+    def should_contact_the_agency?
+      start_option == "change"
+    end
 
     def should_register_in_northern_ireland?
       location == "northern_ireland"

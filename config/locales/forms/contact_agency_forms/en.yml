@@ -1,0 +1,19 @@
+en:
+  waste_exemptions_engine:
+    contact_agency_forms:
+      new:
+        title: Contact Environment Agency
+        heading: Contact the Environment Agency
+        paragraph_1: "You'll you need to contact the Environment Agency to:"
+        contact_reasons:
+          - change your contact details
+          - de-register an activity
+          - ask questions about your registration
+        paragraph_2: Call our helpline on 03708 506 506.
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/contact_agency_form:
+          attributes:
+            id:
+              invalid_format: "The registration ID is not in a valid format"

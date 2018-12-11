@@ -7,6 +7,16 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "start",
             path_names: { new: "/:id" }
 
+  resources :contact_agency_forms,
+            only: [:new, :create],
+            path: "contact-agency",
+            path_names: { new: "/:id" } do
+              get "back/:id",
+              to: "contact_agency_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   resources :location_forms,
             only: [:new, :create],
             path: "location",
