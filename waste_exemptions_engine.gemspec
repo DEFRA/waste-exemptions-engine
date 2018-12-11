@@ -26,6 +26,10 @@ Gem::Specification.new do |s|
 
   s.add_dependency "pg", "~> 0.18.4"
 
+  # Validations
+  # Use to ensure phone numbers are in a valid and recognised format
+  s.add_dependency "phonelib"
+
   # Allows us to automatically generate the change log from the tags, issues,
   # labels and pull requests on GitHub. Added as a dependency so all dev's have
   # access to it to generate a log, and so they are using the same version.

@@ -21,6 +21,7 @@ module WasteExemptionsEngine
         state :register_in_wales_form
 
         state :applicant_name_form
+        state :applicant_phone_form
 
         # Transitions
         event :next do
@@ -42,6 +43,9 @@ module WasteExemptionsEngine
 
           transitions from: :location_form,
                       to: :applicant_name_form
+
+          transitions from: :applicant_name_form,
+                      to: :applicant_phone_form
         end
 
         event :back do
@@ -63,6 +67,9 @@ module WasteExemptionsEngine
 
           transitions from: :applicant_name_form,
                       to: :location_form
+
+          transitions from: :applicant_phone_form,
+                      to: :applicant_name_form
         end
       end
     end

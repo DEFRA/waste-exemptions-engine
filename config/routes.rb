@@ -57,6 +57,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :applicant_phone_forms,
+            only: [:new, :create],
+            path: "applicant-phone",
+            path_names: { new: "/:id" } do
+              get "back/:id",
+              to: "applicant_phone_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 

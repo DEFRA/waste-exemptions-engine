@@ -5,6 +5,7 @@ PATH
       aasm (~> 4.12)
       high_voltage (~> 3.1)
       pg (~> 0.18.4)
+      phonelib
       rails (= 4.2.11)
 
 GEM
@@ -102,6 +103,7 @@ GEM
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     pg (0.18.4)
+    phonelib (0.6.28)
     public_suffix (3.0.3)
     rack (1.6.11)
     rack-test (0.6.3)
