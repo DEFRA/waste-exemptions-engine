@@ -29,6 +29,8 @@ Gem::Specification.new do |s|
   # Validations
   # Use to ensure phone numbers are in a valid and recognised format
   s.add_dependency "phonelib"
+  # Use to validate e-mail addresses against RFC 2822 and RFC 3696
+  s.add_dependency "validates_email_format_of"
 
   # Allows us to automatically generate the change log from the tags, issues,
   # labels and pull requests on GitHub. Added as a dependency so all dev's have

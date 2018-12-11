@@ -22,6 +22,7 @@ module WasteExemptionsEngine
 
         state :applicant_name_form
         state :applicant_phone_form
+        state :applicant_email_form
 
         # Transitions
         event :next do
@@ -46,6 +47,9 @@ module WasteExemptionsEngine
 
           transitions from: :applicant_name_form,
                       to: :applicant_phone_form
+
+          transitions from: :applicant_phone_form,
+                      to: :applicant_email_form
         end
 
         event :back do
@@ -70,6 +74,9 @@ module WasteExemptionsEngine
 
           transitions from: :applicant_phone_form,
                       to: :applicant_name_form
+
+          transitions from: :applicant_email_form,
+                      to: :applicant_phone_form
         end
       end
     end
