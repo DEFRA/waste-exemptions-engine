@@ -87,6 +87,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :business_type_forms,
+            only: [:new, :create],
+            path: "business-type",
+            path_names: { new: "/:id" } do
+              get "back/:id",
+              to: "business_type_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 
