@@ -1,4 +1,4 @@
-<%= render("waste_exemptions_engine/shared/back", back_path: back_contact_agency_forms_path(@contact_agency_form.id)) %>
+<%= render("waste_exemptions_engine/shared/back", back_path: back_contact_agency_forms_path(@contact_agency_form.token)) %>
 
 <div class="text">
   <%= form_for(@contact_agency_form) do |f| %>
@@ -18,6 +18,6 @@
       <p><%= t(".paragraph_2") %></p>
     </div>
 
-    <%= f.hidden_field :id, value: @contact_agency_form.id %>
+    <%= f.hidden_field :token, value: @contact_agency_form.token %>
   <% end %>
 </div>

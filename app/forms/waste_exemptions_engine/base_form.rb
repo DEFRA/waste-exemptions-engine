@@ -5,17 +5,17 @@ module WasteExemptionsEngine
     include ActiveModel::Model
     include CanStripWhitespace
 
-    attr_accessor :id, :enrollment
+    attr_accessor :token, :enrollment
 
     def initialize(enrollment)
       # Get values from enrollment so form will be pre-filled
       @enrollment = enrollment
-      self.id = @enrollment.id
+      self.token = @enrollment.token
     end
 
-    def submit(attributes, id)
+    def submit(attributes, token)
       # Additional attributes are set in individual form subclasses
-      self.id = id
+      self.token = token
 
       attributes = strip_whitespace(attributes)
 
@@ -29,7 +29,9 @@ module WasteExemptionsEngine
       end
     end
 
-    validates :id, "waste_exemptions_engine/id": true
+    # If the record is new, and not yet persisted (which it is when the start
+    # page is first submitted) then we have nothing to validate hence the check
+    validates :token, "waste_exemptions_engine/token": true if @enrollment&.persisted?
     validate :enrollment_valid?
 
     private

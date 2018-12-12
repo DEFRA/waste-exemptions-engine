@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       self.location = params[:location]
       attributes = { location: location }
 
-      super(attributes, params[:id])
+      super(attributes, params[:token])
     end
 
     validates :location, "waste_exemptions_engine/location": true

@@ -1,4 +1,4 @@
-<%= render("waste_exemptions_engine/shared/back", back_path: back_applicant_phone_forms_path(@applicant_phone_form.id)) %>
+<%= render("waste_exemptions_engine/shared/back", back_path: back_applicant_phone_forms_path(@applicant_phone_form.token)) %>
 
 <div class="text">
   <%= form_for(@applicant_phone_form) do |f| %>
@@ -24,7 +24,7 @@
       </fieldset>
     </div>
 
-    <%= f.hidden_field :id, value: @applicant_phone_form.id %>
+    <%= f.hidden_field :token, value: @applicant_phone_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>

@@ -19,7 +19,7 @@ module WasteExemptionsEngine
 
       attributes = { applicant_email: contact_email }
 
-      super(attributes, params[:id])
+      super(attributes, params[:token])
     end
 
     validates :contact_email, :confirmed_email, "waste_exemptions_engine/email": true

@@ -1,4 +1,4 @@
-<%= render("waste_exemptions_engine/shared/back", back_path: back_location_forms_path(@location_form.id)) %>
+<%= render("waste_exemptions_engine/shared/back", back_path: back_location_forms_path(@location_form.token)) %>
 
 <div class="text">
   <%= form_for(@location_form) do |f| %>
@@ -50,7 +50,7 @@
       </fieldset>
     </div>
 
-    <%= f.hidden_field :id, value: @location_form.id %>
+    <%= f.hidden_field :token, value: @location_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>

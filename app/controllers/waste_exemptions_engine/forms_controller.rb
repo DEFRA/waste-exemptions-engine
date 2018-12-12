@@ -8,19 +8,19 @@ module WasteExemptionsEngine
 
     # Expects a form class name (eg BusinessTypeForm) and a snake_case name for the form (eg business_type_form)
     def new(form_class, form)
-      set_up_form(form_class, form, params[:id], true)
+      set_up_form(form_class, form, params[:token], true)
     end
 
     # Expects a form class name (eg BusinessTypeForm) and a snake_case name for the form (eg business_type_form)
     def create(form_class, form)
-      return false unless set_up_form(form_class, form, params[form][:id])
+      return false unless set_up_form(form_class, form, params[form][:token])
 
       # Submit the form by getting the instance variable we just set
       submit_form(instance_variable_get("@#{form}"), params[form])
     end
 
     def go_back
-      find_or_initialize_enrollment(params[:id])
+      find_or_initialize_enrollment(params[:token])
 
       @enrollment.back! if form_matches_state?
       redirect_to_correct_form
@@ -28,16 +28,16 @@ module WasteExemptionsEngine
 
     private
 
-    def find_or_initialize_enrollment(id)
+    def find_or_initialize_enrollment(token)
       @enrollment = Enrollment.where(
-        id: id
+        token: token
       ).first || Enrollment.new
     end
 
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
-    # and the id param
-    def set_up_form(form_class, form, id, get_request = false)
-      find_or_initialize_enrollment(id)
+    # and the token param
+    def set_up_form(form_class, form, token, get_request = false)
+      find_or_initialize_enrollment(token)
       set_workflow_state if get_request
 
       return false unless setup_checks_pass?
@@ -63,10 +63,10 @@ module WasteExemptionsEngine
       redirect_to form_path
     end
 
-    # Get the path based on the workflow state, with id as params, ie:
-    # new_state_name_path/:id
+    # Get the path based on the workflow state, with token as params, ie:
+    # new_state_name_path/:token
     def form_path
-      send("new_#{@enrollment.workflow_state}_path".to_sym, @enrollment.id)
+      send("new_#{@enrollment.workflow_state}_path".to_sym, @enrollment.token)
     end
 
     def setup_checks_pass?

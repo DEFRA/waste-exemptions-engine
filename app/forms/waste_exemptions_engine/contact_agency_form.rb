@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       # Assign the params for validation and pass them to the BaseForm method for updating
       attributes = {}
 
-      super(attributes, params[:id])
+      super(attributes, params[:token])
     end
   end
 end

@@ -3,6 +3,7 @@ PATH
   specs:
     waste_exemptions_engine (0.0.1)
       aasm (~> 4.12)
+      has_secure_token
       high_voltage (~> 3.1)
       pg (~> 0.18.4)
       phonelib
@@ -84,6 +85,8 @@ GEM
       retriable (~> 2.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    has_secure_token (1.0.0)
+      activerecord (>= 3.0)
     hashdiff (0.3.7)
     high_voltage (3.1.0)
     i18n (0.9.5)

@@ -16,5 +16,6 @@ en:
           attributes:
             start:
               inclusion: "You must answer this question"
-            id:
-              invalid_format: "The ID is not in a valid format"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

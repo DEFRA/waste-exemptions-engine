@@ -5,13 +5,13 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :start_forms,
             only: [:new, :create],
             path: "start",
-            path_names: { new: "/:id" }
+            path_names: { new: "/:token" }
 
   resources :contact_agency_forms,
             only: [:new, :create],
             path: "contact-agency",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "contact_agency_forms#go_back",
               as: "back",
               on: :collection
@@ -20,8 +20,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :location_forms,
             only: [:new, :create],
             path: "location",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "location_forms#go_back",
               as: "back",
               on: :collection
@@ -30,8 +30,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :register_in_northern_ireland_forms,
             only: [:new, :create],
             path: "register-in-northern-ireland",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "register_in_northern_ireland_forms#go_back",
               as: "back",
               on: :collection
@@ -40,8 +40,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :register_in_scotland_forms,
             only: [:new, :create],
             path: "register-in-scotland",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "register_in_scotland_forms#go_back",
               as: "back",
               on: :collection
@@ -50,8 +50,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :register_in_wales_forms,
             only: [:new, :create],
             path: "register-in-wales",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "register_in_wales_forms#go_back",
               as: "back",
               on: :collection
@@ -60,8 +60,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :applicant_name_forms,
             only: [:new, :create],
             path: "applicant-name",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "applicant_name_forms#go_back",
               as: "back",
               on: :collection
@@ -70,8 +70,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :applicant_phone_forms,
             only: [:new, :create],
             path: "applicant-phone",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "applicant_phone_forms#go_back",
               as: "back",
               on: :collection
@@ -80,8 +80,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :applicant_email_forms,
             only: [:new, :create],
             path: "applicant-email",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "applicant_email_forms#go_back",
               as: "back",
               on: :collection
@@ -90,8 +90,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   resources :business_type_forms,
             only: [:new, :create],
             path: "business-type",
-            path_names: { new: "/:id" } do
-              get "back/:id",
+            path_names: { new: "/:token" } do
+              get "back/:token",
               to: "business_type_forms#go_back",
               as: "back",
               on: :collection
