@@ -14,7 +14,7 @@ Make sure you already have:
 - [Bundler](http://bundler.io/) – for installing Ruby gems
 - PostgreSql
 
-## Mounting the engine
+## Mounting the engine
 
 Add the engine to your Gemfile:
 
