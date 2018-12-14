@@ -29,7 +29,9 @@ module WasteExemptionsEngine
         state :applicant_phone_form
         state :applicant_email_form
 
+        # Operator details
         state :business_type_form
+        state :operator_name_form
 
         # Transitions
         event :next do
@@ -66,6 +68,10 @@ module WasteExemptionsEngine
 
           transitions from: :applicant_email_form,
                       to: :business_type_form
+
+          # Operator details
+          transitions from: :business_type_form,
+                      to: :operator_name_form
         end
 
         event :back do
@@ -98,6 +104,10 @@ module WasteExemptionsEngine
 
           transitions from: :business_type_form,
                       to: :applicant_email_form
+
+          # Operator details
+          transitions from: :operator_name_form,
+                      to: :business_type_form
         end
       end
     end
