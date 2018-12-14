@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     private
 
-    def valid_format?(record, attribute, value)
+    def valid_format?(_record, _attribute, _value)
       true
       # Make sure the format of the reg_identifier is valid to prevent injection
       # Format should be CBDU or CBDL, followed by at least one digit

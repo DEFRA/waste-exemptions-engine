@@ -28,7 +28,7 @@ AllCops:
     ## schema.rb is generated automatically based on migrations, so leave as is
     - "**/db/schema.rb"
     # Skip dummy application files as they're only used for testing purposes
-    - "spec/dummy/**/**/*.rb"
+    - "spec/dummy/**/*"
 
 # It is our opinion that code is easier to read if a white space is
 # permitted between the initial declaration and the first statement. Ditto the
