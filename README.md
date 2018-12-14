@@ -1,5 +1,9 @@
 # Waste Exemptions Engine
 
+[![Build Status](https://travis-ci.com/DEFRA/waste-exemptions-engine.svg?branch=master)](https://travis-ci.com/DEFRA/waste-exemptions-engine)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/maintainability)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/test_coverage)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/test_coverage)
+
 A Rails Engine for the [Waste Exemptions](https://github.com/DEFRA/waste-exemptions) digital service.
 
 ## Prerequisites
@@ -10,7 +14,7 @@ Make sure you already have:
 - [Bundler](http://bundler.io/) – for installing Ruby gems
 - PostgreSql
 
-# Mounting the engine
+## Mounting the engine
 
 Add the engine to your Gemfile:
 
