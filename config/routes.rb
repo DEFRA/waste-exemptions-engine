@@ -97,6 +97,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :registration_number_forms,
+            only: [:new, :create],
+            path: "registration-number",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "registration_number_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   resources :operator_name_forms,
             only: [:new, :create],
             path: "operator-name",

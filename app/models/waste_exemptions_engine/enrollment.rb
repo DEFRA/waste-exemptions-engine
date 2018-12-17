@@ -15,5 +15,10 @@ module WasteExemptionsEngine
     validates_presence_of :token, on: :save
 
     self.table_name = "enrollments"
+
+    # Some business types should not have a company_no
+    def company_no_required?
+      %w[limitedCompany limitedLiabilityPartnership].include?(business_type)
+    end
   end
 end
