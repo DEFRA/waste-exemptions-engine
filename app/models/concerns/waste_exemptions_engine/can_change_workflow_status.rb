@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
+  # We believe in the case of the different states and transitions for the
+  # exemption journey, its better to see them all in one place. However this
+  # does mean the module length breaks rubocops rules hence the exception.
+  # rubocop:disable Metrics/ModuleLength
   module CanChangeWorkflowStatus
     extend ActiveSupport::Concern
 
     # We believe in the case of the different states and transitions for the
     # exemption journey, its better to see them all in one place. However this
-    # does mean the block legnth breaks rubocops rules hence the exception.
+    # does mean the block length breaks rubocops rules hence the exception.
     # rubocop:disable Metrics/BlockLength
     included do
       include AASM
@@ -36,6 +40,7 @@ module WasteExemptionsEngine
 
         # Contact details
         state :contact_name_form
+        state :contact_position_form
 
         # Transitions
         event :next do
@@ -86,6 +91,9 @@ module WasteExemptionsEngine
 
           transitions from: :operator_name_form,
                       to: :contact_name_form
+
+          transitions from: :contact_name_form,
+                      to: :contact_position_form
         end
 
         event :back do
@@ -130,8 +138,12 @@ module WasteExemptionsEngine
           transitions from: :operator_name_form,
                       to: :registration_number_form
 
+          # Contact details
           transitions from: :contact_name_form,
                       to: :operator_name_form
+
+          transitions from: :contact_position_form,
+                      to: :contact_name_form
         end
       end
     end
@@ -161,4 +173,5 @@ module WasteExemptionsEngine
       true
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end
