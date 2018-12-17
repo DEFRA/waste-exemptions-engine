@@ -31,6 +31,7 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
+        state :registration_number_form
         state :operator_name_form
 
         # Transitions
@@ -71,7 +72,11 @@ module WasteExemptionsEngine
 
           # Operator details
           transitions from: :business_type_form,
-                      to: :operator_name_form
+                      to: :operator_name_form,
+                      if: :skip_registration_number?
+
+          transitions from: :business_type_form,
+                      to: :registration_number_form
         end
 
         event :back do
@@ -108,6 +113,9 @@ module WasteExemptionsEngine
           # Operator details
           transitions from: :operator_name_form,
                       to: :business_type_form
+
+          transitions from: :registration_number_form,
+                      to: :business_type_form
         end
       end
     end
@@ -129,6 +137,12 @@ module WasteExemptionsEngine
 
     def should_register_in_wales?
       location == "wales"
+    end
+
+    def skip_registration_number?
+      return false if company_no_required?
+
+      true
     end
   end
 end

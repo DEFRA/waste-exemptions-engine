@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency "has_secure_token"
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "4.2.11"
+  # Use rest-client for external requests, eg. to Companies House
+  s.add_dependency "rest-client", "~> 2.0"
 
   s.add_dependency "pg", "~> 0.18.4"
 
