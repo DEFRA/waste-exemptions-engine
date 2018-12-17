@@ -77,6 +77,9 @@ module WasteExemptionsEngine
 
           transitions from: :business_type_form,
                       to: :registration_number_form
+
+          transitions from: :registration_number_form,
+                      to: :operator_name_form
         end
 
         event :back do
@@ -111,11 +114,15 @@ module WasteExemptionsEngine
                       to: :applicant_email_form
 
           # Operator details
-          transitions from: :operator_name_form,
-                      to: :business_type_form
-
           transitions from: :registration_number_form,
                       to: :business_type_form
+
+          transitions from: :operator_name_form,
+                      to: :business_type_form,
+                      if: :skip_registration_number?
+
+          transitions from: :operator_name_form,
+                      to: :registration_number_form
         end
       end
     end
