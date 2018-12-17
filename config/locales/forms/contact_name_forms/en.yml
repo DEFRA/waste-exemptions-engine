@@ -1,0 +1,27 @@
+en:
+  waste_exemptions_engine:
+    contact_name_forms:
+      new:
+        title: Contact name
+        heading: Who should we contact about this waste exemption operation?
+        description: We will contact this person if we need to discuss the waste operation
+        first_name_label: First name
+        last_name_label: Last name
+        error_heading: Something is wrong
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/contact_name_form:
+          attributes:
+            first_name:
+              blank: "You must enter a first name"
+              invalid: "The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The first name must have no more than 70 characters"
+            last_name:
+              blank: "You must enter a last name"
+              invalid: "The last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The last name must have no more than 70 characters"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

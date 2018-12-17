@@ -34,6 +34,9 @@ module WasteExemptionsEngine
         state :registration_number_form
         state :operator_name_form
 
+        # Contact details
+        state :contact_name_form
+
         # Transitions
         event :next do
           # Start
@@ -80,6 +83,9 @@ module WasteExemptionsEngine
 
           transitions from: :registration_number_form,
                       to: :operator_name_form
+
+          transitions from: :operator_name_form,
+                      to: :contact_name_form
         end
 
         event :back do
@@ -123,6 +129,9 @@ module WasteExemptionsEngine
 
           transitions from: :operator_name_form,
                       to: :registration_number_form
+
+          transitions from: :contact_name_form,
+                      to: :operator_name_form
         end
       end
     end
