@@ -10,6 +10,7 @@ en:
           overseas: What's the name of the business or organisation?
           partnership: What's the name of the partnership?
           soleTrader: Who’s carrying out the waste operation?
+          charity: What's the name of the charity?
         description: This is the name of the operator responsible for the waste operation
         operator_name_label:
           localAuthority: Local authority or public body name
