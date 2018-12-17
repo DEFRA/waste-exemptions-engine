@@ -41,6 +41,7 @@ module WasteExemptionsEngine
         # Contact details
         state :contact_name_form
         state :contact_position_form
+        state :contact_phone_form
 
         # Transitions
         event :next do
@@ -94,6 +95,9 @@ module WasteExemptionsEngine
 
           transitions from: :contact_name_form,
                       to: :contact_position_form
+
+          transitions from: :contact_position_form,
+                      to: :contact_phone_form
         end
 
         event :back do
@@ -144,6 +148,9 @@ module WasteExemptionsEngine
 
           transitions from: :contact_position_form,
                       to: :contact_name_form
+
+          transitions from: :contact_phone_form,
+                      to: :contact_position_form
         end
       end
     end

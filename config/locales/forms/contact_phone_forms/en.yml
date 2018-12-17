@@ -1,0 +1,22 @@
+en:
+  waste_exemptions_engine:
+    contact_phone_forms:
+      new:
+        title: Contact telephone number
+        heading: What is the contact's telephone number?
+        phone_number_label: Telephone number
+        phone_number_hint: This can be a landline or mobile
+        error_heading: Something is wrong
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/contact_phone_form:
+          attributes:
+            phone_number:
+              blank: "Enter a telephone number"
+              invalid_format: "Enter a valid telephone number"
+              too_long: "Check the number you entered - it should have no more than than 15 characters"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
