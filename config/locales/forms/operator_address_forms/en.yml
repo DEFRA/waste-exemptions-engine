@@ -1,0 +1,27 @@
+en:
+  waste_exemptions_engine:
+    operator_address_forms:
+      new:
+        title: Operator address selection
+        heading:
+          localAuthority: What's the address of the local authority or public body?
+          limitedCompany: What's the company address?
+          limitedLiabilityPartnership: What's the address of the limited liability partnership?
+          partnership: What's the address of the partnership?
+          soleTrader: What's the address of the business?
+          charity: What's the address of the charity or trust?
+        postcode_label: Postcode
+        postcode_change_link: "Change postcode"
+        manual_address_link: "I cannot find the address in the list"
+        error_heading: Something is wrong
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/operator_address_form:
+          attributes:
+            addresses:
+              blank: "You must select an address"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
