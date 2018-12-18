@@ -44,6 +44,9 @@ module WasteExemptionsEngine
         state :contact_phone_form
         state :contact_email_form
 
+        # Farm questions
+        state :is_a_farm_form
+
         # Transitions
         event :next do
           # Start
@@ -102,6 +105,10 @@ module WasteExemptionsEngine
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form
+
+          # Farm questions
+          transitions from: :contact_email_form,
+                      to: :is_a_farm_form
         end
 
         event :back do
@@ -158,6 +165,10 @@ module WasteExemptionsEngine
 
           transitions from: :contact_email_form,
                       to: :contact_phone_form
+
+          # Farm questions
+          transitions from: :is_a_farm_form,
+                      to: :contact_email_form
         end
       end
     end
