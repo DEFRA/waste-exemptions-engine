@@ -117,6 +117,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :operator_postcode_forms,
+            only: [:new, :create],
+            path: "operator-postcode",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "operator_postcode_forms#go_back",
+              as: "back",
+              on: :collection
+
+              get "skip_to_manual_address/:token",
+              to: "operator_postcode_forms#skip_to_manual_address",
+              as: "skip_to_manual_address",
+              on: :collection
+            end
+
   resources :contact_name_forms,
             only: [:new, :create],
             path: "contact-name",
