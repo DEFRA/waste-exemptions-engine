@@ -37,6 +37,7 @@ module WasteExemptionsEngine
         state :business_type_form
         state :registration_number_form
         state :operator_name_form
+        state :operator_postcode_form
 
         # Contact details
         state :contact_name_form
@@ -96,6 +97,9 @@ module WasteExemptionsEngine
                       to: :operator_name_form
 
           transitions from: :operator_name_form,
+                      to: :operator_postcode_form
+
+          transitions from: :operator_postcode_form,
                       to: :contact_name_form
 
           transitions from: :contact_name_form,
@@ -157,9 +161,12 @@ module WasteExemptionsEngine
           transitions from: :operator_name_form,
                       to: :registration_number_form
 
+          transitions from: :operator_postcode_form,
+                      to: :operator_name_form
+
           # Contact details
           transitions from: :contact_name_form,
-                      to: :operator_name_form
+                      to: :operator_postcode_form
 
           transitions from: :contact_position_form,
                       to: :contact_name_form

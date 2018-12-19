@@ -32,6 +32,8 @@ Gem::Specification.new do |s|
   # Validations
   # Use to ensure phone numbers are in a valid and recognised format
   s.add_dependency "phonelib"
+  # UK postcode parsing and validation for Ruby
+  s.add_dependency "uk_postcode"
   # Use to validate e-mail addresses against RFC 2822 and RFC 3696
   s.add_dependency "validates_email_format_of"
 

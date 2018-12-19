@@ -4,6 +4,13 @@ module WasteExemptionsEngine
   class Enrollment < ActiveRecord::Base
     include CanChangeWorkflowStatus
 
+    self.table_name = "enrollments"
+
+    # We want to create the interim record at the same time as the enrollment
+    # is initialized. With activerecord objects overriding the initializer is
+    # seen as an anti-pattern, so instead we rely on its callbacks.
+    after_create :create_interim
+
     # HasSecureToken provides an easy way to generate unique random tokens for
     # any model in ruby on rails. We use it to uniquely identify an enrollment
     # by something other than it's db ID, or its reference number. We can then
@@ -14,7 +21,7 @@ module WasteExemptionsEngine
     has_secure_token
     validates_presence_of :token, on: :save
 
-    self.table_name = "enrollments"
+    has_one :interim, autosave: true
 
     # Some business types should not have a company_no
     def company_no_required?
