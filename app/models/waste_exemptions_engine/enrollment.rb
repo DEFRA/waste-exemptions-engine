@@ -22,10 +22,17 @@ module WasteExemptionsEngine
     validates_presence_of :token, on: :save
 
     has_one :interim, autosave: true
+    has_many :addresses
 
     # Some business types should not have a company_no
     def company_no_required?
       %w[limitedCompany limitedLiabilityPartnership].include?(business_type)
+    end
+
+    def operator_address
+      return nil unless addresses.present?
+
+      addresses.where(address_type: Address.address_types[:operator]).first
     end
   end
 end

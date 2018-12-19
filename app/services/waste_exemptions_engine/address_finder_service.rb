@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       begin
         response = RestClient::Request.execute(method: :get,
                                                url: @url)
-        JSON.parse(response)
+        JSON.parse(response)["results"]
       rescue JSON::ParserError => e
         handle_error(e)
         :error
