@@ -147,6 +147,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :operator_address_manual_forms,
+            only: [:new, :create],
+            path: "operator-address-manual",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "operator_address_manual_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   resources :contact_name_forms,
             only: [:new, :create],
             path: "contact-name",

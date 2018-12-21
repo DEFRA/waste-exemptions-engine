@@ -39,6 +39,7 @@ module WasteExemptionsEngine
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_form
+        state :operator_address_manual_form
 
         # Contact details
         state :contact_name_form
@@ -101,11 +102,23 @@ module WasteExemptionsEngine
                       to: :operator_postcode_form
 
           transitions from: :operator_postcode_form,
+                      to: :operator_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          transitions from: :operator_postcode_form,
                       to: :operator_address_form
+
+          transitions from: :operator_address_form,
+                      to: :operator_address_manual_form,
+                      if: :skip_to_manual_address?
 
           transitions from: :operator_address_form,
                       to: :contact_name_form
 
+          transitions from: :operator_address_manual_form,
+                      to: :contact_name_form
+
+          # Contact details
           transitions from: :contact_name_form,
                       to: :contact_position_form
 
@@ -171,7 +184,14 @@ module WasteExemptionsEngine
           transitions from: :operator_address_form,
                       to: :operator_postcode_form
 
+          transitions from: :operator_address_manual_form,
+                      to: :operator_postcode_form
+
           # Contact details
+          transitions from: :contact_name_form,
+                      to: :operator_address_manual_form,
+                      if: :operator_address_was_manually_entered?
+
           transitions from: :contact_name_form,
                       to: :operator_address_form
 
@@ -191,11 +211,28 @@ module WasteExemptionsEngine
           transitions from: :on_a_farm_form,
                       to: :is_a_farm_form
         end
+
+        event :skip_to_manual_address do
+          transitions from: :operator_postcode_form,
+                      to: :operator_address_manual_form
+
+          transitions from: :operator_address_form,
+                      to: :operator_address_manual_form
+        end
       end
     end
     # rubocop:enable Metrics/BlockLength
 
     private
+
+    def operator_address_was_manually_entered?
+      return unless operator_address
+
+      # We use the mode field to record whether the address was manually entered
+      # and because it correlates to an enum, Activerecord magic gives us
+      # my_address.manual?
+      operator_address.manual?
+    end
 
     def should_contact_the_agency?
       start_option == "change"
@@ -217,6 +254,10 @@ module WasteExemptionsEngine
       return false if company_no_required?
 
       true
+    end
+
+    def skip_to_manual_address?
+      interim.address_finder_error
     end
   end
   # rubocop:enable Metrics/ModuleLength

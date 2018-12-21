@@ -32,7 +32,7 @@ module WasteExemptionsEngine
     private
 
     def handle_error(error)
-      Airbrake.notify(e, url: @url) if defined?(Airbrake)
+      Airbrake.notify(error, url: @url) if defined?(Airbrake)
       Rails.logger.error "Address Finder error: #{error}"
     end
   end
