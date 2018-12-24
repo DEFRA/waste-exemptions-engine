@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ManualAddressForm < BaseForm
+  class AddressManualForm < BaseForm
     include CanNavigateFlexibly
 
     attr_accessor :addresses

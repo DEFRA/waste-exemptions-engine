@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OperatorAddressManualForm < ManualAddressForm
+  class OperatorAddressManualForm < AddressManualForm
     include CanNavigateFlexibly
 
     attr_accessor :business_type
