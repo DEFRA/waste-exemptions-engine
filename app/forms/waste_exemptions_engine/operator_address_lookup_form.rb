@@ -18,10 +18,6 @@ module WasteExemptionsEngine
 
     private
 
-    def existing_postcode
-      postcode
-    end
-
     def existing_address
       @enrollment.operator_address
     end

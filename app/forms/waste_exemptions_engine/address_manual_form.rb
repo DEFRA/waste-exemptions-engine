@@ -33,8 +33,8 @@ module WasteExemptionsEngine
 
     def saved_address_still_valid?
       return false unless existing_address
-      return true if existing_postcode.blank?
-      return true if existing_postcode == existing_address.postcode
+      return true if postcode.blank?
+      return true if postcode == existing_address.postcode
 
       false
     end
@@ -90,10 +90,6 @@ module WasteExemptionsEngine
 
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
-
-    def existing_postcode
-      implemented_in_subclass
-    end
 
     def existing_address
       implemented_in_subclass

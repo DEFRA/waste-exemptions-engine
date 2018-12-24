@@ -20,10 +20,10 @@ module WasteExemptionsEngine
 
     private
 
-    # Look up addresses based on the existing_postcode
+    # Look up addresses based on the postcode
     def look_up_addresses
-      if existing_postcode.present?
-        address_finder = AddressFinderService.new(existing_postcode)
+      if postcode.present?
+        address_finder = AddressFinderService.new(postcode)
         self.temp_addresses = address_finder.search_by_postcode
       else
         self.temp_addresses = []
@@ -61,10 +61,6 @@ module WasteExemptionsEngine
 
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
-
-    def existing_postcode
-      implemented_in_subclass
-    end
 
     def existing_address
       implemented_in_subclass
