@@ -1,0 +1,37 @@
+en:
+  waste_exemptions_engine:
+    operator_address_manual_forms:
+      new:
+        title: Operator address
+        heading:
+          localAuthority: What's the address of the local authority or public body?
+          limitedCompany: What's the company address?
+          limitedLiabilityPartnership: What's the address of the limited liability partnership?
+          partnership: What's the address of the partnership?
+          soleTrader: What's the address of the business?
+          charity: What's the address of the charity or trust?
+        address_finder_error_heading: Our address finder is not working
+        address_finder_error_text: Please enter the address below.
+        error_heading: Something is wrong
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/operator_address_manual_form:
+          attributes:
+            premises:
+              blank: "Enter the building name or number"
+              too_long: "The building name or number must be no longer than 200 characters"
+            street_address:
+              blank: "Enter an address line 1"
+              too_long: "The address line 1 must be no longer than 160 characters"
+            locality:
+              too_long: "The address line 2 must be no longer than 70 characters"
+            city:
+              blank: "Enter a town or city"
+              too_long: "The town or city must be no longer than 30 characters"
+            postcode:
+              too_long: "The postcode must be no longer than 8 characters"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
