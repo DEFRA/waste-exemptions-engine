@@ -19,11 +19,11 @@ module WasteExemptionsEngine
 
     private
 
-    def temp_postcode
+    def existing_postcode
       operator_postcode
     end
 
-    def saved_address
+    def existing_address
       @enrollment.operator_address
     end
 

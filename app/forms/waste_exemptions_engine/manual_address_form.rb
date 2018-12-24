@@ -4,26 +4,10 @@ module WasteExemptionsEngine
   class ManualAddressForm < BaseForm
     include CanNavigateFlexibly
 
-    attr_accessor :business_type
     attr_accessor :addresses
     attr_accessor :address_finder_error
     # We pass the following attributes in to create a new Address
     attr_accessor :premises, :street_address, :locality, :city, :postcode
-
-    def initialize(enrollment)
-      super
-      # We use this for the correct microcopy and to determine what fields to show
-      self.business_type = @enrollment.business_type
-
-      # Check if the user reached this page through an Address finder error.
-      # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = @enrollment.interim.address_finder_error
-      @enrollment.interim.update_attributes(address_finder_error: nil)
-
-      # Prefill the existing address unless the temp_postcode has changed from the existing address's postcode
-      # Otherwise, just fill in the temp_postcode
-      saved_address_still_valid? ? prefill_existing_address : self.postcode = saved_temp_postcode
-    end
 
     def submit(params)
       # Strip out whitespace from start and end
@@ -49,8 +33,8 @@ module WasteExemptionsEngine
 
     def saved_address_still_valid?
       return false unless existing_address
-      return true if saved_temp_postcode.blank?
-      return true if saved_temp_postcode == existing_address.postcode
+      return true if existing_postcode.blank?
+      return true if existing_postcode == existing_address.postcode
 
       false
     end
@@ -107,7 +91,7 @@ module WasteExemptionsEngine
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
 
-    def saved_temp_postcode
+    def existing_postcode
       implemented_in_subclass
     end
 

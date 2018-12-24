@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class AddressForm < BaseForm
+
     attr_accessor :temp_addresses
     attr_accessor :temp_address
     attr_accessor :addresses
@@ -18,10 +19,10 @@ module WasteExemptionsEngine
 
     private
 
-    # Look up addresses based on the temp_postcode
+    # Look up addresses based on the existing_postcode
     def look_up_addresses
-      if temp_postcode.present?
-        address_finder = AddressFinderService.new(temp_postcode)
+      if existing_postcode.present?
+        address_finder = AddressFinderService.new(existing_postcode)
         self.temp_addresses = address_finder.search_by_postcode
       else
         self.temp_addresses = []
@@ -32,13 +33,13 @@ module WasteExemptionsEngine
     def preselect_existing_address
       return unless can_preselect_address?
 
-      selected_address = temp_addresses.detect { |address| address["uprn"].to_s == saved_address.uprn }
+      selected_address = temp_addresses.detect { |address| address["uprn"].to_s == existing_address.uprn }
       self.temp_address = selected_address["uprn"] if selected_address.present?
     end
 
     def can_preselect_address?
-      return false unless saved_address
-      return false unless saved_address.uprn.present?
+      return false unless existing_address
+      return false unless existing_address.uprn.present?
 
       true
     end
@@ -52,7 +53,7 @@ module WasteExemptionsEngine
 
       # Update the enrollment's nested addresses, replacing any existing address of the same type
       updated_addresses = @enrollment.addresses
-      updated_addresses.delete(saved_address) if saved_address
+      updated_addresses.delete(existing_address) if existing_address
       updated_addresses << address
       updated_addresses
     end
@@ -60,11 +61,11 @@ module WasteExemptionsEngine
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
 
-    def temp_postcode
+    def existing_postcode
       implemented_in_subclass
     end
 
-    def saved_address
+    def existing_address
       implemented_in_subclass
     end
 
