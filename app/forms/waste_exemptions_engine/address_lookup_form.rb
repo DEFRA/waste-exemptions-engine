@@ -8,6 +8,15 @@ module WasteExemptionsEngine
     attr_accessor :addresses
     attr_accessor :postcode
 
+    def initialize(enrollment)
+      super
+
+      self.postcode = @enrollment.interim.operator_postcode
+
+      look_up_addresses
+      preselect_existing_address
+    end
+
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
       self.addresses = add_or_replace_address(params[:temp_address])

@@ -10,15 +10,6 @@ module WasteExemptionsEngine
       super
       # We only use this for the correct microcopy
       self.business_type = @enrollment.business_type
-      self.postcode = @enrollment.interim.operator_postcode
-
-      # Check if the user reached this page through an Address finder error.
-      # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = @enrollment.interim.address_finder_error
-      @enrollment.interim.update_attributes(address_finder_error: nil)
-
-      # Prefill the existing address unless the postcode has changed from the existing address's postcode
-      prefill_existing_address if saved_address_still_valid?
     end
 
     private

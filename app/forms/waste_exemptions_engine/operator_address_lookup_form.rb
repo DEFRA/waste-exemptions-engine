@@ -10,10 +10,6 @@ module WasteExemptionsEngine
       super
       # We only use this for the correct microcopy
       self.business_type = @enrollment.business_type
-      self.postcode = @enrollment.interim.operator_postcode
-
-      look_up_addresses
-      preselect_existing_address
     end
 
     private
