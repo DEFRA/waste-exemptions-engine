@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   module OperatorAddressForm
-    include CanNavigateFlexibly
 
     attr_accessor :business_type
 

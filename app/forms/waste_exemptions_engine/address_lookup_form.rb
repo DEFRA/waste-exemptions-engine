@@ -2,11 +2,10 @@
 
 module WasteExemptionsEngine
   class AddressLookupForm < BaseForm
+    include AddressForm
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address
-    attr_accessor :addresses
-    attr_accessor :postcode
 
     def initialize(enrollment)
       super
@@ -66,21 +65,6 @@ module WasteExemptionsEngine
       updated_addresses.delete(existing_address) if existing_address
       updated_addresses << address
       updated_addresses
-    end
-
-    # Methods which are called in this class but defined in subclasses
-    # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
-
-    def existing_address
-      implemented_in_subclass
-    end
-
-    def address_type
-      implemented_in_subclass
-    end
-
-    def implemented_in_subclass
-      raise NotImplementedError, "This #{self.class} cannot respond to:"
     end
   end
 end

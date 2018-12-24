@@ -2,12 +2,10 @@
 
 module WasteExemptionsEngine
   class AddressManualForm < BaseForm
-    include CanNavigateFlexibly
+    include AddressForm
 
-    attr_accessor :addresses
     attr_accessor :address_finder_error
-    # We pass the following attributes in to create a new Address
-    attr_accessor :premises, :street_address, :locality, :city, :postcode
+    attr_accessor :premises, :street_address, :locality, :city
 
     def initialize(enrollment)
       super
@@ -100,21 +98,6 @@ module WasteExemptionsEngine
         city: params["city"],
         postcode: params["postcode"]
       }
-    end
-
-    # Methods which are called in this class but defined in subclasses
-    # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
-
-    def existing_address
-      implemented_in_subclass
-    end
-
-    def address_type
-      implemented_in_subclass
-    end
-
-    def implemented_in_subclass
-      raise NotImplementedError, "This #{self.class} cannot respond to:"
     end
   end
 end
