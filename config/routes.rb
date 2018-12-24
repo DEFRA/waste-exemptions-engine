@@ -132,17 +132,17 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
-  resources :operator_address_forms,
+  resources :operator_address_lookup_forms,
             only: [:new, :create],
-            path: "operator-address",
+            path: "operator-address-lookup",
             path_names: { new: "/:token" } do
               get "back/:token",
-              to: "operator_address_forms#go_back",
+              to: "operator_address_lookup_forms#go_back",
               as: "back",
               on: :collection
 
               get "skip_to_manual_address/:token",
-              to: "operator_address_forms#skip_to_manual_address",
+              to: "operator_address_lookup_forms#skip_to_manual_address",
               as: "skip_to_manual_address",
               on: :collection
             end

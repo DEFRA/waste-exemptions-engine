@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class AddressForm < BaseForm
+  class AddressLookupForm < BaseForm
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address
