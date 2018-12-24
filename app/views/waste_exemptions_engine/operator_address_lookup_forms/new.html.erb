@@ -8,7 +8,7 @@
 
     <div class="form-group">
       <label class="form-label"><%= t(".postcode_label") %></label>
-      <span class="postcode"><%= @operator_address_lookup_form.operator_postcode %></span>
+      <span class="postcode"><%= @operator_address_lookup_form.postcode %></span>
       <%= link_to(t(".postcode_change_link"), back_operator_address_lookup_forms_path(@operator_address_lookup_form.token)) %>
     </div>
 
