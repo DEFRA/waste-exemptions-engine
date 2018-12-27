@@ -30,9 +30,19 @@ module WasteExemptionsEngine
     end
 
     def operator_address
+      find_address_by_type(Address.address_types[:operator])
+    end
+
+    def contact_address
+      find_address_by_type(Address.address_types[:contact])
+    end
+
+    private
+
+    def find_address_by_type(address_type)
       return nil unless addresses.present?
 
-      addresses.where(address_type: Address.address_types[:operator]).first
+      addresses.where(address_type: address_type).first
     end
   end
 end

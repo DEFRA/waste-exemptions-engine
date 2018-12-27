@@ -3,7 +3,7 @@ en:
     contact_postcode_forms:
       new:
         title: Contact address postcode
-        heading: What is the contact's address?
+        heading: What is the postcode for the contact's address?
         postcode_label: Please enter a UK postcode
         postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix
