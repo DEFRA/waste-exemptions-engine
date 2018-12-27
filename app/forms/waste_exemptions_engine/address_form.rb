@@ -10,6 +10,10 @@ module WasteExemptionsEngine
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
 
+    def existing_postcode
+      implemented_in_subclass
+    end
+
     def existing_address
       implemented_in_subclass
     end

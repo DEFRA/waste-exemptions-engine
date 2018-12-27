@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     def initialize(enrollment)
       super
 
-      self.postcode = @enrollment.interim.operator_postcode
+      self.postcode = existing_postcode
 
       # Check if the user reached this page through an Address finder error.
       # Then wipe the temp attribute as we only need it for routing

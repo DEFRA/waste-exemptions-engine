@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     def initialize(enrollment)
       super
 
-      self.postcode = @enrollment.interim.operator_postcode
+      self.postcode = existing_postcode
 
       look_up_addresses
       preselect_existing_address
