@@ -6,7 +6,6 @@ module WasteExemptionsEngine
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address
-    attr_accessor :addresses
 
     def initialize(enrollment)
       super
@@ -20,13 +19,14 @@ module WasteExemptionsEngine
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
       new_address = create_address(params[:temp_address])
-      self.addresses = add_or_replace_address(new_address, @enrollment.addresses)
-      attributes = { addresses: addresses }
+
+      self.temp_addresses = add_or_replace_address(new_address, @enrollment.addresses)
+      attributes = { addresses: temp_addresses }
 
       super(attributes, params[:token])
     end
 
-    validates :addresses, presence: true
+    validates :temp_addresses, presence: true
 
     private
 
