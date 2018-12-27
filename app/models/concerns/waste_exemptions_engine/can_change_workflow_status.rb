@@ -38,7 +38,7 @@ module WasteExemptionsEngine
         state :registration_number_form
         state :operator_name_form
         state :operator_postcode_form
-        state :operator_address_form
+        state :operator_address_lookup_form
         state :operator_address_manual_form
 
         # Contact details
@@ -106,13 +106,13 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :operator_postcode_form,
-                      to: :operator_address_form
+                      to: :operator_address_lookup_form
 
-          transitions from: :operator_address_form,
+          transitions from: :operator_address_lookup_form,
                       to: :operator_address_manual_form,
                       if: :skip_to_manual_address?
 
-          transitions from: :operator_address_form,
+          transitions from: :operator_address_lookup_form,
                       to: :contact_name_form
 
           transitions from: :operator_address_manual_form,
@@ -181,7 +181,7 @@ module WasteExemptionsEngine
           transitions from: :operator_postcode_form,
                       to: :operator_name_form
 
-          transitions from: :operator_address_form,
+          transitions from: :operator_address_lookup_form,
                       to: :operator_postcode_form
 
           transitions from: :operator_address_manual_form,
@@ -193,7 +193,7 @@ module WasteExemptionsEngine
                       if: :operator_address_was_manually_entered?
 
           transitions from: :contact_name_form,
-                      to: :operator_address_form
+                      to: :operator_address_lookup_form
 
           transitions from: :contact_position_form,
                       to: :contact_name_form
@@ -216,7 +216,7 @@ module WasteExemptionsEngine
           transitions from: :operator_postcode_form,
                       to: :operator_address_manual_form
 
-          transitions from: :operator_address_form,
+          transitions from: :operator_address_lookup_form,
                       to: :operator_address_manual_form
         end
       end

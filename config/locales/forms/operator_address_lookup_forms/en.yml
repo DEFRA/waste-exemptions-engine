@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    operator_address_forms:
+    operator_address_lookup_forms:
       new:
         title: Operator address selection
         heading:
@@ -18,7 +18,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/operator_address_form:
+        waste_exemptions_engine/operator_address_lookup_forms:
           attributes:
             addresses:
               blank: "You must select an address"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class AddressFormsController < FormsController
+  class AddressLookupFormsController < FormsController
     def skip_to_manual_address
       find_or_initialize_enrollment(params[:token])
 

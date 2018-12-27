@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OperatorAddressManualForm < AddressManualForm
+  class OperatorAddressLookupForm < AddressLookupForm
     include OperatorAddressForm
 
   end
