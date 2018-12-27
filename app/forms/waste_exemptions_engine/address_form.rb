@@ -24,10 +24,6 @@ module WasteExemptionsEngine
       updated_addresses
     end
 
-    def create_address(_data)
-      implemented_in_subclass
-    end
-
     def existing_postcode
       implemented_in_subclass
     end
