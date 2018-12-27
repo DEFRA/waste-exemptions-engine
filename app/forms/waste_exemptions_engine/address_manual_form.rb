@@ -47,15 +47,15 @@ module WasteExemptionsEngine
       #     underlying base form objects and controllers
       #   - the manual address is the only instance we have of mass assigning
       #     params to a model
-      attributes = {
-        addresses: add_or_replace_address(
-          premises: premises,
-          street_address: street_address,
-          locality: locality,
-          city: city,
-          postcode: postcode
-        )
-      }
+      new_address = create_address(
+        premises: premises,
+        street_address: street_address,
+        locality: locality,
+        city: city,
+        postcode: postcode
+      )
+
+      attributes = { addresses: add_or_replace_address(new_address, @enrollment.addresses) }
 
       super(attributes, params[:token])
     end
@@ -86,17 +86,11 @@ module WasteExemptionsEngine
       self.postcode = existing_address.postcode
     end
 
-    def add_or_replace_address(params)
-      address = Address.create_from_manual_entry_data(
+    def create_address(params)
+      Address.create_from_manual_entry_data(
         params,
         address_type
       )
-
-      # Update the enrollment's nested addresses, replacing any existing operator address
-      updated_addresses = @enrollment.addresses
-      updated_addresses.delete(existing_address) if existing_address
-      updated_addresses << address
-      updated_addresses
     end
   end
 end

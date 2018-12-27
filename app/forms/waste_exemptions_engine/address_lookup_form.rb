@@ -19,7 +19,8 @@ module WasteExemptionsEngine
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
-      self.addresses = add_or_replace_address(params[:temp_address])
+      new_address = create_address(params[:temp_address])
+      self.addresses = add_or_replace_address(new_address, @enrollment.addresses)
       attributes = { addresses: addresses }
 
       super(attributes, params[:token])
@@ -54,18 +55,14 @@ module WasteExemptionsEngine
       true
     end
 
-    def add_or_replace_address(selected_address_uprn)
+    def create_address(selected_address_uprn)
       return if selected_address_uprn.blank?
 
       data = temp_addresses.detect { |address| address["uprn"] == selected_address_uprn.to_i }
       address = Address.create_from_address_finder_data(data)
       address.assign_attributes(address_type: address_type)
 
-      # Update the enrollment's nested addresses, replacing any existing address of the same type
-      updated_addresses = @enrollment.addresses
-      updated_addresses.delete(existing_address) if existing_address
-      updated_addresses << address
-      updated_addresses
+      address
     end
   end
 end
