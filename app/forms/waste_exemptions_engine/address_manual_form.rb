@@ -24,29 +24,7 @@ module WasteExemptionsEngine
     def submit(params)
       assign_params(params)
 
-      # Now that we are dealing with Activerecord it has protections in place to
-      # stop us mass assigning attributes on a model that come direct from the
-      # params object. In a typical rails project you would have a method in your
-      # controller in which you would call
-      # params.require(:my_model).permit!(:email, :amount, :paid). This does also
-      # work with form objects (just replace my_model for my_form) however it
-      # assumes we are passing the data to the object via calling the method e.g.
-      # @my_form = MyForm.new(sanitize_params)
-      # For the following reasons we have chosen instead to simply assign the
-      # attributes in the way below because
-      #   - the complexity of the form->sub-form->base-form relationship we have
-      #     in this instance
-      #   - attempting to follow the pattern could lead to a refactor of the
-      #     underlying base form objects and controllers
-      #   - the manual address is the only instance we have of mass assigning
-      #     params to a model
-      new_address = create_address(
-        premises: premises,
-        street_address: street_address,
-        locality: locality,
-        city: city,
-        postcode: postcode
-      )
+      new_address = create_address
 
       attributes = { addresses: add_or_replace_address(new_address, @enrollment.addresses) }
 
@@ -61,7 +39,7 @@ module WasteExemptionsEngine
 
     private
 
-    def assign_params
+    def assign_params(params)
       # Strip out whitespace from start and end
       params.each { |_key, value| value.strip! }
 
@@ -91,9 +69,31 @@ module WasteExemptionsEngine
       self.postcode = existing_address.postcode
     end
 
-    def create_address(params)
+    def create_address
+      # Now that we are dealing with Activerecord it has protections in place to
+      # stop us mass assigning attributes on a model that come direct from the
+      # params object. In a typical rails project you would have a method in your
+      # controller in which you would call
+      # params.require(:my_model).permit!(:email, :amount, :paid). This does also
+      # work with form objects (just replace my_model for my_form) however it
+      # assumes we are passing the data to the object via calling the method e.g.
+      # @my_form = MyForm.new(sanitize_params)
+      # For the following reasons we have chosen instead to simply assign the
+      # attributes in the way below because
+      #   - the complexity of the form->sub-form->base-form relationship we have
+      #     in this instance
+      #   - attempting to follow the pattern could lead to a refactor of the
+      #     underlying base form objects and controllers
+      #   - the manual address is the only instance we have of mass assigning
+      #     params to a model
       Address.create_from_manual_entry_data(
-        params,
+        {
+          premises: premises,
+          street_address: street_address,
+          locality: locality,
+          city: city,
+          postcode: postcode
+        },
         address_type
       )
     end
