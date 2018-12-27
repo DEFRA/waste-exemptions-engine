@@ -48,6 +48,7 @@ module WasteExemptionsEngine
         state :contact_email_form
         state :contact_postcode_form
         state :contact_address_lookup_form
+        state :contact_address_manual_form
 
         # Farm questions
         state :is_a_farm_form
@@ -134,12 +135,23 @@ module WasteExemptionsEngine
                       to: :contact_postcode_form
 
           transitions from: :contact_postcode_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          transitions from: :contact_postcode_form,
                       to: :contact_address_lookup_form
 
-          # Farm questions
+          transitions from: :contact_address_lookup_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
+
           transitions from: :contact_address_lookup_form,
                       to: :is_a_farm_form
 
+          transitions from: :contact_address_manual_form,
+                      to: :is_a_farm_form
+
+          # Farm questions
           transitions from: :is_a_farm_form,
                       to: :on_a_farm_form
         end
@@ -218,7 +230,14 @@ module WasteExemptionsEngine
           transitions from: :contact_address_lookup_form,
                       to: :contact_postcode_form
 
+          transitions from: :contact_address_manual_form,
+                      to: :contact_postcode_form
+
           # Farm questions
+          transitions from: :is_a_farm_form,
+                      to: :contact_address_manual_form,
+                      if: :contact_address_was_manually_entered?
+
           transitions from: :is_a_farm_form,
                       to: :contact_address_lookup_form
 
@@ -232,6 +251,12 @@ module WasteExemptionsEngine
 
           transitions from: :operator_address_lookup_form,
                       to: :operator_address_manual_form
+
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_manual_form
+
+          transitions from: :contact_address_lookup_form,
+                      to: :contact_address_manual_form
         end
       end
     end
@@ -246,6 +271,12 @@ module WasteExemptionsEngine
       # and because it correlates to an enum, Activerecord magic gives us
       # my_address.manual?
       operator_address.manual?
+    end
+
+    def contact_address_was_manually_entered?
+      return unless contact_address
+
+      contact_address.manual?
     end
 
     def should_contact_the_agency?

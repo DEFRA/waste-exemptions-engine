@@ -13,6 +13,12 @@
 
     <h1 class="heading-large"><%= t(".heading.#{@operator_address_manual_form.business_type}") %></h1>
 
+    <div class="form-group">
+      <label class="form-label"><%= t(".postcode_label") %></label>
+      <span class="postcode"><%= @operator_address_manual_form.postcode %></span>
+      <%= link_to(t(".postcode_change_link"), back_operator_address_manual_forms_path(@operator_address_manual_form.token)) %>
+    </div>
+
     <%= render("waste_exemptions_engine/shared/manual_address", form: @operator_address_manual_form, f: f) %>
 
     <%= f.hidden_field :token, value: @operator_address_manual_form.token %>

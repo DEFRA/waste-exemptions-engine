@@ -1,9 +1,3 @@
-<div class="form-group">
-  <label class="form-label"><%= t(".preset_postcode_label") %></label>
-  <span class="postcode"><%= form.postcode %></span>
-  <%= link_to(t(".postcode_change_link"), back_operator_address_manual_forms_path(form.token)) %>
-</div>
-
 <% if form.errors[:premises].any? %>
 <div class="form-group form-group-error">
 <% else %>
