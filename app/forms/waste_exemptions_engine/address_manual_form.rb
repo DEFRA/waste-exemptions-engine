@@ -30,7 +30,32 @@ module WasteExemptionsEngine
       self.locality = params[:locality]
       self.city = params[:city]
       self.postcode = params[:postcode]
-      attributes = { addresses: add_or_replace_address(params) }
+
+      # Now that we are dealing with Activerecord it has protections in place to
+      # stop us mass assigning attributes on a model that come direct from the
+      # params object. In a typical rails project you would have a method in your
+      # controller in which you would call
+      # params.require(:my_model).permit!(:email, :amount, :paid). This does also
+      # work with form objects (just replace my_model for my_form) however it
+      # assumes we are passing the data to the object via calling the method e.g.
+      # @my_form = MyForm.new(sanitize_params)
+      # For the following reasons we have chosen instead to simply assign the
+      # attributes in the way below because
+      #   - the complexity of the form->sub-form->base-form relationship we have
+      #     in this instance
+      #   - attempting to follow the pattern could lead to a refactor of the
+      #     underlying base form objects and controllers
+      #   - the manual address is the only instance we have of mass assigning
+      #     params to a model
+      attributes = {
+        addresses: add_or_replace_address(
+          premises: premises,
+          street_address: street_address,
+          locality: locality,
+          city: city,
+          postcode: postcode
+        )
+      }
 
       super(attributes, params[:token])
     end
@@ -63,7 +88,7 @@ module WasteExemptionsEngine
 
     def add_or_replace_address(params)
       address = Address.create_from_manual_entry_data(
-        sanitize_params(params),
+        params,
         address_type
       )
 
@@ -72,32 +97,6 @@ module WasteExemptionsEngine
       updated_addresses.delete(existing_address) if existing_address
       updated_addresses << address
       updated_addresses
-    end
-
-    # Now that we are dealing with Activerecord it has protections in place to
-    # stop us mass assigning attributes on a model that come direct from the
-    # params object. In a typical rails project you would have a method in your
-    # controller in which you would call
-    # params.require(:my_model).permit!(:email, :amount, :paid). This does also
-    # work with form objects (just replace my_model for my_form) however it
-    # assumes we are passing the data to the object via calling the method e.g.
-    # @my_form = MyForm.new(sanitize_params)
-    # For the following reasons we have chosen instead to create our own santize
-    # method rather than follow this pattern
-    #   - the complexity of the form->sub-form->base-form relationship we have
-    #     in this instance
-    #   - attempting to follow the pattern could lead to a refactor of the
-    #     underlying base form objects and controllers
-    #   - that manual address is the only instance we have of mass assigning
-    #     params to a model
-    def sanitize_params(params)
-      {
-        premises: params["premises"],
-        street_address: params["street_address"],
-        locality: params["locality"],
-        city: params["city"],
-        postcode: params["postcode"]
-      }
     end
   end
 end
