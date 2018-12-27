@@ -10,8 +10,8 @@ en:
           partnership: What's the address of the partnership?
           soleTrader: What's the address of the business?
           charity: What's the address of the charity or trust?
-        operator_postcode_label: Please enter a UK postcode
-        operator_postcode_hint: For example, BS1 5AH
+        postcode_label: Please enter a UK postcode
+        postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix
         next_button: Find address
         manual_address_link: "Enter address manually"
@@ -20,7 +20,7 @@ en:
       models:
         waste_exemptions_engine/operator_postcode_form:
           attributes:
-            operator_postcode:
+            postcode:
               blank: "Enter a postcode"
               wrong_format: "Enter a valid UK postcode"
               no_results: "We cannot find any addresses for that postcode. Check the postcode or enter the address manually."

@@ -4,8 +4,8 @@ en:
       new:
         title: Contact address postcode
         heading: What is the contact's address?
-        contact_postcode_label: Please enter a UK postcode
-        contact_postcode_hint: For example, BS1 5AH
+        postcode_label: Please enter a UK postcode
+        postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix
         next_button: Find address
         manual_address_link: "Enter address manually"
@@ -14,7 +14,7 @@ en:
       models:
         waste_exemptions_engine/contact_postcode_form:
           attributes:
-            contact_postcode:
+            postcode:
               blank: "Enter a postcode"
               wrong_format: "Enter a valid UK postcode"
               no_results: "We cannot find any addresses for that postcode. Check the postcode or enter the address manually."
