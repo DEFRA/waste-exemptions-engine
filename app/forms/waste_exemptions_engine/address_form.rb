@@ -12,7 +12,13 @@ module WasteExemptionsEngine
     def add_or_replace_address(address, existing_addresses)
       # Update the enrollment's nested addresses, replacing any existing address of the same type
       updated_addresses = existing_addresses
-      updated_addresses.delete(existing_address) if existing_address
+      matched_address = updated_addresses.find(existing_address.id) if existing_address
+
+      if matched_address
+        updated_addresses.delete(matched_address)
+        matched_address.delete
+      end
+
       updated_addresses << address
 
       updated_addresses
