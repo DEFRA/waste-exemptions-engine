@@ -22,14 +22,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      # Strip out whitespace from start and end
-      params.each { |_key, value| value.strip! }
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      self.premises = params[:premises]
-      self.street_address = params[:street_address]
-      self.locality = params[:locality]
-      self.city = params[:city]
-      self.postcode = params[:postcode]
+      assign_params(params)
 
       # Now that we are dealing with Activerecord it has protections in place to
       # stop us mass assigning attributes on a model that come direct from the
@@ -67,6 +60,18 @@ module WasteExemptionsEngine
     validates :postcode, length: { maximum: 8 }
 
     private
+
+    def assign_params
+      # Strip out whitespace from start and end
+      params.each { |_key, value| value.strip! }
+
+      # Assign the params for validation and pass them to the BaseForm method for updating
+      self.premises = params[:premises]
+      self.street_address = params[:street_address]
+      self.locality = params[:locality]
+      self.city = params[:city]
+      self.postcode = params[:postcode]
+    end
 
     def saved_address_still_valid?
       return false unless existing_address
