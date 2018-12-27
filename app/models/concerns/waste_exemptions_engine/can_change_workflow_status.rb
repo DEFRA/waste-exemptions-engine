@@ -46,6 +46,7 @@ module WasteExemptionsEngine
         state :contact_position_form
         state :contact_phone_form
         state :contact_email_form
+        state :contact_postcode_form
 
         # Farm questions
         state :is_a_farm_form
@@ -128,8 +129,11 @@ module WasteExemptionsEngine
           transitions from: :contact_phone_form,
                       to: :contact_email_form
 
-          # Farm questions
           transitions from: :contact_email_form,
+                      to: :contact_postcode_form
+
+          # Farm questions
+          transitions from: :contact_postcode_form,
                       to: :is_a_farm_form
 
           transitions from: :is_a_farm_form,
@@ -204,9 +208,12 @@ module WasteExemptionsEngine
           transitions from: :contact_email_form,
                       to: :contact_phone_form
 
+          transitions from: :contact_postcode_form,
+                      to: :contact_email_form
+
           # Farm questions
           transitions from: :is_a_farm_form,
-                      to: :contact_email_form
+                      to: :contact_postcode_form
 
           transitions from: :on_a_farm_form,
                       to: :is_a_farm_form
