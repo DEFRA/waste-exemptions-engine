@@ -6,6 +6,7 @@ module WasteExemptionsEngine
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address
+    attr_accessor :addresses
 
     def initialize(enrollment)
       super

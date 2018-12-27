@@ -4,7 +4,6 @@ module WasteExemptionsEngine
   module AddressForm
     include CanNavigateFlexibly
 
-    attr_accessor :addresses
     attr_accessor :postcode
 
     # Methods which are called in this class but defined in subclasses
