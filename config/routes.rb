@@ -257,6 +257,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :site_grid_reference_forms,
+            only: [:new, :create],
+            path: "site-grid-reference",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "site_grid_reference_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 

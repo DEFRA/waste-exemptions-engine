@@ -5,6 +5,7 @@ PATH
       aasm (~> 4.12)
       has_secure_token
       high_voltage (~> 3.1)
+      os_map_ref (~> 0.5)
       pg (~> 0.18.4)
       phonelib
       rails (= 4.2.11)
@@ -118,6 +119,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
+    os_map_ref (0.5.0)
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
