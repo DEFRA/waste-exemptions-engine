@@ -23,6 +23,8 @@ module WasteExemptionsEngine
 
     has_one :interim, autosave: true
     has_many :addresses
+    has_many :enrollment_exemptions
+    has_many :exemptions, through: :enrollment_exemptions
 
     # Some business types should not have a company_no
     def company_no_required?

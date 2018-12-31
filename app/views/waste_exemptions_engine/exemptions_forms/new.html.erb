@@ -1,0 +1,49 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_exemptions_forms_path(@exemptions_form.token)) %>
+
+<div class="text">
+  <%= form_for(@exemptions_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @exemptions_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <p><%= t(".description") %></p>
+
+    <% if @exemptions_form.errors[:matched_exemptions].any? %>
+    <div class="form-group form-group-error">
+    <% else %>
+    <div class="form-group">
+    <% end %>
+      <fieldset id="<%="matched_exemptions"%>">
+        <% if @exemptions_form.errors[:matched_exemptions].any? %>
+        <span class="error-message"><%= @exemptions_form.errors[:matched_exemptions].join(", ") %></span>
+        <% end %>
+        <table summary="exemption-codes" role="presentation">
+          <thead>
+          <tr>
+            <th><span class="heading-small"><%= t '.th_code' %></span></th>
+            <th><span class="heading-small"><%= t '.th_description' %></span></th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @exemptions_form.exemptions.each do |exemption|  %>
+            <tr>
+              <td>
+                <div class="multiple-choice">
+                  <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.matched_exemption_ids.include?(exemption.id) }, exemption.id, nil %>
+                  <%= f.label "checkbox-#{exemption.code}", exemption.code %>
+                </div>
+              </td>
+              <td><span><%= exemption.summary %></span></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
+
+    <%= f.hidden_field :token, value: @exemptions_form.token %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+  <% end %>
+</div>
