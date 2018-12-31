@@ -57,8 +57,8 @@ module WasteExemptionsEngine
         # Site questions
         state :site_grid_reference_form
 
-        # Exemptions questions
         state :exemptions_form
+        state :check_your_answers_form
 
         # Transitions
         event :next do
@@ -165,9 +165,11 @@ module WasteExemptionsEngine
           transitions from: :on_a_farm_form,
                       to: :site_grid_reference_form
 
-          # Exemptions questions
           transitions from: :site_grid_reference_form,
                       to: :exemptions_form
+
+          transitions from: :exemptions_form,
+                      to: :check_your_answers_form
         end
 
         event :back do
@@ -265,6 +267,9 @@ module WasteExemptionsEngine
           # Exemptions questions
           transitions from: :exemptions_form,
                       to: :site_grid_reference_form
+
+          transitions from: :check_your_answers_form,
+                      to: :exemptions_form
         end
 
         event :skip_to_manual_address do

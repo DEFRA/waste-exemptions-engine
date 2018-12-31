@@ -277,6 +277,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :check_your_answers_forms,
+            only: [:new, :create],
+            path: "check-your-answers",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "check_your_answers_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 
