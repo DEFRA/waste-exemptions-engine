@@ -37,6 +37,10 @@ module WasteExemptionsEngine
       find_address_by_type(Address.address_types[:contact])
     end
 
+    def site_address
+      find_address_by_type(Address.address_types[:site])
+    end
+
     private
 
     def find_address_by_type(address_type)
