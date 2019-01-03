@@ -1,0 +1,131 @@
+en:
+  waste_exemptions_engine:
+    check_your_answers_forms:
+      new:
+        title: Check your details
+        heading: Check your answers before completing your registration
+        error_heading: Something is wrong
+        error_description_1: "We're missing some of the information we need to complete your registration:"
+        error_description_2: "Please go back and make sure all the required questions have been answered."
+        description: We will send a copy of this summary in a confirmation email
+        location:
+          subheading: "You told us"
+          location_html: "the waste operation will take place in <span class=\"strong\">England</span>"
+        applicant:
+          subheading: Your details
+          name_html: "your name is <span class=\"strong\">%{value}</span>"
+          phone_html: "your phone number is <span class=\"strong\">%{value}</span>"
+          email_html: "your email is <span class=\"strong\">%{value}</span>"
+        operator:
+          subheading: Operator details
+          business_type:
+            limitedCompany_html: "the operator is a <span class=\"strong\">limited company</span>"
+            limitedLiabilityPartnership_html: "the operator is a <span class=\"strong\">limited liability partnership</span>"
+            localAuthority_html: "the operator is a <span class=\"strong\">local authority or public body</span>"
+            partnership_html: "the operator is a <span class=\"strong\">partnership</span>"
+            soleTrader_html: "the operator is a <span class=\"strong\">individual or sole trader</span>"
+            charity_html: "the operator is a <span class=\"strong\">charity or trust</span>"
+          name:
+            limitedCompany_html: "the company name is <span class=\"strong\">%{value}</span>"
+            limitedLiabilityPartnership_html: "the partnership name is <span class=\"strong\">%{value}</span>"
+            localAuthority_html: "the local authority or public body name is <span class=\"strong\">%{value}</span>"
+            partnership_html: "the partnership name is <span class=\"strong\">%{value}</span>"
+            soleTrader_html: "the operator's name is <span class=\"strong\">%{value}</span>"
+            charity_html: "the charity or trust name is <span class=\"strong\">%{value}</span>"
+          company_no_html: "the Companies House number is <span class=\"strong\">%{value}</span>"
+          subheading_address: Operator address
+        contact:
+          subheading: Contact deatils
+          name_html: "the contact's name is <span class=\"strong\">%{value}</span>"
+          position_html: "the contact's position is <span class=\"strong\">%{value}</span>"
+          phone_html: "the contact's phone number is <span class=\"strong\">%{value}</span>"
+          email_html: "the contact's email is <span class=\"strong\">%{value}</span>"
+          subheading_address: Contact address
+        farming:
+          subheading: Farming information
+          is_a_farm:
+            true_html: "the operater <span class=\"strong\">is</span> a farmer"
+            false_html: "the operater <span class=\"strong\">is not</span> a farmer"
+          on_a_farm:
+            true_html: "the operation <span class=\"strong\">will</span> take place on a farm"
+            false_html: "the operation <span class=\"strong\">will not</span> take place on a farm"
+        site:
+          subheading:
+            lookup: Site address
+            manual: Site address
+            auto: Site location
+          grid_reference_html: "the site is located at grid reference <span class=\"strong\">%{value}</span>"
+        exemptions:
+          subheading: Selected exemptions
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_your_answers_form:
+          attributes:
+            location:
+              inclusion: "You need to tell us if you are registering a waste operation based in England"
+            applicant_first_name:
+              blank: "You need to enter your first name"
+              invalid: "Your first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "Your first name must have no more than 70 characters"
+            applicant_last_name:
+              blank: "You need to enter your last name"
+              invalid: "Your last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "Your last name must have no more than 70 characters"
+            applicant_phone:
+              blank: "You need to enter your telephone number"
+              invalid_format: "Your phone number is not a valid number"
+              too_long: "Your phone number should have no more than than 15 characters"
+            applicant_email:
+              blank: "You need to enter your email address"
+              invalid_format: "Your email is not a valid email address"
+            business_type:
+              inclusion: "You need to tell us what type of organisation the operator is"
+            company_no:
+              invalid_format: "The operator company number is not valid - it should have 8 digits, or 2 letters followed by 6 digits. If your number has only 7 digits, enter it with a zero at the start."
+              inactive: "The operator company must be registered as an active company"
+              not_found: "Companies House couldn't find a company with this number"
+              error: "There was an error with Companies House"
+              blank: "You need to tell us the operator's company registration number"
+            operator_name:
+              blank: "You need to tell us the waste operator's name"
+              too_long: "Enter a shorter waste operator name with no more than 255 characters"
+            operator_address:
+              blank: "You need to tell us the waste operator's address"
+            contact_first_name:
+              blank: "You need to enter the contact's first name"
+              invalid: "The contact's first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The contact's first name must have no more than 70 characters"
+            contact_last_name:
+              blank: "You need to enter the contact's last name"
+              invalid: "The contact's last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The contact's last name must have no more than 70 characters"
+            contact_position:
+              invalid: "The contact's position must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The contact's position must have no more than 70 characters"
+            contact_phone:
+              blank: "You need to enter the contact's telephone number"
+              invalid_format: "The contact's phone number is not a valid number"
+              too_long: "The contact's phone number should have no more than than 15 characters"
+            contact_email:
+              blank: "You need to enter the contact's email address"
+              invalid_format: "The contact's email is not a valid email address"
+            contact_address:
+              blank: "You need to tell us the contact's address"
+            is_a_farm:
+              inclusion: "You must tell us if the operator is a farmer"
+            on_a_farm:
+              inclusion: "You must tell us if the operation is on a farm"
+            grid_reference:
+              blank: "You need to tell us the site grid reference"
+              wrong_format: The site grid reference should have 2 letters and 10 digits
+              invalid: The site grid reference is not a valid coordinate
+            site_description:
+              blank: You need to provide a site description
+              too_long: The site description must be no longer than 500 characters
+            exemptions:
+              inclusion: "You must select at least one exemption"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
