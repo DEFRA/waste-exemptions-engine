@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
+# We believe in the case of the different states and transitions for the
+# exemption journey, its better to see them all in one place. However this
+# does mean the module length breaks rubocops rules hence the exception.
+# rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
-  # We believe in the case of the different states and transitions for the
-  # exemption journey, its better to see them all in one place. However this
-  # does mean the module length breaks rubocops rules hence the exception.
-  # rubocop:disable Metrics/ModuleLength
   module CanChangeWorkflowStatus
     extend ActiveSupport::Concern
 
@@ -62,6 +62,7 @@ module WasteExemptionsEngine
 
         state :exemptions_form
         state :check_your_answers_form
+        state :declaration_form
 
         # Transitions
         event :next do
@@ -194,6 +195,9 @@ module WasteExemptionsEngine
 
           transitions from: :exemptions_form,
                       to: :check_your_answers_form
+
+          transitions from: :check_your_answers_form,
+                      to: :declaration_form
         end
 
         event :back do
@@ -309,8 +313,12 @@ module WasteExemptionsEngine
           transitions from: :exemptions_form,
                       to: :site_grid_reference_form
 
+          # End pages
           transitions from: :check_your_answers_form,
                       to: :exemptions_form
+
+          transitions from: :declaration_form,
+                      to: :check_your_answers_form
         end
 
         event :skip_to_manual_address do
@@ -396,5 +404,5 @@ module WasteExemptionsEngine
       interim.address_finder_error
     end
   end
-  # rubocop:enable Metrics/ModuleLength
 end
+# rubocop:enable Metrics/ModuleLength

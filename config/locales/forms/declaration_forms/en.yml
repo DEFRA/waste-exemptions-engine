@@ -1,0 +1,24 @@
+en:
+  waste_exemptions_engine:
+    declaration_forms:
+      new:
+        title: Declaration
+        heading: Declaration
+        notice: You can be prosecuted and fined if you provide false or misleading information
+        list_item_1: By registering, you confirm that the information you have provided is true
+        list_item_2: The business or organisation carrying out the waste operation has authorised me to provide this information
+        declaration_text: I understand and agree with the declaration above
+        privacy_link_text: "Privacy: how we use your personal information (opens new tab)"
+        alt_text: Important message
+        error_heading: Something is wrong
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/declaration_form:
+          attributes:
+            declaration:
+              inclusion: "You cannot register if you do not understand and agree with the declaration"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
