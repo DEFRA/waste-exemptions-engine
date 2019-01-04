@@ -21,6 +21,8 @@ module WasteExemptionsEngine
     end
 
     def self.create_from_manual_entry_data(data, address_type)
+      data = update_xy_from_postcode(data) if address_type == Address.address_types[:site]
+
       create_address(data, address_type, Address.modes[:manual])
     end
 
@@ -35,6 +37,18 @@ module WasteExemptionsEngine
       data["mode"] = mode
 
       Address.create(data)
+    end
+
+    private_class_method def self.update_xy_from_postcode(data)
+      return nil unless data
+
+      results = AddressFinderService.new(data[:postcode]).search_by_postcode
+      if results&.length&.positive?
+        data["x"] = results.first["x"].to_f
+        data["y"] = results.first["y"].to_f
+      end
+
+      data
     end
 
     private_class_method def self.update_xy_from_grid_reference(data)

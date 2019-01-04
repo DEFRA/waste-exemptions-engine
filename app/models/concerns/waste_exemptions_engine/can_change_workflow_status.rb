@@ -58,6 +58,7 @@ module WasteExemptionsEngine
         state :site_grid_reference_form
         state :site_postcode_form
         state :site_address_lookup_form
+        state :site_address_manual_form
 
         state :exemptions_form
         state :check_your_answers_form
@@ -174,22 +175,22 @@ module WasteExemptionsEngine
           transitions from: :site_grid_reference_form,
                       to: :exemptions_form
 
-          # transitions from: :site_postcode_form,
-          #             to: :site_address_manual_form,
-          #             if: :skip_to_manual_address?
+          transitions from: :site_postcode_form,
+                      to: :site_address_manual_form,
+                      if: :skip_to_manual_address?
 
           transitions from: :site_postcode_form,
                       to: :site_address_lookup_form
 
-          # transitions from: :site_address_lookup_form,
-          #             to: :site_address_manual_form,
-          #             if: :skip_to_manual_address?
+          transitions from: :site_address_lookup_form,
+                      to: :site_address_manual_form,
+                      if: :skip_to_manual_address?
 
           transitions from: :site_address_lookup_form,
                       to: :exemptions_form
 
-          # transitions from: :site_address_manual_form,
-          #             to: :exemptions_form
+          transitions from: :site_address_manual_form,
+                      to: :exemptions_form
 
           transitions from: :exemptions_form,
                       to: :check_your_answers_form
@@ -297,9 +298,9 @@ module WasteExemptionsEngine
                       to: :site_postcode_form
 
           # Exemptions questions
-          # transitions from: :exemptions_form,
-          #             to: :site_address_manual_form,
-          #             if: :site_address_was_manually_entered?
+          transitions from: :exemptions_form,
+                      to: :site_address_manual_form,
+                      if: :site_address_was_manually_entered?
 
           transitions from: :exemptions_form,
                       to: :site_address_lookup_form,
@@ -357,11 +358,11 @@ module WasteExemptionsEngine
       contact_address.manual?
     end
 
-    # def site_address_was_manually_entered?
-    #   return unless site_address
-    #
-    #   site_address.manual?
-    # end
+    def site_address_was_manually_entered?
+      return unless site_address
+
+      site_address.manual?
+    end
 
     def site_address_was_entered?
       return unless site_address
