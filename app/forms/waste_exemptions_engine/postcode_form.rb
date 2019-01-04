@@ -14,8 +14,7 @@ module WasteExemptionsEngine
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method
       # for updating
-      self.postcode = params[:postcode]
-      format_postcode
+      self.postcode = format_postcode(params[:postcode])
 
       # While we won't proceed if the postcode isn't valid, we should always
       # save it in case it's needed for manual entry
@@ -31,11 +30,10 @@ module WasteExemptionsEngine
 
     private
 
-    def format_postcode
+    def format_postcode(postcode)
       return unless postcode.present?
 
-      postcode.upcase!
-      postcode.strip!
+      postcode.upcase.strip
     end
 
     # We use this to work out what the field name will be in the interim model.
