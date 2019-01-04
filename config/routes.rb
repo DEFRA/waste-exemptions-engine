@@ -287,6 +287,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :site_address_lookup_forms,
+            only: [:new, :create],
+            path: "site-address-lookup",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "site_address_lookup_forms#go_back",
+              as: "back",
+              on: :collection
+
+              get "skip_to_manual_address/:token",
+              to: "site_address_lookup_forms#skip_to_manual_address",
+              as: "skip_to_manual_address",
+              on: :collection
+            end
+
   resources :exemptions_forms,
             only: [:new, :create],
             path: "exemptions",
