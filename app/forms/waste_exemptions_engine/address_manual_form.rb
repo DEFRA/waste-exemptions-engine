@@ -40,9 +40,6 @@ module WasteExemptionsEngine
     private
 
     def assign_params(params)
-      # Strip out whitespace from start and end
-      params.each { |_key, value| value.strip! }
-
       # Assign the params for validation and pass them to the BaseForm method for updating
       self.premises = params[:premises]
       self.street_address = params[:street_address]
