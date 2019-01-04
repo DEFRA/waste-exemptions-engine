@@ -81,7 +81,8 @@ module WasteExemptionsEngine
     validates :contact_email, "waste_exemptions_engine/email": true
     validates :contact_address, "waste_exemptions_engine/address": true
 
-    validates :is_a_farm, :on_a_farm, "waste_exemptions_engine/yes_no": true
+    validates :is_a_farm, inclusion: { in: [true, false] }
+    validates :on_a_farm, inclusion: { in: [true, false] }
     validates :grid_reference, "waste_exemptions_engine/grid_reference": true
     validates :site_description, "waste_exemptions_engine/site_description": true
     validates :exemptions, "waste_exemptions_engine/exemptions": true

@@ -332,6 +332,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :declaration_forms,
+            only: [:new, :create],
+            path: "declaration",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "declaration_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 

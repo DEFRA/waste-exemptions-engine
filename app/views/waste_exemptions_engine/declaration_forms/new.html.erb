@@ -1,0 +1,37 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_declaration_forms_path(@declaration_form.token)) %>
+
+<div class="text">
+  <%= form_for(@declaration_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @declaration_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <div class="icon heading-with-border">
+      <div class="icon-important inline">
+        <%= image_tag "icon-important-2x.png", alt: t('.alt_text') %>
+      </div>
+      <span class="heading-small inline"><%= t '.notice' %></span>
+    </div>
+
+    <ul class="list list-bullet">
+      <li><%= t(".list_item_1") %></li>
+      <li><%= t(".list_item_2") %></li>
+    </ul>
+
+    <div class="form-group">
+      <fieldset id="declaration">
+        <div class="multiple-choice">
+          <%= f.check_box :declaration %>
+          <%= f.label :declaration, t(".declaration_text") %>
+        </div>
+      </fieldset>
+    </div>
+
+    <p><%= link_to t(".privacy_link_text"), page_path("privacy"),  target: "_blank" %></p>
+
+    <%= f.hidden_field :token, value: @declaration_form.token %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+  <% end %>
+</div>
