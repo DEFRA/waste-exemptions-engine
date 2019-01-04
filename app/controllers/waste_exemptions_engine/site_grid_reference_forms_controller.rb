@@ -9,5 +9,12 @@ module WasteExemptionsEngine
     def create
       super(SiteGridReferenceForm, "site_grid_reference_form")
     end
+
+    def skip_to_address
+      find_or_initialize_enrollment(params[:token])
+
+      @enrollment.skip_to_address! if form_matches_state?
+      redirect_to_correct_form
+    end
   end
 end

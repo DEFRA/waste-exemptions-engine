@@ -1,0 +1,45 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_site_postcode_forms_path(@site_postcode_form.token)) %>
+
+<div class="text">
+  <%= form_for(@site_postcode_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @site_postcode_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <% if @site_postcode_form.errors[:postcode].any? %>
+    <div class="form-group form-group-error">
+    <% else %>
+    <div class="form-group">
+    <% end %>
+      <fieldset id="postcode">
+        <legend class="visuallyhidden">
+          <%= t(".heading") %>
+        </legend>
+
+        <% if @site_postcode_form.errors[:postcode].any? %>
+        <span class="error-message"><%= @site_postcode_form.errors[:postcode].join(", ") %></span>
+        <% end %>
+
+        <%= f.label :postcode, class: "form-label" do %>
+          <%= t(".postcode_label") %>
+          <span class='form-hint'><%= t(".postcode_hint") %></span>
+        <% end %>
+        <%= f.text_field :postcode, value: @site_postcode_form.postcode, class: "form-control" %>
+
+      </fieldset>
+    </div>
+
+    <%= f.hidden_field :token, value: @site_postcode_form.token %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+
+    <% if @site_postcode_form.errors.added?(:postcode, :no_results) %>
+    <div class="form-group">
+      <%= link_to(t(".manual_address_link"), skip_to_manual_address_contact_postcode_forms_path(@site_postcode_form.token)) %>
+    </div>
+    <% end %>
+  <% end %>
+
+  <%= render("waste_exemptions_engine/shared/os_terms_footer") %>
+</div>

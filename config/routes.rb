@@ -265,6 +265,26 @@ WasteExemptionsEngine::Engine.routes.draw do
               to: "site_grid_reference_forms#go_back",
               as: "back",
               on: :collection
+
+              get "skip_to_address/:token",
+              to: "site_grid_reference_forms#skip_to_address",
+              as: "skip_to_address",
+              on: :collection
+            end
+
+  resources :site_postcode_forms,
+            only: [:new, :create],
+            path: "site-postcode",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "site_postcode_forms#go_back",
+              as: "back",
+              on: :collection
+
+              get "skip_to_manual_address/:token",
+              to: "site_postcode_forms#skip_to_manual_address",
+              as: "skip_to_manual_address",
+              on: :collection
             end
 
   resources :exemptions_forms,
