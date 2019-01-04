@@ -302,6 +302,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :site_address_manual_forms,
+            only: [:new, :create],
+            path: "site-address-manual",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "site_address_manual_forms#go_back",
+              as: "back",
+              on: :collection
+            end
+
   resources :exemptions_forms,
             only: [:new, :create],
             path: "exemptions",
