@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class EnrollmentExemption < ActiveRecord::Base
+    include CanChangeExemptionStatus
 
     self.table_name = "enrollment_exemptions"
 

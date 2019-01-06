@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     # We want to create the interim record at the same time as the enrollment
     # is initialized. With activerecord objects overriding the initializer is
     # seen as an anti-pattern, so instead we rely on its callbacks.
-    after_create :create_interim
+    after_create :create_interim, :apply_reference
 
     # HasSecureToken provides an easy way to generate unique random tokens for
     # any model in ruby on rails. We use it to uniquely identify an enrollment
@@ -49,6 +49,11 @@ module WasteExemptionsEngine
       return nil unless addresses.present?
 
       addresses.where(address_type: address_type).first
+    end
+
+    def apply_reference
+      self.reference = format("WEX%06d", id)
+      save!
     end
   end
 end

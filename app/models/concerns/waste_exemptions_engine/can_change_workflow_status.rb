@@ -61,8 +61,11 @@ module WasteExemptionsEngine
         state :site_address_manual_form
 
         state :exemptions_form
+
+        # End pages
         state :check_your_answers_form
         state :declaration_form
+        state :registration_complete_form
 
         # Transitions
         event :next do
@@ -198,6 +201,10 @@ module WasteExemptionsEngine
 
           transitions from: :check_your_answers_form,
                       to: :declaration_form
+
+          transitions from: :declaration_form,
+                      to: :registration_complete_form,
+                      after: :activate_exemptions
         end
 
         event :back do
@@ -402,6 +409,12 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       interim.address_finder_error
+    end
+
+    def activate_exemptions
+      Enrollment.transaction do
+        enrollment_exemptions.each(&:activate)
+      end
     end
   end
 end

@@ -1,0 +1,32 @@
+en:
+  waste_exemptions_engine:
+    registration_complete_forms:
+      new:
+        title: Registration complete
+        heading: Registration complete
+        highlight_text: "Your registration number is"
+        confirmation_email_text: "We have sent a confirmation email to %{email}."
+        what_happens_next:
+          subheading: What happens next
+          bullet_1: |
+            your organisation’s details will be processed and appear on the public register within 5 days
+          bullet_2_one: we’ll send a renewal reminder when this waste exemption is due to expire
+          bullet_2_many: we’ll send a renewal reminder when these waste exemptions are due to expire
+        registration_checks:
+          subheading: Registration checks
+          note: |
+            Waste exemption registrations are subject to checks. Deliberately providing false details, or not complying with exemption rules, can lead to de-registration and prosecution.
+        paragraph_6: If any of your details change you must update your registration within 28 days.
+        call_helpline_text: Call our helpline on 03708 506 506 if you have any questions about your registration.
+        survey_link_text: What do you think of this service?
+        survey_link_hint: (takes 30 seconds)
+        error_heading: Something is wrong
+        next_button: Finished
+  activemodel:
+    errors:
+      models:
+        waste_carriers_engine/registration_complete_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

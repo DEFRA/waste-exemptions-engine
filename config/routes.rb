@@ -342,6 +342,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :registration_complete_forms,
+            only: [:new, :create],
+            path: "registration-complete",
+            path_names: { new: "/:token" }
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 
