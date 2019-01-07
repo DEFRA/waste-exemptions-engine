@@ -3,6 +3,9 @@
 class CreateRegistrationExemptions < ActiveRecord::Migration
   def change
     create_table :registration_exemptions do |t|
+      t.string :state
+      t.date :registered_on
+      t.date :expires_on
       t.belongs_to :registration, index: true
       t.belongs_to :exemption, index: true
 
