@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     private
 
     def existing_postcode
-      @enrollment.interim.contact_postcode
+      @registration.interim.contact_postcode
     end
   end
 end

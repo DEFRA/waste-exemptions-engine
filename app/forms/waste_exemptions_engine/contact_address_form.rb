@@ -6,11 +6,11 @@ module WasteExemptionsEngine
     private
 
     def existing_postcode
-      @enrollment.interim.contact_postcode
+      @registration.interim.contact_postcode
     end
 
     def existing_address
-      @enrollment.contact_address
+      @registration.contact_address
     end
 
     def address_type

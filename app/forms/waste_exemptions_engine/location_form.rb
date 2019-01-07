@@ -6,9 +6,9 @@ module WasteExemptionsEngine
 
     attr_accessor :location
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.location = @enrollment.location
+      self.location = @registration.location
     end
 
     def submit(params)

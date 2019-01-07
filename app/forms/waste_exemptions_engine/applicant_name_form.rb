@@ -6,10 +6,10 @@ module WasteExemptionsEngine
 
     attr_accessor :first_name, :last_name
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.first_name = @enrollment.applicant_first_name
-      self.last_name = @enrollment.applicant_last_name
+      self.first_name = @registration.applicant_first_name
+      self.last_name = @registration.applicant_last_name
     end
 
     def submit(params)

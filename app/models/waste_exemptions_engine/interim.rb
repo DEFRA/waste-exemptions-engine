@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class Interim < ActiveRecord::Base
-    belongs_to :enrollment
+    belongs_to :registration
 
     self.table_name = "interims"
   end

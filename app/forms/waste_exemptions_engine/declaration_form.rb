@@ -6,9 +6,9 @@ module WasteExemptionsEngine
 
     attr_accessor :declaration
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.declaration = @enrollment.declaration
+      self.declaration = @registration.declaration
     end
 
     def submit(params)

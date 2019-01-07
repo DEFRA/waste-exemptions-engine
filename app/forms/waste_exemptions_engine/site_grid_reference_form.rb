@@ -6,16 +6,16 @@ module WasteExemptionsEngine
 
     attr_accessor :grid_reference, :description
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.grid_reference = @enrollment.interim.grid_reference
-      self.description = @enrollment.interim.site_description
+      self.grid_reference = @registration.interim.grid_reference
+      self.description = @registration.interim.site_description
     end
 
     def submit(params)
       assign_params(params)
 
-      @enrollment.interim.update_attributes(
+      @registration.interim.update_attributes(
         grid_reference: grid_reference,
         site_description: description
       )
@@ -24,7 +24,7 @@ module WasteExemptionsEngine
       attributes = {
         addresses: add_or_replace_address(
           new_address,
-          @enrollment.addresses
+          @registration.addresses
         )
       }
 
@@ -45,7 +45,7 @@ module WasteExemptionsEngine
     end
 
     def existing_address
-      @enrollment.site_address
+      @registration.site_address
     end
 
     def create_address
@@ -60,7 +60,7 @@ module WasteExemptionsEngine
     def add_or_replace_address(address, existing_addresses)
       return existing_addresses unless address
 
-      # Update the enrollment's nested addresses, replacing any existing address
+      # Update the registration's nested addresses, replacing any existing address
       # of the same type
       updated_addresses = existing_addresses
       matched_address = updated_addresses.find(existing_address.id) if existing_address

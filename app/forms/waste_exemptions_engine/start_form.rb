@@ -5,9 +5,9 @@ module WasteExemptionsEngine
 
     attr_accessor :start
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.start = @enrollment.start_option
+      self.start = @registration.start_option
     end
 
     def submit(params)

@@ -20,36 +20,36 @@ module WasteExemptionsEngine
     end
 
     def go_back
-      find_or_initialize_enrollment(params[:token])
+      find_or_initialize_registration(params[:token])
 
-      @enrollment.back! if form_matches_state?
+      @registration.back! if form_matches_state?
       redirect_to_correct_form
     end
 
     private
 
-    def find_or_initialize_enrollment(token)
-      @enrollment = Enrollment.where(
+    def find_or_initialize_registration(token)
+      @registration = Registration.where(
         token: token
-      ).first || Enrollment.new
+      ).first || Registration.new
     end
 
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
     # and the token param
     def set_up_form(form_class, form, token, get_request = false)
-      find_or_initialize_enrollment(token)
+      find_or_initialize_registration(token)
       set_workflow_state if get_request
 
       return false unless setup_checks_pass?
 
       # Set an instance variable for the form (eg. @business_type_form) using the provided class (eg. BusinessTypeForm)
-      instance_variable_set("@#{form}", form_class.new(@enrollment))
+      instance_variable_set("@#{form}", form_class.new(@registration))
     end
 
     def submit_form(form, params)
       respond_to do |format|
         if form.submit(params)
-          @enrollment.next!
+          @registration.next!
           format.html { redirect_to_correct_form }
           true
         else
@@ -66,18 +66,18 @@ module WasteExemptionsEngine
     # Get the path based on the workflow state, with token as params, ie:
     # new_state_name_path/:token
     def form_path
-      send("new_#{@enrollment.workflow_state}_path".to_sym, @enrollment.token)
+      send("new_#{@registration.workflow_state}_path".to_sym, @registration.token)
     end
 
     def setup_checks_pass?
-      enrollment_is_valid? && state_is_correct?
+      registration_is_valid? && state_is_correct?
     end
 
     def set_workflow_state
-      return unless state_can_navigate_flexibly?(@enrollment.workflow_state)
+      return unless state_can_navigate_flexibly?(@registration.workflow_state)
       return unless state_can_navigate_flexibly?(requested_state)
 
-      @enrollment.update_attributes(workflow_state: requested_state)
+      @registration.update_attributes(workflow_state: requested_state)
     end
 
     def state_can_navigate_flexibly?(state)
@@ -92,8 +92,8 @@ module WasteExemptionsEngine
 
     # Guards
 
-    def enrollment_is_valid?
-      return true if @enrollment.valid?
+    def registration_is_valid?
+      return true if @registration.valid?
 
       redirect_to page_path("invalid")
       false
@@ -107,7 +107,7 @@ module WasteExemptionsEngine
     end
 
     def form_matches_state?
-      controller_name == "#{@enrollment.workflow_state}s"
+      controller_name == "#{@registration.workflow_state}s"
     end
 
     # http://jacopretorius.net/2014/01/force-page-to-reload-on-browser-back-in-rails.html
