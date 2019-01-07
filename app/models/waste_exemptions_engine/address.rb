@@ -4,7 +4,7 @@ require "os_map_ref"
 
 module WasteExemptionsEngine
   class Address < ActiveRecord::Base
-    belongs_to :enrollment
+    belongs_to :registration
 
     self.table_name = "addresses"
 

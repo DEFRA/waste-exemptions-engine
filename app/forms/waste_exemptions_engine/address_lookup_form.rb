@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     attr_accessor :temp_addresses
     attr_accessor :temp_address
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
 
       self.postcode = existing_postcode
@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       # Assign the params for validation and pass them to the BaseForm method for updating
       new_address = create_address(params[:temp_address])
 
-      self.temp_addresses = add_or_replace_address(new_address, @enrollment.addresses)
+      self.temp_addresses = add_or_replace_address(new_address, @registration.addresses)
       attributes = { addresses: temp_addresses }
 
       super(attributes, params[:token])
@@ -40,7 +40,7 @@ module WasteExemptionsEngine
       end
     end
 
-    # If an address has already been assigned to the enrollment, pre-select it
+    # If an address has already been assigned to the registration, pre-select it
     def preselect_existing_address
       return unless can_preselect_address?
 

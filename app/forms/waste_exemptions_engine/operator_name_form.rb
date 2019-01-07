@@ -6,11 +6,11 @@ module WasteExemptionsEngine
 
     attr_accessor :business_type, :operator_name
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
       # We only use this for the correct microcopy
-      self.business_type = @enrollment.business_type
-      self.operator_name = @enrollment.operator_name
+      self.business_type = @registration.business_type
+      self.operator_name = @registration.operator_name
     end
 
     def submit(params)

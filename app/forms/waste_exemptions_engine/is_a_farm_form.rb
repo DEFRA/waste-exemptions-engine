@@ -6,9 +6,9 @@ module WasteExemptionsEngine
 
     attr_accessor :is_a_farm
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.is_a_farm = @enrollment.is_a_farm
+      self.is_a_farm = @registration.is_a_farm
     end
 
     def submit(params)

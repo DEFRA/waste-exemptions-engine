@@ -16,37 +16,37 @@ module WasteExemptionsEngine
     # exceptions
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
-    def initialize(enrollment)
+    def initialize(registration)
       super
 
-      self.location = @enrollment.location
+      self.location = @registration.location
 
-      self.applicant_first_name = @enrollment.applicant_first_name
-      self.applicant_last_name = @enrollment.applicant_last_name
-      self.applicant_phone = @enrollment.applicant_phone
-      self.applicant_email = @enrollment.applicant_email
+      self.applicant_first_name = @registration.applicant_first_name
+      self.applicant_last_name = @registration.applicant_last_name
+      self.applicant_phone = @registration.applicant_phone
+      self.applicant_email = @registration.applicant_email
 
-      self.business_type = @enrollment.business_type
+      self.business_type = @registration.business_type
 
-      self.company_no = @enrollment.company_no
-      self.operator_name = @enrollment.operator_name
-      self.operator_address = @enrollment.operator_address
+      self.company_no = @registration.company_no
+      self.operator_name = @registration.operator_name
+      self.operator_address = @registration.operator_address
 
-      self.contact_first_name = @enrollment.contact_first_name
-      self.contact_last_name = @enrollment.contact_last_name
-      self.contact_position = @enrollment.contact_position
-      self.contact_phone = @enrollment.contact_phone
-      self.contact_email = @enrollment.contact_email
-      self.contact_address = @enrollment.contact_address
+      self.contact_first_name = @registration.contact_first_name
+      self.contact_last_name = @registration.contact_last_name
+      self.contact_position = @registration.contact_position
+      self.contact_phone = @registration.contact_phone
+      self.contact_email = @registration.contact_email
+      self.contact_address = @registration.contact_address
 
-      self.is_a_farm = @enrollment.is_a_farm
-      self.on_a_farm = @enrollment.on_a_farm
+      self.is_a_farm = @registration.is_a_farm
+      self.on_a_farm = @registration.on_a_farm
 
-      self.site_address = @enrollment.site_address
+      self.site_address = @registration.site_address
       self.grid_reference = site_address&.grid_reference
       self.site_description = site_address&.description
 
-      self.exemptions = @enrollment.exemptions
+      self.exemptions = @registration.exemptions
 
       valid?
     end

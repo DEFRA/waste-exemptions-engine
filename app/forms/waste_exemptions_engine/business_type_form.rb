@@ -6,9 +6,9 @@ module WasteExemptionsEngine
 
     attr_accessor :business_type
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.business_type = @enrollment.business_type
+      self.business_type = @registration.business_type
     end
 
     def submit(params)

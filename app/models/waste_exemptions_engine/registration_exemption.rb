@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class EnrollmentExemption < ActiveRecord::Base
+  class RegistrationExemption < ActiveRecord::Base
     include CanChangeExemptionStatus
 
-    self.table_name = "enrollment_exemptions"
+    self.table_name = "registration_exemptions"
 
-    belongs_to :enrollment
+    belongs_to :registration
     belongs_to :exemption
 
   end

@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
 
     def add_or_replace_address(address, existing_addresses)
-      # Update the enrollment's nested addresses, replacing any existing address of the same type
+      # Update the registration's nested addresses, replacing any existing address of the same type
       updated_addresses = existing_addresses
       matched_address = updated_addresses.find(existing_address.id) if existing_address
 

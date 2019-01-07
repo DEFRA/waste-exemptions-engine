@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class ContactAgencyForm < BaseForm
     include CanNavigateFlexibly
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
     end
 

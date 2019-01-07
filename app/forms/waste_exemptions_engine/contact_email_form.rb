@@ -6,10 +6,10 @@ module WasteExemptionsEngine
 
     attr_accessor :contact_email, :confirmed_email
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.contact_email = @enrollment.contact_email
-      self.confirmed_email = @enrollment.contact_email
+      self.contact_email = @registration.contact_email
+      self.confirmed_email = @registration.contact_email
     end
 
     def submit(params)

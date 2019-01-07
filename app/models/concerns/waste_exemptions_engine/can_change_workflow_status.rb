@@ -412,8 +412,8 @@ module WasteExemptionsEngine
     end
 
     def activate_exemptions
-      Enrollment.transaction do
-        enrollment_exemptions.each(&:activate)
+      Registration.transaction do
+        registration_exemptions.each(&:activate)
       end
     end
   end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateEnrollments < ActiveRecord::Migration
+class CreateRegistrations < ActiveRecord::Migration
   def change
-    create_table(:enrollments) do |t|
+    create_table(:registrations) do |t|
       t.string :workflow_state
       t.timestamps null: false
     end

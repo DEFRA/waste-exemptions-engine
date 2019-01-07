@@ -19,7 +19,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :logical_status_code
       t.string :source_data_type
       t.string :country_iso
-      t.belongs_to :enrollment, index: true, foreign_key: true
+      t.belongs_to :registration, index: true, foreign_key: true
 
       t.timestamps null: false
     end

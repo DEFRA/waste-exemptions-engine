@@ -6,9 +6,9 @@ module WasteExemptionsEngine
 
     attr_accessor :phone_number
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.phone_number = @enrollment.applicant_phone
+      self.phone_number = @registration.applicant_phone
     end
 
     def submit(params)

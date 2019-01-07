@@ -5,11 +5,11 @@ module WasteExemptionsEngine
 
     attr_accessor :reference, :exemptions_plural, :contact_email
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
-      self.reference = @enrollment.reference
-      self.exemptions_plural = @enrollment.exemptions.length > 1 ? "many" : "one"
-      self.contact_email = @enrollment.contact_email
+      self.reference = @registration.reference
+      self.exemptions_plural = @registration.exemptions.length > 1 ? "many" : "one"
+      self.contact_email = @registration.contact_email
     end
 
     # Override BaseForm method as users shouldn't be able to submit this form

@@ -5,7 +5,7 @@ module WasteExemptionsEngine
 
     attr_accessor :postcode
 
-    def initialize(enrollment)
+    def initialize(registration)
       super
 
       self.postcode = existing_postcode
@@ -19,10 +19,10 @@ module WasteExemptionsEngine
       # While we won't proceed if the postcode isn't valid, we should always
       # save it in case it's needed for manual entry
       interim_field = determine_interim_postcode_field_name
-      @enrollment.interim.update_attributes(interim_field => postcode)
+      @registration.interim.update_attributes(interim_field => postcode)
 
       # We pass through an empty hash for the attributes, as there is nothing to
-      # update on the enrollment itself
+      # update on the registration itself
       super({}, params[:token])
     end
 
