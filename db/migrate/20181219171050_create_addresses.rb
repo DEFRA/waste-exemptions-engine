@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class CreateAddresses < ActiveRecord::Migration
+  # rubocop:disable Metrics/MethodLength
   def change
     create_table :addresses do |t|
       t.integer :address_type, default: 0
+      t.integer :mode, default: 0
       t.string :uprn
       t.string :organisation
       t.string :premises
@@ -19,9 +21,12 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :logical_status_code
       t.string :source_data_type
       t.string :country_iso
+      t.string :grid_reference
+      t.text :description
       t.belongs_to :registration, index: true, foreign_key: true
 
       t.timestamps null: false
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end
