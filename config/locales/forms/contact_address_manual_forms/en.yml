@@ -8,7 +8,7 @@ en:
         postcode_change_link: "Change postcode"
         address_finder_error_heading: Our address finder is not working
         address_finder_error_text: Please enter the address below.
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Continue
   activemodel:
     errors:

@@ -7,7 +7,7 @@ en:
         description: We will contact this person if we need to discuss the waste operation
         first_name_label: First name
         last_name_label: Last name
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Continue
   activemodel:
     errors:

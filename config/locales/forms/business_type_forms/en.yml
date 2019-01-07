@@ -13,7 +13,7 @@ en:
           local_authority: Local authority or public body
           charity: Charity or trust
         help: Not sure? Call our helpline on 03708 506 506.
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Continue
   activemodel:
     errors:

@@ -4,7 +4,7 @@ en:
       new:
         title: Contact email address
         heading: What is the contact's email address?
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         contact_email_label: Email address
         confirmed_email_label: Confirm email address
         next_button: Continue
