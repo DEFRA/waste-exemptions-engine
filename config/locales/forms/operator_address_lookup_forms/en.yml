@@ -13,7 +13,7 @@ en:
         postcode_label: Postcode
         postcode_change_link: "Change postcode"
         manual_address_link: "I cannot find the address in the list"
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Continue
   activemodel:
     errors:

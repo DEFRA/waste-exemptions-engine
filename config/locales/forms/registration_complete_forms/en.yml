@@ -20,7 +20,7 @@ en:
         call_helpline_text: Call our helpline on 03708 506 506 if you have any questions about your registration.
         survey_link_text: What do you think of this service?
         survey_link_hint: (takes 30 seconds)
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Finished
   activemodel:
     errors:

@@ -6,7 +6,7 @@ en:
         heading: What is your telephone number?
         phone_number_label: Telephone number
         phone_number_hint: This can be a landline or mobile
-        error_heading: Something is wrong
+        error_heading: A problem to fix
         next_button: Continue
   activemodel:
     errors:
