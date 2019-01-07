@@ -44,7 +44,7 @@
         <li><%= t(".operator.business_type.#{@check_your_answers_form.business_type}_html") %></li>
         <li><%= t(".operator.name.#{@check_your_answers_form.business_type}_html", value: @check_your_answers_form.operator_name) %></li>
         <% if @check_your_answers_form.company_no.present? %>
-        <li><%= t(".operator.company_no_html") %></li>
+        <li><%= t(".operator.company_no_html", value: @check_your_answers_form.company_no) %></li>
         <% end %>
       </ul>
 
