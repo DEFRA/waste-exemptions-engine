@@ -8,8 +8,8 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.first_name = @registration.contact_first_name
-      self.last_name = @registration.contact_last_name
+      self.first_name = @transient_registration.contact_first_name
+      self.last_name = @transient_registration.contact_last_name
     end
 
     def submit(params)

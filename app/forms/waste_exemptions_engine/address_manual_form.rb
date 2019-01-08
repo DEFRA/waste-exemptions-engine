@@ -14,8 +14,8 @@ module WasteExemptionsEngine
 
       # Check if the user reached this page through an Address finder error.
       # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = @registration.interim.address_finder_error
-      @registration.interim.update_attributes(address_finder_error: nil)
+      self.address_finder_error = @transient_registration.address_finder_error
+      @transient_registration.update_attributes(address_finder_error: nil)
 
       # Prefill the existing address unless the postcode has changed from the existing address's postcode
       prefill_existing_address if saved_address_still_valid?
@@ -26,7 +26,9 @@ module WasteExemptionsEngine
 
       new_address = create_address
 
-      attributes = { addresses: add_or_replace_address(new_address, @registration.addresses) }
+      attributes = {
+        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
+      }
 
       super(attributes, params[:token])
     end
@@ -83,7 +85,7 @@ module WasteExemptionsEngine
       #     underlying base form objects and controllers
       #   - the manual address is the only instance we have of mass assigning
       #     params to a model
-      Address.create_from_manual_entry_data(
+      TransientAddress.create_from_manual_entry_data(
         {
           premises: premises,
           street_address: street_address,

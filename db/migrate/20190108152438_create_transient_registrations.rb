@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
-class CreateRegistrations < ActiveRecord::Migration
+class CreateTransientRegistrations < ActiveRecord::Migration
   # rubocop:disable Metrics/MethodLength
   def change
-    create_table(:registrations) do |t|
+    create_table :transient_registrations do |t|
+      t.string :token
       t.string :reference
+      t.string :workflow_state
+      t.string :start_option
       t.string :location
       t.string :applicant_first_name
       t.string :applicant_last_name
@@ -20,8 +23,16 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :contact_email
       t.boolean :is_a_farm
       t.boolean :on_a_farm
+      t.boolean :declaration
+      t.string :temp_operator_postcode
+      t.string :temp_contact_postcode
+      t.string :temp_site_postcode
+      t.string :temp_grid_reference
+      t.text :temp_site_description
+      t.boolean :address_finder_error, default: false
       t.timestamps null: false
 
+      t.index :token, unique: true
       t.index :reference, unique: true
     end
   end

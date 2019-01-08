@@ -11,7 +11,7 @@ module WasteExemptionsEngine
     private
 
     def company_no_required?(record)
-      record.registration.company_no_required?
+      record.transient_registration.company_no_required?
     end
 
     def valid_company_no?(record, attribute, value)

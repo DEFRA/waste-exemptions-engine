@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     private
 
     def existing_postcode
-      @registration.interim.contact_postcode
+      @transient_registration.temp_contact_postcode
     end
   end
 end

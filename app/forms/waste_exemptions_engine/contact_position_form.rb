@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.position = @registration.contact_position
+      self.position = @transient_registration.contact_position
     end
 
     def submit(params)

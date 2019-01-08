@@ -9,8 +9,8 @@ module WasteExemptionsEngine
     def initialize(registration)
       super
       # We only use this for the correct microcopy
-      self.business_type = @registration.business_type
-      self.operator_name = @registration.operator_name
+      self.business_type = @transient_registration.business_type
+      self.operator_name = @transient_registration.operator_name
     end
 
     def submit(params)

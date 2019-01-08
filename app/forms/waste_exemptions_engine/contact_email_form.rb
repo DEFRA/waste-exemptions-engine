@@ -8,8 +8,8 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.contact_email = @registration.contact_email
-      self.confirmed_email = @registration.contact_email
+      self.contact_email = @transient_registration.contact_email
+      self.confirmed_email = @transient_registration.contact_email
     end
 
     def submit(params)

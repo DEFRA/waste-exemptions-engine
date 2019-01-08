@@ -5,12 +5,12 @@ module WasteExemptionsEngine
     include ActiveModel::Model
     include CanStripWhitespace
 
-    attr_accessor :token, :registration
+    attr_accessor :token, :transient_registration
 
     def initialize(registration)
       # Get values from registration so form will be pre-filled
-      @registration = registration
-      self.token = @registration.token
+      @transient_registration = registration
+      self.token = @transient_registration.token
     end
 
     def submit(attributes, token)
@@ -21,8 +21,8 @@ module WasteExemptionsEngine
 
       # Update the registration with params from the registration if valid
       if valid?
-        @registration.update_attributes(attributes)
-        @registration.save!
+        @transient_registration.update_attributes(attributes)
+        @transient_registration.save!
         true
       else
         false
@@ -31,15 +31,15 @@ module WasteExemptionsEngine
 
     # If the record is new, and not yet persisted (which it is when the start
     # page is first submitted) then we have nothing to validate hence the check
-    validates :token, "waste_exemptions_engine/token": true if @registration&.persisted?
+    validates :token, "waste_exemptions_engine/token": true if @transient_registration&.persisted?
     validate :registration_valid?
 
     private
 
     def registration_valid?
-      return if @registration.valid?
+      return if @transient_registration.valid?
 
-      @registration.errors.each do |_attribute, message|
+      @transient_registration.errors.each do |_attribute, message|
         errors[:base] << message
       end
     end

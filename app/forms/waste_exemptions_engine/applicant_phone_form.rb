@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.phone_number = @registration.applicant_phone
+      self.phone_number = @transient_registration.applicant_phone
     end
 
     def submit(params)

@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.business_type = @registration.business_type
+      self.business_type = @transient_registration.business_type
     end
 
     def submit(params)
