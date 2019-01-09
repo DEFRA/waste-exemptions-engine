@@ -107,6 +107,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
+  resources :main_people_forms,
+            only: [:new, :create],
+            path: "main-people",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+              to: "main_people_forms#go_back",
+              as: "back",
+              on: :collection
+
+              delete "delete_person/:id",
+              to: "main_people_forms#delete_person",
+              as: "delete_person",
+              on: :collection
+            end
+
   resources :operator_name_forms,
             only: [:new, :create],
             path: "operator-name",
