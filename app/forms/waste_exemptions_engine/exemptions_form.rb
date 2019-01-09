@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       # want, so we simply ensure the order is by ID, i.e. the order the
       # exemptions were seeded from the file and inserted into the table
       self.exemptions = Exemption.order(:id)
-      self.matched_exemptions = @registration.exemptions
+      self.matched_exemptions = @transient_registration.exemptions
       self.matched_exemption_ids = matched_exemptions ? matched_exemptions.map(&:id) : []
     end
 

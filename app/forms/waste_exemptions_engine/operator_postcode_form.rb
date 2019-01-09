@@ -10,13 +10,13 @@ module WasteExemptionsEngine
       super
 
       # We only use this for the correct microcopy
-      self.business_type = @registration.business_type
+      self.business_type = @transient_registration.business_type
     end
 
     private
 
     def existing_postcode
-      @registration.interim.operator_postcode
+      @transient_registration.temp_operator_postcode
     end
   end
 end

@@ -34,10 +34,10 @@ module WasteExemptionsEngine
         record.errors[attribute] << error_message(record, attribute, "no_results")
         false
       when :error
-        record.registration.interim.address_finder_error = true
+        record.transient_registration.address_finder_error = true
         true
       else
-        record.registration.interim.address_finder_error = false
+        record.transient_registration.address_finder_error = false
         true
       end
     end

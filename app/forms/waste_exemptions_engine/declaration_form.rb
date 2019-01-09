@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.declaration = @registration.declaration
+      self.declaration = @transient_registration.declaration
     end
 
     def submit(params)

@@ -7,7 +7,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.start = @registration.start_option
+      self.start = @transient_registration.start_option
     end
 
     def submit(params)

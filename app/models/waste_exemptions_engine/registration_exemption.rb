@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class RegistrationExemption < ActiveRecord::Base
-    include CanChangeExemptionStatus
 
     self.table_name = "registration_exemptions"
 

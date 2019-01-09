@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.is_a_farm = @registration.is_a_farm
+      self.is_a_farm = @transient_registration.is_a_farm
     end
 
     def submit(params)

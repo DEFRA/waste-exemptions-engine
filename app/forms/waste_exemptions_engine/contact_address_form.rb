@@ -6,15 +6,15 @@ module WasteExemptionsEngine
     private
 
     def existing_postcode
-      @registration.interim.contact_postcode
+      @transient_registration.temp_contact_postcode
     end
 
     def existing_address
-      @registration.contact_address
+      @transient_registration.contact_address
     end
 
     def address_type
-      Address.address_types[:contact]
+      TransientAddress.address_types[:contact]
     end
   end
 end

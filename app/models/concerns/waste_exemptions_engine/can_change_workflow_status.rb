@@ -203,8 +203,7 @@ module WasteExemptionsEngine
                       to: :declaration_form
 
           transitions from: :declaration_form,
-                      to: :registration_complete_form,
-                      after: :activate_exemptions
+                      to: :registration_complete_form
         end
 
         event :back do
@@ -408,13 +407,7 @@ module WasteExemptionsEngine
     end
 
     def skip_to_manual_address?
-      interim.address_finder_error
-    end
-
-    def activate_exemptions
-      Registration.transaction do
-        registration_exemptions.each(&:activate)
-      end
+      address_finder_error
     end
   end
 end

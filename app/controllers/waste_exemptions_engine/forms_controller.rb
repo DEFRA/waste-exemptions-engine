@@ -22,16 +22,16 @@ module WasteExemptionsEngine
     def go_back
       find_or_initialize_registration(params[:token])
 
-      @registration.back! if form_matches_state?
+      @transient_registration.back! if form_matches_state?
       redirect_to_correct_form
     end
 
     private
 
     def find_or_initialize_registration(token)
-      @registration = Registration.where(
+      @transient_registration = TransientRegistration.where(
         token: token
-      ).first || Registration.new
+      ).first || TransientRegistration.new
     end
 
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
@@ -43,13 +43,13 @@ module WasteExemptionsEngine
       return false unless setup_checks_pass?
 
       # Set an instance variable for the form (eg. @business_type_form) using the provided class (eg. BusinessTypeForm)
-      instance_variable_set("@#{form}", form_class.new(@registration))
+      instance_variable_set("@#{form}", form_class.new(@transient_registration))
     end
 
     def submit_form(form, params)
       respond_to do |format|
         if form.submit(params)
-          @registration.next!
+          @transient_registration.next!
           format.html { redirect_to_correct_form }
           true
         else
@@ -66,7 +66,7 @@ module WasteExemptionsEngine
     # Get the path based on the workflow state, with token as params, ie:
     # new_state_name_path/:token
     def form_path
-      send("new_#{@registration.workflow_state}_path".to_sym, @registration.token)
+      send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
     end
 
     def setup_checks_pass?
@@ -74,10 +74,10 @@ module WasteExemptionsEngine
     end
 
     def set_workflow_state
-      return unless state_can_navigate_flexibly?(@registration.workflow_state)
+      return unless state_can_navigate_flexibly?(@transient_registration.workflow_state)
       return unless state_can_navigate_flexibly?(requested_state)
 
-      @registration.update_attributes(workflow_state: requested_state)
+      @transient_registration.update_attributes(workflow_state: requested_state)
     end
 
     def state_can_navigate_flexibly?(state)
@@ -93,7 +93,7 @@ module WasteExemptionsEngine
     # Guards
 
     def registration_is_valid?
-      return true if @registration.valid?
+      return true if @transient_registration.valid?
 
       redirect_to page_path("invalid")
       false
@@ -107,7 +107,7 @@ module WasteExemptionsEngine
     end
 
     def form_matches_state?
-      controller_name == "#{@registration.workflow_state}s"
+      controller_name == "#{@transient_registration.workflow_state}s"
     end
 
     # http://jacopretorius.net/2014/01/force-page-to-reload-on-browser-back-in-rails.html

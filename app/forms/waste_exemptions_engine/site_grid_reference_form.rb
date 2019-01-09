@@ -8,23 +8,23 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      self.grid_reference = @registration.interim.grid_reference
-      self.description = @registration.interim.site_description
+      self.grid_reference = @transient_registration.temp_grid_reference
+      self.description = @transient_registration.temp_site_description
     end
 
     def submit(params)
       assign_params(params)
 
-      @registration.interim.update_attributes(
-        grid_reference: grid_reference,
-        site_description: description
+      @transient_registration.update_attributes(
+        temp_grid_reference: grid_reference,
+        temp_site_description: description
       )
 
       new_address = create_address
       attributes = {
-        addresses: add_or_replace_address(
+        transient_addresses: add_or_replace_address(
           new_address,
-          @registration.addresses
+          @transient_registration.transient_addresses
         )
       }
 
@@ -45,15 +45,15 @@ module WasteExemptionsEngine
     end
 
     def existing_address
-      @registration.site_address
+      @transient_registration.site_address
     end
 
     def create_address
       return nil if grid_reference.blank?
 
-      Address.create_from_grid_reference_data(
+      TransientAddress.create_from_grid_reference_data(
         { "grid_reference": grid_reference, "description": description },
-        Address.address_types[:site]
+        TransientAddress.address_types[:site]
       )
     end
 
