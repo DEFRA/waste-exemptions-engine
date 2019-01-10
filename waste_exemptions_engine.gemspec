@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   # Use AASM to manage states and transitions
-  s.add_dependency "aasm", "~> 4.12"
+  s.add_dependency "aasm", ">= 4.12", "< 6.0"
   s.add_dependency "has_secure_token"
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "4.2.11"
