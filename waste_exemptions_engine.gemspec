@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
 
-  s.add_dependency "pg", "~> 0.18.4"
+  s.add_dependency "pg", ">= 0.18.4", "< 1.2.0"
 
   # Validations
   # Use to ensure phone numbers are in a valid and recognised format
