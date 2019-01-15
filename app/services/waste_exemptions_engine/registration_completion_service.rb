@@ -13,6 +13,7 @@ module WasteExemptionsEngine
         @registration = Registration.new(@transient_registration.registration_attributes)
         copy_addresses
         copy_exemptions
+        copy_people
 
         @registration.save!
         @transient_registration.destroy
@@ -35,6 +36,18 @@ module WasteExemptionsEngine
       @transient_registration.transient_registration_exemptions.each do |trans_exemption|
         @registration.registration_exemptions << RegistrationExemption.new(trans_exemption.exemption_attributes)
       end
+    end
+
+    def copy_people
+      return unless include_people?
+
+      @transient_registration.transient_people.each do |trans_person|
+        @registration.people << Person.new(trans_person.person_attributes)
+      end
+    end
+
+    def include_people?
+      %w[partnership].include?(@transient_registration.business_type)
     end
   end
 end

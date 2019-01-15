@@ -35,6 +35,7 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
+        state :main_people_form
         state :registration_number_form
         state :operator_name_form
         state :operator_postcode_form
@@ -105,11 +106,18 @@ module WasteExemptionsEngine
 
           # Operator details
           transitions from: :business_type_form,
+                      to: :main_people_form,
+                      if: :partnership?
+
+          transitions from: :business_type_form,
                       to: :operator_name_form,
                       if: :skip_registration_number?
 
           transitions from: :business_type_form,
                       to: :registration_number_form
+
+          transitions from: :main_people_form,
+                      to: :operator_name_form
 
           transitions from: :registration_number_form,
                       to: :operator_name_form
@@ -238,8 +246,15 @@ module WasteExemptionsEngine
                       to: :applicant_email_form
 
           # Operator details
+          transitions from: :main_people_form,
+                      to: :business_type_form
+
           transitions from: :registration_number_form,
                       to: :business_type_form
+
+          transitions from: :operator_name_form,
+                      to: :main_people_form,
+                      if: :partnership?
 
           transitions from: :operator_name_form,
                       to: :business_type_form,
