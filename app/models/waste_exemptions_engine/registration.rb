@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     self.table_name = "registrations"
 
     has_many :addresses
-    has_many :key_people
+    has_many :people
     has_many :registration_exemptions
     has_many :exemptions, through: :registration_exemptions
 

@@ -29,7 +29,7 @@ module WasteExemptionsEngine
 
       respond_to do |format|
         # Check if there are any matches first, to avoid a Mongoid error
-        people_with_id = @transient_registration.key_people.where(id: params[:id])
+        people_with_id = @transient_registration.transient_people.where(id: params[:id])
         people_with_id.first.delete if people_with_id.any?
 
         format.html { redirect_to_correct_form }

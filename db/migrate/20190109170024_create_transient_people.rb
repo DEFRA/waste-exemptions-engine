@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateTransientKeyPeople < ActiveRecord::Migration
+class CreateTransientPeople < ActiveRecord::Migration
   def change
-    create_table :transient_key_people do |t|
+    create_table :transient_people do |t|
       t.string :first_name
       t.string :last_name
       t.integer :person_type

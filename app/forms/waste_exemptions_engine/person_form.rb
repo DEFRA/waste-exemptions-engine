@@ -42,7 +42,7 @@ module WasteExemptionsEngine
     private
 
     def set_up_new_person
-      @transient_registration.transient_key_people.build(
+      @transient_registration.transient_people.build(
         first_name: first_name,
         last_name: last_name,
         person_type: person_type

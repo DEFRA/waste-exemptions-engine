@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class KeyPerson < ActiveRecord::Base
+  class Person < ActiveRecord::Base
 
-    self.table_name = "key_people"
+    self.table_name = "people"
 
     belongs_to :registration
 

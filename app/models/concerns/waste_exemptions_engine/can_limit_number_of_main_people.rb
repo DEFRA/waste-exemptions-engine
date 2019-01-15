@@ -36,7 +36,7 @@ module WasteExemptionsEngine
     end
 
     def number_of_existing_main_people
-      @transient_registration.transient_key_people.count
+      @transient_registration.transient_people.count
     end
 
     private

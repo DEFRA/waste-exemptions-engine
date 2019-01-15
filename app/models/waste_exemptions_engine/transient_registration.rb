@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     validates_presence_of :token, on: :save
 
     has_many :transient_addresses, dependent: :destroy
-    has_many :transient_key_people, dependent: :destroy
+    has_many :transient_people, dependent: :destroy
     has_many :transient_registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :transient_registration_exemptions
 
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
           "temp_contact_postcode", "temp_site_postcode",
           "temp_grid_reference", "temp_site_description",
           "address_finder_error", "transient_addresses",
-          "transient_registration_exemptions", "transient_key_people",
+          "transient_registration_exemptions", "transient_people",
           "created_at", "updated_at"
         )
     end
