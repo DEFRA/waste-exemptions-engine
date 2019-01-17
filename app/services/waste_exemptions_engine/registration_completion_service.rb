@@ -18,6 +18,10 @@ module WasteExemptionsEngine
         @registration.save!
         @transient_registration.destroy
       end
+      send_confirmation_email
+    rescue StandardError => error
+      Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Completing registration error: #{error}"
     end
 
     private
@@ -48,6 +52,19 @@ module WasteExemptionsEngine
 
     def include_people?
       %w[partnership].include?(@transient_registration.business_type)
+    end
+
+    def send_confirmation_email
+      distinct_recipients.each do |recipient|
+        ConfirmationMailer.send_confirmation_email(@registration, recipient).deliver_now
+      end
+    rescue StandardError => error
+      Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Confirmation email error: #{error}"
+    end
+
+    def distinct_recipients
+      [@registration.applicant_email, @registration.contact_email].map(&:downcase).uniq
     end
   end
 end

@@ -5,13 +5,16 @@ en:
         title: Registration complete
         heading: Registration complete
         highlight_text: "Your registration number is"
-        confirmation_email_text: "We have sent a confirmation email to %{email}."
+        confirmation_email_text:
+          one: "We have sent a confirmation email to %{contact}."
+          many: "We have sent a confirmation email to %{applicant} and %{contact}."
         what_happens_next:
           subheading: What happens next
           bullet_1: |
             your organisation’s details will be processed and appear on the public register within 5 days
-          bullet_2_one: we’ll send a renewal reminder when this waste exemption is due to expire
-          bullet_2_many: we’ll send a renewal reminder when these waste exemptions are due to expire
+          bullet_2:
+            one: we’ll send a renewal reminder when this waste exemption is due to expire
+            many: we’ll send a renewal reminder when these waste exemptions are due to expire
         registration_checks:
           subheading: Registration checks
           note: |
