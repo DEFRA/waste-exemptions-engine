@@ -17,13 +17,13 @@
       <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @registration_complete_form.reference %></span></p>
     </div>
 
-    <p><%= t(".confirmation_email_text", email: @registration_complete_form.contact_email) %></p>
+    <p><%= t(".confirmation_email_text.#{@registration_complete_form.emails_plural}", applicant: @registration_complete_form.applicant_email, contact: @registration_complete_form.contact_email) %></p>
 
     <h2 class="heading-medium"><%= t(".what_happens_next.subheading") %></h2>
 
     <ul class="list list-bullet">
       <li><%= t(".what_happens_next.bullet_1") %></li>
-      <li><%= t(".what_happens_next.bullet_2_#{@registration_complete_form.exemptions_plural}") %></li>
+      <li><%= t(".what_happens_next.bullet_2.#{@registration_complete_form.exemptions_plural}") %></li>
     </ul>
 
     <h2 class="heading-medium"><%= t(".registration_checks.subheading") %></h2>
