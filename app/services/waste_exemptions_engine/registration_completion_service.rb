@@ -15,6 +15,7 @@ module WasteExemptionsEngine
         copy_exemptions
         copy_people
 
+        @registration.submitted_at = Date.today
         @registration.save!
         @transient_registration.destroy
       end

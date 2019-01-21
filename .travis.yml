@@ -15,6 +15,9 @@ git:
 before_install:
   - export TZ=UTC
   - gem install -v 1.17.2 bundler --no-rdoc --no-ri
+  - sudo apt-get install xvfb -y
+  - sudo apt-get install ttf-liberation -y
+  - sudo apt-get install wkhtmltopdf -y
 
 before_script:
   # Setup to support the CodeClimate test coverage submission
