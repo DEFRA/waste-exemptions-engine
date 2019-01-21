@@ -1,0 +1,42 @@
+en:
+  waste_exemptions_engine:
+    pdfs:
+      certificate:
+        heading: Certificate of Registration
+        regulator:
+          heading: Regulation authority
+          name: Name
+          address:
+            label: Address
+            line1: National Customer Service Centre
+            line2: 99 Parkway Avenue
+            line3: Sheffield
+            line4: S9 4WF
+          telephone:
+            label: Telephone number
+            number: "03708 506506"
+        certify_message: The Environment Agency certify that the following information is entered in the public register which they maintain.
+        registration:
+          heading: Registration details
+          reference: Registration number
+          submitted_at: Date registration submitted
+        operator:
+          heading: Operator details
+          name: Name of waste operator
+          partners: Partners
+          business_name_if_applicable: "Business name (if applicable)"
+          business_address: Address of place of business
+          submitted_at: Date registration submitted
+        site:
+          heading: Site details
+          location: Location
+          location_description: Location description
+          address: Site address
+        exemption:
+          heading: Exemption Details
+          expires: Expires on %{expires_on}
+        changes:
+          heading: "Making changes to your registration"
+          paragraph1: "Your registration will last %{expires_after_pluralized} and will need to be re-registered after this period. If any of your details change, you must notify us within 28 days of the change."
+          year: "year"
+          paragraph2: "You can do this by calling the Environment Agency."

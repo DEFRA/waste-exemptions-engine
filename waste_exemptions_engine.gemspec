@@ -39,6 +39,8 @@ Gem::Specification.new do |s|
   s.add_dependency "uk_postcode"
   # Use to validate e-mail addresses against RFC 2822 and RFC 3696
   s.add_dependency "validates_email_format_of"
+  # Used to generate a PDF from HTML
+  s.add_dependency "wicked_pdf"
 
   # Allows us to automatically generate the change log from the tags, issues,
   # labels and pull requests on GitHub. Added as a dependency so all dev's have
