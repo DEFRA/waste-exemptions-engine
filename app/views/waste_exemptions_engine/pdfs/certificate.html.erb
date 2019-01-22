@@ -165,10 +165,14 @@
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td><%=t ".exemption.expires_label" %></td>
+                <td>&nbsp;</td>
+              </tr>
               <% @presenter.registration_exemptions.each do |registration_exemption| %>
                 <% exemption = registration_exemption.exemption %>
                 <tr>
-                  <td class="table-column-text"><%=t ".exemption.expires", expires_on: registration_exemption.expires_on.in_time_zone("London").to_date %></td>
+                  <td class="table-column-text"><%= registration_exemption.expires_on.to_formatted_s(:day_month_year) %></td>
                   <td><%= "#{exemption.code} - #{exemption.summary}" %></td>
                 </tr>
               <% end %>
