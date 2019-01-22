@@ -34,7 +34,7 @@ module WasteExemptionsEngine
 
     def expires_after_pluralized
       ActionController::Base.helpers.pluralize(
-        Rails.configuration.years_before_expiry,
+        WasteExemptionsEngine.years_before_expiry,
         I18n.t("#{LOCALES_KEY}.changes.year")
       )
     end

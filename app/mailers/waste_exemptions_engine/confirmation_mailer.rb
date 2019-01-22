@@ -13,7 +13,7 @@ module WasteExemptionsEngine
 
       mail(
         to: recipient_email_address,
-        from: "#{Rails.configuration.service_name} <#{Rails.configuration.email_service_email}>",
+        from: "#{WasteExemptionsEngine.service_name} <#{WasteExemptionsEngine.email_service_email}>",
         subject: I18n.t(".waste_exemptions_engine.confirmation_mailer.send_confirmation_email.subject",
                         reference: @registration.reference)
       )

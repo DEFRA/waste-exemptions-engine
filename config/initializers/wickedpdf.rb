@@ -2,7 +2,7 @@
 
 require "wicked_pdf"
 
-if ENV["USE_XVFB_FOR_WICKEDPDF"] == "true"
+if WasteExemptionsEngine.use_xvfb_for_wickedpdf == "true"
   WickedPdf.config = {
     exe_path: WasteExemptionsEngine::Engine.root.join("script", "wkhtmltopdf.sh").to_s
   }
