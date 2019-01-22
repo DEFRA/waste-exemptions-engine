@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       # Transition effects
       def activate_exemption
         self.registered_on = Date.today
-        self.expires_on = Date.today + (Rails.configuration.years_before_expiry.years - 1.day)
+        self.expires_on = Date.today + (WasteExemptionsEngine.years_before_expiry.years - 1.day)
         save!
       end
     end
