@@ -238,7 +238,7 @@ DEPENDENCIES
   rspec-rails (~> 3.8.0)
   simplecov
   timecop
-  vcr
+  vcr (~> 4.0)
   waste_exemptions_engine!
   webmock
 
