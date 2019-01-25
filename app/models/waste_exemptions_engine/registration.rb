@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     has_many :exemptions, through: :registration_exemptions
 
     scope :search_term, lambda { |term|
-      where("reference = ?", term)
+      where("reference = ?", term&.upcase)
     }
 
     private
