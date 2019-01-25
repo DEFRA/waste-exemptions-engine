@@ -11,6 +11,10 @@ module WasteExemptionsEngine
     has_many :registration_exemptions
     has_many :exemptions, through: :registration_exemptions
 
+    scope :search_term, lambda { |term|
+      where("reference = ?", term)
+    }
+
     private
 
     def find_address_by_type(address_type)
