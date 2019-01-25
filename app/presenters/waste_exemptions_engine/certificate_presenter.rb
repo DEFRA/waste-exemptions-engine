@@ -40,7 +40,7 @@ module WasteExemptionsEngine
     end
 
     def site_is_grid_reference?
-      site_address.grid_reference.present?
+      site_address.auto?
     end
 
     def list_people
