@@ -9,5 +9,8 @@ module WasteExemptionsEngine
 
     enum person_type: { partner: 0 }
 
+    scope :search_term, lambda { |term|
+      where("UPPER(CONCAT(first_name, ' ', last_name)) LIKE ?", "%#{term&.upcase}%")
+    }
   end
 end
