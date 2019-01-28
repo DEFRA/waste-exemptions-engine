@@ -12,6 +12,26 @@ RSpec.shared_examples "Registration scopes" do
       expect(scope.length).to eq(0)
     end
 
+    context "when the search term is an applicant_email" do
+      let(:term) { matching_registration.applicant_email }
+
+      it "returns renewals with a matching reference" do
+        expect(scope).to include(matching_registration)
+      end
+
+      it "does not return others" do
+        expect(scope).not_to include(non_matching_registration)
+      end
+
+      context "when the search term is in the wrong case" do
+        let(:term) { matching_registration.applicant_email.upcase }
+
+        it "still returns matching results" do
+          expect(scope).to include(matching_registration)
+        end
+      end
+    end
+
     context "when the search term is a reference" do
       let(:term) { matching_registration.reference }
 

@@ -12,7 +12,11 @@ module WasteExemptionsEngine
     has_many :exemptions, through: :registration_exemptions
 
     scope :search_term, lambda { |term|
-      where("reference = ?", term&.upcase)
+      where(
+        "UPPER(applicant_email) = ? OR UPPER(reference) = ?",
+        term&.upcase,
+        term&.upcase
+      )
     }
 
     private
