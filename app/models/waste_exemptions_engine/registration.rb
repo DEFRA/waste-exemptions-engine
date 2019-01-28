@@ -13,7 +13,8 @@ module WasteExemptionsEngine
 
     scope :search_term, lambda { |term|
       where(
-        "UPPER(applicant_email) = ? OR UPPER(reference) = ?",
+        "UPPER(applicant_email) = ? OR UPPER(contact_email) = ? OR UPPER(reference) = ?",
+        term&.upcase,
         term&.upcase,
         term&.upcase
       )

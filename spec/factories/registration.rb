@@ -6,6 +6,10 @@ FactoryBot.define do
       "applicant#{n}@example.com"
     end
 
+    sequence :contact_email do |n|
+      "contact#{n}@example.com"
+    end
+
     sequence :reference do |n|
       "WEX#{n}"
     end
