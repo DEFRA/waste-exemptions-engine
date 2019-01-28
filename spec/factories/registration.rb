@@ -6,6 +6,14 @@ FactoryBot.define do
       "applicant#{n}@example.com"
     end
 
+    sequence :applicant_first_name do |n|
+      "Firstapp#{n}"
+    end
+
+    sequence :applicant_last_name do |n|
+      "Lastapp#{n}"
+    end
+
     sequence :contact_email do |n|
       "contact#{n}@example.com"
     end

@@ -14,13 +14,15 @@ module WasteExemptionsEngine
     scope :search_term, lambda { |term|
       where(
         "UPPER(applicant_email) = ?\
+         OR UPPER(CONCAT(applicant_first_name, ' ', applicant_last_name)) LIKE ?\
          OR UPPER(contact_email) = ?\
          OR UPPER(operator_name) = ?\
          OR UPPER(reference) = ?",
-        term&.upcase,
-        term&.upcase,
-        term&.upcase,
-        term&.upcase
+        term&.upcase, # applicant_email
+        "%#{term&.upcase}%", # applicant names
+        term&.upcase, # contact_email
+        term&.upcase, # operator_name
+        term&.upcase # reference
       )
     }
 
