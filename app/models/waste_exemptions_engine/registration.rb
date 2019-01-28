@@ -17,13 +17,13 @@ module WasteExemptionsEngine
          OR UPPER(CONCAT(applicant_first_name, ' ', applicant_last_name)) LIKE ?\
          OR UPPER(contact_email) = ?\
          OR UPPER(CONCAT(contact_first_name, ' ', contact_last_name)) LIKE ?\
-         OR UPPER(operator_name) = ?\
+         OR UPPER(operator_name) LIKE ?\
          OR UPPER(reference) = ?",
         term&.upcase, # applicant_email
         "%#{term&.upcase}%", # applicant names
         term&.upcase, # contact_email
         "%#{term&.upcase}%", # contact names
-        term&.upcase, # operator_name
+        "%#{term&.upcase}%", # operator_name
         term&.upcase # reference
       )
     }

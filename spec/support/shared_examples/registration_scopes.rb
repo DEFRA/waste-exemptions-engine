@@ -162,6 +162,14 @@ RSpec.shared_examples "Registration scopes" do
       it "does not return others" do
         expect(scope).not_to include(non_matching_registration)
       end
+
+      context "when the search term is a partial operator_name" do
+        let(:term) { matching_registration.operator_name[0, 5] }
+
+        it "returns renewals with a matching operator name" do
+          expect(scope).to include(matching_registration)
+        end
+      end
     end
 
     context "when the search term is a reference" do
