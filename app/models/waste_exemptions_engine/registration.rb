@@ -12,6 +12,14 @@ module WasteExemptionsEngine
     has_many :exemptions, through: :registration_exemptions
 
     scope :search_term, lambda { |term|
+      where(id: search_term_on_registration(term).ids +
+                search_term_on_addresses(term).ids +
+                search_term_on_people(term).ids)
+    }
+
+    private
+
+    scope :search_term_on_registration, lambda { |term|
       where(
         "UPPER(applicant_email) = ?\
          OR UPPER(CONCAT(applicant_first_name, ' ', applicant_last_name)) LIKE ?\
@@ -19,12 +27,12 @@ module WasteExemptionsEngine
          OR UPPER(CONCAT(contact_first_name, ' ', contact_last_name)) LIKE ?\
          OR UPPER(operator_name) LIKE ?\
          OR UPPER(reference) = ?",
-        term&.upcase, # applicant_email
+        term&.upcase,        # applicant_email
         "%#{term&.upcase}%", # applicant names
-        term&.upcase, # contact_email
+        term&.upcase,        # contact_email
         "%#{term&.upcase}%", # contact names
         "%#{term&.upcase}%", # operator_name
-        term&.upcase # reference
+        term&.upcase         # reference
       )
     }
 
@@ -35,8 +43,6 @@ module WasteExemptionsEngine
     scope :search_term_on_people, lambda { |term|
       joins(:people).merge(Person.search_term(term))
     }
-
-    private
 
     def find_address_by_type(address_type)
       return nil unless addresses.present?
