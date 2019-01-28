@@ -68,42 +68,6 @@ RSpec.shared_examples "Registration scopes" do
       end
     end
 
-    context "when the search term is an applicant_first_name" do
-      let(:term) { matching_registration.applicant_first_name }
-
-      it "returns renewals with a matching applicant name" do
-        expect(scope).to include(matching_registration)
-      end
-
-      it "does not return others" do
-        expect(scope).not_to include(non_matching_registration)
-      end
-    end
-
-    context "when the search term is an applicant_last_name" do
-      let(:term) { matching_registration.applicant_last_name }
-
-      it "returns renewals with a matching applicant name" do
-        expect(scope).to include(matching_registration)
-      end
-
-      it "does not return others" do
-        expect(scope).not_to include(non_matching_registration)
-      end
-    end
-
-    context "when the search term is an applicant's full name" do
-      let(:term) { "#{matching_registration.applicant_first_name} #{matching_registration.applicant_last_name}" }
-
-      it "returns renewals with a matching applicant name" do
-        expect(scope).to include(matching_registration)
-      end
-
-      it "does not return others" do
-        expect(scope).not_to include(non_matching_registration)
-      end
-    end
-
     context "when the search term is an contact_email" do
       let(:term) { matching_registration.contact_email }
 
