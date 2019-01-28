@@ -18,6 +18,14 @@ FactoryBot.define do
       "contact#{n}@example.com"
     end
 
+    sequence :contact_first_name do |n|
+      "Firstcontact#{n}"
+    end
+
+    sequence :contact_last_name do |n|
+      "Lastcontact#{n}"
+    end
+
     sequence :operator_name do |n|
       "Operator #{n}"
     end
