@@ -11,7 +11,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an applicant_email" do
       let(:term) { matching_registration.applicant_email }
 
-      it "returns renewals with a matching reference" do
+      it "returns registrations with a matching reference" do
         expect(scope).to include(matching_registration)
       end
 
@@ -31,7 +31,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an applicant_first_name" do
       let(:term) { matching_registration.applicant_first_name }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns registrations with a matching applicant name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -43,7 +43,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an applicant_last_name" do
       let(:term) { matching_registration.applicant_last_name }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns registrations with a matching applicant name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -55,7 +55,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an applicant's full name" do
       let(:term) { "#{matching_registration.applicant_first_name} #{matching_registration.applicant_last_name}" }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns registrations with a matching applicant name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -67,7 +67,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an contact_email" do
       let(:term) { matching_registration.contact_email }
 
-      it "returns renewals with a matching reference" do
+      it "returns registrations with a matching reference" do
         expect(scope).to include(matching_registration)
       end
 
@@ -79,7 +79,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an contact_first_name" do
       let(:term) { matching_registration.contact_first_name }
 
-      it "returns renewals with a matching contact name" do
+      it "returns registrations with a matching contact name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -91,7 +91,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an contact_last_name" do
       let(:term) { matching_registration.contact_last_name }
 
-      it "returns renewals with a matching contact name" do
+      it "returns registrations with a matching contact name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -103,7 +103,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an contact's full name" do
       let(:term) { "#{matching_registration.contact_first_name} #{matching_registration.contact_last_name}" }
 
-      it "returns renewals with a matching contact name" do
+      it "returns registrations with a matching contact name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -115,7 +115,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is an operator_name" do
       let(:term) { matching_registration.operator_name }
 
-      it "returns renewals with a matching operator name" do
+      it "returns registrations with a matching operator name" do
         expect(scope).to include(matching_registration)
       end
 
@@ -126,7 +126,7 @@ RSpec.shared_examples "Registration scopes" do
       context "when the search term is a partial operator_name" do
         let(:term) { matching_registration.operator_name[0, 5] }
 
-        it "returns renewals with a matching operator name" do
+        it "returns registrations with a matching operator name" do
           expect(scope).to include(matching_registration)
         end
       end
@@ -135,7 +135,7 @@ RSpec.shared_examples "Registration scopes" do
     context "when the search term is a reference" do
       let(:term) { matching_registration.reference }
 
-      it "returns renewals with a matching reference" do
+      it "returns registrations with a matching reference" do
         expect(scope).to include(matching_registration)
       end
 
@@ -173,7 +173,7 @@ RSpec.shared_examples "Registration scopes" do
         "#{person.first_name} #{person.last_name}"
       end
 
-      it "returns renewals with a matching person" do
+      it "returns registrations with a matching person" do
         expect(scope).to include(matching_registration)
       end
 

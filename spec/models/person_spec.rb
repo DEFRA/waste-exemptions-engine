@@ -13,7 +13,7 @@ RSpec.describe WasteExemptionsEngine::Person, type: :model do
     context "when the search term is a first_name" do
       let(:term) { matching_person.first_name }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns people with a matching name" do
         expect(scope).to include(matching_person)
       end
 
@@ -25,7 +25,7 @@ RSpec.describe WasteExemptionsEngine::Person, type: :model do
     context "when the search term is a last_name" do
       let(:term) { matching_person.last_name }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns people with a matching name" do
         expect(scope).to include(matching_person)
       end
 
@@ -34,10 +34,10 @@ RSpec.describe WasteExemptionsEngine::Person, type: :model do
       end
     end
 
-    context "when the search term is an applicant's full name" do
+    context "when the search term is a full name" do
       let(:term) { "#{matching_person.first_name} #{matching_person.last_name}" }
 
-      it "returns renewals with a matching applicant name" do
+      it "returns people with a matching name" do
         expect(scope).to include(matching_person)
       end
 
