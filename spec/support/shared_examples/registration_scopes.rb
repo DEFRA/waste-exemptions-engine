@@ -8,10 +8,6 @@ RSpec.shared_examples "Registration scopes" do
     let(:term) { nil }
     let(:scope) { WasteExemptionsEngine::Registration.search_term(term) }
 
-    it "returns nothing when no search term is given" do
-      expect(scope.length).to eq(0)
-    end
-
     context "when the search term is an applicant_email" do
       let(:term) { matching_registration.applicant_email }
 
