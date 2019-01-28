@@ -34,6 +34,8 @@ FactoryBot.define do
       "WEX#{n}"
     end
 
+    addresses { [build(:address), build(:address), build(:address)] }
+
     people { [build(:person), build(:person)] }
   end
 end

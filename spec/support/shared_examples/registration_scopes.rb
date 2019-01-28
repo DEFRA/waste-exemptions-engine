@@ -145,6 +145,23 @@ RSpec.shared_examples "Registration scopes" do
     end
   end
 
+  describe "#search_term_on_addresses" do
+    let(:term) { nil }
+    let(:scope) { WasteExemptionsEngine::Registration.search_term_on_addresses(term) }
+
+    context "when the search term is a related address's postcode" do
+      let(:term) { matching_registration.addresses.first.postcode }
+
+      it "returns renewals with a matching address" do
+        expect(scope).to include(matching_registration)
+      end
+
+      it "does not return others" do
+        expect(scope).not_to include(non_matching_registration)
+      end
+    end
+  end
+
   describe "#search_term_on_people" do
     let(:term) { nil }
     let(:scope) { WasteExemptionsEngine::Registration.search_term_on_people(term) }

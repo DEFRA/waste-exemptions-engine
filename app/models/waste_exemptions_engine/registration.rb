@@ -28,6 +28,10 @@ module WasteExemptionsEngine
       )
     }
 
+    scope :search_term_on_addresses, lambda { |term|
+      joins(:addresses).merge(Address.search_term(term))
+    }
+
     scope :search_term_on_people, lambda { |term|
       joins(:people).merge(Person.search_term(term))
     }
