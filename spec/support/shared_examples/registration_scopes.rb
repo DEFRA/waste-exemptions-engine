@@ -144,4 +144,24 @@ RSpec.shared_examples "Registration scopes" do
       end
     end
   end
+
+  describe "#search_term_on_people" do
+    let(:term) { nil }
+    let(:scope) { WasteExemptionsEngine::Registration.search_term_on_people(term) }
+
+    context "when the search term is a related person's name" do
+      let(:term) do
+        person = matching_registration.people.first
+        "#{person.first_name} #{person.last_name}"
+      end
+
+      it "returns renewals with a matching person" do
+        expect(scope).to include(matching_registration)
+      end
+
+      it "does not return others" do
+        expect(scope).not_to include(non_matching_registration)
+      end
+    end
+  end
 end

@@ -33,5 +33,7 @@ FactoryBot.define do
     sequence :reference do |n|
       "WEX#{n}"
     end
+
+    people { [build(:person), build(:person)] }
   end
 end

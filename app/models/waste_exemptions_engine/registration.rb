@@ -28,6 +28,10 @@ module WasteExemptionsEngine
       )
     }
 
+    scope :search_term_on_people, lambda { |term|
+      joins(:people).merge(Person.search_term(term))
+    }
+
     private
 
     def find_address_by_type(address_type)
