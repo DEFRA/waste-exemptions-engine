@@ -145,10 +145,21 @@ RSpec.shared_examples "Registration scopes" do
     end
 
     context "when the search term is a related address's postcode" do
-      let(:term) { matching_registration.addresses.first.postcode }
+      let(:address) { matching_registration.addresses.last }
+      let(:term) { address.postcode }
 
-      it "returns renewals with a matching address" do
-        expect(scope).to include(matching_registration)
+      context "when the address is a site address" do
+        it "is included in the scope" do
+          expect(scope).to include(matching_registration)
+        end
+      end
+
+      context "when the address is not a site address" do
+        let(:address) { matching_registration.addresses.first }
+
+        it "is not included in the scope" do
+          expect(scope).to_not include(matching_registration)
+        end
       end
 
       it "does not return others" do

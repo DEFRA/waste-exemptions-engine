@@ -13,7 +13,7 @@ module WasteExemptionsEngine
 
     scope :search_term, lambda { |term|
       where(id: search_term_on_registration(term).ids +
-                search_term_on_addresses(term).ids +
+                search_term_on_site_addresses(term).ids +
                 search_term_on_people(term).ids)
     }
 
@@ -36,8 +36,8 @@ module WasteExemptionsEngine
       )
     }
 
-    scope :search_term_on_addresses, lambda { |term|
-      joins(:addresses).merge(Address.search_term(term))
+    scope :search_term_on_site_addresses, lambda { |term|
+      joins(:addresses).merge(Address.search_term(term).site)
     }
 
     scope :search_term_on_people, lambda { |term|

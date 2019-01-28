@@ -3,8 +3,8 @@
 require "rails_helper"
 
 RSpec.describe WasteExemptionsEngine::Address, type: :model do
-  let(:matching_address) { create(:address) }
-  let(:non_matching_address) { create(:address) }
+  let(:matching_address) { create(:address, :site) }
+  let(:non_matching_address) { create(:address, :contact) }
 
   describe "#search_term" do
     let(:term) { nil }
@@ -13,13 +13,25 @@ RSpec.describe WasteExemptionsEngine::Address, type: :model do
     context "when the search term is a postcode" do
       let(:term) { matching_address.postcode }
 
-      it "returns renewals with a matching postcode" do
+      it "returns addresses with a matching postcode" do
         expect(scope).to include(matching_address)
       end
 
       it "does not return others" do
         expect(scope).not_to include(non_matching_address)
       end
+    end
+  end
+
+  describe "#site" do
+    let(:scope) { WasteExemptionsEngine::Address.site }
+
+    it "returns site addresses" do
+      expect(scope).to include(matching_address)
+    end
+
+    it "does not return others" do
+      expect(scope).not_to include(non_matching_address)
     end
   end
 end

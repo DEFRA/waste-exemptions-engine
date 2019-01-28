@@ -13,5 +13,7 @@ module WasteExemptionsEngine
     scope :search_term, lambda { |term|
       where("UPPER(postcode) LIKE ?", "%#{term&.upcase}%")
     }
+
+    scope :site, -> { where(address_type: 3) }
   end
 end
