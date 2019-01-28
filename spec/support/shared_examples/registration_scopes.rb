@@ -52,6 +52,26 @@ RSpec.shared_examples "Registration scopes" do
       end
     end
 
+    context "when the search term is an operator_name" do
+      let(:term) { matching_registration.operator_name }
+
+      it "returns renewals with a matching operator name" do
+        expect(scope).to include(matching_registration)
+      end
+
+      it "does not return others" do
+        expect(scope).not_to include(non_matching_registration)
+      end
+
+      context "when the search term is in the wrong case" do
+        let(:term) { matching_registration.operator_name.upcase }
+
+        it "still returns matching results" do
+          expect(scope).to include(matching_registration)
+        end
+      end
+    end
+
     context "when the search term is a reference" do
       let(:term) { matching_registration.reference }
 

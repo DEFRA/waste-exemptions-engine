@@ -15,7 +15,9 @@ module WasteExemptionsEngine
       where(
         "UPPER(applicant_email) = ?\
          OR UPPER(contact_email) = ?\
+         OR UPPER(operator_name) = ?\
          OR UPPER(reference) = ?",
+        term&.upcase,
         term&.upcase,
         term&.upcase,
         term&.upcase
