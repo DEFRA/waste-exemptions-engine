@@ -11,9 +11,11 @@ module WasteExemptionsEngine
       certificate = generate_pdf_certificate
       attachments["#{registration.reference}.pdf"] = certificate if certificate
 
+      config = WasteExemptionsEngine.configuration
+
       mail(
         to: recipient_email_address,
-        from: "#{WasteExemptionsEngine.service_name} <#{WasteExemptionsEngine.email_service_email}>",
+        from: "#{config.service_name} <#{config.email_service_email}>",
         subject: I18n.t(".waste_exemptions_engine.confirmation_mailer.send_confirmation_email.subject",
                         reference: @registration.reference)
       )
