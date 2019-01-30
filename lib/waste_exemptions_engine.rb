@@ -4,33 +4,38 @@ require "waste_exemptions_engine/engine"
 
 module WasteExemptionsEngine
 
-  # Configuration pattern based on
-  # https://guides.rubyonrails.org/engines.html#configuring-an-engine
+  # Enable the ability to configure the gem from its host app, rather than
+  # reading directly from env vars. Derived from
+  # https://robots.thoughtbot.com/mygem-configure-block
+  class << self
+    attr_writer :configuration
 
-  # General config
-  mattr_accessor :service_name do
-    "Waste Exemptions Service"
-  end
-  mattr_accessor :application_name
-  mattr_accessor :git_repository_url
-  mattr_accessor :years_before_expiry do
-    3
+    def configuration
+      @configuration ||= Configuration.new
+    end
   end
 
-  # Companies house API config
-  mattr_accessor :companies_house_host do
-    "https://api.companieshouse.gov.uk/company/"
+  def self.configure
+    yield(configuration)
   end
-  mattr_accessor :companies_house_api_key
 
-  # Addressbase config
-  mattr_accessor :addressbase_url
+  class Configuration
+    # General config
+    attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry
+    # Companies house config
+    attr_accessor :companies_house_host, :companies_house_api_key
+    # Addressbase config
+    attr_accessor :addressbase_url
+    # Email config
+    attr_accessor :email_service_email
+    # PDF config
+    attr_accessor :use_xvfb_for_wickedpdf
 
-  # Email config
-  mattr_accessor :email_service_email
-
-  # PDF config
-  mattr_accessor :use_xvfb_for_wickedpdf do
-    "true"
+    def initialize
+      @service_name = "Waste Exemptions Service"
+      @years_before_expiry = 3
+      @companies_house_host = "https://api.companieshouse.gov.uk/company/"
+      @use_xvfb_for_wickedpdf = "true"
+    end
   end
 end

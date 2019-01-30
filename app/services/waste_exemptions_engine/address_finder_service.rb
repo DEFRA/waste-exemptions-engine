@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     def initialize(postcode)
       # Strip out non-alphanumeric characters
       @postcode = postcode.gsub(/[^a-z0-9]/i, "")
-      @url = WasteExemptionsEngine.addressbase_url +
+      @url = WasteExemptionsEngine.configuration.addressbase_url +
              "/address-service/v1/addresses/postcode?postcode=#{@postcode}&client-id=0&key=client1"
     end
 

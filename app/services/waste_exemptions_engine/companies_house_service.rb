@@ -6,8 +6,8 @@ module WasteExemptionsEngine
   class CompaniesHouseService
     def initialize(company_no)
       @company_no = company_no
-      @url = "#{WasteExemptionsEngine.companies_house_host}#{@company_no}"
-      @api_key = WasteExemptionsEngine.companies_house_api_key
+      @url = "#{WasteExemptionsEngine.configuration.companies_house_host}#{@company_no}"
+      @api_key = WasteExemptionsEngine.configuration.companies_house_api_key
     end
 
     def status
