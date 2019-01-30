@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# Stubbing HTTP requests
+require "webmock/rspec"
+# Auto generate fake responses for web-requests
+require "vcr"
+
 VCR.configure do |c|
   c.cassette_library_dir = "spec/cassettes"
   c.hook_into :webmock
@@ -10,6 +15,7 @@ VCR.configure do |c|
 
   # Strip out authorization info
   c.filter_sensitive_data("Basic <API_KEY>") do |interaction|
-    interaction.request.headers["Authorization"].first if interaction.request.headers["Authorization"].present?
+    auth = interaction.request.headers["Authorization"]
+    auth.first if auth.nil? || auth.empty?
   end
 end
