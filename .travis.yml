@@ -37,6 +37,7 @@ before_script:
   # needs to be in place before we run the migrations.
   - cp spec/dummy/config/database.travis.yml spec/dummy/config/database.yml
   - RAILS_ENV=test bundle exec rake db:create --trace
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
 
 after_script:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
