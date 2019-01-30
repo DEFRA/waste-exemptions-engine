@@ -6,7 +6,7 @@
     <label><%= t(".commit") %></label>
     <strong>
       <%= link_to(current_git_commit,
-                  "#{WasteExemptionsEngine.configuration_repository_url}\/commit\/#{current_git_commit}",
+                  "#{WasteExemptionsEngine.configuration.git_repository_url}\/commit\/#{current_git_commit}",
                   target: "_blank",
                   class: "btn-link") %>
     </strong>
