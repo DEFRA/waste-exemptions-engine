@@ -3,6 +3,7 @@
 require "aasm"
 require "has_secure_token"
 require "high_voltage"
+require "defra_ruby_validators"
 
 module WasteExemptionsEngine
   class Engine < ::Rails::Engine

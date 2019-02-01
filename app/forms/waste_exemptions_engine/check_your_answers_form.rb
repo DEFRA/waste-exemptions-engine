@@ -71,7 +71,7 @@ module WasteExemptionsEngine
     validates :applicant_email, "waste_exemptions_engine/email": true
 
     validates :business_type, "waste_exemptions_engine/business_type": true
-    validates :company_no, "waste_exemptions_engine/company_no": true
+    validates :company_no, "defra_ruby_validators/companies_house_number": true, if: :company_no_required?
     validates :operator_name, "waste_exemptions_engine/operator_name": true
     validates :operator_address, "waste_exemptions_engine/address": true
 
@@ -90,6 +90,10 @@ module WasteExemptionsEngine
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
 
     private
+
+    def company_no_required?
+      @transient_registration.company_no_required?
+    end
 
     def uses_site_location?
       # This should never happen, but if there is no site address we default

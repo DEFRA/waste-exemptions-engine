@@ -22,8 +22,6 @@ module WasteExemptionsEngine
   class Configuration
     # General config
     attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry
-    # Companies house config
-    attr_accessor :companies_house_host, :companies_house_api_key
     # Addressbase config
     attr_accessor :addressbase_url
     # Email config
@@ -31,11 +29,25 @@ module WasteExemptionsEngine
     # PDF config
     attr_accessor :use_xvfb_for_wickedpdf
 
+    # Companies house API config
+    attr_reader :companies_house_host, :companies_house_api_key
+
     def initialize
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
-      @companies_house_host = "https://api.companieshouse.gov.uk/company/"
       @use_xvfb_for_wickedpdf = "true"
+    end
+
+    def companies_house_host=(value)
+      DefraRubyValidators.configure do |configuration|
+        configuration.companies_house_host = value
+      end
+    end
+
+    def companies_house_api_key=(value)
+      DefraRubyValidators.configure do |configuration|
+        configuration.companies_house_api_key = value
+      end
     end
   end
 end
