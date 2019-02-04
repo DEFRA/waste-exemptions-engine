@@ -28,10 +28,10 @@ module WasteExemptionsEngine
     private
 
     def process_company_no(company_no)
-      number = company_no.to_s
+      number = company_no.to_s.strip
       # Should be 8 characters, so if it's not, add 0s to the start
       number = "0#{number}" while number.length < 8
-      number
+      number.upcase
     end
   end
 end
