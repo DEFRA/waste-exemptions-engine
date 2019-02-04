@@ -30,7 +30,9 @@
               <td>
                 <div class="multiple-choice">
                   <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.matched_exemption_ids.include?(exemption.id) }, exemption.id, nil %>
-                  <label for="exemptions_form_checkbox-<%= exemption.code %>"><%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span></label>
+                  <%= f.label "checkbox-#{exemption.code}" do %>
+                    <%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span>
+                  <% end %>
                 </div>
               </td>
               <td><span><%= exemption.summary %></span></td>
