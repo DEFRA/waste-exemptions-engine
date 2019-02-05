@@ -53,7 +53,7 @@ module WasteExemptionsEngine
 
         # Farm questions
         state :is_a_farm_form
-        state :on_a_farm_form
+        state :is_a_farmer_form
 
         # Site questions
         state :site_grid_reference_form
@@ -174,10 +174,10 @@ module WasteExemptionsEngine
 
           # Farm questions
           transitions from: :is_a_farm_form,
-                      to: :on_a_farm_form
+                      to: :is_a_farmer_form
 
           # Site questions
-          transitions from: :on_a_farm_form,
+          transitions from: :is_a_farmer_form,
                       to: :site_grid_reference_form
 
           transitions from: :site_grid_reference_form,
@@ -306,12 +306,12 @@ module WasteExemptionsEngine
           transitions from: :is_a_farm_form,
                       to: :contact_address_lookup_form
 
-          transitions from: :on_a_farm_form,
+          transitions from: :is_a_farmer_form,
                       to: :is_a_farm_form
 
           # Site questions
           transitions from: :site_grid_reference_form,
-                      to: :on_a_farm_form
+                      to: :is_a_farmer_form
 
           transitions from: :site_postcode_form,
                       to: :site_grid_reference_form

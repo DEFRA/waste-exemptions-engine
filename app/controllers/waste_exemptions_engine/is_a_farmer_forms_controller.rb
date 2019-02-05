@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OnAFarmFormsController < FormsController
+  class IsAFarmerFormsController < FormsController
     def new
-      super(OnAFarmForm, "on_a_farm_form")
+      super(IsAFarmerForm, "is_a_farmer_form")
     end
 
     def create
-      super(OnAFarmForm, "on_a_farm_form")
+      super(IsAFarmerForm, "is_a_farmer_form")
     end
   end
 end

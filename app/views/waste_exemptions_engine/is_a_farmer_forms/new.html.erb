@@ -1,37 +1,37 @@
-<%= render("waste_exemptions_engine/shared/back", back_path: back_on_a_farm_forms_path(@on_a_farm_form.token)) %>
+<%= render("waste_exemptions_engine/shared/back", back_path: back_is_a_farmer_forms_path(@is_a_farmer_form.token)) %>
 
 <div class="text">
-  <%= form_for(@on_a_farm_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @on_a_farm_form) %>
+  <%= form_for(@is_a_farmer_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @is_a_farmer_form) %>
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @on_a_farm_form.errors[:on_a_farm].any? %>
+    <% if @is_a_farmer_form.errors[:is_a_farmer].any? %>
     <div class="form-group form-group-error">
     <% else %>
     <div class="form-group">
     <% end %>
-      <fieldset class="inline" id="on_a_farm">
+      <fieldset class="inline" id="is_a_farmer">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
-        <% if @on_a_farm_form.errors[:on_a_farm].any? %>
-        <span class="error-message"><%= @on_a_farm_form.errors[:on_a_farm].join(", ") %></span>
+        <% if @is_a_farmer_form.errors[:is_a_farmer].any? %>
+        <span class="error-message"><%= @is_a_farmer_form.errors[:is_a_farmer].join(", ") %></span>
         <% end %>
 
         <div class="multiple-choice">
-          <%= f.radio_button :on_a_farm, "true" %>
-          <%= f.label :on_a_farm, t(".options.yes"), value: "true" %>
+          <%= f.radio_button :is_a_farmer, "true" %>
+          <%= f.label :is_a_farmer, t(".options.yes"), value: "true" %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :on_a_farm, "false" %>
-          <%= f.label :on_a_farm, t(".options.no"), value: "false" %>
+          <%= f.radio_button :is_a_farmer, "false" %>
+          <%= f.label :is_a_farmer, t(".options.no"), value: "false" %>
         </div>
       </fieldset>
     </div>
 
-    <%= f.hidden_field :token, value: @on_a_farm_form.token %>
+    <%= f.hidden_field :token, value: @is_a_farmer_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>
