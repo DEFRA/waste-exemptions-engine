@@ -63,10 +63,17 @@ module WasteExemptionsEngine
       redirect_to form_path
     end
 
-    # Get the path based on the workflow state, with token as params, ie:
-    # new_state_name_path/:token
+    # Get the path based on the workflow state
     def form_path
-      send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
+      if @transient_registration.token.present?
+        # If we have a token on the registration we generate the path based on
+        # current workflow state and the token
+        send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
+      else
+        # If the registration doesn't have a token it's because it is newly
+        # instantiated so we redirect to root to restart the journey
+        "/"
+      end
     end
 
     def setup_checks_pass?
