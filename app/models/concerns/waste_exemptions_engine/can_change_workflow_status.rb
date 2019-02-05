@@ -52,7 +52,7 @@ module WasteExemptionsEngine
         state :contact_address_manual_form
 
         # Farm questions
-        state :is_a_farm_form
+        state :on_a_farm_form
         state :is_a_farmer_form
 
         # Site questions
@@ -167,13 +167,13 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :contact_address_lookup_form,
-                      to: :is_a_farm_form
+                      to: :on_a_farm_form
 
           transitions from: :contact_address_manual_form,
-                      to: :is_a_farm_form
+                      to: :on_a_farm_form
 
           # Farm questions
-          transitions from: :is_a_farm_form,
+          transitions from: :on_a_farm_form,
                       to: :is_a_farmer_form
 
           # Site questions
@@ -299,15 +299,15 @@ module WasteExemptionsEngine
                       to: :contact_postcode_form
 
           # Farm questions
-          transitions from: :is_a_farm_form,
+          transitions from: :on_a_farm_form,
                       to: :contact_address_manual_form,
                       if: :contact_address_was_manually_entered?
 
-          transitions from: :is_a_farm_form,
+          transitions from: :on_a_farm_form,
                       to: :contact_address_lookup_form
 
           transitions from: :is_a_farmer_form,
-                      to: :is_a_farm_form
+                      to: :on_a_farm_form
 
           # Site questions
           transitions from: :site_grid_reference_form,

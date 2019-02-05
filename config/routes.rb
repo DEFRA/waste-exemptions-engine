@@ -252,12 +252,12 @@ WasteExemptionsEngine::Engine.routes.draw do
               on: :collection
             end
 
-  resources :is_a_farm_forms,
+  resources :on_a_farm_forms,
             only: [:new, :create],
-            path: "is-a-farm",
+            path: "on-a-farm",
             path_names: { new: "/:token" } do
               get "back/:token",
-              to: "is_a_farm_forms#go_back",
+              to: "on_a_farm_forms#go_back",
               as: "back",
               on: :collection
             end

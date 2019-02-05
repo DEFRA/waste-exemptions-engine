@@ -1,0 +1,39 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: back_on_a_farm_forms_path(@on_a_farm_form.token)) %>
+
+<div class="text">
+  <%= form_for(@on_a_farm_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @on_a_farm_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <% if @on_a_farm_form.errors[:on_a_farm].any? %>
+    <div class="form-group form-group-error">
+    <% else %>
+    <div class="form-group">
+    <% end %>
+      <fieldset class="inline" id="is_a_farm">
+        <legend class="visuallyhidden">
+          <%= t(".heading") %>
+        </legend>
+
+        <% if @on_a_farm_form.errors[:on_a_farm].any? %>
+        <span class="error-message"><%= @on_a_farm_form.errors[:on_a_farm].join(", ") %></span>
+        <% end %>
+
+        <div class="multiple-choice">
+          <%= f.radio_button :on_a_farm, "true" %>
+          <%= f.label :on_a_farm, t(".options.yes"), value: "true" %>
+        </div>
+        <div class="multiple-choice">
+          <%= f.radio_button :on_a_farm, "false" %>
+          <%= f.label :on_a_farm, t(".options.no"), value: "false" %>
+        </div>
+      </fieldset>
+    </div>
+
+    <%= f.hidden_field :token, value: @on_a_farm_form.token %>
+    <div class="form-group">
+      <%= f.submit t(".next_button"), class: "button" %>
+    </div>
+  <% end %>
+</div>

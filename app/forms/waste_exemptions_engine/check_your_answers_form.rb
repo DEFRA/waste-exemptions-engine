@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     attr_accessor :business_type, :company_no, :operator_name, :operator_address
     attr_accessor :contact_first_name, :contact_last_name, :contact_position, :contact_phone, :contact_email
     attr_accessor :contact_address
-    attr_accessor :is_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description, :exemptions
+    attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description, :exemptions
 
     # We know this is a long method, but its just assigning attributes. Breaking
     # it up for the sake of rubocop would add little benefit, hence the
@@ -39,7 +39,7 @@ module WasteExemptionsEngine
       self.contact_email = @transient_registration.contact_email
       self.contact_address = @transient_registration.contact_address
 
-      self.is_a_farm = @transient_registration.is_a_farm
+      self.on_a_farm = @transient_registration.on_a_farm
       self.is_a_farmer = @transient_registration.is_a_farmer
 
       self.site_address = @transient_registration.site_address
@@ -81,7 +81,7 @@ module WasteExemptionsEngine
     validates :contact_email, "waste_exemptions_engine/email": true
     validates :contact_address, "waste_exemptions_engine/address": true
 
-    validates :is_a_farm, inclusion: { in: [true, false] }
+    validates :on_a_farm, inclusion: { in: [true, false] }
     validates :is_a_farmer, inclusion: { in: [true, false] }
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
