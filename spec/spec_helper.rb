@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require "simplecov"
-SimpleCov.start
+# Require and run our simplecov initializer as the very first thing we do.
+# This is as per its docs https://github.com/colszowka/simplecov#getting-started
+require "./spec/support/simplecov"
 
 # Support debugging in the tests
 require "byebug"
