@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190121092357) do
+ActiveRecord::Schema.define(version: 20190205234300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20190121092357) do
     t.string   "contact_position"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.boolean  "is_a_farm"
     t.boolean  "on_a_farm"
+    t.boolean  "is_a_farmer"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.date     "submitted_at"
@@ -169,8 +169,8 @@ ActiveRecord::Schema.define(version: 20190121092357) do
     t.string   "contact_position"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.boolean  "is_a_farm"
     t.boolean  "on_a_farm"
+    t.boolean  "is_a_farmer"
     t.boolean  "declaration"
     t.string   "temp_operator_postcode"
     t.string   "temp_contact_postcode"
