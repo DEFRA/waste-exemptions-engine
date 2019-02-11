@@ -14,7 +14,7 @@ module WasteExemptionsEngine
   RSpec.describe PostcodeValidator, type: :model do
     let(:valid_postcode) { "BS1 5AH" }
     let(:invalid_postcode) { "foo" }
-    let(:postcode_without_addresses) { 'AA1 1AA' }
+    let(:postcode_without_addresses) { "AA1 1AA" }
 
     subject(:validatable) { Test::PostcodeValidatable.new(valid_postcode) }
 
@@ -47,7 +47,7 @@ module WasteExemptionsEngine
     end
 
     describe "#value_is_present?" do
-      subject(:validatable) { Test::PostcodeValidatable.new() }
+      subject(:validatable) { Test::PostcodeValidatable.new }
 
       context "when the postcode is not present" do
         it "gets called" do
