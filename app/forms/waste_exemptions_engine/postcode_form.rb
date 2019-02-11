@@ -28,6 +28,10 @@ module WasteExemptionsEngine
 
     validates :postcode, "waste_exemptions_engine/postcode": true
 
+    def address_finder_error(error_occurred)
+      transient_registration.address_finder_error = error_occurred
+    end
+
     private
 
     def format_postcode(postcode)
