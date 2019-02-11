@@ -6,10 +6,6 @@ module Test
   PostcodeValidatable = Struct.new(:postcode) do
     include ActiveModel::Validations
 
-    def transient_registration
-      @transient_registration ||= Struct.new(:address_finder_error).new(false)
-    end
-
     validates :postcode, "waste_exemptions_engine/postcode": true
   end
 end
@@ -26,7 +22,7 @@ module WasteExemptionsEngine
       context "when the postcode is valid" do
         before(:context) { VCR.insert_cassette("postcode_valid") }
         after(:context) { VCR.eject_cassette }
-        
+
         it "gets called" do
           expect_any_instance_of(PostcodeValidator)
             .to receive(:validate_each)
