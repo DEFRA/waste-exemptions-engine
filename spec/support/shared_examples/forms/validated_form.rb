@@ -3,10 +3,10 @@
 RSpec.shared_examples "a validated form" do |form_factory|
   subject(:form) { build(form_factory) }
   let(:valid_params) do
-    { override_me: 'Set :valid_params in the calling spec.' }
+    { override_me: "Set :valid_params in the calling spec." }
   end
   let(:invalid_params) do
-    { override_me: 'Set :invalid_params in the calling spec.' }
+    { override_me: "Set :invalid_params in the calling spec." }
   end
 
   it "should be a type of BaseForm" do
