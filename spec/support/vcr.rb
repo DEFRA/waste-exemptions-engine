@@ -16,6 +16,6 @@ VCR.configure do |c|
   # Strip out authorization info
   c.filter_sensitive_data("Basic <API_KEY>") do |interaction|
     auth = interaction.request.headers["Authorization"]
-    auth.first if auth.nil? || auth.empty?
+    auth.first unless auth.nil? || auth.empty?
   end
 end
