@@ -38,110 +38,43 @@ module WasteExemptionsEngine
       end
 
       context "when the postcode is not valid" do
-        it "there is a validation error" do
-          validatable.postcode = invalid_postcode
+        subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
+
+        it "adds a validation error to the record" do
           validatable.valid?
           expect(validatable.errors[:postcode].count).to eq(1)
         end
-      end
-    end
 
-    describe "#value_is_present?" do
-      subject(:validatable) { Test::PostcodeValidatable.new }
+        context "because the postcode is not present" do
+          subject(:validatable) { Test::PostcodeValidatable.new }
 
-      context "when the postcode is not present" do
-        it "gets called" do
-          expect_any_instance_of(PostcodeValidator)
-            .to receive(:value_is_present?)
-            .once
-
-          validatable.valid?
+          it "adds an appropriate validation error" do
+            validatable.valid?
+            expect(validatable.errors[:postcode]).to eq(["Enter a postcode"])
+          end
         end
 
-        it "there is an appropriate validation error" do
-          validatable.valid?
-          expect(validatable.errors[:postcode]).to eq(["Enter a postcode"])
-        end
-      end
-    end
-
-    describe "#value_uses_correct_format?" do
-      subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
-
-      context "when the postcode is not correctly formated" do
-        it "gets called" do
-          expect_any_instance_of(PostcodeValidator)
-            .to receive(:value_uses_correct_format?)
-            .once
-
-          validatable.valid?
+        context "because the postcode is not correctly formated" do
+          it "adds an appropriate validation error" do
+            validatable.valid?
+            expect(validatable.errors[:postcode]).to eq(["Enter a valid UK postcode"])
+          end
         end
 
-        it "there is an appropriate validation error" do
-          validatable.valid?
-          expect(validatable.errors[:postcode]).to eq(["Enter a valid UK postcode"])
-        end
-      end
-    end
+        context "because the postcode does not have associated adresses" do
+          subject(:validatable) do
+            Test::PostcodeValidatable.new(postcode_without_addresses)
+          end
 
-    describe "#postcode_returns_results?" do
-      context "when the postcode has associated adresses" do
-        before(:context) { VCR.insert_cassette("postcode_valid") }
-        after(:context) { VCR.eject_cassette }
+          before(:context) { VCR.insert_cassette("postcode_no_matches") }
+          after(:context) { VCR.eject_cassette }
 
-        it "gets called" do
-          expect_any_instance_of(PostcodeValidator)
-            .to receive(:postcode_returns_results?)
-            .once
-
-          validatable.valid?
-        end
-
-        it "the errors are empty" do
-          validatable.valid?
-          expect(validatable.errors).to be_empty
-        end
-      end
-
-      context "when the postcode does not have associated adresses" do
-        subject(:validatable) do
-          Test::PostcodeValidatable.new(postcode_without_addresses)
-        end
-
-        before(:context) { VCR.insert_cassette("postcode_no_matches") }
-        after(:context) { VCR.eject_cassette }
-
-        it "gets called" do
-          expect_any_instance_of(PostcodeValidator)
-            .to receive(:postcode_returns_results?)
-            .once
-
-          validatable.valid?
-        end
-
-        it "there is an appropriate validation error" do
-          no_results_error = "We cannot find any addresses for that postcode. " \
-            "Check the postcode or enter the address manually."
-          validatable.valid?
-          expect(validatable.errors[:postcode]).to eq([no_results_error])
-        end
-      end
-    end
-
-    describe "#error_message" do
-      subject(:validator) { PostcodeValidator.new(attributes: :postcode) }
-
-      it "returns an appropriate error message for the given error" do
-        message_mapping = {
-          "blank": "Enter a postcode",
-          "wrong_format": "Enter a valid UK postcode",
-          "no_results": "We cannot find any addresses for that postcode. " \
-            "Check the postcode or enter the address manually."
-        }
-
-        message_mapping.each do |error_type, error_message|
-          msg = validator.send(:error_message, validatable, :postcode, error_type)
-          expect(msg).to eq(error_message)
+          it "adds an appropriate validation error" do
+            no_results_error = "We cannot find any addresses for that postcode. " \
+              "Check the postcode or enter the address manually."
+            validatable.valid?
+            expect(validatable.errors[:postcode]).to eq([no_results_error])
+          end
         end
       end
     end
