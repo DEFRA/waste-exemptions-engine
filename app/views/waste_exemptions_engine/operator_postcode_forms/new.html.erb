@@ -20,7 +20,7 @@
         <span class="error-message"><%= @operator_postcode_form.errors[:postcode].join(", ") %></span>
         <% end %>
 
-        <%= f.label :postcode, class: "form-label govuk-input--width-10" do %>
+        <%= f.label :postcode, class: "form-label" do %>
           <%= t(".postcode_label") %>
           <span class='form-hint'><%= t(".postcode_hint") %></span>
         <% end %>
