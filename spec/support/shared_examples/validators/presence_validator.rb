@@ -7,8 +7,8 @@ RSpec.shared_examples "a presence validator" do |validatable_class, property|
   # end
 
   describe "#validate_each" do
-    context "when the postcode is not valid" do
-      context "because the postcode is not present" do
+    context "when the #{property} is not valid" do
+      context "because the #{property} is not present" do
         subject(:validatable) { validatable_class.new }
 
         it "confirms the object is invalid" do

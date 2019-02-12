@@ -14,7 +14,7 @@ module WasteExemptionsEngine
   RSpec.describe AddressValidator, type: :model do
     valid_address = "Temple Quay House, 2 The Square, Temple Quay, Bristol"
 
-    it_behaves_like "a validator", AddressValidator, Test::AddressValidatable, valid_address
+    it_behaves_like "a validator", AddressValidator, Test::AddressValidatable, :address, valid_address
     it_behaves_like "a presence validator", Test::AddressValidatable, :address
   end
 end
