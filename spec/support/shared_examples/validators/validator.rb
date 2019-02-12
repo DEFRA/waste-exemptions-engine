@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a validator" do |validator, validatable_class, valid_value|
-  it "is a type of PostcodeForm" do
+  it "is a type of BaseValidator" do
     expect(described_class.ancestors)
       .to include(WasteExemptionsEngine::BaseValidator)
   end
