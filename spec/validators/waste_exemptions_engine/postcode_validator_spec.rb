@@ -20,8 +20,8 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the postcode is valid" do
-        before(:context) { VCR.insert_cassette("postcode_valid") }
-        after(:context) { VCR.eject_cassette }
+        before(:each) { VCR.insert_cassette("postcode_valid") }
+        after(:each) { VCR.eject_cassette }
 
         it "gets called" do
           expect_any_instance_of(PostcodeValidator)
@@ -29,6 +29,10 @@ module WasteExemptionsEngine
             .once
 
           validatable.valid?
+        end
+
+        it "confirms the object is valid" do
+          expect(validatable).to be_valid
         end
 
         it "the errors are empty" do
@@ -40,24 +44,39 @@ module WasteExemptionsEngine
       context "when the postcode is not valid" do
         subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
 
-        it "adds a validation error to the record" do
-          validatable.valid?
-          expect(validatable.errors[:postcode].count).to eq(1)
-        end
-
         context "because the postcode is not present" do
           subject(:validatable) { Test::PostcodeValidatable.new }
 
-          it "adds an appropriate validation error" do
+          it "confirms the object is invalid" do
+            expect(validatable).to_not be_valid
+          end
+
+          it "adds a single validation error to the record" do
             validatable.valid?
-            expect(validatable.errors[:postcode]).to eq(["Enter a postcode"])
+            expect(validatable.errors[:postcode].count).to eq(1)
+          end
+
+          it "adds an appropriate validation error" do
+            error_msg = Helpers::Translator.error_message(validatable, :postcode, :blank)
+            validatable.valid?
+            expect(validatable.errors[:postcode]).to eq([error_msg])
           end
         end
 
         context "because the postcode is not correctly formated" do
-          it "adds an appropriate validation error" do
+          it "confirms the object is invalid" do
+            expect(validatable).to_not be_valid
+          end
+
+          it "adds a single validation error to the record" do
             validatable.valid?
-            expect(validatable.errors[:postcode]).to eq(["Enter a valid UK postcode"])
+            expect(validatable.errors[:postcode].count).to eq(1)
+          end
+
+          it "adds an appropriate validation error" do
+            error_msg = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
+            validatable.valid?
+            expect(validatable.errors[:postcode]).to eq([error_msg])
           end
         end
 
@@ -66,14 +85,22 @@ module WasteExemptionsEngine
             Test::PostcodeValidatable.new(postcode_without_addresses)
           end
 
-          before(:context) { VCR.insert_cassette("postcode_no_matches") }
-          after(:context) { VCR.eject_cassette }
+          before(:each) { VCR.insert_cassette("postcode_no_matches") }
+          after(:each) { VCR.eject_cassette }
+
+          it "confirms the object is invalid" do
+            expect(validatable).to_not be_valid
+          end
+
+          it "adds a single validation error to the record" do
+            validatable.valid?
+            expect(validatable.errors[:postcode].count).to eq(1)
+          end
 
           it "adds an appropriate validation error" do
-            no_results_error = "We cannot find any addresses for that postcode. " \
-              "Check the postcode or enter the address manually."
+            error_msg = Helpers::Translator.error_message(validatable, :postcode, :no_results)
             validatable.valid?
-            expect(validatable.errors[:postcode]).to eq([no_results_error])
+            expect(validatable.errors[:postcode]).to eq([error_msg])
           end
         end
       end
