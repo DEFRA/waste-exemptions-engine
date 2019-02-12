@@ -42,8 +42,6 @@ module WasteExemptionsEngine
       end
 
       context "when the postcode is not valid" do
-        subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
-
         context "because the postcode is not present" do
           subject(:validatable) { Test::PostcodeValidatable.new }
 
@@ -64,6 +62,8 @@ module WasteExemptionsEngine
         end
 
         context "because the postcode is not correctly formated" do
+          subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
+          
           it "confirms the object is invalid" do
             expect(validatable).to_not be_valid
           end
