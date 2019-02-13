@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/email_validatable:
+          attributes:
+            email:
+              blank: "Enter an email address"
+              invalid_format: "Enter a valid email address - there’s a mistake in that one"
