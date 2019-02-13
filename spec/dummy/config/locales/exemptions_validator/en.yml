@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/exemptions_validatable:
+          attributes:
+            exemptions:
+              inclusion: "You must select at least one exemption"
