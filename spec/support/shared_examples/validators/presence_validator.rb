@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a presence validator" do |validatable_class, property|
-  # it "includes ValidatesPresence" do
-  #   expect(described_class.includes)
-  #     .to include(WasteExemptionsEngine::ValidatesPresence)
-  # end
+  it "includes CanValidatePresence" do
+    included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
+
+    expect(included_modules)
+      .to include(WasteExemptionsEngine::CanValidatePresence)
+  end
 
   describe "#validate_each" do
     context "when the #{property} is not valid" do
