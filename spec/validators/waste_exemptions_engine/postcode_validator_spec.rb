@@ -12,96 +12,41 @@ end
 
 module WasteExemptionsEngine
   RSpec.describe PostcodeValidator, type: :model do
-    let(:valid_postcode) { "BS1 5AH" }
-    let(:invalid_postcode) { "foo" }
-    let(:postcode_without_addresses) { "AA1 1AA" }
-
-    subject(:validatable) { Test::PostcodeValidatable.new(valid_postcode) }
+    valid_postcode = "BS1 5AH"
+    invalid_postcode = "foo"
+    postcode_without_addresses = "AA1 1AA"
 
     describe "#validate_each" do
       context "when the postcode is valid" do
         before(:each) { VCR.insert_cassette("postcode_valid") }
         after(:each) { VCR.eject_cassette }
 
-        it "gets called" do
-          expect_any_instance_of(PostcodeValidator)
-            .to receive(:validate_each)
-            .once
-
-          validatable.valid?
-        end
-
-        it "confirms the object is valid" do
-          expect(validatable).to be_valid
-        end
-
-        it "the errors are empty" do
-          validatable.valid?
-          expect(validatable.errors).to be_empty
-        end
+        it_behaves_like "a valid record", Test::PostcodeValidatable.new(valid_postcode)
       end
 
       context "when the postcode is not valid" do
         context "because the postcode is not present" do
-          subject(:validatable) { Test::PostcodeValidatable.new }
+          validatable = Test::PostcodeValidatable.new
+          error_message = Helpers::Translator.error_message(validatable, :postcode, :blank)
 
-          it "confirms the object is invalid" do
-            expect(validatable).to_not be_valid
-          end
-
-          it "adds a single validation error to the record" do
-            validatable.valid?
-            expect(validatable.errors[:postcode].count).to eq(1)
-          end
-
-          it "adds an appropriate validation error" do
-            error_msg = Helpers::Translator.error_message(validatable, :postcode, :blank)
-            validatable.valid?
-            expect(validatable.errors[:postcode]).to eq([error_msg])
-          end
+          it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
         context "because the postcode is not correctly formated" do
-          subject(:validatable) { Test::PostcodeValidatable.new(invalid_postcode) }
+          validatable = Test::PostcodeValidatable.new(invalid_postcode)
+          error_message = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
 
-          it "confirms the object is invalid" do
-            expect(validatable).to_not be_valid
-          end
-
-          it "adds a single validation error to the record" do
-            validatable.valid?
-            expect(validatable.errors[:postcode].count).to eq(1)
-          end
-
-          it "adds an appropriate validation error" do
-            error_msg = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
-            validatable.valid?
-            expect(validatable.errors[:postcode]).to eq([error_msg])
-          end
+          it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
         context "because the postcode does not have associated adresses" do
-          subject(:validatable) do
-            Test::PostcodeValidatable.new(postcode_without_addresses)
-          end
-
           before(:each) { VCR.insert_cassette("postcode_no_matches") }
           after(:each) { VCR.eject_cassette }
 
-          it "confirms the object is invalid" do
-            expect(validatable).to_not be_valid
-          end
+          validatable = Test::PostcodeValidatable.new(postcode_without_addresses)
+          error_message = Helpers::Translator.error_message(validatable, :postcode, :no_results)
 
-          it "adds a single validation error to the record" do
-            validatable.valid?
-            expect(validatable.errors[:postcode].count).to eq(1)
-          end
-
-          it "adds an appropriate validation error" do
-            error_msg = Helpers::Translator.error_message(validatable, :postcode, :no_results)
-            validatable.valid?
-            expect(validatable.errors[:postcode]).to eq([error_msg])
-          end
+          it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
       end
     end
