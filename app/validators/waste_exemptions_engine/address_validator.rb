@@ -5,9 +5,7 @@ module WasteExemptionsEngine
     include CanValidatePresence
 
     def validate_each(record, attribute, value)
-      return false unless value_is_present?(record, attribute, value)
-
-      false
+      value_is_present?(record, attribute, value)
     end
   end
 end
