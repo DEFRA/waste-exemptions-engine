@@ -30,14 +30,14 @@ module WasteExemptionsEngine
     def postcode_returns_results?(record, attribute, value)
       address_finder = AddressFinderService.new(value)
       case address_finder.search_by_postcode
-      when :not_found
+      when :not_found, []
         record.errors[attribute] << error_message(record, attribute, "no_results")
         false
       when :error
-        record.transient_registration.address_finder_error = true
+        record.address_finder_error(true) if record.respond_to? :address_finder_error
         true
       else
-        record.transient_registration.address_finder_error = false
+        record.address_finder_error(false) if record.respond_to? :address_finder_error
         true
       end
     end
