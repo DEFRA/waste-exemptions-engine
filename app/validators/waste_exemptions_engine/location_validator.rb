@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class LocationValidator < ActiveModel::EachValidator
+  class LocationValidator < BaseValidator
     def validate_each(record, attribute, value)
-      valid_locations = %w[england
-                           northern_ireland
-                           scotland
-                           wales]
-      return true if value.present? && valid_locations.include?(value)
-
-      record.errors[attribute] << error_message(record, attribute, "inclusion")
-      false
+      valid_location?(record, attribute, value)
     end
 
     private
 
-    def error_message(record, attribute, error)
-      class_name = record.class.to_s.underscore
-      I18n.t("activemodel.errors.models.#{class_name}.attributes.#{attribute}.#{error}")
+    def valid_location?(record, attribute, value)
+      valid_locations = %w[england
+                           northern_ireland
+                           scotland
+                           wales]
+
+      return true if value.present? && valid_locations.include?(value)
+
+      record.errors[attribute] << error_message(record, attribute, "inclusion")
+      false
     end
   end
 end
