@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/address_validatable:
+          attributes:
+            address:
+              blank: "You need to tell us the waste operator's address"
