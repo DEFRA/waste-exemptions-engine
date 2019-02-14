@@ -7,7 +7,7 @@ module WasteExemptionsEngine
 
     def validate_each(record, attribute, value)
       return false unless value_is_present?(record, attribute, value)
-      
+
       max_length = 15
       return false unless value_is_not_too_long?(record, attribute, value, max_length)
 

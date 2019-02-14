@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class PersonNameValidator < BaseValidator
     include CanValidatePresence
     include CanValidateLength
-    
+
     def validate_each(record, attribute, value)
       return false unless value_is_present?(record, attribute, value)
       return false unless value_has_no_invalid_characters?(record, attribute, value)

@@ -14,7 +14,7 @@ module WasteExemptionsEngine
   RSpec.describe ExemptionsValidator, type: :model do
     valid_exemptions = %w[3 17]
 
-    # Since valid_exemptions is an Array we need to wrap it in another Array to avoid treating 
+    # Since valid_exemptions is an Array we need to wrap it in another Array to avoid treating
     # the argument like a set of multiple arguments.
     it_behaves_like "a validator", Test::ExemptionsValidatable, :exemptions, [valid_exemptions]
 

@@ -13,11 +13,11 @@ end
 module WasteExemptionsEngine
   RSpec.describe PhoneNumberValidator, type: :model do
     valid_number = [
-        "+441234567890", 
-        "01234567890", 
-        "+441234-567-890", 
-        "01234.567.890", 
-        "+441234 567 890"
+      "+441234567890",
+      "01234567890",
+      "+441234-567-890",
+      "01234.567.890",
+      "+441234 567 890"
     ].sample
     too_long_number = "01234" * 3 + "9" # The max length is 15
     invalid_number = "#123"
