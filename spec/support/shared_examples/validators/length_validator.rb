@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a length validator" do |validatable_class, property, invalid_input|
-  it "includes CanValidatePresence" do
+  it "includes CanValidateLength" do
     included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
 
     expect(included_modules)
