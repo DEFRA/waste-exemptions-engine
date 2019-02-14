@@ -47,8 +47,8 @@ en:
             true_html: "the operation <span class=\"strong\">will</span> take place on a farm"
             false_html: "the operation <span class=\"strong\">will not</span> take place on a farm"
           is_a_farmer:
-            true_html: "the operater <span class=\"strong\">is</span> a farmer"
-            false_html: "the operater <span class=\"strong\">is not</span> a farmer"
+            true_html: "the operator <span class=\"strong\">is</span> a farmer"
+            false_html: "the operator <span class=\"strong\">is not</span> a farmer"
         site:
           subheading:
             lookup: Site address
