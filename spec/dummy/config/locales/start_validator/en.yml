@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/start_validatable:
+          attributes:
+            start:
+              inclusion: "You must answer this question"
