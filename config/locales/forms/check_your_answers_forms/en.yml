@@ -43,12 +43,12 @@ en:
           subheading_address: Contact address
         farming:
           subheading: Farming information
-          is_a_farm:
-            true_html: "the operater <span class=\"strong\">is</span> a farmer"
-            false_html: "the operater <span class=\"strong\">is not</span> a farmer"
           on_a_farm:
             true_html: "the operation <span class=\"strong\">will</span> take place on a farm"
             false_html: "the operation <span class=\"strong\">will not</span> take place on a farm"
+          is_a_farmer:
+            true_html: "the operator <span class=\"strong\">is</span> a farmer"
+            false_html: "the operator <span class=\"strong\">is not</span> a farmer"
         site:
           subheading:
             lookup: Site address
@@ -113,10 +113,10 @@ en:
               invalid_format: "The contact's email is not a valid email address"
             contact_address:
               blank: "You need to tell us the contact's address"
-            is_a_farm:
-              inclusion: "You must tell us if the operator is a farmer"
             on_a_farm:
               inclusion: "You must tell us if the operation is on a farm"
+            is_a_farmer:
+              inclusion: "You must tell us if the operator is a farmer"
             grid_reference:
               blank: "You need to tell us the site grid reference"
               wrong_format: The site grid reference should have 2 letters and 10 digits
