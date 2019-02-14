@@ -1,0 +1,10 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/person_name_validatable:
+          attributes:
+            name:
+              blank: "You must enter a first name"
+              invalid: "The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The first name must have no more than 70 characters"
