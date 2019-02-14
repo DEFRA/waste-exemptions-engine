@@ -11,7 +11,7 @@ module Test
 end
 
 module WasteExemptionsEngine
-  RSpec.describe PostcodeValidator, type: :model do
+  RSpec.describe PostcodeValidator, type: :model, vcr: true do
     let(:valid_postcode) { "BS1 5AH" }
     let(:invalid_postcode) { "foo" }
     let(:postcode_without_addresses) { "AA1 1AA" }
