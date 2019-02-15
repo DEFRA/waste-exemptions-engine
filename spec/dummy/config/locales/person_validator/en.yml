@@ -1,0 +1,12 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/person_validatable:
+          attributes:
+            first_name:
+              blank: "You must enter a first name"
+              too_long: "The first name must be no longer than 35 characters"
+            last_name:
+              blank: "You must enter a last name"
+              too_long: "The last name must be no longer than 35 characters"
