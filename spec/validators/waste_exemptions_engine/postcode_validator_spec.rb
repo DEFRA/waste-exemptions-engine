@@ -11,7 +11,7 @@ module Test
 end
 
 module WasteExemptionsEngine
-  RSpec.describe PostcodeValidator, type: :model, vcr: true do
+  RSpec.describe PostcodeValidator, type: :model do
     let(:valid_postcode) { "BS1 5AH" }
     let(:invalid_postcode) { "foo" }
     let(:postcode_without_addresses) { "AA1 1AA" }
@@ -19,7 +19,7 @@ module WasteExemptionsEngine
     subject(:validatable) { Test::PostcodeValidatable.new(valid_postcode) }
 
     describe "#validate_each" do
-      context "when the postcode is valid" do
+      context "when the postcode is valid", vcr: true do
         before(:each) { VCR.insert_cassette("postcode_valid") }
         after(:each) { VCR.eject_cassette }
 
@@ -80,7 +80,7 @@ module WasteExemptionsEngine
           end
         end
 
-        context "because the postcode does not have associated adresses" do
+        context "because the postcode does not have associated adresses", vcr: true do
           subject(:validatable) do
             Test::PostcodeValidatable.new(postcode_without_addresses)
           end
