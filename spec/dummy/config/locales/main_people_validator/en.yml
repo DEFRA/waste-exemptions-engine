@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/main_person_validatable:
+          not_enough_main_people:
+            one: "You must add the details of at least one person"
+            other: "You must add the details of at least %{count} people"
+          too_many_main_people:
+            one: "You may only add the details of one person"
+            other: "You may only the details of at most %{count} people"
