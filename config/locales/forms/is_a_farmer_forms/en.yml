@@ -1,9 +1,9 @@
 en:
   waste_exemptions_engine:
-    is_a_farm_forms:
+    is_a_farmer_forms:
       new:
-        title: Is a farm
-        heading: Will this waste operation take place on a farm?
+        title: Is a farmer
+        heading: Is the person carrying out the waste operation a farmer?
         options:
           "yes": "Yes"
           "no": "No"
@@ -12,9 +12,9 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/is_a_farm_form:
+        waste_exemptions_engine/is_a_farmer_form:
           attributes:
-            is_a_farm:
+            is_a_farmer:
               inclusion: "You must answer this question"
             token:
               invalid_format: "The token is not valid"

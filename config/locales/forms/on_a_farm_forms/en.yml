@@ -3,7 +3,7 @@ en:
     on_a_farm_forms:
       new:
         title: On a farm
-        heading: Is the person carrying out the waste operation a farmer?
+        heading: Will this waste operation take place on a farm?
         options:
           "yes": "Yes"
           "no": "No"
