@@ -20,13 +20,15 @@ module WasteExemptionsEngine
       # Assign the params for validation and pass them to the BaseForm method for updating
       new_address = create_address(params[:temp_address])
 
-      self.temp_addresses = add_or_replace_address(new_address, @transient_registration.transient_addresses)
-      attributes = { transient_addresses: temp_addresses }
+      self.temp_address = new_address
+      attributes = { 
+        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses) 
+      }
 
       super(attributes, params[:token])
     end
 
-    validates :temp_addresses, presence: true
+    validates :temp_address, "waste_exemptions_engine/address": true
 
     private
 
