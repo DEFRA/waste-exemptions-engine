@@ -21,8 +21,8 @@ module WasteExemptionsEngine
       new_address = create_address(params[:temp_address])
 
       self.temp_address = new_address
-      attributes = { 
-        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses) 
+      attributes = {
+        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
       }
 
       super(attributes, params[:token])
