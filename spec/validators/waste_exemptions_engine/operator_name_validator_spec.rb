@@ -13,7 +13,7 @@ end
 module WasteExemptionsEngine
   RSpec.describe OperatorNameValidator, type: :model do
     valid_name = "Acme Waste Management"
-    too_long_name = "Abcdefgh" * 32 # The max length is 255 and this is 256.
+    too_long_name = Helpers::TextGenerator.random_string(256) # The max length is 255.
 
     it_behaves_like "a validator", Test::OperatorNameValidatable, :operator_name, valid_name
     it_behaves_like "a presence validator", Test::OperatorNameValidatable, :operator_name

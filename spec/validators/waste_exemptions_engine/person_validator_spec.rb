@@ -14,7 +14,7 @@ module WasteExemptionsEngine
   RSpec.describe PersonValidator, type: :model do
     valid_first_name = "Joe"
     valid_last_name = "Bloggs"
-    too_long_name = "Abcde" * 7 + "F" # The limit is 35 and this is 36
+    too_long_name = Helpers::TextGenerator.random_string(36) # The max length is 35.
 
     inputs = {
       first_name: { missing: ["", valid_last_name], too_long: [too_long_name, valid_last_name] },

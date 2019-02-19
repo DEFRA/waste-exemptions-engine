@@ -19,7 +19,7 @@ module WasteExemptionsEngine
       "01234.567.890",
       "+441234 567 890"
     ].sample
-    too_long_number = "01234" * 3 + "9" # The max length is 15
+    too_long_number = Helpers::TextGenerator.random_number_string(16) # The max length is 15.
     invalid_number = "#123"
 
     it_behaves_like "a validator", Test::PhoneNumberValidatable, :phone_number, valid_number

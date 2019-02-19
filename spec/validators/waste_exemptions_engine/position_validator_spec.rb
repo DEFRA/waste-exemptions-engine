@@ -14,7 +14,7 @@ module WasteExemptionsEngine
   RSpec.describe PositionValidator, type: :model do
     valid_position = "Principle Waste Manager"
     empty_position = ""
-    too_long_position = "Abcde" * 14 + "A" # The max length is 70 and this is 71.
+    too_long_position = Helpers::TextGenerator.random_string(71) # The max length is 70.
     invalid_position = "**Invalid_@_Positione**"
 
     it_behaves_like "a validator", Test::PositionValidatable, :position, valid_position

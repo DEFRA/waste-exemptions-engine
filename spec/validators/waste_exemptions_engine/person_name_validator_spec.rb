@@ -13,7 +13,7 @@ end
 module WasteExemptionsEngine
   RSpec.describe PersonNameValidator, type: :model do
     valid_name = "Joe Bloggs-Bloomfield, The Third."
-    too_long_name = "Abcde" * 14 + "A" # The max length is 70 and this is 71.
+    too_long_name = Helpers::TextGenerator.random_string(71) # The max length is 70.
     invalid_name = "**Invalid_@_Name**"
 
     it_behaves_like "a validator", Test::PersonNameValidatable, :name, valid_name

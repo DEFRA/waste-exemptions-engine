@@ -13,7 +13,7 @@ end
 module WasteExemptionsEngine
   RSpec.describe SiteDescriptionValidator, type: :model do
     valid_description = "The waste is stored in an out-building next to the barn."
-    too_long_description = "Abcdefghij" * 50 + "k" # The max length is 500 and this is 501.
+    too_long_description = Helpers::TextGenerator.random_string(501) # The max length is 500.
 
     it_behaves_like "a validator", Test::SiteDescriptionValidatable, :site_description, valid_description
     it_behaves_like "a presence validator", Test::SiteDescriptionValidatable, :site_description
