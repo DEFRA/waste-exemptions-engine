@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/yes_no_validatable:
+          attributes:
+            boolean_response:
+              inclusion: "You must answer this question"

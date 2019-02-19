@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/position_validatable:
+          attributes:
+            position:
+              invalid: "The position must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
+              too_long: "The position must have no more than 70 characters"

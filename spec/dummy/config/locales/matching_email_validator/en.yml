@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/matching_email_validatable:
+          attributes:
+            matching_email:
+              does_not_match: "The email addresses you’ve entered don’t match"

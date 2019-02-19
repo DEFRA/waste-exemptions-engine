@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/token_validatable:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

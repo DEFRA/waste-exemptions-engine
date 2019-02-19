@@ -1,0 +1,10 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/grid_reference_validatable:
+          attributes:
+            grid_reference:
+              blank: Enter a grid reference
+              wrong_format: The grid reference should have 2 letters and 10 digits
+              invalid: The grid reference is not a valid coordinate

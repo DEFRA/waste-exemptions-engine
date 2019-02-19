@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/location_validatable:
+          attributes:
+            location:
+              inclusion: "You must answer this question"

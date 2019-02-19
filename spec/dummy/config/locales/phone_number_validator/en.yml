@@ -1,0 +1,10 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/phone_number_validatable:
+          attributes:
+            phone_number:
+              blank: "Enter a telephone number"
+              invalid_format: "Enter a valid telephone number"
+              too_long: "Check the number you entered - it should have no more than than 15 characters"
