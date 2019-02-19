@@ -3,7 +3,7 @@
 <% else %>
 <div class="form-group">
 <% end %>
-  <fieldset id="addresses">
+  <fieldset id="temp_address">
     <%= f.label :temp_address, t(".address_label"), class: "form-label" %>
     <%= f.select(:temp_address,
                  options_for_select(form.temp_addresses.map { |a| [a["address"], a["uprn"]] }, form.temp_address),
