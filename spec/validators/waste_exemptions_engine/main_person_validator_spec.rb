@@ -70,17 +70,7 @@ module WasteExemptionsEngine
                 end
               else
                 let(:error_message) do
-                  if num_people > min_people && !is_allowed
-                    if min_people == 1
-                      Helpers::Translator.state_error_message(validatable, :too_many_main_people, :one)
-                    else
-                      Helpers::Translator.state_error_message(validatable, :too_many_main_people, :other, count: 2)
-                    end
-                  elsif min_people == 1
-                    Helpers::Translator.state_error_message(validatable, :not_enough_main_people, :one)
-                  else
-                    Helpers::Translator.state_error_message(validatable, :not_enough_main_people, :other, count: 2)
-                  end
+                  Helpers::Translator.main_person_error_message(validatable, num_people, min_people)
                 end
 
                 it "confirms the object is invalid" do
