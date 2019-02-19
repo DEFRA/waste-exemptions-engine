@@ -19,7 +19,7 @@ module WasteExemptionsEngine
         matched_address.delete
       end
 
-      updated_addresses << address
+      updated_addresses << address if address
 
       updated_addresses
     end

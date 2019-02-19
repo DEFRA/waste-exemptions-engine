@@ -12,9 +12,9 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/site_address_lookup_forms:
+        waste_exemptions_engine/site_address_lookup_form:
           attributes:
-            addresses:
+            temp_address:
               blank: "You must select an address"
             token:
               invalid_format: "The token is not valid"
