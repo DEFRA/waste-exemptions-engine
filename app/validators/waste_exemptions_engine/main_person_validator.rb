@@ -19,7 +19,7 @@ module WasteExemptionsEngine
     def not_too_many_people?(record)
       return false unless record.too_many_main_people?
 
-      record.errors.add(:base, :too_many_main_people, count: record.minimum_main_people)
+      record.errors.add(:base, :too_many_main_people, count: record.maximum_main_people)
     end
   end
 end
