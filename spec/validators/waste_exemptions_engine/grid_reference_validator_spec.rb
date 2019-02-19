@@ -21,7 +21,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the grid reference is not valid" do
-        context "because the grid reference is not correctly formated" do
+        context "because the grid reference is not correctly formatted" do
           validatable = Test::GridReferenceValidatable.new(invalid_grid_reference)
           error_message = Helpers::Translator.error_message(validatable, :grid_reference, :wrong_format)
 

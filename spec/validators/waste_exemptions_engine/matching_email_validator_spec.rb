@@ -18,7 +18,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the matching email is not valid" do
-        context "because the matching email is not correctly formated" do
+        context "because the matching email is not correctly formatted" do
           validatable = Test::MatchingEmailValidatable.new(email, bad_match)
           error_message = Helpers::Translator.error_message(validatable, :matching_email, :does_not_match)
 

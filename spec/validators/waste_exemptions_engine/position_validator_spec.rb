@@ -28,7 +28,7 @@ module WasteExemptionsEngine
       end
 
       context "when the position is not valid" do
-        context "because the position is not correctly formated" do
+        context "because the position is not correctly formatted" do
           validatable = Test::PositionValidatable.new(invalid_position)
           error_message = Helpers::Translator.error_message(validatable, :position, :invalid)
 

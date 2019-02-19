@@ -19,7 +19,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the token is not valid" do
-        context "because the token is not correctly formated" do
+        context "because the token is not correctly formatted" do
           validatable = Test::TokenValidatable.new(invalid_token)
           error_message = Helpers::Translator.error_message(validatable, :token, :invalid_format)
 

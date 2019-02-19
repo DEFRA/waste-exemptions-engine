@@ -28,7 +28,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the phone number is not valid" do
-        context "because the phone number is not correctly formated" do
+        context "because the phone number is not correctly formatted" do
           validatable = Test::PhoneNumberValidatable.new(invalid_number)
           error_message = Helpers::Translator.error_message(validatable, :phone_number, :invalid_format)
 

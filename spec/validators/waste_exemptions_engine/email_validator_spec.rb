@@ -20,7 +20,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the email is not valid" do
-        context "because the email is not correctly formated" do
+        context "because the email is not correctly formatted" do
           validatable = Test::EmailValidatable.new(invalid_email)
           error_message = Helpers::Translator.error_message(validatable, :email, :invalid_format)
 

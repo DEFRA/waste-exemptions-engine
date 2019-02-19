@@ -32,7 +32,7 @@ module WasteExemptionsEngine
           it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
-        context "because the postcode is not correctly formated" do
+        context "because the postcode is not correctly formatted" do
           validatable = Test::PostcodeValidatable.new(invalid_postcode)
           error_message = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
 
