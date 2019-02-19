@@ -28,6 +28,9 @@ module Dummy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Ensure the tests only pass when all the required tralations are present.
+    config.action_view.raise_on_missing_translations = true
+
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
   end
 end

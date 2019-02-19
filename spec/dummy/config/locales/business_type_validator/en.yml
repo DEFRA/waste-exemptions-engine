@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/business_type_validatable:
+          attributes:
+            business_type:
+              inclusion: "You must answer this question"

@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        test/operator_name_validatable:
+          attributes:
+            operator_name:
+              blank: "You must enter a name"
+              too_long: "Enter a shorter name with no more than 255 characters"
