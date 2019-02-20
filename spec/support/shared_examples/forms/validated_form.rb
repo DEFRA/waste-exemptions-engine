@@ -17,13 +17,21 @@ RSpec.shared_examples "a validated form" do |form_factory|
   describe "#submit" do
     context "when the form is valid" do
       it "should submit" do
-        expect(form.submit(valid_params)).to eq(true)
+        # Handle both single sets of valid params as well as multiple sets of valid params.
+        params = valid_params.is_a?(Array) ? valid_params : [valid_params]
+        params.each do |valid_param_set|
+          expect(form.submit(valid_param_set)).to eq(true)
+        end
       end
     end
 
     context "when the form is not valid" do
       it "should not submit" do
-        expect(form.submit(invalid_params)).to eq(false)
+        # Handle both single sets of invalid params as well as multiple sets of invalid params.
+        params = invalid_params.is_a?(Array) ? invalid_params : [invalid_params]
+        params.each do |invalid_param_set|
+          expect(form.submit(invalid_param_set)).to eq(false)
+        end
       end
     end
   end

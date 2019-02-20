@@ -47,7 +47,9 @@ module WasteExemptionsEngine
     private_class_method def self.update_xy_from_postcode(data)
       return nil unless data
 
-      results = AddressFinderService.new(data[:postcode]).search_by_postcode
+      postcode = data[:postcode]
+      results = AddressFinderService.new(postcode).search_by_postcode if postcode.present?
+
       if results&.length&.positive?
         data["x"] = results.first["x"].to_f
         data["y"] = results.first["y"].to_f
