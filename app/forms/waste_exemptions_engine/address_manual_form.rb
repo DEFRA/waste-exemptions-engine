@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     def submit(params)
       assign_params(params)
 
-      new_address = create_address
+      new_address = create_address if valid?
 
       attributes = {
         transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
