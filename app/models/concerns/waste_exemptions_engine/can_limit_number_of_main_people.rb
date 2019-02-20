@@ -10,6 +10,13 @@ module WasteExemptionsEngine
       true
     end
 
+    def too_many_main_people?
+      return false if maximum_main_people.nil?
+      return true if number_of_existing_main_people > maximum_main_people
+
+      false
+    end
+
     def can_only_have_one_main_person?
       return false unless maximum_main_people
 

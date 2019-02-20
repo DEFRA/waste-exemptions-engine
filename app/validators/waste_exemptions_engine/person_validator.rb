@@ -41,7 +41,7 @@ module WasteExemptionsEngine
     end
 
     def field_is_not_too_long?(record, field, length)
-      return true if record.send(field).length < length
+      return true if record.send(field).length <= length
 
       record.errors.add(field, :too_long)
       false

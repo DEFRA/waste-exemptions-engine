@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class BusinessTypeValidator < ActiveModel::EachValidator
+  class BusinessTypeValidator < BaseValidator
+    include CanValidateSelection
+
     def validate_each(record, attribute, value)
-      valid_business_type?(record, attribute, value)
-    end
-
-    private
-
-    def valid_business_type?(record, attribute, value)
       valid_business_types = %w[charity
                                 limitedCompany
                                 limitedLiabilityPartnership
@@ -16,15 +12,7 @@ module WasteExemptionsEngine
                                 partnership
                                 soleTrader]
 
-      return true if value.present? && valid_business_types.include?(value)
-
-      record.errors[attribute] << error_message(record, attribute, "inclusion")
-      false
-    end
-
-    def error_message(record, attribute, error)
-      class_name = record.class.to_s.underscore
-      I18n.t("activemodel.errors.models.#{class_name}.attributes.#{attribute}.#{error}")
+      value_is_included?(record, attribute, value, valid_business_types)
     end
   end
 end

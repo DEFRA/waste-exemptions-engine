@@ -3,7 +3,9 @@
 require "os_map_ref"
 
 module WasteExemptionsEngine
-  class GridReferenceValidator < ActiveModel::EachValidator
+  class GridReferenceValidator < BaseValidator
+    include CanValidatePresence
+
     def validate_each(record, attribute, value)
       return false unless value_is_present?(record, attribute, value)
       return false unless value_has_valid_format?(record, attribute, value)
@@ -12,13 +14,6 @@ module WasteExemptionsEngine
     end
 
     private
-
-    def value_is_present?(record, attribute, value)
-      return true if value.present?
-
-      record.errors[attribute] << error_message(record, attribute, "blank")
-      false
-    end
 
     # Note that OsMapRef will work with less stringent coordinates than are
     # specified for this service - so we need to add an additional check
@@ -51,11 +46,6 @@ module WasteExemptionsEngine
 
     def optional_space
       '\s*'
-    end
-
-    def error_message(record, attribute, error)
-      class_name = record.class.to_s.underscore
-      I18n.t("activemodel.errors.models.#{class_name}.attributes.#{attribute}.#{error}")
     end
   end
 end
