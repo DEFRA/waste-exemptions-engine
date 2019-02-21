@@ -69,15 +69,7 @@ module WasteExemptionsEngine
         end
 
         context "and every attribute is too long" do
-          subject(:validatable) do
-            Test::ManualAddressValidatable.new(
-              too_long_premises,
-              too_long_street_address,
-              too_long_locality,
-              too_long_city,
-              too_long_postcode
-            )
-          end
+          subject(:validatable) { Test::ManualAddressValidatable.new(*too_long_parameters) }
 
           it "confirms the object is invalid" do
             expect(validatable).to_not be_valid
