@@ -23,7 +23,12 @@ module WasteExemptionsEngine
     valid_postcode = "BS1 5AH"
     too_long_postcode = Helpers::TextGenerator.random_string(9) # The max length is 8.
 
-    valid_parameters = [valid_premises, valid_street_address, valid_locality, valid_city, valid_postcode]
+    valid_parameters = [
+      valid_premises, valid_street_address, valid_locality, valid_city, valid_postcode
+    ]
+    too_long_parameters = [
+      too_long_premises, too_long_street_address, too_long_locality, too_long_city, too_long_postcode
+    ]
 
     required_attributes = %i[premises street_address city]
     optional_attributes = %i[locality postcode]
@@ -35,7 +40,7 @@ module WasteExemptionsEngine
     inputs = ordered_attributes.each_with_index.each_with_object({}) do |(attribute, i), h|
       h[attribute] = {
         missing: valid_parameters.each_with_index.map { |p, j| i == j ? "" : p },
-        too_long: valid_parameters.each_with_index.map { |p, j| i == j ? eval("too_long_#{attribute}") : p }
+        too_long: valid_parameters.each_with_index.map { |p, j| i == j ? too_long_parameters[i] : p }
       }
     end
 
