@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     include AddressForm
 
     attr_accessor :address_finder_error
-    attr_accessor :premises, :street_address, :locality, :city
+    attr_accessor :premises, :street_address, :locality, :city, :postcode
 
     def initialize(registration)
       super
@@ -33,11 +33,7 @@ module WasteExemptionsEngine
       super(attributes, params[:token])
     end
 
-    validates :premises, presence: true, length: { maximum: 200 }
-    validates :street_address, presence: true, length: { maximum: 160 }
-    validates :locality, length: { maximum: 70 }
-    validates :city, presence: true, length: { maximum: 30 }
-    validates :postcode, length: { maximum: 8 }
+    validates_with ManualAddressValidator
 
     private
 
