@@ -10,6 +10,12 @@ RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
     expect(described_class.ancestors).to include(WasteExemptionsEngine::AddressManualForm)
   end
 
+  it "validates the address data using the ManualAddressValidator class" do
+    validators = build(form_factory)._validators
+    validator_classes = validators.values.flatten.map(&:class)
+    expect(validator_classes).to include(WasteExemptionsEngine::ManualAddressValidator)
+  end
+
   before(:each) { VCR.insert_cassette("postcode_valid") }
   after(:each) { VCR.eject_cassette }
 
