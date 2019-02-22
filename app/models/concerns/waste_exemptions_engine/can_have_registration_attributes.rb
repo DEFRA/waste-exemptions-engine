@@ -28,6 +28,14 @@ module WasteExemptionsEngine
     private
 
     def find_address_by_type(address_type)
+      if addresses.present?
+        addresses.where(address_type: address_type).first
+      else
+        find_transient_address_by_type(address_type)
+      end
+    end
+
+    def find_transient_address_by_type(address_type)
       return nil unless transient_addresses.present?
 
       transient_addresses.where(address_type: address_type).first
