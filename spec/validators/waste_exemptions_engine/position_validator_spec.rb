@@ -15,7 +15,7 @@ module WasteExemptionsEngine
     valid_position = "Principle Waste Manager"
     empty_position = ""
     too_long_position = Helpers::TextGenerator.random_string(71) # The max length is 70.
-    invalid_position = "**Invalid_@_Positione**"
+    invalid_position = "**Invalid_@_Position**"
 
     it_behaves_like "a validator", Test::PositionValidatable, :position, valid_position
     it_behaves_like "a length validator", Test::PositionValidatable, :position, too_long_position
