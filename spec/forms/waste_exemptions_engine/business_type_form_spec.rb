@@ -13,7 +13,7 @@ module WasteExemptionsEngine
                         partnership
                         soleTrader].freeze
 
-    it "validates the phone number using the BusinessTypeForm class" do
+    it "validates the business type using the BusinessTypeValidator class" do
       validators = form._validators
       expect(validators.keys).to include(:business_type)
       expect(validators[:business_type].first.class)

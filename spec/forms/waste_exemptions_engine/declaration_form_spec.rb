@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe DeclarationForm, type: :model do
     subject(:form) { build(:declaration_form) }
 
-    it "validates the phone number using the DeclarationForm class" do
+    it "validates the declaration using the DeclarationValidator class" do
       validators = form._validators
       expect(validators.keys).to include(:declaration)
 

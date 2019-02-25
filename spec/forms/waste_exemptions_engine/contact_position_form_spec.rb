@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe ContactPositionForm, type: :model do
     subject(:form) { build(:contact_position_form) }
 
-    it "validates the phone number using the ContactPositionForm class" do
+    it "validates the position using the ContactPositionValidator class" do
       validators = form._validators
       expect(validators.keys).to include(:position)
       expect(validators[:position].first.class)
