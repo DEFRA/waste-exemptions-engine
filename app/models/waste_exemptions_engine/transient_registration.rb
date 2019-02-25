@@ -24,6 +24,10 @@ module WasteExemptionsEngine
     has_many :transient_registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :transient_registration_exemptions
 
+    alias_attribute :addresses, :transient_addresses
+    alias_attribute :people, :transient_people
+    alias_attribute :registration_exemptions, :transient_registration_exemptions
+
     def registration_attributes
       attributes
         .except(
