@@ -37,11 +37,8 @@ module WasteExemptionsEngine
     private
 
     def assign_params(params)
-      # Strip out whitespace from start and end
-      params.each { |_key, value| value.strip! }
-
-      self.grid_reference = params[:grid_reference]&.upcase
-      self.description = params[:description]
+      self.grid_reference = params[:grid_reference]&.upcase&.strip
+      self.description = params[:description]&.strip
     end
 
     def existing_address

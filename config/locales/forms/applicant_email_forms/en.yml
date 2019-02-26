@@ -5,7 +5,7 @@ en:
         title: Your email address
         heading: What is your contact email address?
         error_heading: A problem to fix
-        contact_email_label: Email address
+        applicant_email_label: Email address
         confirmed_email_label: Confirm email address
         next_button: Continue
   activemodel:
@@ -13,7 +13,7 @@ en:
       models:
         waste_exemptions_engine/applicant_email_form:
           attributes:
-            contact_email:
+            applicant_email:
               blank: "Enter an email address"
               invalid_format: "Enter a valid email address - there’s a mistake in that one"
             confirmed_email:
