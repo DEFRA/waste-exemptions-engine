@@ -22,18 +22,18 @@ module WasteExemptionsEngine
         ]
       end
     end
-  end
 
-  describe "#submit" do
-    context "when the form is valid" do
-      it "updates the transient registration with the operator name" do
-        operator_name = "Acme Waste Carriers"
-        valid_params = { token: form.token, operator_name: operator_name }
-        transient_registration = form.transient_registration
+    describe "#submit" do
+      context "when the form is valid" do
+        it "updates the transient registration with the operator name" do
+          operator_name = "Acme Waste Carriers"
+          valid_params = { token: form.token, operator_name: operator_name }
+          transient_registration = form.transient_registration
 
-        expect(transient_registration.operator_name).to be_blank
-        form.submit(valid_params)
-        expect(transient_registration.operator_name).to eq(operator_name)
+          expect(transient_registration.operator_name).to be_blank
+          form.submit(valid_params)
+          expect(transient_registration.operator_name).to eq(operator_name)
+        end
       end
     end
   end
