@@ -7,9 +7,9 @@ module WasteExemptionsEngine
     describe "public interface" do
       subject(:registration_exemption) { build(:registration_exemption) }
 
-      associations = [:registration, :exemption]
+      associations = %i[registration exemption]
 
-      Helpers::ModelProperties::REGISTRATION_EXEMPTION.each do |property|
+      (Helpers::ModelProperties::REGISTRATION_EXEMPTION + associations).each do |property|
         it "responds to property" do
           expect(registration_exemption).to respond_to(property)
         end
