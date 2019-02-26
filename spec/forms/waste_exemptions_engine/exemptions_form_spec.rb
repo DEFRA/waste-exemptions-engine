@@ -12,6 +12,7 @@ module WasteExemptionsEngine
     end
 
     subject(:form) { build(:exemptions_form) }
+    let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
@@ -21,16 +22,16 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :exemptions_form do
-      let(:valid_params) { { token: form.token, exemptions: %w[1 2 3] } }
+      let(:valid_params) { { token: form.token, exemptions: three_exemptions.map(&:id).map(&:to_s) } }
       let(:invalid_params) { { token: form.token } }
     end
 
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the selected exemptions" do
-          exemptions = %w[1 2 3]
-          exemption_codes = exemptions.map { |id| "U#{id}" }
-          valid_params = { token: form.token, exemptions: exemptions }
+          exemption_codes = three_exemptions.map(&:code).sort
+          exemption_id_strings = three_exemptions.map(&:id).map(&:to_s)
+          valid_params = { token: form.token, exemptions: exemption_id_strings }
           transient_registration = form.transient_registration
 
           expect(transient_registration.exemptions).to be_empty
