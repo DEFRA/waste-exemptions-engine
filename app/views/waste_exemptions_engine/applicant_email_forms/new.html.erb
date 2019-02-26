@@ -6,18 +6,18 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @applicant_email_form.errors[:contact_email].any? %>
+    <% if @applicant_email_form.errors[:applicant_email].any? %>
     <div class="form-group form-group-error">
     <% else %>
     <div class="form-group">
     <% end %>
-      <fieldset id="contact_email">
-        <% if @applicant_email_form.errors[:contact_email].any? %>
-        <span class="error-message"><%= @applicant_email_form.errors[:contact_email].join(", ") %></span>
+      <fieldset id="applicant_email">
+        <% if @applicant_email_form.errors[:applicant_email].any? %>
+        <span class="error-message"><%= @applicant_email_form.errors[:applicant_email].join(", ") %></span>
         <% end %>
 
-        <%= f.label :contact_email, t(".contact_email_label"), class: "form-label" %>
-        <%= f.email_field :contact_email, value: @applicant_email_form.contact_email, class: "form-control" %>
+        <%= f.label :applicant_email, t(".applicant_email_label"), class: "form-label" %>
+        <%= f.email_field :applicant_email, value: @applicant_email_form.applicant_email, class: "form-control" %>
       </fieldset>
     </div>
 

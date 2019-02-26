@@ -5,9 +5,16 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe RegistrationNumberForm, type: :model do
     before do
-      allow_any_instance_of(DefraRubyValidators::CompaniesHouseService)
-        .to receive(:status)
-        .and_return(:active)
+      allow_any_instance_of(DefraRubyValidators::CompaniesHouseService).to receive(:status).and_return(:active)
+    end
+
+    subject(:form) { build(:registration_number_form) }
+
+    it "validates the company number using the CompaniesHouseNumberValidator class" do
+      validators = form._validators
+      expect(validators.keys).to include(:company_no)
+      expect(validators[:company_no].first.class)
+        .to eq(DefraRubyValidators::CompaniesHouseNumberValidator)
     end
 
     it_behaves_like "a validated form", :registration_number_form do
@@ -17,8 +24,16 @@ module WasteExemptionsEngine
 
     describe "#submit" do
       context "when the form is valid" do
-        subject(:form) { build(:registration_number_form) }
         let(:valid_params) { { token: form.token, company_no: "09360070" } }
+
+        it "updates the transient registration with the registration number" do
+          company_number = valid_params[:company_no]
+          transient_registration = form.transient_registration
+
+          expect(transient_registration.company_no).to be_blank
+          form.submit(valid_params)
+          expect(transient_registration.company_no).to eq(company_number)
+        end
 
         context "when the company_no is less than 8 characters" do
           before(:each) { valid_params[:company_no] = "946107" }
