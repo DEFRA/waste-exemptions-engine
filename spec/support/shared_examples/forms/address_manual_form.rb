@@ -56,7 +56,7 @@ RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
           street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
           locality: Helpers::TextGenerator.random_string(71), # The max length is 70.
           city: Helpers::TextGenerator.random_string(31), # The max length is 30.
-          postcode: Helpers::TextGenerator.random_string(9), # The max length is 8.
+          postcode: Helpers::TextGenerator.random_string(9) # The max length is 8.
         }
       ]
     end
