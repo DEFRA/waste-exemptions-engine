@@ -29,14 +29,14 @@ module WasteExemptionsEngine
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the selected exemptions" do
-          exemption_codes = three_exemptions.map(&:code).sort
+          exemption_codes = three_exemptions.map(&:code)
           exemption_id_strings = three_exemptions.map(&:id).map(&:to_s)
           valid_params = { token: form.token, exemptions: exemption_id_strings }
           transient_registration = form.transient_registration
 
           expect(transient_registration.exemptions).to be_empty
           form.submit(valid_params)
-          expect(transient_registration.exemptions.map(&:code)).to eq(exemption_codes)
+          expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
         end
       end
     end
