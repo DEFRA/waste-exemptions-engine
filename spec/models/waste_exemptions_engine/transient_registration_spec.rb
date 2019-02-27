@@ -22,6 +22,14 @@ module WasteExemptionsEngine
       end
     end
 
-    # TransientRegistration (CanHaveRegistrationAttributes, CanChangeWorkflowStatus; 1 public method and 2 private methods)
+    describe "#registration_attributes" do
+      it "returns attributes specific to defining a registration" do
+        attributes = transient_registration.registration_attributes
+        registration_attributes = Helpers::ModelProperties::REGISTRATION.map(&:to_s) - ["submitted_at"]
+        expect(attributes.keys).to match_array(registration_attributes)
+      end
+    end
+
+    # TODO: add coverage for CanChangeWorkflowStatus
   end
 end
