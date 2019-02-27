@@ -9,7 +9,7 @@ RSpec.shared_examples "an owner of registration attributes" do |model_factory, a
     create(model_factory, addresses: [operator_address, contact_address, site_address])
   end
 
-  it "includes CanValidatePresence" do
+  it "includes CanHaveRegistrationAttributes" do
     included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
 
     expect(included_modules)
