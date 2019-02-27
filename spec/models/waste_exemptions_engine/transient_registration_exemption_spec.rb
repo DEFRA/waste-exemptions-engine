@@ -24,6 +24,6 @@ module WasteExemptionsEngine
       end
     end
 
-    # TODO: add coverage for CanChangeExemptionStatus
+    it_behaves_like "a changer of the exemption status", :transient_registration_exemption
   end
 end
