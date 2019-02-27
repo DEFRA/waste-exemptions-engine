@@ -30,6 +30,8 @@ module WasteExemptionsEngine
       end
     end
 
+    it_behaves_like "an owner of registration attributes", :transient_registration, :transient_address
+
     # TODO: add coverage for CanChangeWorkflowStatus
   end
 end

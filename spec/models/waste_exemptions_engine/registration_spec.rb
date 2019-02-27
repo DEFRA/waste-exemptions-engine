@@ -13,5 +13,7 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    it_behaves_like "an owner of registration attributes", :registration, :address
   end
 end
