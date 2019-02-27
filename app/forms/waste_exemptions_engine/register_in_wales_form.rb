@@ -8,11 +8,7 @@ module WasteExemptionsEngine
       super
     end
 
-    def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      attributes = {}
-
-      super(attributes, params[:token])
-    end
+    # Override BaseForm method as users shouldn't be able to submit this form
+    def submit; end
   end
 end
