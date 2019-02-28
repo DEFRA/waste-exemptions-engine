@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class Address < ActiveRecord::Base
+    has_paper_trail
 
     self.table_name = "addresses"
 
