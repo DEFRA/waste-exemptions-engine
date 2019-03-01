@@ -15,5 +15,6 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "an owner of registration attributes", :registration, :address
+    it_behaves_like "it has PaperTrail", :registration, :operator_name
   end
 end

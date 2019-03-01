@@ -15,5 +15,7 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    it_behaves_like "it has PaperTrail", :address, :organisation
   end
 end
