@@ -14,23 +14,23 @@ module WasteExemptionsEngine
     end
 
     def operator_address
-      find_address_by_type(TransientAddress.address_types[:operator])
+      find_address_by_type("operator")
     end
 
     def contact_address
-      find_address_by_type(TransientAddress.address_types[:contact])
+      find_address_by_type("contact")
     end
 
     def site_address
-      find_address_by_type(TransientAddress.address_types[:site])
+      find_address_by_type("site")
     end
 
     private
 
     def find_address_by_type(address_type)
-      return nil unless transient_addresses.present?
+      return nil unless addresses.present?
 
-      transient_addresses.where(address_type: address_type).first
+      addresses.select { |a| a.address_type == address_type }.first
     end
   end
 end

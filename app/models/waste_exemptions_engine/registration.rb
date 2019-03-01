@@ -10,13 +10,5 @@ module WasteExemptionsEngine
     has_many :people
     has_many :registration_exemptions
     has_many :exemptions, through: :registration_exemptions
-
-    private
-
-    def find_address_by_type(address_type)
-      return nil unless addresses.present?
-
-      addresses.where(address_type: address_type).first
-    end
   end
 end

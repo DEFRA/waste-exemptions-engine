@@ -43,12 +43,6 @@ module WasteExemptionsEngine
 
     private
 
-    def find_address_by_type(address_type)
-      return nil unless transient_addresses.present?
-
-      transient_addresses.where(address_type: address_type).first
-    end
-
     def apply_reference
       self.reference = format("WEX%06d", id)
       save!
