@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "an owner of registration attributes" do |model_factory, address_factory|
-  let(:address_types) { WasteExemptionsEngine::TransientAddress.address_types }
-  let(:operator_address) { create(address_factory, address_type: address_types[:operator]) }
-  let(:contact_address) { create(address_factory, address_type: address_types[:contact]) }
-  let(:site_address) { create(address_factory, address_type: address_types[:site]) }
+  let(:operator_address) { create(address_factory, :operator_address) }
+  let(:contact_address) { create(address_factory, :contact_address) }
+  let(:site_address) { create(address_factory, :site_address) }
   subject(:instance) do
     create(model_factory, addresses: [operator_address, contact_address, site_address])
   end
