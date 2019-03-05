@@ -35,7 +35,7 @@ en:
           company_no_html: "the Companies House number is <span class=\"strong\">%{value}</span>"
           subheading_address: Operator address
         contact:
-          subheading: Contact deatils
+          subheading: Contact details
           name_html: "the contact's name is <span class=\"strong\">%{value}</span>"
           position_html: "the contact's position is <span class=\"strong\">%{value}</span>"
           phone_html: "the contact's phone number is <span class=\"strong\">%{value}</span>"
