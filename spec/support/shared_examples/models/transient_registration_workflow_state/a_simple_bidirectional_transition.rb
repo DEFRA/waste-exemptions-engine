@@ -5,7 +5,7 @@ RSpec.shared_examples "a simple bidirectional transition" do |previous_state:, c
     subject(:transient_registration) { create(:transient_registration, workflow_state: current_state) }
 
     it "can only transition to either #{previous_state} or #{next_state}" do
-      permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+      permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
       expect(permitted_states).to match_array([previous_state, next_state])
     end
 

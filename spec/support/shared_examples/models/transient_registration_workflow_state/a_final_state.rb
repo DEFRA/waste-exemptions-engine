@@ -5,7 +5,7 @@ RSpec.shared_examples "a final state" do |previous_state:, current_state:|
     subject(:transient_registration) { create(:transient_registration, workflow_state: current_state) }
 
     it "can only transition to #{previous_state}" do
-      permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+      permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
       expect(permitted_states).to eq([previous_state])
     end
 

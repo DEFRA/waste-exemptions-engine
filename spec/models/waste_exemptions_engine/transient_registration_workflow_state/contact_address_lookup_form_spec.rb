@@ -17,7 +17,7 @@ module WasteExemptionsEngine
           before(:each) { transient_registration.address_finder_error = false }
 
           it "can only transition to either #{previous_state},  #{next_state} #{alt_state}" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state, alt_state])
           end
 
@@ -41,7 +41,7 @@ module WasteExemptionsEngine
           before(:each) { transient_registration.address_finder_error = true }
 
           it "can only transition to either #{previous_state} or #{next_state}" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state])
           end
 

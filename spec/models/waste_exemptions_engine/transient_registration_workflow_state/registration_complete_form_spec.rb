@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
       context "when a TransientRegistration's state is #{current_state}" do
         it "can not transition to any states" do
-          permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+          permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
           expect(permitted_states).to be_empty
         end
       end

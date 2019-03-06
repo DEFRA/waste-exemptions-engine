@@ -13,7 +13,7 @@ module WasteExemptionsEngine
           before(:each) { transient_registration.start_option = "change" }
 
           it "can only transition to :contact_agency_form" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to eq([:contact_agency_form])
           end
 
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
 
         context "when transient_registration.should_contact_the_agency? is false" do
           it "can only transition to :location_form" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to eq([:location_form])
           end
 

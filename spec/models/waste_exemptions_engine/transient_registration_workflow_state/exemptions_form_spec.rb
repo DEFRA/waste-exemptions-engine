@@ -22,7 +22,7 @@ module WasteExemptionsEngine
           previous_state = :site_grid_reference_form
 
           it "can only transition to either #{previous_state} or #{next_state}" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state])
           end
 
@@ -39,7 +39,7 @@ module WasteExemptionsEngine
           before(:each) { transient_registration.site_address.manual! }
 
           it "can only transition to either #{previous_state} or #{next_state}" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state])
           end
 
@@ -56,7 +56,7 @@ module WasteExemptionsEngine
           before(:each) { transient_registration.site_address.lookup! }
 
           it "can only transition to either #{previous_state} or #{next_state}" do
-            permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+            permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state])
           end
 

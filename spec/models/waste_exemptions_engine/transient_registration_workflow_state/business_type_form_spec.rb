@@ -19,7 +19,7 @@ module WasteExemptionsEngine
 
             context "and the business type is #{business_type}" do
               it "can only transition to either #{previous_state} or #{next_state}" do
-                permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+                permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
                 expect(permitted_states).to match_array([previous_state, next_state])
               end
 
@@ -40,7 +40,7 @@ module WasteExemptionsEngine
 
             context "and the business type is #{business_type}" do
               it "can only transition to either #{previous_state} or #{next_state}" do
-                permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+                permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
                 expect(permitted_states).to match_array([previous_state, next_state])
               end
 
@@ -61,7 +61,7 @@ module WasteExemptionsEngine
 
             context "and the business type is #{business_type}" do
               it "can only transition to either #{previous_state} or #{next_state}" do
-                permitted_states = transient_registration.aasm.states(permitted: true).map(&:name)
+                permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
                 expect(permitted_states).to match_array([previous_state, next_state])
               end
 
