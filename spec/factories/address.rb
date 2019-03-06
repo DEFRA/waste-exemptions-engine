@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  address_types = WasteExemptionsEngine::TransientAddress.address_types
+  address_types = WasteExemptionsEngine::Address.address_types
 
   factory :address, class: WasteExemptionsEngine::Address do
     trait :operator_address do
