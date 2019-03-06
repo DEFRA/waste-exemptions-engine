@@ -16,7 +16,7 @@ module WasteExemptionsEngine
 
           before(:each) { transient_registration.address_finder_error = false }
 
-          it "can only transition to either #{previous_state},  #{next_state} #{alt_state}" do
+          it "can only transition to either #{previous_state}, #{next_state}, or #{alt_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(transient_registration)
             expect(permitted_states).to match_array([previous_state, next_state, alt_state])
           end
