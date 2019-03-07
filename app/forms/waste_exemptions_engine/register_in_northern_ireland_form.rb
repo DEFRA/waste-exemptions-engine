@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class RegisterInNorthernIrelandForm < BaseForm
-    include CanNavigateFlexibly
 
     def initialize(transient_registration)
       super

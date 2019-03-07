@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class RegisterInWalesForm < BaseForm
-    include CanNavigateFlexibly
 
     def initialize(registration)
       super
