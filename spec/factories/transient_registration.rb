@@ -27,22 +27,13 @@ FactoryBot.define do
     end
 
     trait :complete do
-      transient_addresses do
-        address_types = WasteExemptionsEngine::TransientAddress.address_types
-        [
-          create(:transient_address, address_type: address_types[:operator]),
-          create(:transient_address, address_type: address_types[:contact]),
-          create(:transient_address, address_type: address_types[:site])
-        ]
-      end
-
       location { "england" }
       applicant_first_name { "Joe" }
       applicant_last_name { "Bloggs" }
       applicant_phone { "01234567890" }
       applicant_email { "test@example.com" }
       business_type { "limitedCompany" }
-      company_no { "sc534714" }
+      company_no { "09360070" }
       operator_name { "Acme Waste Management" }
       contact_first_name { "Joe" }
       contact_last_name { "Bloggs" }
@@ -52,6 +43,14 @@ FactoryBot.define do
       on_a_farm { true }
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
+
+      after(:create) do |transient_registartion|
+        transient_registartion.addresses = [
+          create(:transient_address, :operator_address, :manual),
+          create(:transient_address, :contact_address, :manual),
+          create(:transient_address, :site_address, :manual)
+        ]
+      end
     end
   end
 end

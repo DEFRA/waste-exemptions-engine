@@ -4,15 +4,17 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Check Your Answers Forms", type: :request do
-    before(:context) { create_list(:exemption, 5) }
+    before(:context) do
+      create_list(:exemption, 5)
+      VCR.insert_cassette("company_no_valid", allow_playback_repeats: true)
+    end
+    after(:context) { VCR.eject_cassette }
 
+    empty_form_is_valid = true
     include_examples "GET form", :check_your_answers_form, "/check-your-answers"
     include_examples "go back", :check_your_answers_form, "/check-your-answers/back"
-    include_examples "POST form", :check_your_answers_form, "/check-your-answers" do
+    include_examples "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
       let(:form_data) { {} }
-
-      before(:each) { VCR.insert_cassette("company_no_valid") }
-      after(:each) { VCR.eject_cassette }
     end
   end
 end
