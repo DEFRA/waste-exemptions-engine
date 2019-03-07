@@ -2,12 +2,9 @@
 
 module WasteExemptionsEngine
   class RegisterInWalesForm < BaseForm
-
-    def initialize(registration)
-      super
-    end
-
     # Override BaseForm method as users shouldn't be able to submit this form
-    def submit; end
+    def submit(_params)
+      raise UnsubmittableForm
+    end
   end
 end
