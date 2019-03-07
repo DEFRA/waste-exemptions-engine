@@ -2,6 +2,10 @@
 
 module Helpers
   module WorkflowStates
+    def self.permitted_states(transient_registration)
+      transient_registration.aasm.states(permitted: true).map(&:name)
+    end
+
     def self.can_navigate_flexibly_to_state?(state)
       previous_state = previous_state(WasteExemptionsEngine::TransientRegistration.new(workflow_state: state))
       state_can_navigate_flexibly?(previous_state) && state_can_navigate_flexibly?(state)
