@@ -82,7 +82,7 @@ module WasteExemptionsEngine
 
     def state_can_navigate_flexibly?(state)
       form_class = WasteExemptionsEngine.const_get(state.camelize)
-      form_class.can_navigate_flexibly?
+      form_class.included_modules.include?(CanNavigateFlexibly)
     end
 
     def requested_state

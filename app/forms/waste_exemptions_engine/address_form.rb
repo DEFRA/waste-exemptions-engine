@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   module AddressForm
+    include CanNavigateFlexibly
 
     attr_accessor :postcode
 

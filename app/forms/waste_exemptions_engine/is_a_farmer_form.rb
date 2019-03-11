@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class IsAFarmerForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :is_a_farmer
 

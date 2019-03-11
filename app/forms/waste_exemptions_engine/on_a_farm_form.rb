@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class OnAFarmForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :on_a_farm
 

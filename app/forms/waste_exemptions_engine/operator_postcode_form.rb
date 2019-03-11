@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class OperatorPostcodeForm < PostcodeForm
+    include CanNavigateFlexibly
 
     attr_accessor :business_type
 

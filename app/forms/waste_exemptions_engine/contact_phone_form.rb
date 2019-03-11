@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ContactPhoneForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :phone_number
 

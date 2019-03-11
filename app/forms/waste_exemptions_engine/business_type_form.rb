@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class BusinessTypeForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :business_type
 

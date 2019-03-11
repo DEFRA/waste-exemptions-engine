@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ContactEmailForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :contact_email, :confirmed_email
 

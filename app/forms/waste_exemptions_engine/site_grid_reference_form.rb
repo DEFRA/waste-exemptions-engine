@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :grid_reference, :description
 

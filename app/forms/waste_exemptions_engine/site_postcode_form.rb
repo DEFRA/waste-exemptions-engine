@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class SitePostcodeForm < PostcodeForm
+    include CanNavigateFlexibly
 
     private
 

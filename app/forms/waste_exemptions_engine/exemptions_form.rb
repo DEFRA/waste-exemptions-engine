@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :exemptions, :matched_exemptions, :matched_exemption_ids
 

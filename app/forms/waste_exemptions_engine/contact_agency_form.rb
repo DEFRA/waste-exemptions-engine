@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class ContactAgencyForm < BaseForm
+    include CanNavigateFlexibly
+
     # Override BaseForm method as users shouldn't be able to submit this form
     def submit(_params)
       raise UnsubmittableForm

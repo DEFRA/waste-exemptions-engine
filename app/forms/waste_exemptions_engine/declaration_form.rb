@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class DeclarationForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :declaration
 

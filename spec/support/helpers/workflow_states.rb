@@ -13,7 +13,7 @@ module Helpers
 
     def self.state_can_navigate_flexibly?(state)
       form_class = WasteExemptionsEngine.const_get(state.to_s.camelize)
-      form_class.can_navigate_flexibly?
+      form_class.included_modules.include?(WasteExemptionsEngine::CanNavigateFlexibly)
     end
 
     def self.previous_state(transient_registration)

@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class CheckYourAnswersForm < BaseForm
+    include CanNavigateFlexibly
 
     attr_accessor :location
     attr_accessor :applicant_first_name, :applicant_last_name, :applicant_phone, :applicant_email
