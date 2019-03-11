@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Registration Number Forms", type: :request do
+  RSpec.describe "Registration Number Forms", type: :request, vcr: true do
     before(:context) { VCR.insert_cassette("company_no_valid", allow_playback_repeats: true) }
     after(:context) { VCR.eject_cassette }
     include_examples "GET form", :registration_number_form, "/registration-number"
