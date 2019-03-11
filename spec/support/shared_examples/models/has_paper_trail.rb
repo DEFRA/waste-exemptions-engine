@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory:, field:|
+RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory:, field:, ignored_fields: nil|
   subject(:instance) { create(model_factory) }
 
   it "has PaperTrail" do
@@ -19,5 +19,13 @@ RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory:, 
     instance.update_attribute(field, "foo")
     instance.update_attribute(field, "bar")
     expect(instance).to have_a_version_with(field => "foo")
+  end
+
+  it "does not create a version when an ignored attribute is updated" do
+    if ignored_fields.present?
+      ignored_fields.each do |ignored_field|
+        expect { instance.update_attribute(ignored_field, "foo") }.to change { instance.versions.count }.by(0)
+      end
+    end
   end
 end

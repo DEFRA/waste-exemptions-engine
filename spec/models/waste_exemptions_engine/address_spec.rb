@@ -17,6 +17,10 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "it has PaperTrail", model_factory: :address,
-                                         field: :organisation
+                                         field: :organisation,
+                                         ignored_fields: %i[blpu_state_code
+                                                            logical_status_code
+                                                            country_iso
+                                                            postal_address_code]
   end
 end
