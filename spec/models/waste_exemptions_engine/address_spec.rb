@@ -16,6 +16,7 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "it has PaperTrail", :address, :organisation
+    it_behaves_like "it has PaperTrail", model_factory: :address,
+                                         field: :organisation
   end
 end

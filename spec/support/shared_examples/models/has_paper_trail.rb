@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory, field|
+RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory:, field:|
   subject(:instance) { create(model_factory) }
 
   it "has PaperTrail" do
