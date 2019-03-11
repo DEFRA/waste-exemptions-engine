@@ -44,8 +44,8 @@ FactoryBot.define do
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
 
-      after(:create) do |transient_registartion|
-        transient_registartion.addresses = [
+      after(:create) do |transient_registration|
+        transient_registration.addresses = [
           create(:transient_address, :operator_address, :manual),
           create(:transient_address, :contact_address, :manual),
           create(:transient_address, :site_address, :manual)
