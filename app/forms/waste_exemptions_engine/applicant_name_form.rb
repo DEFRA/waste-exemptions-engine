@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class ApplicantNameForm < BaseForm
-    include CanNavigateFlexibly
 
     attr_accessor :first_name, :last_name
 
