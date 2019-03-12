@@ -39,11 +39,11 @@ module WasteExemptionsEngine
 
     def assign_params(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
-      self.premises = params[:premises].strip
-      self.street_address = params[:street_address].strip
-      self.locality = params[:locality].strip
-      self.city = params[:city].strip
-      self.postcode = params[:postcode].strip
+      self.premises = params[:premises]&.strip
+      self.street_address = params[:street_address]&.strip
+      self.locality = params[:locality]&.strip
+      self.city = params[:city]&.strip
+      self.postcode = params[:postcode]&.strip
     end
 
     def saved_address_still_valid?

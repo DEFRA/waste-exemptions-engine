@@ -25,5 +25,32 @@ FactoryBot.define do
     trait :sole_trader do
       business_type { "soleTrader" }
     end
+
+    trait :complete do
+      location { "england" }
+      applicant_first_name { "Joe" }
+      applicant_last_name { "Bloggs" }
+      applicant_phone { "01234567890" }
+      applicant_email { "test@example.com" }
+      business_type { "limitedCompany" }
+      company_no { "09360070" }
+      operator_name { "Acme Waste Management" }
+      contact_first_name { "Joe" }
+      contact_last_name { "Bloggs" }
+      contact_position { "Chief Waste Carrier" }
+      contact_phone { "01234567890" }
+      contact_email { "test@example.com" }
+      on_a_farm { true }
+      is_a_farmer { true }
+      exemptions { WasteExemptionsEngine::Exemption.all }
+
+      after(:create) do |transient_registration|
+        transient_registration.addresses = [
+          create(:transient_address, :operator_address, :manual),
+          create(:transient_address, :contact_address, :manual),
+          create(:transient_address, :site_address, :manual)
+        ]
+      end
+    end
   end
 end
