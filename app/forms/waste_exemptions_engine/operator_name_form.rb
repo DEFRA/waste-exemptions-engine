@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class OperatorNameForm < BaseForm
-    include CanNavigateFlexibly
 
     attr_accessor :business_type, :operator_name
 

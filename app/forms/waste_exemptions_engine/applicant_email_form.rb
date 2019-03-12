@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class ApplicantEmailForm < BaseForm
-    include CanNavigateFlexibly
 
     attr_accessor :applicant_email, :confirmed_email
 
