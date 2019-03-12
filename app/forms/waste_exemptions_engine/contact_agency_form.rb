@@ -2,17 +2,10 @@
 
 module WasteExemptionsEngine
   class ContactAgencyForm < BaseForm
-    include CanNavigateFlexibly
 
-    def initialize(registration)
-      super
-    end
-
-    def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      attributes = {}
-
-      super(attributes, params[:token])
+    # Override BaseForm method as users shouldn't be able to submit this form
+    def submit(_params)
+      raise UnsubmittableForm
     end
   end
 end

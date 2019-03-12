@@ -59,21 +59,14 @@ module WasteExemptionsEngine
       end
     end
 
-    def redirect_to_correct_form
-      redirect_to form_path
+    def redirect_to_correct_form(status_code = SUCCESSFUL_REDIRECTION_CODE)
+      redirect_to form_path, status: status_code
     end
 
     # Get the path based on the workflow state
     def form_path
-      if @transient_registration.token.present?
-        # If we have a token on the registration we generate the path based on
-        # current workflow state and the token
-        send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
-      else
-        # If the registration doesn't have a token it's because it is newly
-        # instantiated so we redirect to root to restart the journey
-        "/"
-      end
+      @transient_registration.save unless @transient_registration.token.present?
+      send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
     end
 
     def setup_checks_pass?
@@ -89,7 +82,7 @@ module WasteExemptionsEngine
 
     def state_can_navigate_flexibly?(state)
       form_class = WasteExemptionsEngine.const_get(state.camelize)
-      form_class.included_modules.include?(CanNavigateFlexibly)
+      form_class.can_navigate_flexibly?
     end
 
     def requested_state
@@ -109,7 +102,7 @@ module WasteExemptionsEngine
     def state_is_correct?
       return true if form_matches_state?
 
-      redirect_to_correct_form
+      redirect_to_correct_form(UNSUCCESSFUL_REDIRECTION_CODE)
       false
     end
 

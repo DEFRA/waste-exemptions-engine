@@ -16,6 +16,7 @@ module WasteExemptionsEngine
       g.factory_bot dir: "spec/factories"
     end
 
+    config.autoload_paths << "#{config.root}/lib/waste_exemptions_engine/exceptions"
     config.autoload_paths << "#{config.root}/app/validators/concerns"
 
     # Load I18n translation files from engine before loading ones from the host app

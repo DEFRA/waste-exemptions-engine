@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class ContactPositionForm < BaseForm
-    include CanNavigateFlexibly
 
     attr_accessor :position
 

@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class LocationForm < BaseForm
-    include CanNavigateFlexibly
 
     attr_accessor :location
 
