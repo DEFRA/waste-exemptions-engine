@@ -28,6 +28,8 @@ module WasteExemptionsEngine
     attr_accessor :email_service_email
     # PDF config
     attr_accessor :use_xvfb_for_wickedpdf
+    # PaperTrail config
+    attr_accessor :use_current_user_for_whodunnit
 
     # Companies house API config
     attr_reader :companies_house_host, :companies_house_api_key

@@ -17,4 +17,7 @@ WasteExemptionsEngine.configure do |config|
 
   # PDF config
   config.use_xvfb_for_wickedpdf = ENV["USE_XVFB_FOR_WICKEDPDF"] || "true"
+
+  # PaperTrail config
+  config.use_current_user_for_whodunnit = false
 end

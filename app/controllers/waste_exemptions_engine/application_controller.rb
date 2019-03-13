@@ -13,5 +13,15 @@ module WasteExemptionsEngine
 
     # Use the host application's default layout
     layout "application"
+
+    before_action :set_paper_trail_whodunnit
+
+    def user_for_paper_trail
+      if WasteExemptionsEngine.configuration.use_current_user_for_whodunnit
+        current_user.id
+      else
+        "public user"
+      end
+    end
   end
 end

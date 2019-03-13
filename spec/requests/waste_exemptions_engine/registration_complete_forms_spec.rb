@@ -18,6 +18,29 @@ module WasteExemptionsEngine
         get request_path
         expect(response.code).to eq("200")
       end
+
+      context "when the host application has a current_user" do
+        let(:current_user) { OpenStruct.new(id: 1) }
+
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:use_current_user_for_whodunnit).and_return(true)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+        end
+
+        it "assigns the correct whodunnit to the registration version", versioning: true do
+          get request_path
+          registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
+          expect(registration.reload.versions.last.whodunnit).to eq(current_user.id.to_s)
+        end
+      end
+
+      context "when the does not have a current_user" do
+        it "assigns the correct whodunnit to the registration version", versioning: true do
+          get request_path
+          registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
+          expect(registration.reload.versions.last.whodunnit).to eq("public user")
+        end
+      end
     end
 
     describe "unable to go submit GET back" do
