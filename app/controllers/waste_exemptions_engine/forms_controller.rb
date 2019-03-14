@@ -59,7 +59,9 @@ module WasteExemptionsEngine
       end
     end
 
-    def redirect_to_correct_form(status_code = SUCCESSFUL_REDIRECTION_CODE)
+    def redirect_to_correct_form(
+      status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
+    )
       redirect_to form_path, status: status_code
     end
 
@@ -102,7 +104,7 @@ module WasteExemptionsEngine
     def state_is_correct?
       return true if form_matches_state?
 
-      redirect_to_correct_form(UNSUCCESSFUL_REDIRECTION_CODE)
+      redirect_to_correct_form(WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE)
       false
     end
 
