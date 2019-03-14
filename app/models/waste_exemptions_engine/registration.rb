@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class Registration < ActiveRecord::Base
     include CanHaveRegistrationAttributes
 
+    has_paper_trail
+
     self.table_name = "registrations"
 
     has_many :addresses

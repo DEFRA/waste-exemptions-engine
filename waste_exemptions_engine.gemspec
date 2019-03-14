@@ -32,6 +32,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "pg", "~> 0.18.4"
 
+  # Used for auditing and version control
+  s.add_dependency "paper_trail", "~> 10.2.0"
+
   # Validations
   # A defra created gem of shared validators
   s.add_dependency "defra_ruby_validators"
