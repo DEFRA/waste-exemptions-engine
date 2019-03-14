@@ -30,6 +30,17 @@ module WasteExemptionsEngine
           expect(registration.submitted_at).to eq(Date.current)
         end
 
+        context "when the default_assistance_mode is set" do
+          before do
+            allow(WasteExemptionsEngine.configuration).to receive(:default_assistance_mode).and_return("foo")
+          end
+
+          it "updates the registration's route to the correct value" do
+            registration_completion_service.complete
+            expect(registration.reload.assistance_mode).to eq("foo")
+          end
+        end
+
         it "deletes the transient registration" do
           registration_completion_service.complete
           expect(TransientRegistration.where(reference: transient_registration.reference).count).to eq(0)

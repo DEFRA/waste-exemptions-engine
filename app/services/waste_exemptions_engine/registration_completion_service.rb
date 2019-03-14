@@ -15,7 +15,7 @@ module WasteExemptionsEngine
         copy_exemptions
         copy_people
 
-        @registration.submitted_at = Date.today
+        add_metadata
         @registration.save!
         @transient_registration.destroy
       end
@@ -49,6 +49,11 @@ module WasteExemptionsEngine
       @transient_registration.transient_people.each do |trans_person|
         @registration.people << Person.new(trans_person.person_attributes)
       end
+    end
+
+    def add_metadata
+      @registration.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode
+      @registration.submitted_at = Date.today
     end
 
     def include_people?
