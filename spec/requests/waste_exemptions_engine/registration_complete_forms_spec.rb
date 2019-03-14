@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when the does not have a current_user" do
+      context "when the host application does not have a current_user" do
         it "assigns the correct whodunnit to the registration version", versioning: true do
           get request_path
           registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
