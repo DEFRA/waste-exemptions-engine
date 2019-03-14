@@ -9,7 +9,7 @@ PATH
       os_map_ref (~> 0.5)
       pg (~> 0.18.4)
       phonelib
-      rails (= 4.2.11)
+      rails (~> 4.2.11)
       rest-client (~> 2.0)
       uk_postcode
       validates_email_format_of
