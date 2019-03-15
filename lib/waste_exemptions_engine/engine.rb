@@ -29,7 +29,8 @@ module WasteExemptionsEngine
     initializer :append_migrations do |app|
       unless app.root.to_s.match?(root.to_s)
         config.paths["db/migrate"].expanded.each do |expanded_path|
-          app.config.paths["db/migrate"] << expanded_path
+          # Run the engine migrations before the host app migrations
+          app.config.paths["db/migrate"].unshift(expanded_path)
         end
       end
     end
