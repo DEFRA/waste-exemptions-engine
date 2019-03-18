@@ -21,7 +21,7 @@ module WasteExemptionsEngine
 
   class Configuration
     # General config
-    attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry
+    attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry, :default_assistance_mode
     # Addressbase config
     attr_accessor :addressbase_url
     # Email config
