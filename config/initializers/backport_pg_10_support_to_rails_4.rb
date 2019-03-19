@@ -20,6 +20,7 @@
 
 require "active_record/connection_adapters/postgresql/schema_statements"
 
+# rubocop:disable all
 module ActiveRecord
   module ConnectionAdapters
     module PostgreSQL
@@ -57,3 +58,4 @@ module ActiveRecord
     end
   end
 end
+# rubocop:enable all
