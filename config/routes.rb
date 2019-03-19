@@ -3,12 +3,12 @@
 WasteExemptionsEngine::Engine.routes.draw do
 
   resources :start_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "start",
             path_names: { new: "/:token" }
 
   resources :contact_agency_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-agency",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -18,7 +18,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :location_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "location",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -28,7 +28,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :register_in_northern_ireland_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "register-in-northern-ireland",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -38,7 +38,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :register_in_scotland_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "register-in-scotland",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -48,7 +48,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :register_in_wales_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "register-in-wales",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -58,7 +58,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :applicant_name_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "applicant-name",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -68,7 +68,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :applicant_phone_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "applicant-phone",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -78,7 +78,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :applicant_email_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "applicant-email",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -88,7 +88,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :business_type_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "business-type",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -98,7 +98,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :registration_number_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "registration-number",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -108,7 +108,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :main_people_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "main-people",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -123,7 +123,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :operator_name_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "operator-name",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -133,7 +133,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :operator_postcode_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "operator-postcode",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -148,7 +148,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :operator_address_lookup_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "operator-address-lookup",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -163,7 +163,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :operator_address_manual_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "operator-address-manual",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -173,7 +173,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_name_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-name",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -183,7 +183,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_position_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-position",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -193,7 +193,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_phone_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-phone",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -203,7 +203,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_email_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-email",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -213,7 +213,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_postcode_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-postcode",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -228,7 +228,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_address_lookup_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-address-lookup",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -243,7 +243,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :contact_address_manual_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "contact-address-manual",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -253,7 +253,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :on_a_farm_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "on-a-farm",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -263,7 +263,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :is_a_farmer_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "is-a-farmer",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -273,7 +273,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :site_grid_reference_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "site-grid-reference",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -288,7 +288,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :site_postcode_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "site-postcode",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -303,7 +303,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :site_address_lookup_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "site-address-lookup",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -318,7 +318,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :site_address_manual_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "site-address-manual",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -328,7 +328,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :exemptions_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "exemptions",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -338,7 +338,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :check_your_answers_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "check-your-answers",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -348,7 +348,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :declaration_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "declaration",
             path_names: { new: "/:token" } do
               get "back/:token",
@@ -358,7 +358,7 @@ WasteExemptionsEngine::Engine.routes.draw do
             end
 
   resources :registration_complete_forms,
-            only: [:new, :create],
+            only: %i[new create],
             path: "registration-complete",
             path_names: { new: "/:token" }
 
