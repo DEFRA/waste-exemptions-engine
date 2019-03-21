@@ -24,6 +24,6 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "a changer of the exemption status", :transient_registration_exemption
+    it_behaves_like "an activator of exemptions", :transient_registration_exemption
   end
 end
