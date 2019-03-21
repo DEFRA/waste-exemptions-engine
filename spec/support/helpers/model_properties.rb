@@ -41,9 +41,12 @@ module Helpers
 
     REGISTRATION_EXEMPTION = %i[
       state
+      deregistration_message
       registered_on
       expires_on
     ].freeze
+
+    TRANSIENT_REGISTRATION_EXEMPTION = (REGISTRATION_EXEMPTION - [:deregistration_message]).freeze
 
     REGISTRATION = %i[
       reference
