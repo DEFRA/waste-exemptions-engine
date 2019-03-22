@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class TransientRegistrationExemption < ActiveRecord::Base
-    include CanChangeExemptionStatus
+    include CanActivateExemption
 
     self.table_name = "transient_registration_exemptions"
 
