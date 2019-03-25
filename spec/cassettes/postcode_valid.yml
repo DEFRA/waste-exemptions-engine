@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin18.2.0 x86_64) ruby/2.4.2p198
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
       Host:
       - localhost:9002
   response:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 12 Mar 2019 08:55:51 GMT
+      - Mon, 25 Mar 2019 09:45:36 GMT
       Content-Type:
       - application/json
       Content-Encoding:
@@ -35,5 +35,41 @@ http_interactions:
       string: !binary |-
         H4sIAAAAAAAAAM2TXWvbMBSG/4rRRa6MLSVNnBrCcBbThKV2sJONbgyj2lprplhCH6Wh9L/vOB9rzHqxXuzjSjrn6Lzn5TzoCRlhKL+mprxnGoUDF2lDldknUEhcxJrqGEDNqrowotBWSl4zhUJ0b4zUoe9TWXtCVQ1tSqatemA7rxSe/e5LTiHjPxCfVpViWkMghTalqNg7riZx0juFk2lOhtG8t6WP8NByoycE415FDdXMTGarCB0sfFNiW5TgoDFgQRt7C4VjCwq/PCErVQOGLzAhIxcdB8PTJFpvsmjpxMnVMkpmrjNPs8XnNIFzk8euM4ujJM5unCyNoDjNFvk6XcIlJw4YgyFC3dGm1tTUovlVDx5Ixba1bleJOtqoXaxizBQvbs6nQZ2LkvLa7FDYWM5dVO7v6Oii1T7uqU3+dPQI0WA47uOhhwcQty0k6Ad47OEA4lIAlrqhhhV6pw3bnuSBM+Rgua0e6fsE+32ML6HllktbHMqHcYeGdjzlJ/+dEhd3NZjfN9luSQuryv0cWpidbIdVkqJn90QJEF+SYIRHF/gc1TzKrvM4ca6ydLNynXW2SGdp7kyj5MPbOXXEupTOhf80JDLAHnlhNBoH3vi3GR0yf5fN/gcF51jW82zxMXayOIk/RdNlnDur5fu3A3lVpgPmtID/Fcc/+DJfn38ABFoygK8FAAA=
     http_version: 
-  recorded_at: Tue, 12 Mar 2019 08:55:52 GMT
+  recorded_at: Mon, 25 Mar 2019 09:45:38 GMT
+- request:
+    method: get
+    uri: http://localhost:9002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS15AH
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
+      Host:
+      - localhost:9002
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 25 Mar 2019 09:45:37 GMT
+      Content-Type:
+      - application/json
+      Content-Encoding:
+      - gzip
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAM2TXWvbMBSG/4rRRa6MLSVNnBrCcBbThKV2sJONbgyj2lprplhCH6Wh9L/vOB9rzHqxXuzjSjrn6Lzn5TzoCRlhKL+mprxnGoUDF2lDldknUEhcxJrqGEDNqrowotBWSl4zhUJ0b4zUoe9TWXtCVQ1tSqatemA7rxSe/e5LTiHjPxCfVpViWkMghTalqNg7riZx0juFk2lOhtG8t6WP8NByoycE415FDdXMTGarCB0sfFNiW5TgoDFgQRt7C4VjCwq/PCErVQOGLzAhIxcdB8PTJFpvsmjpxMnVMkpmrjNPs8XnNIFzk8euM4ujJM5unCyNoDjNFvk6XcIlJw4YgyFC3dGm1tTUovlVDx5Ixba1bleJOtqoXaxizBQvbs6nQZ2LkvLa7FDYWM5dVO7v6Oii1T7uqU3+dPQI0WA47uOhhwcQty0k6Ad47OEA4lIAlrqhhhV6pw3bnuSBM+Rgua0e6fsE+32ML6HllktbHMqHcYeGdjzlJ/+dEhd3NZjfN9luSQuryv0cWpidbIdVkqJn90QJEF+SYIRHF/gc1TzKrvM4ca6ydLNynXW2SGdp7kyj5MPbOXXEupTOhf80JDLAHnlhNBoH3vi3GR0yf5fN/gcF51jW82zxMXayOIk/RdNlnDur5fu3A3lVpgPmtID/Fcc/+DJfn38ABFoygK8FAAA=
+    http_version: 
+  recorded_at: Mon, 25 Mar 2019 09:45:38 GMT
 recorded_with: VCR 4.0.0
