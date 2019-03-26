@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319133740) do
+ActiveRecord::Schema.define(version: 20190326133420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20190319133740) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.text     "deregistration_message"
+    t.date     "deregistered_on"
   end
 
   add_index "registration_exemptions", ["exemption_id"], name: "index_registration_exemptions_on_exemption_id", using: :btree
