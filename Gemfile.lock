@@ -135,7 +135,7 @@ GEM
     parser (2.6.0.0)
       ast (~> 2.4.0)
     pg (0.18.4)
-    phonelib (0.6.30)
+    phonelib (0.6.31)
     psych (3.1.0)
     public_suffix (3.0.3)
     rack (1.6.11)
