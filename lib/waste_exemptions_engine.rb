@@ -28,6 +28,8 @@ module WasteExemptionsEngine
     attr_accessor :email_service_email
     # PDF config
     attr_writer :use_xvfb_for_wickedpdf
+    # Last Email chaching and retrieval functionality
+    attr_writer :use_last_email_cache
     # PaperTrail config
     attr_accessor :use_current_user_for_whodunnit
 
@@ -38,11 +40,18 @@ module WasteExemptionsEngine
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
       @use_xvfb_for_wickedpdf = true
+      @use_last_email_cache = false
     end
 
     def use_xvfb_for_wickedpdf
       @use_xvfb_for_wickedpdf = @use_xvfb_for_wickedpdf == "true" if @use_xvfb_for_wickedpdf.is_a?(String)
       @use_xvfb_for_wickedpdf
+    end
+
+    # If additional boolean config values are required, these methods should be refactored to use metaprogramming.
+    def use_last_email_cache
+      @use_last_email_cache = @use_last_email_cache == "true" if @use_last_email_cache.is_a?(String)
+      @use_last_email_cache
     end
 
     def companies_house_host=(value)

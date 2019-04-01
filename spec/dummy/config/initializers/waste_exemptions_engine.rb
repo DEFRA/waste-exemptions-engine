@@ -17,4 +17,7 @@ WasteExemptionsEngine.configure do |config|
 
   # PDF config
   config.use_xvfb_for_wickedpdf = ENV["USE_XVFB_FOR_WICKEDPDF"] || "true"
+
+  # Last Email Cache config
+  config.use_last_email_cache = ENV["USE_LAST_EMAIL_CACHE"] || "false"
 end

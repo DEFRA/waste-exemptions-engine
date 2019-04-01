@@ -363,6 +363,12 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "registration-complete",
             path_names: { new: "/:token" }
 
+  # Expose the data stored by the LastEmailCacheService
+  get "/last-email",
+      to: "last_email#show",
+      as: "last_email",
+      constraints: ->(_request) { WasteExemptionsEngine.configuration.use_last_email_cache }
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:id", to: "errors#show", as: "error"
 
