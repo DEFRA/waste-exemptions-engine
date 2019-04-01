@@ -27,7 +27,7 @@ module WasteExemptionsEngine
     # Email config
     attr_accessor :email_service_email
     # PDF config
-    attr_accessor :use_xvfb_for_wickedpdf
+    attr_writer :use_xvfb_for_wickedpdf
     # PaperTrail config
     attr_accessor :use_current_user_for_whodunnit
 
@@ -37,7 +37,12 @@ module WasteExemptionsEngine
     def initialize
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
-      @use_xvfb_for_wickedpdf = "true"
+      @use_xvfb_for_wickedpdf = true
+    end
+
+    def use_xvfb_for_wickedpdf
+      @use_xvfb_for_wickedpdf = @use_xvfb_for_wickedpdf == "true" if @use_xvfb_for_wickedpdf.is_a?(String)
+      @use_xvfb_for_wickedpdf
     end
 
     def companies_house_host=(value)
