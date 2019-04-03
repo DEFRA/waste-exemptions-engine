@@ -5,7 +5,9 @@ module WasteExemptionsEngine
     def self.generate
       root_path = File.join(__dir__, "..", "..")
 
-      privacy_html_path = File.absolute_path(File.join(root_path, "app/views/waste_exemptions_engine/pdfs/privacy.html"))
+      privacy_html_path = File.absolute_path(
+        File.join(root_path, "app/views/waste_exemptions_engine/pdfs/privacy.html")
+      )
       pdf_generator = GeneratePdfService.new(File.read(privacy_html_path))
 
       # As a gem, the /tmp folder is not typically created in the engine project.
