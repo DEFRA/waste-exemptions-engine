@@ -7,28 +7,70 @@ module WasteExemptionsEngine
     before(:all) do
       @service_email = "test@wex.gov.uk"
       WasteExemptionsEngine.configuration.email_service_email = @service_email
+
+      @registration = create(:registration, :emailed)
+      @recipient = "test@example.com"
+      @mail = ConfirmationMailer.send_confirmation_email(@registration, @recipient)
     end
 
     describe "#send_confirmation_email" do
-      let(:registration) { create(:registration,) }
-      let(:recipient) { "test@example.com" }
-      let(:mail) { ConfirmationMailer.send_confirmation_email(registration, recipient) }
-
       it "uses the correct 'to' address" do
-        expect(mail.to).to eq([recipient])
+        expect(@mail.to).to eq([@recipient])
       end
 
       it "uses the correct 'from' address" do
-        expect(mail.from).to eq([@service_email])
+        expect(@mail.from).to eq([@service_email])
       end
 
       it "uses the correct subject" do
-        subject = "Waste exemptions registration #{registration.reference} completed"
-        expect(mail.subject).to eq(subject)
+        subject = "Waste exemptions registration #{@registration.reference} completed"
+        expect(@mail.subject).to eq(subject)
       end
 
       it "includes the correct template in the body" do
-        expect(mail.body.encoded).to include("This is not a permit")
+        expect(@mail.body.encoded).to include("This is not a permit")
+      end
+    end
+
+    context "attachments" do
+      it "has 3 attachments (pdf and logo)" do
+        expect(@mail.attachments.length).to eq(3)
+      end
+
+      context "confirmation pdf" do
+        let(:confirmation_pdf) { @mail.attachments[0] }
+
+        it "is a pdf file" do
+          expect(confirmation_pdf.content_type).to start_with("application/pdf;")
+        end
+
+        it "has the right reference as its filename" do
+          expect(confirmation_pdf.filename).to eq("#{@registration.reference}.pdf")
+        end
+      end
+
+      context "privacy policy pdf" do
+        let(:privacy_pdf) { @mail.attachments[1] }
+
+        it "is a pdf file" do
+          expect(privacy_pdf.content_type).to start_with("application/pdf;")
+        end
+
+        it "has the right filename" do
+          expect(privacy_pdf.filename).to eq("privacy_policy.pdf")
+        end
+      end
+
+      context "GOV.UK logo" do
+        let(:logo_png) { @mail.attachments[2] }
+
+        it "is a png file" do
+          expect(logo_png.content_type).to start_with("image/png")
+        end
+
+        it "has the right filename" do
+          expect(logo_png.filename).to eq("govuk_logotype_email.png")
+        end
       end
     end
   end
