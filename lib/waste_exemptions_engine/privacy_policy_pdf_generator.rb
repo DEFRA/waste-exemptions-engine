@@ -6,7 +6,7 @@ module WasteExemptionsEngine
       root_path = File.join(__dir__, "..", "..")
 
       privacy_html_path = File.absolute_path(
-        File.join(root_path, "app/views/waste_exemptions_engine/pdfs/privacy.html")
+        File.join(root_path, "app/views/waste_exemptions_engine/pdfs/privacy_policy.html")
       )
       pdf_generator = GeneratePdfService.new(File.read(privacy_html_path))
 
