@@ -53,7 +53,7 @@ module WasteExemptionsEngine
             allow(GeneratePdfService).to receive(:new).and_raise(StandardError)
           end
           # Because we have @mail created before all tests run this test would
-          # fail because the mail will have been generated prior to this before 
+          # fail because the mail will have been generated prior to this before
           # block doing its thing. If you switch the top level before block to
           # :each, you can get rid of this let but the tests run very, very
           # slowly!

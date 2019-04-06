@@ -29,7 +29,7 @@ FactoryBot.define do
     # This is the minimum needed to be able to generate a confirmation email
     # and its attachments sucessfully
     trait :emailed do
-      reference { "WEX000999"}
+      reference { "WEX000999" }
       submitted_at { Date.today }
       addresses { [create(:address, :site_address)] }
     end
