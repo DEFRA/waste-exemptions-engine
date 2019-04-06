@@ -47,6 +47,24 @@ module WasteExemptionsEngine
         it "has the right reference as its filename" do
           expect(confirmation_pdf.filename).to eq("#{@registration.reference}.pdf")
         end
+
+        context "errors when generated" do
+          before do
+            allow(GeneratePdfService).to receive(:new).and_raise(StandardError)
+          end
+          # Because we have @mail created before all tests run this test would
+          # fail because the mail will have been generated prior to this before 
+          # block doing its thing. If you switch the top level before block to
+          # :each, you can get rid of this let but the tests run very, very
+          # slowly!
+          let(:mail) { ConfirmationMailer.send_confirmation_email(@registration, @recipient) }
+
+          it "does not block the email from completing" do
+            expect(mail.to).to eq([@recipient])
+            expect(mail.from).to eq([@service_email])
+            expect(mail.attachments.length).to eq(2)
+          end
+        end
       end
 
       context "privacy policy pdf" do
