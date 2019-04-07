@@ -26,12 +26,12 @@ FactoryBot.define do
       business_type { "soleTrader" }
     end
 
-    # # This is the minimum needed to be able to generate a confirmation email
-    # # and its attachments sucessfully
-    # trait :emailed do
-    #   reference { "WEX000999" }
-    #   submitted_at { Date.today }
-    #   addresses { [create(:address, :site_address)] }
-    # end
+    # This is the minimum needed to be able to generate a confirmation email
+    # and its attachments sucessfully
+    trait :emailed do
+      reference { "WEX000999" }
+      submitted_at { Date.today }
+      addresses { [create(:address, :site_address)] }
+    end
   end
 end
