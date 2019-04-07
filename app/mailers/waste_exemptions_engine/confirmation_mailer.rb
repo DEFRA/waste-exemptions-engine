@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
       certificate = generate_pdf_certificate
       attachments["#{registration.reference}.pdf"] = certificate if certificate
-      attachments["privacy_policy.pdf"] = privacy_policy
+      # attachments["privacy_policy.pdf"] = privacy_policy
 
       config = WasteExemptionsEngine.configuration
 
