@@ -60,6 +60,9 @@ GEM
     arel (6.0.4)
     ast (2.4.0)
     builder (3.2.3)
+    bullet (5.9.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.0.1)
     concurrent-ruby (1.1.5)
     crack (0.4.3)
@@ -226,6 +229,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.5.0)
+    uniform_notifier (1.12.1)
     validates_email_format_of (1.6.3)
       i18n
     vcr (4.0.0)
@@ -233,13 +237,14 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    wicked_pdf (1.2.1)
+    wicked_pdf (1.2.2)
       activesupport
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bullet
   byebug
   database_cleaner
   defra_ruby_style
