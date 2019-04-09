@@ -37,7 +37,8 @@ module WasteExemptionsEngine
           "temp_grid_reference", "temp_site_description",
           "address_finder_error", "transient_addresses",
           "transient_registration_exemptions", "transient_people",
-          "created_at", "updated_at"
+          "created_at", "updated_at", "submitted_at",
+          "type"
         )
     end
 

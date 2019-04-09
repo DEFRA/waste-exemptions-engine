@@ -67,9 +67,10 @@ module Helpers
       on_a_farm
       is_a_farmer
       submitted_at
+      assistance_mode
     ].freeze
 
-    TRANSIENT_REGISTRATION = (REGISTRATION - [:submitted_at] + %i[
+    TRANSIENT_REGISTRATION = (REGISTRATION + %i[
       token
       workflow_state
       start_option
@@ -80,6 +81,13 @@ module Helpers
       temp_grid_reference
       temp_site_description
       address_finder_error
+      type
+    ]).freeze
+
+    EDITED_REGISTRATION_UNCOPYABLE = (TRANSIENT_REGISTRATION - %i[
+      address_finder_error
+      type
+      workflow_state
     ]).freeze
   end
 end
