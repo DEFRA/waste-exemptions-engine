@@ -55,6 +55,7 @@ Gem::Specification.new do |s|
   # https://github.com/skywinder/github-changelog-generator#github-token
   s.add_development_dependency "github_changelog_generator"
 
+  s.add_development_dependency "bullet"
   s.add_development_dependency "byebug"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "defra_ruby_style"
@@ -65,5 +66,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "timecop"
   s.add_development_dependency "vcr"
   s.add_development_dependency "webmock"
-  s.add_development_dependency "bullet"
 end
