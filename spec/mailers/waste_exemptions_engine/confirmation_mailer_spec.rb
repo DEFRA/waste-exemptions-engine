@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       @service_email = "test@wex.gov.uk"
       WasteExemptionsEngine.configuration.email_service_email = @service_email
 
-      @registration = create(:registration, :emailed)
+      @registration = create(:registration, :emailable)
       @recipient = "test@example.com"
       @mail = ConfirmationMailer.send_confirmation_email(@registration, @recipient)
     end
