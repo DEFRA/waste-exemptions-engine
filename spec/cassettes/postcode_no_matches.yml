@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin18.2.0 x86_64) ruby/2.4.2p198
+      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
       Host:
       - localhost:9002
   response:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 26 Mar 2019 13:37:33 GMT
+      - Wed, 10 Apr 2019 11:52:51 GMT
       Content-Type:
       - application/json
       Content-Encoding:
@@ -35,5 +35,5 @@ http_interactions:
       string: !binary |-
         H4sIAAAAAAAAAFWOywrCMBBF/2UWXZWm3QaCBHSpuBcpYxJpMSYhMymK+O8GHwuX5z7gPIAjo98im8kRyL4FYsz8DkCG4n0LLtg/LnkeOY5UUvKzyyBhYk4khcA0dzHbgME4Knlx987ErlxE8lgTsQwCrc2OqEKKxCZat/JZbXbND5XWw6B1c8VbHRbPpIa+bywykmO13mv4KJxzvI6mGgSuCsTlVIvvBeTh+HwB/2bVRt0AAAA=
     http_version: 
-  recorded_at: Tue, 26 Mar 2019 13:37:34 GMT
+  recorded_at: Wed, 10 Apr 2019 11:52:53 GMT
 recorded_with: VCR 4.0.0
