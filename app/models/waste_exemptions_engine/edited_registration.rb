@@ -4,6 +4,11 @@ module WasteExemptionsEngine
   class EditedRegistration < TransientRegistration
     after_initialize :copy_data_from_registration
 
+    # Temporary - refactor out!
+    def include_concern
+      self.class.send(:include, "WasteExemptionsEngine::CanChangeEditWorkflowStatus".constantize)
+    end
+
     private
 
     def copy_data_from_registration

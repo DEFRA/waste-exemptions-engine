@@ -3,7 +3,16 @@
 module WasteExemptionsEngine
   class TransientRegistration < ActiveRecord::Base
     include CanHaveRegistrationAttributes
-    include CanChangeWorkflowStatus
+
+    # Temporary - refactor out!
+    after_initialize do
+      include_concern
+    end
+
+    # Temporary - refactor out!
+    def include_concern
+      self.class.send(:include, "WasteExemptionsEngine::CanChangeWorkflowStatus".constantize)
+    end
 
     self.table_name = "transient_registrations"
 
