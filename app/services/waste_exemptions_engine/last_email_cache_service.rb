@@ -34,5 +34,3 @@ module WasteExemptionsEngine
     end
   end
 end
-
-ActionMailer::Base.register_interceptor(WasteExemptionsEngine::LastEmailCacheService)

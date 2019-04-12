@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Errors", type: :request do
+  RSpec.describe "Last email", type: :request do
     describe "GET /last-email" do
       context "when `WasteExemptionsEngine.configuration.use_last_email_cache` is \"true\"" do
         before(:context) do
@@ -11,8 +11,15 @@ module WasteExemptionsEngine
         end
 
         it "returns the JSON value of the LastEmailCacheService" do
-          ConfirmationMailer.send_confirmation_email(create(:registration), "test@example.com").deliver_now
+          ActionMailer::Base.mail(
+            to: "test@example.com",
+            from: "test_from@example.com",
+            subject: "test email",
+            body: "test"
+          ).deliver_now
+
           get last_email_path
+
           expect(response.body).to eq(WasteExemptionsEngine::LastEmailCacheService.instance.last_email_json)
         end
       end
