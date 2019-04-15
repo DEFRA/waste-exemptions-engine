@@ -10,6 +10,7 @@ module WasteExemptionsEngine
 
       certificate = generate_pdf_certificate
       attachments["#{registration.reference}.pdf"] = certificate if certificate
+      attachments["privacy_policy.pdf"] = privacy_policy
 
       config = WasteExemptionsEngine.configuration
 
@@ -40,6 +41,13 @@ module WasteExemptionsEngine
       Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Generate pdf error: #{error}"
       nil
+    end
+
+    def privacy_policy
+      root_path = File.join(__dir__, "..", "..", "..")
+      privacy_pdf_path = File.absolute_path(File.join(root_path, "lib/privacy_policy.pdf"))
+
+      File.read(privacy_pdf_path)
     end
 
   end
