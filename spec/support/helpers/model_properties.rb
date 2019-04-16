@@ -83,11 +83,5 @@ module Helpers
       address_finder_error
       type
     ]).freeze
-
-    EDITED_REGISTRATION_UNCOPYABLE = (TRANSIENT_REGISTRATION - %i[
-      address_finder_error
-      type
-      workflow_state
-    ]).freeze
   end
 end
