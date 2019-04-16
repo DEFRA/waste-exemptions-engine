@@ -2,6 +2,12 @@
 
 FactoryBot.define do
   factory :registration, class: WasteExemptionsEngine::Registration do
+    trait :submitted do
+      sequence(:reference) { |n| "REFERENCE#{n}" }
+
+      submitted_at { Time.now }
+    end
+
     trait :limited_company do
       business_type { "limitedCompany" }
     end

@@ -35,9 +35,7 @@
   </head>
   <body>
     <div id="wrapper">
-
       <main id="content" role="main" class="group">
-
         <div class="grid-wrapper">
         <div class="grid-2-3">
 
@@ -89,11 +87,11 @@
             <tbody>
               <tr>
                 <td class="table-column-text"><%=t ".registration.reference" %></td>
-                  <td><%= @presenter.reference %></td>
+                  <td><%= presenter.reference %></td>
               </tr>
               <tr>
                 <td class="table-column-text"><%=t ".registration.submitted_at" %></td>
-                <td><%= @presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
+                <td><%= presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
               </tr>
             </tbody>
           </table>
@@ -108,18 +106,18 @@
             <tbody>
               <tr>
                 <td class="table-column-text"><%=t ".operator.name" %></td>
-                <td><%= @presenter.operator_name %></td>
+                <td><%= presenter.operator_name %></td>
               </tr>
-              <% if @presenter.complex_organisation_details? %>
+              <% if presenter.complex_organisation_details? %>
                 <tr>
-                  <td class="table-column-text"><%= @presenter.complex_organisation_heading %></td>
-                  <td><%= @presenter.complex_organisation_name %></td>
+                  <td class="table-column-text"><%= presenter.complex_organisation_heading %></td>
+                  <td><%= presenter.complex_organisation_name %></td>
                 </tr>
               <% end %>
               <tr>
                 <td class="table-column-text"><%=t ".operator.business_address" %></td>
                 <td>
-                <% displayable_address(@presenter.operator_address).each do |line| %>
+                <% displayable_address(presenter.operator_address).each do |line| %>
                   <%= line %><br>
                 <% end %>
                 </td>
@@ -135,20 +133,20 @@
               </tr>
             </thead>
             <tbody>
-              <% if @presenter.site_is_grid_reference? %>
+              <% if presenter.site_is_grid_reference? %>
               <tr>
                 <td class="table-column-text"><%=t ".site.location" %></td>
-                <td><%= @presenter.site_address.grid_reference %></td>
+                <td><%= presenter.site_address.grid_reference %></td>
               </tr>
               <tr>
                 <td class="table-column-text"><%=t ".site.location_description" %></td>
-                <td><%= @presenter.site_address.description %></td>
+                <td><%= presenter.site_address.description %></td>
               </tr>
               <% else %>
               <tr>
                 <td class="table-column-text"><%=t ".site.address" %></td>
                 <td>
-                <% displayable_address(@presenter.site_address).each do |line| %>
+                <% displayable_address(presenter.site_address).each do |line| %>
                   <%= line %><br>
                 <% end %>
                 </td>
@@ -169,7 +167,7 @@
                 <td><%=t ".exemption.expires_label" %></td>
                 <td>&nbsp;</td>
               </tr>
-              <% @presenter.registration_exemptions.each do |registration_exemption| %>
+              <% presenter.registration_exemptions.each do |registration_exemption| %>
                 <% exemption = registration_exemption.exemption %>
                 <tr>
                   <td class="table-column-text"><%= registration_exemption.expires_on.to_formatted_s(:day_month_year) %></td>
@@ -183,7 +181,7 @@
           <h2 class="certificate_title"><%=t ".changes.heading" %></h2>
 
           <div>
-            <p class="certificate_text"><%= t ".changes.paragraph1", expires_after_pluralized: @presenter.expires_after_pluralized %></p>
+            <p class="certificate_text"><%= t ".changes.paragraph1", expires_after_pluralized: presenter.expires_after_pluralized %></p>
             <p class="certificate_text"><%= t ".changes.paragraph2" %></p>
           </div>
 

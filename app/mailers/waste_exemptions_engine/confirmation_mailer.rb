@@ -29,14 +29,7 @@ module WasteExemptionsEngine
     # occurs, we also don't want to block their renewal from completing because
     # of it
     def generate_pdf_certificate
-      @presenter = CertificatePresenter.new(@registration, view_context)
-      pdf_generator = GeneratePdfService.new(
-        render_to_string(
-          pdf: "certificate",
-          template: "waste_exemptions_engine/pdfs/certificate"
-        )
-      )
-      pdf_generator.pdf
+      ConfirmationPdfGeneratorService.run(registration: @registration)
     rescue StandardError => error
       Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Generate pdf error: #{error}"
