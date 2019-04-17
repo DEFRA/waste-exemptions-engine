@@ -31,12 +31,13 @@ FactoryBot.define do
     trait :emailable do
       reference { "WEX000999" }
       submitted_at { Date.today }
-      addresses { [create(:address, :site_address)] }
+      addresses { [build(:address, :site_address)] }
     end
 
     trait :confirmable do
       emailable
       company_no { "123123456" }
+      exemptions { [build(:exemption)] }
     end
   end
 end
