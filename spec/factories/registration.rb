@@ -2,12 +2,6 @@
 
 FactoryBot.define do
   factory :registration, class: WasteExemptionsEngine::Registration do
-    trait :submitted do
-      sequence(:reference) { |n| "REFERENCE#{n}" }
-
-      submitted_at { Time.now }
-    end
-
     trait :limited_company do
       business_type { "limitedCompany" }
     end
@@ -38,6 +32,11 @@ FactoryBot.define do
       reference { "WEX000999" }
       submitted_at { Date.today }
       addresses { [create(:address, :site_address)] }
+    end
+
+    trait :confirmable do
+      emailable
+      company_no { "123123456" }
     end
   end
 end
