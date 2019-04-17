@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe ConfirmationPdfGeneratorService do
     describe ".send_confirmation_email" do
       it "generates and return a string containing PDF content with the confirmation information" do
-        travel_to Time.local(2018, 1, 1, 1, 5, 0)
+        Timecop.freeze(Time.local(2018, 1, 1, 1, 5, 0))
         registration = create(:registration, :confirmable)
         fixtures_file_path = Rails.root.join("..", "fixtures/pdfs/confirmation.pdf")
 
