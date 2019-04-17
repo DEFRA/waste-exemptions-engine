@@ -7,6 +7,9 @@ require "./spec/support/simplecov"
 # Support debugging in the tests
 require "byebug"
 
+# Support time travel and time freeze
+require "timecop"
+
 # Include AASM test helper methods
 require "aasm/rspec"
 
