@@ -37,7 +37,6 @@ FactoryBot.define do
     trait :confirmable do
       emailable
       company_no { "123123456" }
-      exemptions { [build(:exemption)] }
     end
   end
 end

@@ -13,7 +13,7 @@ module WasteExemptionsEngine
         result = ConfirmationPdfGeneratorService.run(registration: registration)
 
         ## Generate new fixtures PDF when a change has been made
-        # File.open(fixtures_file_path, 'wb') { |file| file << result }
+        # File.open(fixtures_file_path, "wb") { |file| file << result }
 
         expect(result).to match_pdf_content(fixtures_file_path)
       end
