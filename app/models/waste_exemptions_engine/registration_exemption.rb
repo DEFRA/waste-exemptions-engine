@@ -7,6 +7,5 @@ module WasteExemptionsEngine
 
     belongs_to :registration
     belongs_to :exemption
-
   end
 end
