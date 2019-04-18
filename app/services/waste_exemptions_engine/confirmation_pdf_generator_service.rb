@@ -19,6 +19,7 @@ module WasteExemptionsEngine
         pdf: "certificate",
         template: "waste_exemptions_engine/pdfs/certificate",
         encoding: "UTF-8",
+        layout: false,
         locals: locals
       )
     end
