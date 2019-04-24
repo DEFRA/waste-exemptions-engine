@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "a final state" do |previous_state:, current_state:, factory: :transient_registration|
+RSpec.shared_examples "a final state" do |previous_state:, current_state:, factory:|
   context "when a subject's state is #{current_state}" do
     subject(:subject) { create(factory, workflow_state: current_state) }
 
