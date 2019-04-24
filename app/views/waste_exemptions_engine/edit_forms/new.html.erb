@@ -1,0 +1,335 @@
+<%= form_for(@edit_form) do |f| %>
+  <%= render("waste_exemptions_engine/shared/errors", object: @edit_form) %>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large"><%= t(".heading", reference: @edit_form.reference) %></h1>
+
+      <p><%= t(".paragraph_1") %></p>
+      <p><%= t(".paragraph_2") %></p>
+    </div>
+  </div>
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.location.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.location.labels.location") %>
+            </td>
+            <td>
+              <%= @edit_form.location %>
+            </td>
+            <td>
+              <%= link_to location_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.location") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.applicant.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.applicant.labels.applicant_name") %>
+            </td>
+            <td>
+              <%= @edit_form.applicant_name %>
+            </td>
+            <td>
+              <%= link_to applicant_name_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_name") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.applicant.labels.applicant_phone") %>
+            </td>
+            <td>
+              <%= @edit_form.applicant_phone %>
+            </td>
+            <td>
+              <%= link_to applicant_phone_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_phone") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.applicant.labels.applicant_email") %>
+            </td>
+            <td>
+              <%= @edit_form.applicant_email %>
+            </td>
+            <td>
+              <%= link_to applicant_email_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_email") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.operator.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.operator.labels.operator_name") %>
+            </td>
+            <td>
+              <%= @edit_form.operator_name %>
+            </td>
+            <td>
+              <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.operator_name") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.operator.labels.business_type") %>
+            </td>
+            <td>
+              <%= @edit_form.business_type %>
+            </td>
+            <td>
+              <%= t(".edit_links.no_edit") %>
+            </td>
+          </tr>
+          <% if @edit_form.transient_registration.partnership? %>
+          <tr>
+            <td>
+              <%= t(".sections.operator.labels.people") %>
+            </td>
+            <td>
+              <%= render("shared/resource_people_list", resource_people: @edit_form.people) %>
+            </td>
+            <td>
+              <%= link_to main_people_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.people") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+          <% if @edit_form.transient_registration.company_no_required? %>
+          <tr>
+            <td>
+              <%= t(".sections.operator.labels.company_no") %>
+            </td>
+            <td>
+              <%= @edit_form.company_no %>
+            </td>
+            <td>
+              <%= link_to registration_number_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.company_no") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td>
+              <%= t(".sections.operator.labels.operator_address") %>
+            </td>
+            <td>
+              <ul>
+                <% displayable_address(@edit_form.operator_address).each do |address_line| %>
+                <li><%= address_line %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td>
+              <%= link_to operator_postcode_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.operator_postcode") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.contact.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.contact.labels.contact_name") %>
+            </td>
+            <td>
+              <%= @edit_form.contact_name %>
+            </td>
+            <td>
+              <%= link_to contact_name_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_name") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.contact.labels.contact_phone") %>
+            </td>
+            <td>
+              <%= @edit_form.contact_phone %>
+            </td>
+            <td>
+              <%= link_to contact_phone_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_phone") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.contact.labels.contact_email") %>
+            </td>
+            <td>
+              <%= @edit_form.contact_email %>
+            </td>
+            <td>
+              <%= link_to contact_email_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_email") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.contact.labels.contact_address") %>
+            </td>
+            <td>
+              <ul>
+                <% displayable_address(@edit_form.contact_address).each do |address_line| %>
+                <li><%= address_line %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td>
+              <%= link_to contact_postcode_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_postcode") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.site.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.site.labels.site_address") %>
+            </td>
+            <td>
+              <% if @edit_form.site_address.grid_reference.present? %>
+                <%= @edit_form.site_address.grid_reference %>
+                <br><br>
+                <%= @edit_form.site_address.description %>
+              <% else %>
+              <ul>
+                <% displayable_address(@edit_form.contact_address).each do |address_line| %>
+                <li><%= address_line %></li>
+                <% end %>
+              </ul>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.exemptions.heading") %>
+        </caption>
+        <tbody>
+          <% @edit_form.registration_exemptions.includes(:exemption).each do |re| %>
+          <tr>
+            <td>
+              <%= re.exemption.code %>
+            </td>
+            <td>
+              <%= re.exemption.summary %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <table>
+        <caption class="heading-medium">
+          <%= t(".sections.farm.heading") %>
+        </caption>
+        <tbody>
+          <tr>
+            <td>
+              <%= t(".sections.farm.labels.on_a_farm") %>
+            </td>
+            <td>
+              <%= @edit_form.on_a_farm %>
+            </td>
+            <td>
+              <%= link_to on_a_farm_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.on_a_farm") %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t(".sections.farm.labels.is_a_farmer") %>
+            </td>
+            <td>
+              <%= @edit_form.is_a_farmer %>
+            </td>
+            <td>
+              <%= link_to is_a_farmer_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.is_a_farmer") %></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <br>
+      <%= f.hidden_field :token, value: @edit_form.token %>
+      <div class="form-group">
+        <%= f.submit t(".next_button"), class: "button" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
