@@ -65,10 +65,11 @@ FactoryBot.define do
       on_a_farm { true }
       is_a_farmer { true }
       exemptions { build_list(:exemption, 10) }
+      people { build_list(:person, 3) }
 
       addresses do
-        [build(:address, :operator_address),
-         build(:address, :contact_address),
+        [build(:address, :operator_address, :postal),
+         build(:address, :contact_address, :postal),
          build(:address, :site_address)]
       end
     end
