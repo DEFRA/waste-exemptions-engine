@@ -6,16 +6,40 @@ module WasteExemptionsEngine
   RSpec.describe ConfirmationPdfGeneratorService do
     describe ".run" do
       it "generates and return a string containing PDF content with the confirmation information" do
-        Timecop.freeze(Time.local(2018, 1, 1, 1, 5, 0))
         registration = create(:registration, :confirmable)
-        fixtures_file_path = Rails.root.join("..", "fixtures/pdfs/confirmation.pdf")
 
         result = ConfirmationPdfGeneratorService.run(registration: registration)
 
-        ## Generate new fixtures PDF when a change has been made
-        # File.open(fixtures_file_path, "wb") { |file| file << result }
+        expect(result).to include_pdf_content(registration.reference)
+        expect(result).to include_pdf_content(registration.submitted_at.to_formatted_s(:day_month_year))
+        expect(result).to include_pdf_content("Limited company")
+        expect(result).to include_pdf_content(registration.applicant_phone)
+        expect(result).to include_pdf_content(registration.applicant_email)
+        expect(result).to include_pdf_content(registration.applicant_first_name)
+        expect(result).to include_pdf_content(registration.applicant_last_name)
+        expect(result).to include_pdf_content(registration.operator_name)
+        expect(result).to include_pdf_content(registration.contact_phone)
+        expect(result).to include_pdf_content(registration.contact_email)
+        expect(result).to include_pdf_content(registration.contact_first_name)
+        expect(result).to include_pdf_content(registration.contact_last_name)
+        expect(result).to include_pdf_content(registration.contact_position)
 
-        expect(result).to match_pdf_content(fixtures_file_path)
+        registration.addresses.each do |address|
+          if address.manual?
+            expect(result).to include_pdf_content(address.premises)
+            expect(result).to include_pdf_content(address.street_address)
+            expect(result).to include_pdf_content(address.locality)
+            expect(result).to include_pdf_content(address.city)
+            expect(result).to include_pdf_content(address.postcode)
+          else
+            expect(result).to include_pdf_content(address.description)
+            expect(result).to include_pdf_content(address.grid_reference)
+          end
+        end
+
+        registration.exemptions.each do |exemption|
+          expect(result).to include_pdf_content(exemption.code)
+        end
       end
 
       context "when the business is a partnership" do

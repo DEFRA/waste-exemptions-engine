@@ -29,21 +29,6 @@ module Helpers
   end
 end
 
-RSpec::Matchers.define :match_pdf_content do |fixtures_path_to_expected_pdf|
-  match do |actual|
-    expected = PDF::Reader.new(fixtures_path_to_expected_pdf)
-    @expected = expected.pages.map(&:text).join
-    @expected = Helpers::PdfMatchersHelper.clean_pdf_text(@expected)
-
-    @actual = Helpers::PdfMatchersHelper.extract_pdf_content(actual)
-    @actual == @expected
-  end
-
-  failure_message do |_actual|
-    "expected that \n#{@actual} \n would be equal to \n#{@expected}"
-  end
-end
-
 RSpec::Matchers.define :include_pdf_content do |expected|
   match do |actual|
     @expected = Helpers::PdfMatchersHelper.clean_pdf_text(expected)
