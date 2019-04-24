@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     def new
       return unless super(EditCompleteForm, "edit_complete_form")
 
-      # TODO: Edit completion service goes here
+      EditCompletionService.run(edit_registration: @transient_registration)
     end
 
     # Overwrite create and go_back as you shouldn't be able to submit or go back
