@@ -363,6 +363,13 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "registration-complete",
             path_names: { new: "/:token" }
 
+  # Editing
+
+  resources :edit_complete_forms,
+            only: %i[new create],
+            path: "edit-complete",
+            path_names: { new: "/:token" }
+
   # Expose the data stored by the LastEmailCacheService
   get "/last-email",
       to: "last_email#show",

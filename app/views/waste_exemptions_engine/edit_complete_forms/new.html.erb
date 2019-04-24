@@ -1,0 +1,24 @@
+
+<div class="column-two-thirds">
+<% if @edit_complete_form.errors.any? %>
+
+  <h1 class="heading-large"><%= t(".error_heading") %></h1>
+
+  <% @edit_complete_form.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+
+<% else %>
+
+  <%= form_for(@edit_complete_form) do |f| %>
+    <%= render("waste_exemptions_engine/shared/errors", object: @edit_complete_form) %>
+
+    <h1 class="heading-large"><%= t(".heading") %></h1>
+
+    <div class="form-group">
+      <%= link_to t(".next_button"), "#", class: "button" %>
+    </div>
+  <% end %>
+
+<% end %>
+</div>

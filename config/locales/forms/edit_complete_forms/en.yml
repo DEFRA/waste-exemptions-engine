@@ -1,0 +1,15 @@
+en:
+  waste_exemptions_engine:
+    edit_complete_forms:
+      new:
+        title: Edit complete
+        heading: Edit complete
+        next_button: Finished
+  activemodel:
+    errors:
+      models:
+        waste_carriers_engine/edit_complete_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
