@@ -50,6 +50,6 @@ module WasteExemptionsEngine
       end
     end
 
-    include_examples "unable to POST form", :registration_complete_form, "/egistration-complete"
+    include_examples "unable to POST form", :registration_complete_form, "/registration-complete"
   end
 end
