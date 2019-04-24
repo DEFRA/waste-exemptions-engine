@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :exemption, class: WasteExemptionsEngine::Exemption do
-
     sequence :code do |n|
       "U#{n}"
     end

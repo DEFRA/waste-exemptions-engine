@@ -42,7 +42,7 @@ FactoryBot.define do
       contact_email { "test@example.com" }
       on_a_farm { true }
       is_a_farmer { true }
-      exemptions { WasteExemptionsEngine::Exemption.all }
+      exemptions { build_list(:exemption, 10) }
 
       after(:create) do |transient_registration|
         transient_registration.addresses = [

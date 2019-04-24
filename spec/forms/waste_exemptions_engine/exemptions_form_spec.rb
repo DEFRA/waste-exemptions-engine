@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     end
 
     subject(:form) { build(:exemptions_form) }
-    let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
+    let(:three_exemptions) { create_list(:exemption, 3) }
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
