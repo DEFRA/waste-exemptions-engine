@@ -3,7 +3,7 @@
 module WasteExemptionsEngine
   class CertificatePresenter < BasePresenter
     def partnership?
-      business_type == "partnership"
+      business_type == "Partnership"
     end
 
     def partners_names
@@ -14,6 +14,10 @@ module WasteExemptionsEngine
 
     def applicant_name
       format("%<first>s %<last>s", first: applicant_first_name, last: applicant_last_name)
+    end
+
+    def business_type
+      super.underscore.humanize
     end
 
     def contact_name
