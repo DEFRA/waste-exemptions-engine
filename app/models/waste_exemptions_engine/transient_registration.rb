@@ -3,11 +3,8 @@
 module WasteExemptionsEngine
   class TransientRegistration < ActiveRecord::Base
     include CanHaveRegistrationAttributes
-    include CanChangeWorkflowStatus
 
     self.table_name = "transient_registrations"
-
-    after_create :apply_reference
 
     # HasSecureToken provides an easy way to generate unique random tokens for
     # any model in ruby on rails. We use it to uniquely identify an registration
@@ -39,13 +36,6 @@ module WasteExemptionsEngine
           "transient_registration_exemptions", "transient_people",
           "created_at", "updated_at", "type"
         )
-    end
-
-    private
-
-    def apply_reference
-      self.reference = format("WEX%06d", id)
-      save!
     end
   end
 end
