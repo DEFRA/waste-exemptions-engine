@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class NewRegistration < TransientRegistration
-    include CanChangeWorkflowStatus
+    include CanUseNewRegistrationWorkflow
 
     after_create :apply_reference
 

@@ -5,7 +5,7 @@
 # does mean the module length breaks rubocops rules hence the exception.
 # rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
-  module CanChangeWorkflowStatus
+  module CanUseNewRegistrationWorkflow
     extend ActiveSupport::Concern
 
     # We believe in the case of the different states and transitions for the
