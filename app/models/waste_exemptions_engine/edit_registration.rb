@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class EditRegistration < TransientRegistration
     include CanUseEditRegistrationWorkflow
 
-    after_initialize :copy_data_from_registration
+    after_initialize :copy_data_from_registration, if: :new_record?
 
     private
 
