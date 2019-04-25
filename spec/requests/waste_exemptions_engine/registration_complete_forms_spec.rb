@@ -41,6 +41,15 @@ module WasteExemptionsEngine
           expect(registration.reload.versions.last.whodunnit).to eq("public user")
         end
       end
+
+      context "when an error happens during completition" do
+        it "returns a 500 error for the user" do
+          custom_error = StandardError.new("completition error")
+          expect(Registration).to receive(:new).and_raise(custom_error)
+
+          expect { get request_path }.to raise_error(custom_error)
+        end
+      end
     end
 
     describe "unable to go submit GET back" do
