@@ -2,7 +2,7 @@
 
 class AddTypeToTransientRegistrations < ActiveRecord::Migration
   def up
-    add_column :transient_registrations, :type, :string
+    add_column :transient_registrations, :type, :string, null: false
     # Set any existing TransientRegistrations to NewRegistrations so everything has a type
     execute <<-SQL
        UPDATE transient_registrations
