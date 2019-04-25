@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(version: 20190424143344) do
 
   add_index "addresses", ["registration_id"], name: "index_addresses_on_registration_id", using: :btree
 
-  create_table "defra_ruby_exporters_bulk_export_files", force: :cascade do |t|
-    t.string   "file_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "exemptions", force: :cascade do |t|
     t.integer "category"
     t.string  "code"
