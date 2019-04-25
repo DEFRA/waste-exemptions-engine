@@ -4,7 +4,8 @@ en:
       new:
         title: Edit complete
         heading: Edit complete
-        next_button: Finished
+        paragraph_1: "Your changes have been saved and the registration has been updated."
+        next_button: View registration
   activemodel:
     errors:
       models:
