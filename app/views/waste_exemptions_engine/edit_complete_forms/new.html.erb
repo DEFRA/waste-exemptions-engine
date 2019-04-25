@@ -16,7 +16,7 @@
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
     <div class="form-group">
-      <%= link_to t(".next_button"), "#", class: "button" %>
+      <%= link_to t(".next_button"), edit_finished_path(@edit_complete_form.transient_registration), class: "button" %>
     </div>
   <% end %>
 

@@ -1,3 +1,5 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: edit_back_path(@edit_form.transient_registration)) %>
+
 <%= form_for(@edit_form) do |f| %>
   <%= render("waste_exemptions_engine/shared/errors", object: @edit_form) %>
 

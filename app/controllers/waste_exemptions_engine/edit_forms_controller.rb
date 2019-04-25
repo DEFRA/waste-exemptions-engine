@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class EditFormsController < FormsController
+    helper EditHelper
+
     def new
       super(EditForm, "edit_form")
     end
