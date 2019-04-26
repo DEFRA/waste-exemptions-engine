@@ -5,7 +5,7 @@
 require "./spec/support/simplecov"
 
 # Support debugging in the tests
-require "byebug"
+require "pry-byebug"
 
 # Support time travel and time freeze
 require "timecop"
