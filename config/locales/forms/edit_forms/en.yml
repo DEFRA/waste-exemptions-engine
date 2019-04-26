@@ -6,6 +6,9 @@ en:
         heading: Edit %{reference} registration
         paragraph_1: "Use the links below to make changes to this registration. Changes will not be applied until you hit the continue button at the bottom of the page."
         paragraph_2: "You must confirm these changes using the 'continue' button."
+        edit_meta:
+          created_at: "This edit was started at %{created_at}."
+          updated_at: "It was last updated at %{updated_at}. There may be unsaved changes."
         sections:
           location:
             heading: "Where operation is taking place"

@@ -9,6 +9,19 @@
 
       <p><%= t(".paragraph_1") %></p>
       <p><%= t(".paragraph_2") %></p>
+
+      <div class="panel">
+        <p>
+          <%= t(".edit_meta.created_at",
+                created_at: @edit_form.transient_registration.created_at.to_formatted_s(:time_on_day_month_year)) %>
+        </p>
+        <% if edits_made?(@edit_form.transient_registration) %>
+          <p>
+            <%= t(".edit_meta.updated_at",
+                  updated_at: @edit_form.transient_registration.updated_at.to_formatted_s(:time_on_day_month_year)) %>
+          </p>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="grid-row">
