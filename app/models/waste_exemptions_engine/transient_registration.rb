@@ -25,26 +25,26 @@ module WasteExemptionsEngine
     alias_attribute :people, :transient_people
     alias_attribute :registration_exemptions, :transient_registration_exemptions
 
-    ATTRIBUTES_NOT_COPIED_TO_REGISTRATION = %w[address_finder_error
-                                               created_at
-                                               declaration
-                                               id
-                                               start_option
-                                               temp_operator_postcode
-                                               temp_contact_postcode
-                                               temp_grid_reference
-                                               temp_site_description
-                                               temp_site_postcode
-                                               token
-                                               transient_addresses
-                                               transient_registration_exemptions
-                                               transient_people
-                                               type
-                                               updated_at
-                                               workflow_state].freeze
+    TRANSIENT_ATTRIBUTES = %w[address_finder_error
+                              created_at
+                              declaration
+                              id
+                              start_option
+                              temp_operator_postcode
+                              temp_contact_postcode
+                              temp_grid_reference
+                              temp_site_description
+                              temp_site_postcode
+                              token
+                              transient_addresses
+                              transient_registration_exemptions
+                              transient_people
+                              type
+                              updated_at
+                              workflow_state].freeze
 
     def registration_attributes
-      attributes.except(*ATTRIBUTES_NOT_COPIED_TO_REGISTRATION)
+      attributes.except(*TRANSIENT_ATTRIBUTES)
     end
   end
 end
