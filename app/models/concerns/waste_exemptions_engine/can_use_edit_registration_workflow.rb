@@ -64,6 +64,10 @@ module WasteExemptionsEngine
         state :declaration_form
         state :edit_complete_form
 
+        # Cancelling
+        state :edit_confirm_cancel_form
+        state :edit_cancelled_form
+
         ## Transitions
 
         # Location
@@ -153,6 +157,13 @@ module WasteExemptionsEngine
                       to: :site_grid_reference_form
         end
 
+        # Cancellation
+
+        event :cancel_edit do
+          transitions from: :edit_form,
+                      to: :edit_confirm_cancel_form
+        end
+
         # Next transitions once you're on a form
 
         event :next do
@@ -209,6 +220,10 @@ module WasteExemptionsEngine
 
           transitions from: :declaration_form,
                       to: :edit_complete_form
+
+          # Cancelling the edit process
+          transitions from: :edit_confirm_cancel_form,
+                      to: :edit_cancelled_form
 
           # Everything else should always return to edit
           transitions from: %i[location_form
@@ -273,6 +288,10 @@ module WasteExemptionsEngine
 
           # Completing the edit process
           transitions from: :declaration_form,
+                      to: :edit_form
+
+          # Cancelling the edit process
+          transitions from: :edit_confirm_cancel_form,
                       to: :edit_form
 
           # Everything else should always go back to edit
