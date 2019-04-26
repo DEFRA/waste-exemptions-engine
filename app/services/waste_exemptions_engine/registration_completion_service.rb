@@ -23,6 +23,8 @@ module WasteExemptionsEngine
     rescue StandardError => error
       Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Completing registration error: #{error}"
+
+      raise error
     end
 
     private
