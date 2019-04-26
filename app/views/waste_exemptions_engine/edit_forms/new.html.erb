@@ -330,6 +330,7 @@
       <%= f.hidden_field :token, value: @edit_form.token %>
       <div class="form-group">
         <%= f.submit t(".next_button"), class: "button" %>
+        <%= link_to t(".cancel_button"), cancel_edit_edit_forms_path(@edit_form.token) %>
       </div>
       <% end %>
     </div>

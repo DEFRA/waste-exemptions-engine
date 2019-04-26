@@ -64,6 +64,7 @@ en:
             is_a_farmer: "is a farmer"
             site_address: "site address"
         next_button: Continue
+        cancel_button: Cancel
   activemodel:
     errors:
       models:
