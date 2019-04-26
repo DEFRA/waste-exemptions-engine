@@ -442,11 +442,31 @@ WasteExemptionsEngine::Engine.routes.draw do
                   to: "edit_forms#edit_site_grid_reference",
                   as: "site_grid_reference",
                   on: :collection
+
+              get "cancel_edit/:token",
+                  to: "edit_forms#edit_cancel_edit",
+                  as: "cancel_edit",
+                  on: :collection
             end
 
   resources :edit_complete_forms,
             only: %i[new create],
             path: "edit-complete",
+            path_names: { new: "/:token" }
+
+  resources :edit_confirm_cancel_forms,
+            only: %i[new create],
+            path: "edit-confirm-cancel",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+                  to: "edit_confirm_cancel_forms#go_back",
+                  as: "back",
+                  on: :collection
+            end
+
+  resources :edit_cancelled_forms,
+            only: %i[new create],
+            path: "edit-cancelled",
             path_names: { new: "/:token" }
 
   # Expose the data stored by the LastEmailCacheService
