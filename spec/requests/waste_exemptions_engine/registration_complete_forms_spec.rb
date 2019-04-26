@@ -44,7 +44,7 @@ module WasteExemptionsEngine
 
       context "when an error happens during completion" do
         it "returns a 500 error for the user" do
-          custom_error = StandardError.new("completition error")
+          custom_error = StandardError.new("completion error")
           expect(Registration).to receive(:new).and_raise(custom_error)
 
           expect { get request_path }.to raise_error(custom_error)
