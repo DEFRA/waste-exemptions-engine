@@ -52,7 +52,7 @@ FactoryBot.define do
 
       addresses { [build(:address, :site_address, :auto), build(:address, :operator_address, :manual), build(:address, :contact_address, :manual)] }
 
-      after(:build) do |registration, _|
+      after(:build) do |registration|
         exemption = build(:exemption, code: "U6")
         registration_exemption = build(:registration_exemption, exemption: exemption)
 

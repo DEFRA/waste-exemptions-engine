@@ -8,20 +8,26 @@ module WasteExemptionsEngine
 
     def partners_names
       people.select(&:partner?).map do |person|
-        format("%<first>s %<last>s", first: person.first_name, last: person.last_name)
+        format_name(first: person.first_name, last: person.last_name)
       end.join("</br>").html_safe
     end
 
     def applicant_name
-      format("%<first>s %<last>s", first: applicant_first_name, last: applicant_last_name)
+      format_name(first: applicant_first_name, last: applicant_last_name)
     end
 
     def business_type
-      super.underscore.humanize
+      I18n.t("waste_exemptions_engine.pdfs.certificate.busness_types.#{super}")
     end
 
     def contact_name
-      format("%<first>s %<last>s", first: contact_first_name, last: contact_last_name)
+      format_name(first: contact_first_name, last: contact_last_name)
+    end
+
+    private
+
+    def format_name(names)
+      format("%<first>s %<last>s", names)
     end
   end
 end

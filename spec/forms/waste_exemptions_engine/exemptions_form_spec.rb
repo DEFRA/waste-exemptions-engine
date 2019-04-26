@@ -4,13 +4,6 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe ExemptionsForm, type: :model do
-    before(:context) do
-      # Create a selection of exemptions. The ExemptionForm needs this as it
-      # will validate the selected exemptions (our params) against the
-      # collection of exemptions it pulls from the database.
-      create_list(:exemption, 5)
-    end
-
     subject(:form) { build(:exemptions_form) }
     let(:three_exemptions) { create_list(:exemption, 3) }
 

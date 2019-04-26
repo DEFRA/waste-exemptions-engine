@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" >
 
     <%= wicked_pdf_stylesheet_link_tag "pdfs/govuk-frontend-2.10.0.min.css" -%>
 
@@ -35,7 +35,7 @@
             </p>
 
             <p class="govuk-body">
-              <strong> <%=t ".confirmation.warning" %> </strong>
+              <strong><%=t ".confirmation.warning" %></strong>
             </p>
 
             <p class="govuk-body">
@@ -46,11 +46,21 @@
 
             <h1 class="govuk-heading-l"><%=t ".business_responsibilities.heading" %></h1>
             <div class="govuk-body">
-              <%=t ".business_responsibilities.paragraph1_html" %>
+              <%=t ".business_responsibilities.first_paragraph.description" %>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.first" %></li>
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.second" %></li>
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.third" %></li>
+              </ul>
             </div>
 
             <div class="govuk-body">
-              <%=t ".business_responsibilities.paragraph2_html" %>
+              <%=t ".business_responsibilities.second_paragraph.description" %>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.first" %></li>
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.second" %></li>
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.third" %></li>
+              </ul>
             </div>
 
             <p class="govuk-body">
