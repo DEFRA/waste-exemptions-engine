@@ -21,9 +21,6 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:should_register_in_northern_ireland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_scotland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_wales?)).to eq(false)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
         end
@@ -39,9 +36,6 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:should_register_in_northern_ireland?)).to eq(true)
-            expect(new_registration.send(:should_register_in_scotland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_wales?)).to eq(false)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
         end
@@ -57,9 +51,6 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:should_register_in_northern_ireland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_scotland?)).to eq(true)
-            expect(new_registration.send(:should_register_in_wales?)).to eq(false)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
         end
@@ -75,9 +66,6 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:should_register_in_northern_ireland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_scotland?)).to eq(false)
-            expect(new_registration.send(:should_register_in_wales?)).to eq(true)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
         end
