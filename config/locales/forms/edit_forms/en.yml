@@ -1,0 +1,77 @@
+en:
+  waste_exemptions_engine:
+    edit_forms:
+      new:
+        title: Edit
+        heading: Edit %{reference} registration
+        paragraph_1: "Use the links below to make changes to this registration. Changes will not be applied until you hit the continue button at the bottom of the page."
+        paragraph_2: "You must confirm these changes using the 'continue' button."
+        edit_meta:
+          created_at: "This edit was started at %{created_at}."
+          updated_at: "It was last updated at %{updated_at}. There may be unsaved changes."
+        sections:
+          location:
+            heading: "Where operation is taking place"
+            labels:
+              location: "Location"
+          applicant:
+            heading: "Applicant details"
+            labels:
+              applicant_name: "Name"
+              applicant_phone: "Phone number"
+              applicant_email: "Email address"
+          operator:
+            heading: "Operator details"
+            labels:
+              operator_name: "Name"
+              business_type: "Type"
+              people: "Main people"
+              company_no: "Companies House number"
+              operator_address: "Address"
+          contact:
+            heading: "Contact details"
+            labels:
+              contact_name: "Name"
+              contact_position: "Position"
+              contact_phone: "Phone number"
+              contact_email: "Email address"
+              contact_address: "Address"
+          site:
+            heading: "Site address"
+            labels:
+              site_address: "Address"
+          exemptions:
+            heading: "Exemptions"
+          farm:
+            heading: "Farming information"
+            labels:
+              on_a_farm: "Operation is on a farm"
+              is_a_farmer: "Operative is a farmer"
+        edit_links:
+          default: "Change"
+          no_edit: "Cannot edit"
+          visually_hidden:
+            location: "location"
+            applicant_name: "applicant name"
+            applicant_phone: "applicant phone"
+            applicant_email: "applicant email"
+            people: "main people"
+            company_no: "Companies House number"
+            operator_name: "operator name"
+            operator_postcode: "operator address"
+            contact_name: "contact name"
+            contact_phone: "contact phone"
+            contact_email: "contact email"
+            contact_postcode: "contact address"
+            on_a_farm: "on a farm"
+            is_a_farmer: "is a farmer"
+            site_address: "site address"
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/edit_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

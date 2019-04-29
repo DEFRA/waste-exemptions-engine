@@ -18,6 +18,32 @@ FactoryBot.define do
       grid_reference { "ST 58337 72855" }
     end
 
+    trait :postal do
+      sequence :postcode do |n|
+        "BS#{n}AA"
+      end
+
+      sequence :uprn do |n|
+        "uprn_#{n}"
+      end
+
+      sequence :premises do |n|
+        "premises_#{n}"
+      end
+
+      sequence :street_address do |n|
+        "street_address_#{n}"
+      end
+
+      sequence :locality do |n|
+        "locality_#{n}"
+      end
+
+      sequence :city do |n|
+        "city_#{n}"
+      end
+    end
+
     trait :manual do
       mode { WasteExemptionsEngine::TransientAddress.modes[:manual] }
     end
