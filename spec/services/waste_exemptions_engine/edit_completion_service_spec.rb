@@ -40,18 +40,18 @@ module WasteExemptionsEngine
       end
 
       it "copies the people from the registration" do
-        old_people_data = registration.people.map do |p|
-          p.attributes.except(*skipped_attributes)
+        old_people_data = registration.people.map do |person|
+          person.attributes.except(*skipped_attributes)
         end
 
-        new_people_data = edit_registration.people.map do |p|
-          p.attributes.except(*skipped_attributes)
+        new_people_data = edit_registration.people.map do |person|
+          person.attributes.except(*skipped_attributes)
         end
 
         expect { service }.to change {
           # Get all attributes from all the registration's people
-          registration.reload.people.map do |p|
-            p.attributes.except(*skipped_attributes)
+          registration.reload.people.map do |person|
+            person.attributes.except(*skipped_attributes)
           end
         }.from(old_people_data).to(new_people_data)
       end
