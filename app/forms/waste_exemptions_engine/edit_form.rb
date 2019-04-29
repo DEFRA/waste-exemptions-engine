@@ -25,26 +25,27 @@ module WasteExemptionsEngine
     # rubocop:disable Metrics/MethodLength
     def initialize(registration)
       super
-      self.applicant_email = @transient_registration.applicant_email
-      self.applicant_name = full_name(@transient_registration.applicant_first_name,
-                                      @transient_registration.applicant_last_name)
-      self.applicant_phone = @transient_registration.applicant_phone
-      self.business_type = @transient_registration.business_type
-      self.company_no = @transient_registration.company_no
-      self.contact_address = @transient_registration.contact_address
-      self.contact_email = @transient_registration.contact_email
-      self.contact_name = full_name(@transient_registration.contact_first_name,
-                                    @transient_registration.contact_last_name)
-      self.contact_phone = @transient_registration.contact_phone
-      self.is_a_farmer = @transient_registration.is_a_farmer
-      self.location = @transient_registration.location
-      self.on_a_farm = @transient_registration.on_a_farm
-      self.operator_name = @transient_registration.operator_name
-      self.operator_address = @transient_registration.operator_address
-      self.people = @transient_registration.people
-      self.reference = @transient_registration.reference
-      self.registration_exemptions = @transient_registration.registration_exemptions
-      self.site_address = @transient_registration.site_address
+      self.applicant_email          = @transient_registration.applicant_email
+      self.applicant_phone          = @transient_registration.applicant_phone
+      self.business_type            = @transient_registration.business_type
+      self.company_no               = @transient_registration.company_no
+      self.contact_address          = @transient_registration.contact_address
+      self.contact_email            = @transient_registration.contact_email
+      self.contact_phone            = @transient_registration.contact_phone
+      self.is_a_farmer              = @transient_registration.is_a_farmer
+      self.location                 = @transient_registration.location
+      self.on_a_farm                = @transient_registration.on_a_farm
+      self.operator_name            = @transient_registration.operator_name
+      self.operator_address         = @transient_registration.operator_address
+      self.people                   = @transient_registration.people
+      self.reference                = @transient_registration.reference
+      self.registration_exemptions  = @transient_registration.registration_exemptions
+      self.site_address             = @transient_registration.site_address
+
+      self.applicant_name           = full_name(@transient_registration.applicant_first_name,
+                                                @transient_registration.applicant_last_name)
+      self.contact_name             = full_name(@transient_registration.contact_first_name,
+                                                @transient_registration.contact_last_name)
     end
     # rubocop:enable Metrics/MethodLength
 
