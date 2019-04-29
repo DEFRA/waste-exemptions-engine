@@ -1,15 +1,4 @@
-
-<div class="column-two-thirds">
-<% if @edit_cancelled_form.errors.any? %>
-
-  <h1 class="heading-large"><%= t(".error_heading") %></h1>
-
-  <% @edit_cancelled_form.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-
-<% else %>
-
+<div class="text">
   <%= form_for(@edit_cancelled_form) do |f| %>
     <%= render("waste_exemptions_engine/shared/errors", object: @edit_cancelled_form) %>
 
@@ -21,6 +10,4 @@
       <%= link_to t(".next_button"), edit_finished_path(@edit_cancelled_form.transient_registration), class: "button" %>
     </div>
   <% end %>
-
-<% end %>
 </div>
