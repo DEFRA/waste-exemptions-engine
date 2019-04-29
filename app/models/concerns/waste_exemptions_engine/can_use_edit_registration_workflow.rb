@@ -65,7 +65,7 @@ module WasteExemptionsEngine
         state :edit_complete_form
 
         # Cancelling
-        state :edit_confirm_cancel_form
+        state :confirm_edit_cancelled_form
         state :edit_cancelled_form
 
         ## Transitions
@@ -161,7 +161,7 @@ module WasteExemptionsEngine
 
         event :cancel_edit do
           transitions from: :edit_form,
-                      to: :edit_confirm_cancel_form
+                      to: :confirm_edit_cancelled_form
         end
 
         # Next transitions once you're on a form
@@ -222,7 +222,7 @@ module WasteExemptionsEngine
                       to: :edit_complete_form
 
           # Cancelling the edit process
-          transitions from: :edit_confirm_cancel_form,
+          transitions from: :confirm_edit_cancelled_form,
                       to: :edit_cancelled_form
 
           # Everything else should always return to edit
@@ -291,7 +291,7 @@ module WasteExemptionsEngine
                       to: :edit_form
 
           # Cancelling the edit process
-          transitions from: :edit_confirm_cancel_form,
+          transitions from: :confirm_edit_cancelled_form,
                       to: :edit_form
 
           # Everything else should always go back to edit

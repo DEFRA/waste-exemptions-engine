@@ -454,12 +454,12 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "edit-complete",
             path_names: { new: "/:token" }
 
-  resources :edit_confirm_cancel_forms,
+  resources :confirm_edit_cancelled_forms,
             only: %i[new create],
-            path: "edit-confirm-cancel",
+            path: "confirm-edit-cancelled",
             path_names: { new: "/:token" } do
               get "back/:token",
-                  to: "edit_confirm_cancel_forms#go_back",
+                  to: "confirm_edit_cancelled_forms#go_back",
                   as: "back",
                   on: :collection
             end

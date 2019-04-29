@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    edit_confirm_cancel_forms:
+    confirm_edit_cancelled_forms:
       new:
         title: Do you want to cancel this edit?
         heading: Do you want to cancel this edit?
@@ -9,7 +9,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/edit_confirm_cancel_form:
+        waste_exemptions_engine/confirm_edit_cancelled_form:
           attributes:
             token:
               invalid_format: "The token is not valid"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class EditConfirmCancelForm < BaseForm
+  class ConfirmEditCancelledForm < BaseForm
     def initialize(registration)
       super
     end

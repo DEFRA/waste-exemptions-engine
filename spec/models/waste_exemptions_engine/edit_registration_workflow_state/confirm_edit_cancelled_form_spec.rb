@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     describe "#workflow_state" do
       it_behaves_like "a simple bidirectional transition",
                       previous_state: :edit_form,
-                      current_state: :edit_confirm_cancel_form,
+                      current_state: :confirm_edit_cancelled_form,
                       next_state: :edit_cancelled_form,
                       factory: :edit_registration
     end
