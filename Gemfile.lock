@@ -66,6 +66,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.0.1)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -120,6 +121,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    method_source (0.9.2)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
@@ -148,6 +150,12 @@ GEM
       ttfunk
     pg (0.18.4)
     phonelib (0.6.33)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.7.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
     psych (3.1.0)
     public_suffix (3.0.3)
     rack (1.6.11)
@@ -256,13 +264,13 @@ PLATFORMS
 
 DEPENDENCIES
   bullet
-  byebug
   database_cleaner
   defra_ruby_style
   dotenv-rails
   factory_bot_rails
   github_changelog_generator
   pdf-reader
+  pry-byebug
   rspec-rails (~> 3.8.0)
   simplecov
   timecop
