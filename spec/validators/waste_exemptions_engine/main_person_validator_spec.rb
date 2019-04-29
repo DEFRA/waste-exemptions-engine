@@ -45,7 +45,7 @@ module WasteExemptionsEngine
         allowed_num_people = expectation[:num_people]
 
         context "when the business type is #{business_type}" do
-          let(:transient_registration) { create(:transient_registration, business_type) }
+          let(:transient_registration) { create(:new_registration, business_type) }
           subject(:validatable) { Test::MainPersonValidatable.new(transient_registration) }
 
           min_people = allowed_num_people.rassoc(true).first # This will get the first key that has a value of true.

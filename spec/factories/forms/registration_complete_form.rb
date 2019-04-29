@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :registration_complete_form, class: WasteExemptionsEngine::RegistrationCompleteForm do
     initialize_with do
-      new(create(:transient_registration, workflow_state: "registration_complete_form"))
+      new(create(:new_registration, workflow_state: "registration_complete_form"))
     end
   end
 end

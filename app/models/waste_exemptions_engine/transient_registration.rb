@@ -3,11 +3,8 @@
 module WasteExemptionsEngine
   class TransientRegistration < ActiveRecord::Base
     include CanHaveRegistrationAttributes
-    include CanChangeWorkflowStatus
 
     self.table_name = "transient_registrations"
-
-    after_create :apply_reference
 
     # HasSecureToken provides an easy way to generate unique random tokens for
     # any model in ruby on rails. We use it to uniquely identify an registration
@@ -28,24 +25,26 @@ module WasteExemptionsEngine
     alias_attribute :people, :transient_people
     alias_attribute :registration_exemptions, :transient_registration_exemptions
 
+    TRANSIENT_ATTRIBUTES = %w[address_finder_error
+                              created_at
+                              declaration
+                              id
+                              start_option
+                              temp_operator_postcode
+                              temp_contact_postcode
+                              temp_grid_reference
+                              temp_site_description
+                              temp_site_postcode
+                              token
+                              transient_addresses
+                              transient_registration_exemptions
+                              transient_people
+                              type
+                              updated_at
+                              workflow_state].freeze
+
     def registration_attributes
-      attributes
-        .except(
-          "id", "token", "workflow_state", "start_option",
-          "declaration", "temp_operator_postcode",
-          "temp_contact_postcode", "temp_site_postcode",
-          "temp_grid_reference", "temp_site_description",
-          "address_finder_error", "transient_addresses",
-          "transient_registration_exemptions", "transient_people",
-          "created_at", "updated_at"
-        )
-    end
-
-    private
-
-    def apply_reference
-      self.reference = format("WEX%06d", id)
-      save!
+      attributes.except(*TRANSIENT_ATTRIBUTES)
     end
   end
 end

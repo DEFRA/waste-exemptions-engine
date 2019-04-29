@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :contact_email_form, class: WasteExemptionsEngine::ContactEmailForm do
     initialize_with do
-      new(create(:transient_registration, workflow_state: "contact_email_form"))
+      new(create(:new_registration, workflow_state: "contact_email_form"))
     end
   end
 end
