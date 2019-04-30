@@ -3,3 +3,18 @@
   padding-left: 0.5em;
   padding-top: 0.45em;
 }
+
+.edit_table {
+  caption.heading-medium {
+    display: table-caption;
+  }
+
+  .label_column {
+    width: 10em;
+  }
+
+  .change_link_column {
+    width: 6em;
+    text-align: right;
+  }
+}
