@@ -1,192 +1,199 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="utf-8" >
+
+    <%= wicked_pdf_stylesheet_link_tag "pdfs/govuk-frontend-2.10.0.min.css" -%>
+
     <style type='text/css'>
       * {
         font-family: Helvetica, Arial, Sans-Serif !important;
         background: #FFF;
       }
-      h1 {
-        margin-bottom: 20px;
-      }
       body {
         margin: 40px 60px;
       }
-      table tr td:first-child {
-        width: 220px;
+      .table-wrapper {
+        border-left: 5px solid #005ea5;
+        padding-left: 15px;
       }
-      ul, li {
-        list-style-type: none;
-        margin-left: 0;
-        padding-left: 0;
-      }
-      li, td, p {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-      table th {
-        margin-top: 20px;
-        text-align: left;
-        font-size: 22px;
+      .govuk-table__header {
+        width: 350px;
+        vertical-align: top;
       }
     </style>
   </head>
+
   <body>
-    <div id="wrapper">
-      <main id="content" role="main" class="group">
-        <div class="grid-wrapper">
-        <div class="grid-2-3">
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-l"><%=t ".confirmation.heading", registration_number: presenter.reference %></h1>
+            <p class="govuk-body">
+              <%=t ".confirmation.paragraph1" %>
+            </p>
 
-        <!-- Header section -->
-        <header class="page-header group">
-          <div class="hgroup">
-            <h1 class="heading-small"><%=t ".heading" %></h1>
+            <p class="govuk-body">
+              <strong><%=t ".confirmation.warning" %></strong>
+            </p>
+
+            <p class="govuk-body">
+              <%=t ".confirmation.paragraph2", company_registration_number: presenter.reference %>
+              <br \>
+              <%= link_to "https://environment.data.gov.uk/public-register/view/search-waste-exemptions", "https://environment.data.gov.uk/public-register/view/search-waste-exemptions" %>
+            </p>
+
+            <h1 class="govuk-heading-l"><%=t ".business_responsibilities.heading" %></h1>
+            <div class="govuk-body">
+              <%=t ".business_responsibilities.first_paragraph.description" %>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.first" %></li>
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.second" %></li>
+                <li><%=t ".business_responsibilities.first_paragraph.list_items.third" %></li>
+              </ul>
+            </div>
+
+            <div class="govuk-body">
+              <%=t ".business_responsibilities.second_paragraph.description" %>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.first" %></li>
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.second" %></li>
+                <li><%=t ".business_responsibilities.second_paragraph.list_items.third" %></li>
+              </ul>
+            </div>
+
+            <p class="govuk-body">
+              <%=t ".business_responsibilities.paragraph3" %>
+            </p>
+
+            <h1 class="govuk-heading-l"><%=t ".registration_details.heading" %></h1>
+
+            <h2 class="govuk-heading-m"><%=t ".registration_details.registration_details.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.reference_number" %></th>
+                    <td class="govuk-table__cell"><%= presenter.reference %></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.date_registered" %></th>
+                    <td class="govuk-table__cell"><%= presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <% presenter.registration_exemptions.each do |registration_exemption| %>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
+                      <td class="govuk-table__cell"><%= "Expires on #{registration_exemption.expires_on.to_formatted_s(:day_month_year)}" %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.contact_details.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.name" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.applicant_name %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_telephone" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.applicant_phone %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_email" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.applicant_email %> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.business_details.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.business_type" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.business_type.capitalize %> </td>
+                  </tr>
+                  <% if presenter.partnership? %>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row">
+                        <%=t ".registration_details.business_details.partners" %>
+                      </th>
+                      <td class="govuk-table__cell"> <%= presenter.partners_names %> </td>
+                    </tr>
+                  <% else %>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person" %></th>
+                      <td class="govuk-table__cell"> <%= presenter.operator_name %> </td>
+                    </tr>
+                  <% end %>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person_address" %></th>
+                    <td class="govuk-table__cell">
+                      <% displayable_address(presenter.operator_address).each do |line| %>
+                        <%= line %><br>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.waste_operations_contact.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.name" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.contact_name %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.position" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.contact_position %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.telephone_n" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.contact_phone %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.email" %></th>
+                    <td class="govuk-table__cell"> <%= presenter.contact_email %> </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.address" %></th>
+                    <td class="govuk-table__cell">
+                      <% displayable_address(presenter.contact_address).each do |line| %>
+                        <%= line %><br>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.waste_operations_details.heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <%= render "waste_exemptions_engine/pdfs/site_address_#{presenter.site_address.mode}", address: presenter.site_address %>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </header>
-
-          <table summary="Regulation Authority details" class="certificate_table" role="presentation">
-            <thead>
-              <tr>
-                <th colspan="2"><%=t ".regulator.heading" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="table-column-text"><%=t ".regulator.name" %></td>
-                  <td>
-                    <%= wicked_pdf_image_tag("waste_exemptions_engine/environment_agency_logo.png", {alt: "Environment Agency Logo", border: "0", height: "39", width: "129"}) %>
-                  </td>
-              </tr>
-              <tr>
-                <td class="table-column-text"><%=t ".regulator.address.label" %></td>
-                <td>
-                  <ul>
-                    <li><%=t ".regulator.address.line1" %></li>
-                    <li><%=t ".regulator.address.line2" %></li>
-                    <li><%=t ".regulator.address.line3" %></li>
-                    <li><%=t ".regulator.address.line4" %></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-column-text"><%=t ".regulator.telephone.label" %></td>
-                <td><%=t ".regulator.telephone.number" %></td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-
-          <table summary="Registration details" class="certificate_table" role="presentation">
-            <thead>
-              <tr>
-                <th colspan="2"><%=t ".registration.heading" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="table-column-text"><%=t ".registration.reference" %></td>
-                  <td><%= presenter.reference %></td>
-              </tr>
-              <tr>
-                <td class="table-column-text"><%=t ".registration.submitted_at" %></td>
-                <td><%= presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-
-          <table summary="Operator details" role="presentation">
-            <thead>
-              <tr>
-                <th colspan="2"><%=t ".operator.heading" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="table-column-text"><%=t ".operator.name" %></td>
-                <td><%= presenter.operator_name %></td>
-              </tr>
-              <% if presenter.complex_organisation_details? %>
-                <tr>
-                  <td class="table-column-text"><%= presenter.complex_organisation_heading %></td>
-                  <td><%= presenter.complex_organisation_name %></td>
-                </tr>
-              <% end %>
-              <tr>
-                <td class="table-column-text"><%=t ".operator.business_address" %></td>
-                <td>
-                <% displayable_address(presenter.operator_address).each do |line| %>
-                  <%= line %><br>
-                <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-
-          <table summary="Site details" role="presentation">
-            <thead>
-              <tr>
-                <th colspan="2"><%=t ".site.heading" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if presenter.site_is_grid_reference? %>
-              <tr>
-                <td class="table-column-text"><%=t ".site.location" %></td>
-                <td><%= presenter.site_address.grid_reference %></td>
-              </tr>
-              <tr>
-                <td class="table-column-text"><%=t ".site.location_description" %></td>
-                <td><%= presenter.site_address.description %></td>
-              </tr>
-              <% else %>
-              <tr>
-                <td class="table-column-text"><%=t ".site.address" %></td>
-                <td>
-                <% displayable_address(presenter.site_address).each do |line| %>
-                  <%= line %><br>
-                <% end %>
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <br>
-
-          <table summary="Exemption details" role="presentation">
-            <thead>
-              <tr>
-                <th colspan="2"><%=t ".exemption.heading" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%=t ".exemption.expires_label" %></td>
-                <td>&nbsp;</td>
-              </tr>
-              <% presenter.registration_exemptions.each do |registration_exemption| %>
-                <% exemption = registration_exemption.exemption %>
-                <tr>
-                  <td class="table-column-text"><%= registration_exemption.expires_on.to_formatted_s(:day_month_year) %></td>
-                  <td><%= "#{exemption.code} - #{exemption.summary}" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <br>
-
-          <h2 class="certificate_title"><%=t ".changes.heading" %></h2>
-
-          <div>
-            <p class="certificate_text"><%= t ".changes.paragraph1", expires_after_pluralized: presenter.expires_after_pluralized %></p>
-            <p class="certificate_text"><%= t ".changes.paragraph2" %></p>
-          </div>
-
         </div>
-      </div>
       </main>
     </div>
   </body>

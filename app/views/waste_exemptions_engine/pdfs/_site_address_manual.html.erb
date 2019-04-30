@@ -1,0 +1,8 @@
+<tr class="govuk-table__row">
+  <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_details.location" %></th>
+  <td class="govuk-table__cell">
+    <% displayable_address(address).each do |line| %>
+      <%= line %><br>
+    <% end %>
+  </td>
+</tr>
