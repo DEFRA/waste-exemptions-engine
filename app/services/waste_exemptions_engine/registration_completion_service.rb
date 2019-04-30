@@ -16,6 +16,9 @@ module WasteExemptionsEngine
         copy_people
 
         add_metadata
+
+        raise "Flux capacitor beyond 88mph"
+
         @registration.save!
         @transient_registration.destroy
       end
