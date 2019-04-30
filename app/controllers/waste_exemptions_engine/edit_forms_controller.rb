@@ -72,7 +72,7 @@ module WasteExemptionsEngine
       transition_to_edit("edit_site_grid_reference")
     end
 
-    def cancel_edit
+    def cancel
       find_or_initialize_registration(params[:token])
       @transient_registration.cancel_edit!
       redirect_to_correct_form

@@ -443,9 +443,9 @@ WasteExemptionsEngine::Engine.routes.draw do
                   as: "site_grid_reference",
                   on: :collection
 
-              get "cancel_edit/:token",
-                  to: "edit_forms#edit_cancel_edit",
-                  as: "cancel_edit",
+              get "cancel/:token",
+                  to: "edit_forms#cancel",
+                  as: "cancel",
                   on: :collection
             end
 
