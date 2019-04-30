@@ -14,6 +14,12 @@ en:
             heading: "Where operation is taking place"
             labels:
               location: "Location"
+            values:
+              location:
+                england: "England"
+                wales: "Wales"
+                scotland: "Scotland"
+                northern_ireland: "Northern Ireland"
           applicant:
             heading: "Applicant details"
             labels:
@@ -28,6 +34,14 @@ en:
               people: "Main people"
               company_no: "Companies House number"
               operator_address: "Address"
+            values:
+              business_type:
+                charity: "Charity or trust"
+                limitedCompany: "Limited company"
+                limitedLiabilityPartnership: "Limited liability partnership"
+                localAuthority: "Local authority or public body"
+                partnership: "Partnership"
+                soleTrader: "Individual or sole trader"
           contact:
             heading: "Contact details"
             labels:
@@ -47,6 +61,13 @@ en:
             labels:
               on_a_farm: "Operation is on a farm"
               is_a_farmer: "Operative is a farmer"
+            values:
+              on_a_farm:
+                "true": "yes"
+                "false": "no"
+              is_a_farmer:
+                "true": "yes"
+                "false": "no"
         edit_links:
           default: "Change"
           no_edit: "Cannot edit"

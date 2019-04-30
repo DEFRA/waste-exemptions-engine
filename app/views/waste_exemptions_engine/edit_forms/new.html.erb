@@ -36,7 +36,7 @@
               <%= t(".sections.location.labels.location") %>
             </td>
             <td>
-              <%= @edit_form.location %>
+              <%= t(".sections.location.values.location.#{@edit_form.location}") %>
             </td>
             <td class="change_link_column">
               <%= link_to location_edit_forms_path(@edit_form.token) do %>
@@ -122,7 +122,7 @@
               <%= t(".sections.operator.labels.business_type") %>
             </td>
             <td>
-              <%= @edit_form.business_type %>
+              <%= t(".sections.operator.values.business_type.#{@edit_form.business_type}") %>
             </td>
             <td class="change_link_column">
               <%= t(".edit_links.no_edit") %>
@@ -309,7 +309,7 @@
               <%= t(".sections.farm.labels.on_a_farm") %>
             </td>
             <td>
-              <%= @edit_form.on_a_farm %>
+              <%= t(".sections.farm.values.on_a_farm.#{@edit_form.on_a_farm}") %>
             </td>
             <td class="change_link_column">
               <%= link_to on_a_farm_edit_forms_path(@edit_form.token) do %>
@@ -323,7 +323,7 @@
               <%= t(".sections.farm.labels.is_a_farmer") %>
             </td>
             <td>
-              <%= @edit_form.is_a_farmer %>
+              <%= t(".sections.farm.values.on_a_farm.#{@edit_form.is_a_farmer}") %>
             </td>
             <td class="change_link_column">
               <%= link_to is_a_farmer_edit_forms_path(@edit_form.token) do %>
