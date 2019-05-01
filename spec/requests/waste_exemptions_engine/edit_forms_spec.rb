@@ -133,21 +133,42 @@ module WasteExemptionsEngine
        is_a_farmer
        site_grid_reference].each do |edit_action|
       describe "GET edit_#{edit_action}" do
-        let(:next_workflow_state) { "#{edit_action}_form" }
         let(:request_path) { "/waste_exemptions_engine/edit/#{edit_action}/#{form.token}" }
-        let(:redirection_path) do
-          send("new_#{next_workflow_state}_path".to_sym, form.transient_registration.token)
-        end
-        status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
-        it "redirects to the appropriate location" do
-          get request_path
-          expect(response.location).to include(redirection_path)
+        context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
+          before(:each) do
+            WasteExemptionsEngine.configuration.edit_enabled = "true"
+          end
+
+          let(:next_workflow_state) { "#{edit_action}_form" }
+          let(:redirection_path) do
+            send("new_#{next_workflow_state}_path".to_sym, form.transient_registration.token)
+          end
+          status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
+
+          it "redirects to the appropriate location" do
+            get request_path
+            expect(response.location).to include(redirection_path)
+          end
+
+          it "responds to the GET request with a #{status_code} status code" do
+            get request_path
+            expect(response.code).to eq(status_code.to_s)
+          end
         end
 
-        it "responds to the GET request with a #{status_code} status code" do
-          get request_path
-          expect(response.code).to eq(status_code.to_s)
+        context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
+          before(:each) { WasteExemptionsEngine.configuration.edit_enabled = "false" }
+
+          it "renders the error_404 template" do
+            get request_path
+            expect(response.location).to include("errors/404")
+          end
+
+          it "responds with a status of 404" do
+            get request_path
+            expect(response.code).to eq("404")
+          end
         end
       end
     end

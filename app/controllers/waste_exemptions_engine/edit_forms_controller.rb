@@ -96,6 +96,8 @@ module WasteExemptionsEngine
 
     def transition_to_edit(transition)
       find_or_initialize_registration(params[:token])
+      return unless edit_checks_pass?
+
       @transient_registration.send("#{transition}!".to_sym)
       redirect_to_correct_form
     end
