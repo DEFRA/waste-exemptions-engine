@@ -43,10 +43,10 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions
-      @registration.exemptions = []
-      @edit_registration.exemptions.each do |exemption|
-        @registration.exemptions << exemption
-      end
+      unchanged_exemptions = @registration.exemptions & @edit_registration.exemptions
+
+      remove_unwanted_exemptions(unchanged_exemptions)
+      add_new_exemptions(unchanged_exemptions)
     end
 
     def copy_people
@@ -54,6 +54,22 @@ module WasteExemptionsEngine
       @edit_registration.transient_people.each do |transient_person|
         new_person = Person.new(transient_person.person_attributes)
         @registration.people << new_person
+      end
+    end
+
+    def remove_unwanted_exemptions(unchanged_exemptions)
+      @registration.registration_exemptions.each do |registration_exemption|
+        next if unchanged_exemptions.include?(registration_exemption.exemption)
+
+        registration_exemption.destroy
+      end
+    end
+
+    def add_new_exemptions(unchanged_exemptions)
+      @edit_registration.exemptions.each do |exemption|
+        next if unchanged_exemptions.include?(exemption)
+
+        @registration.exemptions << exemption
       end
     end
   end
