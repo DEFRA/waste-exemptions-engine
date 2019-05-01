@@ -24,6 +24,8 @@ module WasteExemptionsEngine
     attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry, :default_assistance_mode
     # Addressbase config
     attr_accessor :addressbase_url
+    # Edit config
+    attr_writer :edit_enabled
     # Email config
     attr_accessor :email_service_email
     # PDF config
@@ -39,8 +41,13 @@ module WasteExemptionsEngine
     def initialize
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
+      @edit_enabled = false
       @use_xvfb_for_wickedpdf = true
       @use_last_email_cache = false
+    end
+
+    def edit_enabled
+      change_string_to_boolean_for(@edit_enabled)
     end
 
     def use_xvfb_for_wickedpdf
