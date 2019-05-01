@@ -26,7 +26,7 @@ module WasteExemptionsEngine
         site_grid_reference_form
       ]
 
-      transitionable_states = editable_form_states + [:declaration_form]
+      transitionable_states = editable_form_states + %i[declaration_form confirm_edit_cancelled_form]
 
       context "when a WasteExemptionsEngine::EditRegistration's state is #{current_state}" do
         it "can only transition to the allowed states" do
@@ -41,6 +41,18 @@ module WasteExemptionsEngine
           it "changes to #{expected_state} after the '#{event}' event" do
             expect(subject).to transition_from(current_state).to(expected_state).on_event(event)
           end
+        end
+
+        it "changes to declaration_form after the 'next' event" do
+          expected_state = :declaration_form
+          event = :next
+          expect(subject).to transition_from(current_state).to(expected_state).on_event(event)
+        end
+
+        it "changes to confirm_edit_cancelled after the 'cancel_edit' event" do
+          expected_state = :confirm_edit_cancelled_form
+          event = :cancel_edit
+          expect(subject).to transition_from(current_state).to(expected_state).on_event(event)
         end
       end
     end
