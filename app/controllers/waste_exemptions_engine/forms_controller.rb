@@ -72,7 +72,7 @@ module WasteExemptionsEngine
     end
 
     def setup_checks_pass?
-      registration_is_valid? && state_is_correct?
+      registration_is_valid? && state_is_correct? && edit_checks_pass?
     end
 
     def set_workflow_state
@@ -110,6 +110,18 @@ module WasteExemptionsEngine
 
     def form_matches_state?
       controller_name == "#{@transient_registration.workflow_state}s"
+    end
+
+    def edit_checks_pass?
+      return true unless @transient_registration.is_a?(EditRegistration)
+      return true if edit_enabled? && current_user_can_edit?
+
+      redirect_to "/errors/404", status: 404
+      false
+    end
+
+    def edit_enabled?
+      WasteExemptionsEngine.configuration.edit_enabled
     end
 
     # http://jacopretorius.net/2014/01/force-page-to-reload-on-browser-back-in-rails.html
