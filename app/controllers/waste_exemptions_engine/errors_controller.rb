@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     protected
 
     def error_code
-      @error_code ||= params[:id]
+      @error_code ||= params[:status]
     end
 
     def template_exists(name)
