@@ -26,19 +26,19 @@
   </div>
   <div class="grid-row">
     <div class="column-two-thirds">
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.location.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.location.labels.location") %>
             </td>
             <td>
-              <%= @edit_form.location %>
+              <%= t(".sections.location.values.location.#{@edit_form.location}") %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to location_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.location") %></span>
@@ -48,19 +48,19 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.applicant.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.applicant.labels.applicant_name") %>
             </td>
             <td>
               <%= @edit_form.applicant_name %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to applicant_name_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_name") %></span>
@@ -68,13 +68,13 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.applicant.labels.applicant_phone") %>
             </td>
             <td>
               <%= @edit_form.applicant_phone %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to applicant_phone_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_phone") %></span>
@@ -82,13 +82,13 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.applicant.labels.applicant_email") %>
             </td>
             <td>
               <%= @edit_form.applicant_email %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to applicant_email_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_email") %></span>
@@ -98,19 +98,19 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.operator.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.operator.labels.operator_name") %>
             </td>
             <td>
               <%= @edit_form.operator_name %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.operator_name") %></span>
@@ -118,25 +118,25 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.operator.labels.business_type") %>
             </td>
             <td>
-              <%= @edit_form.business_type %>
+              <%= t(".sections.operator.values.business_type.#{@edit_form.business_type}") %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= t(".edit_links.no_edit") %>
             </td>
           </tr>
           <% if @edit_form.transient_registration.partnership? %>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.operator.labels.people") %>
             </td>
             <td>
               <%= render("shared/resource_people_list", resource_people: @edit_form.people) %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to main_people_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.people") %></span>
@@ -146,13 +146,13 @@
           <% end %>
           <% if @edit_form.transient_registration.company_no_required? %>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.operator.labels.company_no") %>
             </td>
             <td>
               <%= @edit_form.company_no %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to registration_number_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.company_no") %></span>
@@ -161,7 +161,7 @@
           </tr>
           <% end %>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.operator.labels.operator_address") %>
             </td>
             <td>
@@ -171,7 +171,7 @@
                 <% end %>
               </ul>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to operator_postcode_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.operator_postcode") %></span>
@@ -181,19 +181,19 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.contact.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.contact.labels.contact_name") %>
             </td>
             <td>
               <%= @edit_form.contact_name %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to contact_name_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_name") %></span>
@@ -201,13 +201,13 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.contact.labels.contact_phone") %>
             </td>
             <td>
               <%= @edit_form.contact_phone %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to contact_phone_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_phone") %></span>
@@ -215,13 +215,13 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.contact.labels.contact_email") %>
             </td>
             <td>
               <%= @edit_form.contact_email %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to contact_email_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_email") %></span>
@@ -229,7 +229,7 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.contact.labels.contact_address") %>
             </td>
             <td>
@@ -239,7 +239,7 @@
                 <% end %>
               </ul>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to contact_postcode_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.contact_postcode") %></span>
@@ -249,13 +249,13 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.site.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.site.labels.site_address") %>
             </td>
             <td>
@@ -271,7 +271,7 @@
               </ul>
               <% end %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
@@ -281,14 +281,14 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.exemptions.heading") %>
         </caption>
         <tbody>
           <% @edit_form.registration_exemptions.includes(:exemption).each do |re| %>
           <tr>
-            <td>
+            <td class="label_column">
               <%= re.exemption.code %>
             </td>
             <td>
@@ -299,19 +299,19 @@
         </tbody>
       </table>
 
-      <table>
+      <table class="edit_table">
         <caption class="heading-medium">
           <%= t(".sections.farm.heading") %>
         </caption>
         <tbody>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.farm.labels.on_a_farm") %>
             </td>
             <td>
-              <%= @edit_form.on_a_farm %>
+              <%= t(".sections.farm.values.on_a_farm.#{@edit_form.on_a_farm}") %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to on_a_farm_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.on_a_farm") %></span>
@@ -319,13 +319,13 @@
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="label_column">
               <%= t(".sections.farm.labels.is_a_farmer") %>
             </td>
             <td>
-              <%= @edit_form.is_a_farmer %>
+              <%= t(".sections.farm.values.on_a_farm.#{@edit_form.is_a_farmer}") %>
             </td>
-            <td>
+            <td class="change_link_column">
               <%= link_to is_a_farmer_edit_forms_path(@edit_form.token) do %>
                 <%= t(".edit_links.default") %>
                 <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.is_a_farmer") %></span>
