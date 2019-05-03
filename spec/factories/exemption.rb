@@ -8,7 +8,7 @@ FactoryBot.define do
     end
 
     category { WasteExemptionsEngine::Exemption.categories[:using_waste] }
-    url { "https://www.gov.uk/guidance/waste-exemptions-#{code}-using-waste" }
-    summary { "Use of waste in construction" }
+    url { "https://www.gov.uk/guidance/waste-exemptions-#{code}using--waste" }
+    summary { Faker::Lorem.sentence }
   end
 end

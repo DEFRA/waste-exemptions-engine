@@ -57,10 +57,10 @@ module WasteExemptionsEngine
           expect(NewRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
-        it "sends a confirmation email" do
+        it "sends a confirmation email to both the applicant and the contant emails" do
           old_emails_sent_count = ActionMailer::Base.deliveries.count
           registration_completion_service.complete
-          expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 1)
+          expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 2)
         end
       end
     end

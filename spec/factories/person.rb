@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :person, class: WasteExemptionsEngine::Person do
-    sequence(:first_name) { |n| "Joe#{n}" }
-    sequence(:last_name) { |n| "Bloggs#{n}" }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     person_type { 0 }
   end
 end
