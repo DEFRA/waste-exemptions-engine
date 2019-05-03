@@ -19,6 +19,16 @@ module WasteExemptionsEngine
         expect(response.code).to eq("200")
       end
 
+      it "redirects away if called twice" do
+        get request_path
+
+        expect(response.code).to eq("200")
+
+        get request_path
+
+        expect(response.code).to eq("302")
+      end
+
       context "when the host application has a current_user" do
         let(:current_user) { OpenStruct.new(id: 1) }
 
