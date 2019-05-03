@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Confirm Edit Cancelled Forms", type: :request do
+    before(:each) do
+      WasteExemptionsEngine.configuration.edit_enabled = "true"
+    end
+
     describe "GET confirm_edit_cancelled_form" do
       let(:form) { build(:confirm_edit_cancelled_form) }
       let(:good_request_path) { "/waste_exemptions_engine/confirm-edit-cancelled/#{form.token}" }

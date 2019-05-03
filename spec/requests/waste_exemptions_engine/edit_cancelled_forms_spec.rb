@@ -9,14 +9,39 @@ module WasteExemptionsEngine
     describe "GET edit_cancelled_form" do
       let(:request_path) { "/waste_exemptions_engine/edit-cancelled/#{form.token}" }
 
-      it "renders the appropriate template" do
-        get request_path
-        expect(response).to render_template("waste_exemptions_engine/edit_cancelled_forms/new")
+      context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
+        before(:each) do
+          WasteExemptionsEngine.configuration.edit_enabled = "true"
+        end
+
+        it "renders the appropriate template" do
+          get request_path
+          expect(response).to render_template("waste_exemptions_engine/edit_cancelled_forms/new")
+        end
+
+        it "responds to the GET request with a 200 status code" do
+          get request_path
+          expect(response.code).to eq("200")
+        end
       end
 
-      it "responds to the GET request with a 200 status code" do
-        get request_path
-        expect(response.code).to eq("200")
+      context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
+        before(:each) { WasteExemptionsEngine.configuration.edit_enabled = "false" }
+
+        it "renders the error_404 template" do
+          get request_path
+          expect(response.location).to include("errors/404")
+        end
+
+        it "responds with a status of 404" do
+          get request_path
+          expect(response.code).to eq("404")
+        end
+
+        it "does not call the EditCancellationService" do
+          expect(EditCancellationService).to_not receive(:run)
+          get request_path
+        end
       end
     end
 
