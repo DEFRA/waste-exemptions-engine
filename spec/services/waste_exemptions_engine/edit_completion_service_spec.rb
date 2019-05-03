@@ -56,9 +56,25 @@ module WasteExemptionsEngine
         }.from(old_people_data).to(new_people_data)
       end
 
-      it "copies the exemptions from the registration" do
+      it "does not change the status of unmodified registration_exemptions" do
+        registration.registration_exemptions.first.update(state: "foo")
+        edit_registration.exemptions << registration.exemptions.first
+
+        expect { service }.to_not change { registration.reload.registration_exemptions.first.state }
+      end
+
+      it "removes no-longer-used registration_exemptions" do
+        exemption = registration.exemptions.first
+
         service
-        expect(edit_registration.exemptions).to match_array(registration.exemptions)
+        expect(registration.reload.exemptions).to_not include(exemption)
+      end
+
+      it "adds newly-added registration_exemptions" do
+        exemption = edit_registration.exemptions.first
+
+        service
+        expect(registration.reload.exemptions).to include(exemption)
       end
 
       it "removes no-longer-used attribute from the registration" do
