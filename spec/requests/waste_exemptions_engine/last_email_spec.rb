@@ -20,38 +20,16 @@ module WasteExemptionsEngine
       context "when `WasteExemptionsEngine.configuration.use_last_email_cache` is anything other than \"true\"" do
         before(:context) { WasteExemptionsEngine.configuration.use_last_email_cache = "false" }
 
-        before(:each) do
-          skip "There is a bug in the engine routing which means all requests that should 404 " \
-            "get swallowed up by the errors route and result in a 500."
-        end
-
-        it "renders the error_404 template" do
-          get last_email_path
-          expect(response.location).to include("errors/404")
-        end
-
-        it "responds with a status of 404" do
-          get last_email_path
-          expect(response.code).to eq("404")
+        it "cannot load the page" do
+          expect { get last_email_path }.to raise_error(ActionController::RoutingError)
         end
       end
 
       context "when `WasteExemptionsEngine.configuration.use_last_email_cache` is missing" do
         before(:context) { WasteExemptionsEngine.configuration.use_last_email_cache = nil }
 
-        before(:each) do
-          skip "There is a bug in the engine routing which means all requests that should 404 " \
-            "get swallowed up by the errors route and result in a 500."
-        end
-
-        it "renders the error_404 template" do
-          get last_email_path
-          expect(response.location).to include("errors/404")
-        end
-
-        it "responds with a status of 302" do
-          get last_email_path
-          expect(response.code).to eq("404")
+        it "cannot load the page" do
+          expect { get last_email_path }.to raise_error(ActionController::RoutingError)
         end
       end
     end
