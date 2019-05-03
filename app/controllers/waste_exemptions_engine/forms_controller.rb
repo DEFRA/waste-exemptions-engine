@@ -116,7 +116,7 @@ module WasteExemptionsEngine
       return true unless @transient_registration.is_a?(EditRegistration)
       return true if edit_enabled? && current_user_can_edit?
 
-      redirect_to error_path(id: 404), status: 404
+      redirect_to error_path(status: 404), status: 404
       false
     end
 
