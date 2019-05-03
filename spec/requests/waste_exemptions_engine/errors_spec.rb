@@ -18,9 +18,18 @@ module WasteExemptionsEngine
       end
 
       it "renders the generic error template when no matching error template exists" do
-        get error_path("unknown")
+        get error_path("601")
         expect(response.code).to eq("500")
         expect(response).to render_template(:error_generic)
+      end
+
+      it "correctly redirects page not found errors to the correct internal view" do
+        rails_respond_without_detailed_exceptions do
+          get "/this-page-does-not-exist"
+
+          expect(response.code).to eq("404")
+          expect(response.body).to include(I18n.t("waste_exemptions_engine.errors.error_404.clarification"))
+        end
       end
     end
   end
