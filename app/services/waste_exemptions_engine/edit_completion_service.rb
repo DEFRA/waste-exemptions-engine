@@ -43,10 +43,7 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions
-      @registration.exemptions = []
-      @edit_registration.exemptions.each do |exemption|
-        @registration.exemptions << exemption
-      end
+      @registration.exemptions = @edit_registration.exemptions
     end
 
     def copy_people
