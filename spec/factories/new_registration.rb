@@ -45,13 +45,13 @@ FactoryBot.define do
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
 
-      addresses {
+      addresses do
         [
           build(:transient_address, :operator_address, :manual),
           build(:transient_address, :contact_address, :manual),
           build(:transient_address, :site_address, :manual)
         ]
-      }
+      end
     end
   end
 end
