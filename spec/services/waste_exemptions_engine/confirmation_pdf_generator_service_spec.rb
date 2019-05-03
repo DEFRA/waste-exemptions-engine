@@ -4,18 +4,14 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe ConfirmationPdfGeneratorService do
-    describe ".send_confirmation_email" do
+    describe ".run" do
       it "generates and return a string containing PDF content with the confirmation information" do
-        Timecop.freeze(Time.local(2018, 1, 1, 1, 5, 0))
         registration = build(:registration, :confirmable)
-        fixtures_file_path = Rails.root.join("..", "fixtures/pdfs/confirmation.pdf")
 
-        result = ConfirmationPdfGeneratorService.run(registration: registration)
+        result = described_class.run(registration: registration)
 
-        ## Generate new fixtures PDF when a change has been made
-        # File.open(fixtures_file_path, "wb") { |file| file << result }
-
-        expect(result).to match_pdf_content(fixtures_file_path)
+        expect(result).to include_pdf_content(registration.reference)
+        expect(result).to include_pdf_content(registration.submitted_at.to_formatted_s(:day_month_year))
       end
     end
   end
