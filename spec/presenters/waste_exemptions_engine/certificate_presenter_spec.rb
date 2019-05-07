@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       let(:registration) { double(:registration, business_type: business_type) }
 
       context "when the business type is partnership" do
-        let(:business_type) { "Partnership" }
+        let(:business_type) { "partnership" }
 
         it "returns true" do
           expect(subject).to be_partnership

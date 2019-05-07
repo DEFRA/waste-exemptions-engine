@@ -3,7 +3,7 @@
 module WasteExemptionsEngine
   class CertificatePresenter < BasePresenter
     def partnership?
-      business_type == "Partnership"
+      business_type == "partnership"
     end
 
     def partners_names
@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     end
 
     def human_business_type
-      I18n.t("waste_exemptions_engine.pdfs.certificate.busness_types.#{super}")
+      I18n.t("waste_exemptions_engine.pdfs.certificate.busness_types.#{business_type}")
     end
 
     def contact_name
