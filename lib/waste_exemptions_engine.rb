@@ -24,6 +24,8 @@ module WasteExemptionsEngine
     attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry, :default_assistance_mode
     # Addressbase config
     attr_accessor :addressbase_url
+    # Edit config
+    attr_writer :edit_enabled
     # Email config
     attr_accessor :email_service_email
     # PDF config
@@ -39,19 +41,21 @@ module WasteExemptionsEngine
     def initialize
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
+      @edit_enabled = false
       @use_xvfb_for_wickedpdf = true
       @use_last_email_cache = false
     end
 
-    def use_xvfb_for_wickedpdf
-      @use_xvfb_for_wickedpdf = @use_xvfb_for_wickedpdf == "true" if @use_xvfb_for_wickedpdf.is_a?(String)
-      @use_xvfb_for_wickedpdf
+    def edit_enabled
+      change_string_to_boolean_for(@edit_enabled)
     end
 
-    # If additional boolean config values are required, these methods should be refactored to use metaprogramming.
+    def use_xvfb_for_wickedpdf
+      change_string_to_boolean_for(@use_xvfb_for_wickedpdf)
+    end
+
     def use_last_email_cache
-      @use_last_email_cache = @use_last_email_cache == "true" if @use_last_email_cache.is_a?(String)
-      @use_last_email_cache
+      change_string_to_boolean_for(@use_last_email_cache)
     end
 
     def companies_house_host=(value)
@@ -64,6 +68,12 @@ module WasteExemptionsEngine
       DefraRubyValidators.configure do |configuration|
         configuration.companies_house_api_key = value
       end
+    end
+
+    # If the setting's value is "true", then set to a boolean true. Otherwise, set it to false.
+    def change_string_to_boolean_for(setting)
+      setting = setting == "true" if setting.is_a?(String)
+      setting
     end
   end
 end
