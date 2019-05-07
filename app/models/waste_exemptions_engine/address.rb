@@ -13,5 +13,9 @@ module WasteExemptionsEngine
 
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
+
+    def located_by_grid_reference?
+      auto?
+    end
   end
 end

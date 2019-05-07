@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   address_types = WasteExemptionsEngine::Address.address_types
+  modes = WasteExemptionsEngine::Address.modes
 
   factory :address, class: WasteExemptionsEngine::Address do
     trait :operator_address do
@@ -19,6 +20,8 @@ FactoryBot.define do
     end
 
     trait :postal do
+      manual
+
       sequence :postcode do |n|
         "BS#{n}AA"
       end
@@ -31,7 +34,11 @@ FactoryBot.define do
     end
 
     trait :manual do
-      mode { WasteExemptionsEngine::TransientAddress.modes[:manual] }
+      mode { modes[:manual] }
+    end
+
+    trait :auto do
+      mode { modes[:auto] }
     end
   end
 end

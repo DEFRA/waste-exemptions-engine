@@ -2,41 +2,69 @@ en:
   waste_exemptions_engine:
     pdfs:
       certificate:
-        heading: Certificate of Registration
-        regulator:
-          heading: Regulation authority
-          name: Name
-          address:
-            label: Address
-            line1: National Customer Service Centre
-            line2: 99 Parkway Avenue
-            line3: Sheffield
-            line4: S9 4WF
-          telephone:
-            label: Telephone number
-            number: "03708 506506"
-        certify_message: The Environment Agency certify that the following information is entered in the public register which they maintain.
-        registration:
+        busness_types:
+          soleTrader: Individual or sole trader
+          limitedCompany: Limited company
+          partnership: Partnership
+          limitedLiabilityPartnership: Limited liability partnership
+          localAuthority: Local authority or public body
+          charity: Charity or trust
+        heading: Waste exemption registration %{registration_number}
+        confirmation:
+          heading: Waste exemption registration %{registration_number}
+          paragraph1: We confirm that the details you have entered, as shown below, are now on the exemptions register. Your registration should show on the public register within 5 days.
+          warning: This document is not a permit. Exemptions may have ceased or been revoked.
+          paragraph2: "To check whether these exemptions are still valid, check the company’s registration %{company_registration_number} on the public register of waste exemptions:"
+        business_responsibilities:
+          heading: Business responsibilities
+          first_paragraph:
+            description: "The business or organisation responsible for carrying out the exempt waste operations agrees to:"
+            list_items:
+              first: comply with all limits on waste types and quantities
+              second: comply with all conditions governing how waste must be stored, handled and treated
+              third: carry out the operations without endangering human health or harming the environment
+          second_paragraph:
+            description: "For the operations to remain exempt they must be carried out without:"
+            list_items:
+              first: causing risk to water, air, soil, plants or animals
+              second: causing a nuisance through noise and odours
+              third: negatively affecting the countryside or places of special interest
+          paragraph3: In sensitive locations, extra controls may be needed over and above those set out in the exemptions to make sure this happens.
+        registration_details:
           heading: Registration details
-          reference: Registration number
-          submitted_at: Date registration submitted
-        operator:
-          heading: Operator details
-          name: Name of waste operator
-          partners: Partners
-          business_name_if_applicable: "Business name (if applicable)"
-          business_address: Address of place of business
-          submitted_at: Date registration submitted
-        site:
-          heading: Site details
-          location: Location
-          location_description: Location description
-          address: Site address
-        exemption:
-          heading: Exemption details
-          expires_label: Expires on
-        changes:
-          heading: "Making changes to your registration"
-          paragraph1: "Your registration will last %{expires_after_pluralized} and will need to be re-registered after this period. If any of your details change, you must notify us within 28 days of the change."
-          year: "year"
-          paragraph2: "You can do this by calling the Environment Agency."
+          registration_details:
+            heading: Registration details
+            reference_number: Reference Number
+            date_registered: Date registered
+          exemptions:
+            heading: Exemptions
+            expires_on: Expires on %{expire_date}
+          contact_details:
+            heading: Your contact details
+            name: Your name
+            business_telephone: Your telephone number
+            business_email: Your email address
+          business_details:
+            heading: Waste operator details
+            partners: Partners
+            business_type: Business or organisation type
+            responsible_person: Waste operator responsible for these waste operations
+            responsible_person_address: Address of the Waste operator
+          waste_operations_contact:
+            heading: Waste operations contact
+            name: Name
+            position: Position
+            telephone_n: Telephone number
+            address: Address
+            email: Email
+          waste_operations_details:
+            heading: Waste operation details
+      site_address_auto:
+        registration_details:
+          waste_operations_details:
+            grid_reference: Grid reference
+            site_details: Site details
+      site_address_manual:
+        registration_details:
+          waste_operations_details:
+            location: Waste operation location
