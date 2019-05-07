@@ -62,6 +62,15 @@ module WasteExemptionsEngine
           registration_completion_service.complete
           expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 2)
         end
+
+        context "when applicant and contact emails coincide" do
+          let(:new_registration) { create(:new_registration, :complete, :same_applicant_and_contact_email ) }
+          it "only sends one confirmation email" do
+            old_emails_sent_count = ActionMailer::Base.deliveries.count
+            registration_completion_service.complete
+            expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 1)
+          end
+        end
       end
     end
   end

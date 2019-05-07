@@ -26,6 +26,10 @@ FactoryBot.define do
       business_type { "soleTrader" }
     end
 
+    trait :same_applicant_and_contact_email do
+      contact_email { applicant_email }
+    end
+
     trait :complete do
       limited_company
 
