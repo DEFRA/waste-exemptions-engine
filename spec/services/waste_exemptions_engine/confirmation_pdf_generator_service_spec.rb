@@ -25,15 +25,15 @@ module WasteExemptionsEngine
         expect(result).to include_pdf_content(registration.contact_position)
 
         registration.addresses.each do |address|
-          if address.manual?
+          if address.located_by_grid_reference?
+            expect(result).to include_pdf_content(address.description)
+            expect(result).to include_pdf_content(address.grid_reference)
+          else
             expect(result).to include_pdf_content(address.premises)
             expect(result).to include_pdf_content(address.street_address)
             expect(result).to include_pdf_content(address.locality)
             expect(result).to include_pdf_content(address.city)
             expect(result).to include_pdf_content(address.postcode)
-          else
-            expect(result).to include_pdf_content(address.description)
-            expect(result).to include_pdf_content(address.grid_reference)
           end
         end
 

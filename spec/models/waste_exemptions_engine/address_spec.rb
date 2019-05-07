@@ -16,6 +16,26 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#located_by_grid_reference?" do
+      subject { described_class.new(mode: mode) }
+
+      context "when mode is manual" do
+        let(:mode) { :manual }
+
+        it "returns false" do
+          expect(subject).to_not be_located_by_grid_reference
+        end
+      end
+
+      context "when mode is auto" do
+        let(:mode) { :auto }
+
+        it "returns true" do
+          expect(subject).to be_located_by_grid_reference
+        end
+      end
+    end
+
     it_behaves_like "it has PaperTrail", model_factory: :address,
                                          field: :organisation,
                                          ignored_fields: %i[blpu_state_code
