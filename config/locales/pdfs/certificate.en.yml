@@ -45,11 +45,11 @@ en:
             business_telephone: Your telephone number
             business_email: Your email address
           business_details:
-            heading: Business details
+            heading: Waste operator details
             partners: Partners
             business_type: Business or organisation type
-            responsible_person: Person responsible for these waste operations
-            responsible_person_address: Address of the person responsible
+            responsible_person: Waste operator responsible for these waste operations
+            responsible_person_address: Address of the Waste operator
           waste_operations_contact:
             heading: Waste operations contact
             name: Name
