@@ -29,26 +29,23 @@ FactoryBot.define do
 
     trait :partnership do
       business_type { "partnership" }
+      people { build_list(:person, 2) }
+    end
+
+    trait :with_manual_site_address do
+      addresses do
+        [build(:address, :operator_address, :postal),
+         build(:address, :contact_address, :postal),
+         build(:address, :site_address, :manual, :postal)]
+      end
     end
 
     trait :sole_trader do
       business_type { "soleTrader" }
     end
 
-    # This is the minimum needed to be able to generate a confirmation email
-    # and its attachments sucessfully
-    trait :emailable do
-      reference { "WEX000999" }
-      submitted_at { Date.today }
-      addresses { [build(:address, :site_address)] }
-    end
-
-    trait :confirmable do
-      emailable
-      company_no { "123123456" }
-    end
-
     trait :complete do
+      submitted_at { Date.today }
       location { "england" }
       applicant_first_name { "Joe" }
       applicant_last_name { "Bloggs" }
@@ -64,13 +61,13 @@ FactoryBot.define do
       contact_email { "test@example.com" }
       on_a_farm { true }
       is_a_farmer { true }
-      exemptions { build_list(:exemption, 10) }
+      registration_exemptions { build_list(:registration_exemption, 10) }
       people { build_list(:person, 3) }
 
       addresses do
         [build(:address, :operator_address, :postal),
          build(:address, :contact_address, :postal),
-         build(:address, :site_address)]
+         build(:address, :site_address, :auto)]
       end
     end
   end
