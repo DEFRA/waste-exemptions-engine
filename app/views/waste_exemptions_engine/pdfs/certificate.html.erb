@@ -125,7 +125,7 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.business_type" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.business_type.capitalize %> </td>
+                    <td class="govuk-table__cell"> <%= presenter.human_business_type %> </td>
                   </tr>
                   <% if presenter.partnership? %>
                     <tr class="govuk-table__row">
