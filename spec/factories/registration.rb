@@ -52,7 +52,7 @@ FactoryBot.define do
       applicant_first_name { Faker::Name.first_name }
       applicant_last_name { Faker::Name.last_name }
       applicant_phone { "01234567890" }
-      applicant_email { Faker::Internet.email }
+      applicant_email { Faker::Internet.safe_email }
       business_type { "limitedCompany" }
       company_no { "09360070" }
       operator_name { Faker::Company.name }
@@ -60,7 +60,7 @@ FactoryBot.define do
       contact_last_name { Faker::Name.last_name }
       contact_position { Faker::Company.profession }
       contact_phone { "01234567890" }
-      contact_email { Faker::Internet.email }
+      contact_email { Faker::Internet.safe_email }
       on_a_farm { true }
       is_a_farmer { true }
       exemptions { build_list(:exemption, 10) }
