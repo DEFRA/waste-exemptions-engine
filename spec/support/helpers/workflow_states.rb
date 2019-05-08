@@ -17,16 +17,17 @@ module Helpers
     end
 
     def self.previous_state(transient_registration)
-      # We need to find the resulting workflow state if the `back` event was triggered from the
-      # current_state. Once we have the workflow state that preceded the one for the form being
-      # tested, we can use this to test that a redirection takes place when the state is
-      # insufficient for the requested page.
-      state_machine = transient_registration.aasm
-      permitted_events = state_machine.events(permitted: true)
-      back_event = permitted_events.select { |e| e.name == :back }.first
-      all_back_transitions = back_event.transitions_from_state(state_machine.current_state)
-      allowed_back_transitions = all_back_transitions.select { |t| t.allowed?(transient_registration) }
-      allowed_back_transitions.first.to
+      state_machine = transient_registration.class.aasm
+
+      state_machine.events.each do |event|
+        previous_state_transition = event.transitions.find do |transition|
+          transition.to == transient_registration.aasm.current_state
+        end
+
+        return previous_state_transition.from if previous_state_transition
+      end
+
+      raise StandardError, "No previous state found for #{transient_registration.aasm.current_state}"
     end
   end
 end
