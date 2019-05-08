@@ -15,7 +15,7 @@ FactoryBot.define do
 
     trait :site_address do
       address_type { address_types[:site] }
-      description { "The waste is stored in an out-building next to the barn." }
+      description { Faker::Lorem.sentence }
       grid_reference { "ST 58337 72855" }
     end
 
@@ -26,25 +26,11 @@ FactoryBot.define do
         "BS#{n}AA"
       end
 
-      sequence :uprn do |n|
-        "uprn_#{n}"
-      end
-
-      sequence :premises do |n|
-        "premises_#{n}"
-      end
-
-      sequence :street_address do |n|
-        "street_address_#{n}"
-      end
-
-      sequence :locality do |n|
-        "locality_#{n}"
-      end
-
-      sequence :city do |n|
-        "city_#{n}"
-      end
+      uprn { Faker::Alphanumeric.unique.alphanumeric(8) }
+      premises { Faker::Address.community }
+      street_address { Faker::Address.street_address }
+      locality { Faker::Address.country }
+      city { Faker::Address.city }
     end
 
     trait :manual do

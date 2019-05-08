@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "defra_ruby_style"
   s.add_development_dependency "dotenv-rails"
   s.add_development_dependency "factory_bot_rails"
+  s.add_development_dependency "faker"
   s.add_development_dependency "pdf-reader"
   s.add_development_dependency "pry-byebug"
   s.add_development_dependency "rspec-rails", "~> 3.8.0"
