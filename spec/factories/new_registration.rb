@@ -26,29 +26,34 @@ FactoryBot.define do
       business_type { "soleTrader" }
     end
 
+    trait :same_applicant_and_contact_email do
+      contact_email { applicant_email }
+    end
+
     trait :complete do
+      limited_company
+
       location { "england" }
-      applicant_first_name { "Joe" }
-      applicant_last_name { "Bloggs" }
+      applicant_first_name { Faker::Name.first_name }
+      applicant_last_name { Faker::Name.last_name }
       applicant_phone { "01234567890" }
-      applicant_email { "test@example.com" }
-      business_type { "limitedCompany" }
+      applicant_email { Faker::Internet.safe_email }
       company_no { "09360070" }
-      operator_name { "Acme Waste Management" }
-      contact_first_name { "Joe" }
-      contact_last_name { "Bloggs" }
-      contact_position { "Chief Waste Carrier" }
+      operator_name { Faker::Company.name }
+      contact_first_name { Faker::Name.first_name }
+      contact_last_name { Faker::Name.last_name }
+      contact_position { Faker::Company.profession }
       contact_phone { "01234567890" }
-      contact_email { "test@example.com" }
+      contact_email { Faker::Internet.safe_email }
       on_a_farm { true }
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
 
-      after(:create) do |new_registration|
-        new_registration.addresses = [
-          create(:transient_address, :operator_address, :manual),
-          create(:transient_address, :contact_address, :manual),
-          create(:transient_address, :site_address, :manual)
+      addresses do
+        [
+          build(:transient_address, :operator_address, :manual),
+          build(:transient_address, :contact_address, :manual),
+          build(:transient_address, :site_address, :manual)
         ]
       end
     end

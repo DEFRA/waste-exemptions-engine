@@ -14,7 +14,7 @@ FactoryBot.define do
 
     trait :site_address do
       address_type { address_types[:site] }
-      description { "The waste is stored in an out-building next to the barn." }
+      description { Faker::Lorem.sentence }
       grid_reference { "ST 58337 72855" }
     end
 
