@@ -32,6 +32,10 @@ FactoryBot.define do
       people { build_list(:person, 2) }
     end
 
+    trait :sole_trader do
+      business_type { "soleTrader" }
+    end
+
     trait :with_manual_site_address do
       addresses do
         [build(:address, :operator_address, :postal),
@@ -40,34 +44,32 @@ FactoryBot.define do
       end
     end
 
-    trait :sole_trader do
-      business_type { "soleTrader" }
-    end
-
     trait :complete do
       submitted_at { Date.today }
       location { "england" }
-      applicant_first_name { "Joe" }
-      applicant_last_name { "Bloggs" }
+      applicant_first_name { Faker::Name.first_name }
+      applicant_last_name { Faker::Name.last_name }
       applicant_phone { "01234567890" }
-      applicant_email { "test@example.com" }
+      applicant_email { Faker::Internet.safe_email }
       business_type { "limitedCompany" }
       company_no { "09360070" }
-      operator_name { "Acme Waste Management" }
-      contact_first_name { "Joe" }
-      contact_last_name { "Bloggs" }
-      contact_position { "Chief Waste Carrier" }
+      operator_name { Faker::Company.name }
+      contact_first_name { Faker::Name.first_name }
+      contact_last_name { Faker::Name.last_name }
+      contact_position { Faker::Company.profession }
       contact_phone { "01234567890" }
-      contact_email { "test@example.com" }
+      contact_email { Faker::Internet.safe_email }
       on_a_farm { true }
       is_a_farmer { true }
       registration_exemptions { build_list(:registration_exemption, 10) }
       people { build_list(:person, 3) }
 
       addresses do
-        [build(:address, :operator_address, :postal),
-         build(:address, :contact_address, :postal),
-         build(:address, :site_address, :auto)]
+        [
+          build(:address, :operator_address, :postal),
+          build(:address, :contact_address, :postal),
+          build(:address, :site_address, :auto)
+        ]
       end
     end
   end
