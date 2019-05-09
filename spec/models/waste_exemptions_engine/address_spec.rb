@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     end
 
     describe "#located_by_grid_reference?" do
-      subject { described_class.new(mode: mode) }
+      subject { described_class.new(mode: mode, address_type: :site) }
 
       context "when mode is manual" do
         let(:mode) { :manual }

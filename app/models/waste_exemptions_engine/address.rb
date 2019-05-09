@@ -15,7 +15,7 @@ module WasteExemptionsEngine
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
     def located_by_grid_reference?
-      auto?
+      site? && auto?
     end
   end
 end
