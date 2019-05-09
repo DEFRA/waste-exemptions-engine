@@ -37,6 +37,10 @@ FactoryBot.define do
       mode { modes[:manual] }
     end
 
+    trait :lookup do
+      mode { modes[:lookup] }
+    end
+
     trait :auto do
       mode { modes[:auto] }
     end
