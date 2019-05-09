@@ -188,7 +188,11 @@
             <div class="table-wrapper">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
-                  <%= render "waste_exemptions_engine/pdfs/site_address_#{presenter.site_address.mode}", address: presenter.site_address %>
+                  <% if presenter.site_address.located_by_grid_reference? %>
+                    <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: presenter.site_address %>
+                  <% else %>
+                    <%= render "waste_exemptions_engine/pdfs/site_address_manual", address: presenter.site_address %>
+                  <% end %>
                 </tbody>
               </table>
             </div>

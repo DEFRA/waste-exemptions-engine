@@ -44,6 +44,14 @@ FactoryBot.define do
       end
     end
 
+    trait :with_lookup_site_address do
+      addresses do
+        [build(:address, :operator_address, :postal),
+         build(:address, :contact_address, :postal),
+         build(:address, :site_address, :lookup, :postal)]
+      end
+    end
+
     trait :complete do
       submitted_at { Date.today }
       location { "england" }
