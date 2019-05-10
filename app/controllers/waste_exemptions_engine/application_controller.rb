@@ -2,8 +2,6 @@
 
 module WasteExemptionsEngine
   class ApplicationController < ::ApplicationController
-    include PermissionChecks
-
     # A successful POST request redirects to the next form in the work flow. We have chosen to
     # differentiate 'good' rediection as 303 and 'bad' redirection as 302.
     UNSUCCESSFUL_REDIRECTION_CODE = 302
