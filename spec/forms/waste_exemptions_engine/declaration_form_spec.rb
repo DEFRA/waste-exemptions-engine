@@ -40,5 +40,11 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe ".can_navigate_flexibly?" do
+      it "returns false" do
+        expect(described_class.can_navigate_flexibly?).to be_falsey
+      end
+    end
   end
 end
