@@ -72,7 +72,7 @@ module WasteExemptionsEngine
     end
 
     def setup_checks_pass?
-      registration_is_valid? && state_is_correct? && edit_checks_pass?
+      registration_is_valid? && state_is_correct?
     end
 
     def set_workflow_state
@@ -112,23 +112,15 @@ module WasteExemptionsEngine
       controller_name == "#{@transient_registration.workflow_state}s"
     end
 
-    def edit_checks_pass?
-      return true unless @transient_registration.is_a?(EditRegistration)
-      return true if edit_enabled? && current_user_can_edit?
-
-      redirect_to error_path(status: 404), status: 404
-      false
-    end
-
-    def edit_enabled?
-      WasteExemptionsEngine.configuration.edit_enabled
-    end
-
     # http://jacopretorius.net/2014/01/force-page-to-reload-on-browser-back-in-rails.html
     def back_button_cache_buster
       response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
       response.headers["Pragma"] = "no-cache"
       response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    end
+
+    def not_found
+      raise ActionController::RoutingError.new("Not Found")
     end
   end
 end
