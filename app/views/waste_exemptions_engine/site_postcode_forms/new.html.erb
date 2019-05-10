@@ -36,7 +36,7 @@
 
     <% if @site_postcode_form.errors.added?(:postcode, :no_results) %>
     <div class="form-group">
-      <%= link_to(t(".manual_address_link"), skip_to_manual_address_contact_postcode_forms_path(@site_postcode_form.token)) %>
+      <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_postcode_forms_path(@site_postcode_form.token)) %>
     </div>
     <% end %>
   <% end %>
