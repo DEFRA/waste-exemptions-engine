@@ -3,7 +3,6 @@
 module WasteExemptionsEngine
   class EditCancelledFormsController < FormsController
     helper EditHelper
-    include EditPermissionChecks
 
     def new
       return unless super(EditCancelledForm, "edit_cancelled_form")

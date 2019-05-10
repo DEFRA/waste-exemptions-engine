@@ -3,7 +3,6 @@
 module WasteExemptionsEngine
   class EditCompleteFormsController < FormsController
     helper EditHelper
-    include EditPermissionChecks
 
     def new
       return unless super(EditCompleteForm, "edit_complete_form")
