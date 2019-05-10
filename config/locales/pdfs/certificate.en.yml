@@ -59,7 +59,7 @@ en:
             email: Email
           waste_operations_details:
             heading: Waste operation details
-      site_address_auto:
+      site_address_grid_reference:
         registration_details:
           waste_operations_details:
             grid_reference: Grid reference

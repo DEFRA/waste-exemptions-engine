@@ -81,11 +81,22 @@ module WasteExemptionsEngine
           postcode: "BS1 5AH"
         }
       end
-      subject(:address) { described_class.create_from_manual_entry_data(manual_address_data, 2) }
+      let(:address_type) { 2 }
+      subject(:address) { described_class.create_from_manual_entry_data(manual_address_data, address_type) }
 
       it "creates an address from the given data" do
         manual_address_data.keys.each do |property|
           expect(address.send(property)).to eq(manual_address_data[property])
+        end
+      end
+
+      context "when the address is a site address" do
+        let(:address_type) { 3 }
+
+        it "creates an address from the given data" do
+          manual_address_data.keys.each do |property|
+            expect(address.send(property)).to eq(manual_address_data[property])
+          end
         end
       end
     end
