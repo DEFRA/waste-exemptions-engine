@@ -7,12 +7,14 @@ module WasteExemptionsEngine
     let(:form) { build(:edit_form) }
 
     describe "GET edit_form" do
+      before(:each) do
+        WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
+      end
+
       let(:request_path) { "/waste_exemptions_engine/edit/#{form.token}" }
 
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
-        before(:each) do
-          WasteExemptionsEngine.configuration.edit_enabled = "true"
-        end
+        let(:edit_enabled) { "true" }
 
         it "renders the appropriate template" do
           get request_path
@@ -60,17 +62,35 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
-          before(:each) { WasteExemptionsEngine.configuration.edit_enabled = "false" }
+        context "when the token is not a registration reference" do
+          let(:request_path) { "/waste_exemptions_engine/edit/WEX987654" }
 
-          it "renders the error_404 template" do
-            get request_path
-            expect(response.location).to include("errors/404")
+          it "raises a page not found error" do
+            expect { get request_path }.to raise_error(ActionController::RoutingError)
           end
 
-          it "responds with a status of 404" do
+          it "returns a 404 status page" do
+            rails_respond_without_detailed_exceptions do
+              get request_path
+
+              expect(response.body).to include(I18n.t("waste_exemptions_engine.errors.error_404.clarification"))
+            end
+          end
+        end
+      end
+
+      context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"false\"" do
+        let(:edit_enabled) { "false" }
+
+        it "raises a page not found error" do
+          expect { get request_path }.to raise_error(ActionController::RoutingError)
+        end
+
+        it "returns a 404 status page" do
+          rails_respond_without_detailed_exceptions do
             get request_path
-            expect(response.code).to eq("404")
+
+            expect(response.body).to include(I18n.t("waste_exemptions_engine.errors.error_404.clarification"))
           end
         end
       end
@@ -87,11 +107,12 @@ module WasteExemptionsEngine
       let(:request_path) { "/waste_exemptions_engine/edit/" }
       let(:request_body) { { edit_form: { token: form.token } } }
 
-      context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
-        before(:each) do
-          WasteExemptionsEngine.configuration.edit_enabled = "true"
-        end
+      before(:each) do
+        WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
+      end
 
+      context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
+        let(:edit_enabled) { "true" }
         status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
         # A successful POST request redirects to the next form in the work flow. We have chosen to
@@ -102,17 +123,19 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
-        before(:each) { WasteExemptionsEngine.configuration.edit_enabled = "false" }
+      context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"false\"" do
+        let(:edit_enabled) { "false" }
 
-        it "renders the error_404 template" do
-          post request_path, request_body
-          expect(response.location).to include("errors/404")
+        it "raises a page not found error" do
+          expect { get request_path }.to raise_error(ActionController::RoutingError)
         end
 
-        it "responds with a status of 404" do
-          post request_path, request_body
-          expect(response.code).to eq("404")
+        it "returns a 404 status page" do
+          rails_respond_without_detailed_exceptions do
+            get request_path
+
+            expect(response.body).to include(I18n.t("waste_exemptions_engine.errors.error_404.clarification"))
+          end
         end
       end
     end
@@ -134,12 +157,12 @@ module WasteExemptionsEngine
        site_grid_reference].each do |edit_action|
       describe "GET edit_#{edit_action}" do
         let(:request_path) { "/waste_exemptions_engine/edit/#{edit_action}/#{form.token}" }
+        before(:each) do
+          WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
+        end
 
         context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
-          before(:each) do
-            WasteExemptionsEngine.configuration.edit_enabled = "true"
-          end
-
+          let(:edit_enabled) { "true" }
           let(:next_workflow_state) { "#{edit_action}_form" }
           let(:redirection_path) do
             send("new_#{next_workflow_state}_path".to_sym, form.transient_registration.token)
@@ -158,16 +181,18 @@ module WasteExemptionsEngine
         end
 
         context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
-          before(:each) { WasteExemptionsEngine.configuration.edit_enabled = "false" }
+          let(:edit_enabled) { "false" }
 
-          it "renders the error_404 template" do
-            get request_path
-            expect(response.location).to include("errors/404")
+          it "raises a page not found error" do
+            expect { get request_path }.to raise_error(ActionController::RoutingError)
           end
 
-          it "responds with a status of 404" do
-            get request_path
-            expect(response.code).to eq("404")
+          it "returns a 404 status page" do
+            rails_respond_without_detailed_exceptions do
+              get request_path
+
+              expect(response.body).to include(I18n.t("waste_exemptions_engine.errors.error_404.clarification"))
+            end
           end
         end
       end

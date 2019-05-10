@@ -2,8 +2,11 @@
 
 module WasteExemptionsEngine
   class DeclarationForm < BaseForm
-
     attr_accessor :declaration
+
+    def self.can_navigate_flexibly?
+      false
+    end
 
     def initialize(registration)
       super
