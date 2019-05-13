@@ -12,7 +12,15 @@ module WasteExemptionsEngine
       end
 
       def current_user_can_edit?
-        user = current_user rescue nil
+        user = nil
+
+        # rubocop:disable Lint/HandleExceptions
+        begin
+          user = current_user
+        rescue NotImplementedError
+          # do nothing
+        end
+        # rubocop:enable Lint/HandleExceptions
 
         EditPermissionCheckerService.run(current_user: user)
       end
