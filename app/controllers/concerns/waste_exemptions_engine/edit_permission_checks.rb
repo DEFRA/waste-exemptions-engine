@@ -12,7 +12,9 @@ module WasteExemptionsEngine
       end
 
       def current_user_can_edit?
-        EditPermissionCheckerService.run(current_user: current_user)
+        user = current_user rescue nil
+
+        EditPermissionCheckerService.run(current_user: user)
       end
 
       def edit_enabled?
