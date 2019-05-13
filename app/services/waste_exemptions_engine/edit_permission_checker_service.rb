@@ -5,7 +5,7 @@
 # permissions and roles.
 module WasteExemptionsEngine
   class EditPermissionCheckerService < BaseService
-    def run(current_user:)
+    def run(*)
       true
     end
   end
