@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# This concern is responsible for performing permissions checks. It's intended
-# to be included overriden in host applications which have their own specific
-# permissions and roles.
 module WasteExemptionsEngine
   module EditPermissionChecks
     extend ActiveSupport::Concern
@@ -15,7 +12,17 @@ module WasteExemptionsEngine
       end
 
       def current_user_can_edit?
-        true
+        user = nil
+
+        # rubocop:disable Lint/HandleExceptions
+        begin
+          user = current_user
+        rescue NotImplementedError
+          # do nothing
+        end
+        # rubocop:enable Lint/HandleExceptions
+
+        EditPermissionCheckerService.run(current_user: user)
       end
 
       def edit_enabled?
