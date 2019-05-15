@@ -22,12 +22,6 @@ module WasteExemptionsEngine
         # Start
         state :edit_form, initial: true
 
-        # Location
-        state :location_form
-        state :register_in_northern_ireland_form
-        state :register_in_scotland_form
-        state :register_in_wales_form
-
         # Applicant details
         state :applicant_name_form
         state :applicant_phone_form
@@ -69,13 +63,6 @@ module WasteExemptionsEngine
         state :edit_cancelled_form
 
         ## Transitions
-
-        # Location
-
-        event :edit_location do
-          transitions from: :edit_form,
-                      to: :location_form
-        end
 
         # Applicant details
 
@@ -167,19 +154,6 @@ module WasteExemptionsEngine
         # Next transitions once you're on a form
 
         event :next do
-          # Location
-          transitions from: :location_form,
-                      to: :register_in_northern_ireland_form,
-                      if: :should_register_in_northern_ireland?
-
-          transitions from: :location_form,
-                      to: :register_in_scotland_form,
-                      if: :should_register_in_scotland?
-
-          transitions from: :location_form,
-                      to: :register_in_wales_form,
-                      if: :should_register_in_wales?
-
           # Addresses
           transitions from: :operator_postcode_form,
                       to: :operator_address_manual_form,
@@ -226,8 +200,7 @@ module WasteExemptionsEngine
                       to: :edit_cancelled_form
 
           # Everything else should always return to edit
-          transitions from: %i[location_form
-                               applicant_name_form
+          transitions from: %i[applicant_name_form
                                applicant_phone_form
                                applicant_email_form
                                business_type_form
@@ -254,19 +227,6 @@ module WasteExemptionsEngine
         end
 
         event :back do
-          # Location
-          transitions from: :register_in_northern_ireland_form,
-                      to: :location_form,
-                      if: :should_register_in_northern_ireland?
-
-          transitions from: :register_in_scotland_form,
-                      to: :location_form,
-                      if: :should_register_in_scotland?
-
-          transitions from: :register_in_wales_form,
-                      to: :location_form,
-                      if: :should_register_in_wales?
-
           # Addresses
           transitions from: :operator_address_lookup_form,
                       to: :operator_postcode_form
@@ -295,8 +255,7 @@ module WasteExemptionsEngine
                       to: :edit_form
 
           # Everything else should always go back to edit
-          transitions from: %i[location_form
-                               applicant_name_form
+          transitions from: %i[applicant_name_form
                                applicant_phone_form
                                applicant_email_form
                                main_people_form
@@ -344,18 +303,6 @@ module WasteExemptionsEngine
     # rubocop:enable Metrics/BlockLength
 
     private
-
-    def should_register_in_northern_ireland?
-      location == "northern_ireland"
-    end
-
-    def should_register_in_scotland?
-      location == "scotland"
-    end
-
-    def should_register_in_wales?
-      location == "wales"
-    end
 
     def skip_to_manual_address?
       address_finder_error
