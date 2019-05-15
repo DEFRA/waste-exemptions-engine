@@ -51,9 +51,11 @@ en:
               contact_email: "Email address"
               contact_address: "Address"
           site:
-            heading: "Site address"
+            heading: "Waste operation details"
             labels:
-              site_address: "Address"
+              grid_reference: Grid Reference
+              site_details: Site details
+              site_address: Site address
           exemptions:
             heading: "Exemptions"
           farm:

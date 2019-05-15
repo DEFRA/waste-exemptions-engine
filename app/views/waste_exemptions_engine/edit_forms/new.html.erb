@@ -254,36 +254,54 @@
           <%= t(".sections.site.heading") %>
         </caption>
         <tbody>
-          <tr>
-            <td class="label_column">
-              <%= t(".sections.site.labels.site_address") %>
-            </td>
-            <td>
-              <% if @edit_form.site_address.grid_reference.present? %>
-                <%= @edit_form.site_address.grid_reference %>
-                <br><br>
-                <%= @edit_form.site_address.description %>
-              <% else %>
-              <ul>
-                <% displayable_address(@edit_form.contact_address).each do |address_line| %>
-                <li><%= address_line %></li>
+          <% if @edit_form.site_address.located_by_grid_reference? %>
+            <tr>
+              <th class="label_column"><%=t ".sections.site.labels.grid_reference" %></th>
+              <td> <%= @edit_form.site_address.grid_reference %> </td>
+              <td class="change_link_column">
+                <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
+                  <%= t(".edit_links.default") %>
+                  <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
                 <% end %>
-              </ul>
-              <% end %>
-            </td>
-            <td class="change_link_column">
-              <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
-                <%= t(".edit_links.default") %>
-                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
-              <% end %>
-            </td>
-          </tr>
+              </td>
+            </tr>
+            <tr>
+              <th class="label_column"><%=t ".sections.site.labels.site_details" %></th>
+              <td> <%= @edit_form.site_address.description %> </td>
+              <td class="change_link_column">
+                <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
+                  <%= t(".edit_links.default") %>
+                  <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
+                <% end %>
+              </td>
+            </tr>
+          <% else %>
+            <tr>
+              <th class="label_column"><%=t ".sections.site.labels.site_address" %></th>
+              <td>
+                <% displayable_address(@edit_form.site_address).each do |line| %>
+                  <%= line %><br>
+                <% end %>
+              </td>
+              <td class="change_link_column">
+                <%= link_to site_grid_reference_edit_forms_path(@edit_form.token) do %>
+                  <%= t(".edit_links.default") %>
+                  <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
 
       <table class="edit_table">
         <caption class="heading-medium">
-          <%= t(".sections.exemptions.heading") %>
+          <div class="split-title">
+            <%= t(".sections.exemptions.heading") %>
+          </div>
+          <div class="text-align-right font-small split-title split-title--right">
+            <%= t(".edit_links.no_edit") %>
+          </div>
         </caption>
         <tbody>
           <% @edit_form.registration_exemptions.includes(:exemption).each do |re| %>

@@ -4,8 +4,9 @@ require "os_map_ref"
 
 module WasteExemptionsEngine
   class TransientAddress < ActiveRecord::Base
-
     self.table_name = "transient_addresses"
+
+    include CanBeLocatedByGridReference
 
     belongs_to :transient_registration
 
