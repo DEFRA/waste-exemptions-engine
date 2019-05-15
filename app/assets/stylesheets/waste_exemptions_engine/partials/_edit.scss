@@ -18,4 +18,12 @@
     width: 6em;
     text-align: right;
   }
+
+  .split-title {
+    display: inline;
+
+    &--right {
+      float: right;
+    }
+  }
 }
