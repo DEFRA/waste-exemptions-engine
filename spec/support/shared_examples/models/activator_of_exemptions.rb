@@ -9,6 +9,10 @@ RSpec.shared_examples "an activator of exemptions" do |model_factory|
     expect(included_modules).to include(WasteExemptionsEngine::CanActivateExemption)
   end
 
+  it "can use AASM defined scopes on statuses" do
+    expect { described_class.active.first }.to_not raise_error
+  end
+
   describe "#activate_exemption" do
     it "updates the registration and expiration dates of exemption" do
       registration_date = Date.today
