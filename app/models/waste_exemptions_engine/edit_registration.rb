@@ -43,7 +43,7 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions_from_registration(registration)
-      self.exemptions = registration.exemptions
+      self.exemptions = registration.active_exemptions
     end
   end
 end
