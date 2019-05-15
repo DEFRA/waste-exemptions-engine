@@ -46,11 +46,6 @@ module WasteExemptionsEngine
       image_tag "file:///#{WasteExemptionsEngine::Engine.root.join('app', 'assets', 'images', img)}", options
     end
 
-    def wicked_pdf_stylesheet_link_tag(relative_file_path)
-      path = WasteExemptionsEngine::Engine.root.join("app", "assets", "stylesheets", relative_file_path)
-      stylesheet_link_tag "file:///#{path}"
-    end
-
     private
 
     def title_text
