@@ -11,6 +11,10 @@ FactoryBot.define do
       format("WEX9%05d", n)
     end
 
+    trait :with_active_exemptions do
+      registration_exemptions { build_list(:registration_exemption, 5, state: :active) }
+    end
+
     trait :limited_company do
       business_type { "limitedCompany" }
     end
