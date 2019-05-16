@@ -60,7 +60,7 @@ module WasteExemptionsEngine
         expect { run_service }.to_not change { registration.reload.registration_exemptions.first.state }
       end
 
-      it "do not removes inactive registrations" do
+      it "does not remove inactive registrations" do
         revoked_exemption_registration = registration.registration_exemptions.first
         revoked_exemption_registration.update! state: :revoked
 
