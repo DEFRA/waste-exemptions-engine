@@ -9,7 +9,6 @@ module WasteExemptionsEngine
       subject(:edit_registration) { create(:edit_registration, workflow_state: current_state) }
 
       editable_form_states = %i[
-        location_form
         applicant_name_form
         applicant_phone_form
         applicant_email_form
