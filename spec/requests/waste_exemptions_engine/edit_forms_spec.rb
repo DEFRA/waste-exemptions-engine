@@ -140,8 +140,7 @@ module WasteExemptionsEngine
       end
     end
 
-    %w[location
-       applicant_name
+    %w[applicant_name
        applicant_phone
        applicant_email
        main_people

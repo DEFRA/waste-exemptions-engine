@@ -39,10 +39,7 @@
               <%= t(".sections.location.values.location.#{@edit_form.location}") %>
             </td>
             <td class="change_link_column">
-              <%= link_to location_edit_forms_path(@edit_form.token) do %>
-                <%= t(".edit_links.default") %>
-                <span class="visually-hidden"> <%= t(".edit_links.visually_hidden.location") %></span>
-              <% end %>
+              <%= t(".edit_links.no_edit") %>
             </td>
           </tr>
         </tbody>
