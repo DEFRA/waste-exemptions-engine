@@ -4,6 +4,9 @@ en:
       new:
         title: Site grid reference
         heading: Where will this waste operation take place?
+        grid_reference_or_address:
+          message: Enter a grid reference or
+          manual_address_label: use an address instead
         grid_reference_label: National Grid reference
         grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
         grid_reference_help_link: Help finding a grid reference
