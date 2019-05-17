@@ -23,7 +23,6 @@ module WasteExemptionsEngine
 
       copy_addresses_from_registration
       copy_people_from_registration
-      copy_exemptions_from_registration
     end
 
     def copy_addresses_from_registration
@@ -42,10 +41,6 @@ module WasteExemptionsEngine
                                                                "created_at",
                                                                "updated_at"))
       end
-    end
-
-    def copy_exemptions_from_registration
-      self.exemptions = registration.active_exemptions
     end
   end
 end

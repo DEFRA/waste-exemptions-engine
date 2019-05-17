@@ -53,21 +53,6 @@ module WasteExemptionsEngine
         }.from(old_people_data).to(new_people_data)
       end
 
-      it "does not change the status of unmodified registration_exemptions" do
-        registration.registration_exemptions.first.update(state: "foo")
-        edit_registration.exemptions << registration.exemptions.first
-
-        expect { run_service }.to_not change { registration.reload.registration_exemptions.first.state }
-      end
-
-      it "does not remove inactive registrations" do
-        revoked_exemption_registration = registration.registration_exemptions.first
-        revoked_exemption_registration.update! state: :revoked
-
-        run_service
-        expect(registration.reload.exemptions).to include(revoked_exemption_registration.exemption)
-      end
-
       it "removes no-longer-used attribute from the registration" do
         edit_registration.contact_position = nil
         old_value = registration.contact_position
