@@ -368,11 +368,6 @@ WasteExemptionsEngine::Engine.routes.draw do
             only: %i[new create],
             path: "edit",
             path_names: { new: "/:token" } do
-              get "location/:token",
-                  to: "edit_forms#edit_location",
-                  as: "location",
-                  on: :collection
-
               get "applicant_name/:token",
                   to: "edit_forms#edit_applicant_name",
                   as: "applicant_name",

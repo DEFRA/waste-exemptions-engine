@@ -13,10 +13,6 @@ module WasteExemptionsEngine
       super(EditForm, "edit_form")
     end
 
-    def edit_location
-      transition_to_edit("edit_location")
-    end
-
     def edit_applicant_name
       transition_to_edit("edit_applicant_name")
     end
