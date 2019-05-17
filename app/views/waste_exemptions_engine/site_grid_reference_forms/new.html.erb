@@ -6,6 +6,13 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
+    <div class="panel panel-border-wide">
+      <p class="strong">
+        <%= t(".grid_reference_or_address.message") %>
+        <%= link_to(t(".grid_reference_or_address.manual_address_label"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
+      </p>
+    </div>
+
     <% if @site_grid_reference_form.errors[:grid_reference].any? %>
     <div class="form-group form-group-error">
     <% else %>
