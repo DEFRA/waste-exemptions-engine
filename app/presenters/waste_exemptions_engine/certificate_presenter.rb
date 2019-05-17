@@ -2,9 +2,6 @@
 
 module WasteExemptionsEngine
   class CertificatePresenter < BasePresenter
-    def partnership?
-      business_type == "partnership"
-    end
 
     def partners_names
       people.select(&:partner?).map do |person|
