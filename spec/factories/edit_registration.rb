@@ -9,7 +9,7 @@ FactoryBot.define do
 
     trait :modified do
       after(:build) do |edit_registration|
-        registration = WasteExemptionsEngine::Registration.where(reference: edit_registration.reference).first
+        registration = edit_registration.registration
 
         # Update string attributes
         (Helpers::ModelProperties::REGISTRATION - %i[is_a_farmer on_a_farm reference submitted_at]).each do |attribute|
@@ -40,8 +40,6 @@ FactoryBot.define do
             person[key] = "#{value}foo" if value.is_a?(String)
           end
         end
-
-        edit_registration.exemptions = build_list(:exemption, 5)
       end
     end
   end
