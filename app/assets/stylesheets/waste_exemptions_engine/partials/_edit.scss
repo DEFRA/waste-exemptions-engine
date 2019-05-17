@@ -5,9 +5,10 @@
 }
 
 .edit_table {
-  caption.heading-medium {
-    display: table-caption;
-    margin-bottom: .1em;
+  caption {
+    .heading-medium {
+      margin-bottom: .1em;
+    }
   }
 
   .label_column {
