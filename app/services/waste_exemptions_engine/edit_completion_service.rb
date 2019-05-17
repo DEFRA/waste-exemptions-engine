@@ -21,7 +21,6 @@ module WasteExemptionsEngine
     def copy_data_from_edit_registration
       copy_attributes
       copy_addresses
-      copy_exemptions
       copy_people
       @registration.save!
     end
@@ -40,10 +39,6 @@ module WasteExemptionsEngine
         new_address = Address.new(transient_address.address_attributes)
         @registration.addresses << new_address
       end
-    end
-
-    def copy_exemptions
-      @registration.exemptions = @edit_registration.exemptions
     end
 
     def copy_people
