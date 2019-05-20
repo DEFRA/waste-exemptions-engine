@@ -53,7 +53,7 @@ en:
           site:
             heading: "Waste operation details"
             labels:
-              grid_reference: Grid Reference
+              grid_reference: Grid reference
               site_details: Site details
               site_address: Site address
           exemptions:
