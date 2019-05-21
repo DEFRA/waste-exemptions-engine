@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     # This form has a lot of attributes, so we have to disable the length cop.
     # rubocop:disable Metrics/MethodLength
     def initialize(registration)
-      registration.save!
+      registration.save! unless registration.persisted?
 
       super
 
