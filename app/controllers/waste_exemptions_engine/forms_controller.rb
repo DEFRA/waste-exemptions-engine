@@ -79,9 +79,9 @@ module WasteExemptionsEngine
       return unless state_can_navigate_flexibly?(@transient_registration.workflow_state)
       return unless state_can_navigate_flexibly?(requested_state)
 
-      if @transient_registration.persisted?
-        @transient_registration.update_attributes(workflow_state: requested_state)
-      end
+      return unless @transient_registration.persisted?
+      
+      @transient_registration.update_attributes(workflow_state: requested_state)
     end
 
     def state_can_navigate_flexibly?(state)
