@@ -9,6 +9,10 @@
     .heading-medium {
       margin-bottom: .1em;
     }
+
+    .float-right {
+      float: right;
+    }
   }
 
   .label_column {
@@ -20,13 +24,5 @@
     width: 6em;
     text-align: right;
     vertical-align: top;
-  }
-
-  .split-title {
-    display: inline;
-
-    &--right {
-      float: right;
-    }
   }
 }
