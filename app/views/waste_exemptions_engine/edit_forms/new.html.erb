@@ -293,12 +293,10 @@
 
       <table class="edit_table">
         <caption>
-          <div class="split-title">
-            <h2 class="heading-medium"> <%= t(".sections.exemptions.heading") %> </h2>
-          </div>
-          <div class="text-align-right font-small split-title split-title--right">
-            <%= t(".edit_links.no_edit") %>
-          </div>
+          <h2 class="heading-medium">
+            <%= t(".sections.exemptions.heading") %>
+            <small class="font-small float-right"><%= t(".edit_links.no_edit") %></small>
+          </h2>
         </caption>
         <tbody>
           <% @edit_form.registration_exemptions.includes(:exemption).each do |re| %>
