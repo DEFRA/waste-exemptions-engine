@@ -59,13 +59,13 @@ module WasteExemptionsEngine
     end
 
     def companies_house_host=(value)
-      DefraRubyValidators.configure do |configuration|
+      DefraRuby::Validators.configure do |configuration|
         configuration.companies_house_host = value
       end
     end
 
     def companies_house_api_key=(value)
-      DefraRubyValidators.configure do |configuration|
+      DefraRuby::Validators.configure do |configuration|
         configuration.companies_house_api_key = value
       end
     end
