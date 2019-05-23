@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190424143344) do
+ActiveRecord::Schema.define(version: 20190522085202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20190424143344) do
 
   add_index "addresses", ["registration_id"], name: "index_addresses_on_registration_id", using: :btree
 
+  create_table "defra_ruby_exporters_bulk_export_files", force: :cascade do |t|
+    t.string   "file_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "exemptions", force: :cascade do |t|
     t.integer "category"
     t.string  "code"
@@ -72,7 +78,7 @@ ActiveRecord::Schema.define(version: 20190424143344) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.text     "deregistration_message"
-    t.date     "deregistered_on"
+    t.date     "deregistered_at"
   end
 
   add_index "registration_exemptions", ["exemption_id"], name: "index_registration_exemptions_on_exemption_id", using: :btree
