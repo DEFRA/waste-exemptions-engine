@@ -50,7 +50,7 @@ module WasteExemptionsEngine
 
         context "errors when generated" do
           before do
-            allow(GeneratePdfService).to receive(:new).and_raise(StandardError)
+            allow(ConfirmationPdfGeneratorService).to receive(:run).and_raise(StandardError)
           end
           # Because we have @mail created before all tests run this test would
           # fail because the mail will have been generated prior to this before
