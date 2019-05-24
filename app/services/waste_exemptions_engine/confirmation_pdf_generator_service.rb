@@ -5,16 +5,12 @@ module WasteExemptionsEngine
     def run(registration:)
       @registration = registration
 
-      pdf_generator.pdf
+      pdf
     end
 
     private
 
-    def pdf_generator
-      GeneratePdfService.new(template)
-    end
-
-    def template
+    def pdf
       ApplicationController.new.render_to_string(
         pdf: "certificate",
         template: "waste_exemptions_engine/pdfs/certificate",

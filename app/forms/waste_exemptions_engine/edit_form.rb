@@ -23,8 +23,12 @@ module WasteExemptionsEngine
 
     # This form has a lot of attributes, so we have to disable the length cop.
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def initialize(registration)
+      registration.save! unless registration.persisted?
+
       super
+
       self.applicant_email          = @transient_registration.applicant_email
       self.applicant_phone          = @transient_registration.applicant_phone
       self.business_type            = @transient_registration.business_type
@@ -48,6 +52,7 @@ module WasteExemptionsEngine
                                                 @transient_registration.contact_last_name)
     end
     # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
