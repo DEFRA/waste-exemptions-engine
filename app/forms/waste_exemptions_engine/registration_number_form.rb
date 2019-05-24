@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       super(attributes, params[:token])
     end
 
-    validates :company_no, "defra_ruby_validators/companies_house_number": true
+    validates :company_no, "defra_ruby/validators/companies_house_number": true
 
     private
 

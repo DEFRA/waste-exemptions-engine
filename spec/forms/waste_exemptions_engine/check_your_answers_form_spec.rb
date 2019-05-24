@@ -46,7 +46,7 @@ module WasteExemptionsEngine
       it "validates the company_no using the CompaniesHouseNumberValidator class" do
         expect(validators.keys).to include(:company_no)
         expect(validators[:company_no].first.class)
-          .to eq(DefraRubyValidators::CompaniesHouseNumberValidator)
+          .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
 
         expect(validators[:company_no].first.options).to eq(if: :company_no_required?)
       end
