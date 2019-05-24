@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe RegistrationNumberForm, type: :model do
     before do
-      allow_any_instance_of(DefraRubyValidators::CompaniesHouseService).to receive(:status).and_return(:active)
+      allow_any_instance_of(DefraRuby::Validators::CompaniesHouseService).to receive(:status).and_return(:active)
     end
 
     subject(:form) { build(:registration_number_form) }
@@ -14,7 +14,7 @@ module WasteExemptionsEngine
       validators = form._validators
       expect(validators.keys).to include(:company_no)
       expect(validators[:company_no].first.class)
-        .to eq(DefraRubyValidators::CompaniesHouseNumberValidator)
+        .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
     end
 
     it_behaves_like "a validated form", :registration_number_form do
