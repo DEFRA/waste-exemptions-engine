@@ -85,10 +85,6 @@
       <p><%= t(".description_limit") %></p>
     </div>
 
-    <div class="form-group">
-      <%= link_to(t(".use_address_link"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
-    </div>
-
     <%= f.hidden_field :token, value: @site_grid_reference_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
