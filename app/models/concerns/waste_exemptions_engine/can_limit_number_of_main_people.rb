@@ -26,7 +26,7 @@ module WasteExemptionsEngine
     def maximum_main_people
       return unless business_type.present?
 
-      limits = main_people_limits.fetch(business_type.to_sym, nil)
+      limits = main_people_limits.fetch(business_type, nil)
       return unless limits.present?
 
       limits[:maximum]
@@ -36,7 +36,7 @@ module WasteExemptionsEngine
       # Business type should always be set, but use 1 as the default, just in case
       return 1 unless business_type.present?
 
-      limits = main_people_limits.fetch(business_type.to_sym, nil)
+      limits = main_people_limits.fetch(business_type, nil)
       return 1 unless limits.present?
 
       limits[:minimum]
@@ -49,13 +49,15 @@ module WasteExemptionsEngine
     private
 
     def main_people_limits
+      business_types = TransientRegistration::BUSINESS_TYPES
+
       {
-        limitedCompany: { minimum: 1, maximum: nil },
-        limitedLiabilityPartnership: { minimum: 1, maximum: nil },
-        localAuthority: { minimum: 1, maximum: nil },
-        charity: { minimum: 1, maximum: nil },
-        partnership: { minimum: 2, maximum: nil },
-        soleTrader: { minimum: 1, maximum: 1 }
+        business_types[:limited_company] => { minimum: 1, maximum: nil },
+        business_types[:limited_liability_partnership] => { minimum: 1, maximum: nil },
+        business_types[:local_authority] => { minimum: 1, maximum: nil },
+        business_types[:charity] => { minimum: 1, maximum: nil },
+        business_types[:partnership] => { minimum: 2, maximum: nil },
+        business_types[:sole_trader] => { minimum: 1, maximum: 1 }
       }
     end
   end
