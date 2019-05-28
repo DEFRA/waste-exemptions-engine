@@ -5,12 +5,7 @@ module WasteExemptionsEngine
     include CanValidateSelection
 
     def validate_each(record, attribute, value)
-      valid_business_types = %w[charity
-                                limitedCompany
-                                limitedLiabilityPartnership
-                                localAuthority
-                                partnership
-                                soleTrader]
+      valid_business_types = TransientRegistration::BUSINESS_TYPES.values
 
       value_is_included?(record, attribute, value, valid_business_types)
     end
