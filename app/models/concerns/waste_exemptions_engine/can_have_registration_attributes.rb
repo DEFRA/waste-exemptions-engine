@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     end
 
     def partnership?
-      [BUSINESS_TYPES[:partnership]].include?(business_type)
+      BUSINESS_TYPES[:partnership] == business_type
     end
 
     def operator_address
