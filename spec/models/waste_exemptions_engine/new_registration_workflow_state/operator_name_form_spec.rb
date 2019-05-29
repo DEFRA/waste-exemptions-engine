@@ -18,7 +18,8 @@ module WasteExemptionsEngine
         "new_registration.skip_registration_number? are true" do
           previous_state = :registration_number_form
 
-          %w[limitedCompany limitedLiabilityPartnership].each do |business_type|
+          [TransientRegistration::BUSINESS_TYPES[:limited_company],
+           TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]].each do |business_type|
             before(:each) { new_registration.business_type = business_type }
 
             context "and the business type is #{business_type}" do
@@ -39,7 +40,7 @@ module WasteExemptionsEngine
         context "when new_registration.partnership? is true" do
           previous_state = :main_people_form
 
-          ["partnership"].each do |business_type|
+          [TransientRegistration::BUSINESS_TYPES[:partnership]].each do |business_type|
             before(:each) { new_registration.business_type = business_type }
 
             context "and the business type is #{business_type}" do
@@ -60,7 +61,9 @@ module WasteExemptionsEngine
         context "when new_registration.skip_registration_number? is true" do
           previous_state = :business_type_form
 
-          %w[localAuthority charity soleTrader].each do |business_type|
+          [TransientRegistration::BUSINESS_TYPES[:charity],
+           TransientRegistration::BUSINESS_TYPES[:local_authority],
+           TransientRegistration::BUSINESS_TYPES[:sole_trader]].each do |business_type|
             before(:each) { new_registration.business_type = business_type }
 
             context "and the business type is #{business_type}" do
