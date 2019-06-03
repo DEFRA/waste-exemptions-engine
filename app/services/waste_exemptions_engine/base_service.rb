@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class BaseService
-    def self.run(attrs=nil)
+    def self.run(attrs = nil)
       if attrs
         new.run(attrs)
       else
