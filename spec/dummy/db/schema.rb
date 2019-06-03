@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190522085202) do
+ActiveRecord::Schema.define(version: 20190603215354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20190522085202) do
     t.integer  "registration_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "area"
   end
 
   add_index "addresses", ["registration_id"], name: "index_addresses_on_registration_id", using: :btree
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(version: 20190522085202) do
     t.integer  "transient_registration_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "area"
   end
 
   add_index "transient_addresses", ["transient_registration_id"], name: "index_transient_addresses_on_transient_registration_id", using: :btree
