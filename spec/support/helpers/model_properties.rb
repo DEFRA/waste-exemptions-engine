@@ -22,6 +22,7 @@ module Helpers
       country_iso
       grid_reference
       description
+      area
     ].freeze
 
     EXEMPTION = %i[
