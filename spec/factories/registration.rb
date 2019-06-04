@@ -16,28 +16,28 @@ FactoryBot.define do
     end
 
     trait :limited_company do
-      business_type { "limitedCompany" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:limited_company] }
     end
 
     trait :limited_liability_partnership do
-      business_type { "limitedLiabilityPartnership" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:limited_liability_partnership] }
     end
 
     trait :local_authority do
-      business_type { "localAuthority" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:local_authority] }
     end
 
     trait :charity do
-      business_type { "charity" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:charity] }
     end
 
     trait :partnership do
-      business_type { "partnership" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:partnership] }
       people { build_list(:person, 2) }
     end
 
     trait :sole_trader do
-      business_type { "soleTrader" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:sole_trader] }
     end
 
     trait :with_manual_site_address do
@@ -63,7 +63,7 @@ FactoryBot.define do
       applicant_last_name { Faker::Name.last_name }
       applicant_phone { "01234567890" }
       applicant_email { Faker::Internet.safe_email }
-      business_type { "limitedCompany" }
+      business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:limited_company] }
       company_no { "09360070" }
       operator_name { Faker::Company.name }
       contact_first_name { Faker::Name.first_name }

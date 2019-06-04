@@ -17,34 +17,34 @@ RSpec.shared_examples "an owner of registration attributes" do |model_factory, a
 
   describe "#company_no_required?" do
     it "returns a boolean indicating whether a company number is required" do
-      instance.business_type = "charity"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity]
       expect(instance.company_no_required?).to eq(false)
-      instance.business_type = "limitedCompany"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company]
       expect(instance.company_no_required?).to eq(true)
-      instance.business_type = "limitedLiabilityPartnership"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]
       expect(instance.company_no_required?).to eq(true)
-      instance.business_type = "localAuthority"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority]
       expect(instance.company_no_required?).to eq(false)
-      instance.business_type = "partnership"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership]
       expect(instance.company_no_required?).to eq(false)
-      instance.business_type = "soleTrader"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
       expect(instance.company_no_required?).to eq(false)
     end
   end
 
   describe "#partnership?" do
     it "returns true when the business type is a partnership else returns false" do
-      instance.business_type = "charity"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity]
       expect(instance.partnership?).to eq(false)
-      instance.business_type = "limitedCompany"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company]
       expect(instance.partnership?).to eq(false)
-      instance.business_type = "limitedLiabilityPartnership"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]
       expect(instance.partnership?).to eq(false)
-      instance.business_type = "localAuthority"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority]
       expect(instance.partnership?).to eq(false)
-      instance.business_type = "partnership"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership]
       expect(instance.partnership?).to eq(true)
-      instance.business_type = "soleTrader"
+      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
       expect(instance.partnership?).to eq(false)
 
     end

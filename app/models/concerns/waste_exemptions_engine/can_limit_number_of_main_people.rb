@@ -4,6 +4,15 @@ module WasteExemptionsEngine
   module CanLimitNumberOfMainPeople
     extend ActiveSupport::Concern
 
+    MAIN_PEOPLE_LIMITS = HashWithIndifferentAccess.new(
+      TransientRegistration::BUSINESS_TYPES[:limited_company] => { minimum: 1, maximum: nil },
+      TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership] => { minimum: 1, maximum: nil },
+      TransientRegistration::BUSINESS_TYPES[:local_authority] => { minimum: 1, maximum: nil },
+      TransientRegistration::BUSINESS_TYPES[:charity] => { minimum: 1, maximum: nil },
+      TransientRegistration::BUSINESS_TYPES[:partnership] => { minimum: 2, maximum: nil },
+      TransientRegistration::BUSINESS_TYPES[:sole_trader] => { minimum: 1, maximum: 1 }
+    )
+
     def enough_main_people?
       return false if number_of_existing_main_people < minimum_main_people
 
@@ -26,7 +35,7 @@ module WasteExemptionsEngine
     def maximum_main_people
       return unless business_type.present?
 
-      limits = main_people_limits.fetch(business_type.to_sym, nil)
+      limits = MAIN_PEOPLE_LIMITS.fetch(business_type, nil)
       return unless limits.present?
 
       limits[:maximum]
@@ -36,7 +45,7 @@ module WasteExemptionsEngine
       # Business type should always be set, but use 1 as the default, just in case
       return 1 unless business_type.present?
 
-      limits = main_people_limits.fetch(business_type.to_sym, nil)
+      limits = MAIN_PEOPLE_LIMITS.fetch(business_type, nil)
       return 1 unless limits.present?
 
       limits[:minimum]
@@ -44,19 +53,6 @@ module WasteExemptionsEngine
 
     def number_of_existing_main_people
       @transient_registration.transient_people.count
-    end
-
-    private
-
-    def main_people_limits
-      {
-        limitedCompany: { minimum: 1, maximum: nil },
-        limitedLiabilityPartnership: { minimum: 1, maximum: nil },
-        localAuthority: { minimum: 1, maximum: nil },
-        charity: { minimum: 1, maximum: nil },
-        partnership: { minimum: 2, maximum: nil },
-        soleTrader: { minimum: 1, maximum: 1 }
-      }
     end
   end
 end

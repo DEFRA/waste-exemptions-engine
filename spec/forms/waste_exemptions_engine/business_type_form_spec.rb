@@ -6,12 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe BusinessTypeForm, type: :model do
     subject(:form) { build(:business_type_form) }
 
-    BUSINESS_TYPES = %w[charity
-                        limitedCompany
-                        limitedLiabilityPartnership
-                        localAuthority
-                        partnership
-                        soleTrader].freeze
+    BUSINESS_TYPES = TransientRegistration::BUSINESS_TYPES.values
 
     it "validates the business type using the BusinessTypeValidator class" do
       validators = form._validators

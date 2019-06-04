@@ -12,14 +12,7 @@ end
 
 module WasteExemptionsEngine
   RSpec.describe BusinessTypeValidator, type: :model do
-    valid_type = %w[
-      charity
-      limitedCompany
-      limitedLiabilityPartnership
-      localAuthority
-      partnership
-      soleTrader
-    ].sample
+    valid_type = TransientRegistration::BUSINESS_TYPES.values.sample
 
     it_behaves_like "a validator", Test::BusinessTypeValidatable, :business_type, valid_type
     it_behaves_like "a selection validator", Test::BusinessTypeValidatable, :business_type

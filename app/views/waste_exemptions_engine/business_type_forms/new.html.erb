@@ -23,28 +23,46 @@
         <% end %>
 
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'soleTrader' %>
-          <%= f.label :business_type, t(".options.individual"), value: 'soleTrader' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader] %>
+          <%= f.label :business_type,
+                      t(".options.individual"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader] %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'limitedCompany' %>
-          <%= f.label :business_type, t(".options.limited_company"), value: 'limitedCompany' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company] %>
+          <%= f.label :business_type,
+                      t(".options.limited_company"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company] %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'partnership' %>
-          <%= f.label :business_type, t(".options.partnership"), value: 'partnership' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership] %>
+          <%= f.label :business_type,
+                      t(".options.partnership"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership] %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'limitedLiabilityPartnership' %>
-          <%= f.label :business_type, t(".options.limited_liability_partnership"), value: 'limitedLiabilityPartnership' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership] %>
+          <%= f.label :business_type,
+                      t(".options.limited_liability_partnership"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership] %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'localAuthority' %>
-          <%= f.label :business_type, t(".options.local_authority"), value: 'localAuthority' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority] %>
+          <%= f.label :business_type,
+                      t(".options.local_authority"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority] %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :business_type, 'charity' %>
-          <%= f.label :business_type, t(".options.charity"), value: 'charity' %>
+          <%= f.radio_button :business_type,
+                             WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity] %>
+          <%= f.label :business_type,
+                      t(".options.charity"),
+                      value: WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity] %>
         </div>
       </fieldset>
     </div>

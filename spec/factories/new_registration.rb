@@ -3,27 +3,27 @@
 FactoryBot.define do
   factory :new_registration, class: WasteExemptionsEngine::NewRegistration do
     trait :limited_company do
-      business_type { "limitedCompany" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:limited_company] }
     end
 
     trait :limited_liability_partnership do
-      business_type { "limitedLiabilityPartnership" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:limited_liability_partnership] }
     end
 
     trait :local_authority do
-      business_type { "localAuthority" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:local_authority] }
     end
 
     trait :charity do
-      business_type { "charity" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:charity] }
     end
 
     trait :partnership do
-      business_type { "partnership" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:partnership] }
     end
 
     trait :sole_trader do
-      business_type { "soleTrader" }
+      business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:sole_trader] }
     end
 
     trait :same_applicant_and_contact_email do
