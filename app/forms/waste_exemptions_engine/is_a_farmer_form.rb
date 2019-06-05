@@ -18,6 +18,6 @@ module WasteExemptionsEngine
       super(attributes, params[:token])
     end
 
-    validates :is_a_farmer, "waste_exemptions_engine/yes_no": true
+    validates :is_a_farmer, "defra_ruby/validators/true_false": true
   end
 end

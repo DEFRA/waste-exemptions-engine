@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       validators = form._validators
       expect(validators.keys).to include(:is_a_farmer)
       expect(validators[:is_a_farmer].first.class)
-        .to eq(WasteExemptionsEngine::YesNoValidator)
+        .to eq(DefraRuby::Validators::TrueFalseValidator)
     end
 
     it_behaves_like "a validated form", :is_a_farmer_form do
