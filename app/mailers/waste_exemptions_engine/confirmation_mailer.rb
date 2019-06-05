@@ -30,9 +30,9 @@ module WasteExemptionsEngine
     # of it
     def generate_pdf_certificate
       ConfirmationPdfGeneratorService.run(registration: @registration)
-    rescue StandardError => error
-      Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
-      Rails.logger.error "Generate pdf error: #{error}"
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Generate pdf error: #{e}"
       nil
     end
 

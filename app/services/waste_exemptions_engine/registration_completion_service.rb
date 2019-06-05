@@ -20,9 +20,9 @@ module WasteExemptionsEngine
         @transient_registration.destroy
       end
       send_confirmation_email
-    rescue StandardError => error
-      Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
-      Rails.logger.error "Completing registration error: #{error}"
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Completing registration error: #{e}"
 
       raise error
     end
@@ -66,9 +66,9 @@ module WasteExemptionsEngine
       distinct_recipients.each do |recipient|
         ConfirmationMailer.send_confirmation_email(@registration, recipient).deliver_now
       end
-    rescue StandardError => error
-      Airbrake.notify(error, reference: @registration.reference) if defined?(Airbrake)
-      Rails.logger.error "Confirmation email error: #{error}"
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Confirmation email error: #{e}"
     end
 
     def distinct_recipients
