@@ -26,6 +26,8 @@ FactoryBot.define do
       business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:sole_trader] }
     end
 
+    business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:limited_company] }
+
     trait :same_applicant_and_contact_email do
       contact_email { applicant_email }
     end
