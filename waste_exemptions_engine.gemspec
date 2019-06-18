@@ -67,5 +67,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
   s.add_development_dependency "timecop"
   s.add_development_dependency "vcr"
+  s.add_development_dependency "w3c_validators"
   s.add_development_dependency "webmock"
 end

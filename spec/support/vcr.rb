@@ -18,4 +18,12 @@ VCR.configure do |c|
     auth = interaction.request.headers["Authorization"]
     auth.first unless auth.nil? || auth.empty?
   end
+
+  c.register_request_matcher :html_body_content do |request_one, request_two|
+    def clean(string)
+      string.gsub(/\"[^\"]+\"/, "")
+    end
+
+    clean(request_one.body) == clean(request_two.body)
+  end
 end

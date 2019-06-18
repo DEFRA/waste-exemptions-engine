@@ -18,6 +18,12 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         get good_request_path
         expect(response.code).to eq("200")
       end
+
+      it "returns W3C valid HTML content" do
+        get good_request_path
+
+        expect(response.body).to have_valid_html
+      end
     end
 
     context "when the registration is not in the correct state" do
