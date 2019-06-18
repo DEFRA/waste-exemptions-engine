@@ -34,7 +34,7 @@ RSpec.shared_examples "an address lookup form", vcr: true do |form_factory|
     context "when the form is valid" do
       it "updates the transient registration with the selected address" do
         form = build(form_factory)
-        address_uprn = %w[340116 10091760640 340117].sample
+        address_uprn = %w[340116 340117].sample
         valid_params = { token: form.token, temp_address: address_uprn }
         transient_registration = form.transient_registration
 
