@@ -103,8 +103,8 @@ module WasteExemptionsEngine
         end
 
         it "automatically determines the x & y values" do
-          { x: address.x, y: address.y}
-          expect({ x: address.x, y: address.y}).to eq({x: 358205.03, y: 172708.07})
+          x_and_y = { x: address.x, y: address.y }
+          expect(x_and_y).to eq(x: 358_205.03, y: 172_708.07)
         end
       end
     end
@@ -126,8 +126,8 @@ module WasteExemptionsEngine
       end
 
       it "automatically determines the x & y values" do
-        { x: address.x, y: address.y}
-        expect({ x: address.x, y: address.y}).to eq({x: 358337.0, y: 172855.0})
+        x_and_y = { x: address.x, y: address.y }
+        expect(x_and_y).to eq(x: 358_337.0, y: 172_855.0)
       end
     end
   end
