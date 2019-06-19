@@ -69,6 +69,10 @@ module WasteExemptionsEngine
           expect(address.send(property)).to eq(expectations[property])
         end
       end
+
+      it "automatically determines the grid reference" do
+        expect(address.grid_reference).to eq("ST 58205 72708")
+      end
     end
 
     describe ".create_from_manual_entry_data" do
@@ -105,6 +109,10 @@ module WasteExemptionsEngine
         it "automatically determines the x & y values" do
           x_and_y = { x: address.x, y: address.y }
           expect(x_and_y).to eq(x: 358_205.03, y: 172_708.07)
+        end
+
+        it "automatically determines the grid reference" do
+          expect(address.grid_reference).to eq("ST 58205 72708")
         end
       end
     end
