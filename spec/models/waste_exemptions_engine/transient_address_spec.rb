@@ -116,7 +116,8 @@ module WasteExemptionsEngine
           description: "The waste is stored in an out-building next to the barn."
         }
       end
-      subject(:address) { described_class.create_from_manual_entry_data(grid_reference_data, 3) }
+      let(:address_type) { 3 }
+      subject(:address) { described_class.create_from_grid_reference_data(grid_reference_data, address_type) }
 
       it "creates an address from the grid reference" do
         grid_reference_data.keys.each do |property|
