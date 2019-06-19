@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe TransientAddress, type: :model do
+  RSpec.describe TransientAddress, type: :model, vcr: true do
     subject(:transient_address) { build(:transient_address) }
 
     describe "public interface" do
@@ -91,12 +91,20 @@ module WasteExemptionsEngine
       end
 
       context "when the address is a site address" do
+        before(:context) { VCR.insert_cassette("site_address_auto_x_and_y", allow_playback_repeats: true) }
+        after(:context) { VCR.eject_cassette }
+
         let(:address_type) { 3 }
 
         it "creates an address from the given data" do
           manual_address_data.keys.each do |property|
             expect(address.send(property)).to eq(manual_address_data[property])
           end
+        end
+
+        it "automatically determines the x & y values" do
+          { x: address.x, y: address.y}
+          expect({ x: address.x, y: address.y}).to eq({x: 358205.03, y: 172708.07})
         end
       end
     end
