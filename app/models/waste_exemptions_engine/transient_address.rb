@@ -23,7 +23,7 @@ module WasteExemptionsEngine
       data["x"] = data["x"].to_f
       data["y"] = data["y"].to_f
 
-      data = update_grid_reference_from_xy(data)
+      data = update_grid_reference_from_xy(data) if address_type == TransientAddress.address_types[:site]
 
       create_address(data, address_type, TransientAddress.modes[:lookup])
     end

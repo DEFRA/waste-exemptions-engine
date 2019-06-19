@@ -62,7 +62,8 @@ module WasteExemptionsEngine
           "source_data_type" => "dpa"
         }
       end
-      subject(:address) { described_class.create_from_address_finder_data(address_finder_data, 2) }
+      let(:address_type) { 2 }
+      subject(:address) { described_class.create_from_address_finder_data(address_finder_data, address_type) }
 
       it "creates an address from the address finder data" do
         expectations.keys.each do |property|
@@ -70,8 +71,16 @@ module WasteExemptionsEngine
         end
       end
 
-      it "automatically determines the grid reference" do
-        expect(address.grid_reference).to eq("ST 58205 72708")
+      it "does not automatically determine the grid reference" do
+        expect(address.grid_reference).to be_nil
+      end
+
+      context "when the address is a site address" do
+        let(:address_type) { 3 }
+
+        it "does automatically determine the grid reference" do
+          expect(address.grid_reference).to eq("ST 58205 72708")
+        end
       end
     end
 
@@ -94,6 +103,14 @@ module WasteExemptionsEngine
         end
       end
 
+      it "does not automatically determine the x & y values" do
+        expect(address.grid_reference).to be_nil
+      end
+
+      it "does not automatically determine the grid reference" do
+        expect(address.grid_reference).to be_nil
+      end
+
       context "when the address is a site address" do
         before(:context) { VCR.insert_cassette("site_address_auto_x_and_y", allow_playback_repeats: true) }
         after(:context) { VCR.eject_cassette }
@@ -106,12 +123,12 @@ module WasteExemptionsEngine
           end
         end
 
-        it "automatically determines the x & y values" do
+        it "does automatically determine the x & y values" do
           x_and_y = { x: address.x, y: address.y }
           expect(x_and_y).to eq(x: 358_205.03, y: 172_708.07)
         end
 
-        it "automatically determines the grid reference" do
+        it "does automatically determine the grid reference" do
           expect(address.grid_reference).to eq("ST 58205 72708")
         end
       end
