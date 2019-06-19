@@ -124,6 +124,11 @@ module WasteExemptionsEngine
           expect(address.send(property)).to eq(grid_reference_data[property])
         end
       end
+
+      it "automatically determines the x & y values" do
+        { x: address.x, y: address.y}
+        expect({ x: address.x, y: address.y}).to eq({x: 358337.0, y: 172855.0})
+      end
     end
   end
 end
