@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe TransientAddress, type: :model, vcr: true do
+  RSpec.describe TransientAddress, type: :model do
     subject(:transient_address) { build(:transient_address) }
 
     describe "public interface" do
@@ -111,7 +111,7 @@ module WasteExemptionsEngine
         expect(address.grid_reference).to be_nil
       end
 
-      context "when the address is a site address" do
+      context "when the address is a site address", vcr: true do
         before(:context) { VCR.insert_cassette("site_address_auto_x_and_y", allow_playback_repeats: true) }
         after(:context) { VCR.eject_cassette }
 
