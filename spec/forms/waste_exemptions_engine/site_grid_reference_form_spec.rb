@@ -4,7 +4,16 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe SiteGridReferenceForm, type: :model do
-    subject(:form) { build(:site_grid_reference_form) }
+    subject(:form) { build(:site_grid_reference_form, grid_reference: "foo") }
+
+    context "the site address is already populated" do
+      context "and the grid reference was automatically populated" do
+        it "does not populate the grid reference" do
+          expect(form.grid_reference).to be_blank
+          expect(form.description).to be_blank
+        end
+      end
+    end
 
     describe "validationsvalidation" do
       subject(:validators) { form._validators }
