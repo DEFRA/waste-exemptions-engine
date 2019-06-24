@@ -19,7 +19,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         expect(response.code).to eq("200")
       end
 
-      it "returns W3C valid HTML content" do
+      it "returns W3C valid HTML content", vcr: true do
         get good_request_path
 
         expect(response.body).to have_valid_html
