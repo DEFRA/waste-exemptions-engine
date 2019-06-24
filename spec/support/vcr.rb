@@ -21,9 +21,12 @@ VCR.configure do |c|
 
   c.register_request_matcher :html_body_content do |request_one, request_two|
     def clean(string)
-      string.gsub(/\"[^\"]+\"/, "")
+      string.gsub(/""/, "\"FOO\"").gsub(/"[^"]*"/, "\"Classes\"").gsub(/></, ">BAR<").gsub(/>[^<>]*</, ">Info<")
     end
 
-    clean(request_one.body) == clean(request_two.body)
+    request_one_body = clean(request_one.body)
+    request_two_body = clean(request_two.body)
+
+    request_one_body == request_two_body
   end
 end

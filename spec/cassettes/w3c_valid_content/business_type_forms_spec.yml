@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/business-type/back/A8xmL6THtEMseL9qrXa1hYGR\">Back</a>\n\n\n<div
+        class=\"text\">\n  <form class=\"new_business_type_form\" id=\"new_business_type_form\"
+        action=\"/waste_exemptions_engine/business-type\" accept-charset=\"UTF-8\"
+        method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n
+        \   \n\n    <h1 class=\"heading-large\">What kind of business or organisation
+        is carrying out the waste operation?</h1>\n\n    <p>Choose the option that
+        most closely describes the business or organisation registering the waste
+        operation</p>\n\n    <div class=\"form-group\">\n      <fieldset id=\"business_type\">\n
+        \       <legend class=\"visuallyhidden\">\n          What kind of business
+        or organisation is carrying out the waste operation?\n        </legend>\n\n\n
+        \       <div class=\"multiple-choice\">\n          <input type=\"radio\" value=\"soleTrader\"
+        name=\"business_type_form[business_type]\" id=\"business_type_form_business_type_soletrader\"
+        />\n          <label for=\"business_type_form_business_type_soletrader\">Individual
+        or sole trader</label>\n        </div>\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"limitedCompany\" name=\"business_type_form[business_type]\"
+        id=\"business_type_form_business_type_limitedcompany\" />\n          <label
+        for=\"business_type_form_business_type_limitedcompany\">Limited company</label>\n
+        \       </div>\n        <div class=\"multiple-choice\">\n          <input
+        type=\"radio\" value=\"partnership\" name=\"business_type_form[business_type]\"
+        id=\"business_type_form_business_type_partnership\" />\n          <label for=\"business_type_form_business_type_partnership\">Partnership</label>\n
+        \       </div>\n        <div class=\"multiple-choice\">\n          <input
+        type=\"radio\" value=\"limitedLiabilityPartnership\" name=\"business_type_form[business_type]\"
+        id=\"business_type_form_business_type_limitedliabilitypartnership\" />\n          <label
+        for=\"business_type_form_business_type_limitedliabilitypartnership\">Limited
+        liability partnership</label>\n        </div>\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"localAuthority\" name=\"business_type_form[business_type]\"
+        id=\"business_type_form_business_type_localauthority\" />\n          <label
+        for=\"business_type_form_business_type_localauthority\">Local authority or
+        public body</label>\n        </div>\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"charity\" name=\"business_type_form[business_type]\"
+        id=\"business_type_form_business_type_charity\" />\n          <label for=\"business_type_form_business_type_charity\">Charity
+        or trust</label>\n        </div>\n      </fieldset>\n    </div>\n\n    <p>Not
+        sure? Call our helpline on 03708 506 506.</p>\n\n    <input value=\"A8xmL6THtEMseL9qrXa1hYGR\"
+        type=\"hidden\" name=\"business_type_form[token]\" id=\"business_type_form_token\"
+        />\n    <div class=\"form-group\">\n      <input type=\"submit\" name=\"commit\"
+        value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 24 Jun 2019 14:01:11 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9idXNpbmVzcy10eXBlL2JhY2svQTh4bUw2VEh0RU1zZUw5cXJYYTFoWUdSXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19idXNpbmVzc190eXBlX2Zvcm1cIiBpZD1cIm5ld19idXNpbmVzc190eXBlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvYnVzaW5lc3MtdHlwZVwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoYXQga2luZCBvZiBidXNpbmVzcyBvciBvcmdhbmlzYXRpb24gaXMgY2Fycnlpbmcgb3V0IHRoZSB3YXN0ZSBvcGVyYXRpb24/PC9oMT5cblxuICAgIDxwPkNob29zZSB0aGUgb3B0aW9uIHRoYXQgbW9zdCBjbG9zZWx5IGRlc2NyaWJlcyB0aGUgYnVzaW5lc3Mgb3Igb3JnYW5pc2F0aW9uIHJlZ2lzdGVyaW5nIHRoZSB3YXN0ZSBvcGVyYXRpb248L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwiYnVzaW5lc3NfdHlwZVwiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHloaWRkZW5cIj5cbiAgICAgICAgICBXaGF0IGtpbmQgb2YgYnVzaW5lc3Mgb3Igb3JnYW5pc2F0aW9uIGlzIGNhcnJ5aW5nIG91dCB0aGUgd2FzdGUgb3BlcmF0aW9uP1xuICAgICAgICA8L2xlZ2VuZD5cblxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJzb2xlVHJhZGVyXCIgbmFtZT1cImJ1c2luZXNzX3R5cGVfZm9ybVtidXNpbmVzc190eXBlXVwiIGlkPVwiYnVzaW5lc3NfdHlwZV9mb3JtX2J1c2luZXNzX3R5cGVfc29sZXRyYWRlclwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImJ1c2luZXNzX3R5cGVfZm9ybV9idXNpbmVzc190eXBlX3NvbGV0cmFkZXJcIj5JbmRpdmlkdWFsIG9yIHNvbGUgdHJhZGVyPC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJsaW1pdGVkQ29tcGFueVwiIG5hbWU9XCJidXNpbmVzc190eXBlX2Zvcm1bYnVzaW5lc3NfdHlwZV1cIiBpZD1cImJ1c2luZXNzX3R5cGVfZm9ybV9idXNpbmVzc190eXBlX2xpbWl0ZWRjb21wYW55XCIgLz5cbiAgICAgICAgICA8bGFiZWwgZm9yPVwiYnVzaW5lc3NfdHlwZV9mb3JtX2J1c2luZXNzX3R5cGVfbGltaXRlZGNvbXBhbnlcIj5MaW1pdGVkIGNvbXBhbnk8L2xhYmVsPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgIDxpbnB1dCB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cInBhcnRuZXJzaGlwXCIgbmFtZT1cImJ1c2luZXNzX3R5cGVfZm9ybVtidXNpbmVzc190eXBlXVwiIGlkPVwiYnVzaW5lc3NfdHlwZV9mb3JtX2J1c2luZXNzX3R5cGVfcGFydG5lcnNoaXBcIiAvPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJidXNpbmVzc190eXBlX2Zvcm1fYnVzaW5lc3NfdHlwZV9wYXJ0bmVyc2hpcFwiPlBhcnRuZXJzaGlwPC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJsaW1pdGVkTGlhYmlsaXR5UGFydG5lcnNoaXBcIiBuYW1lPVwiYnVzaW5lc3NfdHlwZV9mb3JtW2J1c2luZXNzX3R5cGVdXCIgaWQ9XCJidXNpbmVzc190eXBlX2Zvcm1fYnVzaW5lc3NfdHlwZV9saW1pdGVkbGlhYmlsaXR5cGFydG5lcnNoaXBcIiAvPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJidXNpbmVzc190eXBlX2Zvcm1fYnVzaW5lc3NfdHlwZV9saW1pdGVkbGlhYmlsaXR5cGFydG5lcnNoaXBcIj5MaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcDwvbGFiZWw+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwibG9jYWxBdXRob3JpdHlcIiBuYW1lPVwiYnVzaW5lc3NfdHlwZV9mb3JtW2J1c2luZXNzX3R5cGVdXCIgaWQ9XCJidXNpbmVzc190eXBlX2Zvcm1fYnVzaW5lc3NfdHlwZV9sb2NhbGF1dGhvcml0eVwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImJ1c2luZXNzX3R5cGVfZm9ybV9idXNpbmVzc190eXBlX2xvY2FsYXV0aG9yaXR5XCI+TG9jYWwgYXV0aG9yaXR5IG9yIHB1YmxpYyBib2R5PC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJjaGFyaXR5XCIgbmFtZT1cImJ1c2luZXNzX3R5cGVfZm9ybVtidXNpbmVzc190eXBlXVwiIGlkPVwiYnVzaW5lc3NfdHlwZV9mb3JtX2J1c2luZXNzX3R5cGVfY2hhcml0eVwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cImJ1c2luZXNzX3R5cGVfZm9ybV9idXNpbmVzc190eXBlX2NoYXJpdHlcIj5DaGFyaXR5IG9yIHRydXN0PC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZGl2PlxuXG4gICAgPHA+Tm90IHN1cmU/IENhbGwgb3VyIGhlbHBsaW5lIG9uIDAzNzA4IDUwNiA1MDYuPC9wPlxuXG4gICAgPGlucHV0IHZhbHVlPVwiQTh4bUw2VEh0RU1zZUw5cXJYYTFoWUdSXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJidXNpbmVzc190eXBlX2Zvcm1bdG9rZW5dXCIgaWQ9XCJidXNpbmVzc190eXBlX2Zvcm1fdG9rZW5cIiAvPlxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8aW5wdXQgdHlwZT1cInN1Ym1pdFwiIG5hbWU9XCJjb21taXRcIiB2YWx1ZT1cIkNvbnRpbnVlXCIgY2xhc3M9XCJidXR0b25cIiAvPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Mon, 24 Jun 2019 14:01:11 GMT
+recorded_with: VCR 5.0.0

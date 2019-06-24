@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/site-grid-reference/back/xomdEzP3324tioBA1uCVxtiW\">Back</a>\n\n\n<div
+        class=\"text\">\n  <form class=\"new_site_grid_reference_form\" id=\"new_site_grid_reference_form\"
+        action=\"/waste_exemptions_engine/site-grid-reference\" accept-charset=\"UTF-8\"
+        method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n
+        \   \n\n    <h1 class=\"heading-large\">Where will this waste operation take
+        place?</h1>\n\n    <div class=\"panel panel-border-wide\">\n      <p class=\"strong\">\n
+        \       Enter a grid reference or\n        <a href=\"/waste_exemptions_engine/site-grid-reference/skip_to_address/xomdEzP3324tioBA1uCVxtiW\">use
+        an address instead</a>\n      </p>\n    </div>\n\n    <div class=\"form-group\">\n
+        \     <fieldset id=\"grid_reference\">\n\n        <label class=\"form-label\"
+        for=\"site_grid_reference_form_grid_reference\">\n          National Grid
+        reference\n          <span class='form-hint'>Enter 2 letters and 10 digits.
+        For example, ST 58132 72695</span>\n</label>        <input class=\"form-control
+        govuk-input--width-10\" type=\"text\" name=\"site_grid_reference_form[grid_reference]\"
+        id=\"site_grid_reference_form_grid_reference\" />\n      </fieldset>\n    </div>\n\n
+        \   <div class=\"form-group\">\n      <details>\n        <summary>\n          <span
+        class=\"summary\">Help finding a grid reference</span>\n        </summary>\n
+        \       <div class=\"panel panel-border-narrow\">\n          <p>Use the free
+        <a rel=\"external\" target=\"_blank\" href=\"http://gridreferencefinder.com/\">UK
+        Grid Reference Finder (opens new window).</a>\n          </p>\n          <ul
+        class=\"list list-number\">\n            <li>Search for the location or postcode
+        on the left of the page.</li>\n            <li>Right-click to display the
+        grid reference.</li>\n            <li>Select the grid reference then copy
+        and paste back on this page.</li>\n          </ul>\n        </div>\n      </details>\n
+        \   </div>\n\n    <div class=\"form-group\">\n      <fieldset id=\"description\">\n\n
+        \       <label class=\"form-label\" for=\"site_grid_reference_form_description\">\n
+        \         Site details\n</label>        <span class='form-hint'>\n          Useful
+        information includes:\n        </span>\n        <ul class=\"list list-bullet
+        form-hint\">\n          <li>nearby landmarks</li>\n          <li>description
+        of the site</li>\n          <li>man-made features, for example roads, walls
+        or buildings</li>\n          <li>natural features, for example rivers, trees
+        or hedges</li>\n        </ul>\n        <textarea class=\"form-control\" rows=\"4\"
+        name=\"site_grid_reference_form[description]\" id=\"site_grid_reference_form_description\">\n</textarea>\n
+        \     </fieldset>\n      <p>500 character limit</p>\n    </div>\n\n    <input
+        value=\"xomdEzP3324tioBA1uCVxtiW\" type=\"hidden\" name=\"site_grid_reference_form[token]\"
+        id=\"site_grid_reference_form_token\" />\n    <div class=\"form-group\">\n
+        \     <input type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\"
+        />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 24 Jun 2019 14:11:51 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9zaXRlLWdyaWQtcmVmZXJlbmNlL2JhY2sveG9tZEV6UDMzMjR0aW9CQTF1Q1Z4dGlXXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBpZD1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc2l0ZS1ncmlkLXJlZmVyZW5jZVwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoZXJlIHdpbGwgdGhpcyB3YXN0ZSBvcGVyYXRpb24gdGFrZSBwbGFjZT88L2gxPlxuXG4gICAgPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLWJvcmRlci13aWRlXCI+XG4gICAgICA8cCBjbGFzcz1cInN0cm9uZ1wiPlxuICAgICAgICBFbnRlciBhIGdyaWQgcmVmZXJlbmNlIG9yXG4gICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc2l0ZS1ncmlkLXJlZmVyZW5jZS9za2lwX3RvX2FkZHJlc3MveG9tZEV6UDMzMjR0aW9CQTF1Q1Z4dGlXXCI+dXNlIGFuIGFkZHJlc3MgaW5zdGVhZDwvYT5cbiAgICAgIDwvcD5cbiAgICA8L2Rpdj5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8ZmllbGRzZXQgaWQ9XCJncmlkX3JlZmVyZW5jZVwiPlxuXG4gICAgICAgIDxsYWJlbCBjbGFzcz1cImZvcm0tbGFiZWxcIiBmb3I9XCJzaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1fZ3JpZF9yZWZlcmVuY2VcIj5cbiAgICAgICAgICBOYXRpb25hbCBHcmlkIHJlZmVyZW5jZVxuICAgICAgICAgIDxzcGFuIGNsYXNzPSdmb3JtLWhpbnQnPkVudGVyIDIgbGV0dGVycyBhbmQgMTAgZGlnaXRzLiBGb3IgZXhhbXBsZSwgU1QgNTgxMzIgNzI2OTU8L3NwYW4+XG48L2xhYmVsPiAgICAgICAgPGlucHV0IGNsYXNzPVwiZm9ybS1jb250cm9sIGdvdnVrLWlucHV0LS13aWR0aC0xMFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cInNpdGVfZ3JpZF9yZWZlcmVuY2VfZm9ybVtncmlkX3JlZmVyZW5jZV1cIiBpZD1cInNpdGVfZ3JpZF9yZWZlcmVuY2VfZm9ybV9ncmlkX3JlZmVyZW5jZVwiIC8+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZGl2PlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxkZXRhaWxzPlxuICAgICAgICA8c3VtbWFyeT5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cInN1bW1hcnlcIj5IZWxwIGZpbmRpbmcgYSBncmlkIHJlZmVyZW5jZTwvc3Bhbj5cbiAgICAgICAgPC9zdW1tYXJ5PlxuICAgICAgICA8ZGl2IGNsYXNzPVwicGFuZWwgcGFuZWwtYm9yZGVyLW5hcnJvd1wiPlxuICAgICAgICAgIDxwPlVzZSB0aGUgZnJlZSA8YSByZWw9XCJleHRlcm5hbFwiIHRhcmdldD1cIl9ibGFua1wiIGhyZWY9XCJodHRwOi8vZ3JpZHJlZmVyZW5jZWZpbmRlci5jb20vXCI+VUsgR3JpZCBSZWZlcmVuY2UgRmluZGVyIChvcGVucyBuZXcgd2luZG93KS48L2E+XG4gICAgICAgICAgPC9wPlxuICAgICAgICAgIDx1bCBjbGFzcz1cImxpc3QgbGlzdC1udW1iZXJcIj5cbiAgICAgICAgICAgIDxsaT5TZWFyY2ggZm9yIHRoZSBsb2NhdGlvbiBvciBwb3N0Y29kZSBvbiB0aGUgbGVmdCBvZiB0aGUgcGFnZS48L2xpPlxuICAgICAgICAgICAgPGxpPlJpZ2h0LWNsaWNrIHRvIGRpc3BsYXkgdGhlIGdyaWQgcmVmZXJlbmNlLjwvbGk+XG4gICAgICAgICAgICA8bGk+U2VsZWN0IHRoZSBncmlkIHJlZmVyZW5jZSB0aGVuIGNvcHkgYW5kIHBhc3RlIGJhY2sgb24gdGhpcyBwYWdlLjwvbGk+XG4gICAgICAgICAgPC91bD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2RldGFpbHM+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwiZGVzY3JpcHRpb25cIj5cblxuICAgICAgICA8bGFiZWwgY2xhc3M9XCJmb3JtLWxhYmVsXCIgZm9yPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtX2Rlc2NyaXB0aW9uXCI+XG4gICAgICAgICAgU2l0ZSBkZXRhaWxzXG48L2xhYmVsPiAgICAgICAgPHNwYW4gY2xhc3M9J2Zvcm0taGludCc+XG4gICAgICAgICAgVXNlZnVsIGluZm9ybWF0aW9uIGluY2x1ZGVzOlxuICAgICAgICA8L3NwYW4+XG4gICAgICAgIDx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXQgZm9ybS1oaW50XCI+XG4gICAgICAgICAgPGxpPm5lYXJieSBsYW5kbWFya3M8L2xpPlxuICAgICAgICAgIDxsaT5kZXNjcmlwdGlvbiBvZiB0aGUgc2l0ZTwvbGk+XG4gICAgICAgICAgPGxpPm1hbi1tYWRlIGZlYXR1cmVzLCBmb3IgZXhhbXBsZSByb2Fkcywgd2FsbHMgb3IgYnVpbGRpbmdzPC9saT5cbiAgICAgICAgICA8bGk+bmF0dXJhbCBmZWF0dXJlcywgZm9yIGV4YW1wbGUgcml2ZXJzLCB0cmVlcyBvciBoZWRnZXM8L2xpPlxuICAgICAgICA8L3VsPlxuICAgICAgICA8dGV4dGFyZWEgY2xhc3M9XCJmb3JtLWNvbnRyb2xcIiByb3dzPVwiNFwiIG5hbWU9XCJzaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1bZGVzY3JpcHRpb25dXCIgaWQ9XCJzaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1fZGVzY3JpcHRpb25cIj5cbjwvdGV4dGFyZWE+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgICAgPHA+NTAwIGNoYXJhY3RlciBsaW1pdDwvcD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cInhvbWRFelAzMzI0dGlvQkExdUNWeHRpV1wiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtW3Rva2VuXVwiIGlkPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+    http_version: 
+  recorded_at: Mon, 24 Jun 2019 14:11:51 GMT
+recorded_with: VCR 5.0.0
