@@ -23,11 +23,16 @@ module WasteExemptionsEngine
       data["x"] = data["x"].to_f
       data["y"] = data["y"].to_f
 
+      data = update_grid_reference_from_xy(data) if address_type == TransientAddress.address_types[:site]
+
       create_address(data, address_type, TransientAddress.modes[:lookup])
     end
 
     def self.create_from_manual_entry_data(data, address_type)
-      data = update_xy_from_postcode(data) if address_type == TransientAddress.address_types[:site]
+      if address_type == TransientAddress.address_types[:site]
+        data = update_xy_from_postcode(data)
+        data = update_grid_reference_from_xy(data)
+      end
 
       create_address(data, address_type, TransientAddress.modes[:manual])
     end
@@ -71,6 +76,19 @@ module WasteExemptionsEngine
       rescue OsMapRef::Error
         data["x"] = nil
         data["y"] = nil
+      end
+
+      data
+    end
+
+    private_class_method def self.update_grid_reference_from_xy(data)
+      return nil unless data
+
+      begin
+        location = OsMapRef::Location.for("#{data['x']}, #{data['y']}")
+        data["grid_reference"] = location.map_reference
+      rescue OsMapRef::Error
+        data["grid_reference"] = nil
       end
 
       data
