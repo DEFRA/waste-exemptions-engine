@@ -6,7 +6,7 @@ require "w3c_validators"
 RSpec::Matchers.define :have_valid_html do
   match do |actual|
     @validator = W3CValidators::NuValidator.new
-    vcr_options = { match_requests_on: %i[html_body_content], record: :once}
+    vcr_options = { match_requests_on: %i[html_body_content], record: :once }
 
     cassette_name = method_missing(:class).metadata[:rerun_file_path].split("/").last.gsub(".rb", "")
 
