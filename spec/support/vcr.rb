@@ -5,6 +5,8 @@ require "webmock/rspec"
 # Auto generate fake responses for web-requests
 require "vcr"
 
+require_relative "helpers/html_body_content_matcher"
+
 VCR.configure do |c|
   c.cassette_library_dir = "spec/cassettes"
   c.hook_into :webmock
@@ -20,13 +22,6 @@ VCR.configure do |c|
   end
 
   c.register_request_matcher :html_body_content do |request_one, request_two|
-    def clean(string)
-      string.gsub(/""/, "\"FOO\"").gsub(/"[^"]*"/, "\"Classes\"").gsub(/></, ">BAR<").gsub(/>[^<>]*</, ">Info<")
-    end
-
-    request_one_body = clean(request_one.body)
-    request_two_body = clean(request_two.body)
-
-    request_one_body == request_two_body
+    HtmlBodyContentMatcher.new(request_one, request_two).match?
   end
 end
