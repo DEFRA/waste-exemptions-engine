@@ -21,6 +21,12 @@ RSpec.shared_examples "it has PaperTrail", versioning: true do |model_factory:, 
     expect(instance).to have_a_version_with(field => "foo")
   end
 
+  it "stores a JSON record of all the data" do
+    expected_json = JSON.parse(instance.to_json)
+    instance.paper_trail.save_with_version
+    expect(instance.versions.last.json).to eq(expected_json)
+  end
+
   it "does not create a version when an ignored attribute is updated" do
     if ignored_fields.present?
       ignored_fields.each do |ignored_field|
