@@ -13,14 +13,10 @@
       </p>
     </div>
 
-    <% if @site_grid_reference_form.errors[:grid_reference].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @site_grid_reference_form.errors[:grid_reference].any? %>">
       <fieldset id="grid_reference">
         <% if @site_grid_reference_form.errors[:grid_reference].any? %>
-        <span class="error-message"><%= @site_grid_reference_form.errors[:grid_reference].join(", ") %></span>
+          <span class="error-message"><%= @site_grid_reference_form.errors[:grid_reference].join(", ") %></span>
         <% end %>
 
         <%= f.label :grid_reference, class: "form-label" do %>
@@ -58,14 +54,10 @@
       </details>
     </div>
 
-    <% if @site_grid_reference_form.errors[:description].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @site_grid_reference_form.errors[:description].any? %>">
       <fieldset id="description">
         <% if @site_grid_reference_form.errors[:description].any? %>
-        <span class="error-message"><%= @site_grid_reference_form.errors[:description].join(", ") %></span>
+          <span class="error-message"><%= @site_grid_reference_form.errors[:description].join(", ") %></span>
         <% end %>
 
         <%= f.label :description, class: "form-label" do %>

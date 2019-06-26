@@ -6,18 +6,14 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @on_a_farm_form.errors[:on_a_farm].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @on_a_farm_form.errors[:on_a_farm].any? %>">
       <fieldset class="inline" id="on_a_farm">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
         <% if @on_a_farm_form.errors[:on_a_farm].any? %>
-        <span class="error-message"><%= @on_a_farm_form.errors[:on_a_farm].join(", ") %></span>
+          <span class="error-message"><%= @on_a_farm_form.errors[:on_a_farm].join(", ") %></span>
         <% end %>
 
         <div class="multiple-choice">

@@ -6,14 +6,10 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @contact_position_form.errors[:position].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @contact_position_form.errors[:position].any? %>">
       <fieldset id="position">
         <% if @contact_position_form.errors[:position].any? %>
-        <span class="error-message"><%= @contact_position_form.errors[:position].join(", ") %></span>
+          <span class="error-message"><%= @contact_position_form.errors[:position].join(", ") %></span>
         <% end %>
 
         <%= f.label :position, class: "form-label" do %>

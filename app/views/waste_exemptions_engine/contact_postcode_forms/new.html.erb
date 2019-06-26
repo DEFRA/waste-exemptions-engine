@@ -6,26 +6,22 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @contact_postcode_form.errors[:postcode].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @contact_postcode_form.errors[:postcode].any? %>">
       <fieldset id="postcode">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
         <% if @contact_postcode_form.errors[:postcode].any? %>
-        <span class="error-message"><%= @contact_postcode_form.errors[:postcode].join(", ") %></span>
+          <span class="error-message"><%= @contact_postcode_form.errors[:postcode].join(", ") %></span>
         <% end %>
 
         <%= f.label :postcode, class: "form-label" do %>
           <%= t(".postcode_label") %>
           <span class='form-hint'><%= t(".postcode_hint") %></span>
         <% end %>
-        <%= f.text_field :postcode, value: @contact_postcode_form.postcode, class: "form-control govuk-input--width-10" %>
 
+        <%= f.text_field :postcode, value: @contact_postcode_form.postcode, class: "form-control govuk-input--width-10" %>
       </fieldset>
     </div>
 
@@ -35,9 +31,9 @@
     </div>
 
     <% if @contact_postcode_form.errors.added?(:postcode, :no_results) %>
-    <div class="form-group">
-      <%= link_to(t(".manual_address_link"), skip_to_manual_address_contact_postcode_forms_path(@contact_postcode_form.token)) %>
-    </div>
+      <div class="form-group">
+        <%= link_to(t(".manual_address_link"), skip_to_manual_address_contact_postcode_forms_path(@contact_postcode_form.token)) %>
+      </div>
     <% end %>
   <% end %>
 
