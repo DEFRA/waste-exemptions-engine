@@ -29,7 +29,7 @@ module WasteExemptionsEngine
     end
 
     describe "PaperTrail", versioning: true do
-      subject(:registration) { create(:registration) }
+      subject(:registration) { create(:registration, :complete) }
 
       it "has PaperTrail" do
         expect(PaperTrail).to be_enabled
@@ -50,9 +50,16 @@ module WasteExemptionsEngine
       end
 
       it "stores a JSON record of all the data" do
-        expected_json = JSON.parse(registration.to_json)
+        expected_json = JSON.parse(registration.to_json(include: :addresses))
         registration.paper_trail.save_with_version
+
         expect(registration.versions.last.json).to eq(expected_json)
+      end
+
+      it "includes related addresses in the JSON" do
+        postcode = registration.addresses.first.postcode
+        registration.paper_trail.save_with_version
+        expect(registration.versions.last.json.to_s).to include(postcode)
       end
     end
   end
