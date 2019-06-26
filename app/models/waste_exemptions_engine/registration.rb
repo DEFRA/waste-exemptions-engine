@@ -23,7 +23,8 @@ module WasteExemptionsEngine
 
     def json_for_version
       to_json(include: %i[addresses
-                          people])
+                          people
+                          registration_exemptions])
     end
   end
 end

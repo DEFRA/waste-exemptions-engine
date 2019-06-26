@@ -50,7 +50,7 @@ module WasteExemptionsEngine
       end
 
       it "stores a JSON record of all the data" do
-        expected_json = JSON.parse(registration.to_json(include: %i[addresses people]))
+        expected_json = JSON.parse(registration.to_json(include: %i[addresses people registration_exemptions]))
         registration.paper_trail.save_with_version
 
         expect(registration.versions.last.json).to eq(expected_json)
@@ -66,6 +66,13 @@ module WasteExemptionsEngine
         first_name = registration.people.first.first_name
         registration.paper_trail.save_with_version
         expect(registration.versions.last.json.to_s).to include(first_name)
+      end
+
+      it "includes related registration_exemptions in the JSON" do
+        expected_message = "Deregistration message"
+        registration.registration_exemptions.first.deregistration_message = expected_message
+        registration.paper_trail.save_with_version
+        expect(registration.versions.last.json.to_s).to include(expected_message)
       end
     end
   end
