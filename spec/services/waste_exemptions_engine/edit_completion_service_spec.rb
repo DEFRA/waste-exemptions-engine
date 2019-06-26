@@ -70,6 +70,66 @@ module WasteExemptionsEngine
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(0)
       end
 
+      describe "PaperTrail", versioning: true do
+        it "creates a new version" do
+          expect { run_service }.to change { registration.versions.count }.by(1)
+        end
+
+        it "includes the old data in the version JSON" do
+          old_data = registration.operator_name
+          new_data = edit_registration.operator_name
+
+          run_service
+
+          expect(registration.versions.last.json).to include(old_data)
+          expect(registration.versions.last.json).to_not include(new_data)
+        end
+
+        context "when no data has changed" do
+          let(:edit_registration) { create(:edit_registration) }
+
+          it "does not create a new version" do
+            expect { run_service }.to change { registration.versions.count }.by(1)
+          end
+        end
+
+        context "when only a related address's data has changed" do
+          let(:edit_registration) { create(:edit_registration, :modified_addresses) }
+
+          it "creates a new version" do
+            expect { run_service }.to change { registration.versions.count }.by(1)
+          end
+
+          it "includes the old data in the version JSON" do
+            old_data = registration.contact_address.postcode
+            new_data = edit_registration.contact_address.postcode
+
+            run_service
+
+            expect(registration.versions.last.json).to include(old_data)
+            expect(registration.versions.last.json).to_not include(new_data)
+          end
+        end
+
+        context "when only a related person's data has changed" do
+          let(:edit_registration) { create(:edit_registration, :modified_people) }
+
+          it "creates a new version" do
+            expect { run_service }.to change { registration.versions.count }.by(1)
+          end
+
+          it "includes the old data in the version JSON" do
+            old_data = registration.people.first.first_name
+            new_data = edit_registration.people.first.first_name
+
+            run_service
+
+            expect(registration.versions.last.json).to include(old_data)
+            expect(registration.versions.last.json).to_not include(new_data)
+          end
+        end
+      end
+
       def run_service
         described_class.run(edit_registration: edit_registration)
       end
