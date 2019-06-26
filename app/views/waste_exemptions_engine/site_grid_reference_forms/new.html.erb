@@ -70,16 +70,16 @@
 
         <%= f.label :description, class: "form-label" do %>
           <%= t(".description_label") %>
-          <span class='form-hint'>
-            <%= t(".description_hint") %>
-            <ul class="list list-bullet">
-              <li><%= t(".description_hint_bullet_1") %></li>
-              <li><%= t(".description_hint_bullet_2") %></li>
-              <li><%= t(".description_hint_bullet_3") %></li>
-              <li><%= t(".description_hint_bullet_4") %></li>
-            </ul>
-          </span>
         <% end %>
+        <span class='form-hint'>
+          <%= t(".description_hint") %>
+        </span>
+        <ul class="list list-bullet form-hint">
+          <li><%= t(".description_hint_bullet_1") %></li>
+          <li><%= t(".description_hint_bullet_2") %></li>
+          <li><%= t(".description_hint_bullet_3") %></li>
+          <li><%= t(".description_hint_bullet_4") %></li>
+        </ul>
         <%= f.text_area :description, value: @site_grid_reference_form.description, class: "form-control", rows: 4 %>
       </fieldset>
       <p><%= t(".description_limit") %></p>

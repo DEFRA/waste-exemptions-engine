@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/registration-number/back/nXvDRMJGJznB4cXHUKbf8Vxz\">Back</a>\n\n\n<div
+        class=\"text\">\n  <form class=\"new_registration_number_form\" id=\"new_registration_number_form\"
+        action=\"/waste_exemptions_engine/registration-number\" accept-charset=\"UTF-8\"
+        method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n
+        \   \n\n    <h1 class=\"heading-large\">{:limitedCompany=&gt;&quot;What&#39;s
+        the registration number of the company?&quot;, :limitedLiabilityPartnership=&gt;&quot;What&#39;s
+        the registration number of the limited liability partnership?&quot;}</h1>\n\n
+        \   <div class=\"form-group\">\n      <fieldset id=\"company_no\">\n        <legend
+        class=\"visuallyhidden\">\n          {:limitedCompany=&gt;&quot;What&#39;s
+        the registration number of the company?&quot;, :limitedLiabilityPartnership=&gt;&quot;What&#39;s
+        the registration number of the limited liability partnership?&quot;}\n        </legend>\n\n\n
+        \       <label class=\"form-label\" for=\"registration_number_form_company_no\">\n
+        \         Registration number\n          <span class='form-hint'>An 8 digit
+        number, or 2 letters followed by a 6 digit number</span>\n</label>        <input
+        class=\"form-control govuk-input--width-10\" type=\"text\" name=\"registration_number_form[company_no]\"
+        id=\"registration_number_form_company_no\" />\n\n      </fieldset>\n    </div>\n\n
+        \   <div class=\"form-group\">\n      <details>\n        <summary>\n          <span
+        class=\"summary\">What&#39;s a registration number?</span>\n        </summary>\n
+        \       <div class=\"panel panel-border-narrow\">\n          <p>{:limitedCompany=&gt;&quot;This
+        is issued when the company is registered, and can be found on your Certificate
+        of Incorporation and any paperwork from Companies House.&quot;, :limitedLiabilityPartnership=&gt;&quot;This
+        is issued when the limited liability partnership is registered, and can be
+        found on your Certificate of Incorporation and any paperwork from Companies
+        House.&quot;}</p>\n        </div>\n      </details>\n    </div>\n\n    <p>{:limitedCompany=&gt;&quot;We&#39;ll
+        look this number up in the Companies House register to make sure it belongs
+        to an active company.&quot;, :limitedLiabilityPartnership=&gt;&quot;We&#39;ll
+        look this number up in the Companies House register to make sure it belongs
+        to an active limited liability partnership.&quot;}</p>\n\n    <input value=\"nXvDRMJGJznB4cXHUKbf8Vxz\"
+        type=\"hidden\" name=\"registration_number_form[token]\" id=\"registration_number_form_token\"
+        />\n    <div class=\"form-group\">\n      <input type=\"submit\" name=\"commit\"
+        value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 24 Jun 2019 14:11:38 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZWdpc3RyYXRpb24tbnVtYmVyL2JhY2svblh2RFJNSkdKem5CNGNYSFVLYmY4Vnh6XCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19yZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1cIiBpZD1cIm5ld19yZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvcmVnaXN0cmF0aW9uLW51bWJlclwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPns6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O1doYXQmIzM5O3MgdGhlIHJlZ2lzdHJhdGlvbiBudW1iZXIgb2YgdGhlIGNvbXBhbnk/JnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtXaGF0JiMzOTtzIHRoZSByZWdpc3RyYXRpb24gbnVtYmVyIG9mIHRoZSBsaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcD8mcXVvdDt9PC9oMT5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8ZmllbGRzZXQgaWQ9XCJjb21wYW55X25vXCI+XG4gICAgICAgIDxsZWdlbmQgY2xhc3M9XCJ2aXN1YWxseWhpZGRlblwiPlxuICAgICAgICAgIHs6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O1doYXQmIzM5O3MgdGhlIHJlZ2lzdHJhdGlvbiBudW1iZXIgb2YgdGhlIGNvbXBhbnk/JnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtXaGF0JiMzOTtzIHRoZSByZWdpc3RyYXRpb24gbnVtYmVyIG9mIHRoZSBsaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcD8mcXVvdDt9XG4gICAgICAgIDwvbGVnZW5kPlxuXG5cbiAgICAgICAgPGxhYmVsIGNsYXNzPVwiZm9ybS1sYWJlbFwiIGZvcj1cInJlZ2lzdHJhdGlvbl9udW1iZXJfZm9ybV9jb21wYW55X25vXCI+XG4gICAgICAgICAgUmVnaXN0cmF0aW9uIG51bWJlclxuICAgICAgICAgIDxzcGFuIGNsYXNzPSdmb3JtLWhpbnQnPkFuIDggZGlnaXQgbnVtYmVyLCBvciAyIGxldHRlcnMgZm9sbG93ZWQgYnkgYSA2IGRpZ2l0IG51bWJlcjwvc3Bhbj5cbjwvbGFiZWw+ICAgICAgICA8aW5wdXQgY2xhc3M9XCJmb3JtLWNvbnRyb2wgZ292dWstaW5wdXQtLXdpZHRoLTEwXCIgdHlwZT1cInRleHRcIiBuYW1lPVwicmVnaXN0cmF0aW9uX251bWJlcl9mb3JtW2NvbXBhbnlfbm9dXCIgaWQ9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1fY29tcGFueV9ub1wiIC8+XG5cbiAgICAgIDwvZmllbGRzZXQ+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGRldGFpbHM+XG4gICAgICAgIDxzdW1tYXJ5PlxuICAgICAgICAgIDxzcGFuIGNsYXNzPVwic3VtbWFyeVwiPldoYXQmIzM5O3MgYSByZWdpc3RyYXRpb24gbnVtYmVyPzwvc3Bhbj5cbiAgICAgICAgPC9zdW1tYXJ5PlxuICAgICAgICA8ZGl2IGNsYXNzPVwicGFuZWwgcGFuZWwtYm9yZGVyLW5hcnJvd1wiPlxuICAgICAgICAgIDxwPns6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O1RoaXMgaXMgaXNzdWVkIHdoZW4gdGhlIGNvbXBhbnkgaXMgcmVnaXN0ZXJlZCwgYW5kIGNhbiBiZSBmb3VuZCBvbiB5b3VyIENlcnRpZmljYXRlIG9mIEluY29ycG9yYXRpb24gYW5kIGFueSBwYXBlcndvcmsgZnJvbSBDb21wYW5pZXMgSG91c2UuJnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtUaGlzIGlzIGlzc3VlZCB3aGVuIHRoZSBsaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcCBpcyByZWdpc3RlcmVkLCBhbmQgY2FuIGJlIGZvdW5kIG9uIHlvdXIgQ2VydGlmaWNhdGUgb2YgSW5jb3Jwb3JhdGlvbiBhbmQgYW55IHBhcGVyd29yayBmcm9tIENvbXBhbmllcyBIb3VzZS4mcXVvdDt9PC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGV0YWlscz5cbiAgICA8L2Rpdj5cblxuICAgIDxwPns6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O1dlJiMzOTtsbCBsb29rIHRoaXMgbnVtYmVyIHVwIGluIHRoZSBDb21wYW5pZXMgSG91c2UgcmVnaXN0ZXIgdG8gbWFrZSBzdXJlIGl0IGJlbG9uZ3MgdG8gYW4gYWN0aXZlIGNvbXBhbnkuJnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtXZSYjMzk7bGwgbG9vayB0aGlzIG51bWJlciB1cCBpbiB0aGUgQ29tcGFuaWVzIEhvdXNlIHJlZ2lzdGVyIHRvIG1ha2Ugc3VyZSBpdCBiZWxvbmdzIHRvIGFuIGFjdGl2ZSBsaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcC4mcXVvdDt9PC9wPlxuXG4gICAgPGlucHV0IHZhbHVlPVwiblh2RFJNSkdKem5CNGNYSFVLYmY4Vnh6XCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1bdG9rZW5dXCIgaWQ9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1fdG9rZW5cIiAvPlxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8aW5wdXQgdHlwZT1cInN1Ym1pdFwiIG5hbWU9XCJjb21taXRcIiB2YWx1ZT1cIkNvbnRpbnVlXCIgY2xhc3M9XCJidXR0b25cIiAvPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Mon, 24 Jun 2019 14:11:38 GMT
+recorded_with: VCR 5.0.0
