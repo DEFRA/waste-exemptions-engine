@@ -15,8 +15,6 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "an owner of registration attributes", :registration, :address
-    it_behaves_like "it has PaperTrail", model_factory: :registration,
-                                         field: :operator_name
 
     describe ".active_exemptions" do
       subject(:registration) { create(:registration, :with_active_exemptions) }
@@ -27,6 +25,34 @@ module WasteExemptionsEngine
         pending_exemption.save
 
         expect(registration.active_exemptions.count).to eq(registration.exemptions.count - 1)
+      end
+    end
+
+    describe "PaperTrail", versioning: true do
+      subject(:registration) { create(:registration) }
+
+      it "has PaperTrail" do
+        expect(PaperTrail).to be_enabled
+      end
+
+      it "is versioned" do
+        expect(registration).to be_versioned
+      end
+
+      it "creates a new version when it is updated" do
+        expect { registration.update_attribute(:operator_name, "foo") }.to change { registration.versions.count }.by(1)
+      end
+
+      it "stores the correct values when it is updated" do
+        registration.update_attribute(:operator_name, "foo")
+        registration.update_attribute(:operator_name, "bar")
+        expect(registration).to have_a_version_with(operator_name: "foo")
+      end
+
+      it "stores a JSON record of all the data" do
+        expected_json = JSON.parse(registration.to_json)
+        registration.paper_trail.save_with_version
+        expect(registration.versions.last.json).to eq(expected_json)
       end
     end
   end
