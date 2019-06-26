@@ -17,7 +17,7 @@
         <% if @exemptions_form.errors[:matched_exemptions].any? %>
         <span class="error-message"><%= @exemptions_form.errors[:matched_exemptions].join(", ") %></span>
         <% end %>
-        <table summary="exemption-codes" role="presentation">
+        <table role="presentation">
           <thead>
           <tr>
             <th><span class="heading-small"><%= t '.th_code' %></span></th>

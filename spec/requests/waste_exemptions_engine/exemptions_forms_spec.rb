@@ -4,7 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Exemptions Forms", type: :request do
-    before(:context) { create_list(:exemption, 5) }
+    before(:context) do
+      WasteExemptionsEngine::Exemption.delete_all
+      create_list(:exemption, 5)
+    end
 
     include_examples "GET form", :exemptions_form, "/exemptions"
     include_examples "go back", :exemptions_form, "/exemptions/back"

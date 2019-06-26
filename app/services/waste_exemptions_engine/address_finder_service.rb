@@ -13,6 +13,7 @@ module WasteExemptionsEngine
 
     def search_by_postcode
       Rails.logger.debug "Sending request to Address lookup service"
+
       begin
         response = RestClient::Request.execute(method: :get,
                                                url: @url)

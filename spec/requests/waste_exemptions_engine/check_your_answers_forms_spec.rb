@@ -5,6 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe "Check Your Answers Forms", type: :request, vcr: true do
     before(:context) do
+      WasteExemptionsEngine::Exemption.delete_all
       create_list(:exemption, 5)
       VCR.insert_cassette("company_no_valid", allow_playback_repeats: true)
     end
