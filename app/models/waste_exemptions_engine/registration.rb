@@ -22,7 +22,8 @@ module WasteExemptionsEngine
     private
 
     def json_for_version
-      to_json(include: :addresses)
+      to_json(include: %i[addresses
+                          people])
     end
   end
 end

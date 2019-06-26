@@ -50,7 +50,7 @@ module WasteExemptionsEngine
       end
 
       it "stores a JSON record of all the data" do
-        expected_json = JSON.parse(registration.to_json(include: :addresses))
+        expected_json = JSON.parse(registration.to_json(include: %i[addresses people]))
         registration.paper_trail.save_with_version
 
         expect(registration.versions.last.json).to eq(expected_json)
@@ -60,6 +60,12 @@ module WasteExemptionsEngine
         postcode = registration.addresses.first.postcode
         registration.paper_trail.save_with_version
         expect(registration.versions.last.json.to_s).to include(postcode)
+      end
+
+      it "includes related people in the JSON" do
+        first_name = registration.people.first.first_name
+        registration.paper_trail.save_with_version
+        expect(registration.versions.last.json.to_s).to include(first_name)
       end
     end
   end
