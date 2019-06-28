@@ -40,39 +40,54 @@ module WasteExemptionsEngine
       end
 
       it "creates a new version when it is updated" do
-        expect { registration.update_attribute(:operator_name, "foo") }.to change { registration.versions.count }.by(1)
+        expect { registration.update_attribute(:operator_name, Faker::Company.name) }.to change { registration.versions.count }.by(1)
       end
 
       it "stores the correct values when it is updated" do
-        registration.update_attribute(:operator_name, "foo")
-        registration.update_attribute(:operator_name, "bar")
-        expect(registration).to have_a_version_with(operator_name: "foo")
-      end
+        operator_name = Faker::Company.name
 
-      it "stores a JSON record of all the data" do
-        expected_json = JSON.parse(registration.to_json(include: %i[addresses people registration_exemptions]))
+        registration.operator_name = operator_name
         registration.paper_trail.save_with_version
 
-        expect(registration.versions.last.json).to eq(expected_json)
+        expect(registration.versions.last.reify.operator_name).to eq(operator_name)
       end
 
-      it "includes related addresses in the JSON" do
-        postcode = registration.addresses.first.postcode
-        registration.paper_trail.save_with_version
-        expect(registration.versions.last.json.to_s).to include(postcode)
-      end
+      describe "JSON" do
+        it "includes the registration's attributes" do
+          operator_name = Faker::Company.name
 
-      it "includes related people in the JSON" do
-        first_name = registration.people.first.first_name
-        registration.paper_trail.save_with_version
-        expect(registration.versions.last.json.to_s).to include(first_name)
-      end
+          registration.operator_name = operator_name
+          registration.paper_trail.save_with_version
 
-      it "includes related registration_exemptions in the JSON" do
-        expected_message = "Deregistration message"
-        registration.registration_exemptions.first.deregistration_message = expected_message
-        registration.paper_trail.save_with_version
-        expect(registration.versions.last.json.to_s).to include(expected_message)
+          expect(registration.versions.last.json.to_s).to include(operator_name)
+        end
+
+        it "includes related addresses in the JSON" do
+          street_address = Faker::Address.street_address
+
+          registration.contact_address.street_address = street_address
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(street_address)
+        end
+
+        it "includes related people in the JSON" do
+          first_name = Faker::Name.first_name
+
+          registration.people.first.first_name = first_name
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(first_name)
+        end
+
+        it "includes related registration_exemptions in the JSON" do
+          expected_message = Faker::Lorem.sentence
+
+          registration.registration_exemptions.first.deregistration_message = expected_message
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(expected_message)
+        end
       end
     end
   end

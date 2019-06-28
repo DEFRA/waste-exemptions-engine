@@ -75,14 +75,12 @@ module WasteExemptionsEngine
           expect { run_service }.to change { registration.versions.count }.by(1)
         end
 
-        it "includes the old data in the version JSON" do
-          old_data = registration.operator_name
+        it "includes the new data in the version JSON" do
           new_data = edit_registration.operator_name
 
           run_service
 
-          expect(registration.versions.last.json).to include(old_data)
-          expect(registration.versions.last.json).to_not include(new_data)
+          expect(registration.reload.versions.last.json.to_s).to include(new_data)
         end
 
         context "when no data has changed" do
@@ -100,14 +98,12 @@ module WasteExemptionsEngine
             expect { run_service }.to change { registration.versions.count }.by(1)
           end
 
-          it "includes the old data in the version JSON" do
-            old_data = registration.contact_address.postcode
+          it "includes the new data in the version JSON" do
             new_data = edit_registration.contact_address.postcode
 
             run_service
 
-            expect(registration.versions.last.json).to include(old_data)
-            expect(registration.versions.last.json).to_not include(new_data)
+            expect(registration.reload.versions.last.json.to_s).to include(new_data)
           end
         end
 
@@ -118,14 +114,12 @@ module WasteExemptionsEngine
             expect { run_service }.to change { registration.versions.count }.by(1)
           end
 
-          it "includes the old data in the version JSON" do
-            old_data = registration.people.first.first_name
+          it "includes the new data in the version JSON" do
             new_data = edit_registration.people.first.first_name
 
             run_service
 
-            expect(registration.versions.last.json).to include(old_data)
-            expect(registration.versions.last.json).to_not include(new_data)
+            expect(registration.reload.versions.last.json.to_s).to include(new_data)
           end
         end
       end
