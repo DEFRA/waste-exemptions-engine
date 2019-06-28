@@ -87,7 +87,7 @@ module WasteExemptionsEngine
           let(:edit_registration) { create(:edit_registration) }
 
           it "does not create a new version" do
-            expect { run_service }.to change { registration.versions.count }.by(1)
+            expect { run_service }.to change { registration.versions.count }.by(0)
           end
         end
 
