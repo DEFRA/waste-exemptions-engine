@@ -15,8 +15,6 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "an owner of registration attributes", :registration, :address
-    it_behaves_like "it has PaperTrail", model_factory: :registration,
-                                         field: :operator_name
 
     describe ".active_exemptions" do
       subject(:registration) { create(:registration, :with_active_exemptions) }
@@ -27,6 +25,69 @@ module WasteExemptionsEngine
         pending_exemption.save
 
         expect(registration.active_exemptions.count).to eq(registration.exemptions.count - 1)
+      end
+    end
+
+    describe "PaperTrail", versioning: true do
+      subject(:registration) { create(:registration, :complete) }
+
+      it "has PaperTrail" do
+        expect(PaperTrail).to be_enabled
+      end
+
+      it "is versioned" do
+        expect(registration).to be_versioned
+      end
+
+      it "creates a new version when it is updated" do
+        expect { registration.update_attribute(:operator_name, Faker::Company.name) }.to change { registration.versions.count }.by(1)
+      end
+
+      it "stores the correct values when it is updated" do
+        operator_name = Faker::Company.name
+
+        registration.operator_name = operator_name
+        registration.paper_trail.save_with_version
+
+        expect(registration.versions.last.reify.operator_name).to eq(operator_name)
+      end
+
+      describe "JSON" do
+        it "includes the registration's attributes" do
+          operator_name = Faker::Company.name
+
+          registration.operator_name = operator_name
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(operator_name)
+        end
+
+        it "includes related addresses in the JSON" do
+          street_address = Faker::Address.street_address
+
+          registration.contact_address.street_address = street_address
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(street_address)
+        end
+
+        it "includes related people in the JSON" do
+          first_name = Faker::Name.first_name
+
+          registration.people.first.first_name = first_name
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(first_name)
+        end
+
+        it "includes related registration_exemptions in the JSON" do
+          expected_message = Faker::Lorem.sentence
+
+          registration.registration_exemptions.first.deregistration_message = expected_message
+          registration.paper_trail.save_with_version
+
+          expect(registration.versions.last.json.to_s).to include(expected_message)
+        end
       end
     end
   end
