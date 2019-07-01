@@ -4,11 +4,6 @@ module WasteExemptionsEngine
   class Address < ActiveRecord::Base
     include CanBeLocatedByGridReference
 
-    has_paper_trail ignore: %i[blpu_state_code
-                               logical_status_code
-                               country_iso
-                               postal_address_code]
-
     self.table_name = "addresses"
 
     belongs_to :registration
