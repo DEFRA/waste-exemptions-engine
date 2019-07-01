@@ -26,14 +26,25 @@ FactoryBot.define do
 
           edit_registration[attribute] = new_value
         end
+      end
 
+      modified_addresses
+      modified_people
+    end
+
+    trait :modified_addresses do
+      after(:build) do |edit_registration|
         edit_registration.addresses.each do |address|
           address.attributes.each do |key, value|
             # Append 'foo' to the end of all string attributes
             address[key] = "#{value}foo" if value.is_a?(String)
           end
         end
+      end
+    end
 
+    trait :modified_people do
+      after(:build) do |edit_registration|
         edit_registration.people.each do |person|
           person.attributes.each do |key, value|
             # Append 'foo' to the end of all string attributes

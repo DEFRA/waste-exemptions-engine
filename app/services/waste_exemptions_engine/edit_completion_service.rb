@@ -19,10 +19,13 @@ module WasteExemptionsEngine
     end
 
     def copy_data_from_edit_registration
+      related_objects_changed?
+
       copy_attributes
       copy_addresses
       copy_people
-      @registration.save!
+
+      save_registration_if_changed
     end
 
     def delete_edit_registration
@@ -30,7 +33,7 @@ module WasteExemptionsEngine
     end
 
     def copy_attributes
-      @registration.update_attributes(@edit_registration.registration_attributes)
+      @registration.attributes = @edit_registration.registration_attributes
     end
 
     def copy_addresses
@@ -47,6 +50,36 @@ module WasteExemptionsEngine
         new_person = Person.new(transient_person.person_attributes)
         @registration.people << new_person
       end
+    end
+
+    def save_registration_if_changed
+      if @registration.changed?
+        @registration.save!
+      elsif related_objects_changed?
+        @registration.paper_trail.save_with_version
+      end
+    end
+
+    def related_objects_changed?
+      @related_objects_changed ||= address_data_changed? || people_data_changed?
+    end
+
+    def address_data_changed?
+      old_data = comparable_data(@registration.addresses.order(:address_type))
+      new_data = comparable_data(@edit_registration.addresses.order(:address_type))
+
+      old_data != new_data
+    end
+
+    def people_data_changed?
+      old_data = comparable_data(@registration.people.order(:first_name))
+      new_data = comparable_data(@edit_registration.people.order(:first_name))
+
+      old_data != new_data
+    end
+
+    def comparable_data(items)
+      items.to_json(except: %w[id created_at updated_at registration_id transient_registration_id])
     end
   end
 end
