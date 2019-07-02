@@ -34,7 +34,7 @@
   </fieldset>
 </div>
 
-<div class="form-group <%= "form-group-error" if form.errors[:ciry].any? %>">
+<div class="form-group <%= "form-group-error" if form.errors[:city].any? %>">
   <fieldset id="city">
     <% if form.errors[:city].any? %>
       <span class="error-message"><%= form.errors[:city].join(", ") %></span>
