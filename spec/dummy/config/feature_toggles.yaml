@@ -1,0 +1,5 @@
+---
+active_test_feature:
+  active: true
+not_active_test_feature:
+  active: false

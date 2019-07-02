@@ -6,8 +6,8 @@ default: &default
   pool: 5
   host: <%= ENV["PG_HOST"] || "localhost" %>
   port: <%= ENV["PG_PORT"] || 5432 %>
-  user: <%= ENV["PG_USERNAME"] || "vagrant" %>
-  password: <%= ENV["PG_PASSWORD"] || "vagrant" %>
+  user: cintamanipuddu
+  password:
 
 development:
   <<: *default
