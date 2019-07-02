@@ -5,7 +5,7 @@ require "yaml"
 module WasteExemptionsEngine
   class FeatureToggle
     def self.active?(feature_name)
-      feature_toggles[feature_name] && feature_toggles[feature_name][:active]
+      feature_toggles[feature_name] && feature_toggles[feature_name][:active] == true
     end
 
     class << self
@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       end
 
       def file_path
-        Rails.root.join("config/feature_toggles.yaml")
+        Rails.root.join("config/feature_toggles.yml")
       end
     end
   end
