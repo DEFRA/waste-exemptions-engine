@@ -8,18 +8,22 @@ module WasteExemptionsEngine
       feature_toggles[feature_name] && feature_toggles[feature_name][:active]
     end
 
-    private
+    class << self
+      private
 
-    def self.feature_toggles
-      @@feature_toggles ||= load_feature_toggles
-    end
+      # rubocop:disable Style/ClassVars
+      def feature_toggles
+        @@feature_toggles ||= load_feature_toggles
+      end
+      # rubocop:enable Style/ClassVars
 
-    def self.load_feature_toggles
-      HashWithIndifferentAccess.new(YAML.load_file(file_path))
-    end
+      def load_feature_toggles
+        HashWithIndifferentAccess.new(YAML.load_file(file_path))
+      end
 
-    def self.file_path
-      Rails.root.join("config/feature_toggles.yaml")
+      def file_path
+        Rails.root.join("config/feature_toggles.yaml")
+      end
     end
   end
 end
