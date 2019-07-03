@@ -2,7 +2,6 @@
 
 <div class="text">
   <% if @check_your_answers_form.errors.any? %>
-
     <div class="error-summary" role="alert">
       <h2 class="heading-medium error-summary-heading"><%= t(".error_heading") %></h2>
 
@@ -44,7 +43,7 @@
         <li><%= t(".operator.business_type.#{@check_your_answers_form.business_type}_html") %></li>
         <li><%= t(".operator.name.#{@check_your_answers_form.business_type}_html", value: @check_your_answers_form.operator_name) %></li>
         <% if @check_your_answers_form.company_no.present? %>
-        <li><%= t(".operator.company_no_html", value: @check_your_answers_form.company_no) %></li>
+          <li><%= t(".operator.company_no_html", value: @check_your_answers_form.company_no) %></li>
         <% end %>
       </ul>
 
@@ -61,7 +60,7 @@
       <ul class="list list-bullet">
         <li><%= t(".contact.name_html", value: @check_your_answers_form.contact_name) %></li>
         <% if @check_your_answers_form.contact_position.present? %>
-        <li><%= t(".contact.position_html", value: @check_your_answers_form.contact_position) %></li>
+          <li><%= t(".contact.position_html", value: @check_your_answers_form.contact_position) %></li>
         <% end %>
         <li><%= t(".contact.phone_html", value: @check_your_answers_form.contact_phone) %></li>
         <li><%= t(".contact.email_html", value: @check_your_answers_form.contact_email) %></li>
@@ -85,23 +84,23 @@
       <hr>
       <h2 class="heading-medium"><%= t(".site.subheading.#{@check_your_answers_form.site_address&.mode}") %></h2>
       <% if @check_your_answers_form.site_address&.auto? %>
-      <ul class="list list-bullet">
-        <li><%= t(".site.grid_reference_html", value: @check_your_answers_form.grid_reference) %></li>
-        <li><%= @check_your_answers_form.site_description %></li>
-      </ul>
+        <ul class="list list-bullet">
+          <li><%= t(".site.grid_reference_html", value: @check_your_answers_form.grid_reference) %></li>
+          <li><%= @check_your_answers_form.site_description %></li>
+        </ul>
       <% else %>
-      <ul class="list">
-        <% displayable_address(@check_your_answers_form.site_address).each do |line| %>
-          <li><%= line %></li>
-        <% end %>
-      </ul>
+        <ul class="list">
+          <% displayable_address(@check_your_answers_form.site_address).each do |line| %>
+            <li><%= line %></li>
+          <% end %>
+        </ul>
       <% end %>
 
       <hr>
       <h2 class="heading-medium"><%= t(".exemptions.subheading") %></h2>
       <ul class="list list-bullet">
         <% @check_your_answers_form.exemptions.each do |exemption| %>
-        <li><span class="strong"><%= exemption.code %></span> - <%= exemption.summary %></li>
+          <li><span class="strong"><%= exemption.code %></span> - <%= exemption.summary %></li>
         <% end %>
       </ul>
 
@@ -110,6 +109,5 @@
         <%= f.submit t(".next_button"), class: "button" %>
       </div>
     <% end %>
-
   <% end %>
 </div>

@@ -6,14 +6,10 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @applicant_email_form.errors[:applicant_email].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @applicant_email_form.errors[:applicant_email].any? %>">
       <fieldset id="applicant_email">
         <% if @applicant_email_form.errors[:applicant_email].any? %>
-        <span class="error-message"><%= @applicant_email_form.errors[:applicant_email].join(", ") %></span>
+          <span class="error-message"><%= @applicant_email_form.errors[:applicant_email].join(", ") %></span>
         <% end %>
 
         <%= f.label :applicant_email, t(".applicant_email_label"), class: "form-label" %>
@@ -21,14 +17,10 @@
       </fieldset>
     </div>
 
-    <% if @applicant_email_form.errors[:confirmed_email].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @applicant_email_form.errors[:confirmed_email].any? %>">
       <fieldset id="confirmed_email">
         <% if @applicant_email_form.errors[:confirmed_email].any? %>
-        <span class="error-message"><%= @applicant_email_form.errors[:confirmed_email].join(", ") %></span>
+          <span class="error-message"><%= @applicant_email_form.errors[:confirmed_email].join(", ") %></span>
         <% end %>
 
         <%= f.label :confirmed_email, t(".confirmed_email_label"), class: "form-label" %>
@@ -37,6 +29,7 @@
     </div>
 
     <%= f.hidden_field :token, value: @applicant_email_form.token %>
+
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>

@@ -6,18 +6,14 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @site_postcode_form.errors[:postcode].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @site_postcode_form.errors[:postcode].any? %>">
       <fieldset id="postcode">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
         <% if @site_postcode_form.errors[:postcode].any? %>
-        <span class="error-message"><%= @site_postcode_form.errors[:postcode].join(", ") %></span>
+          <span class="error-message"><%= @site_postcode_form.errors[:postcode].join(", ") %></span>
         <% end %>
 
         <%= f.label :postcode, class: "form-label" do %>
@@ -35,9 +31,9 @@
     </div>
 
     <% if @site_postcode_form.errors.added?(:postcode, :no_results) %>
-    <div class="form-group">
-      <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_postcode_forms_path(@site_postcode_form.token)) %>
-    </div>
+      <div class="form-group">
+        <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_postcode_forms_path(@site_postcode_form.token)) %>
+      </div>
     <% end %>
   <% end %>
 

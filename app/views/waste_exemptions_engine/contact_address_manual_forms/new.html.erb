@@ -5,10 +5,10 @@
     <%= render("waste_exemptions_engine/shared/errors", object: @contact_address_manual_form) %>
 
     <% if @contact_address_manual_form.address_finder_error %>
-    <div class="error-summary" role="alert">
-      <h2 class="heading-medium error-summary-heading"><%= t(".address_finder_error_heading") %></h2>
-      <p><%= t(".address_finder_error_text") %></p>
-    </div>
+      <div class="error-summary" role="alert">
+        <h2 class="heading-medium error-summary-heading"><%= t(".address_finder_error_heading") %></h2>
+        <p><%= t(".address_finder_error_text") %></p>
+      </div>
     <% end %>
 
     <h1 class="heading-large"><%= t(".heading") %></h1>

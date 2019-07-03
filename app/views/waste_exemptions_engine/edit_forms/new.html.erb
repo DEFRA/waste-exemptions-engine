@@ -354,15 +354,15 @@
     <div class="column-two-thirds">
       <br>
       <%= f.hidden_field :token, value: @edit_form.token %>
-      <div class="form-group">
-        <p>
-          <%= f.submit t(".next_button"), class: "button" %>
-          <span class="edit_linker">
-            <%= t(".button_linker") %>
-            <%= link_to t(".cancel_button"), cancel_edit_forms_path(@edit_form.token) %>
-          </span>
-        </p>
-      </div>
+        <div class="form-group">
+          <p>
+            <%= f.submit t(".next_button"), class: "button" %>
+            <span class="edit_linker">
+              <%= t(".button_linker") %>
+              <%= link_to t(".cancel_button"), cancel_edit_forms_path(@edit_form.token) %>
+            </span>
+          </p>
+        </div>
       <% end %>
     </div>
   </div>

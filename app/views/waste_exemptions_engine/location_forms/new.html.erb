@@ -17,18 +17,14 @@
       </details>
     </div>
 
-    <% if @location_form.errors[:location].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @location_form.errors[:location].any? %>">
       <fieldset id="location">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
         <% if @location_form.errors[:location].any? %>
-        <span class="error-message"><%= @location_form.errors[:location].join(", ") %></span>
+          <span class="error-message"><%= @location_form.errors[:location].join(", ") %></span>
         <% end %>
 
         <div class="multiple-choice">

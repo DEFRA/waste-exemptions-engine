@@ -8,15 +8,12 @@
 
     <p><%= t(".description") %></p>
 
-    <% if @exemptions_form.errors[:matched_exemptions].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @exemptions_form.errors[:matched_exemptions].any? %>">
       <fieldset id="<%="matched_exemptions"%>">
         <% if @exemptions_form.errors[:matched_exemptions].any? %>
-        <span class="error-message"><%= @exemptions_form.errors[:matched_exemptions].join(", ") %></span>
+          <span class="error-message"><%= @exemptions_form.errors[:matched_exemptions].join(", ") %></span>
         <% end %>
+
         <table role="presentation">
           <thead>
           <tr>
@@ -26,17 +23,17 @@
           </thead>
           <tbody>
             <% @exemptions_form.exemptions.each do |exemption|  %>
-            <tr>
-              <td>
-                <div class="multiple-choice">
-                  <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.matched_exemption_ids.include?(exemption.id) }, exemption.id, nil %>
-                  <%= f.label "checkbox-#{exemption.code}" do %>
-                    <%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span>
-                  <% end %>
-                </div>
-              </td>
-              <td><span><%= exemption.summary %></span></td>
-            </tr>
+              <tr>
+                <td>
+                  <div class="multiple-choice">
+                    <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.matched_exemption_ids.include?(exemption.id) }, exemption.id, nil %>
+                    <%= f.label "checkbox-#{exemption.code}" do %>
+                      <%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span>
+                    <% end %>
+                  </div>
+                </td>
+                <td><span><%= exemption.summary %></span></td>
+              </tr>
             <% end %>
           </tbody>
         </table>

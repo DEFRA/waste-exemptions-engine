@@ -4,18 +4,14 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <% if @start_form.errors[:start].any? %>
-    <div class="form-group form-group-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
+    <div class="form-group <%= "form-group-error" if @start_form.errors[:start].any? %>">
       <fieldset id="start">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
         <% if @start_form.errors[:start].any? %>
-        <span class="error-message"><%= @start_form.errors[:start].join(", ") %></span>
+          <span class="error-message"><%= @start_form.errors[:start].join(", ") %></span>
         <% end %>
 
         <div class="multiple-choice">
