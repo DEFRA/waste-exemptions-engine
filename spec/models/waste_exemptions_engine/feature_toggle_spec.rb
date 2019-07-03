@@ -22,7 +22,7 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when the feature toggle contains a typo in the rreturn value" do
+        context "when the feature toggle contains a typo in the return value" do
           it "returns false" do
             expect(described_class.active?("broken_test_feature")).to be_falsey
           end
