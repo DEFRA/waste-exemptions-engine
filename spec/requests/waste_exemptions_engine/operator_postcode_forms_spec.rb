@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include_examples "go back", :operator_postcode_form, "/operator-postcode/back"
     include_examples "POST form", :operator_postcode_form, "/operator-postcode" do
       let(:form_data) { { postcode: "BS1 5AH" } }
+      let(:invalid_form_data) { [{ postcode: "BA" }, { postcode: nil }] }
     end
 
     include_examples "skip to manual address",

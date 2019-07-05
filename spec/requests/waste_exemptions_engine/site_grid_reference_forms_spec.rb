@@ -13,6 +13,15 @@ module WasteExemptionsEngine
           description: "The waste is stored in an out-building next to the barn."
         }
       end
+
+      let(:invalid_form_data) do
+        [
+          {
+            grid_reference: nil,
+            description: nil
+          }
+        ]
+      end
     end
 
     include_examples "skip to manual address",

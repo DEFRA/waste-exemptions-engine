@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include_examples "go back", :location_form, "/location/back"
     include_examples "POST form", :location_form, "/location" do
       let(:form_data) { { location: "england" } }
+      let(:invalid_form_data) { [{ location: nil }] }
     end
   end
 end

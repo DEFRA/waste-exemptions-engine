@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include_examples "go back", :is_a_farmer_form, "/is-a-farmer/back"
     include_examples "POST form", :is_a_farmer_form, "/is-a-farmer" do
       let(:form_data) { { is_a_farmer: "true" } }
+      let(:invalid_form_data) { [] }
     end
   end
 end

@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include_examples "go back", :applicant_phone_form, "/applicant-phone/back"
     include_examples "POST form", :applicant_phone_form, "/applicant-phone" do
       let(:form_data) { { phone_number: "01234567890" } }
+      let(:invalid_form_data) { [{ phone_number: nil }, { phone_number: "1234" }] }
     end
   end
 end

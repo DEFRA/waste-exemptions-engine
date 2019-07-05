@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include_examples "go back", :applicant_name_form, "/applicant-name/back"
     include_examples "POST form", :applicant_name_form, "/applicant-name" do
       let(:form_data) { { first_name: "Joe", last_name: "Bloggs" } }
+      let(:invalid_form_data) { [{ first_name: nil, last_name: nil }] }
     end
   end
 end
