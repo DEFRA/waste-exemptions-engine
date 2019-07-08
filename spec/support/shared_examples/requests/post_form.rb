@@ -30,8 +30,8 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
           invalid_form.validate
 
           invalid_form.errors.messages.values.flatten.each do |error_message|
-            # We include error messages twice, but rspec have no built-in an include twice method yet.
-            # Hence, the scan will make sure we matche the message twice in the rendered page.
+            # We include error messages twice, but RSpec has no built-in "include twice" method yet.
+            # Hence, the scan will make sure we match the message twice in the rendered page.
             expect(response.body.scan(error_message).count).to be > 1
           end
         end
