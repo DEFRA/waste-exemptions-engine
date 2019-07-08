@@ -13,6 +13,7 @@ module WasteExemptionsEngine
     include_examples "go back", :exemptions_form, "/exemptions/back"
     include_examples "POST form", :exemptions_form, "/exemptions" do
       let(:form_data) { { exemptions: Exemption.all.map(&:id).map(&:to_s) } }
+      let(:invalid_form_data) { [{ exemptions: [] }] }
     end
   end
 end

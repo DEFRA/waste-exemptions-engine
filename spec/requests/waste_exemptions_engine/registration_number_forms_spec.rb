@@ -10,6 +10,7 @@ module WasteExemptionsEngine
     include_examples "go back", :registration_number_form, "/registration-number/back"
     include_examples "POST form", :registration_number_form, "/registration-number" do
       let(:form_data) { { company_no: "09360070" } }
+      let(:invalid_form_data) { [{ company_no: nil }] }
     end
   end
 end

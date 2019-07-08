@@ -16,6 +16,7 @@ module WasteExemptionsEngine
     include_examples "go back", :check_your_answers_form, "/check-your-answers/back"
     include_examples "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
       let(:form_data) { {} }
+      let(:invalid_form_data) { [] }
     end
   end
 end

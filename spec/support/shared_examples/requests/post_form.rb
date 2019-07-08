@@ -6,6 +6,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
   let(:incorrect_form) { build(incorrect_workflow_state) }
   let(:post_request_path) { "/waste_exemptions_engine#{path}" }
   let(:form_data) { { override_me: "Set :form_data in the calling spec." } }
+  let(:invalid_form_data) { { override_me: "Set :invalid_form_data in the calling spec." } }
 
   describe "POST #{form_factory}" do
     context "when the form is not valid", unless: empty_form_is_valid do
@@ -19,6 +20,21 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       it "responds to the POST request with a 200 status code" do
         post post_request_path, empty_form_request_body
         expect(response.code).to eq("200")
+      end
+
+      it "includes validation errors for the form data" do
+        invalid_form_data.each do |invalid_data|
+          post post_request_path, form_factory => invalid_data.merge(token: correct_form.token)
+
+          invalid_form = build(form_factory, **invalid_data)
+          invalid_form.validate
+
+          invalid_form.errors.messages.values.flatten.each do |error_message|
+            # We include error messages twice, but RSpec has no built-in "include twice" method yet.
+            # Hence, the scan will make sure we match the message twice in the rendered page.
+            expect(response.body.scan(error_message).count).to be > 1
+          end
+        end
       end
     end
 

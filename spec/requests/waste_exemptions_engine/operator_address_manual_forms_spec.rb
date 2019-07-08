@@ -19,6 +19,17 @@ module WasteExemptionsEngine
           postcode: "BS1 5AH"
         }
       end
+      let(:invalid_form_data) do
+        [
+          {
+            premises: nil,
+            street_address: nil,
+            locality: nil,
+            city: nil,
+            postcode: nil
+          }
+        ]
+      end
     end
   end
 end
