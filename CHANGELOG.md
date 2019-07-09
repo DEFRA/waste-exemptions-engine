@@ -4,6 +4,7 @@
 
 **Implemented enhancements:**
 
+- Show second error message on declaration page [\#229](https://github.com/DEFRA/waste-exemptions-engine/pull/229) ([cintamani](https://github.com/cintamani))
 - Add feature toggles class to reuse in apps [\#222](https://github.com/DEFRA/waste-exemptions-engine/pull/222) ([cintamani](https://github.com/cintamani))
 - Store a single version of registration and its relations [\#220](https://github.com/DEFRA/waste-exemptions-engine/pull/220) ([irisfaraway](https://github.com/irisfaraway))
 - Auto-determine grid reference for site address [\#214](https://github.com/DEFRA/waste-exemptions-engine/pull/214) ([Cruikshanks](https://github.com/Cruikshanks))
@@ -62,6 +63,8 @@
 
 **Fixed bugs:**
 
+- User correct variable name for error [\#228](https://github.com/DEFRA/waste-exemptions-engine/pull/228) ([cintamani](https://github.com/cintamani))
+- Show error messages in line with address select fields [\#225](https://github.com/DEFRA/waste-exemptions-engine/pull/225) ([cintamani](https://github.com/cintamani))
 - Add HTML w3c test coverage [\#212](https://github.com/DEFRA/waste-exemptions-engine/pull/212) ([cintamani](https://github.com/cintamani))
 - Require wicked pdf at a Rails level [\#193](https://github.com/DEFRA/waste-exemptions-engine/pull/193) ([cintamani](https://github.com/cintamani))
 - Fix `cannot edit` label in caption to float right inline with title [\#189](https://github.com/DEFRA/waste-exemptions-engine/pull/189) ([cintamani](https://github.com/cintamani))
@@ -109,6 +112,10 @@
 
 **Merged pull requests:**
 
+- Update date on privacy policy PDF [\#230](https://github.com/DEFRA/waste-exemptions-engine/pull/230) ([Cruikshanks](https://github.com/Cruikshanks))
+- Bump faker from 1.9.5 to 1.9.6 [\#227](https://github.com/DEFRA/waste-exemptions-engine/pull/227) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Test coverage for error messages [\#226](https://github.com/DEFRA/waste-exemptions-engine/pull/226) ([cintamani](https://github.com/cintamani))
+- Bump faker from 1.9.4 to 1.9.5 [\#224](https://github.com/DEFRA/waste-exemptions-engine/pull/224) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Bump simplecov from 0.16.1 to 0.17.0 [\#223](https://github.com/DEFRA/waste-exemptions-engine/pull/223) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Refresh VCR cassettes [\#221](https://github.com/DEFRA/waste-exemptions-engine/pull/221) ([irisfaraway](https://github.com/irisfaraway))
 - Bump bullet from 6.0.0 to 6.0.1 [\#219](https://github.com/DEFRA/waste-exemptions-engine/pull/219) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
