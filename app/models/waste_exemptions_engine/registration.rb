@@ -19,6 +19,10 @@ module WasteExemptionsEngine
       source: :exemption
     )
 
+    def related_objects_changed?(edit_registration)
+      CompareRegistrationObjectsService.run(registration: self, edit_registration: edit_registration)
+    end
+
     private
 
     def json_for_version
