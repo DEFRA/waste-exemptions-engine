@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class NewRegistration < TransientRegistration
     include CanUseNewRegistrationWorkflow
 
-    after_create :apply_reference
+    # after_create :apply_reference
 
     private
 
