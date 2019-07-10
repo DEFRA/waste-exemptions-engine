@@ -4,6 +4,7 @@
 
 **Implemented enhancements:**
 
+- Create reference using the registration id  [\#233](https://github.com/DEFRA/waste-exemptions-engine/pull/233) ([cintamani](https://github.com/cintamani))
 - Show second error message on declaration page [\#229](https://github.com/DEFRA/waste-exemptions-engine/pull/229) ([cintamani](https://github.com/cintamani))
 - Add feature toggles class to reuse in apps [\#222](https://github.com/DEFRA/waste-exemptions-engine/pull/222) ([cintamani](https://github.com/cintamani))
 - Store a single version of registration and its relations [\#220](https://github.com/DEFRA/waste-exemptions-engine/pull/220) ([irisfaraway](https://github.com/irisfaraway))
@@ -63,6 +64,8 @@
 
 **Fixed bugs:**
 
+- Fixes registration number appearing after the declaration page [\#234](https://github.com/DEFRA/waste-exemptions-engine/pull/234) ([cintamani](https://github.com/cintamani))
+- Update date in privacy policy PDF [\#232](https://github.com/DEFRA/waste-exemptions-engine/pull/232) ([Cruikshanks](https://github.com/Cruikshanks))
 - User correct variable name for error [\#228](https://github.com/DEFRA/waste-exemptions-engine/pull/228) ([cintamani](https://github.com/cintamani))
 - Show error messages in line with address select fields [\#225](https://github.com/DEFRA/waste-exemptions-engine/pull/225) ([cintamani](https://github.com/cintamani))
 - Add HTML w3c test coverage [\#212](https://github.com/DEFRA/waste-exemptions-engine/pull/212) ([cintamani](https://github.com/cintamani))
