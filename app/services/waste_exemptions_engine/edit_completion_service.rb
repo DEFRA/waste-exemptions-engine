@@ -19,13 +19,13 @@ module WasteExemptionsEngine
     end
 
     def copy_data_from_edit_registration
-      if registration_has_changed?
-        copy_attributes
-        copy_addresses
-        copy_people
+      return unless registration_has_changed?
 
-        save_registration_with_version
-      end
+      copy_attributes
+      copy_addresses
+      copy_people
+
+      save_registration_with_version
     end
 
     def delete_edit_registration
