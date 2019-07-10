@@ -19,6 +19,7 @@ module WasteExemptionsEngine
 
         add_metadata
         @registration.save!
+
         @transient_registration.destroy
       end
       send_confirmation_email

@@ -19,7 +19,14 @@ module WasteExemptionsEngine
       source: :exemption
     )
 
+    after_create :apply_reference
+
     private
+
+    def apply_reference
+      self.reference = format("WEX%06d", id)
+      save!
+    end
 
     def json_for_version
       to_json(include: %i[addresses
