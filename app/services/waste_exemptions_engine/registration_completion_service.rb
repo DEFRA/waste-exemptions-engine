@@ -17,8 +17,7 @@ module WasteExemptionsEngine
 
         add_metadata
         @registration.save!
-        @registration.reference = format("WEX%06d", @registration.id)
-        @registration.save!
+
         @transient_registration.destroy
       end
       send_confirmation_email
