@@ -7,6 +7,8 @@ module WasteExemptionsEngine
     end
 
     def complete
+      @registration = nil
+
       ActiveRecord::Base.transaction do
         activate_exemptions
 
@@ -21,6 +23,8 @@ module WasteExemptionsEngine
         @transient_registration.destroy
       end
       send_confirmation_email
+
+      @registration
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Completing registration error: #{e}"
