@@ -19,11 +19,13 @@ module WasteExemptionsEngine
     end
 
     def copy_data_from_edit_registration
-      copy_attributes
-      copy_addresses
-      copy_people
+      if registration_has_changed?
+        copy_attributes
+        copy_addresses
+        copy_people
 
-      save_registration_if_changed
+        save_registration_with_version
+      end
     end
 
     def delete_edit_registration
@@ -35,27 +37,23 @@ module WasteExemptionsEngine
     end
 
     def copy_addresses
-      @registration.addresses = []
-      @edit_registration.transient_addresses.each do |transient_address|
-        new_address = Address.new(transient_address.address_attributes)
-        @registration.addresses << new_address
+      @registration.addresses = @edit_registration.transient_addresses.map do |transient_address|
+        Address.new(transient_address.address_attributes)
       end
     end
 
     def copy_people
-      @registration.people = []
-      @edit_registration.transient_people.each do |transient_person|
-        new_person = Person.new(transient_person.person_attributes)
-        @registration.people << new_person
+      @registration.people = @edit_registration.transient_people.map do |transient_person|
+        Person.new(transient_person.person_attributes)
       end
     end
 
-    def save_registration_if_changed
-      if @registration.changed?
-        @registration.save!
-      elsif @registration.related_objects_changed?(@edit_registration)
-        @registration.paper_trail.save_with_version
-      end
+    def registration_has_changed?
+      @registration.changed? || @registration.related_objects_changed?(@edit_registration)
+    end
+
+    def save_registration_with_version
+      @registration.paper_trail.save_with_version
     end
   end
 end

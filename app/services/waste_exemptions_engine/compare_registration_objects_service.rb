@@ -11,8 +11,6 @@ module WasteExemptionsEngine
 
     private
 
-    attr_accessor :registration
-
     def objects_changed?
       @objects_changed ||= address_data_changed? || people_data_changed?
     end
@@ -25,7 +23,7 @@ module WasteExemptionsEngine
     end
 
     def people_data_changed?
-      old_data = comparable_data(registration.people.order(:first_name))
+      old_data = comparable_data(@registration.people.order(:first_name))
       new_data = comparable_data(@edit_registration.people.order(:first_name))
 
       old_data != new_data
