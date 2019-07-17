@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe RegistrationCompletionService do
     let(:new_registration) { create(:new_registration, :complete, workflow_state: "registration_complete_form") }
-    let(:registration) { Registration.where(reference: new_registration.reference).first }
+    let(:registration) { Registration.last }
 
     let(:registration_completion_service) { RegistrationCompletionService.new(new_registration) }
 
