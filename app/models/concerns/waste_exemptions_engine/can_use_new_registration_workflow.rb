@@ -92,6 +92,10 @@ module WasteExemptionsEngine
                       if: :should_register_in_wales?
 
           transitions from: :location_form,
+                      to: :exemptions_form
+
+          # Exemptions
+          transitions from: :exemptions_form,
                       to: :applicant_name_form
 
           # Applicant details
@@ -185,7 +189,7 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :site_grid_reference_form,
-                      to: :exemptions_form
+                      to: :check_your_answers_form
 
           transitions from: :site_postcode_form,
                       to: :site_address_manual_form,
@@ -199,12 +203,9 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :site_address_lookup_form,
-                      to: :exemptions_form
+                      to: :check_your_answers_form
 
           transitions from: :site_address_manual_form,
-                      to: :exemptions_form
-
-          transitions from: :exemptions_form,
                       to: :check_your_answers_form
 
           transitions from: :check_your_answers_form,
@@ -233,8 +234,12 @@ module WasteExemptionsEngine
                       to: :location_form
 
           # Applicant details
-          transitions from: :applicant_name_form,
+          transitions from: :exemptions_form,
                       to: :location_form
+
+          # Applicant details
+          transitions from: :applicant_name_form,
+                      to: :exemptions_form
 
           transitions from: :applicant_phone_form,
                       to: :applicant_name_form
@@ -322,21 +327,17 @@ module WasteExemptionsEngine
           transitions from: :site_address_manual_form,
                       to: :site_postcode_form
 
-          # Exemptions questions
-          transitions from: :exemptions_form,
+          # End pages
+          transitions from: :check_your_answers_form,
                       to: :site_address_manual_form,
                       if: :site_address_was_manually_entered?
 
-          transitions from: :exemptions_form,
+          transitions from: :check_your_answers_form,
                       to: :site_address_lookup_form,
                       if: :site_address_was_entered?
 
-          transitions from: :exemptions_form,
-                      to: :site_grid_reference_form
-
-          # End pages
           transitions from: :check_your_answers_form,
-                      to: :exemptions_form
+                      to: :site_grid_reference_form
 
           transitions from: :declaration_form,
                       to: :check_your_answers_form

@@ -54,6 +54,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
 
       context "and the form can not navigate flexibly", unless: flexible_navigation_allowed do
         status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
+        let(:incorrect_form) { build(:start_form) }
 
         it "responds to the GET request with a #{status_code} status code" do
           get bad_request_path

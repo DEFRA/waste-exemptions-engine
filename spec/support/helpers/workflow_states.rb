@@ -8,7 +8,8 @@ module Helpers
 
     def self.can_navigate_flexibly_to_state?(state)
       previous_state = previous_state(WasteExemptionsEngine::NewRegistration.new(workflow_state: state))
-      state_can_navigate_flexibly?(previous_state) && state_can_navigate_flexibly?(state)
+
+      previous_state && state_can_navigate_flexibly?(previous_state) && state_can_navigate_flexibly?(state)
     end
 
     def self.state_can_navigate_flexibly?(state)
@@ -20,14 +21,20 @@ module Helpers
       state_machine = transient_registration.class.aasm
 
       state_machine.events.each do |event|
+        next unless event.name == :back
+
         previous_state_transition = event.transitions.find do |transition|
-          transition.to == transient_registration.aasm.current_state
+          transition.allowed?(transient_registration) && transition.from == transient_registration.aasm.current_state
         end
 
-        return previous_state_transition.from if previous_state_transition
+        return previous_state_transition.to if previous_state_transition
       end
 
-      raise StandardError, "No previous state found for #{transient_registration.aasm.current_state}"
+      :start_form
+
+      unless transient_registration.registration_complete_form?
+        raise(StandardError, "No previous state found for #{transient_registration.aasm.current_state}")
+      end
     end
   end
 end
