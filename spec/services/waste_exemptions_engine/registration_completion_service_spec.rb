@@ -20,6 +20,7 @@ module WasteExemptionsEngine
       end
 
       context "when a race condition calls the service twice" do
+        # rubocop:disable Lint/HandleExceptions
         it "generates only one record and fail to execute subsequent calls" do
           expect(WasteExemptionsEngine::Registration.count).to eq(0)
           expect(ActiveRecord::Base.connection.pool.size).to be > 3
@@ -28,9 +29,9 @@ module WasteExemptionsEngine
           concurrency_level = 4
 
           begin
-            threads = Array.new(concurrency_level) do |i|
+            threads = Array.new(concurrency_level) do
               Thread.new do
-                while should_wait do
+                while should_wait
                   # Do nothing, just wait
                 end
 
@@ -55,7 +56,9 @@ module WasteExemptionsEngine
           WasteExemptionsEngine::RegistrationExemption.delete_all
           WasteExemptionsEngine::Registration.delete_all
         end
+        # rubocop:enable Lint/HandleExceptions
       end
+
       context "when the registration can be completed" do
         it "copies attributes from the new_registration to the registration" do
           new_registration_attribute = new_registration.operator_name
