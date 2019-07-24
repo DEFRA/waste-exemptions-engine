@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Is my branch or travis? Which is broken?
 module WasteExemptionsEngine
   module CanActivateExemption
     extend ActiveSupport::Concern
