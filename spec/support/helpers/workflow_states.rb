@@ -30,7 +30,7 @@ module Helpers
         return previous_state_transition.to if previous_state_transition
       end
 
-      return unless transient_registration.registration_complete_form?
+      return if transient_registration.registration_complete_form?
 
       raise(StandardError, "No previous state found for #{transient_registration.aasm.current_state}")
     end
