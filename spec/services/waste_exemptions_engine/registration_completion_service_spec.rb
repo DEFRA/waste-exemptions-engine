@@ -11,18 +11,23 @@ module WasteExemptionsEngine
 
     describe "#complete" do
       it "is idempotent" do
-        expect(WasteExemptionsEngine::Registration.count).to eq(0)
+        # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
+        # https://github.com/DEFRA/ruby-services-team/issues/54
+        initial_count = WasteExemptionsEngine::Registration.count
+
         RegistrationCompletionService.new(new_registration).complete
 
         expect { RegistrationCompletionService.new(new_registration).complete }.to raise_error(StandardError)
 
-        expect(WasteExemptionsEngine::Registration.count).to eq(1)
+        expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
       end
 
       context "when a race condition calls the service twice" do
         # rubocop:disable Lint/HandleExceptions
         it "generates only one record and fail to execute subsequent calls" do
-          expect(WasteExemptionsEngine::Registration.count).to eq(0)
+          # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
+          # https://github.com/DEFRA/ruby-services-team/issues/54
+          initial_count = WasteExemptionsEngine::Registration.count
           expect(ActiveRecord::Base.connection.pool.size).to be > 3
 
           should_wait = true
@@ -48,7 +53,7 @@ module WasteExemptionsEngine
           should_wait = false
           threads.each(&:join)
 
-          expect(WasteExemptionsEngine::Registration.count).to eq(1)
+          expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
 
           # Clean up after the threads have executed
           WasteExemptionsEngine::Address.delete_all
