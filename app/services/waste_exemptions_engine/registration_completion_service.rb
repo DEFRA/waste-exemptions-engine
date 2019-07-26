@@ -9,7 +9,10 @@ module WasteExemptionsEngine
     def complete
       @registration = nil
 
-      ActiveRecord::Base.transaction do
+      @transient_registration.with_lock do
+        # This update is necessary as this will make the `with_lock` prevent race conditions
+        @transient_registration.update(workflow_state: :creating_registration)
+
         activate_exemptions
 
         @registration = Registration.new(@transient_registration.registration_attributes)
@@ -18,10 +21,12 @@ module WasteExemptionsEngine
         copy_people
 
         add_metadata
+
         @registration.save!
 
         @transient_registration.destroy
       end
+
       send_confirmation_email
 
       @registration
