@@ -14,7 +14,7 @@ module WasteExemptionsEngine
         expect(WasteExemptionsEngine::Registration.count).to eq(0)
         RegistrationCompletionService.new(new_registration).complete
 
-        expect { RegistrationCompletionService.new(new_registration).complete }.to raise_error
+        expect { RegistrationCompletionService.new(new_registration).complete }.to raise_error(StandardError)
 
         expect(WasteExemptionsEngine::Registration.count).to eq(1)
       end
