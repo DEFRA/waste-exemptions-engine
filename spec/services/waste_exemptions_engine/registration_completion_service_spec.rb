@@ -10,6 +10,60 @@ module WasteExemptionsEngine
     let(:registration_completion_service) { RegistrationCompletionService.new(new_registration) }
 
     describe "#complete" do
+      it "is idempotent" do
+        # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
+        # https://github.com/DEFRA/ruby-services-team/issues/54
+        initial_count = WasteExemptionsEngine::Registration.count
+
+        RegistrationCompletionService.new(new_registration).complete
+
+        expect { RegistrationCompletionService.new(new_registration).complete }.to raise_error(StandardError)
+
+        expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
+      end
+
+      context "when a race condition calls the service twice" do
+        # rubocop:disable Lint/HandleExceptions
+        it "generates only one record and fail to execute subsequent calls" do
+          # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
+          # https://github.com/DEFRA/ruby-services-team/issues/54
+          initial_count = WasteExemptionsEngine::Registration.count
+          expect(ActiveRecord::Base.connection.pool.size).to be > 3
+
+          should_wait = true
+          concurrency_level = 4
+
+          begin
+            threads = Array.new(concurrency_level) do
+              Thread.new do
+                while should_wait
+                  # Do nothing, just wait
+                end
+
+                begin
+                  registration_completion_service.complete
+                rescue StandardError
+                end
+              end
+            end
+          ensure
+            ActiveRecord::Base.connection_pool.disconnect!
+          end
+
+          should_wait = false
+          threads.each(&:join)
+
+          expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
+
+          # Clean up after the threads have executed
+          WasteExemptionsEngine::Address.delete_all
+          WasteExemptionsEngine::Person.delete_all
+          WasteExemptionsEngine::RegistrationExemption.delete_all
+          WasteExemptionsEngine::Registration.delete_all
+        end
+        # rubocop:enable Lint/HandleExceptions
+      end
+
       context "when the registration can be completed" do
         it "copies attributes from the new_registration to the registration" do
           new_registration_attribute = new_registration.operator_name
