@@ -233,7 +233,7 @@ module WasteExemptionsEngine
           transitions from: :register_in_wales_form,
                       to: :location_form
 
-          # Applicant details
+          # Exemptions
           transitions from: :exemptions_form,
                       to: :location_form
 
