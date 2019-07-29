@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626142528) do
+ActiveRecord::Schema.define(version: 20190728191705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,9 +100,11 @@ ActiveRecord::Schema.define(version: 20190626142528) do
     t.datetime "updated_at",           null: false
     t.date     "submitted_at"
     t.string   "assistance_mode"
+    t.string   "renew_token"
   end
 
   add_index "registrations", ["reference"], name: "index_registrations_on_reference", unique: true, using: :btree
+  add_index "registrations", ["renew_token"], name: "index_registrations_on_renew_token", unique: true, using: :btree
 
   create_table "reports_generated_reports", force: :cascade do |t|
     t.string   "file_name"
