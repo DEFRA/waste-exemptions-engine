@@ -11,7 +11,7 @@ module WasteExemptionsEngine
 
       context "when a NewRegistration's state is #{current_state}" do
         context "when none of the should register in location conditions are true" do
-          next_state = :applicant_name_form
+          next_state = :exemptions_form
 
           before(:each) { new_registration.location = "england" }
 
