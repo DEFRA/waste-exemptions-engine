@@ -2,8 +2,6 @@
 
 RSpec.shared_examples "GET form" do |form_factory, path|
   let(:correct_form) { build(form_factory) }
-  let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
-  let(:incorrect_form) { build(incorrect_workflow_state) }
 
   describe "GET #{form_factory}" do
     context "when the registration is in the correct state" do
@@ -32,6 +30,9 @@ RSpec.shared_examples "GET form" do |form_factory, path|
       flexible_navigation_allowed = Helpers::WorkflowStates.can_navigate_flexibly_to_state?(form_factory)
 
       context "and the form can navigate flexibly", if: flexible_navigation_allowed do
+        let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
+        let(:incorrect_form) { build(incorrect_workflow_state) }
+
         it "renders the appropriate template" do
           get bad_request_path
           expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
@@ -54,6 +55,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
 
       context "and the form can not navigate flexibly", unless: flexible_navigation_allowed do
         status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
+        let(:incorrect_form) { build(:start_form) }
 
         it "responds to the GET request with a #{status_code} status code" do
           get bad_request_path

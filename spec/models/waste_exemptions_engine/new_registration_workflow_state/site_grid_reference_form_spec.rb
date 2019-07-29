@@ -11,7 +11,7 @@ module WasteExemptionsEngine
 
       context "when a NewRegistration's state is #{current_state}" do
         context "when new_registration.skip_to_manual_address? is false" do
-          next_state = :exemptions_form
+          next_state = :check_your_answers_form
           alt_state = :site_postcode_form
 
           before(:each) { new_registration.address_finder_error = false }
