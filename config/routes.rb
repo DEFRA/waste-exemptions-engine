@@ -476,6 +476,11 @@ WasteExemptionsEngine::Engine.routes.draw do
       constraints: { status: /\d{3}/ },
       as: "error"
 
+  # Temporary route for testing RUBY-491
+  get "/renew",
+      to: "renews#new",
+      as: "renew"
+
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
 end

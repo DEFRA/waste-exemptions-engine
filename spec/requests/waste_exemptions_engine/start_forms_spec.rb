@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-module WasteCarriersEngine
+module WasteExemptionsEngine
   RSpec.describe "Start Forms", type: :request do
     let(:form) { build(:start_form) }
 
