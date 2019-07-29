@@ -43,7 +43,7 @@ module Helpers
       end
 
       # If no result is found, then there is something logically wrong. One reason might be that the current state is
-      # not a flexibly navigatable one.
+      #  the start of the user journey, or an inescapable end point.
       raise(StandardError, "No previous state found for #{transient_registration.aasm.current_state}")
     end
   end
