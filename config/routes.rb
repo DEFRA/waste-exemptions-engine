@@ -464,6 +464,27 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "edit-cancelled",
             path_names: { new: "/:token" }
 
+  # Renewing
+  resources :renewal_start_forms,
+            only: %i[new create],
+            path: "renewal-start",
+            path_names: { new: "/:token" }
+
+  resources :renew_with_changes_forms,
+            only: %i[new create],
+            path: "renew-with-changes",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+                  to: "renew_with_changes_forms#go_back",
+                  as: "back",
+                  on: :collection
+            end
+
+  resources :renewal_complete_forms,
+            only: %i[new create],
+            path: "renewal-complete",
+            path_names: { new: "/:token" }
+
   # Expose the data stored by the LastEmailCacheService
   get "/last-email",
       to: "last_email#show",

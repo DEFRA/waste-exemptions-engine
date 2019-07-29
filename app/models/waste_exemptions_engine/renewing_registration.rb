@@ -2,6 +2,6 @@
 
 module WasteExemptionsEngine
   class RenewingRegistration < TransientRegistration
-    include CanUseNewRegistrationWorkflow
+    include CanUseRenewingRegistrationWorkflow
   end
 end
