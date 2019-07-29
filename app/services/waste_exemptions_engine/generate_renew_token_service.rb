@@ -22,8 +22,8 @@ module WasteExemptionsEngine
     private
 
     def exp
-      # Expires in 30 days
-      Time.now.to_i + 30 * 24 * 3600
+      # Expires in 60 days
+      Time.now.to_i + 60 * 24 * 3600
     end
   end
 end
