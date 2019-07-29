@@ -2,8 +2,6 @@
 
 RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = false|
   let(:correct_form) { build(form_factory) }
-  let(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
-  let(:incorrect_form) { build(incorrect_workflow_state) }
   let(:post_request_path) { "/waste_exemptions_engine#{path}" }
   let(:form_data) { { override_me: "Set :form_data in the calling spec." } }
   let(:invalid_form_data) { { override_me: "Set :invalid_form_data in the calling spec." } }
@@ -68,6 +66,10 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     end
 
     context "when the registration is not in the correct state" do
+      # Use a form which cannot be posted and so won't be using this shared example
+      let(:incorrect_workflow_state) { :register_in_wales_form }
+      let(:incorrect_form) { build(incorrect_workflow_state) }
+
       let(:bad_request_body) { { form_factory => form_data.merge(token: incorrect_form.token) } }
       let(:bad_request_redirection_path) do
         workflow_path = "new_#{incorrect_form.transient_registration.workflow_state}_path".to_sym
