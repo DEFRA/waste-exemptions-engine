@@ -9,7 +9,6 @@ module WasteExemptionsEngine
 
       aasm column: :workflow_state do
         # States / forms
-
         state :renewal_start_form, initial: true
         state :renew_with_changes_form
         state :renewal_complete_form
