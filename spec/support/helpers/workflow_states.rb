@@ -19,9 +19,10 @@ module Helpers
       form_class.can_navigate_flexibly?
     end
 
-    # The purpose of this method is to dynamically find a valid previous state for a given transient registration's state.
-    # In order to do that, we get the data of the state machine of the transient registration class, and we search in all
-    # back event which handles moving from a transient registration's current state to a previous valid state.
+    # The purpose of this method is to dynamically find a valid previous state for a given transient registration's
+    # state.
+    # In order to do that, we get the data of the state machine of the transient registration class, and we search in
+    # all back event which handles moving from a transient registration's current state to a previous valid state.
     def self.previous_state(transient_registration)
       state_machine = transient_registration.class.aasm
 
@@ -41,8 +42,8 @@ module Helpers
         return previous_state_transition.to if previous_state_transition
       end
 
-      # If no result is found, then there is something logically wrong. One reason might be that the current state is not a
-      # flexibly navigatable one.
+      # If no result is found, then there is something logically wrong. One reason might be that the current state is
+      # not a flexibly navigatable one.
       raise(StandardError, "No previous state found for #{transient_registration.aasm.current_state}")
     end
   end
