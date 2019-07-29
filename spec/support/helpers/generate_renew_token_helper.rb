@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "jwt"
 
 module GenerateRenewTokenHelper
@@ -8,13 +10,13 @@ module GenerateRenewTokenHelper
   end
 
   def generate_expired_renew_token(registration)
-    payload = { data: { registration_id: registration.id }, exp: Time.now.to_i - 1000  }
+    payload = { data: { registration_id: registration.id }, exp: Time.now.to_i - 1000 }
 
     generate_test_renew_token(registration, payload)
   end
 
   def generate_invalid_payload_renew_token(registration)
-    payload = {  }
+    payload = {}
 
     generate_test_renew_token(registration, payload)
   end
@@ -28,7 +30,7 @@ module GenerateRenewTokenHelper
   end
 
   def generate_renew_token_without_updating_registration(registration)
-    payload = { data: { registration_id: registration.id }, exp: Time.now.to_i - 100  }
+    payload = { data: { registration_id: registration.id }, exp: Time.now.to_i - 100 }
 
     JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS256")
   end

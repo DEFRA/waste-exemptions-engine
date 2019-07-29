@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       end
 
       def decode_token(token)
-        JWT.decode(token, signature, true, { algorithm: algorithm })
+        JWT.decode(token, signature, true, algorithm: algorithm)
       end
 
       def signature
