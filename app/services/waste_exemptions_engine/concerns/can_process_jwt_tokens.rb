@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       end
 
       def algorithm
-        "HS256"
+        "HS384"
       end
     end
   end

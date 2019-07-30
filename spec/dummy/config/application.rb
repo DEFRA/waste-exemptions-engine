@@ -32,6 +32,9 @@ module Dummy
     # Ensure the tests only pass when all the required tralations are present.
     config.action_view.raise_on_missing_translations = true
 
+    # Change authomatic expire of renew's magic link token
+    config.renew_token_expires_in_days = ENV["RENEW_TOKEN_EXPIRES_IN_DAYS"] || 60
+
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
   end
 end

@@ -22,7 +22,7 @@ module GenerateRenewTokenHelper
   end
 
   def generate_test_renew_token(registration, payload)
-    registration.renew_token = JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS256")
+    registration.renew_token = JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS384")
 
     registration.save
 
@@ -32,7 +32,7 @@ module GenerateRenewTokenHelper
   def generate_renew_token_without_updating_registration(registration)
     payload = { data: { registration_id: registration.id }, exp: Time.now.to_i - 100 }
 
-    JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS256")
+    JWT.encode(payload, Rails.application.secrets.secret_key_base, "HS384")
   end
 end
 

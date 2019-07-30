@@ -25,5 +25,9 @@ module WasteExemptionsEngine
       # Expires in 60 days
       Time.now.to_i + 60 * 24 * 3600
     end
+
+    def renew_token_expires_in_days
+      Rails.application.config.renew_token_expires_in_days
+    end
   end
 end
