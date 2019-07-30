@@ -16,12 +16,10 @@ module WasteExemptionsEngine
       end
 
       def signature
-        # TODO: Decide on a more secure algorithm and fix me
         Rails.application.secrets.secret_key_base
       end
 
       def algorithm
-        # TODO: Decide on a more secure algorithm and fix me
         "HS256"
       end
     end
