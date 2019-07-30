@@ -22,7 +22,6 @@ module WasteExemptionsEngine
     private
 
     def exp
-      # Expires in 60 days
       Time.now.to_i + renew_token_expires_in_days * 24 * 3600
     end
 
