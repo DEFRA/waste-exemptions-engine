@@ -18,6 +18,14 @@ module WasteExemptionsEngine
         get request_path
         expect(response.code).to eq("200")
       end
+
+      it "creates a new registration" do
+        expect { get request_path }.to change { Registration.count }.from(0).to(1)
+      end
+
+      it "removes the renewing_registration" do
+        expect { get request_path }.to change { RenewingRegistration.where(token: form.token).count }.from(1).to(0)
+      end
     end
 
     describe "unable to go submit GET back" do
