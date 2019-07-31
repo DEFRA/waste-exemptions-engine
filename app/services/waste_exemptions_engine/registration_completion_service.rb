@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationCompletionService
-    def initialize(transient_registration)
+  class RegistrationCompletionService < BaseService
+    def run(transient_registration:)
       @transient_registration = transient_registration
-    end
-
-    def complete
       @registration = nil
 
       @transient_registration.with_lock do
