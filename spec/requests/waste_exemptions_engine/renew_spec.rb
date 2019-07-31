@@ -9,7 +9,7 @@ module WasteExemptionsEngine
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
 
       context "with a valid renew token" do
-        let(:token) { generate_valid_renew_token(registration) }
+        let(:token) { Helpers::GenerateRenewToken.generate_valid_renew_token(registration) }
 
         it "renders the appropriate template" do
           get request_path
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
       end
 
       context "when a token is expired" do
-        let(:token) { generate_expired_renew_token(registration) }
+        let(:token) { Helpers::GenerateRenewToken.generate_expired_renew_token(registration) }
 
         it "returns a 403 status" do
           get request_path
@@ -39,7 +39,7 @@ module WasteExemptionsEngine
       end
 
       context "when a token's payload is missing registration information" do
-        let(:token) { generate_invalid_payload_renew_token(registration) }
+        let(:token) { Helpers::GenerateRenewToken.generate_invalid_payload_renew_token(registration) }
 
         it "returns false" do
           get request_path
@@ -49,7 +49,7 @@ module WasteExemptionsEngine
       end
 
       context "when a token is not saved agains the correct registration" do
-        let(:token) { generate_renew_token_without_updating_registration(registration) }
+        let(:token) { Helpers::GenerateRenewToken.generate_renew_token_without_updating_registration(registration) }
 
         it "returns false" do
           get request_path
