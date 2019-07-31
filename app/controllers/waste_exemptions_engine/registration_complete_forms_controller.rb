@@ -5,10 +5,7 @@ module WasteExemptionsEngine
     def new
       return unless super(RegistrationCompleteForm, "registration_complete_form")
 
-      registration_completion_service = RegistrationCompletionService.new(@transient_registration)
-
-      registration = registration_completion_service.complete
-
+      registration = RegistrationCompletionService.run(transient_registration: @transient_registration)
       @registration_complete_form.reference = registration.reference
     end
 
