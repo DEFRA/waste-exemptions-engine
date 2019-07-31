@@ -32,6 +32,9 @@ module Dummy
     # Ensure the tests only pass when all the required tralations are present.
     config.action_view.raise_on_missing_translations = true
 
+    # Change automatic expire of renew's magic link token
+    config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
+    config.first_renewal_email_reminder_days = ENV["FIRST_RENEWAL_EMAIL_REMINDER_DAYS"]
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
   end
 end

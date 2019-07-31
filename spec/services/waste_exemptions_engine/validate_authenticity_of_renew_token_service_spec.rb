@@ -3,38 +3,24 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Renew", type: :request do
-    describe "GET renew/:token" do
+  RSpec.describe ValidateAuthenticityOfRenewTokenService do
+    describe ".run" do
       let(:registration) { create(:registration) }
-      let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
+      let(:result) { WasteExemptionsEngine::ValidateAuthenticityOfRenewTokenService.run(token: token) }
 
-      context "with a valid renew token" do
+      context "when a token is valid" do
         let(:token) { Helpers::GenerateRenewToken.generate_valid_renew_token(registration) }
 
-        it "renders the appropriate template" do
-          get request_path
-
-          expect(response).to render_template("waste_exemptions_engine/renews/new")
-        end
-
-        it "creates a new RenewingRegistration" do
-          expect { get request_path }.to change { RenewingRegistration.count }.by(1)
-        end
-
-        it "responds to the GET request with a 200 status code" do
-          get request_path
-
-          expect(response.code).to eq("200")
+        it "returns true" do
+          expect(result).to be_truthy
         end
       end
 
       context "when a token is expired" do
         let(:token) { Helpers::GenerateRenewToken.generate_expired_renew_token(registration) }
 
-        it "returns a 403 status" do
-          get request_path
-
-          expect(response.code).to eq("403")
+        it "returns false" do
+          expect(result).to be_falsey
         end
       end
 
@@ -42,9 +28,7 @@ module WasteExemptionsEngine
         let(:token) { Helpers::GenerateRenewToken.generate_invalid_payload_renew_token(registration) }
 
         it "returns false" do
-          get request_path
-
-          expect(response.code).to eq("403")
+          expect(result).to be_falsey
         end
       end
 
@@ -52,9 +36,7 @@ module WasteExemptionsEngine
         let(:token) { Helpers::GenerateRenewToken.generate_renew_token_without_updating_registration(registration) }
 
         it "returns false" do
-          get request_path
-
-          expect(response.code).to eq("403")
+          expect(result).to be_falsey
         end
       end
     end
