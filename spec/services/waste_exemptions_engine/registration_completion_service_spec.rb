@@ -7,17 +7,15 @@ module WasteExemptionsEngine
     let(:new_registration) { create(:new_registration, :complete, workflow_state: "registration_complete_form") }
     let(:registration) { Registration.last }
 
-    let(:registration_completion_service) { RegistrationCompletionService.new(new_registration) }
-
     describe "#complete" do
       it "is idempotent" do
         # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
         # https://github.com/DEFRA/ruby-services-team/issues/54
         initial_count = WasteExemptionsEngine::Registration.count
 
-        RegistrationCompletionService.new(new_registration).complete
+        run_service
 
-        expect { RegistrationCompletionService.new(new_registration).complete }.to raise_error(StandardError)
+        expect { run_service }.to raise_error(StandardError)
 
         expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
       end
@@ -41,7 +39,7 @@ module WasteExemptionsEngine
                 end
 
                 begin
-                  registration_completion_service.complete
+                  run_service
                 rescue StandardError
                 end
               end
@@ -67,20 +65,20 @@ module WasteExemptionsEngine
       context "when the registration can be completed" do
         it "copies attributes from the new_registration to the registration" do
           new_registration_attribute = new_registration.operator_name
-          registration_completion_service.complete
+          run_service
           registration_attribute = registration.operator_name
           expect(registration_attribute).to eq(new_registration_attribute)
         end
 
         it "copies attributes from associated transient objects to non-transient objects" do
           new_registration_attribute = new_registration.site_address.description
-          registration_completion_service.complete
+          run_service
           registration_attribute = registration.site_address.description
           expect(registration_attribute).to eq(new_registration_attribute)
         end
 
         it "sets the correct value for submitted_at" do
-          registration_completion_service.complete
+          run_service
           expect(registration.submitted_at).to eq(Date.current)
         end
 
@@ -90,7 +88,7 @@ module WasteExemptionsEngine
           end
 
           it "updates the registration's route to the correct value" do
-            registration_completion_service.complete
+            run_service
             expect(registration.reload.assistance_mode).to eq("foo")
           end
         end
@@ -101,20 +99,20 @@ module WasteExemptionsEngine
           end
 
           it "updates the registration's route to the correct value" do
-            registration_completion_service.complete
+            run_service
             expect(registration.reload.assistance_mode).to eq(nil)
           end
         end
 
         it "deletes the new_registration" do
-          registration_completion_service.complete
+          run_service
           expect(NewRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
         it "sends a confirmation email to both the applicant and the contant emails" do
           old_emails_sent_count = ActionMailer::Base.deliveries.count
 
-          registration_completion_service.complete
+          run_service
 
           expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 2)
         end
@@ -125,11 +123,15 @@ module WasteExemptionsEngine
           it "only sends one confirmation email" do
             old_emails_sent_count = ActionMailer::Base.deliveries.count
 
-            registration_completion_service.complete
+            run_service
 
             expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 1)
           end
         end
+      end
+
+      def run_service
+        described_class.run(transient_registration: new_registration)
       end
     end
   end
