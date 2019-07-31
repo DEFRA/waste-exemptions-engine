@@ -22,7 +22,7 @@ module WasteExemptionsEngine
     private
 
     def exp
-      Time.now.to_i + renew_token_expires_in_days * 24 * 3600
+      Time.now.to_i + renew_token_expires_in_days.to_i * 24 * 3600
     end
 
     def renew_token_expires_in_days
