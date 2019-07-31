@@ -26,6 +26,11 @@ module WasteExemptionsEngine
       it "removes the renewing_registration" do
         expect { get request_path }.to change { RenewingRegistration.where(token: form.token).count }.from(1).to(0)
       end
+
+      it "displays the new registration reference number" do
+        get request_path
+        expect(response.body).to include(Registration.last.reference)
+      end
     end
 
     describe "unable to go submit GET back" do

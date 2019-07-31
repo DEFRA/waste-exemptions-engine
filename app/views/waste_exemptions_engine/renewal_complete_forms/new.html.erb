@@ -3,5 +3,6 @@
     <%= render("waste_exemptions_engine/shared/errors", object: @renewal_complete_form) %>
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
+    <p><%= t(".paragraph_1", reference: @renewal_complete_form.reference) %></p>
   <% end %>
 </div>
