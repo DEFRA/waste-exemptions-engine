@@ -22,11 +22,19 @@ module WasteExemptionsEngine
     private
 
     def exp
-      Time.now.to_i + renew_token_expires_in_days.to_i * 24 * 3600
+      Time.now.to_i + days_until_expire * 24 * 3600
     end
 
-    def renew_token_expires_in_days
-      Rails.application.config.renew_token_expires_in_days
+    def days_until_expire
+      registration_renewal_grace_window + first_renewal_email_reminder_days
+    end
+
+    def registration_renewal_grace_window
+      Rails.application.config.registration_renewal_grace_window.to_i
+    end
+
+    def first_renewal_email_reminder_days
+      Rails.application.config.first_renewal_email_reminder_days.to_i
     end
   end
 end
