@@ -2,8 +2,8 @@
 
 module WasteExemptionsEngine
   class RenewalStartService < BaseService
-    def run
-      RenewingRegistration.create
+    def run(registration:)
+      RenewingRegistration.find_or_create_by(reference: registration.reference)
     end
   end
 end

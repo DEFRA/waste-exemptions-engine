@@ -28,6 +28,7 @@ module WasteExemptionsEngine
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
                               created_at
                               declaration
+                              reference
                               id
                               start_option
                               temp_operator_postcode

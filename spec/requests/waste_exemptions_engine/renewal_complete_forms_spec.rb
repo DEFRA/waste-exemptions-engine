@@ -20,6 +20,9 @@ module WasteExemptionsEngine
       end
 
       it "creates a new registration" do
+        # Execute let variable as the factory will generate a registration to renew which should be counted separately
+        form
+
         initial_count = Registration.count
 
         get request_path

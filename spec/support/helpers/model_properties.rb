@@ -51,7 +51,6 @@ module Helpers
     TRANSIENT_REGISTRATION_EXEMPTION = (REGISTRATION_EXEMPTION - %i[deregistration_message deregistered_at]).freeze
 
     REGISTRATION = %i[
-      reference
       location
       applicant_first_name
       applicant_last_name
