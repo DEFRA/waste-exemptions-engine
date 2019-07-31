@@ -20,7 +20,11 @@ module WasteExemptionsEngine
       end
 
       it "creates a new registration" do
-        expect { get request_path }.to change { Registration.count }.from(0).to(1)
+        initial_count = Registration.count
+
+        get request_path
+
+        expect(Registration.count).to eq(initial_count + 1)
       end
 
       it "removes the renewing_registration" do
