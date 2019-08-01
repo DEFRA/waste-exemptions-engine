@@ -25,13 +25,13 @@
 
       <p><%= t(".description") %></p>
 
+      <%= render("waste_exemptions_engine/shared/data_overview/exemptions", form: @check_your_answers_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/location") %>
       <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @check_your_answers_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/operator", form: @check_your_answers_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/contact", form: @check_your_answers_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/farming", form: @check_your_answers_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/site", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/exemptions", form: @check_your_answers_form) %>
 
       <%= f.hidden_field :token, value: @check_your_answers_form.token %>
       <div class="form-group">
