@@ -1,0 +1,6 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        exemptions:
+          subheading: "Selected exemptions"

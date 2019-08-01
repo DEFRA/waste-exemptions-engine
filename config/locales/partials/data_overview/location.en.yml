@@ -1,0 +1,7 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        location:
+          subheading: "You told us"
+          location_html: "the waste operation will take place in <span class=\"strong\">England</span>"

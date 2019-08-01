@@ -1,0 +1,14 @@
+<hr>
+<h2 class="heading-medium"><%= t(".subheading.#{form.site_address&.mode}") %></h2>
+<% if form.site_address&.auto? %>
+  <ul class="list list-bullet">
+    <li><%= t(".grid_reference_html", value: form.grid_reference) %></li>
+    <li><%= form.site_description %></li>
+  </ul>
+<% else %>
+  <ul class="list">
+    <% displayable_address(form.site_address).each do |line| %>
+      <li><%= line %></li>
+    <% end %>
+  </ul>
+<% end %>

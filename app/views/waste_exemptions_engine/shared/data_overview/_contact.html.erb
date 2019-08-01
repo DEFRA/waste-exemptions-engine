@@ -1,0 +1,18 @@
+<hr>
+<h2 class="heading-medium"><%= t(".subheading") %></h2>
+<ul class="list list-bullet">
+  <li><%= t(".name_html", value: form.contact_name) %></li>
+  <% if form.contact_position.present? %>
+    <li><%= t(".position_html", value: form.contact_position) %></li>
+  <% end %>
+  <li><%= t(".phone_html", value: form.contact_phone) %></li>
+  <li><%= t(".email_html", value: form.contact_email) %></li>
+</ul>
+
+<hr>
+<h2 class="heading-medium"><%= t(".subheading_address") %></h2>
+<ul class="list">
+  <% displayable_address(form.contact_address).each do |line| %>
+    <li><%= line %></li>
+  <% end %>
+</ul>
