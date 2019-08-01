@@ -26,7 +26,7 @@ FactoryBot.define do
         "BS#{n}AA"
       end
 
-      uprn { Faker::Alphanumeric.unique.alphanumeric(8) }
+      uprn { Faker::Alphanumeric.unique.alphanumeric(number: 8) }
       premises { Faker::Address.community }
       street_address { Faker::Address.street_address }
       locality { Faker::Address.country }
