@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190728191705) do
+ActiveRecord::Schema.define(version: 20190801095905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,7 +198,6 @@ ActiveRecord::Schema.define(version: 20190728191705) do
     t.string   "type",                                   null: false
   end
 
-  add_index "transient_registrations", ["reference"], name: "index_transient_registrations_on_reference", unique: true, using: :btree
   add_index "transient_registrations", ["token"], name: "index_transient_registrations_on_token", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|

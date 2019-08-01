@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     before_action :validate_authenticity_of_renew_token
 
     def new
-      @renewal = RenewalStartService.run
+      @renewal = RenewalStartService.run(registration: registration)
     end
 
     private
