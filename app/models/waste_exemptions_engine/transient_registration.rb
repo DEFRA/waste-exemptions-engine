@@ -36,6 +36,7 @@ module WasteExemptionsEngine
                               temp_grid_reference
                               temp_site_description
                               temp_site_postcode
+                              temp_renew_without_changes
                               token
                               transient_addresses
                               transient_registration_exemptions
