@@ -25,8 +25,11 @@ module WasteExemptionsEngine
       assign_attributes(attributes)
 
       copy_addresses_from_registration
+      copy_temp_addresses_info_from_registration
       copy_people_from_registration
       copy_exemptions_from_registration
+
+      save!
     end
 
     def copy_addresses_from_registration
@@ -36,6 +39,14 @@ module WasteExemptionsEngine
                                                                     "created_at",
                                                                     "updated_at"))
       end
+    end
+
+    def copy_temp_addresses_info_from_registration
+      self.temp_operator_postcode = registration.operator_address&.postcode
+      self.temp_contact_postcode = registration.contact_address&.postcode
+      self.temp_site_postcode = registration.site_address&.postcode
+      self.temp_grid_reference = registration.site_address&.grid_reference
+      self.temp_site_description = registration.site_address&.description
     end
 
     def copy_people_from_registration
