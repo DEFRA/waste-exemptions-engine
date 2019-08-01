@@ -6,6 +6,8 @@ module WasteExemptionsEngine
   RSpec.describe EditRegistration, type: :model do
     subject(:edit_registration) { create(:edit_registration) }
 
+    it_behaves_like "a transient_registration", :edit_registration
+
     it "subclasses TransientRegistration" do
       expect(described_class).to be < TransientRegistration
     end
