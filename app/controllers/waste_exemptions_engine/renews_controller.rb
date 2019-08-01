@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     def validate_authenticity_of_renew_token
       result = ValidateAuthenticityOfRenewTokenService.run(token: params[:token])
 
-      return redirect_to(error_path(status: 403)) unless(result && registration.present?)
+      redirect_to(error_path(status: 403)) unless result && registration.present?
     end
 
     def registration
