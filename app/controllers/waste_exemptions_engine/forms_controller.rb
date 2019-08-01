@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class FormsController < ApplicationController
     include ActionView::Helpers::UrlHelper
+    include CanRedirectFormToCorrectPath
 
     before_action :back_button_cache_buster
 
@@ -57,18 +58,6 @@ module WasteExemptionsEngine
           false
         end
       end
-    end
-
-    def redirect_to_correct_form(
-      status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
-    )
-      redirect_to form_path, status: status_code
-    end
-
-    # Get the path based on the workflow state
-    def form_path
-      @transient_registration.save unless @transient_registration.token.present?
-      send("new_#{@transient_registration.workflow_state}_path".to_sym, @transient_registration.token)
     end
 
     def setup_checks_pass?
