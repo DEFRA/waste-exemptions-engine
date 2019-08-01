@@ -4,6 +4,10 @@ en:
       new:
         title: "Renewing with changes"
         heading: "We'll fill in the form with your current registration details"
+        paragraph_1: "Check the details as you go through each screen."
+        paragraph_2: "You can change any details if you need to."
+        paragraph_3: "You'll have a chance to make a final check before you renew."
+        paragraph_4: "Your registration is for 3 years. You'll get a new registration number."
         next_button: "Continue"
   activemodel:
     errors:
