@@ -2,10 +2,14 @@
 
 module WasteExemptionsEngine
   class RenewsController < ApplicationController
+    include CanRedirectFormToCorrectPath
+
     before_action :validate_authenticity_of_renew_token
 
     def new
-      @renewal = RenewalStartService.run(registration: registration)
+      @transient_registration = RenewalStartService.run(registration: registration)
+
+      redirect_to_correct_form
     end
 
     private
@@ -13,7 +17,7 @@ module WasteExemptionsEngine
     def validate_authenticity_of_renew_token
       result = ValidateAuthenticityOfRenewTokenService.run(token: params[:token])
 
-      return head(:forbidden) unless result && registration.present?
+      return redirect_to(error_path(status: 403)) unless(result && registration.present?)
     end
 
     def registration
