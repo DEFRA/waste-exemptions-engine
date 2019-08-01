@@ -5,7 +5,7 @@ require "spec_helper"
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("dummy/config/environment", __dir__)
 
-require 'dotenv'
+require "dotenv"
 Dotenv.load(File.expand_path("spec/dummy/.env"))
 
 # Prevent database truncation if the environment is production

@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       # rubocop:enable Style/ClassVars
 
       def load_feature_toggles
-        HashWithIndifferentAccess.new(YAML.load(ERB.new(File.read(file_path)).result))
+        HashWithIndifferentAccess.new(YAML.safe_load(ERB.new(File.read(file_path)).result))
       end
 
       def file_path
