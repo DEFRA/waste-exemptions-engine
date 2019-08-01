@@ -5,7 +5,7 @@ module WasteExemptionsEngine
 
     attr_accessor :location
     attr_accessor :applicant_first_name, :applicant_last_name, :applicant_phone, :applicant_email
-    attr_accessor :business_type, :company_no, :operator_name, :operator_address
+    attr_accessor :business_type, :company_no, :operator_name, :people, :operator_address
     attr_accessor :contact_first_name, :contact_last_name, :contact_position, :contact_phone, :contact_email
     attr_accessor :contact_address
     attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description, :exemptions
@@ -29,6 +29,7 @@ module WasteExemptionsEngine
 
       self.company_no = @transient_registration.company_no
       self.operator_name = @transient_registration.operator_name
+      self.people = @transient_registration.people
       self.operator_address = @transient_registration.operator_address
 
       self.contact_first_name = @transient_registration.contact_first_name

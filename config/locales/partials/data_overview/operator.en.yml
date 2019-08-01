@@ -19,4 +19,5 @@ en:
             soleTrader_html: "the operator's name is <span class=\"strong\">%{value}</span>"
             charity_html: "the charity or trust name is <span class=\"strong\">%{value}</span>"
           company_no_html: "the Companies House number is <span class=\"strong\">%{value}</span>"
+          people: "the partners are:"
           subheading_address: Operator address
