@@ -1,0 +1,23 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        operator:
+          subheading: Operator details
+          business_type:
+            limitedCompany_html: "the operator is a <span class=\"strong\">limited company</span>"
+            limitedLiabilityPartnership_html: "the operator is a <span class=\"strong\">limited liability partnership</span>"
+            localAuthority_html: "the operator is a <span class=\"strong\">local authority or public body</span>"
+            partnership_html: "the operator is a <span class=\"strong\">partnership</span>"
+            soleTrader_html: "the operator is a <span class=\"strong\">individual or sole trader</span>"
+            charity_html: "the operator is a <span class=\"strong\">charity or trust</span>"
+          name:
+            limitedCompany_html: "the company name is <span class=\"strong\">%{value}</span>"
+            limitedLiabilityPartnership_html: "the partnership name is <span class=\"strong\">%{value}</span>"
+            localAuthority_html: "the local authority or public body name is <span class=\"strong\">%{value}</span>"
+            partnership_html: "the partnership name is <span class=\"strong\">%{value}</span>"
+            soleTrader_html: "the operator's name is <span class=\"strong\">%{value}</span>"
+            charity_html: "the charity or trust name is <span class=\"strong\">%{value}</span>"
+          company_no_html: "the Companies House number is <span class=\"strong\">%{value}</span>"
+          people: "the partners are:"
+          subheading_address: Operator address

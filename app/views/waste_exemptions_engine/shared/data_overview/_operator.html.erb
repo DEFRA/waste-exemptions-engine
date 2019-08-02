@@ -1,0 +1,23 @@
+<hr>
+<h2 class="heading-medium"><%= t(".subheading") %></h2>
+<ul class="list list-bullet">
+  <li><%= t(".business_type.#{form.business_type}_html") %></li>
+  <li><%= t(".name.#{form.business_type}_html", value: form.operator_name) %></li>
+  <% if form.company_no.present? %>
+    <li><%= t(".company_no_html", value: form.company_no) %></li>
+  <% end %>
+  <% if form.people.present? %>
+    <li><%= t(".people") %>
+      <% form.people.each do |person| %>
+      <br><%= person.first_name %> <%= person.last_name %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<hr>
+<h2 class="heading-medium"><%= t(".subheading_address") %></h2>
+<ul class="list">
+  <% displayable_address(form.operator_address).each do |line| %>
+    <li><%= line %></li>
+  <% end %>
+</ul>

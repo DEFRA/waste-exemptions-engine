@@ -1,0 +1,10 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        site:
+          subheading:
+            lookup: Site address
+            manual: Site address
+            auto: Site location
+          grid_reference_html: "the site is located at grid reference <span class=\"strong\">%{value}</span>"

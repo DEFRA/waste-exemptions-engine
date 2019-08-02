@@ -1,0 +1,9 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        applicant:
+          subheading: Person who filled in the form
+          name_html: "your name is <span class=\"strong\">%{value}</span>"
+          phone_html: "your phone number is <span class=\"strong\">%{value}</span>"
+          email_html: "your email is <span class=\"strong\">%{value}</span>"
