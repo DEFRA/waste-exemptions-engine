@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       let(:registration) { create(:registration) }
 
       it "generates a new renewal token and assigns it to a registration" do
-        expect { WasteExemptionsEngine::GenerateRenewTokenService.run(registration: registration) }.to change { registration.reload.renew_token.present? }.to(true)
+        expect { WasteExemptionsEngine::GenerateRenewTokenService.run(registration: registration) }.to change { registration.reload.renew_token }
       end
     end
   end

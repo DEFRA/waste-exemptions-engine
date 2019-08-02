@@ -26,8 +26,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2.11"
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.0"
-  # A ruby gem to generate OAuth JSON Web Token (JWT) keys.
-  s.add_dependency "jwt"
 
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"

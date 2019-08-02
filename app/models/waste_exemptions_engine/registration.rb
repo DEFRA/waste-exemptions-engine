@@ -21,6 +21,8 @@ module WasteExemptionsEngine
 
     after_create :apply_reference
 
+    has_secure_token :renew_token
+
     private
 
     def apply_reference
