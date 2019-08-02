@@ -4,6 +4,7 @@ addons:
 env:
   global:
     - CC_TEST_REPORTER_ID=40a6febb0a056fa9236dec7ffab8afc58cf5fd5973cad5f047fc14f32484203e
+    - ENV_VARIABLE_TEST_FEATURE=true
 
 language: ruby
 rvm: 2.4.2
