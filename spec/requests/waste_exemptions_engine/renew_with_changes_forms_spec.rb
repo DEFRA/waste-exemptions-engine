@@ -18,6 +18,11 @@ module WasteExemptionsEngine
         get request_path
         expect(response.code).to eq("200")
       end
+
+      it "returns W3C valid HTML content", vcr: true do
+        get request_path
+        expect(response.body).to have_valid_html
+      end
     end
 
     empty_form_is_valid = true

@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/\">Back</a>\n\n\n<form
+        class=\"new_edit_form\" id=\"new_edit_form\" action=\"/waste_exemptions_engine/edit\"
+        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
+        value=\"&#x2713;\" />\n  \n\n  <div class=\"grid-row\">\n    <div class=\"column-two-thirds\">\n
+        \     <h1 class=\"heading-large\">Edit WEX000049 registration</h1>\n\n      <p>Use
+        the links below to make changes to this registration. Changes will not be
+        applied until you hit the continue button at the bottom of the page.</p>\n
+        \     <p>You must confirm these changes using the &#39;continue&#39; button.</p>\n\n
+        \     <div class=\"panel\">\n        <p>\n          This edit was started
+        at 12:37pm on 2 August 2019.\n        </p>\n      </div>\n    </div>\n  </div>\n
+        \ <div class=\"grid-row\">\n    <div class=\"column-two-thirds\">\n      <table
+        class=\"edit_table\">\n        <caption>\n          <h2 class=\"heading-medium\">
+        Where operation is taking place </h2>\n        </caption>\n        <tbody>\n
+        \         <tr>\n            <td class=\"label_column\">\n              Location\n
+        \           </td>\n            <td>\n              England\n            </td>\n
+        \           <td class=\"change_link_column\">\n              Cannot edit\n
+        \           </td>\n          </tr>\n        </tbody>\n      </table>\n\n      <table
+        class=\"edit_table\">\n        <caption>\n          <h2 class=\"heading-medium\">
+        Applicant details </h2>\n        </caption>\n        <tbody>\n          <tr>\n
+        \           <td class=\"label_column\">\n              Name\n            </td>\n
+        \           <td>\n              Eugenio Rempel\n            </td>\n            <td
+        class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/applicant_name/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> applicant
+        name</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Phone number\n            </td>\n            <td>\n
+        \             01234567890\n            </td>\n            <td class=\"change_link_column\">\n
+        \             <a href=\"/waste_exemptions_engine/edit/applicant_phone/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> applicant
+        phone</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Email address\n            </td>\n
+        \           <td>\n              mariano@example.net\n            </td>\n            <td
+        class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/applicant_email/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> applicant
+        email</span>\n</a>            </td>\n          </tr>\n        </tbody>\n      </table>\n\n
+        \     <table class=\"edit_table\">\n        <caption>\n          <h2 class=\"heading-medium\">
+        Operator details </h2>\n        </caption>\n        <tbody>\n          <tr>\n
+        \           <td class=\"label_column\">\n              Name\n            </td>\n
+        \           <td>\n              Cummings-Wiza\n            </td>\n            <td
+        class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/operator_name/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> operator
+        name</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Type\n            </td>\n            <td>\n
+        \             Limited company\n            </td>\n            <td class=\"change_link_column\">\n
+        \             Cannot edit\n            </td>\n          </tr>\n          <tr>\n
+        \           <td class=\"label_column\">\n              Companies House number\n
+        \           </td>\n            <td>\n              09360070\n            </td>\n
+        \           <td class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/registration_number/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> Companies
+        House number</span>\n</a>            </td>\n          </tr>\n          <tr>\n
+        \           <td class=\"label_column\">\n              Address\n            </td>\n
+        \           <td>\n              <ul>\n                <li>Paradise Oaks</li>\n
+        \               <li>159 Heaney Landing</li>\n                <li>Niue</li>\n
+        \               <li>Veumborough</li>\n                <li>BS97AA</li>\n              </ul>\n
+        \           </td>\n            <td class=\"change_link_column\">\n              <a
+        href=\"/waste_exemptions_engine/edit/operator_postcode/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> operator
+        address</span>\n</a>            </td>\n          </tr>\n        </tbody>\n
+        \     </table>\n\n      <table class=\"edit_table\">\n        <caption>\n
+        \         <h2 class=\"heading-medium\"> Contact details </h2>\n        </caption>\n
+        \       <tbody>\n          <tr>\n            <td class=\"label_column\">\n
+        \             Name\n            </td>\n            <td>\n              Joaquin
+        Vandervort\n            </td>\n            <td class=\"change_link_column\">\n
+        \             <a href=\"/waste_exemptions_engine/edit/contact_name/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> contact
+        name</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Phone number\n            </td>\n            <td>\n
+        \             01234567890\n            </td>\n            <td class=\"change_link_column\">\n
+        \             <a href=\"/waste_exemptions_engine/edit/contact_phone/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> contact
+        phone</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Email address\n            </td>\n
+        \           <td>\n              dovie@example.com\n            </td>\n            <td
+        class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/contact_email/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> contact
+        email</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Address\n            </td>\n            <td>\n
+        \             <ul>\n                <li>Paradise Crossing</li>\n                <li>63534
+        Chase Creek</li>\n                <li>Gambia</li>\n                <li>DuBuqueview</li>\n
+        \               <li>BS98AA</li>\n              </ul>\n            </td>\n
+        \           <td class=\"change_link_column\">\n              <a href=\"/waste_exemptions_engine/edit/contact_postcode/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> contact
+        address</span>\n</a>            </td>\n          </tr>\n        </tbody>\n
+        \     </table>\n\n      <table class=\"edit_table\">\n        <caption>\n
+        \         <h2 class=\"heading-medium\"> Waste operation details </h2>\n        </caption>\n
+        \       <tbody>\n            <tr>\n              <th class=\"label_column\">Grid
+        reference</th>\n              <td> ST 58337 72855 </td>\n              <td
+        class=\"change_link_column\">\n                <a href=\"/waste_exemptions_engine/edit/site_grid_reference/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \                 Change\n                  <span class=\"visually-hidden\">
+        site address</span>\n</a>              </td>\n            </tr>\n            <tr>\n
+        \             <th class=\"label_column\">Site details</th>\n              <td>
+        Ut reprehenderit nisi consectetur. </td>\n              <td class=\"change_link_column\">\n
+        \               <a href=\"/waste_exemptions_engine/edit/site_grid_reference/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \                 Change\n                  <span class=\"visually-hidden\">
+        site address</span>\n</a>              </td>\n            </tr>\n        </tbody>\n
+        \     </table>\n\n      <table class=\"edit_table\">\n        <caption>\n
+        \         <h2 class=\"heading-medium\">\n            Exemptions\n            <small
+        class=\"font-small float-right\">Cannot edit</small>\n          </h2>\n        </caption>\n
+        \       <tbody>\n        </tbody>\n      </table>\n\n      <table class=\"edit_table\">\n
+        \       <caption>\n          <h2 class=\"heading-medium\"> Farming information
+        </h2>\n        </caption>\n        <tbody>\n          <tr>\n            <td
+        class=\"label_column\">\n              Operation is on a farm\n            </td>\n
+        \           <td>\n              yes\n            </td>\n            <td class=\"change_link_column\">\n
+        \             <a href=\"/waste_exemptions_engine/edit/on_a_farm/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> on
+        a farm</span>\n</a>            </td>\n          </tr>\n          <tr>\n            <td
+        class=\"label_column\">\n              Operative is a farmer\n            </td>\n
+        \           <td>\n              yes\n            </td>\n            <td class=\"change_link_column\">\n
+        \             <a href=\"/waste_exemptions_engine/edit/is_a_farmer/FxC3sXPwYshwbcohNB45SEoV\">\n
+        \               Change\n                <span class=\"visually-hidden\"> is
+        a farmer</span>\n</a>            </td>\n          </tr>\n        </tbody>\n
+        \     </table>\n    </div>\n  </div>\n\n  <div class=\"grid-row\">\n    <div
+        class=\"column-two-thirds\">\n      <br>\n      <input value=\"FxC3sXPwYshwbcohNB45SEoV\"
+        type=\"hidden\" name=\"edit_form[token]\" id=\"edit_form_token\" />\n      <div
+        class=\"form-group\">\n        <p>\n          <input type=\"submit\" name=\"commit\"
+        value=\"Continue\" class=\"button\" />\n          <span class=\"edit_linker\">\n
+        \           or\n            <a href=\"/waste_exemptions_engine/edit/cancel/FxC3sXPwYshwbcohNB45SEoV\">Cancel</a>\n
+        \         </span>\n        </p>\n      </div>\n    </div>\n  </div>\n</form>\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 02 Aug 2019 12:37:26 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi9cIj5CYWNrPC9hPlxuXG5cbjxmb3JtIGNsYXNzPVwibmV3X2VkaXRfZm9ybVwiIGlkPVwibmV3X2VkaXRfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0XCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj48aW5wdXQgbmFtZT1cInV0ZjhcIiB0eXBlPVwiaGlkZGVuXCIgdmFsdWU9XCImI3gyNzEzO1wiIC8+XG4gIFxuXG4gIDxkaXYgY2xhc3M9XCJncmlkLXJvd1wiPlxuICAgIDxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPkVkaXQgV0VYMDAwMDQ5IHJlZ2lzdHJhdGlvbjwvaDE+XG5cbiAgICAgIDxwPlVzZSB0aGUgbGlua3MgYmVsb3cgdG8gbWFrZSBjaGFuZ2VzIHRvIHRoaXMgcmVnaXN0cmF0aW9uLiBDaGFuZ2VzIHdpbGwgbm90IGJlIGFwcGxpZWQgdW50aWwgeW91IGhpdCB0aGUgY29udGludWUgYnV0dG9uIGF0IHRoZSBib3R0b20gb2YgdGhlIHBhZ2UuPC9wPlxuICAgICAgPHA+WW91IG11c3QgY29uZmlybSB0aGVzZSBjaGFuZ2VzIHVzaW5nIHRoZSAmIzM5O2NvbnRpbnVlJiMzOTsgYnV0dG9uLjwvcD5cblxuICAgICAgPGRpdiBjbGFzcz1cInBhbmVsXCI+XG4gICAgICAgIDxwPlxuICAgICAgICAgIFRoaXMgZWRpdCB3YXMgc3RhcnRlZCBhdCAxMjozN3BtIG9uIDIgQXVndXN0IDIwMTkuXG4gICAgICAgIDwvcD5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdyaWQtcm93XCI+XG4gICAgPGRpdiBjbGFzcz1cImNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgICA8dGFibGUgY2xhc3M9XCJlZGl0X3RhYmxlXCI+XG4gICAgICAgIDxjYXB0aW9uPlxuICAgICAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+IFdoZXJlIG9wZXJhdGlvbiBpcyB0YWtpbmcgcGxhY2UgPC9oMj5cbiAgICAgICAgPC9jYXB0aW9uPlxuICAgICAgICA8dGJvZHk+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIExvY2F0aW9uXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICBFbmdsYW5kXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgIENhbm5vdCBlZGl0XG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgIDwvdGJvZHk+XG4gICAgICA8L3RhYmxlPlxuXG4gICAgICA8dGFibGUgY2xhc3M9XCJlZGl0X3RhYmxlXCI+XG4gICAgICAgIDxjYXB0aW9uPlxuICAgICAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+IEFwcGxpY2FudCBkZXRhaWxzIDwvaDI+XG4gICAgICAgIDwvY2FwdGlvbj5cbiAgICAgICAgPHRib2R5PlxuICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImxhYmVsX2NvbHVtblwiPlxuICAgICAgICAgICAgICBOYW1lXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICBFdWdlbmlvIFJlbXBlbFxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImNoYW5nZV9saW5rX2NvbHVtblwiPlxuICAgICAgICAgICAgICA8YSBocmVmPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL2VkaXQvYXBwbGljYW50X25hbWUvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgQ2hhbmdlXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gYXBwbGljYW50IG5hbWU8L3NwYW4+XG48L2E+ICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImxhYmVsX2NvbHVtblwiPlxuICAgICAgICAgICAgICBQaG9uZSBudW1iZXJcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgIDAxMjM0NTY3ODkwXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZWRpdC9hcHBsaWNhbnRfcGhvbmUvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgQ2hhbmdlXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gYXBwbGljYW50IHBob25lPC9zcGFuPlxuPC9hPiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5cbiAgICAgICAgICAgICAgRW1haWwgYWRkcmVzc1xuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgbWFyaWFub0BleGFtcGxlLm5ldFxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImNoYW5nZV9saW5rX2NvbHVtblwiPlxuICAgICAgICAgICAgICA8YSBocmVmPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL2VkaXQvYXBwbGljYW50X2VtYWlsL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IGFwcGxpY2FudCBlbWFpbDwvc3Bhbj5cbjwvYT4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgIDwvdGJvZHk+XG4gICAgICA8L3RhYmxlPlxuXG4gICAgICA8dGFibGUgY2xhc3M9XCJlZGl0X3RhYmxlXCI+XG4gICAgICAgIDxjYXB0aW9uPlxuICAgICAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+IE9wZXJhdG9yIGRldGFpbHMgPC9oMj5cbiAgICAgICAgPC9jYXB0aW9uPlxuICAgICAgICA8dGJvZHk+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIE5hbWVcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgIEN1bW1pbmdzLVdpemFcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJjaGFuZ2VfbGlua19jb2x1bW5cIj5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L29wZXJhdG9yX25hbWUvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgQ2hhbmdlXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gb3BlcmF0b3IgbmFtZTwvc3Bhbj5cbjwvYT4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIFR5cGVcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgIExpbWl0ZWQgY29tcGFueVxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImNoYW5nZV9saW5rX2NvbHVtblwiPlxuICAgICAgICAgICAgICBDYW5ub3QgZWRpdFxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImxhYmVsX2NvbHVtblwiPlxuICAgICAgICAgICAgICBDb21wYW5pZXMgSG91c2UgbnVtYmVyXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICAwOTM2MDA3MFxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImNoYW5nZV9saW5rX2NvbHVtblwiPlxuICAgICAgICAgICAgICA8YSBocmVmPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL2VkaXQvcmVnaXN0cmF0aW9uX251bWJlci9GeEMzc1hQd1lzaHdiY29oTkI0NVNFb1ZcIj5cbiAgICAgICAgICAgICAgICBDaGFuZ2VcbiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz1cInZpc3VhbGx5LWhpZGRlblwiPiBDb21wYW5pZXMgSG91c2UgbnVtYmVyPC9zcGFuPlxuPC9hPiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5cbiAgICAgICAgICAgICAgQWRkcmVzc1xuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgPHVsPlxuICAgICAgICAgICAgICAgIDxsaT5QYXJhZGlzZSBPYWtzPC9saT5cbiAgICAgICAgICAgICAgICA8bGk+MTU5IEhlYW5leSBMYW5kaW5nPC9saT5cbiAgICAgICAgICAgICAgICA8bGk+Tml1ZTwvbGk+XG4gICAgICAgICAgICAgICAgPGxpPlZldW1ib3JvdWdoPC9saT5cbiAgICAgICAgICAgICAgICA8bGk+QlM5N0FBPC9saT5cbiAgICAgICAgICAgICAgPC91bD5cbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJjaGFuZ2VfbGlua19jb2x1bW5cIj5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L29wZXJhdG9yX3Bvc3Rjb2RlL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IG9wZXJhdG9yIGFkZHJlc3M8L3NwYW4+XG48L2E+ICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8L3RyPlxuICAgICAgICA8L3Rib2R5PlxuICAgICAgPC90YWJsZT5cblxuICAgICAgPHRhYmxlIGNsYXNzPVwiZWRpdF90YWJsZVwiPlxuICAgICAgICA8Y2FwdGlvbj5cbiAgICAgICAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPiBDb250YWN0IGRldGFpbHMgPC9oMj5cbiAgICAgICAgPC9jYXB0aW9uPlxuICAgICAgICA8dGJvZHk+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIE5hbWVcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgIEpvYXF1aW4gVmFuZGVydm9ydFxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImNoYW5nZV9saW5rX2NvbHVtblwiPlxuICAgICAgICAgICAgICA8YSBocmVmPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL2VkaXQvY29udGFjdF9uYW1lL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IGNvbnRhY3QgbmFtZTwvc3Bhbj5cbjwvYT4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIFBob25lIG51bWJlclxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgMDEyMzQ1Njc4OTBcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJjaGFuZ2VfbGlua19jb2x1bW5cIj5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L2NvbnRhY3RfcGhvbmUvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgQ2hhbmdlXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gY29udGFjdCBwaG9uZTwvc3Bhbj5cbjwvYT4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwibGFiZWxfY29sdW1uXCI+XG4gICAgICAgICAgICAgIEVtYWlsIGFkZHJlc3NcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgIGRvdmllQGV4YW1wbGUuY29tXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZWRpdC9jb250YWN0X2VtYWlsL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IGNvbnRhY3QgZW1haWw8L3NwYW4+XG48L2E+ICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8L3RyPlxuICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgIDx0ZCBjbGFzcz1cImxhYmVsX2NvbHVtblwiPlxuICAgICAgICAgICAgICBBZGRyZXNzXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICA8dWw+XG4gICAgICAgICAgICAgICAgPGxpPlBhcmFkaXNlIENyb3NzaW5nPC9saT5cbiAgICAgICAgICAgICAgICA8bGk+NjM1MzQgQ2hhc2UgQ3JlZWs8L2xpPlxuICAgICAgICAgICAgICAgIDxsaT5HYW1iaWE8L2xpPlxuICAgICAgICAgICAgICAgIDxsaT5EdUJ1cXVldmlldzwvbGk+XG4gICAgICAgICAgICAgICAgPGxpPkJTOThBQTwvbGk+XG4gICAgICAgICAgICAgIDwvdWw+XG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZWRpdC9jb250YWN0X3Bvc3Rjb2RlL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IGNvbnRhY3QgYWRkcmVzczwvc3Bhbj5cbjwvYT4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgIDwvdGJvZHk+XG4gICAgICA8L3RhYmxlPlxuXG4gICAgICA8dGFibGUgY2xhc3M9XCJlZGl0X3RhYmxlXCI+XG4gICAgICAgIDxjYXB0aW9uPlxuICAgICAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+IFdhc3RlIG9wZXJhdGlvbiBkZXRhaWxzIDwvaDI+XG4gICAgICAgIDwvY2FwdGlvbj5cbiAgICAgICAgPHRib2R5PlxuICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICA8dGggY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5HcmlkIHJlZmVyZW5jZTwvdGg+XG4gICAgICAgICAgICAgIDx0ZD4gU1QgNTgzMzcgNzI4NTUgPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L3NpdGVfZ3JpZF9yZWZlcmVuY2UvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgICBDaGFuZ2VcbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IHNpdGUgYWRkcmVzczwvc3Bhbj5cbjwvYT4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICA8dGggY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5TaXRlIGRldGFpbHM8L3RoPlxuICAgICAgICAgICAgICA8dGQ+IFV0IHJlcHJlaGVuZGVyaXQgbmlzaSBjb25zZWN0ZXR1ci4gPC90ZD5cbiAgICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L3NpdGVfZ3JpZF9yZWZlcmVuY2UvRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgICBDaGFuZ2VcbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IHNpdGUgYWRkcmVzczwvc3Bhbj5cbjwvYT4gICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICA8L3Rib2R5PlxuICAgICAgPC90YWJsZT5cblxuICAgICAgPHRhYmxlIGNsYXNzPVwiZWRpdF90YWJsZVwiPlxuICAgICAgICA8Y2FwdGlvbj5cbiAgICAgICAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPlxuICAgICAgICAgICAgRXhlbXB0aW9uc1xuICAgICAgICAgICAgPHNtYWxsIGNsYXNzPVwiZm9udC1zbWFsbCBmbG9hdC1yaWdodFwiPkNhbm5vdCBlZGl0PC9zbWFsbD5cbiAgICAgICAgICA8L2gyPlxuICAgICAgICA8L2NhcHRpb24+XG4gICAgICAgIDx0Ym9keT5cbiAgICAgICAgPC90Ym9keT5cbiAgICAgIDwvdGFibGU+XG5cbiAgICAgIDx0YWJsZSBjbGFzcz1cImVkaXRfdGFibGVcIj5cbiAgICAgICAgPGNhcHRpb24+XG4gICAgICAgICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj4gRmFybWluZyBpbmZvcm1hdGlvbiA8L2gyPlxuICAgICAgICA8L2NhcHRpb24+XG4gICAgICAgIDx0Ym9keT5cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5cbiAgICAgICAgICAgICAgT3BlcmF0aW9uIGlzIG9uIGEgZmFybVxuICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgeWVzXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkIGNsYXNzPVwiY2hhbmdlX2xpbmtfY29sdW1uXCI+XG4gICAgICAgICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZWRpdC9vbl9hX2Zhcm0vRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCI+XG4gICAgICAgICAgICAgICAgQ2hhbmdlXG4gICAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gb24gYSBmYXJtPC9zcGFuPlxuPC9hPiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJsYWJlbF9jb2x1bW5cIj5cbiAgICAgICAgICAgICAgT3BlcmF0aXZlIGlzIGEgZmFybWVyXG4gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgPHRkPlxuICAgICAgICAgICAgICB5ZXNcbiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQgY2xhc3M9XCJjaGFuZ2VfbGlua19jb2x1bW5cIj5cbiAgICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L2lzX2FfZmFybWVyL0Z4QzNzWFB3WXNod2Jjb2hOQjQ1U0VvVlwiPlxuICAgICAgICAgICAgICAgIENoYW5nZVxuICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+IGlzIGEgZmFybWVyPC9zcGFuPlxuPC9hPiAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgPC90Ym9keT5cbiAgICAgIDwvdGFibGU+XG4gICAgPC9kaXY+XG4gIDwvZGl2PlxuXG4gIDxkaXYgY2xhc3M9XCJncmlkLXJvd1wiPlxuICAgIDxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgICAgPGJyPlxuICAgICAgPGlucHV0IHZhbHVlPVwiRnhDM3NYUHdZc2h3YmNvaE5CNDVTRW9WXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJlZGl0X2Zvcm1bdG9rZW5dXCIgaWQ9XCJlZGl0X2Zvcm1fdG9rZW5cIiAvPlxuICAgICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgICAgPHA+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cImVkaXRfbGlua2VyXCI+XG4gICAgICAgICAgICBvclxuICAgICAgICAgICAgPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9lZGl0L2NhbmNlbC9GeEMzc1hQd1lzaHdiY29oTkI0NVNFb1ZcIj5DYW5jZWw8L2E+XG4gICAgICAgICAgPC9zcGFuPlxuICAgICAgICA8L3A+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgPC9kaXY+XG48L2Zvcm0+XG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Fri, 02 Aug 2019 12:37:26 GMT
+recorded_with: VCR 5.0.0

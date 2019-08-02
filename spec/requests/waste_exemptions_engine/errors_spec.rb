@@ -15,6 +15,11 @@ module WasteExemptionsEngine
           get error_path(code)
           expect(response.code).to eq(code)
         end
+
+        it "returns W3C valid HTML content", vcr: true do
+          get error_path(code)
+          expect(response.body).to have_valid_html
+        end
       end
 
       it "renders the generic error template when no matching error template exists" do

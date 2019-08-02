@@ -38,6 +38,11 @@ module WasteExemptionsEngine
         get request_path
         expect(response.body).to include(Registration.last.reference)
       end
+
+      it "returns W3C valid HTML content", vcr: true do
+        get request_path
+        expect(response.body).to have_valid_html
+      end
     end
 
     describe "unable to go submit GET back" do

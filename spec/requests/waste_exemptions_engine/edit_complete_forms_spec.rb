@@ -23,6 +23,11 @@ module WasteExemptionsEngine
         expect(response.code).to eq("200")
       end
 
+      it "returns W3C valid HTML content", vcr: true do
+        get request_path
+        expect(response.body).to have_valid_html
+      end
+
       context "when the host application has a current_user" do
         let(:current_user) { OpenStruct.new(id: 1) }
 

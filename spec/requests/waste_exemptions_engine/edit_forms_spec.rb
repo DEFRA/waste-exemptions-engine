@@ -26,6 +26,11 @@ module WasteExemptionsEngine
           expect(response.code).to eq("200")
         end
 
+        it "returns W3C valid HTML content", vcr: true do
+          get request_path
+          expect(response.body).to have_valid_html
+        end
+
         context "when the token is a registration reference" do
           let(:registration) { create(:registration, :complete) }
 

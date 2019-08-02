@@ -10,16 +10,21 @@ module WasteExemptionsEngine
 
     describe "GET confirm_edit_cancelled_form" do
       let(:form) { build(:confirm_edit_cancelled_form) }
-      let(:good_request_path) { "/waste_exemptions_engine/confirm-edit-cancelled/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/confirm-edit-cancelled/#{form.token}" }
 
       it "renders the appropriate template" do
-        get good_request_path
+        get request_path
         expect(response).to render_template("waste_exemptions_engine/confirm_edit_cancelled_forms/new")
       end
 
       it "responds to the GET request with a 200 status code" do
-        get good_request_path
+        get request_path
         expect(response.code).to eq("200")
+      end
+
+      it "returns W3C valid HTML content", vcr: true do
+        get request_path
+        expect(response.body).to have_valid_html
       end
     end
 
