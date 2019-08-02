@@ -80,6 +80,7 @@ module Helpers
       temp_site_postcode
       temp_grid_reference
       temp_site_description
+      temp_renew_without_changes
       address_finder_error
     ]).freeze
   end
