@@ -25,84 +25,13 @@
 
       <p><%= t(".description") %></p>
 
-      <hr>
-      <h2 class="heading-medium"><%= t(".location.subheading") %></h2>
-      <p><%= t(".location.location_html") %></p>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".applicant.subheading") %></h2>
-      <ul class="list list-bullet">
-        <li><%= t(".applicant.name_html", value: @check_your_answers_form.applicant_name) %></li>
-        <li><%= t(".applicant.phone_html", value: @check_your_answers_form.applicant_phone) %></li>
-        <li><%= t(".applicant.email_html", value: @check_your_answers_form.applicant_email) %></li>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".operator.subheading") %></h2>
-      <ul class="list list-bullet">
-        <li><%= t(".operator.business_type.#{@check_your_answers_form.business_type}_html") %></li>
-        <li><%= t(".operator.name.#{@check_your_answers_form.business_type}_html", value: @check_your_answers_form.operator_name) %></li>
-        <% if @check_your_answers_form.company_no.present? %>
-          <li><%= t(".operator.company_no_html", value: @check_your_answers_form.company_no) %></li>
-        <% end %>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".operator.subheading_address") %></h2>
-      <ul class="list">
-        <% displayable_address(@check_your_answers_form.operator_address).each do |line| %>
-          <li><%= line %></li>
-        <% end %>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".contact.subheading") %></h2>
-      <ul class="list list-bullet">
-        <li><%= t(".contact.name_html", value: @check_your_answers_form.contact_name) %></li>
-        <% if @check_your_answers_form.contact_position.present? %>
-          <li><%= t(".contact.position_html", value: @check_your_answers_form.contact_position) %></li>
-        <% end %>
-        <li><%= t(".contact.phone_html", value: @check_your_answers_form.contact_phone) %></li>
-        <li><%= t(".contact.email_html", value: @check_your_answers_form.contact_email) %></li>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".contact.subheading_address") %></h2>
-      <ul class="list">
-        <% displayable_address(@check_your_answers_form.contact_address).each do |line| %>
-          <li><%= line %></li>
-        <% end %>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".farming.subheading") %></h2>
-      <ul class="list list-bullet">
-        <li><%= t(".farming.on_a_farm.#{@check_your_answers_form.on_a_farm}_html") %></li>
-        <li><%= t(".farming.is_a_farmer.#{@check_your_answers_form.is_a_farmer}_html") %></li>
-      </ul>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".site.subheading.#{@check_your_answers_form.site_address&.mode}") %></h2>
-      <% if @check_your_answers_form.site_address&.auto? %>
-        <ul class="list list-bullet">
-          <li><%= t(".site.grid_reference_html", value: @check_your_answers_form.grid_reference) %></li>
-          <li><%= @check_your_answers_form.site_description %></li>
-        </ul>
-      <% else %>
-        <ul class="list">
-          <% displayable_address(@check_your_answers_form.site_address).each do |line| %>
-            <li><%= line %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <hr>
-      <h2 class="heading-medium"><%= t(".exemptions.subheading") %></h2>
-      <ul class="list list-bullet">
-        <% @check_your_answers_form.exemptions.each do |exemption| %>
-          <li><span class="strong"><%= exemption.code %></span> - <%= exemption.summary %></li>
-        <% end %>
-      </ul>
+      <%= render("waste_exemptions_engine/shared/data_overview/exemptions", form: @check_your_answers_form) %>
+      <%= render("waste_exemptions_engine/shared/data_overview/location") %>
+      <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @check_your_answers_form) %>
+      <%= render("waste_exemptions_engine/shared/data_overview/operator", form: @check_your_answers_form) %>
+      <%= render("waste_exemptions_engine/shared/data_overview/contact", form: @check_your_answers_form) %>
+      <%= render("waste_exemptions_engine/shared/data_overview/farming", form: @check_your_answers_form) %>
+      <%= render("waste_exemptions_engine/shared/data_overview/site", form: @check_your_answers_form) %>
 
       <%= f.hidden_field :token, value: @check_your_answers_form.token %>
       <div class="form-group">

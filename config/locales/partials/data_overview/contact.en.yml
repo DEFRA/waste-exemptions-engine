@@ -1,0 +1,11 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        contact:
+          subheading: Contact details
+          name_html: "the contact's name is <span class=\"strong\">%{value}</span>"
+          position_html: "the contact's position is <span class=\"strong\">%{value}</span>"
+          phone_html: "the contact's phone number is <span class=\"strong\">%{value}</span>"
+          email_html: "the contact's email is <span class=\"strong\">%{value}</span>"
+          subheading_address: Contact address

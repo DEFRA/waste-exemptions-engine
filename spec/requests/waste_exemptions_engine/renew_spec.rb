@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe "Renew", type: :request do
     describe "GET renew/:token" do
-      let(:registration) { create(:registration) }
+      let(:registration) { create(:registration, :complete) }
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
 
       context "with a valid renew token" do
