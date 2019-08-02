@@ -10,48 +10,11 @@ module WasteExemptionsEngine
     attr_accessor :contact_address
     attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description, :exemptions
 
-    # We know this is a long method, but its just assigning attributes. Breaking
-    # it up for the sake of rubocop would add little benefit, hence the
-    # exceptions
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
     def initialize(registration)
       super
-
-      self.location = @transient_registration.location
-
-      self.applicant_first_name = @transient_registration.applicant_first_name
-      self.applicant_last_name = @transient_registration.applicant_last_name
-      self.applicant_phone = @transient_registration.applicant_phone
-      self.applicant_email = @transient_registration.applicant_email
-
-      self.business_type = @transient_registration.business_type
-
-      self.company_no = @transient_registration.company_no
-      self.operator_name = @transient_registration.operator_name
-      self.people = @transient_registration.people
-      self.operator_address = @transient_registration.operator_address
-
-      self.contact_first_name = @transient_registration.contact_first_name
-      self.contact_last_name = @transient_registration.contact_last_name
-      self.contact_position = @transient_registration.contact_position
-      self.contact_phone = @transient_registration.contact_phone
-      self.contact_email = @transient_registration.contact_email
-      self.contact_address = @transient_registration.contact_address
-
-      self.on_a_farm = @transient_registration.on_a_farm
-      self.is_a_farmer = @transient_registration.is_a_farmer
-
-      self.site_address = @transient_registration.site_address
-      self.grid_reference = site_address&.grid_reference
-      self.site_description = site_address&.description
-
-      self.exemptions = @transient_registration.exemptions
-
+      assign_attributes_to_display
       valid?
     end
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
 
     def submit(params)
       super({}, params[:token])
@@ -90,6 +53,44 @@ module WasteExemptionsEngine
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
 
     private
+
+    # We know this is a long method, but it's just assigning attributes. Breaking
+    # it up for the sake of Rubocop would add little benefit, hence the exceptions
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
+    def assign_attributes_to_display
+      self.location = @transient_registration.location
+
+      self.applicant_first_name = @transient_registration.applicant_first_name
+      self.applicant_last_name = @transient_registration.applicant_last_name
+      self.applicant_phone = @transient_registration.applicant_phone
+      self.applicant_email = @transient_registration.applicant_email
+
+      self.business_type = @transient_registration.business_type
+
+      self.company_no = @transient_registration.company_no
+      self.operator_name = @transient_registration.operator_name
+      self.people = @transient_registration.people
+      self.operator_address = @transient_registration.operator_address
+
+      self.contact_first_name = @transient_registration.contact_first_name
+      self.contact_last_name = @transient_registration.contact_last_name
+      self.contact_position = @transient_registration.contact_position
+      self.contact_phone = @transient_registration.contact_phone
+      self.contact_email = @transient_registration.contact_email
+      self.contact_address = @transient_registration.contact_address
+
+      self.on_a_farm = @transient_registration.on_a_farm
+      self.is_a_farmer = @transient_registration.is_a_farmer
+
+      self.site_address = @transient_registration.site_address
+      self.grid_reference = site_address&.grid_reference
+      self.site_description = site_address&.description
+
+      self.exemptions = @transient_registration.exemptions
+    end
+    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
 
     def company_no_required?
       @transient_registration.company_no_required?
