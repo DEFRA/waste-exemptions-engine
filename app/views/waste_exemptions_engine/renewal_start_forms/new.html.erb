@@ -7,10 +7,10 @@
     <%= render("waste_exemptions_engine/shared/data_overview/exemptions", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/site", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/location") %>
-    <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/operator", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/contact", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/farming", form: @renewal_start_form) %>
+    <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @renewal_start_form) %>
 
     <hr>
     <div class="form-group <%= "form-group-error" if @renewal_start_form.errors[:temp_renew_without_changes].any? %>">
