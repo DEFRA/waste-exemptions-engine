@@ -23,6 +23,11 @@ module WasteExemptionsEngine
         expect(response.code).to eq("200")
       end
 
+      it "returns W3C valid HTML content", vcr: true do
+        get request_path
+        expect(response.body).to have_valid_html
+      end
+
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do
         let(:edit_enabled) { "false" }
 
