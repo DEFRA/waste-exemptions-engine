@@ -2,10 +2,13 @@
 
 module WasteExemptionsEngine
   class RenewalStartForm < BaseForm
+    include DataOverviewForm
+
     attr_accessor :temp_renew_without_changes
 
     def initialize(registration)
       super
+      assign_attributes_to_display
       self.temp_renew_without_changes = @transient_registration.temp_renew_without_changes
     end
 
