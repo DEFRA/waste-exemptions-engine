@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<div class=\"text\">\n  <form class=\"new_renewal_start_form\"
+        id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/renewal-start\"
+        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
+        value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Do you want
+        to renew with these details?</h1>\n\n    <hr>\n<h2 class=\"heading-medium\">Selected
+        exemptions</h2>\n<ul class=\"list list-bullet\">\n</ul>\n\n    <hr>\n<h2 class=\"heading-medium\">Site
+        location</h2>\n  <ul class=\"list list-bullet\">\n    <li>the site is located
+        at grid reference <span class=\"strong\">ST 58337 72855</span></li>\n    <li>Est
+        totam quod ut.</li>\n  </ul>\n\n    <hr>\n<h2 class=\"heading-medium\">You
+        told us</h2>\n<p>the waste operation will take place in <span class=\"strong\">England</span></p>\n\n
+        \   <hr>\n<h2 class=\"heading-medium\">Your details</h2>\n<ul class=\"list
+        list-bullet\">\n  <li>your name is <span class=\"strong\">Arron Wiza</span></li>\n
+        \ <li>your phone number is <span class=\"strong\">01234567890</span></li>\n
+        \ <li>your email is <span class=\"strong\">azucena_walter@example.com</span></li>\n</ul>\n\n
+        \   <hr>\n<h2 class=\"heading-medium\">Operator details</h2>\n<ul class=\"list
+        list-bullet\">\n  <li>the operator is a <span class=\"strong\">limited company</span></li>\n
+        \ <li>the company name is <span class=\"strong\">Jacobson and Sons</span></li>\n
+        \   <li>the Companies House number is <span class=\"strong\">09360070</span></li>\n
+        \   <li>the partners are:\n      <br>Geraldo Schiller\n      <br>Stan Weimann\n
+        \     <br>Landon Fay\n    </li>\n</ul>\n<hr>\n<h2 class=\"heading-medium\">Operator
+        address</h2>\n<ul class=\"list\">\n    <li>Park Pointe</li>\n    <li>841 Konopelski
+        Crest</li>\n    <li>Kuwait</li>\n    <li>Johnathonside</li>\n    <li>BS5AA</li>\n</ul>\n\n
+        \   <hr>\n<h2 class=\"heading-medium\">Contact details</h2>\n<ul class=\"list
+        list-bullet\">\n  <li>the contact's name is <span class=\"strong\">Everette
+        Emmerich</span></li>\n    <li>the contact's position is <span class=\"strong\">biologist</span></li>\n
+        \ <li>the contact's phone number is <span class=\"strong\">01234567890</span></li>\n
+        \ <li>the contact's email is <span class=\"strong\">loyd@example.org</span></li>\n</ul>\n\n<hr>\n<h2
+        class=\"heading-medium\">Contact address</h2>\n<ul class=\"list\">\n    <li>Eagle
+        Square</li>\n    <li>40362 Genesis Ports</li>\n    <li>Tokelau</li>\n    <li>East
+        Janita</li>\n    <li>BS6AA</li>\n</ul>\n\n    <hr>\n<h2 class=\"heading-medium\">Farming
+        information</h2>\n<ul class=\"list list-bullet\">\n  <li>the operation <span
+        class=\"strong\">will</span> take place on a farm</li>\n  <li>the operator
+        <span class=\"strong\">is</span> a farmer</li>\n</ul>\n\n\n    <div class=\"form-group
+        \">\n      <fieldset class=\"inline\" id=\"temp_renew_without_changes\">\n\n
+        \       <div class=\"multiple-choice\">\n          <input type=\"radio\" value=\"true\"
+        name=\"renewal_start_form[temp_renew_without_changes]\" id=\"renewal_start_form_temp_renew_without_changes_true\"
+        />\n          <label for=\"renewal_start_form_temp_renew_without_changes_true\">Renew
+        with these details</label>\n        </div>\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"false\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        id=\"renewal_start_form_temp_renew_without_changes_false\" />\n          <label
+        for=\"renewal_start_form_temp_renew_without_changes_false\">I need to make
+        changes</label>\n        </div>\n      </fieldset>\n    </div>\n\n    <input
+        value=\"kcTPuJ2rbFjBpUZ6EwzPQVMq\" type=\"hidden\" name=\"renewal_start_form[token]\"
+        id=\"renewal_start_form_token\" />\n    <div class=\"form-group\">\n      <input
+        type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 02 Aug 2019 10:10:54 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGlkPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZW5ld2FsLXN0YXJ0XCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj48aW5wdXQgbmFtZT1cInV0ZjhcIiB0eXBlPVwiaGlkZGVuXCIgdmFsdWU9XCImI3gyNzEzO1wiIC8+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+RG8geW91IHdhbnQgdG8gcmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPzwvaDE+XG5cbiAgICA8aHI+XG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPlNlbGVjdGVkIGV4ZW1wdGlvbnM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuPC91bD5cblxuICAgIDxocj5cbjxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+U2l0ZSBsb2NhdGlvbjwvaDI+XG4gIDx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgICA8bGk+dGhlIHNpdGUgaXMgbG9jYXRlZCBhdCBncmlkIHJlZmVyZW5jZSA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlNUIDU4MzM3IDcyODU1PC9zcGFuPjwvbGk+XG4gICAgPGxpPkVzdCB0b3RhbSBxdW9kIHV0LjwvbGk+XG4gIDwvdWw+XG5cbiAgICA8aHI+XG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPllvdSB0b2xkIHVzPC9oMj5cbjxwPnRoZSB3YXN0ZSBvcGVyYXRpb24gd2lsbCB0YWtlIHBsYWNlIGluIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+RW5nbGFuZDwvc3Bhbj48L3A+XG5cbiAgICA8aHI+XG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPllvdXIgZGV0YWlsczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gIDxsaT55b3VyIG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5BcnJvbiBXaXphPC9zcGFuPjwvbGk+XG4gIDxsaT55b3VyIHBob25lIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjAxMjM0NTY3ODkwPC9zcGFuPjwvbGk+XG4gIDxsaT55b3VyIGVtYWlsIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+YXp1Y2VuYV93YWx0ZXJAZXhhbXBsZS5jb208L3NwYW4+PC9saT5cbjwvdWw+XG5cbiAgICA8aHI+XG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPk9wZXJhdG9yIGRldGFpbHM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIG9wZXJhdG9yIGlzIGEgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5saW1pdGVkIGNvbXBhbnk8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb21wYW55IG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5KYWNvYnNvbiBhbmQgU29uczwvc3Bhbj48L2xpPlxuICAgIDxsaT50aGUgQ29tcGFuaWVzIEhvdXNlIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjA5MzYwMDcwPC9zcGFuPjwvbGk+XG4gICAgPGxpPnRoZSBwYXJ0bmVycyBhcmU6XG4gICAgICA8YnI+R2VyYWxkbyBTY2hpbGxlclxuICAgICAgPGJyPlN0YW4gV2VpbWFublxuICAgICAgPGJyPkxhbmRvbiBGYXlcbiAgICA8L2xpPlxuPC91bD5cbjxocj5cbjxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+T3BlcmF0b3IgYWRkcmVzczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0XCI+XG4gICAgPGxpPlBhcmsgUG9pbnRlPC9saT5cbiAgICA8bGk+ODQxIEtvbm9wZWxza2kgQ3Jlc3Q8L2xpPlxuICAgIDxsaT5LdXdhaXQ8L2xpPlxuICAgIDxsaT5Kb2huYXRob25zaWRlPC9saT5cbiAgICA8bGk+QlM1QUE8L2xpPlxuPC91bD5cblxuICAgIDxocj5cbjxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+Q29udGFjdCBkZXRhaWxzPC9oMj5cbjx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgPGxpPnRoZSBjb250YWN0J3MgbmFtZSBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPkV2ZXJldHRlIEVtbWVyaWNoPC9zcGFuPjwvbGk+XG4gICAgPGxpPnRoZSBjb250YWN0J3MgcG9zaXRpb24gaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5iaW9sb2dpc3Q8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb250YWN0J3MgcGhvbmUgbnVtYmVyIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+MDEyMzQ1Njc4OTA8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb250YWN0J3MgZW1haWwgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5sb3lkQGV4YW1wbGUub3JnPC9zcGFuPjwvbGk+XG48L3VsPlxuXG48aHI+XG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkNvbnRhY3QgYWRkcmVzczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0XCI+XG4gICAgPGxpPkVhZ2xlIFNxdWFyZTwvbGk+XG4gICAgPGxpPjQwMzYyIEdlbmVzaXMgUG9ydHM8L2xpPlxuICAgIDxsaT5Ub2tlbGF1PC9saT5cbiAgICA8bGk+RWFzdCBKYW5pdGE8L2xpPlxuICAgIDxsaT5CUzZBQTwvbGk+XG48L3VsPlxuXG4gICAgPGhyPlxuPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5GYXJtaW5nIGluZm9ybWF0aW9uPC9oMj5cbjx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgPGxpPnRoZSBvcGVyYXRpb24gPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj53aWxsPC9zcGFuPiB0YWtlIHBsYWNlIG9uIGEgZmFybTwvbGk+XG4gIDxsaT50aGUgb3BlcmF0b3IgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5pczwvc3Bhbj4gYSBmYXJtZXI8L2xpPlxuPC91bD5cblxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXAgXCI+XG4gICAgICA8ZmllbGRzZXQgY2xhc3M9XCJpbmxpbmVcIiBpZD1cInRlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXCI+XG5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgIDxpbnB1dCB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cInRydWVcIiBuYW1lPVwicmVuZXdhbF9zdGFydF9mb3JtW3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXVwiIGlkPVwicmVuZXdhbF9zdGFydF9mb3JtX3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzX3RydWVcIiAvPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1fdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNfdHJ1ZVwiPlJlbmV3IHdpdGggdGhlc2UgZGV0YWlsczwvbGFiZWw+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwiZmFsc2VcIiBuYW1lPVwicmVuZXdhbF9zdGFydF9mb3JtW3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXVwiIGlkPVwicmVuZXdhbF9zdGFydF9mb3JtX3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzX2ZhbHNlXCIgLz5cbiAgICAgICAgICA8bGFiZWwgZm9yPVwicmVuZXdhbF9zdGFydF9mb3JtX3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzX2ZhbHNlXCI+SSBuZWVkIHRvIG1ha2UgY2hhbmdlczwvbGFiZWw+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cImtjVFB1SjJyYkZqQnBVWjZFd3pQUVZNcVwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwicmVuZXdhbF9zdGFydF9mb3JtW3Rva2VuXVwiIGlkPVwicmVuZXdhbF9zdGFydF9mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+    http_version: 
+  recorded_at: Fri, 02 Aug 2019 10:10:54 GMT
+recorded_with: VCR 5.0.0
