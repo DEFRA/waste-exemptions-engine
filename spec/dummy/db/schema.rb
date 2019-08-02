@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190801095905) do
+ActiveRecord::Schema.define(version: 20190801171410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,10 +192,11 @@ ActiveRecord::Schema.define(version: 20190801095905) do
     t.string   "temp_site_postcode"
     t.string   "temp_grid_reference"
     t.text     "temp_site_description"
-    t.boolean  "address_finder_error",   default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "type",                                   null: false
+    t.boolean  "address_finder_error",       default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "type",                                       null: false
+    t.boolean  "temp_renew_without_changes"
   end
 
   add_index "transient_registrations", ["token"], name: "index_transient_registrations_on_token", unique: true, using: :btree
