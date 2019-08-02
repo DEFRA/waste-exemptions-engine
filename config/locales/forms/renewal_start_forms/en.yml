@@ -13,6 +13,8 @@ en:
       models:
         waste_exemptions_engine/renewal_start_form:
           attributes:
+            temp_renew_without_changes:
+              inclusion: "Select if you want to renew with these details or need to make changes"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
