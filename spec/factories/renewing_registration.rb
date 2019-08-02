@@ -6,5 +6,9 @@ FactoryBot.define do
     initialize_with do
       new(reference: create(:registration, :complete).reference)
     end
+
+    factory :renewing_registration_without_changes do
+      temp_renew_without_changes { true }
+    end
   end
 end

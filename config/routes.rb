@@ -480,6 +480,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                   on: :collection
             end
 
+  resources :renew_without_changes_forms,
+            only: %i[new create],
+            path: "renew-without-changes",
+            path_names: { new: "/:token" } do
+              get "back/:token",
+                  to: "renew_without_changes_forms#go_back",
+                  as: "back",
+                  on: :collection
+            end
+
   resources :renewal_complete_forms,
             only: %i[new create],
             path: "renewal-complete",

@@ -1,0 +1,7 @@
+en:
+  waste_exemptions_engine:
+    renew_without_changes_forms:
+      new:
+        title: "Renewing without changes"
+        heading: "Renewing without changes"
+        next_button: "Continue"
