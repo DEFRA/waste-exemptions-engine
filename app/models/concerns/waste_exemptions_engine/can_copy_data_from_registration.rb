@@ -20,7 +20,8 @@ module WasteExemptionsEngine
                                                   "assistance_mode",
                                                   "created_at",
                                                   "updated_at",
-                                                  "submitted_at")
+                                                  "submitted_at",
+                                                  "referring_registration_id")
 
       assign_attributes(attributes)
 
