@@ -23,7 +23,7 @@ RSpec.shared_examples "a transient_registration" do |model_factory|
     it "returns valid registration attributes from the transient registration" do
       attributes = transient_registration.registration_attributes
       registration_attributes = Helpers::ModelProperties::REGISTRATION.map(&:to_s) - %w[submitted_at reference]
-      expect(attributes.keys).to match_array(registration_attributes)
+      expect(attributes.keys).to include(*registration_attributes)
     end
   end
 

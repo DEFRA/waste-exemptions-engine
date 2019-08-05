@@ -68,7 +68,6 @@ module Helpers
       on_a_farm
       is_a_farmer
       submitted_at
-      referring_registration_id
     ].freeze
 
     TRANSIENT_REGISTRATION = (REGISTRATION - [:submitted_at] + %i[
