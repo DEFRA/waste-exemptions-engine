@@ -19,6 +19,7 @@ module WasteExemptionsEngine
         # States / forms
         state :renewal_start_form, initial: true
         state :renew_with_changes_form
+        state :renew_without_changes_form
 
         # Location
         state :location_form
@@ -69,7 +70,12 @@ module WasteExemptionsEngine
         # Transitions
         event :next do
           transitions from: :renewal_start_form,
-                      to: :renew_with_changes_form
+                      to: :renew_with_changes_form,
+                      unless: :should_renew_without_changes?
+
+          transitions from: :renewal_start_form,
+                      to: :renew_without_changes_form,
+                      if: :should_renew_without_changes?
 
           transitions from: :renew_with_changes_form,
                       to: :location_form
@@ -209,10 +215,17 @@ module WasteExemptionsEngine
 
           transitions from: :declaration_form,
                       to: :renewal_complete_form
+
+          # Renew without changes jumps to declaration form
+          transitions from: :renew_without_changes_form,
+                      to: :declaration_form
         end
 
         event :back do
           transitions from: :renew_with_changes_form,
+                      to: :renewal_start_form
+
+          transitions from: :renew_without_changes_form,
                       to: :renewal_start_form
 
           # Location
@@ -335,7 +348,12 @@ module WasteExemptionsEngine
                       to: :site_grid_reference_form
 
           transitions from: :declaration_form,
-                      to: :check_your_answers_form
+                      to: :check_your_answers_form,
+                      unless: :should_renew_without_changes?
+
+          transitions from: :declaration_form,
+                      to: :renew_without_changes_form,
+                      if: :should_renew_without_changes?
         end
 
         event :skip_to_manual_address do
@@ -393,6 +411,10 @@ module WasteExemptionsEngine
       return unless site_address
 
       site_address.lookup?
+    end
+
+    def should_renew_without_changes?
+      temp_renew_without_changes
     end
 
     def should_register_in_northern_ireland?
