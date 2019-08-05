@@ -3,5 +3,6 @@ en:
     renew_without_changes_forms:
       new:
         title: "Renewing without changes"
-        heading: "Renewing without changes"
+        heading: "You are about to renew for 3 years with the current details"
+        paragraph_1: "You'll get a new registration number."
         next_button: "Continue"

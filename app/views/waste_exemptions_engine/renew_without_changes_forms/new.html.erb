@@ -6,6 +6,8 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
+    <p><%= t(".paragraph_1") %></p>
+
     <%= f.hidden_field :token, value: @renew_without_changes_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
