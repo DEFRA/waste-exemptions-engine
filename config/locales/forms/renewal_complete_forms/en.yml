@@ -4,8 +4,15 @@ en:
       new:
         title: "Renewal complete"
         heading: "You have renewed your exemptions for 3 years"
-        paragraph_1: "Your new registration is %{reference}"
-        next_button: "Continue"
+        highlight_text: "Your new registration number is"
+        confirmation_email_text:
+          one: "We have sent a confirmation email to %{contact}."
+          many: "We have sent a confirmation email to %{applicant} and %{contact}."
+        what_happens_next:
+          paragraph_1: These exemptions will expire in %{expire_month_year}. We will send you a reminder 1 month before they are due to expire.
+          paragraph_2: We will add your registration to the public register. This includes the name and address of the individual or organisation responsible, the site address and the exemptions you have registered. We will not include other names, or your email or telephone number.
+        survey_link_text: What do you think of this service?
+        survey_link_hint: (takes 30 seconds)
   activemodel:
     errors:
       models:

@@ -1,8 +1,19 @@
-<div class="text">
+<div class="column-two-thirds">
   <%= form_for(@renewal_complete_form) do |f| %>
     <%= render("waste_exemptions_engine/shared/errors", object: @renewal_complete_form) %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
-    <p><%= t(".paragraph_1", reference: @renewal_complete_form.reference) %></p>
+    <div class="govuk-box-highlight">
+      <h1 class="heading-xlarge"><%= t(".heading") %></h1>
+      <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @renewal_complete_form.reference %></span></p>
+    </div>
+
+    <p><%= t(".confirmation_email_text.#{@renewal_complete_form.emails_plural}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
+
+    <p><%= t(".what_happens_next.paragraph_1", expire_month_year: @renewal_complete_form.expire_month_year) %></p>
+    <p><%= t(".what_happens_next.paragraph_2") %></p>
+
+    <br/>
+
+    <p><%= link_to(t(".survey_link_text"), t("layouts.application.feedback_url")) %> <%= t(".survey_link_hint") %></p>
   <% end %>
 </div>
