@@ -52,7 +52,7 @@ module WasteExemptionsEngine
           create(:registration, referring_registration_id: registration.id)
         end
 
-        it "respond wiht a 200 status" do
+        it "respond with a 200 status" do
           get request_path
 
           expect(response.code).to eq("200")
