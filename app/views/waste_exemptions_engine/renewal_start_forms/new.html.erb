@@ -12,7 +12,6 @@
     <%= render("waste_exemptions_engine/shared/data_overview/farming", form: @renewal_start_form) %>
     <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @renewal_start_form) %>
 
-    <hr>
     <div class="form-group <%= "form-group-error" if @renewal_start_form.errors[:temp_renew_without_changes].any? %>">
       <fieldset id="temp_renew_without_changes">
         <% if @renewal_start_form.errors[:temp_renew_without_changes].any? %>
