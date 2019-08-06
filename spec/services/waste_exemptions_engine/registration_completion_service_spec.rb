@@ -129,10 +129,10 @@ module WasteExemptionsEngine
           end
         end
 
-        context "whne the transient registration is a renewal" do
+        context "when the transient registration is a renewal" do
           let(:renewing_registration) { create(:renewing_registration) }
 
-          it "copy over data about referring registration" do
+          it "copies over data about the referring registration" do
             referring_registration = renewing_registration.referring_registration
 
             new_registration = described_class.run(transient_registration: renewing_registration)
