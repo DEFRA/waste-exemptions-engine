@@ -8,7 +8,9 @@ module WasteExemptionsEngine
       registration = RegistrationCompletionService.run(transient_registration: @transient_registration)
 
       @renewal_complete_form.reference = registration.reference
-      @renewal_complete_form.expire_month_year = registration.registration_exemptions.first.expires_on.to_formatted_s(:time_on_month_year)
+
+      registration_expires_on = registration.registration_exemptions.first.expires_on
+      @renewal_complete_form.expire_month_year = registration_expires_on.to_formatted_s(:time_on_month_year)
     end
 
     # Overwrite create and go_back as you shouldn't be able to submit or go back
