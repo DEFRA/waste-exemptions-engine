@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190801171410) do
+ActiveRecord::Schema.define(version: 20190805152649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,11 +96,12 @@ ActiveRecord::Schema.define(version: 20190801171410) do
     t.string   "contact_email"
     t.boolean  "on_a_farm"
     t.boolean  "is_a_farmer"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.date     "submitted_at"
     t.string   "assistance_mode"
     t.string   "renew_token"
+    t.integer  "referring_registration_id"
   end
 
   add_index "registrations", ["reference"], name: "index_registrations_on_reference", unique: true, using: :btree

@@ -8,6 +8,13 @@ module WasteExemptionsEngine
 
     it_behaves_like "a transient_registration", :renewing_registration
 
+    describe "#registration_attributes" do
+      it "includes a referring registration id" do
+        attributes = renewing_registration.registration_attributes
+        expect(attributes.keys).to include("referring_registration_id")
+      end
+    end
+
     it "subclasses TransientRegistration" do
       expect(described_class).to be < TransientRegistration
     end
