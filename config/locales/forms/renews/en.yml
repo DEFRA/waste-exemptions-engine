@@ -1,0 +1,13 @@
+en:
+  waste_exemptions_engine:
+    renews:
+      already_renewed:
+        title: You have already renewed your registration
+        heading: You have already renewed your registration
+        paragraph_1: Our records show that registration %{reference} has already been renewed.
+        paragraph_2_html: If you need to register other waste exemptions you should %{make_a_new_registration_link}.
+        paragraph_3: If you want to discuss this registration, contact the Environment Agency. You will need your registration number.
+        paragraph_4:
+          line_1: "Environment Agency helpline:"
+          line_2: "03708 506 506 (Monday to Friday, 8am to 6pm)"
+        make_a_new_registration: make a new registration
