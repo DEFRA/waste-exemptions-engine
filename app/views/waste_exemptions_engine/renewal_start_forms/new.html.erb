@@ -18,6 +18,10 @@
           <span class="error-message"><%= @renewal_start_form.errors[:temp_renew_without_changes].join(", ") %></span>
         <% end %>
 
+        <legend class="visuallyhidden">
+          <%= t(".heading") %>
+        </legend>
+
         <div class="multiple-choice">
           <%= f.radio_button :temp_renew_without_changes, "true" %>
           <%= f.label :temp_renew_without_changes, t(".options.yes"), value: "true" %>
