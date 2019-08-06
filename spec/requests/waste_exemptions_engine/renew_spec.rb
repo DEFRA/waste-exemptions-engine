@@ -45,6 +45,32 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when a token has already been used" do
+        let(:token) { registration.renew_token }
+
+        before do
+          create(:registration, referring_registration_id: registration.id)
+        end
+
+        it "respond with a 200 status" do
+          get request_path
+
+          expect(response.code).to eq("200")
+        end
+
+        it "renders the appropriate template" do
+          get request_path
+
+          expect(response).to render_template("waste_exemptions_engine/renews/already_renewed")
+        end
+
+        it "returns W3C valid HTML content", vcr: true do
+          get request_path
+
+          expect(response.body).to have_valid_html
+        end
+      end
+
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 
@@ -58,7 +84,7 @@ module WasteExemptionsEngine
           get request_path
           follow_redirect!
 
-          expect(response.code).to render_template("waste_exemptions_engine/errors/error_403")
+          expect(response.code).to render_template("waste_exemptions_engine/errors/error_404")
         end
       end
     end
