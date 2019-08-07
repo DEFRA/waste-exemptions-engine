@@ -184,7 +184,12 @@ module WasteExemptionsEngine
 
           # Site questions
           transitions from: :is_a_farmer_form,
-                      to: :site_grid_reference_form
+                      to: :site_grid_reference_form,
+                      if: :located_by_grid_reference?
+
+          transitions from: :is_a_farmer_form,
+                      to: :site_postcode_form,
+                      unless: :located_by_grid_reference?
 
           transitions from: :site_grid_reference_form,
                       to: :site_postcode_form,
@@ -433,6 +438,10 @@ module WasteExemptionsEngine
       return false if company_no_required?
 
       true
+    end
+
+    def located_by_grid_reference?
+      site_address.located_by_grid_reference?
     end
 
     def skip_to_manual_address?
