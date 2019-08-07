@@ -18,6 +18,8 @@ module WasteExemptionsEngine
       through: :registration_exemptions,
       source: :exemption
     )
+    belongs_to :referring_registration, class_name: "Registration"
+    has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
     after_create :apply_reference
 

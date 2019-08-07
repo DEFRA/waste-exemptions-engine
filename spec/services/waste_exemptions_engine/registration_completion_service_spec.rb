@@ -128,6 +128,19 @@ module WasteExemptionsEngine
             expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 1)
           end
         end
+
+        context "when the transient registration is a renewal" do
+          let(:renewing_registration) { create(:renewing_registration) }
+
+          it "copies over data about the referring registration" do
+            referring_registration = renewing_registration.referring_registration
+
+            new_registration = described_class.run(transient_registration: renewing_registration)
+
+            expect(new_registration.referring_registration).to eq(referring_registration)
+            expect(referring_registration.referred_registration).to eq(new_registration)
+          end
+        end
       end
 
       def run_service
