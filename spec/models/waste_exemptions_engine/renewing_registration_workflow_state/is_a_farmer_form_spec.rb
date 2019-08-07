@@ -10,6 +10,12 @@ module WasteExemptionsEngine
                       current_state: :is_a_farmer_form,
                       next_state: :site_grid_reference_form,
                       factory: :renewing_registration
+
+      it_behaves_like "a simple bidirectional transition",
+                      previous_state: :on_a_farm_form,
+                      current_state: :is_a_farmer_form,
+                      next_state: :site_postcode_form,
+                      factory: :renewing_registration_with_manual_site_address
     end
   end
 end
