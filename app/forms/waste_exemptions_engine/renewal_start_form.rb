@@ -20,6 +20,10 @@ module WasteExemptionsEngine
       super(attributes, params[:token])
     end
 
-    validates :temp_renew_without_changes, "defra_ruby/validators/true_false": true
+    validates :temp_renew_without_changes,
+              "defra_ruby/validators/true_false": {
+                message: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form"\
+                  ".attributes.temp_renew_without_changes.inclusion")
+              }
   end
 end
