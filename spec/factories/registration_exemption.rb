@@ -5,5 +5,7 @@ FactoryBot.define do
     expires_on { 3.years.from_now }
 
     exemption
+
+    state { :active }
   end
 end
