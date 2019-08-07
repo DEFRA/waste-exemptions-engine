@@ -1,4 +1,3 @@
-<hr>
 <h2 class="heading-medium"><%= t(".subheading") %></h2>
 <ul class="list list-bullet">
   <li><%= t(".name_html", value: form.contact_name) %></li>
@@ -10,9 +9,12 @@
 </ul>
 
 <hr>
+
 <h2 class="heading-medium"><%= t(".subheading_address") %></h2>
 <ul class="list">
   <% displayable_address(form.contact_address).each do |line| %>
     <li><%= line %></li>
   <% end %>
 </ul>
+
+<hr>
