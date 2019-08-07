@@ -1,4 +1,3 @@
-<hr>
 <h2 class="heading-medium"><%= t(".subheading") %></h2>
 <ul class="list list-bullet">
   <li><%= t(".business_type.#{form.business_type}_html") %></li>
@@ -14,10 +13,14 @@
     </li>
   <% end %>
 </ul>
+
 <hr>
+
 <h2 class="heading-medium"><%= t(".subheading_address") %></h2>
 <ul class="list">
   <% displayable_address(form.operator_address).each do |line| %>
     <li><%= line %></li>
   <% end %>
 </ul>
+
+<hr>
