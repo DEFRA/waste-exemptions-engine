@@ -6,7 +6,7 @@ module WasteExemptionsEngine
     include CanCopyDataFromRegistration
 
     def referring_registration
-      @_referring_registration ||= Registration.find_by(renew_token: token)
+      @_referring_registration ||= Registration.find_by(reference: reference)
     end
 
     def referring_registration_id
