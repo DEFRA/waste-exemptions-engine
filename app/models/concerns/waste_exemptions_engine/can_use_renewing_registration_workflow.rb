@@ -332,7 +332,12 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form
 
           transitions from: :site_postcode_form,
-                      to: :site_grid_reference_form
+                      to: :site_grid_reference_form,
+                      if: :located_by_grid_reference?
+
+          transitions from: :site_postcode_form,
+                      to: :is_a_farmer_form,
+                      unless: :located_by_grid_reference?
 
           transitions from: :site_address_lookup_form,
                       to: :site_postcode_form
@@ -350,7 +355,12 @@ module WasteExemptionsEngine
                       if: :site_address_was_entered?
 
           transitions from: :check_your_answers_form,
-                      to: :site_grid_reference_form
+                      to: :site_grid_reference_form,
+                      if: :located_by_grid_reference?
+
+          transitions from: :check_your_answers_form,
+                      to: :site_postcode_form,
+                      unless: :located_by_grid_reference?
 
           transitions from: :declaration_form,
                       to: :check_your_answers_form,
