@@ -15,7 +15,7 @@ module WasteExemptionsEngine
     private
 
     def validate_renew_token
-      return redirect_to(error_path(status: 404)) unless registration.present?
+      return render(:invalid_magic_link, status: 404) unless registration.present?
 
       return render(:already_renewed) if registration.referred_registration.present?
       return render(:past_renewal_period) if registration.too_late_to_renew?
