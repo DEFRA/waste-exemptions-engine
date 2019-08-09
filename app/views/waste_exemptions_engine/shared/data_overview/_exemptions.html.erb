@@ -1,7 +1,7 @@
 <h2 class="heading-medium"><%= t(".subheading") %></h2>
 <ul class="list list-bullet">
-  <% form.exemptions.each do |exemption| %>
-    <li><span class="strong"><%= exemption.code %></span> - <%= exemption.summary %></li>
+  <% form.registration_exemptions.each do |re| %>
+    <li><span class="strong"><%= re.exemption.code %></span> - <%= re.exemption.summary %></li>
   <% end %>
 </ul>
 
