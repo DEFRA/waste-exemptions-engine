@@ -7,7 +7,8 @@ module WasteExemptionsEngine
     attr_accessor :business_type, :company_no, :operator_name, :people, :operator_address
     attr_accessor :contact_first_name, :contact_last_name, :contact_position, :contact_phone, :contact_email
     attr_accessor :contact_address
-    attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description, :exemptions
+    attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description
+    attr_accessor :registration_exemptions, :exemptions
 
     def applicant_name
       "#{applicant_first_name} #{applicant_last_name}"
@@ -50,6 +51,7 @@ module WasteExemptionsEngine
       self.grid_reference = site_address&.grid_reference
       self.site_description = site_address&.description
 
+      self.registration_exemptions = @transient_registration.registration_exemptions.order_by_exemption
       self.exemptions = @transient_registration.exemptions
     end
     # rubocop:enable Metrics/MethodLength
