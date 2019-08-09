@@ -25,12 +25,13 @@ module WasteExemptionsEngine
 
     has_secure_token :renew_token
 
-    def too_late_to_renew?
-      registration_exemptions.each do |re|
-        return true if re.too_late_to_renew?
-      end
+    def in_renewal_window?
+      (expires_on - renewal_window_open_before_days.days) < Time.now &&
+        !past_renewal_window?
+    end
 
-      false
+    def past_renewal_window?
+      (expires_on + registration_renewal_grace_window.days) < Time.now
     end
 
     private
@@ -44,6 +45,18 @@ module WasteExemptionsEngine
       to_json(include: %i[addresses
                           people
                           registration_exemptions])
+    end
+
+    def renewal_window_open_before_days
+      WasteExemptionsEngine.configuration.renewal_window_open_before_days.to_i
+    end
+
+    def registration_renewal_grace_window
+      WasteExemptionsEngine.configuration.registration_renewal_grace_window.to_i
+    end
+
+    def expires_on
+      @_expires_on ||= registration_exemptions.pluck(:expires_on).presence&.sort&.first
     end
   end
 end

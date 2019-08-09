@@ -9,10 +9,5 @@ module WasteExemptionsEngine
 
     scope :active, -> { where(state: :active) }
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
-
-    def too_late_to_renew?
-      last_renewable_date = expires_on + WasteExemptionsEngine.configuration.registration_renewal_grace_window.days
-      Date.current > last_renewable_date
-    end
   end
 end
