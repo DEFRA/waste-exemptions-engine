@@ -51,7 +51,9 @@ module WasteExemptionsEngine
       self.grid_reference = site_address&.grid_reference
       self.site_description = site_address&.description
 
-      self.registration_exemptions = @transient_registration.registration_exemptions.order_by_exemption
+      self.registration_exemptions = @transient_registration.registration_exemptions
+                                                            .includes(:exemption)
+                                                            .order_by_exemption
       self.exemptions = @transient_registration.exemptions
     end
     # rubocop:enable Metrics/MethodLength
