@@ -30,6 +30,14 @@ FactoryBot.define do
       contact_email { applicant_email }
     end
 
+    trait :has_people do
+      people { build_list(:transient_person, 2) }
+    end
+
+    trait :has_company_no do
+      company_no { "09360070" }
+    end
+
     trait :complete do
       limited_company
 
