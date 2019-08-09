@@ -141,6 +141,30 @@ module WasteExemptionsEngine
             expect(referring_registration.referred_registration).to eq(new_registration)
           end
         end
+
+        context "when the transient_registration has people" do
+          context "when the organisation is a partnership" do
+            let(:new_registration) { create(:new_registration, :complete, :has_people, :partnership) }
+
+            it "copies the people" do
+              people_count = new_registration.people.count
+
+              registration = described_class.run(transient_registration: new_registration)
+
+              expect(registration.people.count).to eq(people_count)
+            end
+          end
+
+          context "when the organisation is not a partnership" do
+            let(:new_registration) { create(:new_registration, :complete, :has_people, :sole_trader) }
+
+            it "does not copy the people" do
+              registration = described_class.run(transient_registration: new_registration)
+
+              expect(registration.people.count).to eq(0)
+            end
+          end
+        end
       end
 
       def run_service
