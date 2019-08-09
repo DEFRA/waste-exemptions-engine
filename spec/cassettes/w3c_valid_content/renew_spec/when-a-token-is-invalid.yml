@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<div class=\"text\">\n  <h1 class=\"heading-large\">We
+        cannot find that renewal</h1>\n\n  <p>Things to try:</p>\n  <ol class=\"list
+        list-number\">\n    <li>Go back to your email and follow the link again.</li>\n
+        \   <li>Copy the whole link from the email and paste it into your web browser.
+        Make sure that you include all of the numbers at the end of the link.</li>\n
+        \   <li>If that does not work, <a href=\"/\">start a new registration</a>.</li>\n
+        \ </ol>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Aug 2019 10:45:08 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XZSBjYW5ub3QgZmluZCB0aGF0IHJlbmV3YWw8L2gxPlxuXG4gIDxwPlRoaW5ncyB0byB0cnk6PC9wPlxuICA8b2wgY2xhc3M9XCJsaXN0IGxpc3QtbnVtYmVyXCI+XG4gICAgPGxpPkdvIGJhY2sgdG8geW91ciBlbWFpbCBhbmQgZm9sbG93IHRoZSBsaW5rIGFnYWluLjwvbGk+XG4gICAgPGxpPkNvcHkgdGhlIHdob2xlIGxpbmsgZnJvbSB0aGUgZW1haWwgYW5kIHBhc3RlIGl0IGludG8geW91ciB3ZWIgYnJvd3Nlci4gTWFrZSBzdXJlIHRoYXQgeW91IGluY2x1ZGUgYWxsIG9mIHRoZSBudW1iZXJzIGF0IHRoZSBlbmQgb2YgdGhlIGxpbmsuPC9saT5cbiAgICA8bGk+SWYgdGhhdCBkb2VzIG5vdCB3b3JrLCA8YSBocmVmPVwiL1wiPnN0YXJ0IGEgbmV3IHJlZ2lzdHJhdGlvbjwvYT4uPC9saT5cbiAgPC9vbD5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Fri, 09 Aug 2019 10:45:08 GMT
+recorded_with: VCR 5.0.0
