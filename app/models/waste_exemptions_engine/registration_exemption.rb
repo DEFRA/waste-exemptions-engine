@@ -8,5 +8,7 @@ module WasteExemptionsEngine
     belongs_to :exemption
 
     scope :active, -> { where(state: :active) }
+
+    default_scope { order(exemption_id: :asc) }
   end
 end
