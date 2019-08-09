@@ -8,7 +8,7 @@ FactoryBot.define do
 
     state { :active }
 
-    trait :too_late_to_renew do
+    trait :past_renewal_window do
       expires_on { 3.months.ago }
       state { :expired }
     end

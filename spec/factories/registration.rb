@@ -56,8 +56,8 @@ FactoryBot.define do
       end
     end
 
-    trait :too_late_to_renew do
-      registration_exemptions { build_list(:registration_exemption, 10, :too_late_to_renew) }
+    trait :past_renewal_window do
+      registration_exemptions { build_list(:registration_exemption, 10, :past_renewal_window) }
     end
 
     trait :complete do
