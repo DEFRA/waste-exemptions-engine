@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<div class=\"text\">\n  <form class=\"new_renewal_start_form\"
+        id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/renewal-start\"
+        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
+        value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Do you want
+        to renew with these details?</h1>\n\n    <h2 class=\"heading-medium\">Exemptions</h2>\n<ul
+        class=\"list list-bullet\">\n    <li><span class=\"strong\">U16</span> - Accusantium
+        iusto fugiat est.</li>\n    <li><span class=\"strong\">U17</span> - Veniam
+        explicabo quos illo.</li>\n    <li><span class=\"strong\">U18</span> - Laboriosam
+        corrupti et dolore.</li>\n    <li><span class=\"strong\">U19</span> - Quidem
+        nisi a est.</li>\n    <li><span class=\"strong\">U20</span> - Facere eaque
+        recusandae ut.</li>\n    <li><span class=\"strong\">U21</span> - Nulla recusandae
+        quidem non.</li>\n    <li><span class=\"strong\">U22</span> - Similique velit
+        sed dicta.</li>\n    <li><span class=\"strong\">U23</span> - Libero sed aut
+        ducimus.</li>\n    <li><span class=\"strong\">U24</span> - Veritatis repellat
+        quia quaerat.</li>\n    <li><span class=\"strong\">U25</span> - Possimus qui
+        omnis sed.</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Site location</h2>\n
+        \ <ul class=\"list list-bullet\">\n    <li>the site is located at grid reference
+        <span class=\"strong\">ST 58337 72855</span></li>\n    <li>Quaerat ut quia
+        adipisci.</li>\n  </ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">You told
+        us</h2>\n<p>the waste operation will take place in <span class=\"strong\">England</span></p>\n\n<hr>\n\n
+        \   <h2 class=\"heading-medium\">Operator details</h2>\n<ul class=\"list list-bullet\">\n
+        \ <li>the operator is a <span class=\"strong\">limited company</span></li>\n
+        \ <li>the company name is <span class=\"strong\">Christiansen, Pouros and
+        Reichel</span></li>\n    <li>the Companies House number is <span class=\"strong\">09360070</span></li>\n
+        \   <li>the partners are:\n      <br>Ian McDermott\n      <br>Alonzo Bernier\n
+        \     <br>Lupe Friesen\n    </li>\n</ul>\n\n<hr>\n\n<h2 class=\"heading-medium\">Operator
+        address</h2>\n<ul class=\"list\">\n    <li>University Acres</li>\n    <li>62760
+        Maurice Field</li>\n    <li>Norway</li>\n    <li>Marcelleton</li>\n    <li>BS3AA</li>\n</ul>\n\n<hr>\n\n
+        \   <h2 class=\"heading-medium\">Contact details</h2>\n<ul class=\"list list-bullet\">\n
+        \ <li>the contact's name is <span class=\"strong\">Jamee Labadie</span></li>\n
+        \   <li>the contact's position is <span class=\"strong\">pilot</span></li>\n
+        \ <li>the contact's phone number is <span class=\"strong\">01234567890</span></li>\n
+        \ <li>the contact's email is <span class=\"strong\">tod_wisoky@example.org</span></li>\n</ul>\n\n<hr>\n\n<h2
+        class=\"heading-medium\">Contact address</h2>\n<ul class=\"list\">\n    <li>Pine
+        Pointe</li>\n    <li>66934 Howe Estate</li>\n    <li>Saint Pierre and Miquelon</li>\n
+        \   <li>New Miles</li>\n    <li>BS4AA</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Farming
+        information</h2>\n<ul class=\"list list-bullet\">\n  <li>the operation <span
+        class=\"strong\">will</span> take place on a farm</li>\n  <li>the operator
+        <span class=\"strong\">is</span> a farmer</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Person
+        who filled in the form</h2>\n<ul class=\"list list-bullet\">\n  <li>your name
+        is <span class=\"strong\">Colin Kozey</span></li>\n  <li>your phone number
+        is <span class=\"strong\">01234567890</span></li>\n  <li>your email is <span
+        class=\"strong\">stanton_rutherford@example.net</span></li>\n</ul>\n\n<hr>\n\n\n
+        \   <div class=\"form-group \">\n      <fieldset id=\"temp_renew_without_changes\">\n\n
+        \       <legend class=\"visuallyhidden\">\n          Do you want to renew
+        with these details?\n        </legend>\n\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"true\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        id=\"renewal_start_form_temp_renew_without_changes_true\" />\n          <label
+        for=\"renewal_start_form_temp_renew_without_changes_true\">Renew with these
+        details</label>\n        </div>\n        <div class=\"multiple-choice\">\n
+        \         <input type=\"radio\" value=\"false\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        id=\"renewal_start_form_temp_renew_without_changes_false\" />\n          <label
+        for=\"renewal_start_form_temp_renew_without_changes_false\">I need to make
+        changes</label>\n        </div>\n      </fieldset>\n    </div>\n\n    <input
+        value=\"ZyQA3zuAd8587G2DtNBhf1ua\" type=\"hidden\" name=\"renewal_start_form[token]\"
+        id=\"renewal_start_form_token\" />\n    <div class=\"form-group\">\n      <input
+        type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Aug 2019 10:38:48 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGlkPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZW5ld2FsLXN0YXJ0XCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj48aW5wdXQgbmFtZT1cInV0ZjhcIiB0eXBlPVwiaGlkZGVuXCIgdmFsdWU9XCImI3gyNzEzO1wiIC8+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+RG8geW91IHdhbnQgdG8gcmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPzwvaDE+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkV4ZW1wdGlvbnM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUxNjwvc3Bhbj4gLSBBY2N1c2FudGl1bSBpdXN0byBmdWdpYXQgZXN0LjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTE3PC9zcGFuPiAtIFZlbmlhbSBleHBsaWNhYm8gcXVvcyBpbGxvLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTE4PC9zcGFuPiAtIExhYm9yaW9zYW0gY29ycnVwdGkgZXQgZG9sb3JlLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTE5PC9zcGFuPiAtIFF1aWRlbSBuaXNpIGEgZXN0LjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTIwPC9zcGFuPiAtIEZhY2VyZSBlYXF1ZSByZWN1c2FuZGFlIHV0LjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTIxPC9zcGFuPiAtIE51bGxhIHJlY3VzYW5kYWUgcXVpZGVtIG5vbi48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMjwvc3Bhbj4gLSBTaW1pbGlxdWUgdmVsaXQgc2VkIGRpY3RhLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTIzPC9zcGFuPiAtIExpYmVybyBzZWQgYXV0IGR1Y2ltdXMuPC9saT5cbiAgICA8bGk+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5VMjQ8L3NwYW4+IC0gVmVyaXRhdGlzIHJlcGVsbGF0IHF1aWEgcXVhZXJhdC48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyNTwvc3Bhbj4gLSBQb3NzaW11cyBxdWkgb21uaXMgc2VkLjwvbGk+XG48L3VsPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPlNpdGUgbG9jYXRpb248L2gyPlxuICA8dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gICAgPGxpPnRoZSBzaXRlIGlzIGxvY2F0ZWQgYXQgZ3JpZCByZWZlcmVuY2UgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5TVCA1ODMzNyA3Mjg1NTwvc3Bhbj48L2xpPlxuICAgIDxsaT5RdWFlcmF0IHV0IHF1aWEgYWRpcGlzY2kuPC9saT5cbiAgPC91bD5cblxuPGhyPlxuXG4gICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5Zb3UgdG9sZCB1czwvaDI+XG48cD50aGUgd2FzdGUgb3BlcmF0aW9uIHdpbGwgdGFrZSBwbGFjZSBpbiA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPkVuZ2xhbmQ8L3NwYW4+PC9wPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPk9wZXJhdG9yIGRldGFpbHM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIG9wZXJhdG9yIGlzIGEgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5saW1pdGVkIGNvbXBhbnk8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb21wYW55IG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5DaHJpc3RpYW5zZW4sIFBvdXJvcyBhbmQgUmVpY2hlbDwvc3Bhbj48L2xpPlxuICAgIDxsaT50aGUgQ29tcGFuaWVzIEhvdXNlIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjA5MzYwMDcwPC9zcGFuPjwvbGk+XG4gICAgPGxpPnRoZSBwYXJ0bmVycyBhcmU6XG4gICAgICA8YnI+SWFuIE1jRGVybW90dFxuICAgICAgPGJyPkFsb256byBCZXJuaWVyXG4gICAgICA8YnI+THVwZSBGcmllc2VuXG4gICAgPC9saT5cbjwvdWw+XG5cbjxocj5cblxuPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5PcGVyYXRvciBhZGRyZXNzPC9oMj5cbjx1bCBjbGFzcz1cImxpc3RcIj5cbiAgICA8bGk+VW5pdmVyc2l0eSBBY3JlczwvbGk+XG4gICAgPGxpPjYyNzYwIE1hdXJpY2UgRmllbGQ8L2xpPlxuICAgIDxsaT5Ob3J3YXk8L2xpPlxuICAgIDxsaT5NYXJjZWxsZXRvbjwvbGk+XG4gICAgPGxpPkJTM0FBPC9saT5cbjwvdWw+XG5cbjxocj5cblxuICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+Q29udGFjdCBkZXRhaWxzPC9oMj5cbjx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgPGxpPnRoZSBjb250YWN0J3MgbmFtZSBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPkphbWVlIExhYmFkaWU8L3NwYW4+PC9saT5cbiAgICA8bGk+dGhlIGNvbnRhY3QncyBwb3NpdGlvbiBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPnBpbG90PC9zcGFuPjwvbGk+XG4gIDxsaT50aGUgY29udGFjdCdzIHBob25lIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjAxMjM0NTY3ODkwPC9zcGFuPjwvbGk+XG4gIDxsaT50aGUgY29udGFjdCdzIGVtYWlsIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+dG9kX3dpc29reUBleGFtcGxlLm9yZzwvc3Bhbj48L2xpPlxuPC91bD5cblxuPGhyPlxuXG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkNvbnRhY3QgYWRkcmVzczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0XCI+XG4gICAgPGxpPlBpbmUgUG9pbnRlPC9saT5cbiAgICA8bGk+NjY5MzQgSG93ZSBFc3RhdGU8L2xpPlxuICAgIDxsaT5TYWludCBQaWVycmUgYW5kIE1pcXVlbG9uPC9saT5cbiAgICA8bGk+TmV3IE1pbGVzPC9saT5cbiAgICA8bGk+QlM0QUE8L2xpPlxuPC91bD5cblxuPGhyPlxuXG4gICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5GYXJtaW5nIGluZm9ybWF0aW9uPC9oMj5cbjx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgPGxpPnRoZSBvcGVyYXRpb24gPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj53aWxsPC9zcGFuPiB0YWtlIHBsYWNlIG9uIGEgZmFybTwvbGk+XG4gIDxsaT50aGUgb3BlcmF0b3IgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5pczwvc3Bhbj4gYSBmYXJtZXI8L2xpPlxuPC91bD5cblxuPGhyPlxuXG4gICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5QZXJzb24gd2hvIGZpbGxlZCBpbiB0aGUgZm9ybTwvaDI+XG48dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gIDxsaT55b3VyIG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5Db2xpbiBLb3pleTwvc3Bhbj48L2xpPlxuICA8bGk+eW91ciBwaG9uZSBudW1iZXIgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj4wMTIzNDU2Nzg5MDwvc3Bhbj48L2xpPlxuICA8bGk+eW91ciBlbWFpbCBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPnN0YW50b25fcnV0aGVyZm9yZEBleGFtcGxlLm5ldDwvc3Bhbj48L2xpPlxuPC91bD5cblxuPGhyPlxuXG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cInRlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXCI+XG5cbiAgICAgICAgPGxlZ2VuZCBjbGFzcz1cInZpc3VhbGx5aGlkZGVuXCI+XG4gICAgICAgICAgRG8geW91IHdhbnQgdG8gcmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzP1xuICAgICAgICA8L2xlZ2VuZD5cblxuICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwidHJ1ZVwiIG5hbWU9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1bdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNdXCIgaWQ9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1fdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNfdHJ1ZVwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cInJlbmV3YWxfc3RhcnRfZm9ybV90ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc190cnVlXCI+UmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJmYWxzZVwiIG5hbWU9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1bdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNdXCIgaWQ9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1fdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNfZmFsc2VcIiAvPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1fdGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNfZmFsc2VcIj5JIG5lZWQgdG8gbWFrZSBjaGFuZ2VzPC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZGl2PlxuXG4gICAgPGlucHV0IHZhbHVlPVwiWnlRQTN6dUFkODU4N0cyRHROQmhmMXVhXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1bdG9rZW5dXCIgaWQ9XCJyZW5ld2FsX3N0YXJ0X2Zvcm1fdG9rZW5cIiAvPlxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8aW5wdXQgdHlwZT1cInN1Ym1pdFwiIG5hbWU9XCJjb21taXRcIiB2YWx1ZT1cIkNvbnRpbnVlXCIgY2xhc3M9XCJidXR0b25cIiAvPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Fri, 09 Aug 2019 10:38:48 GMT
+recorded_with: VCR 5.0.0

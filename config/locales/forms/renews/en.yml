@@ -12,3 +12,12 @@ en:
           line_2: "03708 506 506 (Monday to Friday, 8am to 6pm)"
         make_a_new_registration: make a new registration
         enquiries_email: enquiries@environment-agency.gov.uk
+      invalid_magic_link:
+        title: We cannot find that renewal
+        heading: We cannot find that renewal
+        things_to_try:
+          title: "Things to try:"
+          one: Go back to your email and follow the link again.
+          two: Copy the whole link from the email and paste it into your web browser. Make sure that you include all of the numbers at the end of the link.
+          three_html: If that does not work, %{start_a_new_registration_link}.
+        start_a_new_registration_link: "start a new registration"

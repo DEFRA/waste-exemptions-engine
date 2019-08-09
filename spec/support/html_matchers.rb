@@ -12,13 +12,16 @@ RSpec::Matchers.define :have_valid_html do
     # W3C tests, we want to have one cassette per request test.
     # To achieve this, the following method access the running scenarios metadata and
     # uses the `rerun_file_path` to get the running test path and uses it to create
-    # a cassette.
+    # a folder in which to put cassettes.
+    # It then uses the `description` to build a file name for the cassette and support different
+    # page renders in the same test file.
     # We used `rerun_file_path` instead of `file_path` as `file_path` will return
     # the path of shared example rather than running scenario.
-    running_scenario_file_path = method_missing(:class).metadata[:rerun_file_path]
-    test_file_name = running_scenario_file_path.split("/").last.gsub(".rb", "")
+    example_metadata = method_missing(:class).metadata
+    example_path = example_metadata[:rerun_file_path].split("/").last.gsub(".rb", "")
+    example_file_name = example_metadata[:description].gsub(/\W/, " ").gsub(/\s+/, "-")
 
-    @results = VCR.use_cassette("w3c_valid_content/#{test_file_name}", vcr_options) do
+    @results = VCR.use_cassette("w3c_valid_content/#{example_path}/#{example_file_name}", vcr_options) do
       validator.validate_text(actual)
     end
 
