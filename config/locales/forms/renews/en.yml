@@ -12,3 +12,8 @@ en:
           line_2: "03708 506 506 (Monday to Friday, 8am to 6pm)"
         make_a_new_registration: make a new registration
         enquiries_email: enquiries@environment-agency.gov.uk
+      past_renewal_period:
+        title: Your renewal has expired
+        heading: Your renewal has expired
+        paragraph_1: Your registration expired over 1 month ago, so you cannot renew.
+        button: Register your exemptions again

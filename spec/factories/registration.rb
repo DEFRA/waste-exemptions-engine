@@ -56,6 +56,10 @@ FactoryBot.define do
       end
     end
 
+    trait :too_late_to_renew do
+      registration_exemptions { build_list(:registration_exemption, 10, :too_late_to_renew) }
+    end
+
     trait :complete do
       submitted_at { Date.today }
       location { "england" }
