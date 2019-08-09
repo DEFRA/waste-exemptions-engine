@@ -74,17 +74,22 @@ module WasteExemptionsEngine
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 
-        it "returns a 302 status" do
+        it "returns a 404 status" do
           get request_path
 
-          expect(response.code).to eq("302")
+          expect(response.code).to eq("404")
         end
 
-        it "returns a 403 page error template" do
+        it "returns the correct template" do
           get request_path
-          follow_redirect!
 
-          expect(response.code).to render_template("waste_exemptions_engine/errors/error_404")
+          expect(response).to render_template("waste_exemptions_engine/renews/invalid_magic_link")
+        end
+
+        it "returns W3C valid HTML content", vcr: true do
+          get request_path
+
+          expect(response.body).to have_valid_html
         end
       end
     end
