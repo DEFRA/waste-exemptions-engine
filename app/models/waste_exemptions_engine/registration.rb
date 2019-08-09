@@ -25,6 +25,14 @@ module WasteExemptionsEngine
 
     has_secure_token :renew_token
 
+    def too_late_to_renew?
+      registration_exemptions.each do |re|
+        return true if re.too_late_to_renew?
+      end
+
+      false
+    end
+
     private
 
     def apply_reference
