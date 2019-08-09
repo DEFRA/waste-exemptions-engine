@@ -61,7 +61,7 @@ module WasteExemptionsEngine
     end
 
     def copy_people
-      return unless include_people?
+      return unless @transient_registration.partnership?
 
       @transient_registration.transient_people.each do |trans_person|
         @registration.people << Person.new(trans_person.person_attributes)
@@ -71,10 +71,6 @@ module WasteExemptionsEngine
     def add_metadata
       @registration.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode
       @registration.submitted_at = Date.today
-    end
-
-    def include_people?
-      [TransientRegistration::BUSINESS_TYPES[:partnership]].include?(@transient_registration.business_type)
     end
 
     def send_confirmation_email
