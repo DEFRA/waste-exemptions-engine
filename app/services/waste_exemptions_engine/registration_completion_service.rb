@@ -12,7 +12,7 @@ module WasteExemptionsEngine
 
         activate_exemptions
 
-        @registration = Registration.new(@transient_registration.registration_attributes)
+        @registration = Registration.new(copyable_attributes)
         copy_addresses
         copy_exemptions
         copy_people
@@ -38,6 +38,14 @@ module WasteExemptionsEngine
 
     def activate_exemptions
       @transient_registration.transient_registration_exemptions.each(&:activate)
+    end
+
+    def copyable_attributes
+      if @transient_registration.company_no_required?
+        @transient_registration.registration_attributes
+      else
+        @transient_registration.registration_attributes.except("company_no")
+      end
     end
 
     def copy_addresses
@@ -66,7 +74,7 @@ module WasteExemptionsEngine
     end
 
     def include_people?
-      %w[partnership].include?(@transient_registration.business_type)
+      [TransientRegistration::BUSINESS_TYPES[:partnership]].include?(@transient_registration.business_type)
     end
 
     def send_confirmation_email
