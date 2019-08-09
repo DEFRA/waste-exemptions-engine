@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<div class=\"column-two-thirds\">\n\n    <form class=\"new_registration_complete_form\"
+        id=\"new_registration_complete_form\" action=\"/waste_exemptions_engine/registration-complete\"
+        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
+        value=\"&#x2713;\" />\n      \n\n      <div class=\"govuk-box-highlight\">\n
+        \       <h1 class=\"heading-xlarge\">Registration complete</h1>\n        <p
+        class=\"font-large\">Your registration number is<br><span class=\"strong\">WEX000001</span></p>\n
+        \     </div>\n\n      <p>We have sent a confirmation email to .</p>\n\n      <h2
+        class=\"heading-medium\">What happens next</h2>\n\n      <ul class=\"list
+        list-bullet\">\n        <li>your organisation’s details will be processed
+        and appear on the public register within 5 days\n</li>\n        <li>we’ll
+        send a renewal reminder when this waste exemption is due to expire</li>\n
+        \     </ul>\n\n      <h2 class=\"heading-medium\">Registration checks</h2>\n
+        \     <p>Waste exemption registrations are subject to checks. Deliberately
+        providing false details, or not complying with exemption rules, can lead to
+        de-registration and prosecution.\n</p>\n\n      <div class=\"panel panel-border-wide\">\n
+        \       <p>Call our helpline on 03708 506 506 if you have any questions about
+        your registration.</p>\n      </div>\n\n      <p><a href=\"http://example.com/feedback\">What
+        do you think of this service?</a> (takes 30 seconds)</p>\n\n      <input value=\"i7C3nEncGAVfjd5BomyH2RM9\"
+        type=\"hidden\" name=\"registration_complete_form[token]\" id=\"registration_complete_form_token\"
+        />\n</form>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Aug 2019 10:38:36 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuXG4gICAgPGZvcm0gY2xhc3M9XCJuZXdfcmVnaXN0cmF0aW9uX2NvbXBsZXRlX2Zvcm1cIiBpZD1cIm5ld19yZWdpc3RyYXRpb25fY29tcGxldGVfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZWdpc3RyYXRpb24tY29tcGxldGVcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICAgIFxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstYm94LWhpZ2hsaWdodFwiPlxuICAgICAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLXhsYXJnZVwiPlJlZ2lzdHJhdGlvbiBjb21wbGV0ZTwvaDE+XG4gICAgICAgIDxwIGNsYXNzPVwiZm9udC1sYXJnZVwiPllvdXIgcmVnaXN0cmF0aW9uIG51bWJlciBpczxicj48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPldFWDAwMDAwMTwvc3Bhbj48L3A+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPHA+V2UgaGF2ZSBzZW50IGEgY29uZmlybWF0aW9uIGVtYWlsIHRvIC48L3A+XG5cbiAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+V2hhdCBoYXBwZW5zIG5leHQ8L2gyPlxuXG4gICAgICA8dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gICAgICAgIDxsaT55b3VyIG9yZ2FuaXNhdGlvbuKAmXMgZGV0YWlscyB3aWxsIGJlIHByb2Nlc3NlZCBhbmQgYXBwZWFyIG9uIHRoZSBwdWJsaWMgcmVnaXN0ZXIgd2l0aGluIDUgZGF5c1xuPC9saT5cbiAgICAgICAgPGxpPndl4oCZbGwgc2VuZCBhIHJlbmV3YWwgcmVtaW5kZXIgd2hlbiB0aGlzIHdhc3RlIGV4ZW1wdGlvbiBpcyBkdWUgdG8gZXhwaXJlPC9saT5cbiAgICAgIDwvdWw+XG5cbiAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+UmVnaXN0cmF0aW9uIGNoZWNrczwvaDI+XG4gICAgICA8cD5XYXN0ZSBleGVtcHRpb24gcmVnaXN0cmF0aW9ucyBhcmUgc3ViamVjdCB0byBjaGVja3MuIERlbGliZXJhdGVseSBwcm92aWRpbmcgZmFsc2UgZGV0YWlscywgb3Igbm90IGNvbXBseWluZyB3aXRoIGV4ZW1wdGlvbiBydWxlcywgY2FuIGxlYWQgdG8gZGUtcmVnaXN0cmF0aW9uIGFuZCBwcm9zZWN1dGlvbi5cbjwvcD5cblxuICAgICAgPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLWJvcmRlci13aWRlXCI+XG4gICAgICAgIDxwPkNhbGwgb3VyIGhlbHBsaW5lIG9uIDAzNzA4IDUwNiA1MDYgaWYgeW91IGhhdmUgYW55IHF1ZXN0aW9ucyBhYm91dCB5b3VyIHJlZ2lzdHJhdGlvbi48L3A+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPHA+PGEgaHJlZj1cImh0dHA6Ly9leGFtcGxlLmNvbS9mZWVkYmFja1wiPldoYXQgZG8geW91IHRoaW5rIG9mIHRoaXMgc2VydmljZT88L2E+ICh0YWtlcyAzMCBzZWNvbmRzKTwvcD5cblxuICAgICAgPGlucHV0IHZhbHVlPVwiaTdDM25FbmNHQVZmamQ1Qm9teUgyUk05XCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJyZWdpc3RyYXRpb25fY29tcGxldGVfZm9ybVt0b2tlbl1cIiBpZD1cInJlZ2lzdHJhdGlvbl9jb21wbGV0ZV9mb3JtX3Rva2VuXCIgLz5cbjwvZm9ybT5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Fri, 09 Aug 2019 10:38:36 GMT
+recorded_with: VCR 5.0.0
