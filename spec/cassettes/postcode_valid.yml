@@ -12,7 +12,7 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin16.7.0 x86_64) ruby/2.4.2p198
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.2p198
       Host:
       - localhost:9002
   response:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Jul 2019 11:40:14 GMT
+      - Mon, 12 Aug 2019 08:27:29 GMT
       Content-Type:
       - application/json
       Content-Encoding:
@@ -35,5 +35,5 @@ http_interactions:
       string: !binary |-
         H4sIAAAAAAAAAM1RXWvbMBT9K0YPeTK25Cx1ZgjDacQSSO1iZx3dGEa1tdZMsYQ+SkPpf9914qw19GUPgz1J536cc7jnGVlpmbhitn7gBiWRj4xl2h4LKCE+4l0zAOg53VZWVsYpJVquUYIerFUmCUOm2kDqpmNdzY3Tj/wQ1DJwv0IlGFTCRxKyptHcGABKGlvLhn8SekGzyRkuliWZpevJnj3BoBPWLAjGk4ZZZrhdrK5TdLLwU8t9VYODzoIFY90dNIYVlHx/Rk7pDiXTD5iQCx8NwjBKs5tNkWdXNNt56WeaXd763jovNt/yDN4vJfW9FU0zWtx6RZ6ufG9ZbMpdvoVPSTzwBjpS37OuNcy2snuXEmaU5vvW9AdFI3rUn1dzbqtXT28FoS9kzURrDyjpnBA+qo9/NBjpuYdr9cU/pp4ATWfzCM8CPAXcr5A4ivE8wDHgWkI4bccsr8zBWL4/00PaUIMT93wkCgkOI4w/wsqdUK46tU9yp4Venomz/1FLyPsWzB+X3LhlpNP1UYdV9qB6sUYx9OKPsorfZrVbF5sb6hU0o1/T5ZaW3vX28u/zeZdmFNH5EP8wFzLFAXmN5WIeB/P/OZYfL78Bx560zRkEAAA=
     http_version: 
-  recorded_at: Mon, 29 Jul 2019 11:40:16 GMT
+  recorded_at: Mon, 12 Aug 2019 08:27:30 GMT
 recorded_with: VCR 5.0.0
