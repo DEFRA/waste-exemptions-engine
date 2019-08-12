@@ -9,9 +9,9 @@ module WasteExemptionsEngine
         let(:transient_registration) { build(:edit_registration) }
 
         it "returns the correct value" do
-          expected_hash = { journey: :edit }
+          expected_string = "'journey': 'edit'"
 
-          expect(helper.data_layer(transient_registration)).to eq(expected_hash)
+          expect(helper.data_layer(transient_registration)).to eq(expected_string)
         end
       end
 
@@ -19,9 +19,9 @@ module WasteExemptionsEngine
         let(:transient_registration) { build(:new_registration) }
 
         it "returns the correct value" do
-          expected_hash = { journey: :new }
+          expected_string = "'journey': 'new'"
 
-          expect(helper.data_layer(transient_registration)).to eq(expected_hash)
+          expect(helper.data_layer(transient_registration)).to eq(expected_string)
         end
       end
 
@@ -29,9 +29,9 @@ module WasteExemptionsEngine
         let(:transient_registration) { build(:renewing_registration) }
 
         it "returns the correct value" do
-          expected_hash = { journey: :renew }
+          expected_string = "'journey': 'renew'"
 
-          expect(helper.data_layer(transient_registration)).to eq(expected_hash)
+          expect(helper.data_layer(transient_registration)).to eq(expected_string)
         end
       end
     end
