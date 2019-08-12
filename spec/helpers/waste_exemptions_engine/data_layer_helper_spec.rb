@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe FormsHelper, type: :helper do
+  RSpec.describe DataLayerHelper, type: :helper do
     describe "data_layer" do
       context "when the transient_registration is an EditRegistration" do
         let(:transient_registration) { build(:edit_registration) }

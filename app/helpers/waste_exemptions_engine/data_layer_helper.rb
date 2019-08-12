@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  module FormsHelper
+  module DataLayerHelper
     def data_layer(transient_registration)
       {
         journey: data_layer_value_for_journey(transient_registration)
