@@ -34,8 +34,8 @@ module WasteExemptionsEngine
       subject(:registration) { create(:registration, registration_exemptions: [registration_exemption]) }
 
       before do
-        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_open_before_days).and_return(28)
-        allow(WasteExemptionsEngine.configuration).to receive(:registration_renewal_grace_window).and_return(30)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_before_expiry_in_days).and_return(28)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_after_expiry_in_days).and_return(30)
       end
 
       context "when the renewal period hasn't finished yet" do
@@ -61,8 +61,8 @@ module WasteExemptionsEngine
       subject(:registration) { create(:registration, registration_exemptions: [registration_exemption]) }
 
       before do
-        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_open_before_days).and_return(28)
-        allow(WasteExemptionsEngine.configuration).to receive(:registration_renewal_grace_window).and_return(30)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_before_expiry_in_days).and_return(28)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_after_expiry_in_days).and_return(30)
       end
 
       context "when the renewal period hasn't started yet" do

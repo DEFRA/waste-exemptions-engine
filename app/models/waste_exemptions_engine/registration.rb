@@ -26,12 +26,12 @@ module WasteExemptionsEngine
     has_secure_token :renew_token
 
     def in_renewal_window?
-      (expires_on - renewal_window_open_before_days.days) < Time.now &&
+      (expires_on - renewal_window_before_expiry_in_days.days) < Time.now &&
         !past_renewal_window?
     end
 
     def past_renewal_window?
-      (expires_on + registration_renewal_grace_window.days) < Time.now
+      (expires_on + renewal_window_after_expiry_in_days.days) < Time.now
     end
 
     private
@@ -47,12 +47,12 @@ module WasteExemptionsEngine
                           registration_exemptions])
     end
 
-    def renewal_window_open_before_days
-      WasteExemptionsEngine.configuration.renewal_window_open_before_days.to_i
+    def renewal_window_before_expiry_in_days
+      WasteExemptionsEngine.configuration.renewal_window_before_expiry_in_days.to_i
     end
 
-    def registration_renewal_grace_window
-      WasteExemptionsEngine.configuration.registration_renewal_grace_window.to_i
+    def renewal_window_after_expiry_in_days
+      WasteExemptionsEngine.configuration.renewal_window_after_expiry_in_days.to_i
     end
 
     def expires_on

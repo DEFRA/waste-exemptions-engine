@@ -22,6 +22,6 @@ WasteExemptionsEngine.configure do |config|
   config.use_last_email_cache = ENV["USE_LAST_EMAIL_CACHE"] || "false"
 
   # Renewing config
-  config.renewal_window_open_before_days = ENV["RENEWAL_WINDOW_OPEN_BEFORE_DAYS"] || 28
-  config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
+  config.renewal_window_before_expiry_in_days = ENV["RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS"] || 28
+  config.renewal_window_after_expiry_in_days = ENV["RENEWAL_WINDOW_AFTER_EXPIRY_IN_DAYS"] || 30
 end
