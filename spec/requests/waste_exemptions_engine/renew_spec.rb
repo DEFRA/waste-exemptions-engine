@@ -71,6 +71,29 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when a registration is past the renewal window" do
+        let(:registration) { create(:registration, :complete, :past_renewal_window) }
+        let(:token) { registration.renew_token }
+
+        it "respond with a 200 status" do
+          get request_path
+
+          expect(response.code).to eq("200")
+        end
+
+        it "renders the appropriate template" do
+          get request_path
+
+          expect(response).to render_template("waste_exemptions_engine/renews/past_renewal_window")
+        end
+
+        it "returns W3C valid HTML content", vcr: true do
+          get request_path
+
+          expect(response.body).to have_valid_html
+        end
+      end
+
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 

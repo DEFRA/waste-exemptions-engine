@@ -18,6 +18,7 @@ module WasteExemptionsEngine
       return render(:invalid_magic_link, status: 404) unless registration.present?
 
       return render(:already_renewed) if registration.referred_registration.present?
+      return render(:past_renewal_window) if registration.past_renewal_window?
     end
 
     def registration
