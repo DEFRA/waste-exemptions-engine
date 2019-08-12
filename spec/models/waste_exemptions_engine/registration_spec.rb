@@ -16,7 +16,7 @@ module WasteExemptionsEngine
 
     it_behaves_like "an owner of registration attributes", :registration, :address
 
-    describe ".active_exemptions" do
+    describe "#active_exemptions" do
       subject(:registration) { create(:registration, :with_active_exemptions) }
 
       it "returns a list of registrations in an active status" do
@@ -25,6 +25,76 @@ module WasteExemptionsEngine
         pending_exemption.save
 
         expect(registration.active_exemptions.count).to eq(registration.exemptions.count - 1)
+      end
+    end
+
+    describe "#past_renewal_window?" do
+      let(:registration_exemption) { build(:registration_exemption, expires_on: expires_on) }
+
+      subject(:registration) { create(:registration, registration_exemptions: [registration_exemption]) }
+
+      before do
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_before_expiry_in_days).and_return(28)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_after_expiry_in_days).and_return(30)
+      end
+
+      context "when the renewal period hasn't finished yet" do
+        let(:expires_on) { 50.days.from_now }
+
+        it "returns false" do
+          expect(registration).to_not be_past_renewal_window
+        end
+      end
+
+      context "when the renewal period has passed" do
+        let(:expires_on) { 50.days.ago }
+
+        it "returns true" do
+          expect(registration).to be_past_renewal_window
+        end
+      end
+    end
+
+    describe "#in_renewal_window?" do
+      let(:registration_exemption) { build(:registration_exemption, expires_on: expires_on) }
+
+      subject(:registration) { create(:registration, registration_exemptions: [registration_exemption]) }
+
+      before do
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_before_expiry_in_days).and_return(28)
+        allow(WasteExemptionsEngine.configuration).to receive(:renewal_window_after_expiry_in_days).and_return(30)
+      end
+
+      context "when the renewal period hasn't started yet" do
+        let(:expires_on) { 50.days.from_now }
+
+        it "returns false" do
+          expect(registration).to_not be_in_renewal_window
+        end
+      end
+
+      context "when the renewal period has started" do
+        let(:expires_on) { 10.days.from_now }
+
+        it "returns true" do
+          expect(registration).to be_in_renewal_window
+        end
+      end
+
+      context "when the expire date is in the past but still in the grace period" do
+        let(:expires_on) { 10.days.ago }
+
+        it "returns true" do
+          expect(registration).to be_in_renewal_window
+        end
+      end
+
+      context "when the grace period has passed" do
+        let(:expires_on) { 50.days.ago }
+
+        it "returns false" do
+          expect(registration).to_not be_in_renewal_window
+        end
       end
     end
 

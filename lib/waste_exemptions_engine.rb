@@ -34,6 +34,8 @@ module WasteExemptionsEngine
     attr_writer :use_last_email_cache
     # PaperTrail config
     attr_accessor :use_current_user_for_whodunnit
+    # Renewing
+    attr_accessor :renewal_window_before_expiry_in_days, :renewal_window_after_expiry_in_days
 
     # Companies house API config
     attr_reader :companies_house_host, :companies_house_api_key

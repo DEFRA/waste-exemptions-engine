@@ -7,5 +7,10 @@ FactoryBot.define do
     exemption
 
     state { :active }
+
+    trait :past_renewal_window do
+      expires_on { 3.months.ago }
+      state { :expired }
+    end
   end
 end

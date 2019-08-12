@@ -21,3 +21,8 @@ en:
           two: Copy the whole link from the email and paste it into your web browser. Make sure that you include all of the numbers at the end of the link.
           three_html: If that does not work, %{start_a_new_registration_link}.
         start_a_new_registration_link: "start a new registration"
+      past_renewal_window:
+        title: Your renewal has expired
+        heading: Your renewal has expired
+        paragraph_1: Your registration expired over 1 month ago, so you cannot renew.
+        button: Register your exemptions again
