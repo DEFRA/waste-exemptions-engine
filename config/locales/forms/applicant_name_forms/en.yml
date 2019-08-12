@@ -3,7 +3,7 @@ en:
     applicant_name_forms:
       new:
         title: Your name
-        heading: What is your name?
+        heading: Who is filling in this form?
         description: Please enter your name, even if you’re an agent, employee or other third-party
         first_name_label: First name
         last_name_label: Last name

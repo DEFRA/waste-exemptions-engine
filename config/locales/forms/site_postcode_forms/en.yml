@@ -3,7 +3,7 @@ en:
     site_postcode_forms:
       new:
         title: Site address postcode
-        heading: What is the postcode for the address of the waste operation?
+        heading: What's the postcode of the waste operation?
         postcode_label: Please enter a UK postcode
         postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix

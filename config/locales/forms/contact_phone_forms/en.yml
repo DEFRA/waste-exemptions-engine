@@ -3,7 +3,7 @@ en:
     contact_phone_forms:
       new:
         title: Contact telephone number
-        heading: What is the contact's telephone number?
+        heading: What's their telephone number?
         phone_number_label: Telephone number
         phone_number_hint: This can be a landline or mobile
         error_heading: A problem to fix
