@@ -3,7 +3,7 @@ en:
     contact_position_forms:
       new:
         title: Contact position
-        heading: What is their position?
+        heading: What's their position?
         position_label: Position (optional)
         position_hint: For example, Manager
         error_heading: A problem to fix

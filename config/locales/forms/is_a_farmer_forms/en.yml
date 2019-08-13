@@ -3,7 +3,7 @@ en:
     is_a_farmer_forms:
       new:
         title: Is a farmer
-        heading: Is the person carrying out the waste operation a farmer?
+        heading: Are the waste exemptions used by a farmer or farming business?
         options:
           "yes": "Yes"
           "no": "No"

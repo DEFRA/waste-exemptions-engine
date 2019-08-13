@@ -3,7 +3,7 @@ en:
     register_in_northern_ireland_forms:
       new:
         title: Register in Northern Ireland
-        heading: You cannot register your exemption here
+        heading: You cannot register your exemptions here
         paragraph_1: This service only covers waste operations in England. So you will need to register with the appropriate authority for your region.
         paragraph_2: In Northern Ireland, you need to register with the Northern Ireland Environment Agency (NIEA). For details on how, visit
         service_link: Register your waste exemptions (Northern Ireland)

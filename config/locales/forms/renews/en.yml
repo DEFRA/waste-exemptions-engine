@@ -2,8 +2,8 @@ en:
   waste_exemptions_engine:
     renews:
       already_renewed:
-        title: You have already renewed your registration
-        heading: You have already renewed your registration
+        title: That registration has already been renewed
+        heading: That registration has already been renewed
         paragraph_1: Our records show that registration %{reference} has already been renewed.
         paragraph_2_html: If you need to register other waste exemptions you should %{make_a_new_registration_link}.
         paragraph_3: If you want to discuss this registration, contact the Environment Agency. You will need your registration number.
@@ -22,7 +22,7 @@ en:
           three_html: If that does not work, %{start_a_new_registration_link}.
         start_a_new_registration_link: "start a new registration"
       past_renewal_window:
-        title: Your renewal has expired
-        heading: Your renewal has expired
+        title: That renewal has expired
+        heading: That renewal has expired
         paragraph_1: Your registration expired over 1 month ago, so you cannot renew.
         button: Register your exemptions again

@@ -3,7 +3,7 @@ en:
     applicant_email_forms:
       new:
         title: Your email address
-        heading: What is your contact email address?
+        heading: What's the email address of the person filling in this form?
         error_heading: A problem to fix
         applicant_email_label: Email address
         confirmed_email_label: Confirm email address
