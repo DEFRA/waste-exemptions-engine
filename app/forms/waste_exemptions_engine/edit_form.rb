@@ -19,9 +19,6 @@ module WasteExemptionsEngine
 
     private
 
-    # This form has a lot of attributes, so we have to disable the length cop.
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
     def set_attributes_for_edit
       self.applicant_email          = @transient_registration.applicant_email
       self.applicant_phone          = @transient_registration.applicant_phone
@@ -45,8 +42,6 @@ module WasteExemptionsEngine
       self.contact_name             = full_name(@transient_registration.contact_first_name,
                                                 @transient_registration.contact_last_name)
     end
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSizes
 
     def full_name(first_name, last_name)
       "#{first_name} #{last_name}"
