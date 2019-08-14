@@ -2,15 +2,10 @@
 
 module WasteExemptionsEngine
   class RegistrationNumberForm < BaseForm
-
     attr_accessor :company_no, :business_type
 
-    def initialize(registration)
-      super
-      self.company_no = @transient_registration.company_no
-      # We only use this for the correct microcopy
-      self.business_type = @transient_registration.business_type
-    end
+    set_callback :initialize, :after, :set_company_no
+    set_callback :initialize, :after, :set_business_type
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -25,6 +20,15 @@ module WasteExemptionsEngine
     validates :company_no, "defra_ruby/validators/companies_house_number": true
 
     private
+
+    def set_company_no
+      self.company_no = @transient_registration.company_no
+    end
+
+    def set_business_type
+      # We only use this for the correct microcopy
+      self.business_type = @transient_registration.business_type
+    end
 
     def process_company_no(company_no)
       number = company_no.to_s.strip

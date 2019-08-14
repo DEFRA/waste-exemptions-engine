@@ -2,13 +2,9 @@
 
 module WasteExemptionsEngine
   class ContactPositionForm < BaseForm
-
     attr_accessor :position
 
-    def initialize(registration)
-      super
-      self.position = @transient_registration.contact_position
-    end
+    set_callback :initialize, :after, :set_contact_position
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -19,5 +15,11 @@ module WasteExemptionsEngine
     end
 
     validates :position, "waste_exemptions_engine/position": true
+
+    private
+
+    def set_contact_position
+      self.position = @transient_registration.contact_position
+    end
   end
 end

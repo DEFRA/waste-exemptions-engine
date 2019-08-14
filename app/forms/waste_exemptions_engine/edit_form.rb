@@ -2,33 +2,27 @@
 
 module WasteExemptionsEngine
   class EditForm < BaseForm
-    attr_accessor :applicant_email
-    attr_accessor :applicant_name
-    attr_accessor :applicant_phone
-    attr_accessor :business_type
-    attr_accessor :company_no
-    attr_accessor :contact_address
-    attr_accessor :contact_email
-    attr_accessor :contact_name
-    attr_accessor :contact_phone
-    attr_accessor :is_a_farmer
-    attr_accessor :location
-    attr_accessor :on_a_farm
-    attr_accessor :operator_name
-    attr_accessor :operator_address
-    attr_accessor :people
-    attr_accessor :reference
-    attr_accessor :registration_exemptions
-    attr_accessor :site_address
+    attr_accessor :applicant_email, :applicant_name, :applicant_phone, :business_type
+    attr_accessor :company_no, :contact_address, :contact_email, :contact_name
+    attr_accessor :contact_phone, :is_a_farmer, :location, :on_a_farm
+    attr_accessor :operator_name, :operator_address, :people, :reference
+    attr_accessor :registration_exemptions, :site_address
+
+    set_callback :initialize, :after, :set_attributes_for_edit
+
+    def submit(params)
+      # Assign the params for validation and pass them to the BaseForm method for updating
+      attributes = {}
+
+      super(attributes, params[:token])
+    end
+
+    private
 
     # This form has a lot of attributes, so we have to disable the length cop.
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
-    def initialize(registration)
-      registration.save! unless registration.persisted?
-
-      super
-
+    def set_attributes_for_edit
       self.applicant_email          = @transient_registration.applicant_email
       self.applicant_phone          = @transient_registration.applicant_phone
       self.business_type            = @transient_registration.business_type
@@ -52,16 +46,7 @@ module WasteExemptionsEngine
                                                 @transient_registration.contact_last_name)
     end
     # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
-
-    def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      attributes = {}
-
-      super(attributes, params[:token])
-    end
-
-    private
+    # rubocop:enable Metrics/AbcSizes
 
     def full_name(first_name, last_name)
       "#{first_name} #{last_name}"

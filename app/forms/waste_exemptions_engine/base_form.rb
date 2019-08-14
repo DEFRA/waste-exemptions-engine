@@ -5,6 +5,9 @@ module WasteExemptionsEngine
     include ActiveModel::Model
     include CanStripWhitespace
 
+    include ActiveSupport::Callbacks
+    define_callbacks :initialize
+
     # The standard behaviour for loading a form is to check whether the requested form matches the workflow_state for
     # the registration, and redirect to the saved workflow_state if it doesn't.
     # But if the workflow state is 'flexible', we skip the check and load the requested form instead of the saved one.
@@ -17,12 +20,14 @@ module WasteExemptionsEngine
       true
     end
 
-    attr_accessor :token, :transient_registration
+    attr_accessor :token, :transient_registration, :params
 
     def initialize(registration)
-      # Get values from registration so form will be pre-filled
-      @transient_registration = registration
-      self.token = @transient_registration.token
+      run_callbacks :initialize do
+        # Get values from registration so form will be pre-filled
+        @transient_registration = registration
+        self.token = @transient_registration.token
+      end
     end
 
     def submit(attributes, token)

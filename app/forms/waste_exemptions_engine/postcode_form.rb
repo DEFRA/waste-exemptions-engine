@@ -2,14 +2,9 @@
 
 module WasteExemptionsEngine
   class PostcodeForm < BaseForm
-
     attr_accessor :postcode
 
-    def initialize(registration)
-      super
-
-      self.postcode = existing_postcode
-    end
+    set_callback :initialize, :after, :set_postcode
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method
@@ -33,6 +28,10 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def set_postcode
+      self.postcode = existing_postcode
+    end
 
     def format_postcode(postcode)
       return unless postcode.present?

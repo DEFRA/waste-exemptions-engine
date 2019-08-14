@@ -6,11 +6,8 @@ module WasteExemptionsEngine
 
     attr_accessor :temp_renew_without_changes
 
-    def initialize(registration)
-      super
-      assign_attributes_to_display
-      self.temp_renew_without_changes = @transient_registration.temp_renew_without_changes
-    end
+    set_callback :initialize, :after, :set_temp_renew_without_changes
+    set_callback :initialize, :after, :assign_attributes_to_display
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -25,5 +22,11 @@ module WasteExemptionsEngine
                 message: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form"\
                   ".attributes.temp_renew_without_changes.inclusion")
               }
+
+    private
+
+    def set_temp_renew_without_changes
+      self.temp_renew_without_changes = @transient_registration.temp_renew_without_changes
+    end
   end
 end

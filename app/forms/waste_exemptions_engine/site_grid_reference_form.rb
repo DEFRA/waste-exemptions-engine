@@ -2,14 +2,10 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
-
     attr_accessor :grid_reference, :description
 
-    def initialize(registration)
-      super
-      self.grid_reference = @transient_registration.temp_grid_reference
-      self.description = @transient_registration.temp_site_description
-    end
+    set_callback :initialize, :after, :set_grid_reference
+    set_callback :initialize, :after, :set_description
 
     def submit(params)
       assign_params(params)
@@ -34,6 +30,14 @@ module WasteExemptionsEngine
     validates :description, "waste_exemptions_engine/site_description": true
 
     private
+
+    def set_grid_reference
+      self.grid_reference = @transient_registration.temp_grid_reference
+    end
+
+    def set_description
+      self.description = @transient_registration.temp_site_description
+    end
 
     def assign_params(params)
       self.grid_reference = params[:grid_reference]&.upcase&.strip

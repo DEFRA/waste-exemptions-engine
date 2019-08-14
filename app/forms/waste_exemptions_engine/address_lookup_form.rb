@@ -7,14 +7,10 @@ module WasteExemptionsEngine
     attr_accessor :temp_addresses
     attr_accessor :temp_address
 
-    def initialize(registration)
-      super
-
-      self.postcode = existing_postcode
-
-      look_up_addresses
-      preselect_existing_address
-    end
+    # After callbacks are called in reverse order, so the last one in the list is called first
+    set_callback :initialize, :after, :preselect_existing_address
+    set_callback :initialize, :after, :look_up_addresses
+    set_callback :initialize, :after, :set_postcode
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -31,6 +27,10 @@ module WasteExemptionsEngine
     validates :temp_address, "waste_exemptions_engine/address": true
 
     private
+
+    def set_postcode
+      self.postcode = existing_postcode
+    end
 
     # Look up addresses based on the postcode
     def look_up_addresses

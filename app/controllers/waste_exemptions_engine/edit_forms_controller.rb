@@ -81,16 +81,16 @@ module WasteExemptionsEngine
       if /^WEX/.match?(token)
         not_found unless Registration.where(reference: token).any?
 
-        find_or_initialize_edited_registration(token)
+        find_or_create_edited_registration(token)
       else
         super
       end
     end
 
-    def find_or_initialize_edited_registration(reference)
+    def find_or_create_edited_registration(reference)
       @transient_registration = EditRegistration.where(
         reference: reference
-      ).first || EditRegistration.new(reference: reference)
+      ).first || EditRegistration.create(reference: reference)
     end
 
     def transition_to_edit(transition)

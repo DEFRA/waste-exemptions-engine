@@ -3,6 +3,5 @@
 module WasteExemptionsEngine
   class SiteAddressManualForm < AddressManualForm
     include SiteAddressForm
-
   end
 end

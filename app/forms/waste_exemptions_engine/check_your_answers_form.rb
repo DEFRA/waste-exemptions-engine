@@ -4,11 +4,9 @@ module WasteExemptionsEngine
   class CheckYourAnswersForm < BaseForm
     include DataOverviewForm
 
-    def initialize(registration)
-      super
-      assign_attributes_to_display
-      valid?
-    end
+    # After callbacks are called in reverse order, so the last one in the list is called first
+    set_callback :initialize, :after, :valid?
+    set_callback :initialize, :after, :assign_attributes_to_display
 
     def submit(params)
       super({}, params[:token])

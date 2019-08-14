@@ -3,6 +3,5 @@
 module WasteExemptionsEngine
   class SiteAddressLookupForm < AddressLookupForm
     include SiteAddressForm
-
   end
 end

@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   module SiteAddressForm
-
     private
 
     def existing_postcode

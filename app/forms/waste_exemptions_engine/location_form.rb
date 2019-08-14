@@ -2,13 +2,9 @@
 
 module WasteExemptionsEngine
   class LocationForm < BaseForm
-
     attr_accessor :location
 
-    def initialize(registration)
-      super
-      self.location = @transient_registration.location
-    end
+    set_callback :initialize, :after, :set_location
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -19,5 +15,11 @@ module WasteExemptionsEngine
     end
 
     validates :location, "waste_exemptions_engine/location": true
+
+    private
+
+    def set_location
+      self.location = @transient_registration.location
+    end
   end
 end

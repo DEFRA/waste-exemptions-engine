@@ -2,12 +2,7 @@
 
 module WasteExemptionsEngine
   class PersonForm < BaseForm
-
     attr_accessor :first_name, :last_name
-
-    def initialize(transient_registration)
-      super
-    end
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
