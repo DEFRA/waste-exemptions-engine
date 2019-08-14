@@ -3,7 +3,6 @@
 module WasteExemptionsEngine
   class OperatorAddressLookupForm < AddressLookupForm
     include OperatorAddressForm
-
-    set_callback :initialize, :after, :set_business_type
+    include CanSetBusinessType
   end
 end

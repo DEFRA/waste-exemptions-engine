@@ -2,9 +2,10 @@
 
 module WasteExemptionsEngine
   class ContactEmailForm < BaseForm
-    attr_accessor :contact_email, :confirmed_email
+    include CanSetContactEmail
 
-    set_callback :initialize, :after, :set_contact_email
+    attr_accessor :confirmed_email
+
     set_callback :initialize, :after, :set_confirmed_email
 
     def submit(params)
@@ -21,10 +22,6 @@ module WasteExemptionsEngine
     validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :contact_email }
 
     private
-
-    def set_contact_email
-      self.contact_email = @transient_registration.contact_email
-    end
 
     def set_confirmed_email
       self.confirmed_email = @transient_registration.contact_email

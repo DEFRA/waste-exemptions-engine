@@ -3,6 +3,5 @@
 module WasteExemptionsEngine
   class ContactAddressLookupForm < AddressLookupForm
     include ContactAddressForm
-
   end
 end

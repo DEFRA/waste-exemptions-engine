@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class ApplicantNameForm < BaseForm
-
     attr_accessor :first_name, :last_name
 
     set_callback :initialize, :after, :set_first_name

@@ -2,9 +2,6 @@
 
 module WasteExemptionsEngine
   module AddressForm
-
-    attr_accessor :postcode
-
     # Methods which are called in this class but defined in subclasses
     # We should throw descriptive errors in case an additional subclass of ManualAddressForm is ever added
 

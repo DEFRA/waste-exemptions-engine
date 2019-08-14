@@ -19,6 +19,7 @@ module WasteExemptionsEngine
 
     config.autoload_paths << "#{config.root}/lib/waste_exemptions_engine/exceptions"
     config.autoload_paths << "#{config.root}/app/validators/concerns"
+    config.autoload_paths << "#{config.root}/app/forms/concerns"
 
     # Load I18n translation files from engine before loading ones from the host app
     # This means values in the host app can override those in the engine

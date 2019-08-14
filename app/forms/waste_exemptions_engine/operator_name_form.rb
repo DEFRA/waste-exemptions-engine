@@ -2,9 +2,10 @@
 
 module WasteExemptionsEngine
   class OperatorNameForm < BaseForm
-    attr_accessor :business_type, :operator_name
+    include CanSetBusinessType
 
-    set_callback :initialize, :after, :set_business_type
+    attr_accessor :operator_name
+
     set_callback :initialize, :after, :set_operator_name
 
     def submit(params)
@@ -18,11 +19,6 @@ module WasteExemptionsEngine
     validates :operator_name, "waste_exemptions_engine/operator_name": true
 
     private
-
-    def set_business_type
-      # We only use this for the correct microcopy
-      self.business_type = @transient_registration.business_type
-    end
 
     def set_operator_name
       self.operator_name = @transient_registration.operator_name

@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     # After callbacks are called in reverse order, so the last one in the list is called first
     set_callback :initialize, :after, :prefill_existing_address, if: :saved_address_still_valid?
     set_callback :initialize, :after, :set_address_finder_error
-    set_callback :initialize, :after, :set_postcode
+    include CanSetPostcode
 
     def submit(params)
       assign_params(params)
@@ -27,10 +27,6 @@ module WasteExemptionsEngine
     validates_with ManualAddressValidator
 
     private
-
-    def set_postcode
-      self.postcode = existing_postcode
-    end
 
     def set_address_finder_error
       # Check if the user reached this page through an Address finder error.
