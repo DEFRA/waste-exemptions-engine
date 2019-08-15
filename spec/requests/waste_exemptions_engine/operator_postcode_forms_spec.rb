@@ -16,7 +16,6 @@ module WasteExemptionsEngine
                      request_path: "/operator-postcode/skip_to_manual_address",
                      result_path: "/operator-address-manual"
 
-
     context "when editing an existing registration" do
       let(:edit_operator_postcode_form) { build(:edit_operator_postcode_form) }
 
