@@ -24,5 +24,5 @@ en:
       past_renewal_window:
         title: That renewal has expired
         heading: That renewal has expired
-        paragraph_1: Your registration expired over 1 month ago, so you cannot renew.
+        paragraph_1: Your registration has expired, so you cannot renew.
         button: Register your exemptions again
