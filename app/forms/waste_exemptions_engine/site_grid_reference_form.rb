@@ -27,7 +27,7 @@ module WasteExemptionsEngine
         )
       }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :grid_reference, "waste_exemptions_engine/grid_reference": true

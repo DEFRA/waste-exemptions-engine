@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     def submit(params)
       self.matched_exemptions = determine_matched_exemptions(params)
 
-      super({ exemptions: matched_exemptions }, params[:token])
+      super(exemptions: matched_exemptions)
     end
 
     validates :matched_exemptions, "waste_exemptions_engine/exemptions": true

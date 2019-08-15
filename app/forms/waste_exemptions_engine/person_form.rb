@@ -16,7 +16,7 @@ module WasteExemptionsEngine
 
       set_up_new_person if fields_have_content?
 
-      super({}, params[:token])
+      super({})
     end
 
     # Used to switch on usage of the :position attribute for validation and form-filling

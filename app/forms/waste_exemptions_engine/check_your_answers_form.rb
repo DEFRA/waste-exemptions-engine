@@ -11,7 +11,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      super({}, params[:token])
+      super({})
     end
 
     validates :location, "waste_exemptions_engine/location": true

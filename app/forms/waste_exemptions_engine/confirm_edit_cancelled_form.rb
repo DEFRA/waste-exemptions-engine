@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      super({}, params[:token])
+      super({})
     end
   end
 end

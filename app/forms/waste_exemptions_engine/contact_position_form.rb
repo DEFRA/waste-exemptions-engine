@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       self.position = params[:position]
       attributes = { contact_position: position }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :position, "waste_exemptions_engine/position": true
