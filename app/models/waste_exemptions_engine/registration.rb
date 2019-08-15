@@ -31,7 +31,7 @@ module WasteExemptionsEngine
     end
 
     def past_renewal_window?
-      (expires_on + renewal_window_after_expiry_in_days.days) < Time.now
+      (expires_on + renewal_window_after_expiry_in_days.days) < Date.current
     end
 
     private
