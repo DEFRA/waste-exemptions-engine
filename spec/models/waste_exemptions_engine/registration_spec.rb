@@ -53,6 +53,14 @@ module WasteExemptionsEngine
           expect(registration).to be_past_renewal_window
         end
       end
+
+      context "when the registration expired exactly 30 days ago" do
+        let(:expires_on) { 30.days.ago }
+
+        it "returns false" do
+          expect(registration).not_to be_past_renewal_window
+        end
+      end
     end
 
     describe "#in_renewal_window?" do
