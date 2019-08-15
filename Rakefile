@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 begin
+  require "parallel_tests/tasks"
+rescue LoadError
+  puts "No parallel_tests available. Perhaps running in production mode?"
+end
+
+begin
   require "bundler/setup"
 rescue LoadError
   puts "You must `gem install bundler` and `bundle install` to run rake tasks"

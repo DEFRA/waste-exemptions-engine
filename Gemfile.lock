@@ -145,6 +145,8 @@ GEM
       activerecord (>= 4.2, < 6.1)
       request_store (~> 1.1)
     parallel (1.17.0)
+    parallel_tests (2.29.2)
+      parallel
     parser (2.6.3.0)
       ast (~> 2.4.0)
     pdf-reader (2.2.1)
@@ -198,6 +200,10 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (2.1.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -276,8 +282,10 @@ DEPENDENCIES
   factory_bot_rails
   faker
   github_changelog_generator
+  parallel_tests
   pdf-reader
   pry-byebug
+  rspec
   rspec-rails (~> 3.8.0)
   simplecov
   timecop
