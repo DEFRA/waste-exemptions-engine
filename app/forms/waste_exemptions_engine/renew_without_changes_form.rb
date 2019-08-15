@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class RenewWithoutChangesForm < BaseForm
-    def submit(params)
+    def submit(_params)
       super({})
     end
   end

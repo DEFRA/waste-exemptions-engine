@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       valid?
     end
 
-    def submit(params)
+    def submit(_params)
       super({})
     end
 

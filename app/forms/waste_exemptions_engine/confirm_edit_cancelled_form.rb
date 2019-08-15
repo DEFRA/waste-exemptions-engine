@@ -6,7 +6,7 @@ module WasteExemptionsEngine
       super
     end
 
-    def submit(params)
+    def submit(_params)
       super({})
     end
   end
