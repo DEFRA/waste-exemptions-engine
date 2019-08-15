@@ -10,5 +10,25 @@ module WasteExemptionsEngine
       let(:form_data) { { phone_number: "01234567890" } }
       let(:invalid_form_data) { [{ phone_number: "123" }, { phone_number: nil }] }
     end
+
+    context "when editing an existing registration" do
+      let(:edit_contact_phone_form) { build(:edit_contact_phone_form) }
+
+      it "prefils contact phone information" do
+        get "/waste_exemptions_engine/contact-phone/#{edit_contact_phone_form.token}"
+
+        expect(response.body).to include(edit_contact_phone_form.phone_number)
+      end
+    end
+
+    context "when renewing an existing registration" do
+      let(:renew_contact_phone_form) { build(:renew_contact_phone_form) }
+
+      it "prefils contact phone information" do
+        get "/waste_exemptions_engine/contact-phone/#{renew_contact_phone_form.token}"
+
+        expect(response.body).to include(renew_contact_phone_form.phone_number)
+      end
+    end
   end
 end
