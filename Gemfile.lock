@@ -200,10 +200,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (2.1.0)
-    rspec (3.8.0)
-      rspec-core (~> 3.8.0)
-      rspec-expectations (~> 3.8.0)
-      rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -285,7 +281,6 @@ DEPENDENCIES
   parallel_tests
   pdf-reader
   pry-byebug
-  rspec
   rspec-rails (~> 3.8.0)
   simplecov
   timecop

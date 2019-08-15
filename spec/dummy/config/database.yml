@@ -15,7 +15,7 @@ development:
 
 test:
   <<: *default
-  database: waste_exemptions_test_<%= ENV["TEST_ENV_NUMBER"] %>
+  database: waste_exemptions_test
   min_messages: WARNING
 
 production:

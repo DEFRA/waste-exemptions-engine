@@ -64,7 +64,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "parallel_tests"
   s.add_development_dependency "pdf-reader"
   s.add_development_dependency "pry-byebug"
-  s.add_development_dependency "rspec"
   s.add_development_dependency "rspec-rails", "~> 3.8.0"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "timecop"
