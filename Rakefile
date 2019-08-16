@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/HandleExceptions
+begin
+  require "parallel_tests/tasks"
+rescue LoadError
+  # No parallel_tests available. Perhaps running in production mode.
+end
+# rubocop:enable Lint/HandleExceptions
+
 begin
   require "bundler/setup"
 rescue LoadError
