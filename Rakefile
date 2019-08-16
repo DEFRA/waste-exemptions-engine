@@ -3,7 +3,7 @@
 begin
   require "parallel_tests/tasks"
 rescue LoadError
-  puts "No parallel_tests available. Perhaps running in production mode?"
+  # No parallel_tests available. Perhaps running in production mode. 
 end
 
 begin
