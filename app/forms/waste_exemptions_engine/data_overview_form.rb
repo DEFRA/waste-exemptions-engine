@@ -58,5 +58,13 @@ module WasteExemptionsEngine
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
+
+    def should_have_company_no?
+      @transient_registration.company_no_required?
+    end
+
+    def should_have_partners?
+      @transient_registration.partnership?
+    end
   end
 end
