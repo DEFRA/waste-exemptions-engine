@@ -18,6 +18,6 @@ module WasteExemptionsEngine
       super(attributes)
     end
 
-    validates :business_type, "waste_exemptions_engine/business_type": true
+    validates :business_type, "defra_ruby/validators/business_type": true
   end
 end

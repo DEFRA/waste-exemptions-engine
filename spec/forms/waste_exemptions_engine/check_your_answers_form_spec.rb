@@ -13,7 +13,7 @@ module WasteExemptionsEngine
         { property: :applicant_last_name, validator: :person_name_validator },
         { property: :applicant_phone, validator: :phone_number_validator },
         { property: :applicant_email, validator: :email_validator },
-        { property: :business_type, validator: :business_type_validator },
+        { property: :business_type, validator: :business_type_validator, namespace: "DefraRuby::Validators" },
         { property: :operator_name, validator: :operator_name_validator },
         { property: :operator_address, validator: :address_validator },
         { property: :contact_first_name, validator: :person_name_validator },
@@ -32,12 +32,13 @@ module WasteExemptionsEngine
         property = expectation[:property]
         validator = expectation[:validator]
         options = expectation[:options]
+        namespace = expectation[:namespace] || "WasteExemptionsEngine"
         validator_class = validator.to_s.camelize
 
         it "validates the #{property} using the #{validator_class} class" do
           expect(validators.keys).to include(property)
           expect(validators[property].first.class)
-            .to eq("WasteExemptionsEngine::#{validator_class}".constantize)
+            .to eq("#{namespace}::#{validator_class}".constantize)
 
           expect(validators[property].first.options).to eq(options) if options
         end
