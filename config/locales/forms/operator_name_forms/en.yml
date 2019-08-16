@@ -17,6 +17,7 @@ en:
           partnership: Partnership name
           soleTrader: Full name
           charity: Charity or trust name
+          limitedLiabilityPartnership: Limited liability partnership name
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
