@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       subject(:validators) { build(:check_your_answers_form)._validators }
 
       expected_validators = [
-        { property: :location, validator: :location_validator },
+        { property: :location, validator: :location_validator, namespace: "DefraRuby::Validators" },
         { property: :applicant_first_name, validator: :person_name_validator },
         { property: :applicant_last_name, validator: :person_name_validator },
         { property: :applicant_phone, validator: :phone_number_validator },
