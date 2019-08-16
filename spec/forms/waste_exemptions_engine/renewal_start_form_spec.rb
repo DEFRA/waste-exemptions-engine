@@ -4,6 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RenewalStartForm, type: :model do
+    it_behaves_like "a data overview form", :renewal_start_form
+
     subject(:form) { build(:renewal_start_form) }
 
     it "validates the on a farm question using the YesNoValidator class" do

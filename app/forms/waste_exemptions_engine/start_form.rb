@@ -11,7 +11,7 @@ module WasteExemptionsEngine
       self.start = params[:start]
       attributes = { start_option: start }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :start, "waste_exemptions_engine/start": true

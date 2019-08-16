@@ -10,11 +10,11 @@ module WasteExemptionsEngine
 
     set_callback :initialize, :after, :set_attributes_for_edit
 
-    def submit(params)
+    def submit(_params)
       # Assign the params for validation and pass them to the BaseForm method for updating
       attributes = {}
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     private

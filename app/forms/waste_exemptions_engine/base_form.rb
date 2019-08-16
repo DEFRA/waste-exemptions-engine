@@ -30,10 +30,7 @@ module WasteExemptionsEngine
       end
     end
 
-    def submit(attributes, token)
-      # Additional attributes are set in individual form subclasses
-      self.token = token
-
+    def submit(attributes)
       attributes = strip_whitespace(attributes)
 
       # Update the registration with params from the registration if valid

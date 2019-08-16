@@ -16,5 +16,25 @@ module WasteExemptionsEngine
         ]
       end
     end
+
+    context "when editing an existing registration" do
+      let(:edit_applicant_email_form) { build(:edit_applicant_email_form) }
+
+      it "pre-fills applicant email information" do
+        get "/waste_exemptions_engine/applicant-email/#{edit_applicant_email_form.token}"
+
+        expect(response.body).to include(edit_applicant_email_form.applicant_email)
+      end
+    end
+
+    context "when renewing an existing registration" do
+      let(:renew_applicant_email_form) { build(:renew_applicant_email_form) }
+
+      it "pre-fills applicant email information" do
+        get "/waste_exemptions_engine/applicant-email/#{renew_applicant_email_form.token}"
+
+        expect(response.body).to include(renew_applicant_email_form.applicant_email)
+      end
+    end
   end
 end

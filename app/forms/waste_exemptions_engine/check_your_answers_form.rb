@@ -8,8 +8,8 @@ module WasteExemptionsEngine
     set_callback :initialize, :after, :valid?
     set_callback :initialize, :after, :assign_attributes_to_display
 
-    def submit(params)
-      super({}, params[:token])
+    def submit(_params)
+      super({})
     end
 
     validates :location, "waste_exemptions_engine/location": true
@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     validates :applicant_phone, "waste_exemptions_engine/phone_number": true
     validates :applicant_email, "waste_exemptions_engine/email": true
 
-    validates :business_type, "waste_exemptions_engine/business_type": true
+    validates :business_type, "defra_ruby/validators/business_type": true
     validates :company_no, "defra_ruby/validators/companies_house_number": true, if: :company_no_required?
     validates :operator_name, "waste_exemptions_engine/operator_name": true
     validates :operator_address, "waste_exemptions_engine/address": true

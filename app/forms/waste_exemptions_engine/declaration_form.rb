@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
       attributes = { declaration: declaration }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :declaration, inclusion: { in: [1] }

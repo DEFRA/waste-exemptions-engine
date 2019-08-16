@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       validators = form._validators
       expect(validators.keys).to include(:business_type)
       expect(validators[:business_type].first.class)
-        .to eq(WasteExemptionsEngine::BusinessTypeValidator)
+        .to eq(DefraRuby::Validators::BusinessTypeValidator)
     end
 
     it_behaves_like "a validated form", :business_type_form do

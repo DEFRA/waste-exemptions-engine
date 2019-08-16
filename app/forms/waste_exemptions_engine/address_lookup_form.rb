@@ -21,7 +21,7 @@ module WasteExemptionsEngine
         transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
       }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :temp_address, "waste_exemptions_engine/address": true

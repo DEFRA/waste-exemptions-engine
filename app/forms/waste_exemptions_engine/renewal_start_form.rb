@@ -14,7 +14,7 @@ module WasteExemptionsEngine
       self.temp_renew_without_changes = params[:temp_renew_without_changes]
       attributes = { temp_renew_without_changes: temp_renew_without_changes }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :temp_renew_without_changes,
