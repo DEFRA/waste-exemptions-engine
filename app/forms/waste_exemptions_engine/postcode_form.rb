@@ -23,7 +23,7 @@ module WasteExemptionsEngine
 
       # We pass through an empty hash for the attributes, as there is nothing to
       # update on the registration itself
-      super({}, params[:token])
+      super({})
     end
 
     validates :postcode, "waste_exemptions_engine/postcode": true

@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       self.on_a_farm = params[:on_a_farm]
       attributes = { on_a_farm: on_a_farm }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :on_a_farm, "defra_ruby/validators/true_false": true

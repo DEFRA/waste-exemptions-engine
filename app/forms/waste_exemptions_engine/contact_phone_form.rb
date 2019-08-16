@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       self.phone_number = params[:phone_number]
       attributes = { contact_phone: phone_number }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :phone_number, "waste_exemptions_engine/phone_number": true

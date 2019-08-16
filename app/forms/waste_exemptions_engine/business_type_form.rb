@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       self.business_type = params[:business_type]
       attributes = { business_type: business_type }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :business_type, "waste_exemptions_engine/business_type": true

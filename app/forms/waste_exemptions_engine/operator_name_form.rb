@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       self.operator_name = params[:operator_name]
       attributes = { operator_name: operator_name }
 
-      super(attributes, params[:token])
+      super(attributes)
     end
 
     validates :operator_name, "waste_exemptions_engine/operator_name": true
