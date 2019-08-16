@@ -13,13 +13,13 @@ module WasteExemptionsEngine
         it "validates the applicant email using the EmailValidator class" do
           expect(validators.keys).to include(:applicant_email)
           expect(validators[:applicant_email].first.class)
-            .to eq(WasteExemptionsEngine::EmailValidator)
+            .to eq(DefraRuby::Validators::EmailValidator)
         end
 
         it "validates the confirmed email using the EmailValidator class" do
           expect(validators.keys).to include(:confirmed_email)
           expect(validators[:confirmed_email].map(&:class))
-            .to include(WasteExemptionsEngine::EmailValidator)
+            .to include(DefraRuby::Validators::EmailValidator)
         end
       end
 

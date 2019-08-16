@@ -21,7 +21,7 @@ module WasteExemptionsEngine
       super(attributes)
     end
 
-    validates :applicant_email, :confirmed_email, "waste_exemptions_engine/email": true
+    validates :applicant_email, :confirmed_email, "defra_ruby/validators/email": true
     validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :applicant_email }
   end
 end
