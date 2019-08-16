@@ -28,5 +28,27 @@ module WasteExemptionsEngine
                      :site_grid_reference_form,
                      request_path: "/site-grid-reference/skip_to_address",
                      result_path: "/site-postcode"
+
+    context "when editing an existing registration" do
+      let(:edit_site_grid_reference_form) { build(:edit_site_grid_reference_form) }
+
+      it "pre-fills site grid reference information" do
+        get "/waste_exemptions_engine/site-grid-reference/#{edit_site_grid_reference_form.token}"
+
+        expect(response.body).to include(edit_site_grid_reference_form.grid_reference)
+        expect(response.body).to include(edit_site_grid_reference_form.description)
+      end
+    end
+
+    context "when renewing an existing registration" do
+      let(:renew_site_grid_reference_form) { build(:renew_site_grid_reference_form) }
+
+      it "pre-fills site grid reference information" do
+        get "/waste_exemptions_engine/site-grid-reference/#{renew_site_grid_reference_form.token}"
+
+        expect(response.body).to include(renew_site_grid_reference_form.grid_reference)
+        expect(response.body).to include(renew_site_grid_reference_form.description)
+      end
+    end
   end
 end
