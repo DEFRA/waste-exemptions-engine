@@ -18,6 +18,6 @@ module WasteExemptionsEngine
       super(attributes)
     end
 
-    validates :location, "waste_exemptions_engine/location": true
+    validates :location, "defra_ruby/validators/location": true
   end
 end
