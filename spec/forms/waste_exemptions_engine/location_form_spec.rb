@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       validators = form._validators
       expect(validators.keys).to include(:location)
       expect(validators[:location].first.class)
-        .to eq(WasteExemptionsEngine::LocationValidator)
+        .to eq(DefraRuby::Validators::LocationValidator)
     end
 
     it_behaves_like "a validated form", :location_form do
