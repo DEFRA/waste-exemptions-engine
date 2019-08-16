@@ -30,7 +30,7 @@ module WasteExemptionsEngine
       super(attributes)
     end
 
-    validates :grid_reference, "waste_exemptions_engine/grid_reference": true
+    validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
 
     private
