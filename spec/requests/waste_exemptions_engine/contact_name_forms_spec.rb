@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_contact_name_form) { build(:edit_contact_name_form) }
 
-      it "prefils contact name information" do
+      it "pre-fills contact name information" do
         get "/waste_exemptions_engine/contact-name/#{edit_contact_name_form.token}"
 
         expect(response.body).to include(edit_contact_name_form.first_name)
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_contact_name_form) { build(:renew_contact_name_form) }
 
-      it "prefils contact name information" do
+      it "pre-fills contact name information" do
         get "/waste_exemptions_engine/contact-name/#{renew_contact_name_form.token}"
 
         expect(response.body).to include(renew_contact_name_form.first_name)

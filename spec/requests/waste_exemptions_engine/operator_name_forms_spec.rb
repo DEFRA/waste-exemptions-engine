@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_operator_name_form) { build(:edit_operator_name_form) }
 
-      it "prefils operator name information" do
+      it "pre-fills operator name information" do
         get "/waste_exemptions_engine/operator-name/#{edit_operator_name_form.token}"
 
         expect(response.body).to include(edit_operator_name_form.operator_name)
@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_operator_name_form) { build(:renew_operator_name_form) }
 
-      it "prefils operator name information" do
+      it "pre-fills operator name information" do
         get "/waste_exemptions_engine/operator-name/#{renew_operator_name_form.token}"
 
         expect(response.body).to include(renew_operator_name_form.operator_name)

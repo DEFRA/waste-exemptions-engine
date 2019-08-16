@@ -19,7 +19,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_operator_postcode_form) { build(:edit_operator_postcode_form) }
 
-      it "prefils operator postcode information" do
+      it "pre-fills operator postcode information" do
         get "/waste_exemptions_engine/operator-postcode/#{edit_operator_postcode_form.token}"
 
         expect(response.body).to include(edit_operator_postcode_form.postcode)
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_operator_postcode_form) { build(:renew_operator_postcode_form) }
 
-      it "prefils operator postcode information" do
+      it "pre-fills operator postcode information" do
         get "/waste_exemptions_engine/operator-postcode/#{renew_operator_postcode_form.token}"
 
         expect(response.body).to include(renew_operator_postcode_form.postcode)

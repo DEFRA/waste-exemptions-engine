@@ -16,7 +16,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_contact_position_form) { build(:edit_contact_position_form) }
 
-      it "prefils contact position information" do
+      it "pre-fills contact position information" do
         get "/waste_exemptions_engine/contact-position/#{edit_contact_position_form.token}"
 
         expect(response.body).to include(edit_contact_position_form.position)
@@ -26,7 +26,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_contact_position_form) { build(:renew_contact_position_form) }
 
-      it "prefils contact position information" do
+      it "pre-fills contact position information" do
         get "/waste_exemptions_engine/contact-position/#{renew_contact_position_form.token}"
 
         expect(response.body).to include(renew_contact_position_form.position)

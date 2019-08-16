@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_contact_phone_form) { build(:edit_contact_phone_form) }
 
-      it "prefils contact phone information" do
+      it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/contact-phone/#{edit_contact_phone_form.token}"
 
         expect(response.body).to include(edit_contact_phone_form.phone_number)
@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_contact_phone_form) { build(:renew_contact_phone_form) }
 
-      it "prefils contact phone information" do
+      it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/contact-phone/#{renew_contact_phone_form.token}"
 
         expect(response.body).to include(renew_contact_phone_form.phone_number)

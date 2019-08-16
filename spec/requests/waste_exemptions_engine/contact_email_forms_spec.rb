@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     context "when editing an existing registration" do
       let(:edit_contact_email_form) { build(:edit_contact_email_form) }
 
-      it "prefils contact email information" do
+      it "pre-fills contact email information" do
         get "/waste_exemptions_engine/contact-email/#{edit_contact_email_form.token}"
 
         expect(response.body).to include(edit_contact_email_form.contact_email)
@@ -30,7 +30,7 @@ module WasteExemptionsEngine
     context "when renewing an existing registration" do
       let(:renew_contact_email_form) { build(:renew_contact_email_form) }
 
-      it "prefils contact email information" do
+      it "pre-fills contact email information" do
         get "/waste_exemptions_engine/contact-email/#{renew_contact_email_form.token}"
 
         expect(response.body).to include(renew_contact_email_form.contact_email)
