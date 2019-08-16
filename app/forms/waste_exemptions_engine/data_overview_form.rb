@@ -32,9 +32,9 @@ module WasteExemptionsEngine
 
       self.business_type = @transient_registration.business_type
 
-      self.company_no = @transient_registration.company_no
+      self.company_no = @transient_registration.company_no if should_have_company_no?
       self.operator_name = @transient_registration.operator_name
-      self.people = @transient_registration.people
+      self.people = @transient_registration.people if should_have_partners?
       self.operator_address = @transient_registration.operator_address
 
       self.contact_first_name = @transient_registration.contact_first_name
@@ -58,5 +58,13 @@ module WasteExemptionsEngine
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
+
+    def should_have_company_no?
+      @transient_registration.company_no_required?
+    end
+
+    def should_have_partners?
+      @transient_registration.partnership?
+    end
   end
 end
