@@ -12,5 +12,25 @@ module WasteExemptionsEngine
       let(:form_data) { { position: "Chief Waste Carrier" } }
       let(:invalid_form_data) { [] }
     end
+
+    context "when editing an existing registration" do
+      let(:edit_contact_position_form) { build(:edit_contact_position_form) }
+
+      it "pre-fills contact position information" do
+        get "/waste_exemptions_engine/contact-position/#{edit_contact_position_form.token}"
+
+        expect(response.body).to include(edit_contact_position_form.position)
+      end
+    end
+
+    context "when renewing an existing registration" do
+      let(:renew_contact_position_form) { build(:renew_contact_position_form) }
+
+      it "pre-fills contact position information" do
+        get "/waste_exemptions_engine/contact-position/#{renew_contact_position_form.token}"
+
+        expect(response.body).to include(renew_contact_position_form.position)
+      end
+    end
   end
 end

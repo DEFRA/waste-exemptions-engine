@@ -7,6 +7,12 @@ FactoryBot.define do
       new(reference: create(:registration, :complete).reference)
     end
 
+    trait :with_manual_site_address do
+      initialize_with do
+        new(reference: create(:registration, :complete, :with_manual_site_address).reference)
+      end
+    end
+
     trait :modified do
       after(:build) do |edit_registration|
         registration = edit_registration.registration

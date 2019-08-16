@@ -10,5 +10,27 @@ module WasteExemptionsEngine
       let(:form_data) { { first_name: "Joe", last_name: "Bloggs" } }
       let(:invalid_form_data) { [{ first_name: nil, last_name: nil }] }
     end
+
+    context "when editing an existing registration" do
+      let(:edit_contact_name_form) { build(:edit_contact_name_form) }
+
+      it "pre-fills contact name information" do
+        get "/waste_exemptions_engine/contact-name/#{edit_contact_name_form.token}"
+
+        expect(response.body).to include(edit_contact_name_form.first_name)
+        expect(response.body).to include(edit_contact_name_form.last_name)
+      end
+    end
+
+    context "when renewing an existing registration" do
+      let(:renew_contact_name_form) { build(:renew_contact_name_form) }
+
+      it "pre-fills contact name information" do
+        get "/waste_exemptions_engine/contact-name/#{renew_contact_name_form.token}"
+
+        expect(response.body).to include(renew_contact_name_form.first_name)
+        expect(response.body).to include(renew_contact_name_form.last_name)
+      end
+    end
   end
 end
