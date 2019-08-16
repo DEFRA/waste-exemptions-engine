@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       it "validates the site grid reference using the GridReferenceValidator class" do
         expect(validators.keys).to include(:grid_reference)
         expect(validators[:grid_reference].first.class)
-          .to eq(WasteExemptionsEngine::GridReferenceValidator)
+          .to eq(DefraRuby::Validators::GridReferenceValidator)
       end
 
       it "validates the site description using the SiteDescriptionValidator class" do
