@@ -20,7 +20,7 @@ module WasteExemptionsEngine
         { property: :operator_address, validator: :address_validator },
         { property: :contact_first_name, validator: :person_name_validator },
         { property: :contact_last_name, validator: :person_name_validator },
-        { property: :contact_position, validator: :position_validator },
+        { property: :contact_position, validator: :position_validator, namespace: "DefraRuby::Validators" },
         { property: :contact_phone, validator: :phone_number_validator, namespace: "DefraRuby::Validators" },
         { property: :contact_email, validator: :email_validator, namespace: "DefraRuby::Validators" },
         { property: :contact_address, validator: :address_validator },
