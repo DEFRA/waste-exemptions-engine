@@ -60,9 +60,47 @@ module WasteExemptionsEngine
           end
         end
 
-        it "copies the exemptions from the registration" do
+        it "copies the active exemptions from the registration" do
+          registration.registration_exemptions.each do |re|
+            re.state = :active
+            re.save
+          end
+
           registration.exemptions.each do |exemption|
             expect(edit_registration.exemptions).to include(exemption)
+          end
+        end
+
+        it "does not copy the expired exemptions from the registration" do
+          registration.registration_exemptions.each do |re|
+            re.state = :expired
+            re.save
+          end
+
+          registration.exemptions.each do |exemption|
+            expect(edit_registration.exemptions).to_not include(exemption)
+          end
+        end
+
+        it "does not copy revoked exemptions from the registration" do
+          registration.registration_exemptions.each do |re|
+            re.state = :revoked
+            re.save
+          end
+
+          registration.exemptions.each do |exemption|
+            expect(edit_registration.exemptions).to_not include(exemption)
+          end
+        end
+
+        it "does not copy ceased exemptions from the registration" do
+          registration.registration_exemptions.each do |re|
+            re.state = :ceased
+            re.save
+          end
+
+          registration.exemptions.each do |exemption|
+            expect(edit_registration.exemptions).to_not include(exemption)
           end
         end
       end
