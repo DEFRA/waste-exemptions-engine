@@ -18,6 +18,12 @@ module WasteExemptionsEngine
       through: :registration_exemptions,
       source: :exemption
     )
+    has_many(
+      :expired_exemptions,
+      -> { WasteExemptionsEngine::RegistrationExemption.expired },
+      through: :registration_exemptions,
+      source: :exemption
+    )
     belongs_to :referring_registration, class_name: "Registration"
     has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
