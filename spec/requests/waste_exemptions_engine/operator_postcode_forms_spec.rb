@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       it "pre-fills operator postcode information" do
         get "/waste_exemptions_engine/operator-postcode/#{edit_operator_postcode_form.token}"
 
-        expect(response.body).to include(edit_operator_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(edit_operator_postcode_form.postcode)
       end
     end
 
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
       it "pre-fills operator postcode information" do
         get "/waste_exemptions_engine/operator-postcode/#{renew_operator_postcode_form.token}"
 
-        expect(response.body).to include(renew_operator_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(renew_operator_postcode_form.postcode)
       end
     end
   end

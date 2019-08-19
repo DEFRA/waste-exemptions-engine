@@ -17,8 +17,8 @@ module WasteExemptionsEngine
       it "pre-fills applicant name information" do
         get "/waste_exemptions_engine/applicant-name/#{edit_applicant_name_form.token}"
 
-        expect(response.body).to include(edit_applicant_name_form.first_name)
-        expect(response.body).to include(edit_applicant_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.first_name)
+        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.last_name)
       end
     end
 
@@ -28,8 +28,8 @@ module WasteExemptionsEngine
       it "pre-fills applicant name information" do
         get "/waste_exemptions_engine/applicant-name/#{renew_applicant_name_form.token}"
 
-        expect(response.body).to include(renew_applicant_name_form.first_name)
-        expect(response.body).to include(renew_applicant_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.first_name)
+        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.last_name)
       end
     end
   end

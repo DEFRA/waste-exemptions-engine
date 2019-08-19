@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/contact-phone/#{edit_contact_phone_form.token}"
 
-        expect(response.body).to include(edit_contact_phone_form.phone_number)
+        expect(response.body).to have_html_escaped_string(edit_contact_phone_form.phone_number)
       end
     end
 
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
       it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/contact-phone/#{renew_contact_phone_form.token}"
 
-        expect(response.body).to include(renew_contact_phone_form.phone_number)
+        expect(response.body).to have_html_escaped_string(renew_contact_phone_form.phone_number)
       end
     end
   end
