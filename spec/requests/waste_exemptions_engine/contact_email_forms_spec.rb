@@ -23,7 +23,7 @@ module WasteExemptionsEngine
       it "pre-fills contact email information" do
         get "/waste_exemptions_engine/contact-email/#{edit_contact_email_form.token}"
 
-        expect(response.body).to include(edit_contact_email_form.contact_email)
+        expect(response.body).to have_html_escaped_string(edit_contact_email_form.contact_email)
       end
     end
 
@@ -33,7 +33,7 @@ module WasteExemptionsEngine
       it "pre-fills contact email information" do
         get "/waste_exemptions_engine/contact-email/#{renew_contact_email_form.token}"
 
-        expect(response.body).to include(renew_contact_email_form.contact_email)
+        expect(response.body).to have_html_escaped_string(renew_contact_email_form.contact_email)
       end
     end
   end

@@ -35,8 +35,8 @@ module WasteExemptionsEngine
       it "pre-fills site grid reference information" do
         get "/waste_exemptions_engine/site-grid-reference/#{edit_site_grid_reference_form.token}"
 
-        expect(response.body).to include(edit_site_grid_reference_form.grid_reference)
-        expect(response.body).to include(edit_site_grid_reference_form.description)
+        expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.grid_reference)
+        expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.description)
       end
     end
 
@@ -46,8 +46,8 @@ module WasteExemptionsEngine
       it "pre-fills site grid reference information" do
         get "/waste_exemptions_engine/site-grid-reference/#{renew_site_grid_reference_form.token}"
 
-        expect(response.body).to include(renew_site_grid_reference_form.grid_reference)
-        expect(response.body).to include(renew_site_grid_reference_form.description)
+        expect(response.body).to have_html_escaped_string(renew_site_grid_reference_form.grid_reference)
+        expect(response.body).to have_html_escaped_string(renew_site_grid_reference_form.description)
       end
     end
   end

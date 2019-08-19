@@ -34,3 +34,9 @@ RSpec::Matchers.define :have_valid_html do
     "Invalid HTML: \n#{@results.errors.map(&:to_s).join("\n")}"
   end
 end
+
+RSpec::Matchers.define :have_html_escaped_string do |expected|
+  match do |actual|
+    actual.include?(CGI.escape_html(expected))
+  end
+end

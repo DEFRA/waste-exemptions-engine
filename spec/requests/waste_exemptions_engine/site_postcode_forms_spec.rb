@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       it "pre-fills site postcode information" do
         get "/waste_exemptions_engine/site-postcode/#{edit_site_postcode_form.token}"
 
-        expect(response.body).to include(edit_site_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(edit_site_postcode_form.postcode)
       end
     end
 
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
       it "pre-fills site postcode information" do
         get "/waste_exemptions_engine/site-postcode/#{renew_site_postcode_form.token}"
 
-        expect(response.body).to include(renew_site_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(renew_site_postcode_form.postcode)
       end
     end
   end
