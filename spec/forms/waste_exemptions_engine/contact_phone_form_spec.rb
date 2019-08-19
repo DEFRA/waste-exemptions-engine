@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       validators = build(:contact_phone_form)._validators
       expect(validators.keys).to include(:phone_number)
       expect(validators[:phone_number].first.class)
-        .to eq(WasteExemptionsEngine::PhoneNumberValidator)
+        .to eq(DefraRuby::Validators::PhoneNumberValidator)
     end
 
     it_behaves_like "a validated form", :contact_phone_form do
