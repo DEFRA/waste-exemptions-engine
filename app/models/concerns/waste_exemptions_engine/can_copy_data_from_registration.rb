@@ -60,7 +60,11 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions_from_registration
-      self.exemptions = registration.active_exemptions
+      self.exemptions = if respond_to?(:registration_exemptions_to_copy)
+                          registration_exemptions_to_copy
+                        else
+                          registration.active_exemptions
+                        end
     end
   end
 end
