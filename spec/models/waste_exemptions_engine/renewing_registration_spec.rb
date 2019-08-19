@@ -29,7 +29,7 @@ module WasteExemptionsEngine
 
     describe "#initialize" do
       context "when it is initialized with a registration" do
-        let(:registration) { create(:registration) }
+        let(:registration) { create(:registration, :complete) }
         let(:renewing_registration) { described_class.new(reference: registration.reference) }
 
         copyable_properties = Helpers::ModelProperties::REGISTRATION - %i[id
@@ -45,12 +45,15 @@ module WasteExemptionsEngine
         end
 
         it "copies the addresses from the registration" do
-          registration.addresses.each_with_index do |address, index|
+          registration.addresses.each do |address|
             copyable_attributes = address.attributes.except("id",
                                                             "registration_id",
                                                             "created_at",
                                                             "updated_at")
-            expect(renewing_registration.address[index].attributes).to include(copyable_attributes)
+
+            renewing_address_attributes = renewing_registration.public_send("#{address.address_type}_address")
+                                                               .attributes
+            expect(renewing_address_attributes).to include(copyable_attributes)
           end
         end
 
