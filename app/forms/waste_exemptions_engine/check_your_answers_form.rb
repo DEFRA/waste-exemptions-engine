@@ -25,7 +25,7 @@ module WasteExemptionsEngine
     validates :operator_address, "waste_exemptions_engine/address": true
 
     validates :contact_first_name, :contact_last_name, "waste_exemptions_engine/person_name": true
-    validates :contact_position, "waste_exemptions_engine/position": true
+    validates :contact_position, "defra_ruby/validators/position": true
     validates :contact_phone, "defra_ruby/validators/phone_number": true
     validates :contact_email, "defra_ruby/validators/email": true
     validates :contact_address, "waste_exemptions_engine/address": true

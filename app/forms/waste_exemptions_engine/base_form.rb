@@ -40,7 +40,7 @@ module WasteExemptionsEngine
 
     # If the record is new, and not yet persisted (which it is when the start
     # page is first submitted) then we have nothing to validate hence the check
-    validates :token, "waste_exemptions_engine/token": true if @transient_registration&.persisted?
+    validates :token, "defra_ruby/validators/token": true if @transient_registration&.persisted?
     validate :registration_valid?
 
     private

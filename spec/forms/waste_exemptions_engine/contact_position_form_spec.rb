@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       validators = form._validators
       expect(validators.keys).to include(:position)
       expect(validators[:position].first.class)
-        .to eq(WasteExemptionsEngine::PositionValidator)
+        .to eq(DefraRuby::Validators::PositionValidator)
     end
 
     it_behaves_like "a validated form", :contact_position_form do
