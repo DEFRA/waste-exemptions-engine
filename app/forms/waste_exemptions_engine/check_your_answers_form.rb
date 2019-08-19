@@ -16,7 +16,7 @@ module WasteExemptionsEngine
 
     validates :location, "defra_ruby/validators/location": true
     validates :applicant_first_name, :applicant_last_name, "waste_exemptions_engine/person_name": true
-    validates :applicant_phone, "waste_exemptions_engine/phone_number": true
+    validates :applicant_phone, "defra_ruby/validators/phone_number": true
     validates :applicant_email, "defra_ruby/validators/email": true
 
     validates :business_type, "defra_ruby/validators/business_type": true
@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
     validates :contact_first_name, :contact_last_name, "waste_exemptions_engine/person_name": true
     validates :contact_position, "waste_exemptions_engine/position": true
-    validates :contact_phone, "waste_exemptions_engine/phone_number": true
+    validates :contact_phone, "defra_ruby/validators/phone_number": true
     validates :contact_email, "defra_ruby/validators/email": true
     validates :contact_address, "waste_exemptions_engine/address": true
 
