@@ -5,6 +5,15 @@ module WasteExemptionsEngine
     include ActiveModel::Model
     include CanStripWhitespace
 
+    attr_reader :transient_registration
+
+    delegate :token, to: :transient_registration
+
+    # If the record is new, and not yet persisted (which it is when the start
+    # page is first submitted) then we have nothing to validate hence the check
+    validates :token, "defra_ruby/validators/token": true if transient_registration&.persisted?
+    validate :registration_valid?
+
     # The standard behaviour for loading a form is to check whether the requested form matches the workflow_state for
     # the registration, and redirect to the saved workflow_state if it doesn't.
     # But if the workflow state is 'flexible', we skip the check and load the requested form instead of the saved one.
@@ -17,38 +26,35 @@ module WasteExemptionsEngine
       true
     end
 
-    attr_accessor :token, :transient_registration
-
-    def initialize(registration)
-      # Get values from registration so form will be pre-filled
-      @transient_registration = registration
-      self.token = @transient_registration.token
+    def initialize(transient_registration)
+      # Get values from transient_registration so form will be pre-filled
+      @transient_registration = transient_registration
     end
 
-    def submit(attributes)
+    def submit(params)
+      attributes = transient_registration_attributes(params)
       attributes = strip_whitespace(attributes)
 
-      # Update the registration with params from the registration if valid
-      if valid?
-        @transient_registration.update_attributes(attributes)
-        @transient_registration.save!
-        true
-      else
-        false
+      attributes.each do |key, value|
+        transient_registration.public_send("#{key}=", value)
       end
-    end
 
-    # If the record is new, and not yet persisted (which it is when the start
-    # page is first submitted) then we have nothing to validate hence the check
-    validates :token, "defra_ruby/validators/token": true if @transient_registration&.persisted?
-    validate :registration_valid?
+      return transient_registration.save! if valid?
+
+      false
+    end
 
     private
 
-    def registration_valid?
-      return if @transient_registration.valid?
+    def transient_registration_attributes(_params)
+      # Default behaviour. Subclasses to override.
+      {}
+    end
 
-      @transient_registration.errors.each do |_attribute, message|
+    def registration_valid?
+      return if transient_registration.valid?
+
+      transient_registration.errors.each do |_attribute, message|
         errors[:base] << message
       end
     end
