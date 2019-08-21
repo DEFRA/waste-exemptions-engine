@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/DEFRA/waste-exemptions-engine.svg?branch=master)](https://travis-ci.com/DEFRA/waste-exemptions-engine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/maintainability)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/test_coverage)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/test_coverage)
+[![security](https://hakiri.io/github/DEFRA/waste-exemptions-engine/master.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-engine/master)
 [![Licence](https://img.shields.io/badge/Licence-OGLv3-blue.svg)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3)
 
 A Rails Engine for the [Waste Exemptions](https://github.com/DEFRA/waste-exemptions) digital service.
