@@ -8,11 +8,11 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/register-in-scotland/back/tsFjdn3PN2XxZhjHuGwuxZfE\">Back</a>\n\n\n<div
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/register-in-scotland/back/Ct3QZzMeJBTmemgJ8zgmjyEL\">Back</a>\n\n\n<div
         class=\"text\">\n  <form class=\"new_register_in_scotland_form\" id=\"new_register_in_scotland_form\"
         action=\"/waste_exemptions_engine/register-in-scotland\" accept-charset=\"UTF-8\"
         method=\"post\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n
-        \   \n\n    <h1 class=\"heading-large\">You cannot register your exemption
+        \   \n\n    <h1 class=\"heading-large\">You cannot register your exemptions
         here</h1>\n\n    <div class=\"form-group\">\n      <p>This service only covers
         waste operations in England. So you will need to register with the appropriate
         authority for your region.</p>\n      <p>In Scotland you need to register
@@ -20,7 +20,7 @@ http_interactions:
         visit <a href=\"https://www.sepa.org.uk/regulations/waste/activities-exempt-from-waste-management-licensing\">Register
         your waste exemptions (Scotland)</a>.</p>\n      <p>If you have any questions
         about this, please contact our helpline on 03708 506 506.</p>\n    </div>\n\n
-        \   <input value=\"tsFjdn3PN2XxZhjHuGwuxZfE\" type=\"hidden\" name=\"register_in_scotland_form[token]\"
+        \   <input value=\"Ct3QZzMeJBTmemgJ8zgmjyEL\" type=\"hidden\" name=\"register_in_scotland_form[token]\"
         id=\"register_in_scotland_form_token\" />\n</form></div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
@@ -37,7 +37,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 12 Aug 2019 08:30:06 GMT
+      - Thu, 22 Aug 2019 08:46:48 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -68,7 +68,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZWdpc3Rlci1pbi1zY290bGFuZC9iYWNrL3RzRmpkbjNQTjJYeFpoakh1R3d1eFpmRVwiPkJhY2s8L2E+XG5cblxuPGRpdiBjbGFzcz1cInRleHRcIj5cbiAgPGZvcm0gY2xhc3M9XCJuZXdfcmVnaXN0ZXJfaW5fc2NvdGxhbmRfZm9ybVwiIGlkPVwibmV3X3JlZ2lzdGVyX2luX3Njb3RsYW5kX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvcmVnaXN0ZXItaW4tc2NvdGxhbmRcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5Zb3UgY2Fubm90IHJlZ2lzdGVyIHlvdXIgZXhlbXB0aW9uIGhlcmU8L2gxPlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxwPlRoaXMgc2VydmljZSBvbmx5IGNvdmVycyB3YXN0ZSBvcGVyYXRpb25zIGluIEVuZ2xhbmQuIFNvIHlvdSB3aWxsIG5lZWQgdG8gcmVnaXN0ZXIgd2l0aCB0aGUgYXBwcm9wcmlhdGUgYXV0aG9yaXR5IGZvciB5b3VyIHJlZ2lvbi48L3A+XG4gICAgICA8cD5JbiBTY290bGFuZCB5b3UgbmVlZCB0byByZWdpc3RlciB3aXRoIHRoZSBTY290dGlzaCBFbnZpcm9ubWVudCBQcm90ZWN0aW9uIEFnZW5jeSAoU0VQQSkuIEZvciBkZXRhaWxzIG9uIGhvdywgdmlzaXQgPGEgaHJlZj1cImh0dHBzOi8vd3d3LnNlcGEub3JnLnVrL3JlZ3VsYXRpb25zL3dhc3RlL2FjdGl2aXRpZXMtZXhlbXB0LWZyb20td2FzdGUtbWFuYWdlbWVudC1saWNlbnNpbmdcIj5SZWdpc3RlciB5b3VyIHdhc3RlIGV4ZW1wdGlvbnMgKFNjb3RsYW5kKTwvYT4uPC9wPlxuICAgICAgPHA+SWYgeW91IGhhdmUgYW55IHF1ZXN0aW9ucyBhYm91dCB0aGlzLCBwbGVhc2UgY29udGFjdCBvdXIgaGVscGxpbmUgb24gMDM3MDggNTA2IDUwNi48L3A+XG4gICAgPC9kaXY+XG5cbiAgICA8aW5wdXQgdmFsdWU9XCJ0c0ZqZG4zUE4yWHhaaGpIdUd3dXhaZkVcIiB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cInJlZ2lzdGVyX2luX3Njb3RsYW5kX2Zvcm1bdG9rZW5dXCIgaWQ9XCJyZWdpc3Rlcl9pbl9zY290bGFuZF9mb3JtX3Rva2VuXCIgLz5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9yZWdpc3Rlci1pbi1zY290bGFuZC9iYWNrL0N0M1Faek1lSkJUbWVtZ0o4emdtanlFTFwiPkJhY2s8L2E+XG5cblxuPGRpdiBjbGFzcz1cInRleHRcIj5cbiAgPGZvcm0gY2xhc3M9XCJuZXdfcmVnaXN0ZXJfaW5fc2NvdGxhbmRfZm9ybVwiIGlkPVwibmV3X3JlZ2lzdGVyX2luX3Njb3RsYW5kX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvcmVnaXN0ZXItaW4tc2NvdGxhbmRcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5Zb3UgY2Fubm90IHJlZ2lzdGVyIHlvdXIgZXhlbXB0aW9ucyBoZXJlPC9oMT5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8cD5UaGlzIHNlcnZpY2Ugb25seSBjb3ZlcnMgd2FzdGUgb3BlcmF0aW9ucyBpbiBFbmdsYW5kLiBTbyB5b3Ugd2lsbCBuZWVkIHRvIHJlZ2lzdGVyIHdpdGggdGhlIGFwcHJvcHJpYXRlIGF1dGhvcml0eSBmb3IgeW91ciByZWdpb24uPC9wPlxuICAgICAgPHA+SW4gU2NvdGxhbmQgeW91IG5lZWQgdG8gcmVnaXN0ZXIgd2l0aCB0aGUgU2NvdHRpc2ggRW52aXJvbm1lbnQgUHJvdGVjdGlvbiBBZ2VuY3kgKFNFUEEpLiBGb3IgZGV0YWlscyBvbiBob3csIHZpc2l0IDxhIGhyZWY9XCJodHRwczovL3d3dy5zZXBhLm9yZy51ay9yZWd1bGF0aW9ucy93YXN0ZS9hY3Rpdml0aWVzLWV4ZW1wdC1mcm9tLXdhc3RlLW1hbmFnZW1lbnQtbGljZW5zaW5nXCI+UmVnaXN0ZXIgeW91ciB3YXN0ZSBleGVtcHRpb25zIChTY290bGFuZCk8L2E+LjwvcD5cbiAgICAgIDxwPklmIHlvdSBoYXZlIGFueSBxdWVzdGlvbnMgYWJvdXQgdGhpcywgcGxlYXNlIGNvbnRhY3Qgb3VyIGhlbHBsaW5lIG9uIDAzNzA4IDUwNiA1MDYuPC9wPlxuICAgIDwvZGl2PlxuXG4gICAgPGlucHV0IHZhbHVlPVwiQ3QzUVp6TWVKQlRtZW1nSjh6Z21qeUVMXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJyZWdpc3Rlcl9pbl9zY290bGFuZF9mb3JtW3Rva2VuXVwiIGlkPVwicmVnaXN0ZXJfaW5fc2NvdGxhbmRfZm9ybV90b2tlblwiIC8+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
     http_version: 
-  recorded_at: Mon, 12 Aug 2019 08:30:02 GMT
+  recorded_at: Thu, 22 Aug 2019 08:46:44 GMT
 recorded_with: VCR 5.0.0
