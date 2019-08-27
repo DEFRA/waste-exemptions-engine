@@ -40,6 +40,10 @@ module WasteExemptionsEngine
       (expires_on + renewal_window_after_expiry_in_days.days) < Date.current
     end
 
+    def already_renewed?
+      referred_registration.present?
+    end
+
     private
 
     def apply_reference
