@@ -16,6 +16,26 @@ module WasteExemptionsEngine
 
     it_behaves_like "an owner of registration attributes", :registration, :address
 
+    describe "#already_renewed?" do
+      subject(:registration) { create(:registration) }
+
+      context "when a referring registration is present" do
+        before do
+          create(:registration, referring_registration_id: registration.id)
+        end
+
+        it "returns true" do
+          expect(registration).to be_already_renewed
+        end
+      end
+
+      context "when a referring registration is not present" do
+        it "returns false" do
+          expect(registration).to_not be_already_renewed
+        end
+      end
+    end
+
     describe "#active_exemptions" do
       subject(:registration) { create(:registration, :with_active_exemptions) }
 
