@@ -76,10 +76,6 @@ module WasteExemptionsEngine
       @transient_registration.update_attributes(workflow_state: workflow_state)
     end
 
-    def assign_workflow_state(workflow_state)
-      @transient_registration.workflow_state = workflow_state
-    end
-
     def state_can_navigate_flexibly?(state)
       form_class = WasteExemptionsEngine.const_get(state.camelize)
       form_class.can_navigate_flexibly?
