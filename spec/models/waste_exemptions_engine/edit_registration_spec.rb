@@ -20,6 +20,12 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#renewal?" do
+      it "returns false" do
+        expect(edit_registration).to_not be_a_renewal
+      end
+    end
+
     describe "#initialize" do
       context "when it is initialized with a registration" do
         let(:registration) { create(:registration, :complete) }
