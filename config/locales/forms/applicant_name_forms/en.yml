@@ -5,8 +5,8 @@ en:
         title: Your name
         heading: Who is filling in this form?
         description: Please enter your name, even if you’re an agent, employee or other third-party
-        first_name_label: First name
-        last_name_label: Last name
+        applicant_first_name_label: First name
+        applicant_last_name_label: Last name
         error_heading: A problem to fix
         next_button: Continue
   activemodel:

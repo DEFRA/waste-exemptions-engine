@@ -14,7 +14,7 @@
             <span class="error-message"><%= @applicant_name_form.errors[:applicant_first_name].join(", ") %></span>
         <% end %>
 
-        <%= f.label :applicant_first_name, t(".first_name_label"), class: "form-label" %>
+        <%= f.label :applicant_first_name, t(".applicant_first_name_label"), class: "form-label" %>
         <%= f.text_field :applicant_first_name, value: @applicant_name_form.applicant_first_name, class: "form-control govuk-input--width-20" %>
       </fieldset>
     </div>
@@ -25,7 +25,7 @@
           <span class="error-message"><%= @applicant_name_form.errors[:applicant_last_name].join(", ") %></span>
         <% end %>
 
-        <%= f.label :applicant_last_name, t(".last_name_label"), class: "form-label" %>
+        <%= f.label :applicant_last_name, t(".applicant_last_name_label"), class: "form-label" %>
         <%= f.text_field :applicant_last_name, value: @applicant_name_form.applicant_last_name, class: "form-control govuk-input--width-20" %>
       </fieldset>
     </div>
