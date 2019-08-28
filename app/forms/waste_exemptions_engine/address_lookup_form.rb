@@ -7,6 +7,8 @@ module WasteExemptionsEngine
     attr_accessor :temp_addresses
     attr_accessor :temp_address
 
+    validates :temp_address, "waste_exemptions_engine/address": true
+
     def initialize(registration)
       super
 
@@ -27,8 +29,6 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :temp_address, "waste_exemptions_engine/address": true
 
     private
 

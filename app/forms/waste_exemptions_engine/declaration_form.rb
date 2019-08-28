@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class DeclarationForm < BaseForm
     attr_accessor :declaration
 
+    validates :declaration, inclusion: { in: [1] }
+
     def self.can_navigate_flexibly?
       false
     end
@@ -20,7 +22,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :declaration, inclusion: { in: [1] }
   end
 end

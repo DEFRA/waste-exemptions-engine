@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   module OperatorAddressForm
-
     attr_accessor :business_type
 
     def initialize(registration)

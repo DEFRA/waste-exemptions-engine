@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class PersonForm < BaseForm
-
     attr_accessor :first_name, :last_name
 
     def initialize(transient_registration)
