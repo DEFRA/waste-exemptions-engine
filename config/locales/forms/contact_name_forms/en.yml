@@ -5,8 +5,8 @@ en:
         title: Contact name
         heading: Who should we contact about this waste exemption operation?
         description: We will contact this person if we need to discuss the waste operation
-        first_name_label: First name
-        last_name_label: Last name
+        contact_first_name_label: First name
+        contact_last_name_label: Last name
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
@@ -14,11 +14,11 @@ en:
       models:
         waste_exemptions_engine/contact_name_form:
           attributes:
-            first_name:
+            contact_first_name:
               blank: "You must enter a first name"
               invalid: "The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
               too_long: "The first name must have no more than 70 characters"
-            last_name:
+            contact_last_name:
               blank: "You must enter a last name"
               invalid: "The last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
               too_long: "The last name must have no more than 70 characters"
