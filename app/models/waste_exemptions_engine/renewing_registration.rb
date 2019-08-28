@@ -23,5 +23,9 @@ module WasteExemptionsEngine
     def registration_exemptions_to_copy
       registration.active_exemptions + registration.expired_exemptions
     end
+
+    def renewal?
+      true
+    end
   end
 end

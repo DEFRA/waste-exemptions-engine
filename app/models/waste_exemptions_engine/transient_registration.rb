@@ -45,6 +45,10 @@ module WasteExemptionsEngine
                               updated_at
                               workflow_state].freeze
 
+    def renewal?
+      false
+    end
+
     def registration_attributes
       attributes.except(*TRANSIENT_ATTRIBUTES)
     end
