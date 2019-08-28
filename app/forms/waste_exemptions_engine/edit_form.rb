@@ -3,13 +3,13 @@
 module WasteExemptionsEngine
   class EditForm < BaseForm
     attr_accessor :applicant_email
-    attr_accessor :applicant_name
+    attr_accessor :applicant_first_name, :applicant_last_name
     attr_accessor :applicant_phone
     attr_accessor :business_type
     attr_accessor :company_no
     attr_accessor :contact_address
     attr_accessor :contact_email
-    attr_accessor :contact_name
+    attr_accessor :contact_first_name, :contact_last_name
     attr_accessor :contact_phone
     attr_accessor :is_a_farmer
     attr_accessor :location
@@ -30,9 +30,13 @@ module WasteExemptionsEngine
       super
 
       self.applicant_email          = @transient_registration.applicant_email
+      self.applicant_last_name      = @transient_registration.applicant_last_name
+      self.applicant_first_name     = @transient_registration.applicant_first_name
       self.applicant_phone          = @transient_registration.applicant_phone
       self.business_type            = @transient_registration.business_type
       self.company_no               = @transient_registration.company_no
+      self.contact_first_name       = @transient_registration.contact_first_name
+      self.contact_last_name        = @transient_registration.contact_last_name
       self.contact_address          = @transient_registration.contact_address
       self.contact_email            = @transient_registration.contact_email
       self.contact_phone            = @transient_registration.contact_phone
@@ -45,11 +49,6 @@ module WasteExemptionsEngine
       self.reference                = @transient_registration.reference
       self.registration_exemptions  = @transient_registration.registration_exemptions
       self.site_address             = @transient_registration.site_address
-
-      self.applicant_name           = full_name(@transient_registration.applicant_first_name,
-                                                @transient_registration.applicant_last_name)
-      self.contact_name             = full_name(@transient_registration.contact_first_name,
-                                                @transient_registration.contact_last_name)
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
@@ -59,12 +58,6 @@ module WasteExemptionsEngine
       attributes = {}
 
       super(attributes)
-    end
-
-    private
-
-    def full_name(first_name, last_name)
-      "#{first_name} #{last_name}"
     end
   end
 end
