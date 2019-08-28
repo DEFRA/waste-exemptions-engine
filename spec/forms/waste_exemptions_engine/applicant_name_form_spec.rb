@@ -17,7 +17,7 @@ module WasteExemptionsEngine
 
       it "validates the last name using the PersonNameValidator class" do
         expect(validators.keys).to include(:applicant_last_name)
-        expect(validators[:applicant_first_name].first.class)
+        expect(validators[:applicant_last_name].first.class)
           .to eq(WasteExemptionsEngine::PersonNameValidator)
       end
     end
