@@ -6,18 +6,18 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @applicant_phone_form.errors[:phone_number].any? %>">
-      <fieldset id="phone_number">
-        <% if @applicant_phone_form.errors[:phone_number].any? %>
-          <span class="error-message"><%= @applicant_phone_form.errors[:phone_number].join(", ") %></span>
+    <div class="form-group <%= "form-group-error" if @applicant_phone_form.errors[:applicant_phone].any? %>">
+      <fieldset id="applicant_phone">
+        <% if @applicant_phone_form.errors[:applicant_phone].any? %>
+          <span class="error-message"><%= @applicant_phone_form.errors[:applicant_phone].join(", ") %></span>
         <% end %>
 
-        <%= f.label :phone_number, class: "form-label" do %>
-          <%= t(".phone_number_label") %>
-          <span class='form-hint'><%= t(".phone_number_hint") %></span>
+        <%= f.label :applicant_phone, class: "form-label" do %>
+          <%= t(".applicant_phone_label") %>
+          <span class='form-hint'><%= t(".applicant_phone_hint") %></span>
         <% end %>
 
-        <%= f.telephone_field :phone_number, value: @applicant_phone_form.phone_number, class: "form-control govuk-input--width-10" %>
+        <%= f.telephone_field :applicant_phone, value: @applicant_phone_form.applicant_phone, class: "form-control govuk-input--width-10" %>
       </fieldset>
     </div>
 
