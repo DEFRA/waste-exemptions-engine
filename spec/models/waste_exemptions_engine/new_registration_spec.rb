@@ -19,5 +19,11 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#renewal?" do
+      it "returns false" do
+        expect(new_registration).to_not be_a_renewal
+      end
+    end
   end
 end
