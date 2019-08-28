@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class RegistrationNumberForm < BaseForm
-
     attr_accessor :company_no, :business_type
+
+    validates :company_no, "defra_ruby/validators/companies_house_number": true
 
     def initialize(registration)
       super
@@ -21,8 +22,6 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :company_no, "defra_ruby/validators/companies_house_number": true
 
     private
 

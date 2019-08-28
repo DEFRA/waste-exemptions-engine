@@ -6,6 +6,8 @@ module WasteExemptionsEngine
 
     attr_accessor :business_type
 
+    validates_with MainPersonValidator
+
     def initialize(transient_registration)
       super
       # We only use this for the correct microcopy
@@ -18,8 +20,6 @@ module WasteExemptionsEngine
     def person_type
       TransientPerson.person_types[:partner]
     end
-
-    validates_with MainPersonValidator
 
     private
 

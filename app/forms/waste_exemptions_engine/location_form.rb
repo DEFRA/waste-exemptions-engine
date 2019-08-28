@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class LocationForm < BaseForm
-
     attr_accessor :location
+
+    validates :location, "defra_ruby/validators/location": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :location, "defra_ruby/validators/location": true
   end
 end

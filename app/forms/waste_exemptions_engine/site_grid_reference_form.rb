@@ -2,8 +2,10 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
-
     attr_accessor :grid_reference, :description
+
+    validates :grid_reference, "defra_ruby/validators/grid_reference": true
+    validates :description, "waste_exemptions_engine/site_description": true
 
     def initialize(registration)
       super
@@ -29,9 +31,6 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :grid_reference, "defra_ruby/validators/grid_reference": true
-    validates :description, "waste_exemptions_engine/site_description": true
 
     private
 

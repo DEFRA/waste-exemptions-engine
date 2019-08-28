@@ -44,6 +44,10 @@ module WasteExemptionsEngine
       referred_registration.present?
     end
 
+    def renewal?
+      referring_registration.present?
+    end
+
     private
 
     def apply_reference
