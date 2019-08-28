@@ -10,27 +10,27 @@ module WasteExemptionsEngine
       subject(:validators) { form._validators }
 
       it "validates the first name using the PersonNameValidator class" do
-        expect(validators.keys).to include(:first_name)
-        expect(validators[:first_name].first.class)
+        expect(validators.keys).to include(:applicant_first_name)
+        expect(validators[:applicant_first_name].first.class)
           .to eq(WasteExemptionsEngine::PersonNameValidator)
       end
 
       it "validates the last name using the PersonNameValidator class" do
-        expect(validators.keys).to include(:last_name)
-        expect(validators[:first_name].first.class)
+        expect(validators.keys).to include(:applicant_last_name)
+        expect(validators[:applicant_first_name].first.class)
           .to eq(WasteExemptionsEngine::PersonNameValidator)
       end
     end
 
     it_behaves_like "a validated form", :applicant_name_form do
       let(:valid_params) do
-        { token: form.token, first_name: "Joe", last_name: "Bloggs" }
+        { token: form.token, applicant_first_name: "Joe", applicant_last_name: "Bloggs" }
       end
       let(:invalid_params) do
         [
-          { token: form.token, first_name: "", last_name: "Bloggs" },
-          { token: form.token, first_name: "Joe", last_name: "" },
-          { token: form.token, first_name: "", last_name: "" }
+          { token: form.token, applicant_first_name: "", applicant_last_name: "Bloggs" },
+          { token: form.token, applicant_first_name: "Joe", applicant_last_name: "" },
+          { token: form.token, applicant_first_name: "", applicant_last_name: "" }
         ]
       end
     end
@@ -40,7 +40,7 @@ module WasteExemptionsEngine
         it "updates the transient registration with the applicant name" do
           first_name = "Joe"
           last_name = "Bloggs"
-          valid_params = { token: form.token, first_name: first_name, last_name: last_name }
+          valid_params = { token: form.token, applicant_first_name: first_name, applicant_last_name: last_name }
           transient_registration = form.transient_registration
 
           expect(transient_registration.applicant_first_name).to be_blank

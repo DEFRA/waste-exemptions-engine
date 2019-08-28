@@ -8,14 +8,14 @@
 
     <p><%= t(".description") %></p>
 
-    <div class="form-group <%= "form-group-error" if @applicant_name_form.errors[:first_name].any? %>">
-      <fieldset id="first_name">
-        <% if @applicant_name_form.errors[:first_name].any? %>
-            <span class="error-message"><%= @applicant_name_form.errors[:first_name].join(", ") %></span>
+    <div class="form-group <%= "form-group-error" if @applicant_name_form.errors[:applicant_first_name].any? %>">
+      <fieldset id="applicant_first_name">
+        <% if @applicant_name_form.errors[:applicant_first_name].any? %>
+            <span class="error-message"><%= @applicant_name_form.errors[:applicant_first_name].join(", ") %></span>
         <% end %>
 
-        <%= f.label :first_name, t(".first_name_label"), class: "form-label" %>
-        <%= f.text_field :first_name, value: @applicant_name_form.first_name, class: "form-control govuk-input--width-20" %>
+        <%= f.label :applicant_first_name, t(".first_name_label"), class: "form-label" %>
+        <%= f.text_field :applicant_first_name, value: @applicant_name_form.applicant_first_name, class: "form-control govuk-input--width-20" %>
       </fieldset>
     </div>
 
