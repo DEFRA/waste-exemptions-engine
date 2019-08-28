@@ -7,8 +7,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :contact_name_form, "/contact-name"
     include_examples "go back", :contact_name_form, "/contact-name/back"
     include_examples "POST form", :contact_name_form, "/contact-name" do
-      let(:form_data) { { first_name: "Joe", last_name: "Bloggs" } }
-      let(:invalid_form_data) { [{ first_name: nil, last_name: nil }] }
+      let(:form_data) { { contact_first_name: "Joe", contact_last_name: "Bloggs" } }
+      let(:invalid_form_data) { [{ contact_first_name: nil, contact_last_name: nil }] }
     end
 
     context "when editing an existing registration" do
@@ -17,8 +17,8 @@ module WasteExemptionsEngine
       it "pre-fills contact name information" do
         get "/waste_exemptions_engine/contact-name/#{edit_contact_name_form.token}"
 
-        expect(response.body).to have_html_escaped_string(edit_contact_name_form.first_name)
-        expect(response.body).to have_html_escaped_string(edit_contact_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_first_name)
+        expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_last_name)
       end
     end
 
@@ -28,8 +28,8 @@ module WasteExemptionsEngine
       it "pre-fills contact name information" do
         get "/waste_exemptions_engine/contact-name/#{renew_contact_name_form.token}"
 
-        expect(response.body).to have_html_escaped_string(renew_contact_name_form.first_name)
-        expect(response.body).to have_html_escaped_string(renew_contact_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_first_name)
+        expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_last_name)
       end
     end
   end
