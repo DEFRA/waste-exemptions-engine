@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class StartForm < BaseForm
-
     attr_accessor :start
+
+    validates :start, "waste_exemptions_engine/start": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :start, "waste_exemptions_engine/start": true
   end
 end

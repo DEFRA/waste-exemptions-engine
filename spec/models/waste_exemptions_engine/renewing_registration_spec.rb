@@ -27,6 +27,12 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#renewal?" do
+      it "returns true" do
+        expect(renewing_registration).to be_a_renewal
+      end
+    end
+
     describe "#initialize" do
       context "when it is initialized with a registration" do
         let(:registration) { create(:registration, :complete) }

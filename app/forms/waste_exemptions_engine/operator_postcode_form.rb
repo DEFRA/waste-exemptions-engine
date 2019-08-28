@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class OperatorPostcodeForm < PostcodeForm
-
     attr_accessor :business_type
 
     def initialize(registration)

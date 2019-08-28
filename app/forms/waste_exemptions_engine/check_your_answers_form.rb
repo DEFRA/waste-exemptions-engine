@@ -4,16 +4,6 @@ module WasteExemptionsEngine
   class CheckYourAnswersForm < BaseForm
     include DataOverviewForm
 
-    def initialize(registration)
-      super
-      assign_attributes_to_display
-      valid?
-    end
-
-    def submit(_params)
-      super({})
-    end
-
     validates :location, "defra_ruby/validators/location": true
     validates :applicant_first_name, :applicant_last_name, "waste_exemptions_engine/person_name": true
     validates :applicant_phone, "defra_ruby/validators/phone_number": true
@@ -37,6 +27,16 @@ module WasteExemptionsEngine
     validates :grid_reference, "defra_ruby/validators/grid_reference": true, if: :uses_site_location?
     validates :site_description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
+
+    def initialize(registration)
+      super
+      assign_attributes_to_display
+      valid?
+    end
+
+    def submit(_params)
+      super({})
+    end
 
     private
 

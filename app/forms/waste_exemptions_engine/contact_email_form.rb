@@ -2,8 +2,10 @@
 
 module WasteExemptionsEngine
   class ContactEmailForm < BaseForm
-
     attr_accessor :contact_email, :confirmed_email
+
+    validates :contact_email, :confirmed_email, "defra_ruby/validators/email": true
+    validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :contact_email }
 
     def initialize(registration)
       super
@@ -20,8 +22,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :contact_email, :confirmed_email, "defra_ruby/validators/email": true
-    validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :contact_email }
   end
 end

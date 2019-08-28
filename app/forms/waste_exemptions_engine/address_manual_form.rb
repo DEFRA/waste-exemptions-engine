@@ -7,6 +7,8 @@ module WasteExemptionsEngine
     attr_accessor :address_finder_error
     attr_accessor :premises, :street_address, :locality, :city, :postcode
 
+    validates_with ManualAddressValidator
+
     def initialize(registration)
       super
 
@@ -32,8 +34,6 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates_with ManualAddressValidator
 
     private
 
