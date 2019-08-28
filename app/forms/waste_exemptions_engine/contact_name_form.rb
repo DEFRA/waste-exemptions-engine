@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class ContactNameForm < BaseForm
-
     attr_accessor :first_name, :last_name
+
+    validates :first_name, :last_name, "waste_exemptions_engine/person_name": true
 
     def initialize(registration)
       super
@@ -22,7 +23,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :first_name, :last_name, "waste_exemptions_engine/person_name": true
   end
 end

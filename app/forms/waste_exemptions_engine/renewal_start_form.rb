@@ -6,6 +6,14 @@ module WasteExemptionsEngine
 
     attr_accessor :temp_renew_without_changes
 
+    validates :temp_renew_without_changes,
+              "defra_ruby/validators/true_false": {
+                messages: {
+                  inclusion: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form"\
+                                    ".attributes.temp_renew_without_changes.inclusion")
+                }
+              }
+
     def initialize(registration)
       super
       assign_attributes_to_display
@@ -19,13 +27,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :temp_renew_without_changes,
-              "defra_ruby/validators/true_false": {
-                messages: {
-                  inclusion: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form"\
-                                    ".attributes.temp_renew_without_changes.inclusion")
-                }
-              }
   end
 end
