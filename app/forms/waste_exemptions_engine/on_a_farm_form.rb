@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class OnAFarmForm < BaseForm
-
     attr_accessor :on_a_farm
+
+    validates :on_a_farm, "defra_ruby/validators/true_false": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :on_a_farm, "defra_ruby/validators/true_false": true
   end
 end

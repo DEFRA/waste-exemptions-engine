@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class ApplicantPhoneForm < BaseForm
-
     attr_accessor :phone_number
+
+    validates :phone_number, "defra_ruby/validators/phone_number": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :phone_number, "defra_ruby/validators/phone_number": true
   end
 end

@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class BusinessTypeForm < BaseForm
-
     attr_accessor :business_type
+
+    validates :business_type, "defra_ruby/validators/business_type": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :business_type, "defra_ruby/validators/business_type": true
   end
 end

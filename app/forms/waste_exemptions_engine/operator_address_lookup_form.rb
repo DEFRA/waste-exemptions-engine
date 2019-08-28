@@ -3,6 +3,5 @@
 module WasteExemptionsEngine
   class OperatorAddressLookupForm < AddressLookupForm
     include OperatorAddressForm
-
   end
 end

@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class PostcodeForm < BaseForm
-
     attr_accessor :postcode
+
+    validates :postcode, "waste_exemptions_engine/postcode": true
 
     def initialize(registration)
       super
@@ -25,8 +26,6 @@ module WasteExemptionsEngine
       # update on the registration itself
       super({})
     end
-
-    validates :postcode, "waste_exemptions_engine/postcode": true
 
     def address_finder_error(error_occurred)
       transient_registration.address_finder_error = error_occurred

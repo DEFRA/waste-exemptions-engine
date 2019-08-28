@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
-
     attr_accessor :exemptions, :matched_exemptions, :matched_exemption_ids
+
+    validates :matched_exemptions, "waste_exemptions_engine/exemptions": true
 
     def initialize(registration)
       super
@@ -23,8 +24,6 @@ module WasteExemptionsEngine
 
       super(exemptions: matched_exemptions)
     end
-
-    validates :matched_exemptions, "waste_exemptions_engine/exemptions": true
 
     private
 

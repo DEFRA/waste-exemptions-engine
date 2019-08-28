@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class RegistrationCompleteForm < BaseForm
-
     attr_accessor :reference, :exemptions_plural, :applicant_email, :contact_email, :emails_plural
 
     def initialize(registration)

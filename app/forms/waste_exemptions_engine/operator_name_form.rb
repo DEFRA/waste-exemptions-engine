@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class OperatorNameForm < BaseForm
-
     attr_accessor :business_type, :operator_name
+
+    validates :operator_name, "waste_exemptions_engine/operator_name": true
 
     def initialize(registration)
       super
@@ -19,7 +20,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :operator_name, "waste_exemptions_engine/operator_name": true
   end
 end

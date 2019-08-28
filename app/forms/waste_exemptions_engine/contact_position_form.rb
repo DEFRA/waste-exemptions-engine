@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class ContactPositionForm < BaseForm
-
     attr_accessor :position
+
+    validates :position, "defra_ruby/validators/position": true
 
     def initialize(registration)
       super
@@ -17,7 +18,5 @@ module WasteExemptionsEngine
 
       super(attributes)
     end
-
-    validates :position, "defra_ruby/validators/position": true
   end
 end
