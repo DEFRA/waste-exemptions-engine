@@ -7,8 +7,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :applicant_name_form, "/applicant-name"
     include_examples "go back", :applicant_name_form, "/applicant-name/back"
     include_examples "POST form", :applicant_name_form, "/applicant-name" do
-      let(:form_data) { { first_name: "Joe", last_name: "Bloggs" } }
-      let(:invalid_form_data) { [{ first_name: nil, last_name: nil }] }
+      let(:form_data) { { applicant_first_name: "Joe", applicant_last_name: "Bloggs" } }
+      let(:invalid_form_data) { [{ applicant_first_name: nil, applicant_last_name: nil }] }
     end
 
     context "when editing an existing registration" do
@@ -17,8 +17,8 @@ module WasteExemptionsEngine
       it "pre-fills applicant name information" do
         get "/waste_exemptions_engine/applicant-name/#{edit_applicant_name_form.token}"
 
-        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.first_name)
-        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.applicant_first_name)
+        expect(response.body).to have_html_escaped_string(edit_applicant_name_form.applicant_last_name)
       end
     end
 
@@ -28,8 +28,8 @@ module WasteExemptionsEngine
       it "pre-fills applicant name information" do
         get "/waste_exemptions_engine/applicant-name/#{renew_applicant_name_form.token}"
 
-        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.first_name)
-        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.last_name)
+        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.applicant_first_name)
+        expect(response.body).to have_html_escaped_string(renew_applicant_name_form.applicant_last_name)
       end
     end
   end
