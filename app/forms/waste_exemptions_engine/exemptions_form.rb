@@ -2,27 +2,20 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
-    attr_accessor :exemptions, :matched_exemptions, :matched_exemption_ids
+    attr_accessor :exemptions
 
-    validates :matched_exemptions, "waste_exemptions_engine/exemptions": true
+    validates :exemptions, "waste_exemptions_engine/exemptions": true
 
     def initialize(registration)
       super
 
-      # We rely on the fact that db/exemptions.csv is ordered in the way we want
-      # it displayed in the UI, hence its in that order in the database.
-      # This saves any unnecessary logic to try and replicate the ordering we
-      # want, so we simply ensure the order is by ID, i.e. the order the
-      # exemptions were seeded from the file and inserted into the table
-      self.exemptions = Exemption.order(:id)
-      self.matched_exemptions = @transient_registration.exemptions
-      self.matched_exemption_ids = matched_exemptions ? matched_exemptions.map(&:id) : []
+      self.exemptions = @transient_registration.exemptions
     end
 
     def submit(params)
-      self.matched_exemptions = determine_matched_exemptions(params)
+      self.exemptions = determine_matched_exemptions(params)
 
-      super(exemptions: matched_exemptions)
+      super(exemptions: exemptions)
     end
 
     private
@@ -30,7 +23,7 @@ module WasteExemptionsEngine
     def determine_matched_exemptions(params)
       return nil unless params[:exemptions]
 
-      exemptions.select { |ex| params[:exemptions].include?(ex.id.to_s) }
+      Exemption.where(id: params[:exemptions])
     end
   end
 end

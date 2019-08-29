@@ -10,8 +10,8 @@
 
     <div class="form-group <%= "form-group-error" if @exemptions_form.errors[:matched_exemptions].any? %>">
       <fieldset id="<%="matched_exemptions"%>">
-        <% if @exemptions_form.errors[:matched_exemptions].any? %>
-          <span class="error-message"><%= @exemptions_form.errors[:matched_exemptions].join(", ") %></span>
+        <% if @exemptions_form.errors[:exemptions].any? %>
+          <span class="error-message"><%= @exemptions_form.errors[:exemptions].join(", ") %></span>
         <% end %>
 
         <table role="presentation">
@@ -22,11 +22,11 @@
           </tr>
           </thead>
           <tbody>
-            <% @exemptions_form.exemptions.each do |exemption|  %>
+            <% all_exemptions.each do |exemption|  %>
               <tr>
                 <td>
                   <div class="multiple-choice">
-                    <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.matched_exemption_ids.include?(exemption.id) }, exemption.id, nil %>
+                    <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.exemptions&.include?(exemption) }, exemption.id, nil %>
                     <%= f.label "checkbox-#{exemption.code}" do %>
                       <%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span>
                     <% end %>
