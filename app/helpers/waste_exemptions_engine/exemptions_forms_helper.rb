@@ -7,4 +7,3 @@ module WasteExemptionsEngine
     end
   end
 end
-
