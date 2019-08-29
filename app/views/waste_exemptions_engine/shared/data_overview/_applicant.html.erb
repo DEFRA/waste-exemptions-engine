@@ -1,6 +1,6 @@
 <h2 class="heading-medium"><%= t(".subheading") %></h2>
 <ul class="list list-bullet">
-  <li><%= t(".name_html", value: form.applicant_name) %></li>
+  <li><%= t(".name_html", value: format_names(form.applicant_first_name, form.applicant_last_name)) %></li>
   <li><%= t(".phone_html", value: form.applicant_phone) %></li>
   <li><%= t(".email_html", value: form.applicant_email) %></li>
 </ul>

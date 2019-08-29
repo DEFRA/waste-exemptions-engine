@@ -1,6 +1,6 @@
 <h2 class="heading-medium"><%= t(".subheading") %></h2>
 <ul class="list list-bullet">
-  <li><%= t(".name_html", value: form.contact_name) %></li>
+  <li><%= t(".name_html", value: format_names(form.contact_first_name, form.contact_last_name)) %></li>
   <% if form.contact_position.present? %>
     <li><%= t(".position_html", value: form.contact_position) %></li>
   <% end %>

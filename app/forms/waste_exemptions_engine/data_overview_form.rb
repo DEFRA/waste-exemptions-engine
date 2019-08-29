@@ -10,14 +10,6 @@ module WasteExemptionsEngine
     attr_accessor :on_a_farm, :is_a_farmer, :site_address, :grid_reference, :site_description
     attr_accessor :registration_exemptions, :exemptions
 
-    def applicant_name
-      "#{applicant_first_name} #{applicant_last_name}"
-    end
-
-    def contact_name
-      "#{contact_first_name} #{contact_last_name}"
-    end
-
     # We know this is a long method, but it's just assigning attributes. Breaking
     # it up for the sake of Rubocop would add little benefit, hence the exceptions
     # rubocop:disable Metrics/MethodLength

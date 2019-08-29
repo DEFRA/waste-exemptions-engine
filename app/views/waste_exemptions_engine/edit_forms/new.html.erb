@@ -55,7 +55,7 @@
               <%= t(".sections.applicant.labels.applicant_name") %>
             </td>
             <td>
-              <%= @edit_form.applicant_name %>
+              <%= format_names(@edit_form.applicant_first_name, @edit_form.applicant_last_name) %>
             </td>
             <td class="change_link_column">
               <%= link_to applicant_name_edit_forms_path(@edit_form.token) do %>
@@ -188,7 +188,7 @@
               <%= t(".sections.contact.labels.contact_name") %>
             </td>
             <td>
-              <%= @edit_form.contact_name %>
+              <%= format_names(@edit_form.contact_first_name, @edit_form.contact_last_name) %>
             </td>
             <td class="change_link_column">
               <%= link_to contact_name_edit_forms_path(@edit_form.token) do %>
