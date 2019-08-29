@@ -14,7 +14,7 @@ en:
       models:
         waste_exemptions_engine/exemptions_form:
           attributes:
-            matched_exemptions:
+            exemptions:
               inclusion: "You must select at least one exemption"
             token:
               invalid_format: "The token is not valid"
