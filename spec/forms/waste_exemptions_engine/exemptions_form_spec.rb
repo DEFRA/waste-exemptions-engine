@@ -16,8 +16,8 @@ module WasteExemptionsEngine
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:matched_exemptions)
-      expect(validators[:matched_exemptions].first.class)
+      expect(validators.keys).to include(:exemptions)
+      expect(validators[:exemptions].first.class)
         .to eq(WasteExemptionsEngine::ExemptionsValidator)
     end
 
