@@ -25,7 +25,6 @@ module WasteExemptionsEngine
         it "updates the transient registration with the main person" do
           first_name = "Joe"
           last_name = "Bloggs"
-          person_type = "partner"
           valid_params = { token: form.token, first_name: first_name, last_name: last_name }
           transient_registration = form.transient_registration
 
