@@ -9,6 +9,10 @@ module WasteExemptionsEngine
       title_elements.join(" - ")
     end
 
+    def format_names(first_name, last_name)
+      "#{first_name} #{last_name}"
+    end
+
     def current_git_commit
       @current_git_commit ||= begin
         sha =
