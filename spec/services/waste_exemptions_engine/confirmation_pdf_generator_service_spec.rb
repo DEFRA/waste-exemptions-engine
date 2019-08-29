@@ -48,8 +48,7 @@ module WasteExemptionsEngine
 
           result = described_class.run(registration: registration)
 
-          partners = registration.people.select(&:partner?)
-          partners.each do |partner|
+          registration.people.each do |partner|
             expect(result).to include_pdf_content(partner.first_name)
             expect(result).to include_pdf_content(partner.last_name)
           end
