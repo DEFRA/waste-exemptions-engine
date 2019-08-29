@@ -42,14 +42,17 @@ module WasteExemptionsEngine
 
         context "when adding multiple people" do
           it "updates the transient registration accordingly" do
+            transient_registration = form.transient_registration
+
             expect { post add_person_post_request_path, person_one_request_body }
-              .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
+              .to change { transient_registration.reload.people.count }
               .from(0).to(1)
             expect { post add_person_post_request_path, person_two_request_body }
-              .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
+              .to change { transient_registration.reload.people.count }
               .from(1).to(2)
-            expect(form.transient_registration.people.map(&:first_name)).to match_array(%w[Joe Jane])
-            expect(form.transient_registration.people.map(&:last_name)).to match_array(%w[Bloggs Smith])
+
+            expect(transient_registration.people.map(&:first_name)).to match_array(%w[Joe Jane])
+            expect(transient_registration.people.map(&:last_name)).to match_array(%w[Bloggs Smith])
           end
         end
       end

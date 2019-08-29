@@ -8,33 +8,32 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/main-people/back/nfid6XvXNf2bDNGvLpNaYUzf\">Back</a>\n\n\n<div
-        class=\"grid-row\">\n  <div class=\"column-two-thirds\">\n\n<form class=\"new_main_people_form\"
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/main-people/back/W15p6UkeT8TpYwLJvPRZvctf\">Back</a>\n\n\n<div
+        class=\"grid-row\">\n  <div class=\"column-two-thirds\">\n    <form class=\"new_main_people_form\"
         id=\"new_main_people_form\" action=\"/waste_exemptions_engine/main-people\"
         accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
-        value=\"&#x2713;\" />\n  \n\n  <h1 class=\"heading-large\">{:localAuthority=&gt;&quot;Chief
+        value=\"&#x2713;\" />\n      \n\n      <h1 class=\"heading-large\">{:localAuthority=&gt;&quot;Chief
         executive details&quot;, :limitedCompany=&gt;&quot;Company director details&quot;,
         :limitedLiabilityPartnership=&gt;&quot;Member details&quot;, :partnership=&gt;&quot;Partner
         details&quot;, :soleTrader=&gt;&quot;Business owner details&quot;, :charity=&gt;&quot;Chief
-        executive details&quot;}</h1>\n\n  <p>{:localAuthority=&gt;&quot;Enter the
-        name for each chief executive of the business.&quot;, :limitedCompany=&gt;&quot;Enter
+        executive details&quot;}</h1>\n\n      <p>{:localAuthority=&gt;&quot;Enter
+        the name for each chief executive of the business.&quot;, :limitedCompany=&gt;&quot;Enter
         the name for each director of the business.&quot;, :limitedLiabilityPartnership=&gt;&quot;Enter
         the name for each business member.&quot;, :partnership=&gt;&quot;Enter the
         name for each partner of the business.&quot;, :soleTrader=&gt;&quot;Enter
-        the name and date of birth of the business owner.&quot;}</p>\n\n  <div class=\"form-group
-        \">\n  <fieldset id=\"first_name\">\n\n    <label class=\"form-label\" for=\"main_people_form_first_name\">First
+        the name and date of birth of the business owner.&quot;}</p>\n\n      <div
+        class=\"form-group \">\n  <fieldset id=\"first_name\">\n\n    <label class=\"form-label\"
+        for=\"main_people_form_first_name\">First name</label>\n    <input class=\"form-control
+        govuk-input--width-20\" type=\"text\" name=\"main_people_form[first_name]\"
+        id=\"main_people_form_first_name\" />\n  </fieldset>\n</div>\n\n<div class=\"form-group
+        \">\n  <fieldset id=\"last_name\">\n\n    <label class=\"form-label\" for=\"main_people_form_last_name\">Last
         name</label>\n    <input class=\"form-control govuk-input--width-20\" type=\"text\"
-        name=\"main_people_form[first_name]\" id=\"main_people_form_first_name\" />\n
-        \ </fieldset>\n</div>\n\n<div class=\"form-group \">\n  <fieldset id=\"last_name\">\n\n
-        \   <label class=\"form-label\" for=\"main_people_form_last_name\">Last name</label>\n
-        \   <input class=\"form-control govuk-input--width-20\" type=\"text\" name=\"main_people_form[last_name]\"
-        id=\"main_people_form_last_name\" />\n  </fieldset>\n</div>\n\n\n  <input
-        value=\"nfid6XvXNf2bDNGvLpNaYUzf\" type=\"hidden\" name=\"main_people_form[token]\"
-        id=\"main_people_form_token\" />\n\n    <div class=\"form-group\">\n      <input
-        type=\"submit\" name=\"commit\" value=\"Add another person\" class=\"button-link\"
-        />\n    </div>\n    <div class=\"form-group\">\n      <input type=\"submit\"
-        name=\"commit\" value=\"Continue\" class=\"button\" />\n    </div>\n</form>\n
-        \ </div> <!-- closes .column-two-thirds -->\n</div> <!-- closes .grid-row
+        name=\"main_people_form[last_name]\" id=\"main_people_form_last_name\" />\n
+        \ </fieldset>\n</div>\n\n\n      <input value=\"W15p6UkeT8TpYwLJvPRZvctf\"
+        type=\"hidden\" name=\"main_people_form[token]\" id=\"main_people_form_token\"
+        />\n\n        <div class=\"form-group\">\n          <input type=\"submit\"
+        name=\"commit\" value=\"Add another person\" class=\"button\" />\n        </div>\n</form>
+        \ </div> <!-- closes .column-two-thirds -->\n\n</div> <!-- closes .grid-row
         -->\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
@@ -51,7 +50,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 27 Aug 2019 08:15:18 GMT
+      - Thu, 29 Aug 2019 14:06:11 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -82,7 +81,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9tYWluLXBlb3BsZS9iYWNrL25maWQ2WHZYTmYyYkROR3ZMcE5hWVV6ZlwiPkJhY2s8L2E+XG5cblxuPGRpdiBjbGFzcz1cImdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuXG48Zm9ybSBjbGFzcz1cIm5ld19tYWluX3Blb3BsZV9mb3JtXCIgaWQ9XCJuZXdfbWFpbl9wZW9wbGVfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9tYWluLXBlb3BsZVwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICBcblxuICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+ezpsb2NhbEF1dGhvcml0eT0mZ3Q7JnF1b3Q7Q2hpZWYgZXhlY3V0aXZlIGRldGFpbHMmcXVvdDssIDpsaW1pdGVkQ29tcGFueT0mZ3Q7JnF1b3Q7Q29tcGFueSBkaXJlY3RvciBkZXRhaWxzJnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtNZW1iZXIgZGV0YWlscyZxdW90OywgOnBhcnRuZXJzaGlwPSZndDsmcXVvdDtQYXJ0bmVyIGRldGFpbHMmcXVvdDssIDpzb2xlVHJhZGVyPSZndDsmcXVvdDtCdXNpbmVzcyBvd25lciBkZXRhaWxzJnF1b3Q7LCA6Y2hhcml0eT0mZ3Q7JnF1b3Q7Q2hpZWYgZXhlY3V0aXZlIGRldGFpbHMmcXVvdDt9PC9oMT5cblxuICA8cD57OmxvY2FsQXV0aG9yaXR5PSZndDsmcXVvdDtFbnRlciB0aGUgbmFtZSBmb3IgZWFjaCBjaGllZiBleGVjdXRpdmUgb2YgdGhlIGJ1c2luZXNzLiZxdW90OywgOmxpbWl0ZWRDb21wYW55PSZndDsmcXVvdDtFbnRlciB0aGUgbmFtZSBmb3IgZWFjaCBkaXJlY3RvciBvZiB0aGUgYnVzaW5lc3MuJnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtFbnRlciB0aGUgbmFtZSBmb3IgZWFjaCBidXNpbmVzcyBtZW1iZXIuJnF1b3Q7LCA6cGFydG5lcnNoaXA9Jmd0OyZxdW90O0VudGVyIHRoZSBuYW1lIGZvciBlYWNoIHBhcnRuZXIgb2YgdGhlIGJ1c2luZXNzLiZxdW90OywgOnNvbGVUcmFkZXI9Jmd0OyZxdW90O0VudGVyIHRoZSBuYW1lIGFuZCBkYXRlIG9mIGJpcnRoIG9mIHRoZSBidXNpbmVzcyBvd25lci4mcXVvdDt9PC9wPlxuXG4gIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICA8ZmllbGRzZXQgaWQ9XCJmaXJzdF9uYW1lXCI+XG5cbiAgICA8bGFiZWwgY2xhc3M9XCJmb3JtLWxhYmVsXCIgZm9yPVwibWFpbl9wZW9wbGVfZm9ybV9maXJzdF9uYW1lXCI+Rmlyc3QgbmFtZTwvbGFiZWw+XG4gICAgPGlucHV0IGNsYXNzPVwiZm9ybS1jb250cm9sIGdvdnVrLWlucHV0LS13aWR0aC0yMFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cIm1haW5fcGVvcGxlX2Zvcm1bZmlyc3RfbmFtZV1cIiBpZD1cIm1haW5fcGVvcGxlX2Zvcm1fZmlyc3RfbmFtZVwiIC8+XG4gIDwvZmllbGRzZXQ+XG48L2Rpdj5cblxuPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXAgXCI+XG4gIDxmaWVsZHNldCBpZD1cImxhc3RfbmFtZVwiPlxuXG4gICAgPGxhYmVsIGNsYXNzPVwiZm9ybS1sYWJlbFwiIGZvcj1cIm1haW5fcGVvcGxlX2Zvcm1fbGFzdF9uYW1lXCI+TGFzdCBuYW1lPC9sYWJlbD5cbiAgICA8aW5wdXQgY2xhc3M9XCJmb3JtLWNvbnRyb2wgZ292dWstaW5wdXQtLXdpZHRoLTIwXCIgdHlwZT1cInRleHRcIiBuYW1lPVwibWFpbl9wZW9wbGVfZm9ybVtsYXN0X25hbWVdXCIgaWQ9XCJtYWluX3Blb3BsZV9mb3JtX2xhc3RfbmFtZVwiIC8+XG4gIDwvZmllbGRzZXQ+XG48L2Rpdj5cblxuXG4gIDxpbnB1dCB2YWx1ZT1cIm5maWQ2WHZYTmYyYkROR3ZMcE5hWVV6ZlwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwibWFpbl9wZW9wbGVfZm9ybVt0b2tlbl1cIiBpZD1cIm1haW5fcGVvcGxlX2Zvcm1fdG9rZW5cIiAvPlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQWRkIGFub3RoZXIgcGVyc29uXCIgY2xhc3M9XCJidXR0b24tbGlua1wiIC8+XG4gICAgPC9kaXY+XG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQ29udGludWVcIiBjbGFzcz1cImJ1dHRvblwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+XG4gIDwvZGl2PiA8IS0tIGNsb3NlcyAuY29sdW1uLXR3by10aGlyZHMgLS0+XG48L2Rpdj4gPCEtLSBjbG9zZXMgLmdyaWQtcm93IC0tPlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9tYWluLXBlb3BsZS9iYWNrL1cxNXA2VWtlVDhUcFl3TEp2UFJadmN0ZlwiPkJhY2s8L2E+XG5cblxuPGRpdiBjbGFzcz1cImdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X21haW5fcGVvcGxlX2Zvcm1cIiBpZD1cIm5ld19tYWluX3Blb3BsZV9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL21haW4tcGVvcGxlXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj48aW5wdXQgbmFtZT1cInV0ZjhcIiB0eXBlPVwiaGlkZGVuXCIgdmFsdWU9XCImI3gyNzEzO1wiIC8+XG4gICAgICBcblxuICAgICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPns6bG9jYWxBdXRob3JpdHk9Jmd0OyZxdW90O0NoaWVmIGV4ZWN1dGl2ZSBkZXRhaWxzJnF1b3Q7LCA6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O0NvbXBhbnkgZGlyZWN0b3IgZGV0YWlscyZxdW90OywgOmxpbWl0ZWRMaWFiaWxpdHlQYXJ0bmVyc2hpcD0mZ3Q7JnF1b3Q7TWVtYmVyIGRldGFpbHMmcXVvdDssIDpwYXJ0bmVyc2hpcD0mZ3Q7JnF1b3Q7UGFydG5lciBkZXRhaWxzJnF1b3Q7LCA6c29sZVRyYWRlcj0mZ3Q7JnF1b3Q7QnVzaW5lc3Mgb3duZXIgZGV0YWlscyZxdW90OywgOmNoYXJpdHk9Jmd0OyZxdW90O0NoaWVmIGV4ZWN1dGl2ZSBkZXRhaWxzJnF1b3Q7fTwvaDE+XG5cbiAgICAgIDxwPns6bG9jYWxBdXRob3JpdHk9Jmd0OyZxdW90O0VudGVyIHRoZSBuYW1lIGZvciBlYWNoIGNoaWVmIGV4ZWN1dGl2ZSBvZiB0aGUgYnVzaW5lc3MuJnF1b3Q7LCA6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O0VudGVyIHRoZSBuYW1lIGZvciBlYWNoIGRpcmVjdG9yIG9mIHRoZSBidXNpbmVzcy4mcXVvdDssIDpsaW1pdGVkTGlhYmlsaXR5UGFydG5lcnNoaXA9Jmd0OyZxdW90O0VudGVyIHRoZSBuYW1lIGZvciBlYWNoIGJ1c2luZXNzIG1lbWJlci4mcXVvdDssIDpwYXJ0bmVyc2hpcD0mZ3Q7JnF1b3Q7RW50ZXIgdGhlIG5hbWUgZm9yIGVhY2ggcGFydG5lciBvZiB0aGUgYnVzaW5lc3MuJnF1b3Q7LCA6c29sZVRyYWRlcj0mZ3Q7JnF1b3Q7RW50ZXIgdGhlIG5hbWUgYW5kIGRhdGUgb2YgYmlydGggb2YgdGhlIGJ1c2luZXNzIG93bmVyLiZxdW90O308L3A+XG5cbiAgICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICA8ZmllbGRzZXQgaWQ9XCJmaXJzdF9uYW1lXCI+XG5cbiAgICA8bGFiZWwgY2xhc3M9XCJmb3JtLWxhYmVsXCIgZm9yPVwibWFpbl9wZW9wbGVfZm9ybV9maXJzdF9uYW1lXCI+Rmlyc3QgbmFtZTwvbGFiZWw+XG4gICAgPGlucHV0IGNsYXNzPVwiZm9ybS1jb250cm9sIGdvdnVrLWlucHV0LS13aWR0aC0yMFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cIm1haW5fcGVvcGxlX2Zvcm1bZmlyc3RfbmFtZV1cIiBpZD1cIm1haW5fcGVvcGxlX2Zvcm1fZmlyc3RfbmFtZVwiIC8+XG4gIDwvZmllbGRzZXQ+XG48L2Rpdj5cblxuPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXAgXCI+XG4gIDxmaWVsZHNldCBpZD1cImxhc3RfbmFtZVwiPlxuXG4gICAgPGxhYmVsIGNsYXNzPVwiZm9ybS1sYWJlbFwiIGZvcj1cIm1haW5fcGVvcGxlX2Zvcm1fbGFzdF9uYW1lXCI+TGFzdCBuYW1lPC9sYWJlbD5cbiAgICA8aW5wdXQgY2xhc3M9XCJmb3JtLWNvbnRyb2wgZ292dWstaW5wdXQtLXdpZHRoLTIwXCIgdHlwZT1cInRleHRcIiBuYW1lPVwibWFpbl9wZW9wbGVfZm9ybVtsYXN0X25hbWVdXCIgaWQ9XCJtYWluX3Blb3BsZV9mb3JtX2xhc3RfbmFtZVwiIC8+XG4gIDwvZmllbGRzZXQ+XG48L2Rpdj5cblxuXG4gICAgICA8aW5wdXQgdmFsdWU9XCJXMTVwNlVrZVQ4VHBZd0xKdlBSWnZjdGZcIiB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cIm1haW5fcGVvcGxlX2Zvcm1bdG9rZW5dXCIgaWQ9XCJtYWluX3Blb3BsZV9mb3JtX3Rva2VuXCIgLz5cblxuICAgICAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQWRkIGFub3RoZXIgcGVyc29uXCIgY2xhc3M9XCJidXR0b25cIiAvPlxuICAgICAgICA8L2Rpdj5cbjwvZm9ybT4gIDwvZGl2PiA8IS0tIGNsb3NlcyAuY29sdW1uLXR3by10aGlyZHMgLS0+XG5cbjwvZGl2PiA8IS0tIGNsb3NlcyAuZ3JpZC1yb3cgLS0+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
     http_version: 
-  recorded_at: Tue, 27 Aug 2019 08:15:14 GMT
+  recorded_at: Thu, 29 Aug 2019 14:06:11 GMT
 recorded_with: VCR 5.0.0
