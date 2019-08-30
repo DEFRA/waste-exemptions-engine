@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       let(:form) { double(:form, exemptions: exemptions) }
 
       context "when there is more than one exemption" do
-        let(:exemptions) { [:exemption_1, :exemption_2] }
+        let(:exemptions) { %i[exemption_1 exemption_2] }
 
         it "returns the string `many`" do
           expect(helper.exemptions_plural(form)).to eq("many")
