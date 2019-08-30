@@ -27,6 +27,8 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
           invalid_form = build(form_factory, **invalid_data)
           invalid_form.validate
 
+          raise("No errors found for invalid data: #{invalid_data}") if invalid_form.valid?
+
           invalid_form.errors.messages.values.flatten.each do |error_message|
             # We include error messages twice, but RSpec has no built-in "include twice" method yet.
             # Hence, the scan will make sure we match the message *at least* twice in the rendered page.

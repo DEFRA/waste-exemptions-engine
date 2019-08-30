@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class CertificatePresenter < BasePresenter
 
     def partners_names
-      people.select(&:partner?).map do |person|
+      people.map do |person|
         format_name(person.first_name, person.last_name)
       end.join("</br>").html_safe
     end
