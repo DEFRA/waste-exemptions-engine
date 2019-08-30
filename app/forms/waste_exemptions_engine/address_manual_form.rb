@@ -27,13 +27,13 @@ module WasteExemptionsEngine
       assign_params(params)
 
       new_address = create_address if valid?
-      transient_addresses = add_or_replace_address(
-                              new_address,
-                              @transient_registration.transient_addresses,
-                              existing_address
-                            )
+
       attributes = {
-        transient_addresses: transient_addresses
+        transient_addresses: add_or_replace_address(
+          new_address,
+          @transient_registration.transient_addresses,
+          existing_address
+        )
       }
 
       super(attributes)
