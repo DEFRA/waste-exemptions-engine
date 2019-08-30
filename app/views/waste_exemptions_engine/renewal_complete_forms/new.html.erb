@@ -7,7 +7,7 @@
       <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @renewal_complete_form.reference %></span></p>
     </div>
 
-    <p><%= t(".confirmation_email_text.#{@renewal_complete_form.emails_plural}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
+    <p><%= t(".confirmation_email_text.#{emails_plural(@renewal_complete_form)}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
 
     <p><%= t(".what_happens_next.paragraph_1", expire_month_year: @renewal_complete_form.expire_month_year) %></p>
     <p><%= t(".what_happens_next.paragraph_2") %></p>
