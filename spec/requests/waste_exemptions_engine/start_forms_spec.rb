@@ -27,7 +27,7 @@ module WasteExemptionsEngine
 
     describe "POST start_form" do
       let(:request_path) { "/waste_exemptions_engine/start/" }
-      let(:request_body) { { start_form: { token: form.token, start: "new" } } }
+      let(:request_body) { { start_form: { token: form.token, start_option: "new" } } }
       status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
       # A successful POST request redirects to the next form in the work flow. We have chosen to
