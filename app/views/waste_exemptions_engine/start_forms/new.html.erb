@@ -5,26 +5,26 @@
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
     <div class="form-group <%= "form-group-error" if @start_form.errors[:start].any? %>">
-      <fieldset id="start">
+      <fieldset id="start_option">
         <legend class="visuallyhidden">
           <%= t(".heading") %>
         </legend>
 
-        <% if @start_form.errors[:start].any? %>
-          <span class="error-message"><%= @start_form.errors[:start].join(", ") %></span>
+        <% if @start_form.errors[:start_option].any? %>
+          <span class="error-message"><%= @start_form.errors[:start_option].join(", ") %></span>
         <% end %>
 
         <div class="multiple-choice">
-          <%= f.radio_button :start, 'new' %>
-          <%= f.label :start, t(".options.new"), value: 'new' %>
+          <%= f.radio_button :start_option, 'new' %>
+          <%= f.label :start_option, t(".options.new"), value: 'new' %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :start, 'reregister' %>
-          <%= f.label :start, t(".options.reregister"), value: 'reregister' %>
+          <%= f.radio_button :start_option, 'reregister' %>
+          <%= f.label :start_option, t(".options.reregister"), value: 'reregister' %>
         </div>
         <div class="multiple-choice">
-          <%= f.radio_button :start, 'change' %>
-          <%= f.label :start, t(".options.change"), value: 'change' %>
+          <%= f.radio_button :start_option, 'change' %>
+          <%= f.label :start_option, t(".options.change"), value: 'change' %>
         </div>
       </fieldset>
     </div>
