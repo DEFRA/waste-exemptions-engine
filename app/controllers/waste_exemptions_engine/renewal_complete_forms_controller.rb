@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class RenewalCompleteFormsController < FormsController
+    helper PluralsHelper
+
     def new
       return unless super(RenewalCompleteForm, "renewal_complete_form")
 
