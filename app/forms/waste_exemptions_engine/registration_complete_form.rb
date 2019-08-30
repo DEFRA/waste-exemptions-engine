@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class RegistrationCompleteForm < BaseForm
     attr_accessor :reference, :applicant_email, :contact_email
 
+    delegate :exemptions, to: :transient_registration
+
     def initialize(registration)
       super
 

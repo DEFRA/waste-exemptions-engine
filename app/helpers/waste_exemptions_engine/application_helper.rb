@@ -13,8 +13,8 @@ module WasteExemptionsEngine
       "#{first_name} #{last_name}"
     end
 
-    def emails_plural(transient_registration)
-      transient_registration.applicant_email == transient_registration.contact_email ? "one" : "many"
+    def emails_plural(form)
+      form.applicant_email == form.contact_email ? "one" : "many"
     end
 
     def current_git_commit

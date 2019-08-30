@@ -2,8 +2,8 @@
 
 module WasteExemptionsEngine
   module RegistrationCompleteFormsHelper
-    def exemptions_plural(transient_registration)
-      transient_registration.exemptions.length > 1 ? "many" : "one"
+    def exemptions_plural(form)
+      form.exemptions.length > 1 ? "many" : "one"
     end
   end
 end
