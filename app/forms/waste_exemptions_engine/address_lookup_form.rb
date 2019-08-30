@@ -2,10 +2,11 @@
 
 module WasteExemptionsEngine
   class AddressLookupForm < BaseForm
-    include AddressForm
+    include AddressHelper
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address
+    attr_accessor :postcode
 
     validates :temp_address, "waste_exemptions_engine/address": true
 
@@ -23,8 +24,13 @@ module WasteExemptionsEngine
       new_address = create_address(params[:temp_address])
 
       self.temp_address = new_address
+      transient_addresses = add_or_replace_address(
+                              new_address,
+                              @transient_registration.transient_addresses,
+                              existing_address
+                            )
       attributes = {
-        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
+        transient_addresses: transient_addresses
       }
 
       super(attributes)

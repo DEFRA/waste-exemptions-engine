@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class AddressManualForm < BaseForm
-    include AddressForm
+    include AddressHelper
 
     attr_accessor :address_finder_error
     attr_accessor :premises, :street_address, :locality, :city, :postcode
@@ -27,9 +27,13 @@ module WasteExemptionsEngine
       assign_params(params)
 
       new_address = create_address if valid?
-
+      transient_addresses = add_or_replace_address(
+                              new_address,
+                              @transient_registration.transient_addresses,
+                              existing_address
+                            )
       attributes = {
-        transient_addresses: add_or_replace_address(new_address, @transient_registration.transient_addresses)
+        transient_addresses: transient_addresses
       }
 
       super(attributes)

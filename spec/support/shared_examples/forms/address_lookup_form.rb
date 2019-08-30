@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "an address lookup form", vcr: true do |form_factory|
-  it "includes AddressForm" do
+  it "includes AddressHelper" do
     included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
-    expect(included_modules).to include(WasteExemptionsEngine::AddressForm)
+    expect(included_modules).to include(WasteExemptionsEngine::AddressHelper)
   end
 
   it "is a type of AddressLookupForm" do
