@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
     # TODO: Move in AddressHelper?
     def format_postcode(postcode)
-      postcode.upcase.strip
+      postcode&.upcase&.strip
     end
   end
 end
