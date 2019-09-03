@@ -21,7 +21,7 @@ module WasteExemptionsEngine
       rescue JSON::ParserError => e
         handle_error(e)
         :error
-      rescue RestClient::BadRequest
+      rescue RestClient::BadRequest => e
         handle_error(e)
         :not_found
       rescue StandardError => e

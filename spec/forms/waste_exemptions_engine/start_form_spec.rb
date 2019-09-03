@@ -12,17 +12,17 @@ module WasteExemptionsEngine
 
     it "validates the start option using the StartValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:start)
-      expect(validators[:start].first.class)
+      expect(validators.keys).to include(:start_option)
+      expect(validators[:start_option].first.class)
         .to eq(WasteExemptionsEngine::StartValidator)
     end
 
     it_behaves_like "a validated form", :start_form do
-      let(:valid_params) { { token: form.token, start: START_OPTIONS.sample } }
+      let(:valid_params) { { token: form.token, start_option: START_OPTIONS.sample } }
       let(:invalid_params) do
         [
-          { token: form.token, start: "foo" },
-          { token: form.token, start: "" }
+          { token: form.token, start_option: "foo" },
+          { token: form.token, start_option: "" }
         ]
       end
     end
@@ -31,7 +31,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the selected start option" do
           start_option = START_OPTIONS.sample
-          valid_params = { token: form.token, start: start_option }
+          valid_params = { token: form.token, start_option: start_option }
           transient_registration = form.transient_registration
 
           expect(transient_registration.start_option).to be_blank

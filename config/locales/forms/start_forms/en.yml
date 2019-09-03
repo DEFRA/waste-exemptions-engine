@@ -14,7 +14,7 @@ en:
       models:
         waste_exemptions_engine/start_form:
           attributes:
-            start:
+            start_option:
               inclusion: "You must answer this question"
             token:
               invalid_format: "The token is not valid"

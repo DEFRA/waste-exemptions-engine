@@ -27,16 +27,17 @@ module WasteExemptionsEngine
       super({})
     end
 
-    def address_finder_error(error_occurred)
-      transient_registration.address_finder_error = error_occurred
+    def address_finder_errored!
+      # Used in the postcode validator to set the parameter.
+      # This is then saved in the `#submit` and used by AASM to decide
+      # what is the next valid status for the user.
+      transient_registration.address_finder_error = true
     end
 
     private
 
     def format_postcode(postcode)
-      return unless postcode.present?
-
-      postcode.upcase.strip
+      postcode&.upcase&.strip
     end
 
     # We use this to work out what the temp field name will be in the model.
