@@ -15,13 +15,12 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method
-      # for updating
       self.temp_contact_postcode = format_postcode(params[:temp_contact_postcode])
-
-      # We pass through an empty hash for the attributes, as there is nothing to
-      # update on the registration itself
-      super({ temp_contact_postcode: temp_contact_postcode })
+      
+      # We persist the postcode regardless of validations.
+      transient_registration.update_attributes(temp_contact_postcode: temp_contact_postcode)
+      
+      super({})
     end
   end
 end
