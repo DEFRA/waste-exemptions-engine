@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OperatorPostcodeForm < BaseForm
+  class OperatorPostcodeForm < BasePostcodeForm
     attr_accessor :business_type, :temp_operator_postcode
 
     validates :temp_operator_postcode, "waste_exemptions_engine/postcode": true
@@ -15,18 +15,12 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method
-      # for updating
       self.temp_operator_postcode = format_postcode(params[:temp_operator_postcode])
 
-      # We pass through an empty hash for the attributes, as there is nothing to
-      # update on the registration itself
-      super({ temp_operator_postcode: temp_operator_postcode })
-    end
+      # We persist the postcode regardless of validations.
+      transient_registration.update_attributes(temp_operator_postcode: temp_operator_postcode)
 
-    # TODO: Move in AddressHelper?
-    def format_postcode(postcode)
-      postcode&.upcase&.strip
+      super({})
     end
   end
 end
