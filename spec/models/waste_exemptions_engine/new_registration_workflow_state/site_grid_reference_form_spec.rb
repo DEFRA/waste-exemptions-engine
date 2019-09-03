@@ -14,8 +14,6 @@ module WasteExemptionsEngine
           next_state = :check_your_answers_form
           alt_state = :site_postcode_form
 
-          before(:each) { new_registration.address_finder_error = false }
-
           it "can only transition to either #{previous_state}, #{next_state}, or #{alt_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
             expect(permitted_states).to match_array([previous_state, next_state, alt_state])
