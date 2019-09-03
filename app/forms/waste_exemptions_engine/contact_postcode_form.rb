@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ContactPostcodeForm < BaseForm
+  class ContactPostcodeForm < BasePostcodeForm
     attr_accessor :business_type, :temp_contact_postcode
 
     validates :temp_contact_postcode, "waste_exemptions_engine/postcode": true
@@ -22,13 +22,6 @@ module WasteExemptionsEngine
       # We pass through an empty hash for the attributes, as there is nothing to
       # update on the registration itself
       super({ temp_contact_postcode: temp_contact_postcode })
-    end
-
-    private
-
-    # TODO: Move in AddressHelper
-    def format_postcode(postcode)
-      postcode&.upcase&.strip
     end
   end
 end
