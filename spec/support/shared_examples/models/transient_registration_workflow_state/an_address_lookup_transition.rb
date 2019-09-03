@@ -10,8 +10,6 @@ RSpec.shared_examples "an address lookup transition" do |next_state_if_not_skipp
       next_state = next_state_if_not_skipping_to_manual
       alt_state = "#{address_type}_address_manual_form".to_sym
 
-      before(:each) { subject.address_finder_error = false }
-
       it "can only transition to either #{previous_state}, #{next_state}, or #{alt_state}" do
         permitted_states = Helpers::WorkflowStates.permitted_states(subject)
         expect(permitted_states).to match_array([previous_state, next_state, alt_state])

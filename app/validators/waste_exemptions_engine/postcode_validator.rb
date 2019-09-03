@@ -34,10 +34,9 @@ module WasteExemptionsEngine
         record.errors[attribute] << error_message(record, attribute, "no_results")
         false
       when :error
-        record.address_finder_error(true) if record.respond_to? :address_finder_error
+        record.address_finder_errored!
         true
       else
-        record.address_finder_error(false) if record.respond_to? :address_finder_error
         true
       end
     end
