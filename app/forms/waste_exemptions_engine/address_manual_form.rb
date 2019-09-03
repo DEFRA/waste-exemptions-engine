@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class AddressManualForm < BaseForm
-    include AddressHelper
+    include CanAddOrReplaceAnAddress
 
     attr_accessor :address_finder_error
     attr_accessor :premises, :street_address, :locality, :city, :postcode

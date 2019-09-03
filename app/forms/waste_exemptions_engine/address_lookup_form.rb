@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class AddressLookupForm < BaseForm
-    include AddressHelper
+    include CanAddOrReplaceAnAddress
 
     attr_accessor :temp_addresses
     attr_accessor :temp_address

@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
-    include AddressHelper
+    include CanAddOrReplaceAnAddress
 
     attr_accessor :grid_reference, :description
 

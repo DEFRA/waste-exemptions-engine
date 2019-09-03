@@ -3,10 +3,13 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe AddressHelper, type: :helper do
-    describe "#add_or_replace_address" do
+  RSpec.describe CanAddOrReplaceAnAddress do
+    class TestClass
+      include CanAddOrReplaceAnAddress
+    end
 
-      let(:result) { helper.add_or_replace_address(address, existing_addresses, existing_address) }
+    describe "#add_or_replace_address" do
+      let(:result) { TestClass.new.add_or_replace_address(address, existing_addresses, existing_address) }
 
       context "when the address to replace is nil" do
         let(:existing_addresses) { double(:existing_addresses) }

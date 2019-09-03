@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
-  it "includes AddressHelper" do
+  it "includes CanAddOrReplaceAnAddress" do
     included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
-    expect(included_modules).to include(WasteExemptionsEngine::AddressHelper)
+    expect(included_modules).to include(WasteExemptionsEngine::CanAddOrReplaceAnAddress)
   end
 
   it "is a type of AddressManualForm" do
