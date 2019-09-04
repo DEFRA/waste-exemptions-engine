@@ -49,6 +49,16 @@ FactoryBot.define do
       end
     end
 
+    trait :with_all_addresses do
+      addresses do
+        [
+          build(:transient_address, :operator_address, :manual),
+          build(:transient_address, :contact_address, :manual),
+          build(:transient_address, :site_address, :manual)
+        ]
+      end
+    end
+
     trait :modified_people do
       after(:build) do |edit_registration|
         edit_registration.people.each do |person|
