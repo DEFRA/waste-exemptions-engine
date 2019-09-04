@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
+    include CanAddOrReplaceAnAddress
+
     attr_accessor :grid_reference, :description
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
@@ -25,7 +27,8 @@ module WasteExemptionsEngine
       attributes = {
         transient_addresses: add_or_replace_address(
           new_address,
-          @transient_registration.transient_addresses
+          @transient_registration.transient_addresses,
+          existing_address
         )
       }
 
@@ -50,24 +53,6 @@ module WasteExemptionsEngine
         { "grid_reference": grid_reference, "description": description },
         TransientAddress.address_types[:site]
       )
-    end
-
-    def add_or_replace_address(address, existing_addresses)
-      return existing_addresses unless address
-
-      # Update the registration's nested addresses, replacing any existing address
-      # of the same type
-      updated_addresses = existing_addresses
-      matched_address = updated_addresses.find(existing_address.id) if existing_address
-
-      if matched_address
-        updated_addresses.delete(matched_address)
-        matched_address.delete
-      end
-
-      updated_addresses << address
-
-      updated_addresses
     end
   end
 end
