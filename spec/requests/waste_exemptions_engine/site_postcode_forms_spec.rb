@@ -7,8 +7,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :site_postcode_form, "/site-postcode"
     include_examples "go back", :site_postcode_form, "/site-postcode/back"
     include_examples "POST form", :site_postcode_form, "/site-postcode" do
-      let(:form_data) { { postcode: "BS1 5AH" } }
-      let(:invalid_form_data) { [{ postcode: "BS" }, { postcode: nil }] }
+      let(:form_data) { { temp_site_postcode: "BS1 5AH" } }
+      let(:invalid_form_data) { [{ temp_site_postcode: "BS" }, { temp_site_postcode: nil }] }
     end
 
     include_examples "skip to manual address",
@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       it "pre-fills site postcode information" do
         get "/waste_exemptions_engine/site-postcode/#{edit_site_postcode_form.token}"
 
-        expect(response.body).to have_html_escaped_string(edit_site_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(edit_site_postcode_form.temp_site_postcode)
       end
     end
 
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
       it "pre-fills site postcode information" do
         get "/waste_exemptions_engine/site-postcode/#{renew_site_postcode_form.token}"
 
-        expect(response.body).to have_html_escaped_string(renew_site_postcode_form.postcode)
+        expect(response.body).to have_html_escaped_string(renew_site_postcode_form.temp_site_postcode)
       end
     end
   end

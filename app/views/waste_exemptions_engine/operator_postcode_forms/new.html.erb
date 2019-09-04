@@ -6,21 +6,21 @@
 
     <h1 class="heading-large"><%= t(".heading.#{@operator_postcode_form.business_type}") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @operator_postcode_form.errors[:postcode].any? %>">
-      <fieldset id="postcode">
+    <div class="form-group <%= "form-group-error" if @operator_postcode_form.errors[:temp_operator_postcode].any? %>">
+      <fieldset id="temp_operator_postcode">
         <legend class="visuallyhidden">
           <%= t(".heading.#{@operator_postcode_form.business_type}") %>
         </legend>
 
-        <% if @operator_postcode_form.errors[:postcode].any? %>
-          <span class="error-message"><%= @operator_postcode_form.errors[:postcode].join(", ") %></span>
+        <% if @operator_postcode_form.errors[:temp_operator_postcode].any? %>
+          <span class="error-message"><%= @operator_postcode_form.errors[:temp_operator_postcode].join(", ") %></span>
         <% end %>
 
-        <%= f.label :postcode, class: "form-label" do %>
+        <%= f.label :temp_operator_postcode, class: "form-label" do %>
           <%= t(".postcode_label") %>
           <span class='form-hint'><%= t(".postcode_hint") %></span>
         <% end %>
-        <%= f.text_field :postcode, value: @operator_postcode_form.postcode, class: "form-control govuk-input--width-10" %>
+        <%= f.text_field :temp_operator_postcode, value: @operator_postcode_form.temp_operator_postcode, class: "form-control govuk-input--width-10" %>
 
       </fieldset>
     </div>
@@ -30,7 +30,7 @@
       <%= f.submit t(".next_button"), class: "button" %>
     </div>
 
-    <% if @operator_postcode_form.errors.added?(:postcode, :no_results) %>
+    <% if @operator_postcode_form.errors.added?(:temp_operator_postcode, :no_results) %>
       <div class="form-group">
         <%= link_to(t(".manual_address_link"), skip_to_manual_address_operator_postcode_forms_path(@operator_postcode_form.token)) %>
       </div>
