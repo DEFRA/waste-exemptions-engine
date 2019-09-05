@@ -20,7 +20,7 @@ module WasteExemptionsEngine
         [
           {
             token: form.token,
-            transient_contact_address: {
+            contact_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
               locality: "Bristol",
@@ -30,7 +30,7 @@ module WasteExemptionsEngine
           },
           {
             token: form.token,
-            transient_contact_address: {
+            contact_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
               locality: "",
@@ -44,7 +44,7 @@ module WasteExemptionsEngine
         [
           {
             token: form.token,
-            transient_contact_address: {
+            contact_address: {
               premises: "",
               street_address: "",
               locality: "",
@@ -54,7 +54,7 @@ module WasteExemptionsEngine
           },
           {
             token: form.token,
-            transient_contact_address: {
+            contact_address: {
               premises: Helpers::TextGenerator.random_string(201), # The max length is 200.
               street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
               locality: Helpers::TextGenerator.random_string(71), # The max length is 70.
@@ -72,7 +72,7 @@ module WasteExemptionsEngine
         subject(:form) { build(form_factory) }
         let(:address_data) do
           {
-            transient_contact_address: {
+            contact_address: {
               premises: "Example House",
               street_address: "2 On The Road",
               locality: "Near Horizon House",
@@ -83,7 +83,7 @@ module WasteExemptionsEngine
         end
         let(:white_space_address_data) do
           {
-            transient_contact_address: {
+            contact_address: {
               premises: "  Example House ",
               street_address: " 2 On The Road  ",
               locality: " Near Horizon House   ",
@@ -104,7 +104,7 @@ module WasteExemptionsEngine
 
           expect(transient_registration.transient_addresses.count).to eq(1)
           submitted_address = transient_registration.transient_addresses.first
-          address_data[:transient_contact_address].each do |key, value|
+          address_data[:contact_address].each do |key, value|
             expect(submitted_address.send(key)).to eq(value)
           end
         end
@@ -112,9 +112,9 @@ module WasteExemptionsEngine
         context "when the address data includes extraneous white space" do
           it "strips the extraneous white space from the submitted address data" do
             # Ensure the test data is properly configured:
-            address_data[:transient_contact_address].each do |key, value|
-              expect(white_space_params[:transient_contact_address][key]).not_to eq(value)
-              expect(white_space_params[:transient_contact_address][key].strip).to eq(value)
+            address_data[:contact_address].each do |key, value|
+              expect(white_space_params[:contact_address][key]).not_to eq(value)
+              expect(white_space_params[:contact_address][key].strip).to eq(value)
             end
             expect(transient_registration.transient_addresses).to be_empty
 
@@ -122,7 +122,7 @@ module WasteExemptionsEngine
 
             expect(transient_registration.reload.transient_addresses.count).to eq(1)
             submitted_address = transient_registration.transient_addresses.first
-            address_data[:transient_contact_address].each do |key, value|
+            address_data[:contact_address].each do |key, value|
               expect(submitted_address.send(key)).to eq(value)
             end
           end
