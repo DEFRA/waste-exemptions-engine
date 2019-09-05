@@ -20,7 +20,7 @@ RSpec.shared_examples "a validated form" do |form_factory|
         # Handle both single sets of valid params as well as multiple sets of valid params.
         params = valid_params.is_a?(Array) ? valid_params : [valid_params]
         params.each do |valid_param_set|
-          expect(form.submit(valid_param_set)).to eq(true)
+          expect(form.submit(ActionController::Parameters.new(valid_param_set))).to eq(true)
         end
       end
     end
@@ -30,7 +30,7 @@ RSpec.shared_examples "a validated form" do |form_factory|
         # Handle both single sets of invalid params as well as multiple sets of invalid params.
         params = invalid_params.is_a?(Array) ? invalid_params : [invalid_params]
         params.each do |invalid_param_set|
-          expect(form.submit(invalid_param_set)).to eq(false)
+          expect(form.submit(ActionController::Parameters.new(invalid_param_set))).to eq(false)
         end
       end
     end

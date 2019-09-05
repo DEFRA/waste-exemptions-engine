@@ -17,3 +17,18 @@ en:
               too_long: "The town or city must be no longer than 30 characters"
             postcode:
               too_long: "The postcode must be no longer than 8 characters"
+        test/legacy_manual_address_validatable:
+          attributes:
+            premises:
+              blank: "Enter the building name or number"
+              too_long: "The building name or number must be no longer than 200 characters"
+            street_address:
+              blank: "Enter an address line 1"
+              too_long: "The address line 1 must be no longer than 160 characters"
+            locality:
+              too_long: "The address line 2 must be no longer than 70 characters"
+            city:
+              blank: "Enter a town or city"
+              too_long: "The town or city must be no longer than 30 characters"
+            postcode:
+              too_long: "The postcode must be no longer than 8 characters"

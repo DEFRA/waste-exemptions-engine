@@ -3,25 +3,15 @@
 require "rails_helper"
 
 module Test
-  ManualAddressValidatable = Struct.new(:premises, :street_address, :locality, :city, :postcode, :transient_address) do
-    MockTransientAddress = Struct.new(:premises, :street_address, :locality, :city, :postcode)
-
+  LegacyManualAddressValidatable = Struct.new(:premises, :street_address, :locality, :city, :postcode) do
     include ActiveModel::Validations
 
-    attr_accessor :transient_address
-
-    validates :transient_address, "waste_exemptions_engine/manual_address": true
-
-    def initialize(*attrs)
-      super(*attrs)
-
-      self.transient_address = MockTransientAddress.new(premises, street_address, locality, city, postcode)
-    end
+    validates_with WasteExemptionsEngine::LegacyManualAddressValidator
   end
 end
 
 module WasteExemptionsEngine
-  RSpec.describe ManualAddressValidator, type: :model do
+  RSpec.describe LegacyManualAddressValidator, type: :model do
     valid_premises = "Example House"
     too_long_premises = Helpers::TextGenerator.random_string(201) # The max length is 200.
     valid_street_address = "2 On The Road"
@@ -46,7 +36,7 @@ module WasteExemptionsEngine
     length_validated_attributes = ordered_attributes
 
     # Map all combinations of the 5 attributes where 4 are valid and one is either missing or too long.
-    # The attributes have to be in an array in the same order as the ManualAddressValidatable params.
+    # The attributes have to be in an array in the same order as the LegacyManualAddressValidatable params.
     inputs = ordered_attributes.each_with_index.each_with_object({}) do |(attribute, i), h|
       h[attribute] = {
         missing: valid_parameters.each_with_index.map { |p, j| i == j ? "" : p },
@@ -56,18 +46,18 @@ module WasteExemptionsEngine
 
     describe "#validate" do
       context "when the manual address is valid" do
-        it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*valid_parameters)
+        it_behaves_like "a valid record", Test::LegacyManualAddressValidatable.new(*valid_parameters)
 
         optional_attributes.each do |property|
           context "even though the #{property} is missing (because it is optional" do
-            it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*(inputs[property][:missing]))
+            it_behaves_like "a valid record", Test::LegacyManualAddressValidatable.new(*(inputs[property][:missing]))
           end
         end
       end
 
       context "when the manual address is not valid" do
         context "and the form is empty" do
-          subject(:validatable) { Test::ManualAddressValidatable.new }
+          subject(:validatable) { Test::LegacyManualAddressValidatable.new }
           it "confirms the object is invalid" do
             expect(validatable).to_not be_valid
           end
@@ -79,7 +69,7 @@ module WasteExemptionsEngine
         end
 
         context "and every attribute is too long" do
-          subject(:validatable) { Test::ManualAddressValidatable.new(*too_long_parameters) }
+          subject(:validatable) { Test::LegacyManualAddressValidatable.new(*too_long_parameters) }
 
           it "confirms the object is invalid" do
             expect(validatable).to_not be_valid
@@ -93,7 +83,7 @@ module WasteExemptionsEngine
 
         required_attributes.each do |property|
           context "because the #{property} is missing" do
-            validatable = Test::ManualAddressValidatable.new(*(inputs[property][:missing]))
+            validatable = Test::LegacyManualAddressValidatable.new(*(inputs[property][:missing]))
             error_message = Helpers::Translator.error_message(validatable, property, :blank)
 
             it_behaves_like "an invalid record", validatable, property, error_message
@@ -102,7 +92,7 @@ module WasteExemptionsEngine
 
         length_validated_attributes.each do |property|
           context "because the #{property} is too long" do
-            validatable = Test::ManualAddressValidatable.new(*(inputs[property][:too_long]))
+            validatable = Test::LegacyManualAddressValidatable.new(*(inputs[property][:too_long]))
             error_message = Helpers::Translator.error_message(validatable, property, :too_long)
 
             it_behaves_like "an invalid record", validatable, property, error_message

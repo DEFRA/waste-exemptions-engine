@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ManualAddressValidator < ActiveModel::EachValidator
+  class LegacyManualAddressValidator < ActiveModel::Validator
     include CanValidatePresence
     include CanValidateLength
 
@@ -13,7 +13,7 @@ module WasteExemptionsEngine
       postcode: { presence: false, max_length: 8 }
     }.freeze
 
-    def validate_each(record, _attribute, _value)
+    def validate(record)
       VALIDATION_REQUIREMENTS.each do |attribute, requirement|
         value = record.send(attribute)
         value_is_present?(record, attribute, value) if requirement[:presence]
