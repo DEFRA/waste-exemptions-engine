@@ -16,21 +16,21 @@ RSpec.shared_examples "a transient_registration" do |model_factory|
 
     describe "#site_address" do
       it "returns an TransientAddress of type :site" do
-        site_address = transient_registration.addresses.find_by(address_type: :site)
+        site_address = transient_registration.addresses.find_by(address_type: 3)
         expect(transient_registration.site_address).to eq(site_address)
       end
     end
 
     describe "#operator_address" do
       it "returns an TransientAddress of type :operator" do
-        operator_address = transient_registration.addresses.find_by(address_type: :operator)
+        operator_address = transient_registration.addresses.find_by(address_type: 1)
         expect(transient_registration.operator_address).to eq(operator_address)
       end
     end
 
     describe "#contact_address" do
       it "returns an TransientAddress of type :contact" do
-        contact_address = transient_registration.addresses.find_by(address_type: :contact)
+        contact_address = transient_registration.addresses.find_by(address_type: 2)
         expect(transient_registration.contact_address).to eq(contact_address)
       end
     end

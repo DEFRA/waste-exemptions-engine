@@ -16,6 +16,31 @@ module WasteExemptionsEngine
 
     it_behaves_like "an owner of registration attributes", :registration, :address
 
+    describe "associations" do
+      subject(:registration) { create(:registration, :complete) }
+
+      describe "#site_address" do
+        it "returns an Address of type :site" do
+          site_address = registration.addresses.find_by(address_type: 3)
+          expect(registration.site_address).to eq(site_address)
+        end
+      end
+
+      describe "#operator_address" do
+        it "returns an Address of type :operator" do
+          operator_address = registration.addresses.find_by(address_type: 1)
+          expect(registration.operator_address).to eq(operator_address)
+        end
+      end
+
+      describe "#contact_address" do
+        it "returns an Address of type :contact" do
+          contact_address = registration.addresses.find_by(address_type: 2)
+          expect(registration.contact_address).to eq(contact_address)
+        end
+      end
+    end
+
     describe "#renewal?" do
       subject(:registration) { create(:registration) }
 
