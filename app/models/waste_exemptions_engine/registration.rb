@@ -27,6 +27,14 @@ module WasteExemptionsEngine
     belongs_to :referring_registration, class_name: "Registration"
     has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
+    # In this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
+    has_one :site_address, -> { where(address_type: 3) }, class_name: "Address"
+    has_one :contact_address, -> { where(address_type: 2) }, class_name: "Address"
+    has_one :operator_address, -> { where(address_type: 1) }, class_name: "Address"
+    accepts_nested_attributes_for :site_address
+    accepts_nested_attributes_for :contact_address
+    accepts_nested_attributes_for :operator_address
+
     after_create :apply_reference
 
     has_secure_token :renew_token

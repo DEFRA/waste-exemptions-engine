@@ -14,21 +14,24 @@ RSpec.shared_examples "a transient_registration" do |model_factory|
   describe "associations" do
     subject(:transient_registration) { create(model_factory, :with_all_addresses) }
 
-    describe "#transient_site_address" do
+    describe "#site_address" do
       it "returns an TransientAddress of type :site" do
-        expect(transient_registration.transient_site_address).to eq(transient_registration.site_address)
+        site_address = transient_registration.addresses.find_by(address_type: :site)
+        expect(transient_registration.site_address).to eq(site_address)
       end
     end
 
-    describe "#transient_operator_address" do
+    describe "#operator_address" do
       it "returns an TransientAddress of type :operator" do
-        expect(transient_registration.transient_operator_address).to eq(transient_registration.operator_address)
+        operator_address = transient_registration.addresses.find_by(address_type: :operator)
+        expect(transient_registration.operator_address).to eq(operator_address)
       end
     end
 
-    describe "#transient_contact_address" do
+    describe "#contact_address" do
       it "returns an TransientAddress of type :contact" do
-        expect(transient_registration.transient_contact_address).to eq(transient_registration.contact_address)
+        contact_address = transient_registration.addresses.find_by(address_type: :contact)
+        expect(transient_registration.contact_address).to eq(contact_address)
       end
     end
   end

@@ -19,12 +19,12 @@ module WasteExemptionsEngine
     has_many :transient_addresses, dependent: :destroy
 
     # In this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
-    has_one :transient_site_address, -> { where(address_type: 3) }, class_name: "TransientAddress"
-    has_one :transient_contact_address, -> { where(address_type: 2) }, class_name: "TransientAddress"
-    has_one :transient_operator_address, -> { where(address_type: 1) }, class_name: "TransientAddress"
-    accepts_nested_attributes_for :transient_site_address
-    accepts_nested_attributes_for :transient_contact_address
-    accepts_nested_attributes_for :transient_operator_address
+    has_one :site_address, -> { where(address_type: 3) }, class_name: "TransientAddress"
+    has_one :contact_address, -> { where(address_type: 2) }, class_name: "TransientAddress"
+    has_one :operator_address, -> { where(address_type: 1) }, class_name: "TransientAddress"
+    accepts_nested_attributes_for :site_address
+    accepts_nested_attributes_for :contact_address
+    accepts_nested_attributes_for :operator_address
 
     has_many :transient_people, dependent: :destroy
     has_many :transient_registration_exemptions, dependent: :destroy
