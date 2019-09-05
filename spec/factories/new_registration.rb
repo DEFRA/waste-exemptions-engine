@@ -38,8 +38,19 @@ FactoryBot.define do
       company_no { "09360070" }
     end
 
+    trait :with_all_addresses do
+      addresses do
+        [
+          build(:transient_address, :operator_address, :manual),
+          build(:transient_address, :contact_address, :manual),
+          build(:transient_address, :site_address, :manual)
+        ]
+      end
+    end
+
     trait :complete do
       limited_company
+      with_all_addresses
 
       location { "england" }
       applicant_first_name { Faker::Name.first_name }
@@ -56,14 +67,6 @@ FactoryBot.define do
       on_a_farm { true }
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
-
-      addresses do
-        [
-          build(:transient_address, :operator_address, :manual),
-          build(:transient_address, :contact_address, :manual),
-          build(:transient_address, :site_address, :manual)
-        ]
-      end
     end
   end
 end
