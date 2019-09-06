@@ -16,7 +16,6 @@ FactoryBot.define do
     trait :modified do
       after(:build) do |edit_registration|
         registration = edit_registration.registration
-        # binding.pry
         # Update string attributes
         (Helpers::ModelProperties::REGISTRATION - %i[is_a_farmer on_a_farm reference submitted_at]).each do |attribute|
           old_value = registration[attribute]
