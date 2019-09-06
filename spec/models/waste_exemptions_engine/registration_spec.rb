@@ -221,7 +221,7 @@ module WasteExemptionsEngine
           street_address = Faker::Address.street_address
 
           registration.contact_address.update_attributes(street_address: street_address)
-          registration.paper_trail.save_with_version
+          registration.reload.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(street_address)
         end
