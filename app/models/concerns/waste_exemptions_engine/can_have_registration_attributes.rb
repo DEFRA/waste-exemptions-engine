@@ -22,25 +22,5 @@ module WasteExemptionsEngine
     def partnership?
       BUSINESS_TYPES[:partnership] == business_type
     end
-
-    def operator_address
-      find_address_by_type("operator")
-    end
-
-    def contact_address
-      find_address_by_type("contact")
-    end
-
-    def site_address
-      find_address_by_type("site")
-    end
-
-    private
-
-    def find_address_by_type(address_type)
-      return nil unless addresses.present?
-
-      addresses.select { |a| a.address_type == address_type }.first
-    end
   end
 end

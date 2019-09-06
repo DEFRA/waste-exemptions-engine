@@ -16,6 +16,31 @@ module WasteExemptionsEngine
 
     it_behaves_like "an owner of registration attributes", :registration, :address
 
+    describe "associations" do
+      subject(:registration) { create(:registration, :complete) }
+
+      describe "#site_address" do
+        it "returns an Address of type :site" do
+          site_address = registration.addresses.find_by(address_type: 3)
+          expect(registration.site_address).to eq(site_address)
+        end
+      end
+
+      describe "#operator_address" do
+        it "returns an Address of type :operator" do
+          operator_address = registration.addresses.find_by(address_type: 1)
+          expect(registration.operator_address).to eq(operator_address)
+        end
+      end
+
+      describe "#contact_address" do
+        it "returns an Address of type :contact" do
+          contact_address = registration.addresses.find_by(address_type: 2)
+          expect(registration.contact_address).to eq(contact_address)
+        end
+      end
+    end
+
     describe "#renewal?" do
       subject(:registration) { create(:registration) }
 
@@ -195,8 +220,8 @@ module WasteExemptionsEngine
         it "includes related addresses in the JSON" do
           street_address = Faker::Address.street_address
 
-          registration.contact_address.street_address = street_address
-          registration.paper_trail.save_with_version
+          registration.contact_address.update_attributes(street_address: street_address)
+          registration.reload.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(street_address)
         end
@@ -204,7 +229,7 @@ module WasteExemptionsEngine
         it "includes related people in the JSON" do
           first_name = Faker::Name.first_name
 
-          registration.people.first.first_name = first_name
+          registration.people.first.update_attributes(first_name: first_name)
           registration.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(first_name)
@@ -213,7 +238,7 @@ module WasteExemptionsEngine
         it "includes related registration_exemptions in the JSON" do
           expected_message = Faker::Lorem.sentence
 
-          registration.registration_exemptions.first.deregistration_message = expected_message
+          registration.registration_exemptions.first.update_attributes(deregistration_message: expected_message)
           registration.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(expected_message)

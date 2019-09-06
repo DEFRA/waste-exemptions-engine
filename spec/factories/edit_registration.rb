@@ -16,7 +16,6 @@ FactoryBot.define do
     trait :modified do
       after(:build) do |edit_registration|
         registration = edit_registration.registration
-
         # Update string attributes
         (Helpers::ModelProperties::REGISTRATION - %i[is_a_farmer on_a_farm reference submitted_at]).each do |attribute|
           old_value = registration[attribute]
@@ -45,6 +44,8 @@ FactoryBot.define do
             # Append 'foo' to the end of all string attributes
             address[key] = "#{value}foo" if value.is_a?(String)
           end
+
+          address.save if address.persisted?
         end
       end
     end

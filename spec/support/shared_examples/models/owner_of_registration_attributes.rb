@@ -49,22 +49,4 @@ RSpec.shared_examples "an owner of registration attributes" do |model_factory, a
 
     end
   end
-
-  describe "#operator_address" do
-    it "returns the operator address" do
-      expect(instance.operator_address).to eq(operator_address)
-    end
-  end
-
-  describe "#contact_address" do
-    it "returns the contact address" do
-      expect(instance.contact_address).to eq(contact_address)
-    end
-  end
-
-  describe "#site_address" do
-    it "returns the site address" do
-      expect(instance.site_address).to eq(site_address)
-    end
-  end
 end
