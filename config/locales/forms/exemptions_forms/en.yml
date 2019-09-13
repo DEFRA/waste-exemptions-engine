@@ -5,8 +5,7 @@ en:
         title: Select exemptions
         heading: Which exemptions are needed for this waste operation?
         description: Select all the waste exemptions you need to add to the registration
-        th_code: Exemption
-        th_description: Description
+        legend: Exemptions
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
