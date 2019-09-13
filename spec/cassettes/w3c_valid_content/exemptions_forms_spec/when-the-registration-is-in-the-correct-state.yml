@@ -8,51 +8,41 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/exemptions/back/HMCbyHru2odfNigaTWRrk1WZ\">Back</a>\n\n\n<div
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/exemptions/back/4zqqzVWJ6Tx1tgR967o1aiCh\">Back</a>\n\n\n<div
         class=\"text\">\n  <form class=\"new_exemptions_form\" id=\"new_exemptions_form\"
         action=\"/waste_exemptions_engine/exemptions\" accept-charset=\"UTF-8\" method=\"post\"><input
         name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Which
         exemptions are needed for this waste operation?</h1>\n\n    <p>Select all
         the waste exemptions you need to add to the registration</p>\n\n    <div class=\"form-group
-        \">\n      <fieldset id=\"matched_exemptions\">\n\n        <table role=\"presentation\">\n
-        \         <thead>\n          <tr>\n            <th><span class=\"heading-small\">Exemption</span></th>\n
-        \           <th><span class=\"heading-small\">Description</span></th>\n          </tr>\n
-        \         </thead>\n          <tbody>\n              <tr>\n                <td>\n
-        \                 <div class=\"multiple-choice\">\n                    <input
-        id=\"exemptions_form_checkbox-U111\" type=\"checkbox\" value=\"111\" name=\"exemptions_form[exemptions][]\"
-        />\n                    <label for=\"exemptions_form_checkbox-U111\">\n                      U111<span
-        class=\"visually-hidden\"> Non quis consequatur in.</span>\n</label>                  </div>\n
-        \               </td>\n                <td><span>Non quis consequatur in.</span></td>\n
-        \             </tr>\n              <tr>\n                <td>\n                  <div
-        class=\"multiple-choice\">\n                    <input id=\"exemptions_form_checkbox-U112\"
-        type=\"checkbox\" value=\"112\" name=\"exemptions_form[exemptions][]\" />\n
-        \                   <label for=\"exemptions_form_checkbox-U112\">\n                      U112<span
-        class=\"visually-hidden\"> Molestiae sapiente illum pariatur.</span>\n</label>
-        \                 </div>\n                </td>\n                <td><span>Molestiae
-        sapiente illum pariatur.</span></td>\n              </tr>\n              <tr>\n
-        \               <td>\n                  <div class=\"multiple-choice\">\n
-        \                   <input id=\"exemptions_form_checkbox-U113\" type=\"checkbox\"
-        value=\"113\" name=\"exemptions_form[exemptions][]\" />\n                    <label
-        for=\"exemptions_form_checkbox-U113\">\n                      U113<span class=\"visually-hidden\">
-        Quia magni quos nemo.</span>\n</label>                  </div>\n                </td>\n
-        \               <td><span>Quia magni quos nemo.</span></td>\n              </tr>\n
-        \             <tr>\n                <td>\n                  <div class=\"multiple-choice\">\n
-        \                   <input id=\"exemptions_form_checkbox-U114\" type=\"checkbox\"
-        value=\"114\" name=\"exemptions_form[exemptions][]\" />\n                    <label
-        for=\"exemptions_form_checkbox-U114\">\n                      U114<span class=\"visually-hidden\">
-        Recusandae necessitatibus tenetur id.</span>\n</label>                  </div>\n
-        \               </td>\n                <td><span>Recusandae necessitatibus
-        tenetur id.</span></td>\n              </tr>\n              <tr>\n                <td>\n
-        \                 <div class=\"multiple-choice\">\n                    <input
-        id=\"exemptions_form_checkbox-U115\" type=\"checkbox\" value=\"115\" name=\"exemptions_form[exemptions][]\"
-        />\n                    <label for=\"exemptions_form_checkbox-U115\">\n                      U115<span
-        class=\"visually-hidden\"> Voluptates voluptatum explicabo culpa.</span>\n</label>
-        \                 </div>\n                </td>\n                <td><span>Voluptates
-        voluptatum explicabo culpa.</span></td>\n              </tr>\n          </tbody>\n
-        \       </table>\n      </fieldset>\n    </div>\n\n    <input value=\"HMCbyHru2odfNigaTWRrk1WZ\"
-        type=\"hidden\" name=\"exemptions_form[token]\" id=\"exemptions_form_token\"
-        />\n    <div class=\"form-group\">\n      <input type=\"submit\" name=\"commit\"
-        value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        \">\n      <fieldset id=\"matched_exemptions\">\n        <legend class=\"visually-hidden\">Exemptions</legend>\n\n\n
+        \         <div class=\"multiple-choice wex_exemption\">\n            <label
+        for=\"exemptions_form_checkbox-U1\">\n              <input id=\"exemptions_form_checkbox-U1\"
+        type=\"checkbox\" value=\"1\" name=\"exemptions_form[exemptions][]\" />\n
+        \             <span class=\"wex_exemption__code\">U1</span> <span class=\"wex_exemption__title\">Iste
+        a in amet.</span>\n</label>          </div>\n          <div class=\"multiple-choice
+        wex_exemption\">\n            <label for=\"exemptions_form_checkbox-U2\">\n
+        \             <input id=\"exemptions_form_checkbox-U2\" type=\"checkbox\"
+        value=\"2\" name=\"exemptions_form[exemptions][]\" />\n              <span
+        class=\"wex_exemption__code\">U2</span> <span class=\"wex_exemption__title\">Consequatur
+        aut aut voluptatem.</span>\n</label>          </div>\n          <div class=\"multiple-choice
+        wex_exemption\">\n            <label for=\"exemptions_form_checkbox-U3\">\n
+        \             <input id=\"exemptions_form_checkbox-U3\" type=\"checkbox\"
+        value=\"3\" name=\"exemptions_form[exemptions][]\" />\n              <span
+        class=\"wex_exemption__code\">U3</span> <span class=\"wex_exemption__title\">Illum
+        qui voluptas quia.</span>\n</label>          </div>\n          <div class=\"multiple-choice
+        wex_exemption\">\n            <label for=\"exemptions_form_checkbox-U4\">\n
+        \             <input id=\"exemptions_form_checkbox-U4\" type=\"checkbox\"
+        value=\"4\" name=\"exemptions_form[exemptions][]\" />\n              <span
+        class=\"wex_exemption__code\">U4</span> <span class=\"wex_exemption__title\">Aut
+        tenetur quasi deleniti.</span>\n</label>          </div>\n          <div class=\"multiple-choice
+        wex_exemption\">\n            <label for=\"exemptions_form_checkbox-U5\">\n
+        \             <input id=\"exemptions_form_checkbox-U5\" type=\"checkbox\"
+        value=\"5\" name=\"exemptions_form[exemptions][]\" />\n              <span
+        class=\"wex_exemption__code\">U5</span> <span class=\"wex_exemption__title\">Sed
+        a non veniam.</span>\n</label>          </div>\n      </fieldset>\n    </div>\n\n
+        \   <input value=\"4zqqzVWJ6Tx1tgR967o1aiCh\" type=\"hidden\" name=\"exemptions_form[token]\"
+        id=\"exemptions_form_token\" />\n    <div class=\"form-group\">\n      <input
+        type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -68,7 +58,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Sep 2019 12:27:27 GMT
+      - Fri, 13 Sep 2019 14:07:45 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -99,7 +89,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9leGVtcHRpb25zL2JhY2svSE1DYnlIcnUyb2RmTmlnYVRXUnJrMVdaXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBpZD1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZXhlbXB0aW9uc1wiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoaWNoIGV4ZW1wdGlvbnMgYXJlIG5lZWRlZCBmb3IgdGhpcyB3YXN0ZSBvcGVyYXRpb24/PC9oMT5cblxuICAgIDxwPlNlbGVjdCBhbGwgdGhlIHdhc3RlIGV4ZW1wdGlvbnMgeW91IG5lZWQgdG8gYWRkIHRvIHRoZSByZWdpc3RyYXRpb248L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cIm1hdGNoZWRfZXhlbXB0aW9uc1wiPlxuXG4gICAgICAgIDx0YWJsZSByb2xlPVwicHJlc2VudGF0aW9uXCI+XG4gICAgICAgICAgPHRoZWFkPlxuICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgIDx0aD48c3BhbiBjbGFzcz1cImhlYWRpbmctc21hbGxcIj5FeGVtcHRpb248L3NwYW4+PC90aD5cbiAgICAgICAgICAgIDx0aD48c3BhbiBjbGFzcz1cImhlYWRpbmctc21hbGxcIj5EZXNjcmlwdGlvbjwvc3Bhbj48L3RoPlxuICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPC90aGVhZD5cbiAgICAgICAgICA8dGJvZHk+XG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VMTExXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxMTFcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxMTFcIj5cbiAgICAgICAgICAgICAgICAgICAgICBVMTExPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gTm9uIHF1aXMgY29uc2VxdWF0dXIgaW4uPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgIDx0ZD48c3Bhbj5Ob24gcXVpcyBjb25zZXF1YXR1ciBpbi48L3NwYW4+PC90ZD5cbiAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxMTJcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjExMlwiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTExMlwiPlxuICAgICAgICAgICAgICAgICAgICAgIFUxMTI8c3BhbiBjbGFzcz1cInZpc3VhbGx5LWhpZGRlblwiPiBNb2xlc3RpYWUgc2FwaWVudGUgaWxsdW0gcGFyaWF0dXIuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgIDx0ZD48c3Bhbj5Nb2xlc3RpYWUgc2FwaWVudGUgaWxsdW0gcGFyaWF0dXIuPC9zcGFuPjwvdGQ+XG4gICAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VMTEzXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxMTNcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxMTNcIj5cbiAgICAgICAgICAgICAgICAgICAgICBVMTEzPHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gUXVpYSBtYWduaSBxdW9zIG5lbW8uPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgIDx0ZD48c3Bhbj5RdWlhIG1hZ25pIHF1b3MgbmVtby48L3NwYW4+PC90ZD5cbiAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICAgIDx0ZD5cbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxMTRcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjExNFwiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTExNFwiPlxuICAgICAgICAgICAgICAgICAgICAgIFUxMTQ8c3BhbiBjbGFzcz1cInZpc3VhbGx5LWhpZGRlblwiPiBSZWN1c2FuZGFlIG5lY2Vzc2l0YXRpYnVzIHRlbmV0dXIgaWQuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICAgIDx0ZD48c3Bhbj5SZWN1c2FuZGFlIG5lY2Vzc2l0YXRpYnVzIHRlbmV0dXIgaWQuPC9zcGFuPjwvdGQ+XG4gICAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICA8dGQ+XG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VMTE1XCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxMTVcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxMTVcIj5cbiAgICAgICAgICAgICAgICAgICAgICBVMTE1PHNwYW4gY2xhc3M9XCJ2aXN1YWxseS1oaWRkZW5cIj4gVm9sdXB0YXRlcyB2b2x1cHRhdHVtIGV4cGxpY2FibyBjdWxwYS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgICAgPHRkPjxzcGFuPlZvbHVwdGF0ZXMgdm9sdXB0YXR1bSBleHBsaWNhYm8gY3VscGEuPC9zcGFuPjwvdGQ+XG4gICAgICAgICAgICAgIDwvdHI+XG4gICAgICAgICAgPC90Ym9keT5cbiAgICAgICAgPC90YWJsZT5cbiAgICAgIDwvZmllbGRzZXQ+XG4gICAgPC9kaXY+XG5cbiAgICA8aW5wdXQgdmFsdWU9XCJITUNieUhydTJvZGZOaWdhVFdScmsxV1pcIiB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVt0b2tlbl1cIiBpZD1cImV4ZW1wdGlvbnNfZm9ybV90b2tlblwiIC8+XG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQ29udGludWVcIiBjbGFzcz1cImJ1dHRvblwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9leGVtcHRpb25zL2JhY2svNHpxcXpWV0o2VHgxdGdSOTY3bzFhaUNoXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBpZD1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZXhlbXB0aW9uc1wiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoaWNoIGV4ZW1wdGlvbnMgYXJlIG5lZWRlZCBmb3IgdGhpcyB3YXN0ZSBvcGVyYXRpb24/PC9oMT5cblxuICAgIDxwPlNlbGVjdCBhbGwgdGhlIHdhc3RlIGV4ZW1wdGlvbnMgeW91IG5lZWQgdG8gYWRkIHRvIHRoZSByZWdpc3RyYXRpb248L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cIm1hdGNoZWRfZXhlbXB0aW9uc1wiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+RXhlbXB0aW9uczwvbGVnZW5kPlxuXG5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlIHdleF9leGVtcHRpb25cIj5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTFcIj5cbiAgICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ3ZXhfZXhlbXB0aW9uX19jb2RlXCI+VTE8L3NwYW4+IDxzcGFuIGNsYXNzPVwid2V4X2V4ZW1wdGlvbl9fdGl0bGVcIj5Jc3RlIGEgaW4gYW1ldC48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlIHdleF9leGVtcHRpb25cIj5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTJcIj5cbiAgICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUyXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIyXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJ3ZXhfZXhlbXB0aW9uX19jb2RlXCI+VTI8L3NwYW4+IDxzcGFuIGNsYXNzPVwid2V4X2V4ZW1wdGlvbl9fdGl0bGVcIj5Db25zZXF1YXR1ciBhdXQgYXV0IHZvbHVwdGF0ZW0uPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZSB3ZXhfZXhlbXB0aW9uXCI+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUzXCI+XG4gICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VM1wiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiM1wiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwid2V4X2V4ZW1wdGlvbl9fY29kZVwiPlUzPC9zcGFuPiA8c3BhbiBjbGFzcz1cIndleF9leGVtcHRpb25fX3RpdGxlXCI+SWxsdW0gcXVpIHZvbHVwdGFzIHF1aWEuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZSB3ZXhfZXhlbXB0aW9uXCI+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVU0XCI+XG4gICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VNFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNFwiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwid2V4X2V4ZW1wdGlvbl9fY29kZVwiPlU0PC9zcGFuPiA8c3BhbiBjbGFzcz1cIndleF9leGVtcHRpb25fX3RpdGxlXCI+QXV0IHRlbmV0dXIgcXVhc2kgZGVsZW5pdGkuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZSB3ZXhfZXhlbXB0aW9uXCI+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVU1XCI+XG4gICAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VNVwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNVwiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICAgIDxzcGFuIGNsYXNzPVwid2V4X2V4ZW1wdGlvbl9fY29kZVwiPlU1PC9zcGFuPiA8c3BhbiBjbGFzcz1cIndleF9leGVtcHRpb25fX3RpdGxlXCI+U2VkIGEgbm9uIHZlbmlhbS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZmllbGRzZXQ+XG4gICAgPC9kaXY+XG5cbiAgICA8aW5wdXQgdmFsdWU9XCI0enFxelZXSjZUeDF0Z1I5NjdvMWFpQ2hcIiB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVt0b2tlbl1cIiBpZD1cImV4ZW1wdGlvbnNfZm9ybV90b2tlblwiIC8+XG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQ29udGludWVcIiBjbGFzcz1cImJ1dHRvblwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
     http_version: 
-  recorded_at: Mon, 09 Sep 2019 12:27:26 GMT
+  recorded_at: Fri, 13 Sep 2019 14:07:45 GMT
 recorded_with: VCR 5.0.0

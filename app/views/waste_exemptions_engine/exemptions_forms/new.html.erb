@@ -10,33 +10,20 @@
 
     <div class="form-group <%= "form-group-error" if @exemptions_form.errors[:matched_exemptions].any? %>">
       <fieldset id="<%="matched_exemptions"%>">
+        <legend class="visually-hidden"><%= t(".legend") %></legend>
+
         <% if @exemptions_form.errors[:exemptions].any? %>
           <span class="error-message"><%= @exemptions_form.errors[:exemptions].join(", ") %></span>
         <% end %>
 
-        <table role="presentation">
-          <thead>
-          <tr>
-            <th><span class="heading-small"><%= t '.th_code' %></span></th>
-            <th><span class="heading-small"><%= t '.th_description' %></span></th>
-          </tr>
-          </thead>
-          <tbody>
-            <% all_exemptions.each do |exemption|  %>
-              <tr>
-                <td>
-                  <div class="multiple-choice">
-                    <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.exemptions&.include?(exemption) }, exemption.id, nil %>
-                    <%= f.label "checkbox-#{exemption.code}" do %>
-                      <%= exemption.code %><span class="visually-hidden"> <%= exemption.summary %></span>
-                    <% end %>
-                  </div>
-                </td>
-                <td><span><%= exemption.summary %></span></td>
-              </tr>
+        <% all_exemptions.each do |exemption|  %>
+          <div class="multiple-choice wex_exemption">
+            <%= f.label "checkbox-#{exemption.code}" do %>
+              <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.exemptions&.include?(exemption) }, exemption.id, nil %>
+              <span class="wex_exemption__code"><%= exemption.code %></span> <span class="wex_exemption__title"><%= exemption.summary %></span>
             <% end %>
-          </tbody>
-        </table>
+          </div>
+        <% end %>
       </fieldset>
     </div>
 
