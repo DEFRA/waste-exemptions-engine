@@ -17,10 +17,10 @@
         <% end %>
 
         <% all_exemptions.each do |exemption|  %>
-          <div class="multiple-choice wex_exemption">
+          <div class="multiple-choice">
+            <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.exemptions&.include?(exemption) }, exemption.id, nil %>
             <%= f.label "checkbox-#{exemption.code}" do %>
-              <%= f.check_box :exemptions, { :multiple => true, id: "exemptions_form_checkbox-#{exemption.code}", checked: @exemptions_form.exemptions&.include?(exemption) }, exemption.id, nil %>
-              <span class="wex_exemption__code"><%= exemption.code %></span> <span class="wex_exemption__title"><%= exemption.summary %></span>
+              <span><%= exemption.code %></span> <span><%= exemption.summary %></span>
             <% end %>
           </div>
         <% end %>
