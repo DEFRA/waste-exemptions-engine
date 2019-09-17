@@ -13,14 +13,13 @@ module WasteExemptionsEngine
 
     include_examples "skip to manual address",
                      :contact_postcode_form,
-                     request_path: "/contact-postcode/skip_to_manual_address",
-                     result_path: "/contact-address-manual"
+                     address_type: :contact
 
     context "when editing an existing registration" do
       let(:edit_contact_postcode_form) { build(:edit_contact_postcode_form) }
 
       it "pre-fills contact postcode information" do
-        get "/waste_exemptions_engine/contact-postcode/#{edit_contact_postcode_form.token}"
+        get "/waste_exemptions_engine/#{edit_contact_postcode_form.token}/contact-postcode"
 
         expect(response.body).to have_html_escaped_string(edit_contact_postcode_form.temp_contact_postcode)
       end
@@ -30,7 +29,7 @@ module WasteExemptionsEngine
       let(:renew_contact_postcode_form) { build(:renew_contact_postcode_form) }
 
       it "pre-fills contact postcode information" do
-        get "/waste_exemptions_engine/contact-postcode/#{renew_contact_postcode_form.token}"
+        get "/waste_exemptions_engine/#{renew_contact_postcode_form.token}/contact-postcode"
 
         expect(response.body).to have_html_escaped_string(renew_contact_postcode_form.temp_contact_postcode)
       end

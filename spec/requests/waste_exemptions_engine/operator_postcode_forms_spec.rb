@@ -13,14 +13,13 @@ module WasteExemptionsEngine
 
     include_examples "skip to manual address",
                      :operator_postcode_form,
-                     request_path: "/operator-postcode/skip_to_manual_address",
-                     result_path: "/operator-address-manual"
+                     address_type: :operator
 
     context "when editing an existing registration" do
       let(:edit_operator_postcode_form) { build(:edit_operator_postcode_form) }
 
       it "pre-fills operator postcode information" do
-        get "/waste_exemptions_engine/operator-postcode/#{edit_operator_postcode_form.token}"
+        get "/waste_exemptions_engine/#{edit_operator_postcode_form.token}/operator-postcode"
 
         expect(response.body).to have_html_escaped_string(edit_operator_postcode_form.temp_operator_postcode)
       end
@@ -30,7 +29,7 @@ module WasteExemptionsEngine
       let(:renew_operator_postcode_form) { build(:renew_operator_postcode_form) }
 
       it "pre-fills operator postcode information" do
-        get "/waste_exemptions_engine/operator-postcode/#{renew_operator_postcode_form.token}"
+        get "/waste_exemptions_engine/#{renew_operator_postcode_form.token}/operator-postcode"
 
         expect(response.body).to have_html_escaped_string(renew_operator_postcode_form.temp_operator_postcode)
       end

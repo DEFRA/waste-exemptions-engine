@@ -14,7 +14,7 @@ module WasteExemptionsEngine
 
     # Expects a form class name (eg BusinessTypeForm) and a snake_case name for the form (eg business_type_form)
     def create(form_class, form)
-      return false unless set_up_form(form_class, form, params[form][:token])
+      return false unless set_up_form(form_class, form, params[:token])
 
       # Submit the form by getting the instance variable we just set
       submit_form(instance_variable_get("@#{form}"), params[form])
@@ -40,7 +40,6 @@ module WasteExemptionsEngine
     def set_up_form(form_class, form, token, get_request = false)
       find_or_initialize_registration(token)
       set_workflow_state if get_request
-
       return false unless setup_checks_pass?
 
       # Set an instance variable for the form (eg. @business_type_form) using the provided class (eg. BusinessTypeForm)

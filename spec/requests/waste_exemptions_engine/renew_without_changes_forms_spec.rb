@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:form) { build(:renew_without_changes_form) }
 
     describe "GET renew_without_changes_form" do
-      let(:request_path) { "/waste_exemptions_engine/renew-without-changes/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/renew-without-changes" }
 
       it "renders the appropriate template" do
         get request_path

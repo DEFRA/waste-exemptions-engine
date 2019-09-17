@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       let(:edit_operator_name_form) { build(:edit_operator_name_form) }
 
       it "pre-fills operator name information" do
-        get "/waste_exemptions_engine/operator-name/#{edit_operator_name_form.token}"
+        get "/waste_exemptions_engine/#{edit_operator_name_form.token}/operator-name"
 
         expect(response.body).to have_html_escaped_string(edit_operator_name_form.operator_name)
       end
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       let(:renew_operator_name_form) { build(:renew_operator_name_form) }
 
       it "pre-fills operator name information" do
-        get "/waste_exemptions_engine/operator-name/#{renew_operator_name_form.token}"
+        get "/waste_exemptions_engine/#{renew_operator_name_form.token}/operator-name"
 
         expect(response.body).to have_html_escaped_string(renew_operator_name_form.operator_name)
       end

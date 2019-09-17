@@ -16,7 +16,6 @@ module WasteExemptionsEngine
 
     include_examples "skip to manual address",
                      :contact_address_lookup_form,
-                     request_path: "/contact-address-lookup/skip_to_manual_address",
-                     result_path: "/contact-address-manual"
+                     address_type: :contact
   end
 end

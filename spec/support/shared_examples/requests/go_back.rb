@@ -3,8 +3,8 @@
 RSpec.shared_examples "go back" do |form_factory, path|
   let(:form) { build(form_factory) }
   let(:previous_workflow_state) { Helpers::WorkflowStates.previous_state(form.transient_registration) }
-  let(:back_request_path) { "/waste_exemptions_engine#{path}/#{form.token}" }
-  let(:redirection_path) { send("new_#{previous_workflow_state}_path".to_sym, form.transient_registration.token) }
+  let(:back_request_path) { "/waste_exemptions_engine/#{form.token}#{path}" }
+  let(:redirection_path) { send("new_#{previous_workflow_state}_path".to_sym, token: form.transient_registration.token) }
   status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
   describe "GET #{form_factory} back" do

@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:form) { build(:renewal_complete_form) }
 
     describe "GET renewal_complete_form" do
-      let(:request_path) { "/waste_exemptions_engine/renewal-complete/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-complete" }
 
       it "renders the appropriate template" do
         get request_path

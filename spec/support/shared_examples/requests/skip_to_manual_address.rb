@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "skip to manual address" do |form_factory, request_path:, result_path:|
+RSpec.shared_examples "skip to manual address" do |form_factory, address_type:|
   let(:form) { build(form_factory) }
-  let(:manual_address_request_path) { "/waste_exemptions_engine#{request_path}/#{form.token}" }
-  let(:manual_address_form_path) { "/waste_exemptions_engine#{result_path}/#{form.token}" }
+  let(:manual_address_request_path) { send("skip_to_manual_address_#{form_factory}s_path", token: form.token) }
+  let(:manual_address_form_path) { send("#{address_type}_address_manual_forms_path", token: form.token) }
   status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
   describe "GET #{form_factory} skip to manual address" do
