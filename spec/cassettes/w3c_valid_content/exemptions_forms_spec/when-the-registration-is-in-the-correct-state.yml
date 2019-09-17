@@ -8,6 +8,7 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+<<<<<<< HEAD
         \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/Voei5THQSqn7in3MaJwcFpkH/exemptions/back\">Back</a>\n\n\n<div
         class=\"text\">\n  <form class=\"new_exemptions_form\" id=\"new_exemptions_form\"
         action=\"/waste_exemptions_engine/Voei5THQSqn7in3MaJwcFpkH/exemptions\" accept-charset=\"UTF-8\"
@@ -37,6 +38,36 @@ http_interactions:
         \           <label for=\"exemptions_form_checkbox-U5\">\n              <span>U5</span>
         <span>Nemo earum temporibus veniam.</span>\n</label>          </div>\n      </fieldset>\n
         \   </div>\n\n    <input value=\"Voei5THQSqn7in3MaJwcFpkH\" type=\"hidden\"
+=======
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/exemptions/back/ShxTEVGmiEqDzaCqY61ghfiH\">Back</a>\n\n\n<div
+        class=\"text\">\n  <form class=\"new_exemptions_form\" id=\"new_exemptions_form\"
+        action=\"/waste_exemptions_engine/exemptions\" accept-charset=\"UTF-8\" method=\"post\"><input
+        name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Which
+        exemptions are needed for this waste operation?</h1>\n\n    <p>Select all
+        the waste exemptions you need to add to the registration</p>\n\n    <div class=\"form-group
+        \">\n      <fieldset id=\"matched_exemptions\">\n        <legend class=\"visually-hidden\">Exemptions</legend>\n\n\n
+        \         <div class=\"multiple-choice\">\n            <input id=\"exemptions_form_checkbox-U1\"
+        type=\"checkbox\" value=\"1\" name=\"exemptions_form[exemptions][]\" />\n
+        \           <label for=\"exemptions_form_checkbox-U1\">\n              <span>U1</span>
+        <span>Expedita provident molestiae saepe.</span>\n</label>          </div>\n
+        \         <div class=\"multiple-choice\">\n            <input id=\"exemptions_form_checkbox-U2\"
+        type=\"checkbox\" value=\"2\" name=\"exemptions_form[exemptions][]\" />\n
+        \           <label for=\"exemptions_form_checkbox-U2\">\n              <span>U2</span>
+        <span>Cumque temporibus voluptatem voluptate.</span>\n</label>          </div>\n
+        \         <div class=\"multiple-choice\">\n            <input id=\"exemptions_form_checkbox-U3\"
+        type=\"checkbox\" value=\"3\" name=\"exemptions_form[exemptions][]\" />\n
+        \           <label for=\"exemptions_form_checkbox-U3\">\n              <span>U3</span>
+        <span>Itaque corporis ab dicta.</span>\n</label>          </div>\n          <div
+        class=\"multiple-choice\">\n            <input id=\"exemptions_form_checkbox-U4\"
+        type=\"checkbox\" value=\"4\" name=\"exemptions_form[exemptions][]\" />\n
+        \           <label for=\"exemptions_form_checkbox-U4\">\n              <span>U4</span>
+        <span>Totam assumenda quidem ea.</span>\n</label>          </div>\n          <div
+        class=\"multiple-choice\">\n            <input id=\"exemptions_form_checkbox-U5\"
+        type=\"checkbox\" value=\"5\" name=\"exemptions_form[exemptions][]\" />\n
+        \           <label for=\"exemptions_form_checkbox-U5\">\n              <span>U5</span>
+        <span>Iure illo explicabo sint.</span>\n</label>          </div>\n      </fieldset>\n
+        \   </div>\n\n    <input value=\"ShxTEVGmiEqDzaCqY61ghfiH\" type=\"hidden\"
+>>>>>>> Update cassette
         name=\"exemptions_form[token]\" id=\"exemptions_form_token\" />\n    <div
         class=\"form-group\">\n      <input type=\"submit\" name=\"commit\" value=\"Continue\"
         class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
@@ -55,7 +86,11 @@ http_interactions:
       message: OK
     headers:
       Date:
+<<<<<<< HEAD
       - Wed, 18 Sep 2019 09:43:04 GMT
+=======
+      - Tue, 17 Sep 2019 14:26:05 GMT
+>>>>>>> Update cassette
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -86,7 +121,13 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
+<<<<<<< HEAD
         eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9Wb2VpNVRIUVNxbjdpbjNNYUp3Y0Zwa0gvZXhlbXB0aW9ucy9iYWNrXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBpZD1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvVm9laTVUSFFTcW43aW4zTWFKd2NGcGtIL2V4ZW1wdGlvbnNcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XaGljaCBleGVtcHRpb25zIGFyZSBuZWVkZWQgZm9yIHRoaXMgd2FzdGUgb3BlcmF0aW9uPzwvaDE+XG5cbiAgICA8cD5TZWxlY3QgYWxsIHRoZSB3YXN0ZSBleGVtcHRpb25zIHlvdSBuZWVkIHRvIGFkZCB0byB0aGUgcmVnaXN0cmF0aW9uPC9wPlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXAgXCI+XG4gICAgICA8ZmllbGRzZXQgaWQ9XCJtYXRjaGVkX2V4ZW1wdGlvbnNcIj5cbiAgICAgICAgPGxlZ2VuZCBjbGFzcz1cInZpc3VhbGx5LWhpZGRlblwiPkV4ZW1wdGlvbnM8L2xlZ2VuZD5cblxuXG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUxXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTFcIj5cbiAgICAgICAgICAgICAgPHNwYW4+VTE8L3NwYW4+IDxzcGFuPlF1aXMgYWxpcXVpZCBtYWduYW0gbW9sbGl0aWEuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUyXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIyXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTJcIj5cbiAgICAgICAgICAgICAgPHNwYW4+VTI8L3NwYW4+IDxzcGFuPkZ1Z2l0IGFkIHNpdCBtYWduaS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICA8aW5wdXQgaWQ9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTNcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjNcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VM1wiPlxuICAgICAgICAgICAgICA8c3Bhbj5VMzwvc3Bhbj4gPHNwYW4+U3VudCB2ZXJpdGF0aXMgdm9sdXB0YXRpYnVzIGFzcGVyaW9yZXMuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVU0XCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCI0XCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTRcIj5cbiAgICAgICAgICAgICAgPHNwYW4+VTQ8L3NwYW4+IDxzcGFuPkV0IGlkIGRvbG9yZW1xdWUgcXVpLjwvc3Bhbj5cbjwvbGFiZWw+ICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICAgIDxpbnB1dCBpZD1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VNVwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNVwiIG5hbWU9XCJleGVtcHRpb25zX2Zvcm1bZXhlbXB0aW9uc11bXVwiIC8+XG4gICAgICAgICAgICA8bGFiZWwgZm9yPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVU1XCI+XG4gICAgICAgICAgICAgIDxzcGFuPlU1PC9zcGFuPiA8c3Bhbj5OZW1vIGVhcnVtIHRlbXBvcmlidXMgdmVuaWFtLjwvc3Bhbj5cbjwvbGFiZWw+ICAgICAgICAgIDwvZGl2PlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cIlZvZWk1VEhRU3FuN2luM01hSndjRnBrSFwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW3Rva2VuXVwiIGlkPVwiZXhlbXB0aW9uc19mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
     http_version: 
   recorded_at: Wed, 18 Sep 2019 09:43:04 GMT
+=======
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9leGVtcHRpb25zL2JhY2svU2h4VEVWR21pRXFEemFDcVk2MWdoZmlIXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBpZD1cIm5ld19leGVtcHRpb25zX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZXhlbXB0aW9uc1wiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoaWNoIGV4ZW1wdGlvbnMgYXJlIG5lZWRlZCBmb3IgdGhpcyB3YXN0ZSBvcGVyYXRpb24/PC9oMT5cblxuICAgIDxwPlNlbGVjdCBhbGwgdGhlIHdhc3RlIGV4ZW1wdGlvbnMgeW91IG5lZWQgdG8gYWRkIHRvIHRoZSByZWdpc3RyYXRpb248L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cIm1hdGNoZWRfZXhlbXB0aW9uc1wiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHktaGlkZGVuXCI+RXhlbXB0aW9uczwvbGVnZW5kPlxuXG5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICA8aW5wdXQgaWQ9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTFcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjFcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VMVwiPlxuICAgICAgICAgICAgICA8c3Bhbj5VMTwvc3Bhbj4gPHNwYW4+RXhwZWRpdGEgcHJvdmlkZW50IG1vbGVzdGlhZSBzYWVwZS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICA8aW5wdXQgaWQ9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTJcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjJcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VMlwiPlxuICAgICAgICAgICAgICA8c3Bhbj5VMjwvc3Bhbj4gPHNwYW4+Q3VtcXVlIHRlbXBvcmlidXMgdm9sdXB0YXRlbSB2b2x1cHRhdGUuPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgICAgPGlucHV0IGlkPVwiZXhlbXB0aW9uc19mb3JtX2NoZWNrYm94LVUzXCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIzXCIgbmFtZT1cImV4ZW1wdGlvbnNfZm9ybVtleGVtcHRpb25zXVtdXCIgLz5cbiAgICAgICAgICAgIDxsYWJlbCBmb3I9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTNcIj5cbiAgICAgICAgICAgICAgPHNwYW4+VTM8L3NwYW4+IDxzcGFuPkl0YXF1ZSBjb3Jwb3JpcyBhYiBkaWN0YS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICA8aW5wdXQgaWQ9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTRcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjRcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VNFwiPlxuICAgICAgICAgICAgICA8c3Bhbj5VNDwvc3Bhbj4gPHNwYW4+VG90YW0gYXNzdW1lbmRhIHF1aWRlbSBlYS48L3NwYW4+XG48L2xhYmVsPiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgICA8aW5wdXQgaWQ9XCJleGVtcHRpb25zX2Zvcm1fY2hlY2tib3gtVTVcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjVcIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW2V4ZW1wdGlvbnNdW11cIiAvPlxuICAgICAgICAgICAgPGxhYmVsIGZvcj1cImV4ZW1wdGlvbnNfZm9ybV9jaGVja2JveC1VNVwiPlxuICAgICAgICAgICAgICA8c3Bhbj5VNTwvc3Bhbj4gPHNwYW4+SXVyZSBpbGxvIGV4cGxpY2FibyBzaW50Ljwvc3Bhbj5cbjwvbGFiZWw+ICAgICAgICAgIDwvZGl2PlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cIlNoeFRFVkdtaUVxRHphQ3FZNjFnaGZpSFwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwiZXhlbXB0aW9uc19mb3JtW3Rva2VuXVwiIGlkPVwiZXhlbXB0aW9uc19mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+    http_version: 
+  recorded_at: Tue, 17 Sep 2019 14:26:05 GMT
+>>>>>>> Update cassette
 recorded_with: VCR 5.0.0
