@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:form) { build(:renewal_start_form) }
 
     describe "GET renewal_start_form" do
-      let(:request_path) { "/waste_exemptions_engine/renewal-start/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-start" }
 
       it "renders the appropriate template" do
         get request_path
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
     end
 
     describe "unable to go submit GET back" do
-      let(:request_path) { "/waste_exemptions_engine/renewal-complete/back/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-complete/back" }
 
       it "raises an error" do
         expect { get request_path }.to raise_error(ActionController::RoutingError)

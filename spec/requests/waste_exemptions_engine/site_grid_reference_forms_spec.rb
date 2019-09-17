@@ -24,16 +24,28 @@ module WasteExemptionsEngine
       end
     end
 
-    include_examples "skip to manual address",
-                     :site_grid_reference_form,
-                     request_path: "/site-grid-reference/skip_to_address",
-                     result_path: "/site-postcode"
+    context "can skip to a site address form" do
+      let(:form) { build(:site_grid_reference_form) }
+      let(:site_address_request_path) { skip_to_address_site_grid_reference_forms_path(token: form.token) }
+
+      describe "GET site_address_request_path" do
+        it "renders the appropriate template" do
+          get site_address_request_path
+          expect(response.location).to include(site_postcode_forms_path(token: form.token))
+        end
+
+        it "responds to the GET request with a 303 status code" do
+          get site_address_request_path
+          expect(response.code).to eq("303")
+        end
+      end
+    end
 
     context "when editing an existing registration" do
       let(:edit_site_grid_reference_form) { build(:edit_site_grid_reference_form) }
 
       it "pre-fills site grid reference information" do
-        get "/waste_exemptions_engine/site-grid-reference/#{edit_site_grid_reference_form.token}"
+        get "/waste_exemptions_engine/#{edit_site_grid_reference_form.token}/site-grid-reference"
 
         expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.grid_reference)
         expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.description)
@@ -44,7 +56,7 @@ module WasteExemptionsEngine
       let(:renew_site_grid_reference_form) { build(:renew_site_grid_reference_form) }
 
       it "pre-fills site grid reference information" do
-        get "/waste_exemptions_engine/site-grid-reference/#{renew_site_grid_reference_form.token}"
+        get "/waste_exemptions_engine/#{renew_site_grid_reference_form.token}/site-grid-reference"
 
         expect(response.body).to have_html_escaped_string(renew_site_grid_reference_form.grid_reference)
         expect(response.body).to have_html_escaped_string(renew_site_grid_reference_form.description)

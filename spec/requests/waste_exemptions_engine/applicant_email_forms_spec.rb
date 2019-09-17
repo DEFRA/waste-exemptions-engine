@@ -21,7 +21,7 @@ module WasteExemptionsEngine
       let(:edit_applicant_email_form) { build(:edit_applicant_email_form) }
 
       it "pre-fills applicant email information" do
-        get "/waste_exemptions_engine/applicant-email/#{edit_applicant_email_form.token}"
+        get "/waste_exemptions_engine/#{edit_applicant_email_form.token}/applicant-email"
 
         expect(response.body).to have_html_escaped_string(edit_applicant_email_form.applicant_email)
       end
@@ -31,7 +31,7 @@ module WasteExemptionsEngine
       let(:renew_applicant_email_form) { build(:renew_applicant_email_form) }
 
       it "pre-fills applicant email information" do
-        get "/waste_exemptions_engine/applicant-email/#{renew_applicant_email_form.token}"
+        get "/waste_exemptions_engine/#{renew_applicant_email_form.token}/applicant-email"
 
         expect(response.body).to have_html_escaped_string(renew_applicant_email_form.applicant_email)
       end

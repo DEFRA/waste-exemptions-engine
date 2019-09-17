@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       let(:edit_contact_phone_form) { build(:edit_contact_phone_form) }
 
       it "pre-fills contact phone information" do
-        get "/waste_exemptions_engine/contact-phone/#{edit_contact_phone_form.token}"
+        get "/waste_exemptions_engine/#{edit_contact_phone_form.token}/contact-phone"
 
         expect(response.body).to have_html_escaped_string(edit_contact_phone_form.phone_number)
       end
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       let(:renew_contact_phone_form) { build(:renew_contact_phone_form) }
 
       it "pre-fills contact phone information" do
-        get "/waste_exemptions_engine/contact-phone/#{renew_contact_phone_form.token}"
+        get "/waste_exemptions_engine/#{renew_contact_phone_form.token}/contact-phone"
 
         expect(response.body).to have_html_escaped_string(renew_contact_phone_form.phone_number)
       end

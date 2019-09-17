@@ -2,7 +2,7 @@
 
 RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = false|
   let(:correct_form) { build(form_factory) }
-  let(:post_request_path) { "/waste_exemptions_engine#{path}" }
+  let(:post_request_path) { "/waste_exemptions_engine/#{form.token}#{path}" }
   let(:form_data) { { override_me: "Set :form_data in the calling spec." } }
   let(:invalid_form_data) { { override_me: "Set :invalid_form_data in the calling spec." } }
 
@@ -39,16 +39,17 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     end
 
     context "when the token has been modified" do
-      let(:modified_token_request_body) { { form_factory => form_data.merge(token: "modified-token") } }
+      let(:request_body) { { form_factory => form_data } }
+      let(:modified_token_post_request_path) { "/waste_exemptions_engine/modified-token#{path}" }
       status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
 
       it "renders the start form" do
-        post post_request_path, modified_token_request_body
-        expect(response.location).to include("/waste_exemptions_engine/start/")
+        post modified_token_post_request_path, request_body
+        expect(response.location).to include("/waste_exemptions_engine/start")
       end
 
       it "responds to the POST request with a #{status_code} status code" do
-        post post_request_path, modified_token_request_body
+        post modified_token_post_request_path, request_body
         expect(response.code).to eq(status_code.to_s)
       end
     end
@@ -71,17 +72,30 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       # Use a form which cannot be posted and so won't be using this shared example
       let(:incorrect_workflow_state) { :register_in_wales_form }
       let(:incorrect_form) { build(incorrect_workflow_state) }
-
-      let(:bad_request_body) { { form_factory => form_data.merge(token: incorrect_form.token) } }
+      let(:transient_registration) { form.transient_registration }
+      let(:bad_request_body) { { form_factory => form_data } }
       let(:bad_request_redirection_path) do
         workflow_path = "new_#{incorrect_form.transient_registration.workflow_state}_path".to_sym
-        send(workflow_path, incorrect_form.transient_registration.token)
+        send(workflow_path, token: incorrect_form.transient_registration.token)
       end
+
+      before do
+        if transient_registration.is_a?(WasteExemptionsEngine::EditRegistration)
+          transient_registration.update_attributes!(workflow_state: :edit_form)
+        else
+          transient_registration.update_attributes!(workflow_state: :register_in_wales_form)
+        end
+      end
+
       status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
 
       it "renders the appropriate template" do
         post post_request_path, bad_request_body
-        expect(response.location).to include(bad_request_redirection_path)
+        if transient_registration.is_a?(WasteExemptionsEngine::EditRegistration)
+          expect(response.location).to include(edit_forms_path(token: form.token))
+        else
+          expect(response.location).to include(register_in_wales_forms_path(token: form.token))
+        end
       end
 
       it "responds to the POST request with a 302 status code" do

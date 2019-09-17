@@ -5,7 +5,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
 
   describe "GET #{form_factory}" do
     context "when the registration is in the correct state" do
-      let(:good_request_path) { "/waste_exemptions_engine#{path}/#{correct_form.token}" }
+      let(:good_request_path) { "/waste_exemptions_engine/#{correct_form.token}#{path}" }
 
       it "renders the appropriate template" do
         get good_request_path
@@ -25,7 +25,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
     end
 
     context "when the registration is not in the correct state" do
-      let(:bad_request_path) { "/waste_exemptions_engine#{path}/#{incorrect_form.token}" }
+      let(:bad_request_path) { "/waste_exemptions_engine/#{incorrect_form.token}#{path}" }
 
       flexible_navigation_allowed = Helpers::WorkflowStates.can_navigate_flexibly_to_state?(form_factory)
 
@@ -48,7 +48,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
           form = build(incorrect_workflow_state)
           trans_reg_id = form.transient_registration.id
           expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(incorrect_workflow_state.to_s)
-          get "/waste_exemptions_engine#{path}/#{form.token}"
+          get "/waste_exemptions_engine/#{form.token}#{path}"
           expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(form_factory.to_s)
         end
       end

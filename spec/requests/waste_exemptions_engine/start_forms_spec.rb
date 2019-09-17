@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:form) { build(:start_form) }
 
     describe "GET start_form" do
-      let(:request_path) { "/waste_exemptions_engine/start/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/start" }
 
       it "renders the appropriate template" do
         get request_path

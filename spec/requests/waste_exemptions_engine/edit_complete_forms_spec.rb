@@ -11,7 +11,7 @@ module WasteExemptionsEngine
     end
 
     describe "GET edit_complete_form" do
-      let(:request_path) { "/waste_exemptions_engine/edit-complete/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit-complete" }
 
       it "renders the appropriate template" do
         get request_path
@@ -69,7 +69,7 @@ module WasteExemptionsEngine
     end
 
     describe "unable to go submit GET back" do
-      let(:request_path) { "/waste_exemptions_engine/edit-complete/back/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/edit-complete/#{form.token}/back" }
       it "raises an error" do
         expect { get request_path }.to raise_error(ActionController::RoutingError)
       end

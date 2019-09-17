@@ -11,7 +11,7 @@ module WasteExemptionsEngine
     end
 
     def submit_and_add_another(form_class, form)
-      return unless set_up_form(form_class, form, params[form][:token])
+      return unless set_up_form(form_class, form, params[:token])
 
       form_instance_variable = instance_variable_get("@#{form}")
 

@@ -11,7 +11,7 @@ module WasteExemptionsEngine
         WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
       end
 
-      let(:request_path) { "/waste_exemptions_engine/edit/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit" }
 
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
         let(:edit_enabled) { "true" }
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         context "when the token is a registration reference" do
           let(:registration) { create(:registration, :complete) }
 
-          let(:request_path) { "/waste_exemptions_engine/edit/#{registration.reference}" }
+          let(:request_path) { "/waste_exemptions_engine/#{registration.reference}/edit" }
 
           it "renders the appropriate template" do
             get request_path
@@ -59,7 +59,7 @@ module WasteExemptionsEngine
 
           context "when the registration already has an edit in progress" do
             let(:edit_registration) { create(:edit_registration) }
-            let(:request_path) { "/waste_exemptions_engine/edit/#{edit_registration.reference}" }
+            let(:request_path) { "/waste_exemptions_engine/#{edit_registration.reference}/edit/" }
 
             it "does not create a new EditRegistration for the registration" do
               expect { get request_path }.to_not change { EditRegistration.where(reference: edit_registration.reference).count }.from(1)
@@ -68,7 +68,7 @@ module WasteExemptionsEngine
         end
 
         context "when the token is not a registration reference" do
-          let(:request_path) { "/waste_exemptions_engine/edit/WEX987654" }
+          let(:request_path) { "/waste_exemptions_engine/WEX987654/edit" }
 
           it "raises a page not found error" do
             expect { get request_path }.to raise_error(ActionController::RoutingError)
@@ -102,15 +102,14 @@ module WasteExemptionsEngine
     end
 
     describe "unable to go submit GET back" do
-      let(:request_path) { "/waste_exemptions_engine/edit/back/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/back" }
       it "raises an error" do
         expect { get request_path }.to raise_error(ActionController::RoutingError)
       end
     end
 
     describe "POST edit_form" do
-      let(:request_path) { "/waste_exemptions_engine/edit/" }
-      let(:request_body) { { edit_form: { token: form.token } } }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/" }
 
       before(:each) do
         WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
@@ -123,7 +122,7 @@ module WasteExemptionsEngine
         # A successful POST request redirects to the next form in the work flow. We have chosen to
         # differentiate 'good' rediection as 303 and 'bad' redirection as 302.
         it "responds to the POST request with a #{status_code} status code" do
-          post request_path, request_body
+          post request_path
           expect(response.code).to eq(status_code.to_s)
         end
       end
@@ -160,7 +159,7 @@ module WasteExemptionsEngine
        is_a_farmer
        site_grid_reference].each do |edit_action|
       describe "GET edit_#{edit_action}" do
-        let(:request_path) { "/waste_exemptions_engine/edit/#{edit_action}/#{form.token}" }
+        let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/#{edit_action}" }
         before(:each) do
           WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
         end

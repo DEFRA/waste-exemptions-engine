@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       let(:edit_applicant_phone_form) { build(:edit_applicant_phone_form) }
 
       it "pre-fills applicant phone information" do
-        get "/waste_exemptions_engine/applicant-phone/#{edit_applicant_phone_form.token}"
+        get "/waste_exemptions_engine/#{edit_applicant_phone_form.token}/applicant-phone"
 
         expect(response.body).to have_html_escaped_string(edit_applicant_phone_form.applicant_phone)
       end
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       let(:renew_applicant_phone_form) { build(:renew_applicant_phone_form) }
 
       it "pre-fills applicant phone information" do
-        get "/waste_exemptions_engine/applicant-phone/#{renew_applicant_phone_form.token}"
+        get "/waste_exemptions_engine/#{renew_applicant_phone_form.token}/applicant-phone"
 
         expect(response.body).to have_html_escaped_string(renew_applicant_phone_form.applicant_phone)
       end

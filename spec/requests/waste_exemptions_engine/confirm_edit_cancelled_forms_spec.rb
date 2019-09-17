@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
     describe "GET confirm_edit_cancelled_form" do
       let(:form) { build(:confirm_edit_cancelled_form) }
-      let(:request_path) { "/waste_exemptions_engine/confirm-edit-cancelled/#{form.token}" }
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/confirm-edit-cancelled" }
 
       it "renders the appropriate template" do
         get request_path
