@@ -30,6 +30,9 @@ Gem::Specification.new do |s|
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
 
+  # Used to identify the EA area for a registration
+  s.add_dependency "defra_ruby_area"
+
   s.add_dependency "pg", "~> 0.18.4"
 
   # Used for auditing and version control

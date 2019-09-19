@@ -3,6 +3,7 @@ PATH
   specs:
     waste_exemptions_engine (0.0.1)
       aasm (~> 4.12)
+      defra_ruby_area
       defra_ruby_validators
       has_secure_token
       high_voltage (~> 3.1)
@@ -72,6 +73,9 @@ GEM
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
     database_cleaner (1.7.0)
+    defra_ruby_area (2.0.0)
+      nokogiri (~> 1.10.4)
+      rest-client (~> 2.0)
     defra_ruby_style (0.1.2)
       rubocop
     defra_ruby_validators (2.1.2)
@@ -128,9 +132,9 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     method_source (0.9.2)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0331)
+    mime-types-data (3.2019.0904)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
