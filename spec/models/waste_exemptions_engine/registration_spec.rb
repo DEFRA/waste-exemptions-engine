@@ -105,6 +105,18 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#expired_and_active_exemptions" do
+      subject(:registration) { create(:registration, :with_expired_and_active_exemptions) }
+
+      it "returns a list of registrations in an active status" do
+        pending_exemption = registration.registration_exemptions.first
+        pending_exemption.state = :pending
+        pending_exemption.save
+
+        expect(registration.expired_and_active_exemptions.count).to eq(registration.exemptions.count - 1)
+      end
+    end
+
     describe "#past_renewal_window?" do
       let(:registration_exemption) { build(:registration_exemption, expires_on: expires_on) }
 
