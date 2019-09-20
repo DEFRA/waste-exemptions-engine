@@ -52,8 +52,8 @@ module WasteExemptionsEngine
         context "because no match was found" do
           let(:response) { Test::Area::Response.new([], false, DefraRuby::Area::NoMatchError.new) }
 
-          it "returns null" do
-            expect(described_class.run(coordinates)).to be_nil
+          it "returns 'Outside England'" do
+            expect(described_class.run(coordinates)).to eq("Outside England")
           end
         end
 
