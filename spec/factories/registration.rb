@@ -19,6 +19,10 @@ FactoryBot.define do
       registration_exemptions { build_list(:registration_exemption, 5, state: :expired) }
     end
 
+    trait :with_expired_and_active_exemptions do
+      registration_exemptions { build_list(:registration_exemption, 5, state: %i[expired active].sample) }
+    end
+
     trait :limited_company do
       business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:limited_company] }
     end

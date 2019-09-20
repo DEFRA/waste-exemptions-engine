@@ -24,6 +24,12 @@ module WasteExemptionsEngine
       through: :registration_exemptions,
       source: :exemption
     )
+    has_many(
+      :expired_and_active_exemptions,
+      -> { WasteExemptionsEngine::RegistrationExemption.where(state: %i[expired active]) },
+      through: :registration_exemptions,
+      source: :exemption
+    )
     belongs_to :referring_registration, class_name: "Registration"
     has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
