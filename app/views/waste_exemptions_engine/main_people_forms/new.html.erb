@@ -36,11 +36,17 @@
         <% @transient_registration.transient_people.each do |person| %>
           <li>
             <%= person.first_name %> <%= person.last_name %>
-            <%= button_to(t(".delete_person_link"),
+            <%= button_to(
                 delete_person_main_people_forms_path(token: @main_people_form.token, id: person.id),
                 class: "button-link",
                 method: :delete,
-                params: { token: @main_people_form.token }) %>
+                params: { token: @main_people_form.token }
+            ) do %>
+              <%= t(".delete_person_link") %>
+              <span class="visually-hidden">
+                <%= person.first_name %> <%= person.last_name %>
+              </span>
+            <% end %>
           </li>
         <% end %>
       </ul>
