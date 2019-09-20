@@ -3,6 +3,7 @@ PATH
   specs:
     waste_exemptions_engine (0.0.1)
       aasm (~> 4.12)
+      airbrake (= 5.8.1)
       defra_ruby_area
       defra_ruby_validators
       has_secure_token
@@ -60,6 +61,9 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     afm (0.2.2)
+    airbrake (5.8.1)
+      airbrake-ruby (~> 1.8)
+    airbrake-ruby (1.8.0)
     arel (6.0.4)
     ast (2.4.0)
     builder (3.2.3)

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "airbrake"
 
 module Test
   module Area
@@ -60,17 +61,23 @@ module WasteExemptionsEngine
         context "because it failed" do
           let(:response) { Test::Area::Response.new([], false, StandardError.new) }
 
-          it "returns null" do
+          it "returns 'nil'" do
             expect(described_class.run(coordinates)).to be_nil
+          end
+
+          it "uses Airbrake to notify Errbit of the error" do
+            expect(Airbrake).to receive(:notify)
+
+            described_class.run(coordinates)
           end
         end
       end
 
       context "when passed invalid arguments" do
-        context "for example nil" do
+        context "for example 'nil'" do
           let(:coordinates) { { easting: nil, northing: 215_313 } }
 
-          it "returns null" do
+          it "returns 'nil'" do
             expect(described_class.run(coordinates)).to be_nil
           end
         end
@@ -78,7 +85,7 @@ module WasteExemptionsEngine
         context "for example not a numeric value" do
           let(:coordinates) { { easting: "not_a_number", northing: 215_313 } }
 
-          it "returns null" do
+          it "returns 'nil'" do
             expect(described_class.run(coordinates)).to be_nil
           end
         end

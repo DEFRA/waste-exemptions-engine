@@ -19,6 +19,7 @@ module WasteExemptionsEngine
       return response.areas.first.long_name if response.successful?
       return "Outside England" if response.error.instance_of?(DefraRuby::Area::NoMatchError)
 
+      handle_error(response.error)
       nil
     end
 
@@ -27,5 +28,11 @@ module WasteExemptionsEngine
 
       true
     end
+
+    def handle_error(error)
+      Airbrake.notify(error, easting: @easting, northing: @northing) if defined? Airbrake
+      Rails.logger.error "Area lookup failed: #{error}"
+    end
+
   end
 end
