@@ -76,7 +76,7 @@ module WasteExemptionsEngine
       end
 
       context "when the address is a site address" do
-        before(:context) { VCR.insert_cassette("site_address_auto_area", allow_playback_repeats: true) }
+        before(:context) { VCR.insert_cassette("site_address_from_lookup_auto_area", allow_playback_repeats: true) }
         after(:context) { VCR.eject_cassette }
 
         let(:address_type) { 3 }
@@ -146,7 +146,7 @@ module WasteExemptionsEngine
     end
 
     describe ".create_from_grid_reference_data" do
-      before(:context) { VCR.insert_cassette("site_address_auto_area", allow_playback_repeats: true) }
+      before(:context) { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
       after(:context) { VCR.eject_cassette }
 
       let(:grid_reference_data) do

@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 20 Sep 2019 08:28:43 GMT
+      - Sun, 22 Sep 2019 20:48:45 GMT
       Content-Type:
       - application/json
       Vary:
@@ -38,7 +38,66 @@ http_interactions:
         PLC","premises":null,"street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358130.1","y":"172687.87","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"}]}'
     http_version: 
-  recorded_at: Fri, 20 Sep 2019 08:28:43 GMT
+  recorded_at: Sun, 22 Sep 2019 20:48:45 GMT
+- request:
+    method: get
+    uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358205.03,172708.07%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.4.2p198
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - environment.data.gov.uk
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Sep 2019 20:48:46 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1679'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8" ?>
+        <wfs:FeatureCollection xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ms="https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd http://www.opengis.net/gml http://schemas.opengis.net/gml/2.1.2/feature.xsd https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?service=wfs%26version=1.0.0%26request=DescribeFeatureType">
+        <gml:boundedBy>
+          <gml:Box srsName="EPSG:27700">
+            <gml:coordinates>0,0,0,0</gml:coordinates>
+          </gml:Box>
+        </gml:boundedBy>
+          <gml:featureMember>
+            <ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas fid="Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.15">
+              <ms:OBJECTID>15</ms:OBJECTID>
+              <ms:long_name>Wessex</ms:long_name>
+              <ms:short_name>Wessex</ms:short_name>
+              <ms:code>WSX</ms:code>
+              <ms:st_area_shape_>11208105093.65494</ms:st_area_shape_>
+              <ms:st_perimeter_shape_>903122.4501194651</ms:st_perimeter_shape_>
+            </ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas>
+          </gml:featureMember>
+        </wfs:FeatureCollection>
+    http_version: 
+  recorded_at: Sun, 22 Sep 2019 20:48:46 GMT
 - request:
     method: get
     uri: http://localhost:9002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS15AH
@@ -60,7 +119,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 20 Sep 2019 08:28:43 GMT
+      - Sun, 22 Sep 2019 20:48:46 GMT
       Content-Type:
       - application/json
       Vary:
@@ -77,7 +136,66 @@ http_interactions:
         PLC","premises":null,"street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358130.1","y":"172687.87","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"}]}'
     http_version: 
-  recorded_at: Fri, 20 Sep 2019 08:28:43 GMT
+  recorded_at: Sun, 22 Sep 2019 20:48:46 GMT
+- request:
+    method: get
+    uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358205.03,172708.07%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.4.2p198
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - environment.data.gov.uk
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Sep 2019 20:48:47 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1679'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8" ?>
+        <wfs:FeatureCollection xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ms="https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd http://www.opengis.net/gml http://schemas.opengis.net/gml/2.1.2/feature.xsd https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?service=wfs%26version=1.0.0%26request=DescribeFeatureType">
+        <gml:boundedBy>
+          <gml:Box srsName="EPSG:27700">
+            <gml:coordinates>0,0,0,0</gml:coordinates>
+          </gml:Box>
+        </gml:boundedBy>
+          <gml:featureMember>
+            <ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas fid="Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.15">
+              <ms:OBJECTID>15</ms:OBJECTID>
+              <ms:long_name>Wessex</ms:long_name>
+              <ms:short_name>Wessex</ms:short_name>
+              <ms:code>WSX</ms:code>
+              <ms:st_area_shape_>11208105093.65494</ms:st_area_shape_>
+              <ms:st_perimeter_shape_>903122.4501194651</ms:st_perimeter_shape_>
+            </ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas>
+          </gml:featureMember>
+        </wfs:FeatureCollection>
+    http_version: 
+  recorded_at: Sun, 22 Sep 2019 20:48:47 GMT
 - request:
     method: get
     uri: http://localhost:9002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS15AH
@@ -99,7 +217,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 20 Sep 2019 08:28:43 GMT
+      - Sun, 22 Sep 2019 20:48:47 GMT
       Content-Type:
       - application/json
       Vary:
@@ -116,7 +234,66 @@ http_interactions:
         PLC","premises":null,"street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358130.1","y":"172687.87","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"}]}'
     http_version: 
-  recorded_at: Fri, 20 Sep 2019 08:28:43 GMT
+  recorded_at: Sun, 22 Sep 2019 20:48:47 GMT
+- request:
+    method: get
+    uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358205.03,172708.07%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.4.2p198
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - environment.data.gov.uk
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Sep 2019 20:48:47 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1679'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8" ?>
+        <wfs:FeatureCollection xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ms="https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd http://www.opengis.net/gml http://schemas.opengis.net/gml/2.1.2/feature.xsd https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?service=wfs%26version=1.0.0%26request=DescribeFeatureType">
+        <gml:boundedBy>
+          <gml:Box srsName="EPSG:27700">
+            <gml:coordinates>0,0,0,0</gml:coordinates>
+          </gml:Box>
+        </gml:boundedBy>
+          <gml:featureMember>
+            <ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas fid="Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.15">
+              <ms:OBJECTID>15</ms:OBJECTID>
+              <ms:long_name>Wessex</ms:long_name>
+              <ms:short_name>Wessex</ms:short_name>
+              <ms:code>WSX</ms:code>
+              <ms:st_area_shape_>11208105093.65494</ms:st_area_shape_>
+              <ms:st_perimeter_shape_>903122.4501194651</ms:st_perimeter_shape_>
+            </ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas>
+          </gml:featureMember>
+        </wfs:FeatureCollection>
+    http_version: 
+  recorded_at: Sun, 22 Sep 2019 20:48:47 GMT
 - request:
     method: get
     uri: http://localhost:9002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS15AH
@@ -138,7 +315,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 20 Sep 2019 08:28:43 GMT
+      - Sun, 22 Sep 2019 20:48:47 GMT
       Content-Type:
       - application/json
       Vary:
@@ -155,5 +332,64 @@ http_interactions:
         PLC","premises":null,"street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358130.1","y":"172687.87","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"}]}'
     http_version: 
-  recorded_at: Fri, 20 Sep 2019 08:28:44 GMT
+  recorded_at: Sun, 22 Sep 2019 20:48:47 GMT
+- request:
+    method: get
+    uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358205.03,172708.07%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.4.2p198
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - environment.data.gov.uk
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 22 Sep 2019 20:48:48 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1679'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8" ?>
+        <wfs:FeatureCollection xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ms="https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd http://www.opengis.net/gml http://schemas.opengis.net/gml/2.1.2/feature.xsd https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?service=wfs%26version=1.0.0%26request=DescribeFeatureType">
+        <gml:boundedBy>
+          <gml:Box srsName="EPSG:27700">
+            <gml:coordinates>0,0,0,0</gml:coordinates>
+          </gml:Box>
+        </gml:boundedBy>
+          <gml:featureMember>
+            <ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas fid="Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.15">
+              <ms:OBJECTID>15</ms:OBJECTID>
+              <ms:long_name>Wessex</ms:long_name>
+              <ms:short_name>Wessex</ms:short_name>
+              <ms:code>WSX</ms:code>
+              <ms:st_area_shape_>11208105093.65494</ms:st_area_shape_>
+              <ms:st_perimeter_shape_>903122.4501194651</ms:st_perimeter_shape_>
+            </ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas>
+          </gml:featureMember>
+        </wfs:FeatureCollection>
+    http_version: 
+  recorded_at: Sun, 22 Sep 2019 20:48:48 GMT
 recorded_with: VCR 5.0.0
