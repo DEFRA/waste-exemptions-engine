@@ -21,6 +21,10 @@ Gem::Specification.new do |s|
 
   # Use AASM to manage states and transitions
   s.add_dependency "aasm", "~> 4.12"
+
+  # Use Airbrake for error reporting to Errbit
+  # Version 6 and above cause errors with Errbit, so use 5.8.1 for now
+  s.add_dependency "airbrake", "5.8.1"
   s.add_dependency "has_secure_token"
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "~> 4.2.11"
@@ -29,6 +33,9 @@ Gem::Specification.new do |s|
 
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
+
+  # Used to identify the EA area for a registration
+  s.add_dependency "defra_ruby_area"
 
   s.add_dependency "pg", "~> 0.18.4"
 

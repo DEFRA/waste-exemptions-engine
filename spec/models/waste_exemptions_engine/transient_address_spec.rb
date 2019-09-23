@@ -76,10 +76,17 @@ module WasteExemptionsEngine
       end
 
       context "when the address is a site address" do
+        before(:context) { VCR.insert_cassette("site_address_from_lookup_auto_area", allow_playback_repeats: true) }
+        after(:context) { VCR.eject_cassette }
+
         let(:address_type) { 3 }
 
         it "does automatically determine the grid reference" do
           expect(address.grid_reference).to eq("ST 58205 72708")
+        end
+
+        it "does automatically determine the area" do
+          expect(address.area).to eq("Wessex")
         end
       end
     end
@@ -112,7 +119,7 @@ module WasteExemptionsEngine
       end
 
       context "when the address is a site address", vcr: true do
-        before(:context) { VCR.insert_cassette("site_address_auto_x_and_y", allow_playback_repeats: true) }
+        before(:context) { VCR.insert_cassette("site_address_auto_x_and_y_and_area", allow_playback_repeats: true) }
         after(:context) { VCR.eject_cassette }
 
         let(:address_type) { 3 }
@@ -131,10 +138,17 @@ module WasteExemptionsEngine
         it "does automatically determine the grid reference" do
           expect(address.grid_reference).to eq("ST 58205 72708")
         end
+
+        it "does automatically determine the area" do
+          expect(address.area).to eq("Wessex")
+        end
       end
     end
 
     describe ".create_from_grid_reference_data" do
+      before(:context) { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
+      after(:context) { VCR.eject_cassette }
+
       let(:grid_reference_data) do
         {
           grid_reference: "ST 58337 72855",
@@ -153,6 +167,10 @@ module WasteExemptionsEngine
       it "automatically determines the x & y values" do
         x_and_y = { x: address.x, y: address.y }
         expect(x_and_y).to eq(x: 358_337.0, y: 172_855.0)
+      end
+
+      it "does automatically determine the area" do
+        expect(address.area).to eq("Wessex")
       end
     end
   end
