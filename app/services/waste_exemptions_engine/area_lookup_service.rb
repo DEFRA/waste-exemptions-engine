@@ -31,7 +31,7 @@ module WasteExemptionsEngine
 
     def handle_error(error)
       Airbrake.notify(error, easting: @easting, northing: @northing) if defined? Airbrake
-      Rails.logger.error "Area lookup failed: #{error}"
+      Rails.logger.error "Area lookup failed:\n #{error}"
     end
 
   end
