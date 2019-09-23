@@ -112,8 +112,8 @@ module WasteExemptionsEngine
     end
 
     private_class_method def self.update_area_from_xy(data)
-      return nil unless data
-      return if data["x"].nil? || data["y"].nil?
+      return data unless data
+      return data if data["x"].nil? || data["y"].nil?
 
       data["area"] = AreaLookupService.run(easting: data["x"], northing: data["y"])
 
