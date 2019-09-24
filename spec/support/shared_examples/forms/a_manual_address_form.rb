@@ -1,19 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
-  it "includes CanAddOrReplaceAnAddress" do
-    included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
-    expect(included_modules).to include(WasteExemptionsEngine::CanAddOrReplaceAnAddress)
-  end
-
-  it "is a type of AddressManualForm" do
-    expect(described_class.ancestors).to include(WasteExemptionsEngine::AddressManualForm)
-  end
-
-  it "validates the address data using the ManualAddressValidator class" do
+  it "validates the address data using the LegacyManualAddressValidator class" do
     validators = build(form_factory)._validators
     validator_classes = validators.values.flatten.map(&:class)
-    expect(validator_classes).to include(WasteExemptionsEngine::ManualAddressValidator)
+    expect(validator_classes).to include(WasteExemptionsEngine::LegacyManualAddressValidator)
   end
 
   before(:each) { VCR.insert_cassette("postcode_valid") }
@@ -84,7 +75,7 @@ RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
         # Ensure the test data is properly configured:
         expect(transient_registration.transient_addresses).to be_empty
 
-        form.submit(valid_params)
+        form.submit(ActionController::Parameters.new(valid_params))
 
         expect(transient_registration.transient_addresses.count).to eq(1)
         submitted_address = transient_registration.transient_addresses.first
@@ -102,7 +93,7 @@ RSpec.shared_examples "a manual address form", vcr: true do |form_factory|
           end
           expect(transient_registration.transient_addresses).to be_empty
 
-          form.submit(white_space_params)
+          form.submit(ActionController::Parameters.new(white_space_params))
 
           expect(transient_registration.transient_addresses.count).to eq(1)
           submitted_address = transient_registration.transient_addresses.first

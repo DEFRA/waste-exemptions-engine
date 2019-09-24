@@ -12,22 +12,26 @@ module WasteExemptionsEngine
     include_examples "POST form", :contact_address_manual_form, "/contact-address-manual" do
       let(:form_data) do
         {
-          premises: "Example House",
-          street_address: "2 On The Road",
-          locality: "Near Horizon House",
-          city: "Bristol",
-          postcode: "BS1 5AH"
+          contact_address: {
+            premises: "Example House",
+            street_address: "2 On The Road",
+            locality: "Near Horizon House",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
         }
       end
 
       let(:invalid_form_data) do
         [
           {
-            premises: nil,
-            street_address: nil,
-            locality: nil,
-            city: nil,
-            postcode: nil
+            contact_address: {
+              premises: nil,
+              street_address: nil,
+              locality: nil,
+              city: nil,
+              postcode: nil
+            }
           }
         ]
       end

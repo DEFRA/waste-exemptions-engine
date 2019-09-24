@@ -1,0 +1,1509 @@
+Searching 774 files for "transient_.*_address" (regex)
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/controllers/waste_exemptions_engine/address_lookup_forms_controller.rb:
+    6        find_or_initialize_registration(params[:token])
+    7
+    8:       @transient_registration.skip_to_manual_address! if form_matches_state?
+    9        redirect_to_correct_form
+   10      end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/controllers/waste_exemptions_engine/postcode_forms_controller.rb:
+    6        find_or_initialize_registration(params[:token])
+    7
+    8:       @transient_registration.skip_to_manual_address! if form_matches_state?
+    9        redirect_to_correct_form
+   10      end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/controllers/waste_exemptions_engine/site_grid_reference_forms_controller.rb:
+   14        find_or_initialize_registration(params[:token])
+   15
+   16:       @transient_registration.skip_to_address! if form_matches_state?
+   17        redirect_to_correct_form
+   18      end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/address_lookup_form.rb:
+   27
+   28        attributes = {
+   29:         transient_addresses: add_or_replace_address(
+   30            new_address,
+   31:           @transient_registration.transient_addresses,
+   32            existing_address
+   33          )
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/address_manual_form.rb:
+   30
+   31        attributes = {
+   32:         transient_addresses: add_or_replace_address(
+   33            new_address,
+   34:           @transient_registration.transient_addresses,
+   35            existing_address
+   36          )
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/check_your_answers_form.rb:
+   48        # This should never happen, but if there is no site address we default
+   49        # to validating the site grid reference and description
+   50:       return true unless @transient_registration&.site_address
+   51
+   52:       @transient_registration.site_address.auto?
+   53      end
+   54    end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/contact_address_form.rb:
+   11
+   12      def existing_address
+   13:       @transient_registration.contact_address
+   14      end
+   15
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/contact_address_manual_form.rb:
+    4    class ContactAddressManualForm < BaseForm
+    5      attr_accessor :address_finder_error
+    6:     attr_accessor :transient_contact_address
+    7      attr_accessor :premises, :street_address, :locality, :postcode, :city
+    8
+    9:     validates :transient_contact_address, "waste_exemptions_engine/manual_address": true
+   10
+   11      def initialize(registration)
+   ..
+   14        self.postcode = transient_registration.temp_contact_postcode
+   15
+   16:       self.transient_contact_address = @transient_registration.transient_contact_address
+   17
+   18        # Check if the user reached this page through an Address finder error.
+   ..
+   22
+   23        # Prefill the existing address unless the postcode has changed from the existing address's postcode
+   24:       prefill_transient_contact_address_params if saved_address_still_valid?
+   25      end
+   26
+   27      def submit(params)
+   28:       permitted_attributes = params.require(:transient_contact_address)
+   29        permitted_attributes = permitted_attributes.permit(:locality, :postcode, :city, :premises, :street_address, :mode)
+   30
+   ..
+   32        assign_params(permitted_attributes)
+   33
+   34:       super(transient_contact_address_attributes: permitted_attributes)
+   35      end
+   36
+   ..
+   38
+   39      def assign_params(permitted_attributes)
+   40:       self.transient_contact_address = transient_registration.build_transient_contact_address(permitted_attributes)
+   41
+   42:       prefill_transient_contact_address_params
+   43      end
+   44
+   45      def saved_address_still_valid?
+   46:       return false unless transient_contact_address
+   47        return true if postcode.blank?
+   48:       return true if postcode == transient_contact_address.postcode
+   49
+   50        false
+   51      end
+   52
+   53:     def prefill_transient_contact_address_params
+   54:       return unless transient_contact_address
+   55
+   56:       self.premises = transient_contact_address.premises&.strip
+   57:       self.street_address = transient_contact_address.street_address&.strip
+   58:       self.locality = transient_contact_address.locality&.strip
+   59:       self.city = transient_contact_address.city&.strip
+   60:       self.postcode = transient_contact_address.postcode&.strip
+   61      end
+   62    end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/data_overview_form.rb:
+   28        self.operator_name = @transient_registration.operator_name
+   29        self.people = @transient_registration.people if should_have_partners?
+   30:       self.operator_address = @transient_registration.operator_address
+   31
+   32        self.contact_first_name = @transient_registration.contact_first_name
+   ..
+   35        self.contact_phone = @transient_registration.contact_phone
+   36        self.contact_email = @transient_registration.contact_email
+   37:       self.contact_address = @transient_registration.contact_address
+   38
+   39        self.on_a_farm = @transient_registration.on_a_farm
+   40        self.is_a_farmer = @transient_registration.is_a_farmer
+   41
+   42:       self.site_address = @transient_registration.site_address
+   43        self.grid_reference = site_address&.grid_reference
+   44        self.site_description = site_address&.description
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/edit_form.rb:
+   37        self.contact_first_name       = @transient_registration.contact_first_name
+   38        self.contact_last_name        = @transient_registration.contact_last_name
+   39:       self.contact_address          = @transient_registration.contact_address
+   40        self.contact_email            = @transient_registration.contact_email
+   41        self.contact_phone            = @transient_registration.contact_phone
+   ..
+   44        self.on_a_farm                = @transient_registration.on_a_farm
+   45        self.operator_name            = @transient_registration.operator_name
+   46:       self.operator_address         = @transient_registration.operator_address
+   47        self.people                   = @transient_registration.people
+   48        self.reference                = @transient_registration.reference
+   49        self.registration_exemptions  = @transient_registration.registration_exemptions
+   50:       self.site_address             = @transient_registration.site_address
+   51      end
+   52      # rubocop:enable Metrics/MethodLength
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/operator_address_form.rb:
+   18
+   19      def existing_address
+   20:       @transient_registration.operator_address
+   21      end
+   22
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/site_address_form.rb:
+   11
+   12      def existing_address
+   13:       @transient_registration.site_address
+   14      end
+   15
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/site_grid_reference_form.rb:
+   26        new_address = create_address
+   27        attributes = {
+   28:         transient_addresses: add_or_replace_address(
+   29            new_address,
+   30:           @transient_registration.transient_addresses,
+   31            existing_address
+   32          )
+   ..
+   44
+   45      def existing_address
+   46:       @transient_registration.site_address
+   47      end
+   48
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/services/waste_exemptions_engine/edit_completion_service.rb:
+   39      def copy_addresses
+   40        @registration.addresses = []
+   41:       @edit_registration.transient_addresses.each do |transient_address|
+   42          new_address = Address.new(transient_address.address_attributes)
+   43          @registration.addresses << new_address
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/services/waste_exemptions_engine/registration_completion_service.rb:
+   50
+   51      def copy_addresses
+   52:       @transient_registration.transient_addresses.each do |transient_address|
+   53          @registration.addresses << Address.new(transient_address.address_attributes)
+   54        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/views/waste_exemptions_engine/contact_address_manual_forms/new.html.erb:
+   20      </div>
+   21
+   22:     <%= f.fields_for :transient_contact_address do |f| %>
+   23        <%= render("waste_exemptions_engine/shared/manual_address", form: @contact_address_manual_form, f: f) %>
+   24      <% end %>
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/coverage/index.html:
+ 1332
+ 1333        <tr>
+ 1334:         <td class="strong"><a href="#c2423ea5087ceadaf7a02f69fd0228e7b6369c09" class="src_link" title="app/models/waste_exemptions_engine/transient_address.rb">app/models/waste_exemptions_engine/transient_address.rb</a></td>
+ 1335          <td class="green strong">95.45 %</td>
+ 1336          <td>123</td>
+ ....
+ 2474
+ 2475        <tr>
+ 2476:         <td class="strong"><a href="#c2423ea5087ceadaf7a02f69fd0228e7b6369c09" class="src_link" title="app/models/waste_exemptions_engine/transient_address.rb">app/models/waste_exemptions_engine/transient_address.rb</a></td>
+ 2477          <td class="green strong">95.45 %</td>
+ 2478          <td>123</td>
+ ....
+ 4121            <span class="hits">6</span>
+ 4122
+ 4123:           <code class="ruby">      @transient_registration.skip_to_manual_address! if form_matches_state?</code>
+ 4124          </li>
+ 4125
+ ....
+ 9039            <span class="hits">6</span>
+ 9040
+ 9041:           <code class="ruby">      @transient_registration.skip_to_manual_address! if form_matches_state?</code>
+ 9042          </li>
+ 9043
+ ....
+ 10510            <span class="hits">2</span>
+ 10511
+ 10512:           <code class="ruby">      @transient_registration.skip_to_address! if form_matches_state?</code>
+ 10513          </li>
+ 10514
+ .....
+ 11096
+ 11097
+ 11098:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 11099          </li>
+ 11100
+ .....
+ 11108
+ 11109
+ 11110:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 11111          </li>
+ 11112
+ .....
+ 11595
+ 11596
+ 11597:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 11598          </li>
+ 11599
+ .....
+ 11607
+ 11608
+ 11609:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 11610          </li>
+ 11611
+ .....
+ 13492            <span class="hits">63</span>
+ 13493
+ 13494:           <code class="ruby">      return true unless @transient_registration&amp;.site_address</code>
+ 13495          </li>
+ 13496
+ .....
+ 13504            <span class="hits">54</span>
+ 13505
+ 13506:           <code class="ruby">      @transient_registration.site_address.auto?</code>
+ 13507          </li>
+ 13508
+ .....
+ 13716            <span class="hits">31</span>
+ 13717
+ 13718:           <code class="ruby">      @transient_registration.contact_address</code>
+ 13719          </li>
+ 13720
+ .....
+ 13880            <span class="hits">1</span>
+ 13881
+ 13882:           <code class="ruby">    attr_accessor :transient_contact_address</code>
+ 13883          </li>
+ 13884
+ .....
+ 13898            <span class="hits">1</span>
+ 13899
+ 13900:           <code class="ruby">    validates :transient_contact_address, &quot;waste_exemptions_engine/manual_address&quot;: true</code>
+ 13901          </li>
+ 13902
+ .....
+ 13940            <span class="hits">13</span>
+ 13941
+ 13942:           <code class="ruby">      self.transient_contact_address = @transient_registration.transient_contact_address</code>
+ 13943          </li>
+ 13944
+ .....
+ 13988
+ 13989
+ 13990:           <code class="ruby">      prefill_transient_contact_address_params if saved_address_still_valid?</code>
+ 13991          </li>
+ 13992
+ .....
+ 14012
+ 14013
+ 14014:           <code class="ruby">      permitted_attributes = params.require(:transient_contact_address)</code>
+ 14015          </li>
+ 14016
+ .....
+ 14048
+ 14049
+ 14050:           <code class="ruby">      super(transient_contact_address_attributes: permitted_attributes)</code>
+ 14051          </li>
+ 14052
+ .....
+ 14084
+ 14085
+ 14086:           <code class="ruby">      self.transient_contact_address = transient_registration.build_transient_contact_address(permitted_attributes)</code>
+ 14087          </li>
+ 14088
+ .....
+ 14096
+ 14097
+ 14098:           <code class="ruby">      prefill_transient_contact_address_params</code>
+ 14099          </li>
+ 14100
+ .....
+ 14120
+ 14121
+ 14122:           <code class="ruby">      return false unless transient_contact_address</code>
+ 14123          </li>
+ 14124
+ .....
+ 14132
+ 14133
+ 14134:           <code class="ruby">      return true if postcode == transient_contact_address.postcode</code>
+ 14135          </li>
+ 14136
+ .....
+ 14162            <span class="hits">1</span>
+ 14163
+ 14164:           <code class="ruby">    def prefill_transient_contact_address_params</code>
+ 14165          </li>
+ 14166
+ .....
+ 14168
+ 14169
+ 14170:           <code class="ruby">      return unless transient_contact_address</code>
+ 14171          </li>
+ 14172
+ .....
+ 14180
+ 14181
+ 14182:           <code class="ruby">      self.premises = transient_contact_address.premises&amp;.strip</code>
+ 14183          </li>
+ 14184
+ .....
+ 14186
+ 14187
+ 14188:           <code class="ruby">      self.street_address = transient_contact_address.street_address&amp;.strip</code>
+ 14189          </li>
+ 14190
+ .....
+ 14192
+ 14193
+ 14194:           <code class="ruby">      self.locality = transient_contact_address.locality&amp;.strip</code>
+ 14195          </li>
+ 14196
+ .....
+ 14198
+ 14199
+ 14200:           <code class="ruby">      self.city = transient_contact_address.city&amp;.strip</code>
+ 14201          </li>
+ 14202
+ .....
+ 14204
+ 14205
+ 14206:           <code class="ruby">      self.postcode = transient_contact_address.postcode&amp;.strip</code>
+ 14207          </li>
+ 14208
+ .....
+ 15339            <span class="hits">34</span>
+ 15340
+ 15341:           <code class="ruby">      self.operator_address = @transient_registration.operator_address</code>
+ 15342          </li>
+ 15343
+ .....
+ 15381            <span class="hits">34</span>
+ 15382
+ 15383:           <code class="ruby">      self.contact_address = @transient_registration.contact_address</code>
+ 15384          </li>
+ 15385
+ .....
+ 15411            <span class="hits">34</span>
+ 15412
+ 15413:           <code class="ruby">      self.site_address = @transient_registration.site_address</code>
+ 15414          </li>
+ 15415
+ .....
+ 16171            <span class="hits">84</span>
+ 16172
+ 16173:           <code class="ruby">      self.contact_address          = @transient_registration.contact_address</code>
+ 16174          </li>
+ 16175
+ .....
+ 16213            <span class="hits">84</span>
+ 16214
+ 16215:           <code class="ruby">      self.operator_address         = @transient_registration.operator_address</code>
+ 16216          </li>
+ 16217
+ .....
+ 16237            <span class="hits">84</span>
+ 16238
+ 16239:           <code class="ruby">      self.site_address             = @transient_registration.site_address</code>
+ 16240          </li>
+ 16241
+ .....
+ 17329            <span class="hits">57</span>
+ 17330
+ 17331:           <code class="ruby">      @transient_registration.operator_address</code>
+ 17332          </li>
+ 17333
+ .....
+ 19462            <span class="hits">57</span>
+ 19463
+ 19464:           <code class="ruby">      @transient_registration.site_address</code>
+ 19465          </li>
+ 19466
+ .....
+ 19825
+ 19826
+ 19827:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 19828          </li>
+ 19829
+ .....
+ 19837
+ 19838
+ 19839:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 19840          </li>
+ 19841
+ .....
+ 19933            <span class="hits">2</span>
+ 19934
+ 19935:           <code class="ruby">      @transient_registration.site_address</code>
+ 19936          </li>
+ 19937
+ .....
+ 34612            <span class="hits">5</span>
+ 34613
+ 34614:           <code class="ruby">      @edit_registration.transient_addresses.each do |transient_address|</code>
+ 34615          </li>
+ 34616
+ .....
+ 35545            <span class="hits">9</span>
+ 35546
+ 35547:           <code class="ruby">      @transient_registration.transient_addresses.each do |transient_address|</code>
+ 35548          </li>
+ 35549
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/db/schema.rb:
+  144    end
+  145
+  146:   add_index "transient_addresses", ["transient_registration_id"], name: "index_transient_addresses_on_transient_registration_id", using: :btree
+  147
+  148    create_table "transient_people", force: :cascade do |t|
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/log/development.log:
+    <binary>
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/log/test.log:
+    File too large, skipping
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/edit_registration.rb:
+   54        addresses do
+   55          [
+   56:           build(:transient_address, :operator_address, :manual),
+   57:           build(:transient_address, :contact_address, :manual),
+   58:           build(:transient_address, :site_address, :manual)
+   59          ]
+   60        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/new_registration.rb:
+   42        addresses do
+   43          [
+   44:           build(:transient_address, :operator_address, :manual),
+   45:           build(:transient_address, :contact_address, :manual),
+   46:           build(:transient_address, :site_address, :manual)
+   47          ]
+   48        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/renewing_registration.rb:
+   19        addresses do
+   20          [
+   21:           build(:transient_address, :operator_address, :manual),
+   22:           build(:transient_address, :contact_address, :manual),
+   23:           build(:transient_address, :site_address, :manual)
+   24          ]
+   25        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/forms/waste_exemptions_engine/contact_address_manual_form_spec.rb:
+   21            {
+   22              token: form.token,
+   23:             transient_contact_address: {
+   24                premises: "Horizon House",
+   25                street_address: "Deanery Rd",
+   ..
+   31            {
+   32              token: form.token,
+   33:             transient_contact_address: {
+   34                premises: "Horizon House",
+   35                street_address: "Deanery Rd",
+   ..
+   45            {
+   46              token: form.token,
+   47:             transient_contact_address: {
+   48                premises: "",
+   49                street_address: "",
+   ..
+   55            {
+   56              token: form.token,
+   57:             transient_contact_address: {
+   58                premises: Helpers::TextGenerator.random_string(201), # The max length is 200.
+   59                street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
+   ..
+   73          let(:address_data) do
+   74            {
+   75:             transient_contact_address: {
+   76                premises: "Example House",
+   77                street_address: "2 On The Road",
+   ..
+   84          let(:white_space_address_data) do
+   85            {
+   86:             transient_contact_address: {
+   87                premises: "  Example House ",
+   88                street_address: " 2 On The Road  ",
+   ..
+   99          it "updates the transient registration with the submitted address data" do
+  100            # Ensure the test data is properly configured:
+  101:           expect(transient_registration.transient_addresses).to be_empty
+  102
+  103            form.submit(ActionController::Parameters.new(valid_params))
+  104
+  105:           expect(transient_registration.transient_addresses.count).to eq(1)
+  106:           submitted_address = transient_registration.transient_addresses.first
+  107:           address_data[:transient_contact_address].each do |key, value|
+  108              expect(submitted_address.send(key)).to eq(value)
+  109            end
+  ...
+  113            it "strips the extraneous white space from the submitted address data" do
+  114              # Ensure the test data is properly configured:
+  115:             address_data[:transient_contact_address].each do |key, value|
+  116:               expect(white_space_params[:transient_contact_address][key]).not_to eq(value)
+  117:               expect(white_space_params[:transient_contact_address][key].strip).to eq(value)
+  118              end
+  119:             expect(transient_registration.transient_addresses).to be_empty
+  120
+  121              form.submit(ActionController::Parameters.new(white_space_params))
+  122
+  123:             expect(transient_registration.reload.transient_addresses.count).to eq(1)
+  124:             submitted_address = transient_registration.transient_addresses.first
+  125:             address_data[:transient_contact_address].each do |key, value|
+  126                expect(submitted_address.send(key)).to eq(value)
+  127              end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/transient_address_spec.rb:
+    5  module WasteExemptionsEngine
+    6    RSpec.describe TransientAddress, type: :model do
+    7:     subject(:transient_address) { build(:transient_address) }
+    8
+    9      describe "public interface" do
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/check_your_answers_form_spec.rb:
+   14        next_state = :declaration_form
+   15        current_state = :check_your_answers_form
+   16:       let(:site_address) { build(:transient_address, :site_address) }
+   17        subject(:new_registration) do
+   18          create(:new_registration, workflow_state: current_state, addresses: [site_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/contact_name_form_spec.rb:
+    8        next_state = :contact_position_form
+    9        current_state = :contact_name_form
+   10:       let(:operator_address) { build(:transient_address, :operator_address) }
+   11        subject(:new_registration) do
+   12          create(:new_registration, workflow_state: current_state, addresses: [operator_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/on_a_farm_form_spec.rb:
+    8        next_state = :is_a_farmer_form
+    9        current_state = :on_a_farm_form
+   10:       let(:contact_address) { build(:transient_address, :contact_address) }
+   11        subject(:new_registration) do
+   12          create(:new_registration, workflow_state: current_state, addresses: [contact_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/check_your_answers_form_spec.rb:
+   20        next_state = :declaration_form
+   21        current_state = :check_your_answers_form
+   22:       let(:site_address) { build(:transient_address, :site_address) }
+   23        subject(:renewing_registration) do
+   24          create(:renewing_registration, workflow_state: current_state, addresses: [site_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/contact_name_form_spec.rb:
+    8        next_state = :contact_position_form
+    9        current_state = :contact_name_form
+   10:       let(:operator_address) { build(:transient_address, :operator_address) }
+   11        subject(:renewing_registration) do
+   12          create(:renewing_registration, workflow_state: current_state, addresses: [operator_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/on_a_farm_form_spec.rb:
+    8        next_state = :is_a_farmer_form
+    9        current_state = :on_a_farm_form
+   10:       let(:contact_address) { build(:transient_address, :contact_address) }
+   11        subject(:renewing_registration) do
+   12          create(:renewing_registration, workflow_state: current_state, addresses: [contact_address])
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/requests/waste_exemptions_engine/contact_address_manual_forms_spec.rb:
+   13        let(:form_data) do
+   14          {
+   15:           transient_contact_address: {
+   16              premises: "Example House",
+   17              street_address: "2 On The Road",
+   ..
+   26          [
+   27            {
+   28:             transient_contact_address: {
+   29                premises: nil,
+   30                street_address: nil,
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/support/shared_examples/forms/a_manual_address_form.rb:
+   74        it "updates the transient registration with the submitted address data" do
+   75          # Ensure the test data is properly configured:
+   76:         expect(transient_registration.transient_addresses).to be_empty
+   77
+   78          form.submit(ActionController::Parameters.new(valid_params))
+   79
+   80:         expect(transient_registration.transient_addresses.count).to eq(1)
+   81:         submitted_address = transient_registration.transient_addresses.first
+   82          address_data.each do |key, value|
+   83            expect(submitted_address.send(key)).to eq(value)
+   ..
+   92              expect(white_space_params[key].strip).to eq(value)
+   93            end
+   94:           expect(transient_registration.transient_addresses).to be_empty
+   95
+   96            form.submit(ActionController::Parameters.new(white_space_params))
+   97
+   98:           expect(transient_registration.transient_addresses.count).to eq(1)
+   99:           submitted_address = transient_registration.transient_addresses.first
+  100            address_data.each do |key, value|
+  101              expect(submitted_address.send(key)).to eq(value)
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/support/shared_examples/forms/address_lookup_form.rb:
+   39          transient_registration = form.transient_registration
+   40
+   41:         expect(transient_registration.transient_addresses).to be_empty
+   42          form.submit(valid_params)
+   43:         expect(transient_registration.transient_addresses.count).to eq(1)
+   44:         expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
+   45        end
+   46      end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/support/shared_examples/models/transient_registration.rb:
+   13
+   14    describe "associations" do
+   15:     subject(:transient_registration) { create(model_factory, :with_all_addresses) }
+   16
+   17      describe "#site_address" do
+   18        it "returns an TransientAddress of type :site" do
+   19          site_address = transient_registration.addresses.find_by(address_type: 3)
+   20:         expect(transient_registration.site_address).to eq(site_address)
+   21        end
+   22      end
+   ..
+   25        it "returns an TransientAddress of type :operator" do
+   26          operator_address = transient_registration.addresses.find_by(address_type: 1)
+   27:         expect(transient_registration.operator_address).to eq(operator_address)
+   28        end
+   29      end
+   ..
+   32        it "returns an TransientAddress of type :contact" do
+   33          contact_address = transient_registration.addresses.find_by(address_type: 2)
+   34:         expect(transient_registration.contact_address).to eq(contact_address)
+   35        end
+   36      end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/validators/waste_exemptions_engine/manual_address_validator_spec.rb:
+   11      attr_accessor :transient_address
+   12
+   13:     validates :transient_address, "waste_exemptions_engine/manual_address": true
+   14
+   15      def initialize(*attrs)
+   16        super(*attrs)
+   17
+   18:       self.transient_address = MockTransientAddress.new(premises, street_address, locality, city, postcode)
+   19      end
+   20    end
+
+148 matches across 35 files
+
+
+Searching 774 files for "transient_[^\.]+_address" (regex)
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/address_lookup_form.rb:
+   27
+   28        attributes = {
+   29:         transient_addresses: add_or_replace_address(
+   30:           new_address,
+   31:           @transient_registration.transient_addresses,
+   32:           existing_address
+   33:         )
+   34:       }
+   35:
+   36:       super(attributes)
+   37:     end
+   38:
+   39:     private
+   40:
+   41:     # Look up addresses based on the postcode
+   42:     def look_up_addresses
+   43        if postcode.present?
+   44          address_finder = AddressFinderService.new(postcode)
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/address_manual_form.rb:
+   30
+   31        attributes = {
+   32:         transient_addresses: add_or_replace_address(
+   33:           new_address,
+   34:           @transient_registration.transient_addresses,
+   35:           existing_address
+   36          )
+   37        }
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/contact_address_manual_form.rb:
+    4    class ContactAddressManualForm < BaseForm
+    5      attr_accessor :address_finder_error
+    6:     attr_accessor :transient_contact_address
+    7:     attr_accessor :premises, :street_address, :locality, :postcode, :city
+    8:
+    9:     validates :transient_contact_address, "waste_exemptions_engine/manual_address": true
+   10
+   11      def initialize(registration)
+   ..
+   14        self.postcode = transient_registration.temp_contact_postcode
+   15
+   16:       self.transient_contact_address = @transient_registration.transient_contact_address
+   17
+   18        # Check if the user reached this page through an Address finder error.
+   ..
+   22
+   23        # Prefill the existing address unless the postcode has changed from the existing address's postcode
+   24:       prefill_transient_contact_address_params if saved_address_still_valid?
+   25      end
+   26
+   27      def submit(params)
+   28:       permitted_attributes = params.require(:transient_contact_address)
+   29        permitted_attributes = permitted_attributes.permit(:locality, :postcode, :city, :premises, :street_address, :mode)
+   30
+   ..
+   32        assign_params(permitted_attributes)
+   33
+   34:       super(transient_contact_address_attributes: permitted_attributes)
+   35      end
+   36
+   ..
+   38
+   39      def assign_params(permitted_attributes)
+   40:       self.transient_contact_address = transient_registration.build_transient_contact_address(permitted_attributes)
+   41:
+   42:       prefill_transient_contact_address_params
+   43:     end
+   44:
+   45:     def saved_address_still_valid?
+   46:       return false unless transient_contact_address
+   47        return true if postcode.blank?
+   48:       return true if postcode == transient_contact_address.postcode
+   49
+   50        false
+   51      end
+   52
+   53:     def prefill_transient_contact_address_params
+   54:       return unless transient_contact_address
+   55
+   56:       self.premises = transient_contact_address.premises&.strip
+   57:       self.street_address = transient_contact_address.street_address&.strip
+   58:       self.locality = transient_contact_address.locality&.strip
+   59:       self.city = transient_contact_address.city&.strip
+   60:       self.postcode = transient_contact_address.postcode&.strip
+   61      end
+   62    end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/forms/waste_exemptions_engine/site_grid_reference_form.rb:
+   26        new_address = create_address
+   27        attributes = {
+   28:         transient_addresses: add_or_replace_address(
+   29:           new_address,
+   30:           @transient_registration.transient_addresses,
+   31:           existing_address
+   32          )
+   33        }
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/models/waste_exemptions_engine/transient_registration.rb:
+   27      accepts_nested_attributes_for :operator_address
+   28
+   29:     has_many :transient_people, dependent: :destroy
+   30:     has_many :transient_registration_exemptions, dependent: :destroy
+   31:     has_many :exemptions, through: :transient_registration_exemptions
+   32:
+   33:     alias_attribute :addresses, :transient_addresses
+   34:     alias_attribute :people, :transient_people
+   35:     alias_attribute :registration_exemptions, :transient_registration_exemptions
+   36:
+   37:     TRANSIENT_ATTRIBUTES = %w[address_finder_error
+   38:                               created_at
+   39:                               declaration
+   40:                               reference
+   41:                               id
+   42:                               start_option
+   43:                               temp_operator_postcode
+   44:                               temp_contact_postcode
+   45:                               temp_grid_reference
+   46:                               temp_site_description
+   47:                               temp_site_postcode
+   48:                               temp_renew_without_changes
+   49:                               token
+   50:                               transient_addresses
+   51                                transient_registration_exemptions
+   52                                transient_people
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/services/waste_exemptions_engine/edit_completion_service.rb:
+   39      def copy_addresses
+   40        @registration.addresses = []
+   41:       @edit_registration.transient_addresses.each do |transient_address|
+   42:         new_address = Address.new(transient_address.address_attributes)
+   43          @registration.addresses << new_address
+   44        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/app/views/waste_exemptions_engine/contact_address_manual_forms/new.html.erb:
+   20      </div>
+   21
+   22:     <%= f.fields_for :transient_contact_address do |f| %>
+   23:       <%= render("waste_exemptions_engine/shared/manual_address", form: @contact_address_manual_form, f: f) %>
+   24      <% end %>
+   25
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/coverage/index.html:
+ 11096
+ 11097
+ 11098:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 11099:         </li>
+ 11100:
+ 11101:         <li class="never" data-hits="" data-linenumber="30">
+ 11102:
+ 11103:
+ 11104:           <code class="ruby">          new_address,</code>
+ 11105          </li>
+ 11106
+ .....
+ 11108
+ 11109
+ 11110:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 11111:         </li>
+ 11112:
+ 11113:         <li class="never" data-hits="" data-linenumber="32">
+ 11114:
+ 11115:
+ 11116:           <code class="ruby">          existing_address</code>
+ 11117:         </li>
+ 11118:
+ 11119:         <li class="never" data-hits="" data-linenumber="33">
+ 11120:
+ 11121:
+ 11122:           <code class="ruby">        )</code>
+ 11123:         </li>
+ 11124:
+ 11125:         <li class="never" data-hits="" data-linenumber="34">
+ 11126:
+ 11127:
+ 11128:           <code class="ruby">      }</code>
+ 11129:         </li>
+ 11130:
+ 11131:         <li class="never" data-hits="" data-linenumber="35">
+ 11132:
+ 11133:
+ 11134:           <code class="ruby"></code>
+ 11135:         </li>
+ 11136:
+ 11137:         <li class="covered" data-hits="6" data-linenumber="36">
+ 11138:           <span class="hits">6</span>
+ 11139:
+ 11140:           <code class="ruby">      super(attributes)</code>
+ 11141:         </li>
+ 11142:
+ 11143:         <li class="never" data-hits="" data-linenumber="37">
+ 11144:
+ 11145:
+ 11146:           <code class="ruby">    end</code>
+ 11147:         </li>
+ 11148:
+ 11149:         <li class="never" data-hits="" data-linenumber="38">
+ 11150:
+ 11151:
+ 11152:           <code class="ruby"></code>
+ 11153:         </li>
+ 11154:
+ 11155:         <li class="covered" data-hits="1" data-linenumber="39">
+ 11156:           <span class="hits">1</span>
+ 11157:
+ 11158:           <code class="ruby">    private</code>
+ 11159:         </li>
+ 11160:
+ 11161:         <li class="never" data-hits="" data-linenumber="40">
+ 11162:
+ 11163:
+ 11164:           <code class="ruby"></code>
+ 11165:         </li>
+ 11166:
+ 11167:         <li class="never" data-hits="" data-linenumber="41">
+ 11168:
+ 11169:
+ 11170:           <code class="ruby">    # Look up addresses based on the postcode</code>
+ 11171:         </li>
+ 11172:
+ 11173:         <li class="covered" data-hits="1" data-linenumber="42">
+ 11174:           <span class="hits">1</span>
+ 11175:
+ 11176:           <code class="ruby">    def look_up_addresses</code>
+ 11177          </li>
+ 11178
+ .....
+ 11595
+ 11596
+ 11597:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 11598:         </li>
+ 11599:
+ 11600:         <li class="never" data-hits="" data-linenumber="33">
+ 11601:
+ 11602:
+ 11603:           <code class="ruby">          new_address,</code>
+ 11604          </li>
+ 11605
+ .....
+ 11607
+ 11608
+ 11609:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 11610:         </li>
+ 11611:
+ 11612:         <li class="never" data-hits="" data-linenumber="35">
+ 11613:
+ 11614:
+ 11615:           <code class="ruby">          existing_address</code>
+ 11616          </li>
+ 11617
+ .....
+ 13880            <span class="hits">1</span>
+ 13881
+ 13882:           <code class="ruby">    attr_accessor :transient_contact_address</code>
+ 13883:         </li>
+ 13884:
+ 13885:         <li class="covered" data-hits="1" data-linenumber="7">
+ 13886:           <span class="hits">1</span>
+ 13887:
+ 13888:           <code class="ruby">    attr_accessor :premises, :street_address, :locality, :postcode, :city</code>
+ 13889:         </li>
+ 13890:
+ 13891:         <li class="never" data-hits="" data-linenumber="8">
+ 13892:
+ 13893:
+ 13894:           <code class="ruby"></code>
+ 13895:         </li>
+ 13896:
+ 13897:         <li class="covered" data-hits="1" data-linenumber="9">
+ 13898:           <span class="hits">1</span>
+ 13899:
+ 13900:           <code class="ruby">    validates :transient_contact_address, &quot;waste_exemptions_engine/manual_address&quot;: true</code>
+ 13901          </li>
+ 13902
+ .....
+ 13940            <span class="hits">13</span>
+ 13941
+ 13942:           <code class="ruby">      self.transient_contact_address = @transient_registration.transient_contact_address</code>
+ 13943          </li>
+ 13944
+ .....
+ 13988
+ 13989
+ 13990:           <code class="ruby">      prefill_transient_contact_address_params if saved_address_still_valid?</code>
+ 13991          </li>
+ 13992
+ .....
+ 14012
+ 14013
+ 14014:           <code class="ruby">      permitted_attributes = params.require(:transient_contact_address)</code>
+ 14015          </li>
+ 14016
+ .....
+ 14048
+ 14049
+ 14050:           <code class="ruby">      super(transient_contact_address_attributes: permitted_attributes)</code>
+ 14051          </li>
+ 14052
+ .....
+ 14084
+ 14085
+ 14086:           <code class="ruby">      self.transient_contact_address = transient_registration.build_transient_contact_address(permitted_attributes)</code>
+ 14087:         </li>
+ 14088:
+ 14089:         <li class="never" data-hits="" data-linenumber="41">
+ 14090:
+ 14091:
+ 14092:           <code class="ruby"></code>
+ 14093:         </li>
+ 14094:
+ 14095:         <li class="missed" data-hits="0" data-linenumber="42">
+ 14096:
+ 14097:
+ 14098:           <code class="ruby">      prefill_transient_contact_address_params</code>
+ 14099:         </li>
+ 14100:
+ 14101:         <li class="never" data-hits="" data-linenumber="43">
+ 14102:
+ 14103:
+ 14104:           <code class="ruby">    end</code>
+ 14105:         </li>
+ 14106:
+ 14107:         <li class="never" data-hits="" data-linenumber="44">
+ 14108:
+ 14109:
+ 14110:           <code class="ruby"></code>
+ 14111:         </li>
+ 14112:
+ 14113:         <li class="covered" data-hits="1" data-linenumber="45">
+ 14114:           <span class="hits">1</span>
+ 14115:
+ 14116:           <code class="ruby">    def saved_address_still_valid?</code>
+ 14117:         </li>
+ 14118:
+ 14119:         <li class="missed" data-hits="0" data-linenumber="46">
+ 14120:
+ 14121:
+ 14122:           <code class="ruby">      return false unless transient_contact_address</code>
+ 14123          </li>
+ 14124
+ .....
+ 14132
+ 14133
+ 14134:           <code class="ruby">      return true if postcode == transient_contact_address.postcode</code>
+ 14135          </li>
+ 14136
+ .....
+ 14162            <span class="hits">1</span>
+ 14163
+ 14164:           <code class="ruby">    def prefill_transient_contact_address_params</code>
+ 14165:         </li>
+ 14166:
+ 14167:         <li class="missed" data-hits="0" data-linenumber="54">
+ 14168:
+ 14169:
+ 14170:           <code class="ruby">      return unless transient_contact_address</code>
+ 14171          </li>
+ 14172
+ .....
+ 14180
+ 14181
+ 14182:           <code class="ruby">      self.premises = transient_contact_address.premises&amp;.strip</code>
+ 14183          </li>
+ 14184
+ .....
+ 14186
+ 14187
+ 14188:           <code class="ruby">      self.street_address = transient_contact_address.street_address&amp;.strip</code>
+ 14189          </li>
+ 14190
+ .....
+ 14192
+ 14193
+ 14194:           <code class="ruby">      self.locality = transient_contact_address.locality&amp;.strip</code>
+ 14195          </li>
+ 14196
+ .....
+ 14198
+ 14199
+ 14200:           <code class="ruby">      self.city = transient_contact_address.city&amp;.strip</code>
+ 14201          </li>
+ 14202
+ .....
+ 14204
+ 14205
+ 14206:           <code class="ruby">      self.postcode = transient_contact_address.postcode&amp;.strip</code>
+ 14207          </li>
+ 14208
+ .....
+ 19825
+ 19826
+ 19827:           <code class="ruby">        transient_addresses: add_or_replace_address(</code>
+ 19828:         </li>
+ 19829:
+ 19830:         <li class="never" data-hits="" data-linenumber="29">
+ 19831:
+ 19832:
+ 19833:           <code class="ruby">          new_address,</code>
+ 19834          </li>
+ 19835
+ .....
+ 19837
+ 19838
+ 19839:           <code class="ruby">          @transient_registration.transient_addresses,</code>
+ 19840:         </li>
+ 19841:
+ 19842:         <li class="never" data-hits="" data-linenumber="31">
+ 19843:
+ 19844:
+ 19845:           <code class="ruby">          existing_address</code>
+ 19846          </li>
+ 19847
+ .....
+ 32713            <span class="hits">1</span>
+ 32714
+ 32715:           <code class="ruby">    has_many :transient_people, dependent: :destroy</code>
+ 32716:         </li>
+ 32717:
+ 32718:         <li class="covered" data-hits="1" data-linenumber="30">
+ 32719:           <span class="hits">1</span>
+ 32720:
+ 32721:           <code class="ruby">    has_many :transient_registration_exemptions, dependent: :destroy</code>
+ 32722:         </li>
+ 32723:
+ 32724:         <li class="covered" data-hits="1" data-linenumber="31">
+ 32725:           <span class="hits">1</span>
+ 32726:
+ 32727:           <code class="ruby">    has_many :exemptions, through: :transient_registration_exemptions</code>
+ 32728:         </li>
+ 32729:
+ 32730:         <li class="never" data-hits="" data-linenumber="32">
+ 32731:
+ 32732:
+ 32733:           <code class="ruby"></code>
+ 32734:         </li>
+ 32735:
+ 32736:         <li class="covered" data-hits="1" data-linenumber="33">
+ 32737:           <span class="hits">1</span>
+ 32738:
+ 32739:           <code class="ruby">    alias_attribute :addresses, :transient_addresses</code>
+ 32740:         </li>
+ 32741:
+ 32742:         <li class="covered" data-hits="1" data-linenumber="34">
+ 32743:           <span class="hits">1</span>
+ 32744:
+ 32745:           <code class="ruby">    alias_attribute :people, :transient_people</code>
+ 32746:         </li>
+ 32747:
+ 32748:         <li class="covered" data-hits="1" data-linenumber="35">
+ 32749:           <span class="hits">1</span>
+ 32750:
+ 32751:           <code class="ruby">    alias_attribute :registration_exemptions, :transient_registration_exemptions</code>
+ 32752:         </li>
+ 32753:
+ 32754:         <li class="never" data-hits="" data-linenumber="36">
+ 32755:
+ 32756:
+ 32757:           <code class="ruby"></code>
+ 32758:         </li>
+ 32759:
+ 32760:         <li class="covered" data-hits="1" data-linenumber="37">
+ 32761:           <span class="hits">1</span>
+ 32762:
+ 32763:           <code class="ruby">    TRANSIENT_ATTRIBUTES = %w[address_finder_error</code>
+ 32764:         </li>
+ 32765:
+ 32766:         <li class="never" data-hits="" data-linenumber="38">
+ 32767:
+ 32768:
+ 32769:           <code class="ruby">                              created_at</code>
+ 32770:         </li>
+ 32771:
+ 32772:         <li class="never" data-hits="" data-linenumber="39">
+ 32773:
+ 32774:
+ 32775:           <code class="ruby">                              declaration</code>
+ 32776:         </li>
+ 32777:
+ 32778:         <li class="never" data-hits="" data-linenumber="40">
+ 32779:
+ 32780:
+ 32781:           <code class="ruby">                              reference</code>
+ 32782:         </li>
+ 32783:
+ 32784:         <li class="never" data-hits="" data-linenumber="41">
+ 32785:
+ 32786:
+ 32787:           <code class="ruby">                              id</code>
+ 32788:         </li>
+ 32789:
+ 32790:         <li class="never" data-hits="" data-linenumber="42">
+ 32791:
+ 32792:
+ 32793:           <code class="ruby">                              start_option</code>
+ 32794:         </li>
+ 32795:
+ 32796:         <li class="never" data-hits="" data-linenumber="43">
+ 32797:
+ 32798:
+ 32799:           <code class="ruby">                              temp_operator_postcode</code>
+ 32800:         </li>
+ 32801:
+ 32802:         <li class="never" data-hits="" data-linenumber="44">
+ 32803:
+ 32804:
+ 32805:           <code class="ruby">                              temp_contact_postcode</code>
+ 32806:         </li>
+ 32807:
+ 32808:         <li class="never" data-hits="" data-linenumber="45">
+ 32809:
+ 32810:
+ 32811:           <code class="ruby">                              temp_grid_reference</code>
+ 32812:         </li>
+ 32813:
+ 32814:         <li class="never" data-hits="" data-linenumber="46">
+ 32815:
+ 32816:
+ 32817:           <code class="ruby">                              temp_site_description</code>
+ 32818:         </li>
+ 32819:
+ 32820:         <li class="never" data-hits="" data-linenumber="47">
+ 32821:
+ 32822:
+ 32823:           <code class="ruby">                              temp_site_postcode</code>
+ 32824:         </li>
+ 32825:
+ 32826:         <li class="never" data-hits="" data-linenumber="48">
+ 32827:
+ 32828:
+ 32829:           <code class="ruby">                              temp_renew_without_changes</code>
+ 32830:         </li>
+ 32831:
+ 32832:         <li class="never" data-hits="" data-linenumber="49">
+ 32833:
+ 32834:
+ 32835:           <code class="ruby">                              token</code>
+ 32836:         </li>
+ 32837:
+ 32838:         <li class="never" data-hits="" data-linenumber="50">
+ 32839:
+ 32840:
+ 32841:           <code class="ruby">                              transient_addresses</code>
+ 32842          </li>
+ 32843
+ .....
+ 34612            <span class="hits">5</span>
+ 34613
+ 34614:           <code class="ruby">      @edit_registration.transient_addresses.each do |transient_address|</code>
+ 34615:         </li>
+ 34616:
+ 34617:         <li class="covered" data-hits="15" data-linenumber="42">
+ 34618:           <span class="hits">15</span>
+ 34619:
+ 34620:           <code class="ruby">        new_address = Address.new(transient_address.address_attributes)</code>
+ 34621          </li>
+ 34622
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/db/schema.rb:
+  144    end
+  145
+  146:   add_index "transient_addresses", ["transient_registration_id"], name: "index_transient_addresses_on_transient_registration_id", using: :btree
+  147
+  148    create_table "transient_people", force: :cascade do |t|
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/log/development.log:
+    <binary>
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/dummy/log/test.log:
+    File too large, skipping
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/edit_registration.rb:
+   54        addresses do
+   55          [
+   56:           build(:transient_address, :operator_address, :manual),
+   57:           build(:transient_address, :contact_address, :manual),
+   58:           build(:transient_address, :site_address, :manual)
+   59          ]
+   60        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/new_registration.rb:
+   32
+   33      trait :has_people do
+   34:       people { build_list(:transient_person, 2) }
+   35:     end
+   36:
+   37:     trait :has_company_no do
+   38:       company_no { "09360070" }
+   39:     end
+   40:
+   41:     trait :with_all_addresses do
+   42:       addresses do
+   43:         [
+   44:           build(:transient_address, :operator_address, :manual),
+   45:           build(:transient_address, :contact_address, :manual),
+   46:           build(:transient_address, :site_address, :manual)
+   47:         ]
+   48:       end
+   49:     end
+   50:
+   51:     trait :complete do
+   52:       limited_company
+   53:       with_all_addresses
+   54
+   55        location { "england" }
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/renewing_registration.rb:
+   19        addresses do
+   20          [
+   21:           build(:transient_address, :operator_address, :manual),
+   22:           build(:transient_address, :contact_address, :manual),
+   23:           build(:transient_address, :site_address, :manual)
+   24:         ]
+   25:       end
+   26:     end
+   27:
+   28:     factory :renewing_registration_without_changes do
+   29:       temp_renew_without_changes { true }
+   30:     end
+   31:
+   32:     factory :renewing_registration_with_manual_site_address do
+   33:       initialize_with do
+   34:         registration = create(:registration, :complete, :with_manual_site_address)
+   35
+   36          new(reference: registration.reference, token: registration.renew_token)
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/factories/transient_address.rb:
+    4    address_types = WasteExemptionsEngine::TransientAddress.address_types
+    5
+    6:   factory :transient_address, class: WasteExemptionsEngine::TransientAddress do
+    7:     trait :operator_address do
+    8:       address_type { address_types[:operator] }
+    9:     end
+   10:
+   11:     trait :contact_address do
+   12:       address_type { address_types[:contact] }
+   13:     end
+   14:
+   15:     trait :site_address do
+   16        address_type { address_types[:site] }
+   17        description { Faker::Lorem.sentence }
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/forms/waste_exemptions_engine/contact_address_manual_form_spec.rb:
+   21            {
+   22              token: form.token,
+   23:             transient_contact_address: {
+   24:               premises: "Horizon House",
+   25:               street_address: "Deanery Rd",
+   26                locality: "Bristol",
+   27                city: "Bristol",
+   ..
+   31            {
+   32              token: form.token,
+   33:             transient_contact_address: {
+   34:               premises: "Horizon House",
+   35:               street_address: "Deanery Rd",
+   36                locality: "",
+   37                city: "Bristol",
+   ..
+   45            {
+   46              token: form.token,
+   47:             transient_contact_address: {
+   48:               premises: "",
+   49:               street_address: "",
+   50                locality: "",
+   51                city: "",
+   ..
+   55            {
+   56              token: form.token,
+   57:             transient_contact_address: {
+   58                premises: Helpers::TextGenerator.random_string(201), # The max length is 200.
+   59                street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
+   ..
+   73          let(:address_data) do
+   74            {
+   75:             transient_contact_address: {
+   76:               premises: "Example House",
+   77:               street_address: "2 On The Road",
+   78:               locality: "Near Horizon House",
+   79:               city: "Bristol",
+   80:               postcode: "BS1 5AH"
+   81:             }
+   82:           }
+   83:         end
+   84:         let(:white_space_address_data) do
+   85:           {
+   86:             transient_contact_address: {
+   87:               premises: "  Example House ",
+   88:               street_address: " 2 On The Road  ",
+   89                locality: " Near Horizon House   ",
+   90                city: "  Bristol  ",
+   ..
+  105            expect(transient_registration.transient_addresses.count).to eq(1)
+  106            submitted_address = transient_registration.transient_addresses.first
+  107:           address_data[:transient_contact_address].each do |key, value|
+  108              expect(submitted_address.send(key)).to eq(value)
+  109            end
+  ...
+  113            it "strips the extraneous white space from the submitted address data" do
+  114              # Ensure the test data is properly configured:
+  115:             address_data[:transient_contact_address].each do |key, value|
+  116:               expect(white_space_params[:transient_contact_address][key]).not_to eq(value)
+  117:               expect(white_space_params[:transient_contact_address][key].strip).to eq(value)
+  118              end
+  119              expect(transient_registration.transient_addresses).to be_empty
+  ...
+  123              expect(transient_registration.reload.transient_addresses.count).to eq(1)
+  124              submitted_address = transient_registration.transient_addresses.first
+  125:             address_data[:transient_contact_address].each do |key, value|
+  126                expect(submitted_address.send(key)).to eq(value)
+  127              end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/transient_address_spec.rb:
+    5  module WasteExemptionsEngine
+    6    RSpec.describe TransientAddress, type: :model do
+    7:     subject(:transient_address) { build(:transient_address) }
+    8
+    9      describe "public interface" do
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/check_your_answers_form_spec.rb:
+   14        next_state = :declaration_form
+   15        current_state = :check_your_answers_form
+   16:       let(:site_address) { build(:transient_address, :site_address) }
+   17:       subject(:new_registration) do
+   18:         create(:new_registration, workflow_state: current_state, addresses: [site_address])
+   19        end
+   20
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/contact_name_form_spec.rb:
+    8        next_state = :contact_position_form
+    9        current_state = :contact_name_form
+   10:       let(:operator_address) { build(:transient_address, :operator_address) }
+   11:       subject(:new_registration) do
+   12:         create(:new_registration, workflow_state: current_state, addresses: [operator_address])
+   13        end
+   14
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/new_registration_workflow_state/on_a_farm_form_spec.rb:
+    8        next_state = :is_a_farmer_form
+    9        current_state = :on_a_farm_form
+   10:       let(:contact_address) { build(:transient_address, :contact_address) }
+   11:       subject(:new_registration) do
+   12:         create(:new_registration, workflow_state: current_state, addresses: [contact_address])
+   13        end
+   14
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/check_your_answers_form_spec.rb:
+   20        next_state = :declaration_form
+   21        current_state = :check_your_answers_form
+   22:       let(:site_address) { build(:transient_address, :site_address) }
+   23:       subject(:renewing_registration) do
+   24:         create(:renewing_registration, workflow_state: current_state, addresses: [site_address])
+   25        end
+   26
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/contact_name_form_spec.rb:
+    8        next_state = :contact_position_form
+    9        current_state = :contact_name_form
+   10:       let(:operator_address) { build(:transient_address, :operator_address) }
+   11:       subject(:renewing_registration) do
+   12:         create(:renewing_registration, workflow_state: current_state, addresses: [operator_address])
+   13        end
+   14
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/models/waste_exemptions_engine/renewing_registration_workflow_state/on_a_farm_form_spec.rb:
+    8        next_state = :is_a_farmer_form
+    9        current_state = :on_a_farm_form
+   10:       let(:contact_address) { build(:transient_address, :contact_address) }
+   11:       subject(:renewing_registration) do
+   12:         create(:renewing_registration, workflow_state: current_state, addresses: [contact_address])
+   13        end
+   14
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/requests/waste_exemptions_engine/contact_address_manual_forms_spec.rb:
+   13        let(:form_data) do
+   14          {
+   15:           transient_contact_address: {
+   16:             premises: "Example House",
+   17:             street_address: "2 On The Road",
+   18:             locality: "Near Horizon House",
+   19:             city: "Bristol",
+   20:             postcode: "BS1 5AH"
+   21:           }
+   22:         }
+   23:       end
+   24:
+   25:       let(:invalid_form_data) do
+   26:         [
+   27:           {
+   28:             transient_contact_address: {
+   29:               premises: nil,
+   30:               street_address: nil,
+   31                locality: nil,
+   32                city: nil,
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/support/shared_examples/models/transient_registration.rb:
+   13
+   14    describe "associations" do
+   15:     subject(:transient_registration) { create(model_factory, :with_all_addresses) }
+   16:
+   17:     describe "#site_address" do
+   18:       it "returns an TransientAddress of type :site" do
+   19:         site_address = transient_registration.addresses.find_by(address_type: 3)
+   20          expect(transient_registration.site_address).to eq(site_address)
+   21        end
+
+/Users/cintamanipuddu/projects/waste-exemptions-engine/spec/validators/waste_exemptions_engine/manual_address_validator_spec.rb:
+    9      include ActiveModel::Validations
+   10
+   11:     attr_accessor :transient_address
+   12:
+   13:     validates :transient_address, "waste_exemptions_engine/manual_address": true
+   14
+   15      def initialize(*attrs)
+
+86 matches across 25 files
