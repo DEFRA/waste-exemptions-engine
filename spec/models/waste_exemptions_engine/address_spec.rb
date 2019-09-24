@@ -16,6 +16,21 @@ module WasteExemptionsEngine
       end
     end
 
+    context "scopes" do
+      describe ".missing_easting_and_northing" do
+        it "returns all address with x and y information" do
+          missing_info_records = []
+          missing_info_records << create(:address, x: nil, y: 123.4)
+          missing_info_records << create(:address, x: 123.4, y: nil)
+          missing_info_records << create(:address, x: nil, y: nil)
+
+          create(:address, x: 123.4, y: 123.4)
+
+          expect(described_class.missing_easting_and_northing).to match_array(missing_info_records)
+        end
+      end
+    end
+
     describe "#located_by_grid_reference?" do
       subject { described_class.new(mode: mode, address_type: :site) }
 
