@@ -30,7 +30,7 @@ module WasteExemptionsEngine
       end
 
       describe ".missing_area" do
-        it "returns all address with a missing area" do
+        it "returns all addresses with a missing area" do
           create(:address, area: "West Midlands")
 
           nil_area = create(:address, area: nil)
