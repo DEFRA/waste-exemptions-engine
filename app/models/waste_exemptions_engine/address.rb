@@ -12,5 +12,7 @@ module WasteExemptionsEngine
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
     scope :missing_easting_or_northing, -> { where("x IS NULL OR y IS NULL") }
+    scope :with_easting_and_northing, -> { where.not(x: nil, y: nil) }
+    scope :missing_area, -> { where(area: [nil, ""]) }
   end
 end
