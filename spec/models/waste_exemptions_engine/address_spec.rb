@@ -29,7 +29,6 @@ module WasteExemptionsEngine
           expect(described_class.missing_easting_or_northing).to match_array(missing_info_records)
         end
       end
-      
       describe ".with_easting_and_northing" do
         it "returns all address with x and y information" do
           create(:address, x: nil, y: 123.4)
