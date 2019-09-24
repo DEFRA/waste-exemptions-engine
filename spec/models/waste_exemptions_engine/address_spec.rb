@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     end
 
     context "scopes" do
-      describe ".missing_easting_and_northing" do
+      describe ".missing_easting_or_northing" do
         it "returns all address with x and y information" do
           missing_info_records = []
           missing_info_records << create(:address, x: nil, y: 123.4)
@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
           create(:address, x: 123.4, y: 123.4)
 
-          expect(described_class.missing_easting_and_northing).to match_array(missing_info_records)
+          expect(described_class.missing_easting_or_northing).to match_array(missing_info_records)
         end
       end
     end
