@@ -17,6 +17,12 @@ module WasteExemptionsEngine
     end
 
     context "scopes" do
+      before do
+        # TODO: This is necessary as those tests are generating random failures due to
+        # the database not being cleaned properly by some other test
+        described_class.delete_all
+      end
+
       describe ".missing_easting_or_northing" do
         it "returns all address with x and y information" do
           missing_info_records = []
