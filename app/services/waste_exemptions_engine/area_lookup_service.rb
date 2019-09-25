@@ -25,6 +25,7 @@ module WasteExemptionsEngine
 
     def valid_arguments?
       return false unless @easting.is_a?(Numeric) && @northing.is_a?(Numeric)
+      return false unless @easting.positive? && @northing.positive?
 
       true
     end
