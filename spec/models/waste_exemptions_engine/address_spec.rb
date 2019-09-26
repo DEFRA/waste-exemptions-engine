@@ -49,16 +49,19 @@ module WasteExemptionsEngine
         end
       end
 
-      describe ".missing_area" do
-        it "returns all addresses with a missing area" do
+      describe ".sites_missing_area" do
+        it "returns all site addresses with a missing area" do
+          create(:address, area: nil)
+          create(:address, area: "")
           create(:address, area: "West Midlands")
+          create(:address, :site_address, area: "West Midlands")
 
-          nil_area = create(:address, area: nil)
-          empty_area = create(:address, area: "")
+          nil_area = create(:address, :site_address, area: nil)
+          empty_area = create(:address, :site_address, area: "")
 
-          expect(described_class.missing_area.size).to eq(2)
-          expect(described_class.missing_area).to include(empty_area)
-          expect(described_class.missing_area).to include(nil_area)
+          expect(described_class.sites_missing_area.size).to eq(2)
+          expect(described_class.sites_missing_area).to include(empty_area)
+          expect(described_class.sites_missing_area).to include(nil_area)
         end
       end
     end
