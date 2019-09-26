@@ -37,15 +37,15 @@ module WasteExemptionsEngine
           expect(described_class.sites_missing_easting_or_northing).to match_array(missing_info_records)
         end
       end
-      describe ".with_easting_and_northing" do
-        it "returns all address with x and y information" do
+      describe ".sites_with_easting_and_northing" do
+        it "returns all site addresses with x and y information" do
           create(:address, x: nil, y: 123.4)
-          create(:address, x: 123.4, y: nil)
+          create(:address, :site_address, x: 123.4, y: nil)
 
-          valid_address = create(:address, x: 123.4, y: 123.4)
+          valid_address = create(:address, :site_address, x: 123.4, y: 123.4)
 
-          expect(described_class.with_easting_and_northing.size).to eq(1)
-          expect(described_class.with_easting_and_northing.first).to eq(valid_address)
+          expect(described_class.sites_with_easting_and_northing.size).to eq(1)
+          expect(described_class.sites_with_easting_and_northing.first).to eq(valid_address)
         end
       end
 
