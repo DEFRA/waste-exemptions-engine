@@ -18,45 +18,53 @@ module WasteExemptionsEngine
 
     context "scopes" do
       before do
-        # TODO: This is necessary as those tests are generating random failures due to
+        # TODO: This is necessary as these tests are generating random failures due to
         # the database not being cleaned properly by some other test
         described_class.delete_all
       end
 
-      describe ".missing_easting_or_northing" do
-        it "returns all address with x and y information" do
+      describe ".sites_missing_easting_or_northing" do
+        it "returns all site addresses missing x and y information" do
           missing_info_records = []
-          missing_info_records << create(:address, x: nil, y: 123.4)
-          missing_info_records << create(:address, x: 123.4, y: nil)
-          missing_info_records << create(:address, x: nil, y: nil)
+          missing_info_records << create(:address, :site_address, x: nil, y: 123.4)
+          missing_info_records << create(:address, :site_address, x: 123.4, y: nil)
+          missing_info_records << create(:address, :site_address, x: nil, y: nil)
 
           create(:address, x: 123.4, y: 123.4)
+          create(:address, x: nil, y: nil)
+          create(:address, :site_address, x: 123.4, y: 123.4)
 
-          expect(described_class.missing_easting_or_northing).to match_array(missing_info_records)
+          expect(described_class.sites_missing_easting_or_northing).to match_array(missing_info_records)
         end
       end
-      describe ".with_easting_and_northing" do
-        it "returns all address with x and y information" do
+      describe ".sites_with_easting_and_northing" do
+        it "returns all site addresses with x and y information" do
           create(:address, x: nil, y: 123.4)
           create(:address, x: 123.4, y: nil)
+          create(:address, x: 123.4, y: 123.4)
+          create(:address, :site_address, x: nil, y: 123.4)
+          create(:address, :site_address, x: 123.4, y: nil)
 
-          valid_address = create(:address, x: 123.4, y: 123.4)
+          valid_address = create(:address, :site_address, x: 123.4, y: 123.4)
 
-          expect(described_class.with_easting_and_northing.size).to eq(1)
-          expect(described_class.with_easting_and_northing.first).to eq(valid_address)
+          expect(described_class.sites_with_easting_and_northing.size).to eq(1)
+          expect(described_class.sites_with_easting_and_northing.first).to eq(valid_address)
         end
       end
 
-      describe ".missing_area" do
-        it "returns all addresses with a missing area" do
+      describe ".sites_missing_area" do
+        it "returns all site addresses with a missing area" do
+          create(:address, area: nil)
+          create(:address, area: "")
           create(:address, area: "West Midlands")
+          create(:address, :site_address, area: "West Midlands")
 
-          nil_area = create(:address, area: nil)
-          empty_area = create(:address, area: "")
+          nil_area = create(:address, :site_address, area: nil)
+          empty_area = create(:address, :site_address, area: "")
 
-          expect(described_class.missing_area.size).to eq(2)
-          expect(described_class.missing_area).to include(empty_area)
-          expect(described_class.missing_area).to include(nil_area)
+          expect(described_class.sites_missing_area.size).to eq(2)
+          expect(described_class.sites_missing_area).to include(empty_area)
+          expect(described_class.sites_missing_area).to include(nil_area)
         end
       end
     end
