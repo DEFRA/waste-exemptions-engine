@@ -40,6 +40,9 @@ module WasteExemptionsEngine
       describe ".sites_with_easting_and_northing" do
         it "returns all site addresses with x and y information" do
           create(:address, x: nil, y: 123.4)
+          create(:address, x: 123.4, y: nil)
+          create(:address, x: 123.4, y: 123.4)
+          create(:address, :site_address, x: nil, y: 123.4)
           create(:address, :site_address, x: 123.4, y: nil)
 
           valid_address = create(:address, :site_address, x: 123.4, y: 123.4)
