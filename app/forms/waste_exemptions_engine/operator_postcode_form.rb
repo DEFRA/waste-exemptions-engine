@@ -2,7 +2,9 @@
 
 module WasteExemptionsEngine
   class OperatorPostcodeForm < BasePostcodeForm
-    attr_accessor :business_type, :temp_operator_postcode
+    delegate :business_type, to: :transient_registration
+
+    attr_accessor :temp_operator_postcode
 
     validates :temp_operator_postcode, "waste_exemptions_engine/postcode": true
 
@@ -10,8 +12,7 @@ module WasteExemptionsEngine
       super
 
       # We only use this for the correct microcopy
-      self.business_type = @transient_registration.business_type
-      self.temp_operator_postcode = @transient_registration.temp_operator_postcode
+      self.temp_operator_postcode = transient_registration.temp_operator_postcode
     end
 
     def submit(params)

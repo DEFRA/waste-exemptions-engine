@@ -2,19 +2,12 @@
 
 module WasteExemptionsEngine
   class ContactPhoneForm < BaseForm
-    attr_accessor :phone_number
+    attr_accessor :contact_phone
 
-    validates :phone_number, "defra_ruby/validators/phone_number": true
-
-    def initialize(registration)
-      super
-      self.phone_number = @transient_registration.contact_phone
-    end
+    validates :contact_phone, "defra_ruby/validators/phone_number": true
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      self.phone_number = params[:phone_number]
-      attributes = { contact_phone: phone_number }
+      attributes = { contact_phone: params[:contact_phone] }
 
       super(attributes)
     end

@@ -2,19 +2,12 @@
 
 module WasteExemptionsEngine
   class ContactPositionForm < BaseForm
-    attr_accessor :position
+    delegate :contact_position, to: :transient_registration
 
-    validates :position, "defra_ruby/validators/position": true
-
-    def initialize(registration)
-      super
-      self.position = @transient_registration.contact_position
-    end
+    validates :contact_position, "defra_ruby/validators/position": true
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      self.position = params[:position]
-      attributes = { contact_position: position }
+      attributes = { contact_position: params[:contact_position] }
 
       super(attributes)
     end

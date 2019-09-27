@@ -2,20 +2,12 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
-    attr_accessor :exemptions
+    delegate :exemptions, to: :transient_registration
 
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
-    def initialize(registration)
-      super
-
-      self.exemptions = @transient_registration.exemptions
-    end
-
     def submit(params)
-      self.exemptions = determine_matched_exemptions(params)
-
-      super(exemptions: exemptions)
+      super(exemptions: determine_matched_exemptions(params))
     end
 
     private

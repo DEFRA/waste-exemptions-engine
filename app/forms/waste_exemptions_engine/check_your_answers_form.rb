@@ -30,7 +30,7 @@ module WasteExemptionsEngine
 
     def initialize(registration)
       super
-      assign_attributes_to_display
+
       valid?
     end
 
@@ -47,9 +47,9 @@ module WasteExemptionsEngine
     def uses_site_location?
       # This should never happen, but if there is no site address we default
       # to validating the site grid reference and description
-      return true unless @transient_registration&.site_address
+      return true unless transient_registration&.site_address
 
-      @transient_registration.site_address.auto?
+      transient_registration.site_address.auto?
     end
   end
 end

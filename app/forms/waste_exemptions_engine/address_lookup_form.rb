@@ -5,10 +5,7 @@ module WasteExemptionsEngine
     include CanAddOrReplaceAnAddress
 
     attr_accessor :temp_addresses
-    attr_accessor :temp_address
     attr_accessor :postcode
-
-    validates :temp_address, "waste_exemptions_engine/address": true
 
     def initialize(registration)
       super
@@ -21,16 +18,10 @@ module WasteExemptionsEngine
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
-      new_address = create_address(params[:temp_address])
-
-      self.temp_address = new_address
+      new_address = create_address(params["#{address_type}_address"])
 
       attributes = {
-        transient_addresses: add_or_replace_address(
-          new_address,
-          @transient_registration.transient_addresses,
-          existing_address
-        )
+        "#{address_type}_address" => new_address
       }
 
       super(attributes)
@@ -53,7 +44,7 @@ module WasteExemptionsEngine
       return unless can_preselect_address?
 
       selected_address = temp_addresses.detect { |address| address["uprn"].to_s == existing_address.uprn }
-      self.temp_address = selected_address["uprn"] if selected_address.present?
+      self.send("#{address_type}_address", selected_address["uprn"]) if selected_address.present?
     end
 
     def can_preselect_address?
@@ -61,6 +52,10 @@ module WasteExemptionsEngine
       return false unless existing_address.uprn.present?
 
       true
+    end
+
+    def existing_address
+      send("#{address_type}_address")
     end
 
     def create_address(selected_address_uprn)

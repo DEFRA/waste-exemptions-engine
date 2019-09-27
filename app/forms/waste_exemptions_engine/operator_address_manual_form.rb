@@ -13,11 +13,11 @@ module WasteExemptionsEngine
 
       self.postcode = transient_registration.temp_operator_postcode
 
-      self.operator_address = @transient_registration.operator_address
+      self.operator_address = transient_registration.operator_address
 
       # Check if the user reached this page through an Address finder error.
       # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = @transient_registration.address_finder_error
+      self.address_finder_error = transient_registration.address_finder_error
       transient_registration.update_attributes(address_finder_error: nil)
 
       # Prefill the existing address unless the postcode has changed from the existing address's postcode

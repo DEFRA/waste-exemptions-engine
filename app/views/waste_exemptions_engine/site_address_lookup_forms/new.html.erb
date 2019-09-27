@@ -12,7 +12,7 @@
       <%= link_to(t(".postcode_change_link"), back_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
     </div>
 
-    <%= render("waste_exemptions_engine/shared/select_address", form: @site_address_lookup_form, f: f) %>
+    <%= render("waste_exemptions_engine/shared/select_address", form: @site_address_lookup_form, address: :site_address, f: f) %>
 
     <div class="form-group">
       <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
