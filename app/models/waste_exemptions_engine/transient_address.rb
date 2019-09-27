@@ -91,8 +91,8 @@ module WasteExemptionsEngine
         data["x"] = location.easting.to_f
         data["y"] = location.northing.to_f
       rescue OsMapRef::Error
-        data["x"] = nil
-        data["y"] = nil
+        data["x"] = 0.00
+        data["y"] = 0.00
       end
 
       data
