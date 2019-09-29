@@ -6,8 +6,6 @@ module WasteExemptionsEngine
 
     validates :operator_address, "waste_exemptions_engine/address": true
 
-    attr_accessor :business_type
-
     private
 
     def existing_postcode
