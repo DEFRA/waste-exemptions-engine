@@ -1,39 +1,18 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class AddressLookupForm < BaseForm
-    include CanAddOrReplaceAnAddress
+  class AddressLookupFormBase < BaseForm
+    include CanCreateAddressFromFinderData
 
-    attr_accessor :temp_addresses
-    attr_accessor :temp_address
-    attr_accessor :postcode
+    attr_accessor :temp_addresses, :temp_address
 
     validates :temp_address, "waste_exemptions_engine/address": true
 
     def initialize(registration)
       super
 
-      self.postcode = existing_postcode
-
       look_up_addresses
       preselect_existing_address
-    end
-
-    def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      new_address = create_address(params[:temp_address])
-
-      self.temp_address = new_address
-
-      attributes = {
-        transient_addresses: add_or_replace_address(
-          new_address,
-          @transient_registration.transient_addresses,
-          existing_address
-        )
-      }
-
-      super(attributes)
     end
 
     private
@@ -61,17 +40,6 @@ module WasteExemptionsEngine
       return false unless existing_address.uprn.present?
 
       true
-    end
-
-    def create_address(selected_address_uprn)
-      return if selected_address_uprn.blank?
-
-      data = temp_addresses.detect { |address| address["uprn"] == selected_address_uprn.to_i }
-      return unless data
-
-      address = TransientAddress.create_from_address_finder_data(data, address_type)
-
-      address
     end
   end
 end
