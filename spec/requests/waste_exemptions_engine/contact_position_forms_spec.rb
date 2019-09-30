@@ -9,7 +9,7 @@ module WasteExemptionsEngine
 
     empty_form_is_valid = true
     include_examples "POST form", :contact_position_form, "/contact-position", empty_form_is_valid do
-      let(:form_data) { { position: "Chief Waste Carrier" } }
+      let(:form_data) { { contact_position: "Chief Waste Carrier" } }
       let(:invalid_form_data) { [] }
     end
 
