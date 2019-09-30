@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OperatorAddressLookupForm < AddressLookupForm
-    delegate :business_type, to: :transient_registration
+  class OperatorAddressLookupForm < AddressLookupFormBase
+    delegate :temp_operator_postcode, :operator_address, :business_type, to: :transient_registration
 
-    private
+    alias existing_address operator_address
+    alias postcode temp_operator_postcode
 
-    def existing_postcode
-      @transient_registration.temp_operator_postcode
-    end
+    def submit(params)
+      # Assign the params for validation and pass them to the BaseForm method for updating
+      operator_address = create_address(params[:temp_address], :operator)
 
-    def existing_address
-      @transient_registration.operator_address
-    end
+      self.temp_address = operator_address
 
-    def address_type
-      TransientAddress.address_types[:operator]
+      super(operator_address: operator_address)
     end
   end
 end
