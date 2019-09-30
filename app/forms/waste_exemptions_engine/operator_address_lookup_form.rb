@@ -4,8 +4,8 @@ module WasteExemptionsEngine
   class OperatorAddressLookupForm < AddressLookupFormBase
     delegate :temp_operator_postcode, :operator_address, :business_type, to: :transient_registration
 
-    alias_method :existing_address, :operator_address
-    alias_method :postcode, :temp_operator_postcode
+    alias existing_address operator_address
+    alias postcode temp_operator_postcode
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
