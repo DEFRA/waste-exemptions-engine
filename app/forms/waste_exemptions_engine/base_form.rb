@@ -23,7 +23,7 @@ module WasteExemptionsEngine
 
     # If the record is new, and not yet persisted (which it is when the start
     # page is first submitted) then we have nothing to validate hence the check
-    validates :token, "defra_ruby/validators/token": true if transient_registration&.persisted?
+    validates :token, "defra_ruby/validators/token": true, if: -> { transient_registration&.persisted? }
 
     def initialize(transient_registration)
       # Get values from registration so form will be pre-filled
@@ -33,10 +33,8 @@ module WasteExemptionsEngine
     def submit(attributes)
       attributes = strip_whitespace(attributes)
 
-      attributes.each do |key, value|
-        transient_registration.public_send("#{key}=", value)
-      end
-
+      transient_registration.assign_attributes(attributes)
+      binding.pry
       return transient_registration.save! if valid?
 
       false

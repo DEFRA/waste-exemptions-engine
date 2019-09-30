@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def submit(params)
       attributes = { contact_position: params[:contact_position] }
-
+      binding.pry
       super(attributes)
     end
   end
