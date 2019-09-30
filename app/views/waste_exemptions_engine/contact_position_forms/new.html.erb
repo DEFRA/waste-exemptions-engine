@@ -6,17 +6,17 @@
 
     <h1 class="heading-large"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @contact_position_form.errors[:position].any? %>">
+    <div class="form-group <%= "form-group-error" if @contact_position_form.errors[:contact_position].any? %>">
       <fieldset id="position">
-        <% if @contact_position_form.errors[:position].any? %>
-          <span class="error-message"><%= @contact_position_form.errors[:position].join(", ") %></span>
+        <% if @contact_position_form.errors[:contact_position].any? %>
+          <span class="error-message"><%= @contact_position_form.errors[:contact_position].join(", ") %></span>
         <% end %>
 
-        <%= f.label :position, class: "form-label" do %>
+        <%= f.label :contact_position, class: "form-label" do %>
           <%= t(".position_label") %>
           <span class='form-hint'><%= t(".position_hint") %></span>
         <% end %>
-        <%= f.text_field :position, value: @contact_position_form.position, class: "form-control govuk-input--width-20" %>
+        <%= f.text_field :contact_position, value: @contact_position_form.contact_position, class: "form-control govuk-input--width-20" %>
       </fieldset>
     </div>
 
