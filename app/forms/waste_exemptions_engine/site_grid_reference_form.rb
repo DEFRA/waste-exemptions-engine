@@ -2,9 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
-    include CanAddOrReplaceAnAddress
-
-    delegate :grid_reference, :description, to: :transient_registration
+    delegate :site_address, to: :transient_registration
+    delegate :grid_reference, :description, to: :site_address
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
@@ -13,12 +12,7 @@ module WasteExemptionsEngine
       grid_reference = params[:grid_reference]&.upcase&.strip
       description = params[:description]&.strip
 
-      transient_registration.update_attributes(
-        temp_grid_reference: grid_reference,
-        temp_site_description: description
-      )
-
-      new_address = create_address
+      new_address = create_address(grid_reference, description)
       attributes = {
         site_address: new_address
       }
@@ -28,7 +22,7 @@ module WasteExemptionsEngine
 
     private
 
-    def create_address
+    def create_address(grid_reference, description)
       return nil if grid_reference.blank?
 
       TransientAddress.create_from_grid_reference_data(
