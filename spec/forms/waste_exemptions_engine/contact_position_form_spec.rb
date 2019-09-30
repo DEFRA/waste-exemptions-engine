@@ -8,22 +8,22 @@ module WasteExemptionsEngine
 
     it "validates the position using the ContactPositionValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:position)
-      expect(validators[:position].first.class)
+      expect(validators.keys).to include(:contact_position)
+      expect(validators[:contact_position].first.class)
         .to eq(DefraRuby::Validators::PositionValidator)
     end
 
     it_behaves_like "a validated form", :contact_position_form do
       let(:valid_params) do
         [
-          { token: form.token, position: "Chief Waste Carrier" },
-          { token: form.token, position: "" }
+          { token: form.token, contact_position: "Chief Waste Carrier" },
+          { token: form.token, contact_position: "" }
         ]
       end
       let(:invalid_params) do
         [
-          { token: form.token, position: Helpers::TextGenerator.random_string(71) },
-          { token: form.token, position: "**Invalid_@_Position**" }
+          { token: form.token, contact_position: Helpers::TextGenerator.random_string(71) },
+          { token: form.token, contact_position: "**Invalid_@_Position**" }
         ]
       end
     end
@@ -31,13 +31,13 @@ module WasteExemptionsEngine
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the contact position" do
-          position = "Waste Carrier Manager"
-          valid_params = { token: form.token, position: position }
+          contact_position = "Waste Carrier Manager"
+          valid_params = { token: form.token, contact_position: contact_position }
           transient_registration = form.transient_registration
 
           expect(transient_registration.contact_position).to be_blank
           form.submit(valid_params)
-          expect(transient_registration.contact_position).to eq(position)
+          expect(transient_registration.reload.contact_position).to eq(contact_position)
         end
       end
     end
