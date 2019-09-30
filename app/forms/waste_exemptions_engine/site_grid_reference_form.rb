@@ -37,10 +37,6 @@ module WasteExemptionsEngine
       self.description = params[:description]&.strip
     end
 
-    def existing_address
-      @transient_registration.site_address
-    end
-
     def create_address
       return nil if grid_reference.blank?
 
