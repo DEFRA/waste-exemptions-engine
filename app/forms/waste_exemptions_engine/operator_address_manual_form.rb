@@ -6,6 +6,8 @@ module WasteExemptionsEngine
     attr_accessor :operator_address
     attr_accessor :premises, :street_address, :locality, :postcode, :city, :business_type
 
+    delegate :business_type, to: :transient_registration
+
     validates :operator_address, "waste_exemptions_engine/manual_address": true
 
     def initialize(registration)
