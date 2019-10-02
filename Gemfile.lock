@@ -5,7 +5,7 @@ PATH
       aasm (~> 4.12)
       airbrake (= 5.8.1)
       defra_ruby_area
-      defra_ruby_validators
+      defra_ruby_validators (~> 2.1.2)
       has_secure_token
       high_voltage (~> 3.1)
       os_map_ref (~> 0.5)
