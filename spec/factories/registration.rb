@@ -8,7 +8,7 @@ FactoryBot.define do
     # avoid clashes with other Registrations, where the reference is based on
     # the id of the original TransientRegistration.
     sequence :reference do |n|
-      format("WEX9%05d", n)
+      format("WEX9%<id>05d", id: n)
     end
 
     trait :with_active_exemptions do
