@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
 
   # Validations
   # A defra created gem of shared validators
-  s.add_dependency "defra_ruby_validators"
+  s.add_dependency "defra_ruby_validators", "~> 2.1.2"
   # Use to ensure phone numbers are in a valid and recognised format
   s.add_dependency "phonelib"
   # UK postcode parsing and validation for Ruby
