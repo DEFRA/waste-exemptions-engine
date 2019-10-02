@@ -36,6 +36,18 @@ module WasteExemptionsEngine
         end
       end
 
+      describe ".with_postcode" do
+        it "returns all address with a postcode" do
+          create(:address, postcode: nil)
+          create(:address, postcode: "")
+
+          valid_address = create(:address, postcode: "BS1 5AH")
+
+          expect(described_class.with_postcode.size).to eq(1)
+          expect(described_class.with_postcode.first).to eq(valid_address)
+        end
+      end
+
       describe ".with_valid_easting_and_northing" do
         it "returns all address with valid x and y information" do
           create(:address, x: nil, y: 123.4)
