@@ -36,6 +36,17 @@ module WasteExemptionsEngine
         end
       end
 
+      describe ".with_postcode" do
+        it "returns all address with a postcode" do
+          create(:address, postcode: nil)
+          create(:address, postcode: "")
+
+          valid_address = create(:address, postcode: "BS1 5AH")
+
+          expect(described_class.with_postcode).to match_array([valid_address])
+        end
+      end
+
       describe ".with_valid_easting_and_northing" do
         it "returns all address with valid x and y information" do
           create(:address, x: nil, y: 123.4)
@@ -44,21 +55,19 @@ module WasteExemptionsEngine
 
           valid_address = create(:address, x: 123.4, y: 123.4)
 
-          expect(described_class.with_valid_easting_and_northing.size).to eq(1)
-          expect(described_class.with_valid_easting_and_northing.first).to eq(valid_address)
+          expect(described_class.with_valid_easting_and_northing).to match_array([valid_address])
         end
       end
 
       describe ".missing_area" do
         it "returns all addresses with a missing area" do
+          missing_info_records = []
+          missing_info_records << create(:address, area: nil)
+          missing_info_records << create(:address, area: "")
+
           create(:address, area: "West Midlands")
 
-          nil_area = create(:address, area: nil)
-          empty_area = create(:address, area: "")
-
-          expect(described_class.missing_area.size).to eq(2)
-          expect(described_class.missing_area).to include(empty_area)
-          expect(described_class.missing_area).to include(nil_area)
+          expect(described_class.missing_area).to match_array(missing_info_records)
         end
       end
     end

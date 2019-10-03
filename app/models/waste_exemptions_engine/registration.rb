@@ -65,7 +65,7 @@ module WasteExemptionsEngine
     private
 
     def apply_reference
-      self.reference = format("WEX%06d", id)
+      self.reference = format("WEX%<id>06d", id: id)
       save!
     end
 
