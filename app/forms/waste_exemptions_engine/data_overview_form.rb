@@ -13,9 +13,7 @@ module WasteExemptionsEngine
     delegate :exemptions, to: :transient_registration
 
     def registration_exemptions
-      @registration_exemptions ||= transient_registration.registration_exemptions
-                                                            .includes(:exemption)
-                                                            .order_by_exemption
+      @registration_exemptions ||= ordered_exemptions
     end
 
     def should_have_company_no?
@@ -24,6 +22,10 @@ module WasteExemptionsEngine
 
     def should_have_partners?
       transient_registration.partnership?
+    end
+
+    def ordered_exemptions
+      transient_registration.registration_exemptions.includes(:exemption).order_by_exemption
     end
   end
 end

@@ -26,7 +26,7 @@ module WasteExemptionsEngine
       return unless can_preselect_address?
 
       selected_address = temp_addresses.detect { |address| address["uprn"].to_s == existing_address.uprn }
-      self.send("#{address_type}_address", selected_address["uprn"]) if selected_address.present?
+      send("#{address_type}_address", selected_address["uprn"]) if selected_address.present?
     end
 
     def can_preselect_address?

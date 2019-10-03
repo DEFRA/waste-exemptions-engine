@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     before(:each) { VCR.insert_cassette("postcode_valid") }
     after(:each) { VCR.eject_cassette }
 
-    it_behaves_like "an address lookup form", :contact_address_lookup_form
+    it_behaves_like "an address lookup form"
 
     it "validates the contact address using the AddressValidator class" do
       validators = build(:contact_address_lookup_form)._validators

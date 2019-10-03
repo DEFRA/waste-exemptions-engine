@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class ContactEmailForm < BaseForm
     delegate :contact_email, to: :transient_registration
 
-    attr_accessor :confirmed_email
+    attr_writer :confirmed_email
 
     validates :contact_email, :confirmed_email, "defra_ruby/validators/email": true
     validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :contact_email }

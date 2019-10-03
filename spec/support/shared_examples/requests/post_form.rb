@@ -10,7 +10,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     context "when the form is not valid", unless: empty_form_is_valid do
       it "includes validation errors for the form data" do
         invalid_form_data.each do |invalid_data|
-          post post_request_path, { form_factory => invalid_data }
+          post post_request_path, form_factory => invalid_data
 
           invalid_form = build(form_factory)
           invalid_form.submit(ActionController::Parameters.new(invalid_data))
