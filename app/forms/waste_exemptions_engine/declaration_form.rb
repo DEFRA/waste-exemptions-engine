@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class DeclarationForm < BaseForm
     delegate :declaration, to: :transient_registration
 
-    validates :declaration, inclusion: { in: [1] }
+    validates :declaration, inclusion: { in: [true] }
 
     def self.can_navigate_flexibly?
       false

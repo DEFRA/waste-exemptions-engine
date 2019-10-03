@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class ContactPhoneForm < BaseForm
-    attr_accessor :contact_phone
+    delegate :contact_phone, to: :transient_registration
 
     validates :contact_phone, "defra_ruby/validators/phone_number": true
 

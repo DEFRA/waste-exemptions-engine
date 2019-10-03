@@ -28,11 +28,7 @@ module WasteExemptionsEngine
     validates :site_description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
 
-    def initialize(registration)
-      super
-
-      valid?
-    end
+    after_initialize :valid
 
     def submit(_params)
       super({})
@@ -42,6 +38,12 @@ module WasteExemptionsEngine
 
     def company_no_required?
       @transient_registration.company_no_required?
+    end
+
+    # https://api.rubyonrails.org/classes/ActiveModel/Callbacks.html
+    # `method_name` passed to #define_model_callbacks must not end with !, ? or =.
+    def valid
+      valid?
     end
 
     def uses_site_location?

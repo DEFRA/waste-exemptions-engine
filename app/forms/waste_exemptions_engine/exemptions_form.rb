@@ -7,15 +7,10 @@ module WasteExemptionsEngine
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
     def submit(params)
-      super(exemptions: determine_matched_exemptions(params))
-    end
+      # Rails authomatically delete params for which the value is empty :/
+      params ||= {}
 
-    private
-
-    def determine_matched_exemptions(params)
-      return nil unless params[:exemptions]
-
-      Exemption.where(id: params[:exemptions])
+      super(exemption_ids: (params[:exemption_ids] || []))
     end
   end
 end

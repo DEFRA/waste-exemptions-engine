@@ -3,6 +3,8 @@
 module WasteExemptionsEngine
   class BaseForm
     include ActiveModel::Model
+    extend ActiveModel::Callbacks
+
     include CanStripWhitespace
 
     # The standard behaviour for loading a form is to check whether the requested form matches the workflow_state for
@@ -21,20 +23,23 @@ module WasteExemptionsEngine
 
     attr_accessor :transient_registration
 
+    define_model_callbacks :initialize
+
     # If the record is new, and not yet persisted (which it is when the start
     # page is first submitted) then we have nothing to validate hence the check
     validates :token, "defra_ruby/validators/token": true, if: -> { transient_registration&.persisted? }
 
     def initialize(transient_registration)
-      # Get values from registration so form will be pre-filled
-      @transient_registration = transient_registration
+      run_callbacks :initialize do
+        # Get values from registration so form will be pre-filled
+        @transient_registration = transient_registration
+      end
     end
 
     def submit(attributes)
       attributes = strip_whitespace(attributes)
-
       transient_registration.assign_attributes(attributes)
-      binding.pry
+
       return transient_registration.save! if valid?
 
       false
@@ -52,11 +57,11 @@ module WasteExemptionsEngine
     #   false
     # end
 
-    private
+    # private
 
-    def transient_registration_attributes(_params)
-      # Default behaviour. Subclasses to override.
-      {}
-    end
+    # def transient_registration_attributes(_params)
+    #   # Default behaviour. Subclasses to override.
+    #   {}
+    # end
   end
 end

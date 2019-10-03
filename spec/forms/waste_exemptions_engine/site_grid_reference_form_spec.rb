@@ -25,15 +25,14 @@ module WasteExemptionsEngine
     it_behaves_like "a validated form", :site_grid_reference_form do
       let(:valid_params) do
         {
-          token: form.token,
           grid_reference: "ST 58337 72855",
           description: "The waste is stored in an out-building next to the barn."
         }
       end
       let(:invalid_params) do
         [
-          { token: form.token, grid_reference: "AA1234567890", description: Helpers::TextGenerator.random_string(501) },
-          { token: form.token, grid_reference: "", description: "" }
+          { grid_reference: "AA1234567890", description: Helpers::TextGenerator.random_string(501) },
+          { grid_reference: "", description: "" }
         ]
       end
     end
@@ -43,14 +42,16 @@ module WasteExemptionsEngine
         it "updates the transient registration with the site grid reference and description" do
           grid_reference = "ST 58337 72855"
           description = "The waste is stored in an out-building next to the barn."
-          valid_params = { token: form.token, grid_reference: grid_reference, description: description }
+          valid_params = { grid_reference: grid_reference, description: description }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.temp_grid_reference).to be_blank
-          expect(transient_registration.temp_site_description).to be_blank
+          expect(transient_registration.site_address).to be_blank
+
           form.submit(valid_params)
-          expect(transient_registration.temp_grid_reference).to eq(grid_reference)
-          expect(transient_registration.temp_site_description).to eq(description)
+          transient_registration.reload
+
+          expect(transient_registration.site_address.grid_reference).to eq(grid_reference)
+          expect(transient_registration.site_address.description).to eq(description)
         end
       end
     end

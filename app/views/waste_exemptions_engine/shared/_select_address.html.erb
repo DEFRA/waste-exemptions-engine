@@ -4,9 +4,9 @@
       <span class="error-message"><%= form.errors[address].join(", ") %></span>
     <% end %>
 
-    <%= f.label address, t(".address_label"), class: "form-label" %>
-    <%= f.select(address,
-                 options_for_select(form.temp_addresses.map { |a| [a["address"], a["uprn"]] }, form.send(address)),
+    <%= f.label :uprn, t(".address_label"), class: "form-label" %>
+    <%= f.select(:uprn,
+                 options_for_select(form.temp_addresses.map { |a| [a["address"], a["uprn"]] }, form.send(address)&.uprn),
                  { include_blank: t(".address_blank_option", count: form.temp_addresses.length ) },
                  { class: "form-control" }) %>
   </fieldset>

@@ -7,11 +7,11 @@ module WasteExemptionsEngine
     alias existing_address site_address
     alias postcode temp_site_postcode
 
+    validates :site_address, "waste_exemptions_engine/address": true
+
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
-      site_address = create_address(params[:temp_address], :site)
-
-      self.temp_address = site_address
+      site_address = create_address(params[:site_address][:uprn], :site)
 
       super(site_address: site_address)
     end

@@ -4,25 +4,10 @@ module WasteExemptionsEngine
   class AddressLookupFormBase < BaseForm
     include CanCreateAddressFromFinderData
 
-    attr_accessor :temp_addresses, :temp_address
+    attr_accessor :temp_addresses
 
-    def initialize(registration)
-      super
-
-      look_up_addresses
-      preselect_existing_address
-    end
-
-    def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      new_address = create_address(params["#{address_type}_address"])
-
-      attributes = {
-        "#{address_type}_address" => new_address
-      }
-
-      super(attributes)
-    end
+    after_initialize :look_up_addresses
+    after_initialize :preselect_existing_address
 
     private
 

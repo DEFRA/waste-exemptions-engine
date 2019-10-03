@@ -18,14 +18,13 @@ module WasteExemptionsEngine
     it_behaves_like "a validated form", :renewal_start_form do
       let(:valid_params) do
         [
-          { token: form.token, temp_renew_without_changes: "true" },
-          { token: form.token, temp_renew_without_changes: "false" }
+          { temp_renew_without_changes: "true" },
+          { temp_renew_without_changes: "false" }
         ]
       end
       let(:invalid_params) do
         [
-          { token: form.token, temp_renew_without_changes: 0 },
-          { token: form.token, temp_renew_without_changes: "" }
+          { temp_renew_without_changes: "" }
         ]
       end
     end
@@ -34,7 +33,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the renewal type answer" do
           temp_renew_without_changes = %w[true false].sample
-          valid_params = { token: form.token, temp_renew_without_changes: temp_renew_without_changes }
+          valid_params = { temp_renew_without_changes: temp_renew_without_changes }
           transient_registration = form.transient_registration
 
           expect(transient_registration.temp_renew_without_changes).to be_blank

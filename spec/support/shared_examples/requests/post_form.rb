@@ -8,30 +8,12 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
 
   describe "POST #{form_factory}" do
     context "when the form is not valid", unless: empty_form_is_valid do
-      let(:empty_form_request_body) { { form_factory => { token: correct_form.token } } }
-
-      it "renders the same template" do
-        # TODO
-        skip
-
-        post post_request_path, empty_form_request_body
-        expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-      end
-
-      it "responds to the POST request with a 200 status code" do
-        # TODO
-        skip
-
-        post post_request_path, empty_form_request_body
-        expect(response.code).to eq("200")
-      end
-
       it "includes validation errors for the form data" do
         invalid_form_data.each do |invalid_data|
-          post post_request_path, form_factory => invalid_data.merge(token: correct_form.token)
+          post post_request_path, { form_factory => invalid_data }
 
-          invalid_form = build(form_factory, **invalid_data)
-          invalid_form.validate
+          invalid_form = build(form_factory)
+          invalid_form.submit(ActionController::Parameters.new(invalid_data))
 
           raise("No errors found for invalid data: #{invalid_data}") if invalid_form.valid?
 
@@ -61,7 +43,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     end
 
     context "when the registration is in the correct state" do
-      let(:good_request_body) { { form_factory => form_data.merge(token: correct_form.token) } }
+      let(:good_request_body) { { form_factory => form_data } }
       status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
       # A successful POST request redirects to the next form in the work flow. We have chosen to

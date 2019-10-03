@@ -12,8 +12,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :exemptions_form, "/exemptions"
     include_examples "go back", :exemptions_form, "/exemptions/back"
     include_examples "POST form", :exemptions_form, "/exemptions" do
-      let(:form_data) { { exemptions: Exemption.limit(5).pluck(:id).map(&:to_s) } }
-      let(:invalid_form_data) { [{ exemptions: [] }] }
+      let(:form_data) { { exemption_ids: Exemption.limit(5).pluck(:id) } }
+      let(:invalid_form_data) { [{ exemption_ids: [] }] }
     end
   end
 end

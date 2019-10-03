@@ -8,14 +8,16 @@ module WasteExemptionsEngine
     delegate :is_a_farmer, :location, :on_a_farm, :operator_name, :operator_address, to: :transient_registration
     delegate :people, :reference, :registration_exemptions, :site_address, to: :transient_registration
 
-    def initialize(registration)
-      registration.save! unless registration.persisted?
-
-      super
-    end
+    after_initialize :persist_registration
 
     def submit(_params)
       super({})
+    end
+
+    private
+
+    def persist_registration
+      transient_registration.save! unless transient_registration.persisted?
     end
   end
 end

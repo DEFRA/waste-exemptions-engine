@@ -8,21 +8,7 @@ module WasteExemptionsEngine
 
     validates :contact_address, "waste_exemptions_engine/manual_address": true
 
-    def initialize(registration)
-      super
-
-      self.postcode = transient_registration.temp_contact_postcode
-
-      self.contact_address = transient_registration.contact_address
-
-      # Check if the user reached this page through an Address finder error.
-      # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = transient_registration.address_finder_error
-      transient_registration.update_attributes(address_finder_error: nil)
-
-      # Prefill the existing address unless the postcode has changed from the existing address's postcode
-      prefill_contact_address_params if saved_address_still_valid?
-    end
+    after_initialize :setup_postcode
 
     def submit(params)
       permitted_attributes = params.require(:contact_address)
@@ -35,6 +21,20 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def setup_postcode
+      self.postcode = transient_registration.temp_contact_postcode
+
+      self.contact_address = transient_registration.contact_address
+
+      # Check if the user reached this page through an Address finder error.
+      # Then wipe the temp attribute as we only need it for routing
+      self.address_finder_error = transient_registration.address_finder_error
+      transient_registration.update_attributes(address_finder_error: nil)
+
+      # Prefill the existing address unless the postcode has changed from the existing address's postcode
+      prefill_contact_address_params if saved_address_still_valid?
+    end
 
     def assign_params(permitted_attributes)
       self.contact_address = transient_registration.build_contact_address(permitted_attributes)

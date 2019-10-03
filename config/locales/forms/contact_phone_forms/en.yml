@@ -4,8 +4,8 @@ en:
       new:
         title: Contact telephone number
         heading: What's their telephone number?
-        phone_number_label: Telephone number
-        phone_number_hint: This can be a landline or mobile
+        contact_phone_label: Telephone number
+        contact_phone_hint: This can be a landline or mobile
         error_heading: A problem to fix
         next_button: Continue
   activemodel:

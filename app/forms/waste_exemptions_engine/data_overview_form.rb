@@ -9,22 +9,21 @@ module WasteExemptionsEngine
     delegate :contact_address, to: :transient_registration
     delegate :on_a_farm, :is_a_farmer, :site_address, to: :transient_registration
     delegate :site_address, to: :transient_registration
-    delegate :grid_reference, :site_description, to: :site_address
+    delegate :grid_reference, :site_description, to: :site_address, allow_nil: true
     delegate :exemptions, to: :transient_registration
 
-    attr_reader :registration_exemptions
-
-    def self.registration_exemptions
-      @registration_exemptions = transient_registration.registration_exemptions
-                                                          .includes(:exemption)
-                                                          .order_by_exemption
+    def registration_exemptions
+      @registration_exemptions ||= transient_registration.registration_exemptions
+                                                            .includes(:exemption)
+                                                            .order_by_exemption
     end
+
     def should_have_company_no?
-      @transient_registration.company_no_required?
+      transient_registration.company_no_required?
     end
 
     def should_have_partners?
-      @transient_registration.partnership?
+      transient_registration.partnership?
     end
   end
 end
