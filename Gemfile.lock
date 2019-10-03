@@ -82,7 +82,7 @@ GEM
       rest-client (~> 2.0)
     defra_ruby_style (0.1.3)
       rubocop (~> 0.75)
-    defra_ruby_validators (2.1.2)
+    defra_ruby_validators (2.2.0)
       activemodel
       os_map_ref
       phonelib
