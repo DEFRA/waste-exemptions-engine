@@ -2,23 +2,16 @@
 
 module WasteExemptionsEngine
   class DeclarationForm < BaseForm
-    attr_accessor :declaration
+    delegate :declaration, to: :transient_registration
 
-    validates :declaration, inclusion: { in: [1] }
+    validates :declaration, inclusion: { in: [true] }
 
     def self.can_navigate_flexibly?
       false
     end
 
-    def initialize(registration)
-      super
-      self.declaration = @transient_registration.declaration
-    end
-
     def submit(params)
-      self.declaration = params[:declaration].to_i
-
-      attributes = { declaration: declaration }
+      attributes = { declaration: params[:declaration].to_i }
 
       super(attributes)
     end

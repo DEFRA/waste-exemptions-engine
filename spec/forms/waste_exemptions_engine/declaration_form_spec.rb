@@ -14,7 +14,7 @@ module WasteExemptionsEngine
         v.class == ActiveModel::Validations::InclusionValidator
       end
       expect(inclusion_validators.count).to eq(1)
-      expect(inclusion_validators.first.options).to eq(in: [1])
+      expect(inclusion_validators.first.options).to eq(in: [true])
     end
 
     it_behaves_like "a validated form", :declaration_form do

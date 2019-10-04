@@ -4,16 +4,10 @@ module WasteExemptionsEngine
   class AddressLookupFormBase < BaseForm
     include CanCreateAddressFromFinderData
 
-    attr_accessor :temp_addresses, :temp_address
+    attr_accessor :temp_addresses
 
-    validates :temp_address, "waste_exemptions_engine/address": true
-
-    def initialize(registration)
-      super
-
-      look_up_addresses
-      preselect_existing_address
-    end
+    after_initialize :look_up_addresses
+    after_initialize :preselect_existing_address
 
     private
 
@@ -32,7 +26,7 @@ module WasteExemptionsEngine
       return unless can_preselect_address?
 
       selected_address = temp_addresses.detect { |address| address["uprn"].to_s == existing_address.uprn }
-      self.temp_address = selected_address["uprn"] if selected_address.present?
+      send("#{address_type}_address", selected_address["uprn"]) if selected_address.present?
     end
 
     def can_preselect_address?

@@ -8,9 +8,9 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/EBShzmVrQ8akVEQf5Gv1bu67/operator-name/back\">Back</a>\n\n\n<div
+        \ \n</head>\n<body>\n\n<a class=\"link-back\" href=\"/waste_exemptions_engine/P5oqFdSvQbLZNP28NXwR7JbE/operator-name/back\">Back</a>\n\n\n<div
         class=\"text\">\n  <form class=\"new_operator_name_form\" id=\"new_operator_name_form\"
-        action=\"/waste_exemptions_engine/EBShzmVrQ8akVEQf5Gv1bu67/operator-name\"
+        action=\"/waste_exemptions_engine/P5oqFdSvQbLZNP28NXwR7JbE/operator-name\"
         accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
         value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Who’s carrying
         out the waste operation?</h1>\n\n    <p>This is the name of the operator responsible
@@ -20,7 +20,7 @@ http_interactions:
         for=\"operator_name_form_operator_name\">Full name</label>\n        <input
         class=\"form-control\" type=\"text\" name=\"operator_name_form[operator_name]\"
         id=\"operator_name_form_operator_name\" />\n      </fieldset>\n    </div>\n\n
-        \   <input value=\"EBShzmVrQ8akVEQf5Gv1bu67\" type=\"hidden\" name=\"operator_name_form[token]\"
+        \   <input value=\"P5oqFdSvQbLZNP28NXwR7JbE\" type=\"hidden\" name=\"operator_name_form[token]\"
         id=\"operator_name_form_token\" />\n    <div class=\"form-group\">\n      <input
         type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
     headers:
@@ -38,7 +38,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 17 Sep 2019 13:46:47 GMT
+      - Wed, 02 Oct 2019 12:59:03 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -69,7 +69,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9FQlNoem1WclE4YWtWRVFmNUd2MWJ1Njcvb3BlcmF0b3ItbmFtZS9iYWNrXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19vcGVyYXRvcl9uYW1lX2Zvcm1cIiBpZD1cIm5ld19vcGVyYXRvcl9uYW1lX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvRUJTaHptVnJROGFrVkVRZjVHdjFidTY3L29wZXJhdG9yLW5hbWVcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XaG/igJlzIGNhcnJ5aW5nIG91dCB0aGUgd2FzdGUgb3BlcmF0aW9uPzwvaDE+XG5cbiAgICA8cD5UaGlzIGlzIHRoZSBuYW1lIG9mIHRoZSBvcGVyYXRvciByZXNwb25zaWJsZSBmb3IgdGhlIHdhc3RlIG9wZXJhdGlvbjwvcD5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwib3BlcmF0b3JfbmFtZVwiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHloaWRkZW5cIj5cbiAgICAgICAgICBXaG/igJlzIGNhcnJ5aW5nIG91dCB0aGUgd2FzdGUgb3BlcmF0aW9uP1xuICAgICAgICA8L2xlZ2VuZD5cblxuXG4gICAgICAgIDxsYWJlbCBjbGFzcz1cImZvcm0tbGFiZWxcIiBmb3I9XCJvcGVyYXRvcl9uYW1lX2Zvcm1fb3BlcmF0b3JfbmFtZVwiPkZ1bGwgbmFtZTwvbGFiZWw+XG4gICAgICAgIDxpbnB1dCBjbGFzcz1cImZvcm0tY29udHJvbFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cIm9wZXJhdG9yX25hbWVfZm9ybVtvcGVyYXRvcl9uYW1lXVwiIGlkPVwib3BlcmF0b3JfbmFtZV9mb3JtX29wZXJhdG9yX25hbWVcIiAvPlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cIkVCU2h6bVZyUThha1ZFUWY1R3YxYnU2N1wiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwib3BlcmF0b3JfbmFtZV9mb3JtW3Rva2VuXVwiIGlkPVwib3BlcmF0b3JfbmFtZV9mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9QNW9xRmRTdlFiTFpOUDI4Tlh3UjdKYkUvb3BlcmF0b3ItbmFtZS9iYWNrXCI+QmFjazwvYT5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19vcGVyYXRvcl9uYW1lX2Zvcm1cIiBpZD1cIm5ld19vcGVyYXRvcl9uYW1lX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvUDVvcUZkU3ZRYkxaTlAyOE5Yd1I3SmJFL29wZXJhdG9yLW5hbWVcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XaG/igJlzIGNhcnJ5aW5nIG91dCB0aGUgd2FzdGUgb3BlcmF0aW9uPzwvaDE+XG5cbiAgICA8cD5UaGlzIGlzIHRoZSBuYW1lIG9mIHRoZSBvcGVyYXRvciByZXNwb25zaWJsZSBmb3IgdGhlIHdhc3RlIG9wZXJhdGlvbjwvcD5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwib3BlcmF0b3JfbmFtZVwiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHloaWRkZW5cIj5cbiAgICAgICAgICBXaG/igJlzIGNhcnJ5aW5nIG91dCB0aGUgd2FzdGUgb3BlcmF0aW9uP1xuICAgICAgICA8L2xlZ2VuZD5cblxuXG4gICAgICAgIDxsYWJlbCBjbGFzcz1cImZvcm0tbGFiZWxcIiBmb3I9XCJvcGVyYXRvcl9uYW1lX2Zvcm1fb3BlcmF0b3JfbmFtZVwiPkZ1bGwgbmFtZTwvbGFiZWw+XG4gICAgICAgIDxpbnB1dCBjbGFzcz1cImZvcm0tY29udHJvbFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cIm9wZXJhdG9yX25hbWVfZm9ybVtvcGVyYXRvcl9uYW1lXVwiIGlkPVwib3BlcmF0b3JfbmFtZV9mb3JtX29wZXJhdG9yX25hbWVcIiAvPlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB2YWx1ZT1cIlA1b3FGZFN2UWJMWk5QMjhOWHdSN0piRVwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwib3BlcmF0b3JfbmFtZV9mb3JtW3Rva2VuXVwiIGlkPVwib3BlcmF0b3JfbmFtZV9mb3JtX3Rva2VuXCIgLz5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
     http_version: 
-  recorded_at: Tue, 17 Sep 2019 13:46:47 GMT
+  recorded_at: Wed, 02 Oct 2019 12:59:04 GMT
 recorded_with: VCR 5.0.0

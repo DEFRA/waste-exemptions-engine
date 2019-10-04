@@ -25,14 +25,10 @@ module WasteExemptionsEngine
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true, if: :uses_site_location?
-    validates :site_description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
+    validates :description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
 
-    def initialize(registration)
-      super
-      assign_attributes_to_display
-      valid?
-    end
+    after_initialize :valid
 
     def submit(_params)
       super({})
@@ -44,12 +40,18 @@ module WasteExemptionsEngine
       @transient_registration.company_no_required?
     end
 
+    # https://api.rubyonrails.org/classes/ActiveModel/Callbacks.html
+    # `method_name` passed to #define_model_callbacks must not end with !, ? or =.
+    def valid
+      valid?
+    end
+
     def uses_site_location?
       # This should never happen, but if there is no site address we default
       # to validating the site grid reference and description
-      return true unless @transient_registration&.site_address
+      return true unless transient_registration&.site_address
 
-      @transient_registration.site_address.auto?
+      transient_registration.site_address.auto?
     end
   end
 end

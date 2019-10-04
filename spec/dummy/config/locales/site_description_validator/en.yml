@@ -4,6 +4,6 @@ en:
       models:
         test/site_description_validatable:
           attributes:
-            site_description:
+            description:
               blank: Enter a site description
               too_long: The site description must be no longer than 500 characters

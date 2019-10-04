@@ -22,8 +22,8 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :exemptions_form do
-      let(:valid_params) { { token: form.token, exemptions: three_exemptions.map(&:id).map(&:to_s) } }
-      let(:invalid_params) { { token: form.token } }
+      let(:valid_params) { { exemption_ids: three_exemptions.map(&:id).map(&:to_s) } }
+      let(:invalid_params) { { exemption_ids: [] } }
     end
 
     describe "#submit" do
@@ -31,7 +31,7 @@ module WasteExemptionsEngine
         it "updates the transient registration with the selected exemptions" do
           exemption_codes = three_exemptions.map(&:code)
           exemption_id_strings = three_exemptions.map(&:id).map(&:to_s)
-          valid_params = { token: form.token, exemptions: exemption_id_strings }
+          valid_params = { exemption_ids: exemption_id_strings }
           transient_registration = form.transient_registration
 
           expect(transient_registration.exemptions).to be_empty

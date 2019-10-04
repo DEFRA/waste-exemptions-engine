@@ -24,8 +24,8 @@ module WasteExemptionsEngine
       let(:valid_params) { { token: form.token, location: LOCATIONS.sample } }
       let(:invalid_params) do
         [
-          { token: form.token, location: "foo" },
-          { token: form.token, location: "" }
+          { location: "foo" },
+          { location: "" }
         ]
       end
     end
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the location" do
           location = LOCATIONS.sample
-          valid_params = { token: form.token, location: location }
+          valid_params = { location: location }
           transient_registration = form.transient_registration
 
           expect(transient_registration.location).to be_blank

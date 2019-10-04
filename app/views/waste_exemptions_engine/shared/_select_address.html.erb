@@ -1,12 +1,12 @@
-<div class="form-group <%= "form-group-error" if form.errors[:temp_address].any? %>">
-  <fieldset id="temp_address">
-    <% if form.errors[:temp_address].any? %>
-      <span class="error-message"><%= form.errors[:temp_address].join(", ") %></span>
+<div class="form-group <%= "form-group-error" if form.errors[address].any? %>">
+  <fieldset id="<%= address %>">
+    <% if form.errors[address].any? %>
+      <span class="error-message"><%= form.errors[address].join(", ") %></span>
     <% end %>
 
-    <%= f.label :temp_address, t(".address_label"), class: "form-label" %>
-    <%= f.select(:temp_address,
-                 options_for_select(form.temp_addresses.map { |a| [a["address"], a["uprn"]] }, form.temp_address),
+    <%= f.label :uprn, t(".address_label"), class: "form-label" %>
+    <%= f.select(:uprn,
+                 options_for_select(form.temp_addresses.map { |a| [a["address"], a["uprn"]] }, form.send(address)&.uprn),
                  { include_blank: t(".address_blank_option", count: form.temp_addresses.length ) },
                  { class: "form-control" }) %>
   </fieldset>

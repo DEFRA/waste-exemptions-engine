@@ -2,28 +2,15 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
-    attr_accessor :exemptions
+    delegate :exemptions, to: :transient_registration
 
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
-    def initialize(registration)
-      super
-
-      self.exemptions = @transient_registration.exemptions
-    end
-
     def submit(params)
-      self.exemptions = determine_matched_exemptions(params)
+      # Rails authomatically delete params for which the value is empty :/
+      params ||= {}
 
-      super(exemptions: exemptions)
-    end
-
-    private
-
-    def determine_matched_exemptions(params)
-      return nil unless params[:exemptions]
-
-      Exemption.where(id: params[:exemptions])
+      super(exemption_ids: (params[:exemption_ids] || []))
     end
   end
 end

@@ -7,8 +7,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :contact_phone_form, "/contact-phone"
     include_examples "go back", :contact_phone_form, "/contact-phone/back"
     include_examples "POST form", :contact_phone_form, "/contact-phone" do
-      let(:form_data) { { phone_number: "01234567890" } }
-      let(:invalid_form_data) { [{ phone_number: "123" }, { phone_number: nil }] }
+      let(:form_data) { { contact_phone: "01234567890" } }
+      let(:invalid_form_data) { [{ contact_phone: "123" }, { contact_phone: nil }] }
     end
 
     context "when editing an existing registration" do
@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/#{edit_contact_phone_form.token}/contact-phone"
 
-        expect(response.body).to have_html_escaped_string(edit_contact_phone_form.phone_number)
+        expect(response.body).to have_html_escaped_string(edit_contact_phone_form.contact_phone)
       end
     end
 
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
       it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/#{renew_contact_phone_form.token}/contact-phone"
 
-        expect(response.body).to have_html_escaped_string(renew_contact_phone_form.phone_number)
+        expect(response.body).to have_html_escaped_string(renew_contact_phone_form.contact_phone)
       end
     end
   end

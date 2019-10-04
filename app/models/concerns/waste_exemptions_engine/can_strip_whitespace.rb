@@ -31,7 +31,7 @@ module WasteExemptionsEngine
 
     def strip_array(array)
       array.each do |nested_object|
-        strip_whitespace(nested_object.attributes)
+        strip_whitespace(nested_object.attributes) if nested_object.respond_to?(:attributes)
       end
     end
   end

@@ -72,7 +72,7 @@ en:
               blank: "You need to tell us the site grid reference"
               wrong_format: The site grid reference should have 2 letters and 10 digits
               invalid: The site grid reference is not a valid coordinate
-            site_description:
+            description:
               blank: You need to provide a site description
               too_long: The site description must be no longer than 500 characters
             exemptions:

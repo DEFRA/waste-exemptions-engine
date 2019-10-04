@@ -2,18 +2,11 @@
 
 module WasteExemptionsEngine
   class MainPeopleForm < BaseForm
-    attr_accessor :business_type
+    delegate :transient_people, :business_type, to: :transient_registration
+
     attr_accessor :first_name, :last_name
 
-    delegate :transient_people, to: :transient_registration
-
     validates :first_name, :last_name, "waste_exemptions_engine/person_name": true
-
-    def initialize(transient_registration)
-      super
-      # We only use this for the correct microcopy
-      self.business_type = @transient_registration.business_type
-    end
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
@@ -28,7 +21,7 @@ module WasteExemptionsEngine
     private
 
     def set_up_new_person
-      @transient_registration.transient_people.build(
+      transient_people.build(
         first_name: first_name,
         last_name: last_name
       )

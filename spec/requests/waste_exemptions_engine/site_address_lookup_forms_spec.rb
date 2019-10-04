@@ -10,8 +10,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :site_address_lookup_form, "/site-address-lookup"
     include_examples "go back", :site_address_lookup_form, "/site-address-lookup/back"
     include_examples "POST form", :site_address_lookup_form, "/site-address-lookup" do
-      let(:form_data) { { temp_address: "340116" } }
-      let(:invalid_form_data) { [{ temp_address: nil }] }
+      let(:form_data) { { site_address: { uprn: "340116" } } }
+      let(:invalid_form_data) { [{ site_address: { uprn: nil } }] }
     end
 
     include_examples "skip to manual address",

@@ -9,7 +9,7 @@ http_interactions:
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
         \ \n</head>\n<body>\n\n<div class=\"text\">\n  <form class=\"new_edit_cancelled_form\"
-        id=\"new_edit_cancelled_form\" action=\"/waste_exemptions_engine/zDBfxbsG4yUw3wr4YSfDu8Ng/edit-cancelled\"
+        id=\"new_edit_cancelled_form\" action=\"/waste_exemptions_engine/BWaKtsDqXr3rXq48vkJ1Y97C/edit-cancelled\"
         accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
         value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Edit cancelled</h1>\n\n
         \   <p>Your changes have been discarded. The registration was not updated.</p>\n\n
@@ -30,7 +30,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 17 Sep 2019 13:46:07 GMT
+      - Wed, 02 Oct 2019 12:59:18 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -61,7 +61,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X2VkaXRfY2FuY2VsbGVkX2Zvcm1cIiBpZD1cIm5ld19lZGl0X2NhbmNlbGxlZF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3pEQmZ4YnNHNHlVdzN3cjRZU2ZEdThOZy9lZGl0LWNhbmNlbGxlZFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPkVkaXQgY2FuY2VsbGVkPC9oMT5cblxuICAgIDxwPllvdXIgY2hhbmdlcyBoYXZlIGJlZW4gZGlzY2FyZGVkLiBUaGUgcmVnaXN0cmF0aW9uIHdhcyBub3QgdXBkYXRlZC48L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGEgY2xhc3M9XCJidXR0b25cIiBocmVmPVwiL1wiPlZpZXcgcmVnaXN0cmF0aW9uPC9hPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X2VkaXRfY2FuY2VsbGVkX2Zvcm1cIiBpZD1cIm5ld19lZGl0X2NhbmNlbGxlZF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL0JXYUt0c0RxWHIzclhxNDh2a0oxWTk3Qy9lZGl0LWNhbmNlbGxlZFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPkVkaXQgY2FuY2VsbGVkPC9oMT5cblxuICAgIDxwPllvdXIgY2hhbmdlcyBoYXZlIGJlZW4gZGlzY2FyZGVkLiBUaGUgcmVnaXN0cmF0aW9uIHdhcyBub3QgdXBkYXRlZC48L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGEgY2xhc3M9XCJidXR0b25cIiBocmVmPVwiL1wiPlZpZXcgcmVnaXN0cmF0aW9uPC9hPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
     http_version: 
-  recorded_at: Tue, 17 Sep 2019 13:46:07 GMT
+  recorded_at: Wed, 02 Oct 2019 12:59:18 GMT
 recorded_with: VCR 5.0.0

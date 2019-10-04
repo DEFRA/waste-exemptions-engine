@@ -14,7 +14,7 @@
 
       <div class="govuk-box-highlight">
         <h1 class="heading-xlarge"><%= t(".heading") %></h1>
-        <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @registration_complete_form.reference %></span></p>
+        <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @registration.reference %></span></p>
       </div>
 
       <p><%= t(".confirmation_email_text.#{emails_plural(@registration_complete_form)}", applicant: @registration_complete_form.applicant_email, contact: @registration_complete_form.contact_email) %></p>

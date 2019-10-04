@@ -10,8 +10,8 @@ module WasteExemptionsEngine
     include_examples "GET form", :contact_address_lookup_form, "/contact-address-lookup"
     include_examples "go back", :contact_address_lookup_form, "/contact-address-lookup/back"
     include_examples "POST form", :contact_address_lookup_form, "/contact-address-lookup" do
-      let(:form_data) { { temp_address: "340116" } }
-      let(:invalid_form_data) { [{ temp_address: nil }] }
+      let(:form_data) { { contact_address: { uprn: "340116" } } }
+      let(:invalid_form_data) { [{ contact_address: { uprn: nil } }] }
     end
 
     include_examples "skip to manual address",

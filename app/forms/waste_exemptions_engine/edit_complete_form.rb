@@ -3,12 +3,7 @@
 module WasteExemptionsEngine
   class EditCompleteForm < BaseForm
 
-    attr_accessor :reference
-
-    def initialize(registration)
-      super
-      self.reference = @transient_registration.reference
-    end
+    delegate :reference, to: :transient_registration
 
     # Override BaseForm method as users shouldn't be able to submit this form
     def submit(_params)
