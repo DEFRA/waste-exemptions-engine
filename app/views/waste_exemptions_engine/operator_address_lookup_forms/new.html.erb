@@ -12,7 +12,7 @@
       <%= link_to(t(".postcode_change_link"), back_operator_address_lookup_forms_path(@operator_address_lookup_form.token)) %>
     </div>
 
-    <%= fields_for :operator_address do |f| %>
+    <%= f.fields_for :operator_address do |f| %>
       <%= render("waste_exemptions_engine/shared/select_address", form: @operator_address_lookup_form, address: :operator_address, f: f) %>
     <% end %>
     <div class="form-group">
