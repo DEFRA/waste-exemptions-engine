@@ -34,8 +34,6 @@ module WasteExemptionsEngine
     alias_attribute :people, :transient_people
     alias_attribute :registration_exemptions, :transient_registration_exemptions
 
-    attr_accessor :confirmed_email
-
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
                               created_at
                               declaration

@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
+        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
+        \ \n</head>\n<body>\n\n<div class=\"column-two-thirds\">\n  <form class=\"new_renewal_complete_form\"
+        id=\"new_renewal_complete_form\" action=\"/waste_exemptions_engine/GWDk3a22m4nh1ELTAh6KpRXv/renewal-complete\"
+        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
+        value=\"&#x2713;\" />\n    \n\n    <div class=\"govuk-box-highlight\">\n      <h1
+        class=\"heading-xlarge\">You have renewed your exemptions for 3 years</h1>\n
+        \     <p class=\"font-large\">Your new registration number is<br><span class=\"strong\">WEX000548</span></p>\n
+        \   </div>\n\n    <p>We have sent a confirmation email to carmine_emmerich@example.com
+        and joaquin@example.org.</p>\n\n    <p>These exemptions will expire in October
+        2022. We will send you a reminder 1 month before they are due to expire.</p>\n
+        \   <p>We will add your registration to the public register. This includes
+        the name and address of the individual or organisation responsible, the site
+        address and the exemptions you have registered. We will not include other
+        names, or your email or telephone number.</p>\n\n    <br/>\n\n    <p><a href=\"http://example.com/feedback\">What
+        do you think of this service?</a> (takes 30 seconds)</p>\n</form></div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Oct 2019 08:23:25 GMT
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Jetty(9.4.z-SNAPSHOT)
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJjb2x1bW4tdHdvLXRoaXJkc1wiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19yZW5ld2FsX2NvbXBsZXRlX2Zvcm1cIiBpZD1cIm5ld19yZW5ld2FsX2NvbXBsZXRlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvR1dEazNhMjJtNG5oMUVMVEFoNktwUlh2L3JlbmV3YWwtY29tcGxldGVcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPjxpbnB1dCBuYW1lPVwidXRmOFwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIiYjeDI3MTM7XCIgLz5cbiAgICBcblxuICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1ib3gtaGlnaGxpZ2h0XCI+XG4gICAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLXhsYXJnZVwiPllvdSBoYXZlIHJlbmV3ZWQgeW91ciBleGVtcHRpb25zIGZvciAzIHllYXJzPC9oMT5cbiAgICAgIDxwIGNsYXNzPVwiZm9udC1sYXJnZVwiPllvdXIgbmV3IHJlZ2lzdHJhdGlvbiBudW1iZXIgaXM8YnI+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5XRVgwMDA1NDg8L3NwYW4+PC9wPlxuICAgIDwvZGl2PlxuXG4gICAgPHA+V2UgaGF2ZSBzZW50IGEgY29uZmlybWF0aW9uIGVtYWlsIHRvIGNhcm1pbmVfZW1tZXJpY2hAZXhhbXBsZS5jb20gYW5kIGpvYXF1aW5AZXhhbXBsZS5vcmcuPC9wPlxuXG4gICAgPHA+VGhlc2UgZXhlbXB0aW9ucyB3aWxsIGV4cGlyZSBpbiBPY3RvYmVyIDIwMjIuIFdlIHdpbGwgc2VuZCB5b3UgYSByZW1pbmRlciAxIG1vbnRoIGJlZm9yZSB0aGV5IGFyZSBkdWUgdG8gZXhwaXJlLjwvcD5cbiAgICA8cD5XZSB3aWxsIGFkZCB5b3VyIHJlZ2lzdHJhdGlvbiB0byB0aGUgcHVibGljIHJlZ2lzdGVyLiBUaGlzIGluY2x1ZGVzIHRoZSBuYW1lIGFuZCBhZGRyZXNzIG9mIHRoZSBpbmRpdmlkdWFsIG9yIG9yZ2FuaXNhdGlvbiByZXNwb25zaWJsZSwgdGhlIHNpdGUgYWRkcmVzcyBhbmQgdGhlIGV4ZW1wdGlvbnMgeW91IGhhdmUgcmVnaXN0ZXJlZC4gV2Ugd2lsbCBub3QgaW5jbHVkZSBvdGhlciBuYW1lcywgb3IgeW91ciBlbWFpbCBvciB0ZWxlcGhvbmUgbnVtYmVyLjwvcD5cblxuICAgIDxici8+XG5cbiAgICA8cD48YSBocmVmPVwiaHR0cDovL2V4YW1wbGUuY29tL2ZlZWRiYWNrXCI+V2hhdCBkbyB5b3UgdGhpbmsgb2YgdGhpcyBzZXJ2aWNlPzwvYT4gKHRha2VzIDMwIHNlY29uZHMpPC9wPlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: 
+  recorded_at: Fri, 04 Oct 2019 08:23:25 GMT
+recorded_with: VCR 5.0.0

@@ -25,7 +25,7 @@ module WasteExemptionsEngine
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true, if: :uses_site_location?
-    validates :site_description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
+    validates :description, "waste_exemptions_engine/site_description": true, if: :uses_site_location?
     validates :site_address, "waste_exemptions_engine/address": true, unless: :uses_site_location?
 
     after_initialize :valid

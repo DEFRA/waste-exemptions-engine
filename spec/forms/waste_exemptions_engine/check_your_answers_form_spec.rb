@@ -26,7 +26,7 @@ module WasteExemptionsEngine
         { property: :contact_address, validator: :address_validator },
         { property: :exemptions, validator: :exemptions_validator },
         { property: :grid_reference, validator: :grid_reference_validator, namespace: "DefraRuby::Validators", options: { if: :uses_site_location? } },
-        { property: :site_description, validator: :site_description_validator, options: { if: :uses_site_location? } },
+        { property: :description, validator: :site_description_validator, options: { if: :uses_site_location? } },
         { property: :site_address, validator: :address_validator, options: { unless: :uses_site_location? } }
       ]
 

@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     delegate :contact_address, to: :transient_registration
     delegate :on_a_farm, :is_a_farmer, :site_address, to: :transient_registration
     delegate :site_address, to: :transient_registration
-    delegate :grid_reference, :site_description, to: :site_address, allow_nil: true
+    delegate :grid_reference, :description, to: :site_address, allow_nil: true
     delegate :exemptions, to: :transient_registration
 
     def registration_exemptions
