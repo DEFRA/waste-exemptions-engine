@@ -44,24 +44,5 @@ module WasteExemptionsEngine
 
       false
     end
-    # def submit(params)
-    #   attributes = transient_registration_attributes(params)
-    #   attributes = strip_whitespace(attributes)
-
-    #   attributes.each do |key, value|
-    #     transient_registration.public_send("#{key}=", value)
-    #   end
-
-    #   return transient_registration.save! if valid?
-
-    #   false
-    # end
-
-    # private
-
-    # def transient_registration_attributes(_params)
-    #   # Default behaviour. Subclasses to override.
-    #   {}
-    # end
   end
 end

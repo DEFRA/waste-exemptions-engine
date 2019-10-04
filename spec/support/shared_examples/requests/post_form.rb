@@ -13,7 +13,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
           post post_request_path, form_factory => invalid_data
 
           invalid_form = build(form_factory)
-          invalid_form.submit(ActionController::Parameters.new(invalid_data))
+          invalid_form.submit(ActionController::Parameters.new(invalid_data).permit!)
 
           raise("No errors found for invalid data: #{invalid_data}") if invalid_form.valid?
 
