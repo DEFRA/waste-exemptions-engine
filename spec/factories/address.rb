@@ -15,6 +15,10 @@ FactoryBot.define do
 
     trait :site_address do
       address_type { address_types[:site] }
+    end
+
+    trait :site_using_grid_reference do
+      site_address
       description { Faker::Lorem.sentence }
       grid_reference { "ST 58337 72855" }
     end
