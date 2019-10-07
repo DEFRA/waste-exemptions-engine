@@ -11,15 +11,11 @@ module WasteExemptionsEngine
 
       private
 
+      # Check if the user reached this page through an Address finder error.
+      # Then wipe the temp attribute as we only need it for routing
       def clear_address_finder_error(selected_address_uprn, type)
-        return if selected_address_uprn.blank?
-
-        data = temp_addresses.detect { |address| address["uprn"] == selected_address_uprn.to_i }
-        return unless data
-
-        address = TransientAddress.create_from_address_finder_data(data, type)
-
-        address
+        self.address_finder_error = transient_registration.address_finder_error
+        transient_registration.update_attributes(address_finder_error: nil)
       end
     end
   end
