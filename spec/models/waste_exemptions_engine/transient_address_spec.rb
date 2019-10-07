@@ -23,6 +23,19 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "hooks" do
+      context "creating a site address" do
+        context "populated from an grid reference" do
+          subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
+          it "updates the x & y fields" do
+            subject.reload
+            expect(subject.x).to eq(358_337.0)
+            expect(subject.y).to eq(172_855.0)
+          end
+        end
+      end
+    end
+
     describe ".create_from_address_finder_data" do
       let(:address_finder_data) do
         {

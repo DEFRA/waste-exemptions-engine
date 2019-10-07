@@ -13,8 +13,27 @@ module WasteExemptionsEngine
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
+    after_create :update_x_and_y
+
     def address_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
+    end
+
+    def update_x_and_y
+      return unless site?
+      return unless x.blank? || y.blank?
+
+      update_x_and_y_from_grid_reference if auto?
+      save!
+    end
+
+    def update_x_and_y_from_grid_reference
+      location = OsMapRef::Location.for(grid_reference)
+      self.x = location.easting.to_f
+      self.y = location.northing.to_f
+    rescue OsMapRef::Error
+      self.x = 0.00
+      self.y = 0.00
     end
 
     def self.create_from_address_finder_data(data, address_type)
