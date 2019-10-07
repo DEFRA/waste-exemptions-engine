@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 22 Sep 2019 20:54:57 GMT
+      - Mon, 07 Oct 2019 09:46:19 GMT
       Content-Type:
       - application/xml
       Content-Length:
@@ -58,7 +58,7 @@ http_interactions:
           </gml:featureMember>
         </wfs:FeatureCollection>
     http_version: 
-  recorded_at: Sun, 22 Sep 2019 20:54:57 GMT
+  recorded_at: Mon, 07 Oct 2019 09:46:18 GMT
 - request:
     method: get
     uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358337.0,172855.0%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
@@ -82,7 +82,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 22 Sep 2019 20:54:58 GMT
+      - Mon, 07 Oct 2019 09:46:19 GMT
       Content-Type:
       - application/xml
       Content-Length:
@@ -117,7 +117,7 @@ http_interactions:
           </gml:featureMember>
         </wfs:FeatureCollection>
     http_version: 
-  recorded_at: Sun, 22 Sep 2019 20:54:58 GMT
+  recorded_at: Mon, 07 Oct 2019 09:46:18 GMT
 - request:
     method: get
     uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?Filter=(%3CFilter%3E%3CIntersects%3E%3CPropertyName%3ESHAPE%3C/PropertyName%3E%3Cgml:Point%3E%3Cgml:coordinates%3E358337.0,172855.0%3C/gml:coordinates%3E%3C/gml:Point%3E%3C/Intersects%3E%3C/Filter%3E)&REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=1.0.0&propertyName=area_id,area_name,code,long_name,short_name&typeName=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
@@ -141,7 +141,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 22 Sep 2019 20:54:58 GMT
+      - Mon, 07 Oct 2019 09:46:20 GMT
       Content-Type:
       - application/xml
       Content-Length:
@@ -176,5 +176,5 @@ http_interactions:
           </gml:featureMember>
         </wfs:FeatureCollection>
     http_version: 
-  recorded_at: Sun, 22 Sep 2019 20:54:58 GMT
+  recorded_at: Mon, 07 Oct 2019 09:46:18 GMT
 recorded_with: VCR 5.0.0
