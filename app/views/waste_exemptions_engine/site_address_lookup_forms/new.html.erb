@@ -20,7 +20,6 @@
       <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
     </div>
 
-    <%= f.hidden_field :token, value: @site_address_lookup_form.token %>
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>

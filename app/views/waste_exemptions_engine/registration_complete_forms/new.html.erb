@@ -34,8 +34,6 @@
       </div>
 
       <p><%= link_to(t(".survey_link_text"), t("layouts.application.feedback_url")) %> <%= t(".survey_link_hint") %></p>
-
-      <%= f.hidden_field :token, value: @registration_complete_form.token %>
     <% end %>
 
   <% end %>

@@ -14,11 +14,11 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :operator_name_form do
-      let(:valid_params) { { token: form.token, operator_name: "Acme Waste Carriers" } }
+      let(:valid_params) { { operator_name: "Acme Waste Carriers" } }
       let(:invalid_params) do
         [
-          { token: form.token, operator_name: Helpers::TextGenerator.random_string(256) },
-          { token: form.token, operator_name: "" }
+          { operator_name: Helpers::TextGenerator.random_string(256) },
+          { operator_name: "" }
         ]
       end
     end
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the operator name" do
           operator_name = "Acme Waste Carriers"
-          valid_params = { token: form.token, operator_name: operator_name }
+          valid_params = { operator_name: operator_name }
           transient_registration = form.transient_registration
 
           expect(transient_registration.operator_name).to be_blank

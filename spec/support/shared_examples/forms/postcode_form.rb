@@ -2,8 +2,8 @@
 
 RSpec.shared_examples "a postcode form" do |form_factory|
   it_behaves_like "a validated form", form_factory do
-    let(:valid_params) { { token: form.token, postcode: "BS1 5AH" } }
-    let(:invalid_params) { { token: form.token, postcode: "foo" } }
+    let(:valid_params) { { postcode: "BS1 5AH" } }
+    let(:invalid_params) { { postcode: "foo" } }
   end
 
   it "is a type of PostcodeForm" do
@@ -23,7 +23,7 @@ RSpec.shared_examples "a postcode form" do |form_factory|
       it "updates the transient registration with the selected postcode" do
         form = build(form_factory)
         postcode = "BS1 5AH"
-        valid_params = { token: form.token, postcode: postcode }
+        valid_params = { postcode: postcode }
         transient_registration = form.transient_registration
 
         # Accessing private methods directly is usually best avoided, but this seemed to be the only
