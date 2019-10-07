@@ -9,5 +9,13 @@ module WasteExemptionsEngine
     def create
       super(ContactAddressManualForm, "contact_address_manual_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params
+        .require(:contact_address_manual_form)
+        .permit(contact_address: %i[locality postcode city premises street_address mode])
+    end
   end
 end

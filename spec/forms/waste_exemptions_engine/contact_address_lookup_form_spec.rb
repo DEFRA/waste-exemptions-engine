@@ -25,7 +25,8 @@ module WasteExemptionsEngine
           transient_registration = form.transient_registration
 
           expect(transient_registration.transient_addresses).to be_empty
-          form.submit(valid_params)
+          form.submit(ActionController::Parameters.new(valid_params).permit!)
+          transient_registration.reload
           expect(transient_registration.transient_addresses.count).to eq(1)
           expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
         end

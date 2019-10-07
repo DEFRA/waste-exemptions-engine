@@ -20,8 +20,5 @@ en:
       models:
         waste_exemptions_engine/operator_address_lookup_form:
           attributes:
-            temp_address:
+            operator_address:
               blank: "You must select an address"
-            token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"

@@ -31,7 +31,7 @@ module WasteExemptionsEngine
 
     def transient_registration_attributes
       # Subclassess to define correct permitted attributes when relevant
-      params
+      params.permit
     end
 
     def find_or_initialize_registration(token)

@@ -7,10 +7,9 @@ module WasteExemptionsEngine
     validates :exemptions, "waste_exemptions_engine/exemptions": true
 
     def submit(params)
-      # Rails authomatically delete params for which the value is empty :/
-      params ||= {}
+      params[:exemption_ids] ||= []
 
-      super(exemption_ids: (params[:exemption_ids] || []))
+      super
     end
   end
 end

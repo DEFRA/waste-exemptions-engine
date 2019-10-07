@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(ContactAddressLookupForm, "contact_address_lookup_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:contact_address_lookup_form).permit(contact_address: [:uprn])
+    end
   end
 end

@@ -19,7 +19,6 @@ module WasteExemptionsEngine
       let(:valid_params) do
         [
           {
-            token: form.token,
             site_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
@@ -29,7 +28,6 @@ module WasteExemptionsEngine
             }
           },
           {
-            token: form.token,
             site_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
@@ -43,7 +41,6 @@ module WasteExemptionsEngine
       let(:invalid_params) do
         [
           {
-            token: form.token,
             site_address: {
               premises: "",
               street_address: "",
@@ -53,7 +50,6 @@ module WasteExemptionsEngine
             }
           },
           {
-            token: form.token,
             site_address: {
               premises: Helpers::TextGenerator.random_string(201), # The max length is 200.
               street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
@@ -100,7 +96,7 @@ module WasteExemptionsEngine
           # Ensure the test data is properly configured:
           expect(transient_registration.transient_addresses).to be_empty
 
-          form.submit(ActionController::Parameters.new(valid_params))
+          form.submit(ActionController::Parameters.new(valid_params).permit!)
 
           expect(transient_registration.transient_addresses.count).to eq(1)
           submitted_address = transient_registration.transient_addresses.first
@@ -118,7 +114,7 @@ module WasteExemptionsEngine
             end
             expect(transient_registration.transient_addresses).to be_empty
 
-            form.submit(ActionController::Parameters.new(white_space_params))
+            form.submit(ActionController::Parameters.new(white_space_params).permit!)
 
             expect(transient_registration.reload.transient_addresses.count).to eq(1)
             submitted_address = transient_registration.transient_addresses.first

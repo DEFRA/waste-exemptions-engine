@@ -10,10 +10,9 @@ module WasteExemptionsEngine
     validates :contact_address, "waste_exemptions_engine/address": true
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      contact_address = create_address(params[:contact_address][:uprn], :contact)
+      contact_address_attributes = get_address_data(params[:contact_address][:uprn], :contact)
 
-      super(contact_address: contact_address)
+      super(contact_address_attributes: contact_address_attributes)
     end
   end
 end
