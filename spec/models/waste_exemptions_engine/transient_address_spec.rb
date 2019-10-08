@@ -58,6 +58,41 @@ module WasteExemptionsEngine
           end
         end
 
+        context "populated from a manual address" do
+          before(:context) { VCR.insert_cassette("site_address_manual", allow_playback_repeats: true) }
+          after(:context) { VCR.eject_cassette }
+
+          subject(:transient_address) { create(:transient_address, :site_using_a_manual_address) }
+          it "updates the x & y fields" do
+            subject.reload
+
+            expect(subject.x).to eq(358_205.03)
+            expect(subject.y).to eq(172_708.07)
+          end
+
+          context "if the postcode is somehow blank" do
+            subject(:transient_address) { create(:transient_address, :site_address) }
+            it "will do nothing" do
+              subject.reload
+
+              expect(subject.x).to be_nil
+              expect(subject.y).to be_nil
+            end
+          end
+
+          context "if the postcode is invalid" do
+            it "will notify Errbit of the error and set x & y to 0.0" do
+              expect(Airbrake).to receive(:notify)
+
+              address = create(:transient_address, :site_using_invalid_manual_address)
+              address.reload
+
+              expect(address.x).to eq(0.0)
+              expect(address.y).to eq(0.0)
+            end
+          end
+        end
+
       end
     end
 

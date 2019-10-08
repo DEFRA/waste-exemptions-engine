@@ -24,6 +24,7 @@ module WasteExemptionsEngine
       return unless x.blank? || y.blank?
 
       update_x_and_y_from_grid_reference if auto?
+      update_x_and_y_from_postcode if manual?
       save!
     end
 
@@ -37,6 +38,32 @@ module WasteExemptionsEngine
       self.x = 0.00
       self.y = 0.00
       handle_error(e, "Grid reference to x & y failed:\n #{e}", grid_reference: grid_reference)
+    end
+
+    def update_x_and_y_from_postcode
+      return if postcode.blank?
+
+      results = AddressFinderService.new(postcode).search_by_postcode
+
+      error_from_postcode_lookup_for_x_and_y_update(results) && return if results.is_a?(Symbol)
+      no_result_from_postcode_lookup_for_x_and_y_update && return if results.empty?
+
+      self.x = results.first["x"].to_f
+      self.y = results.first["y"].to_f
+    end
+
+    def error_from_postcode_lookup_for_x_and_y_update(results)
+      self.x = 0.0
+      self.y = 0.0
+      message = "Postcode to x & y failed:\n #{results}"
+      handle_error(StandardError.new(message), message, postcode: postcode)
+    end
+
+    def no_result_from_postcode_lookup_for_x_and_y_update
+      self.x = 0.0
+      self.y = 0.0
+      message = "Postcode to x & y returned no results"
+      handle_error(StandardError.new(message), message, postcode: postcode)
     end
 
     def handle_error(error, message, metadata)

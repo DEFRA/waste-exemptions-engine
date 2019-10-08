@@ -16,6 +16,21 @@ FactoryBot.define do
       address_type { address_types[:site] }
     end
 
+    trait :site_using_a_manual_address do
+      site_address
+      manual
+      premises { Faker::Address.community }
+      street_address { Faker::Address.street_address }
+      locality { Faker::Address.country }
+      city { Faker::Address.city }
+      postcode { "BS1 5AH" }
+    end
+
+    trait :site_using_invalid_manual_address do
+      site_using_a_manual_address
+      postcode { "BS1 9XX" }
+    end
+
     trait :site_using_grid_reference do
       site_address
       mode { WasteExemptionsEngine::TransientAddress.modes[:auto] }
