@@ -41,8 +41,8 @@ FactoryBot.define do
       locality { Faker::Address.country }
       city { Faker::Address.city }
       postcode { "BS1 5AH" }
-      x { 358_205.03 }
-      y { 172_708.07 }
+      x { 358_337.0 }
+      y { 172_855.0 }
     end
 
     trait :site_using_invalid_address_lookup do

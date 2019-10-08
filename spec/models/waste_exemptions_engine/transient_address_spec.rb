@@ -27,12 +27,21 @@ module WasteExemptionsEngine
     describe "hooks" do
       context "creating a site address" do
         context "populated from a grid reference" do
+          before(:context) { VCR.insert_cassette("site_address_area_grid_reference", allow_playback_repeats: true) }
+          after(:context) { VCR.eject_cassette }
+
           subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
           it "updates the x & y fields" do
             subject.reload
 
             expect(subject.x).to eq(358_337.0)
             expect(subject.y).to eq(172_855.0)
+          end
+
+          it "updates the area" do
+            subject.reload
+
+            expect(subject.area).to eq("Wessex")
           end
 
           context "if the grid reference is somehow blank" do
@@ -63,6 +72,7 @@ module WasteExemptionsEngine
           after(:context) { VCR.eject_cassette }
 
           subject(:transient_address) { create(:transient_address, :site_using_a_manual_address) }
+
           it "updates the x & y fields" do
             subject.reload
 
@@ -74,6 +84,19 @@ module WasteExemptionsEngine
             subject.reload
 
             expect(subject.grid_reference).to eq("ST 58205 72708")
+          end
+
+          it "updates the area" do
+            address = nil
+            # Used the block syntax for VCR here because we need to make 2 calls
+            # in this scenario, so this allows us to 'load' more than one VCR
+            # cassette at a time
+            VCR.use_cassette("site_address_area_manual") do
+              address = create(:transient_address, :site_using_a_manual_address)
+            end
+            address.reload
+
+            expect(address.area).to eq("Wessex")
           end
 
           context "if the postcode is somehow blank" do
@@ -102,11 +125,20 @@ module WasteExemptionsEngine
         end
 
         context "populated from address lookup" do
+          before(:context) { VCR.insert_cassette("site_address_area_lookup", allow_playback_repeats: true) }
+          after(:context) { VCR.eject_cassette }
+
           subject(:transient_address) { create(:transient_address, :site_using_address_lookup) }
           it "updates the grid reference" do
             subject.reload
 
-            expect(subject.grid_reference).to eq("ST 58205 72708")
+            expect(subject.grid_reference).to eq("ST 58337 72855")
+          end
+
+          it "updates the area" do
+            subject.reload
+
+            expect(subject.area).to eq("Wessex")
           end
 
           context "if the x & y is somehow blank" do

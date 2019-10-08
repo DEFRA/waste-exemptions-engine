@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
-    after_create :update_x_and_y, :update_grid_reference
+    after_create :update_x_and_y, :update_grid_reference, :update_area
 
     def address_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
@@ -25,6 +25,7 @@ module WasteExemptionsEngine
 
       update_x_and_y_from_grid_reference if auto?
       update_x_and_y_from_postcode if manual?
+
       save!
     end
 
@@ -33,7 +34,24 @@ module WasteExemptionsEngine
       return unless grid_reference.blank?
 
       update_grid_reference_from_x_and_y
+
       save!
+    end
+
+    def update_area
+      return unless site?
+
+      update_area_from_x_and_y
+
+      save!
+    end
+
+    def update_area_from_x_and_y
+      return if x.blank? || y.blank?
+
+      # The AreaLookup service handles errors and notifies Errbit in the event
+      # of an error. This is why unlike other methods we don't have a rescue here
+      self.area = AreaLookupService.run(easting: x, northing: y)
     end
 
     def update_grid_reference_from_x_and_y
