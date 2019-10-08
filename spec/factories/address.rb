@@ -21,6 +21,8 @@ FactoryBot.define do
       site_address
       description { Faker::Lorem.sentence }
       grid_reference { "ST 58337 72855" }
+      x { 358_337.0 }
+      y { 172_855.0 }
     end
 
     trait :postal do
