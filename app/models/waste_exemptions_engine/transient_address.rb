@@ -28,10 +28,6 @@ module WasteExemptionsEngine
       create_address(data, address_type, TransientAddress.modes[:lookup])
     end
 
-    def self.create_from_manual_entry_data(data, address_type)
-      create_address(data, address_type, TransientAddress.modes[:manual])
-    end
-
     def self.create_from_grid_reference_data(data, address_type)
       create_address(data, address_type, TransientAddress.modes[:auto])
     end

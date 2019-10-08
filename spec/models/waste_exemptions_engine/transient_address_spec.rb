@@ -233,60 +233,6 @@ module WasteExemptionsEngine
       end
     end
 
-    describe ".create_from_manual_entry_data" do
-      let(:manual_address_data) do
-        {
-          premises: "Example House",
-          street_address: "2 On The Road",
-          locality: "Near Horizon House",
-          city: "Bristol",
-          postcode: "BS1 5AH"
-        }
-      end
-      let(:address_type) { 2 }
-      subject(:address) { described_class.create_from_manual_entry_data(manual_address_data, address_type) }
-
-      it "creates an address from the given data" do
-        manual_address_data.keys.each do |property|
-          expect(address.send(property)).to eq(manual_address_data[property])
-        end
-      end
-
-      it "does not automatically determine the x & y values" do
-        expect(address.grid_reference).to be_nil
-      end
-
-      it "does not automatically determine the grid reference" do
-        expect(address.grid_reference).to be_nil
-      end
-
-      context "when the address is a site address", vcr: true do
-        before(:context) { VCR.insert_cassette("site_address_auto_x_and_y_and_area", allow_playback_repeats: true) }
-        after(:context) { VCR.eject_cassette }
-
-        let(:address_type) { 3 }
-
-        it "creates an address from the given data" do
-          manual_address_data.keys.each do |property|
-            expect(address.send(property)).to eq(manual_address_data[property])
-          end
-        end
-
-        it "does automatically determine the x & y values" do
-          x_and_y = { x: address.x, y: address.y }
-          expect(x_and_y).to eq(x: 358_205.03, y: 172_708.07)
-        end
-
-        it "does automatically determine the grid reference" do
-          expect(address.grid_reference).to eq("ST 58205 72708")
-        end
-
-        it "does automatically determine the area" do
-          expect(address.area).to eq("Wessex")
-        end
-      end
-    end
-
     describe ".create_from_grid_reference_data" do
       before(:context) { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
       after(:context) { VCR.eject_cassette }
