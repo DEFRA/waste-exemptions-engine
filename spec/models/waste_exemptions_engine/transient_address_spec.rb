@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
     describe "hooks" do
       context "creating a site address" do
-        context "populated from an grid reference" do
+        context "populated from a grid reference" do
           subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
           it "updates the x & y fields" do
             subject.reload
@@ -70,6 +70,12 @@ module WasteExemptionsEngine
             expect(subject.y).to eq(172_708.07)
           end
 
+          it "updates the grid reference" do
+            subject.reload
+
+            expect(subject.grid_reference).to eq("ST 58205 72708")
+          end
+
           context "if the postcode is somehow blank" do
             subject(:transient_address) { create(:transient_address, :site_address) }
             it "will do nothing" do
@@ -77,18 +83,49 @@ module WasteExemptionsEngine
 
               expect(subject.x).to be_nil
               expect(subject.y).to be_nil
+              expect(subject.grid_reference).to be_nil
             end
           end
 
           context "if the postcode is invalid" do
-            it "will notify Errbit of the error and set x & y to 0.0" do
-              expect(Airbrake).to receive(:notify)
+            it "will notify Errbit of the error, set x & y to 0.0 and grid reference to ''" do
+              expect(Airbrake).to receive(:notify).twice
 
               address = create(:transient_address, :site_using_invalid_manual_address)
               address.reload
 
               expect(address.x).to eq(0.0)
               expect(address.y).to eq(0.0)
+              expect(address.grid_reference).to eq("")
+            end
+          end
+        end
+
+        context "populated from address lookup" do
+          subject(:transient_address) { create(:transient_address, :site_using_address_lookup) }
+          it "updates the grid reference" do
+            subject.reload
+
+            expect(subject.grid_reference).to eq("ST 58205 72708")
+          end
+
+          context "if the x & y is somehow blank" do
+            subject(:transient_address) { create(:transient_address, :site_address) }
+            it "will do nothing" do
+              subject.reload
+
+              expect(subject.grid_reference).to be_nil
+            end
+          end
+
+          context "if the x & y is invalid" do
+            it "will notify Errbit of the error and set grid reference to ''" do
+              expect(Airbrake).to receive(:notify)
+
+              address = create(:transient_address, :site_using_invalid_address_lookup)
+              address.reload
+
+              expect(address.grid_reference).to eq("")
             end
           end
         end

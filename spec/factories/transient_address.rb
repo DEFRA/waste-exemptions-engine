@@ -31,6 +31,26 @@ FactoryBot.define do
       postcode { "BS1 9XX" }
     end
 
+    trait :site_using_address_lookup do
+      site_address
+      mode { WasteExemptionsEngine::TransientAddress.modes[:lookup] }
+
+      uprn { Faker::Alphanumeric.unique.alphanumeric(number: 8) }
+      premises { Faker::Address.community }
+      street_address { Faker::Address.street_address }
+      locality { Faker::Address.country }
+      city { Faker::Address.city }
+      postcode { "BS1 5AH" }
+      x { 358_205.03 }
+      y { 172_708.07 }
+    end
+
+    trait :site_using_invalid_address_lookup do
+      site_using_address_lookup
+      x { 1 }
+      y { 1 }
+    end
+
     trait :site_using_grid_reference do
       site_address
       mode { WasteExemptionsEngine::TransientAddress.modes[:auto] }
