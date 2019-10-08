@@ -28,12 +28,20 @@ module WasteExemptionsEngine
     end
 
     def update_x_and_y_from_grid_reference
+      return if grid_reference.blank?
+
       location = OsMapRef::Location.for(grid_reference)
       self.x = location.easting.to_f
       self.y = location.northing.to_f
-    rescue OsMapRef::Error
+    rescue OsMapRef::Error => e
       self.x = 0.00
       self.y = 0.00
+      handle_error(e, "Grid reference to x & y failed:\n #{e}", grid_reference: grid_reference)
+    end
+
+    def handle_error(error, message, metadata)
+      Airbrake.notify(error, metadata) if defined?(Airbrake)
+      Rails.logger.error(message)
     end
 
     def self.create_from_address_finder_data(data, address_type)

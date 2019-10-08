@@ -23,6 +23,11 @@ FactoryBot.define do
       grid_reference { "ST 58337 72855" }
     end
 
+    trait :site_using_invalid_grid_reference do
+      site_using_grid_reference
+      grid_reference { "ZZ 00001 00001" }
+    end
+
     trait :manual do
       mode { WasteExemptionsEngine::TransientAddress.modes[:manual] }
     end

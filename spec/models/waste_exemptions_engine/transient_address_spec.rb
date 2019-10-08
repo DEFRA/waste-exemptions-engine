@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "airbrake"
 
 module WasteExemptionsEngine
   RSpec.describe TransientAddress, type: :model do
@@ -29,10 +30,34 @@ module WasteExemptionsEngine
           subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
           it "updates the x & y fields" do
             subject.reload
+
             expect(subject.x).to eq(358_337.0)
             expect(subject.y).to eq(172_855.0)
           end
+
+          context "if the grid reference is somehow blank" do
+            subject(:transient_address) { create(:transient_address, :site_address) }
+            it "will do nothing" do
+              subject.reload
+
+              expect(subject.x).to be_nil
+              expect(subject.y).to be_nil
+            end
+          end
+
+          context "if the grid reference is invalid" do
+            it "will notify Errbit of the error and set x & y to 0.0" do
+              expect(Airbrake).to receive(:notify)
+
+              address = create(:transient_address, :site_using_invalid_grid_reference)
+              address.reload
+
+              expect(address.x).to eq(0.0)
+              expect(address.y).to eq(0.0)
+            end
+          end
         end
+
       end
     end
 
