@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class PopulateAddressXAndYService < BaseService
+  class XAndYFromAddressService < BaseService
     def run(address:)
-      return if address.grid_reference.blank? && address.postcode.blank?
+      @result = { x: nil, y: nil }
+      return @result if address.grid_reference.blank? && address.postcode.blank?
 
       @address = address
 
@@ -11,6 +12,8 @@ module WasteExemptionsEngine
       # doesn't require a call to an external service, and is likely to be more
       # accurate. If that can't be done or fails, then try the postcode
       x_and_y_from_postcode unless x_and_y_from_grid_reference
+
+      @result
     end
 
     private
@@ -19,13 +22,13 @@ module WasteExemptionsEngine
       return false if @address.grid_reference.blank?
 
       location = os_map_ref_location(@address.grid_reference)
-      @address.x = location.easting.to_f
-      @address.y = location.northing.to_f
+      @result[:x] = location.easting.to_f
+      @result[:y] = location.northing.to_f
 
       true
     rescue OsMapRef::Error => e
-      @address.x = 0.00
-      @address.y = 0.00
+      @result[:x] = 0.00
+      @result[:y] = 0.00
       handle_error(e, "Grid reference to x & y failed:\n #{e}", grid_reference: @address.grid_reference)
 
       false
@@ -39,20 +42,20 @@ module WasteExemptionsEngine
       error_from_postcode_lookup_for_x_and_y_update(results) && return if results.is_a?(Symbol)
       no_result_from_postcode_lookup_for_x_and_y_update && return if results.empty?
 
-      @address.x = results.first["x"].to_f
-      @address.y = results.first["y"].to_f
+      @result[:x] = results.first["x"].to_f
+      @result[:y] = results.first["y"].to_f
     end
 
     def error_from_postcode_lookup_for_x_and_y_update(results)
-      @address.x = 0.0
-      @address.y = 0.0
+      @result[:x] = 0.0
+      @result[:y] = 0.0
       message = "Postcode to x & y failed:\n #{results}"
       handle_error(StandardError.new(message), message, postcode: @address.postcode)
     end
 
     def no_result_from_postcode_lookup_for_x_and_y_update
-      @address.x = 0.0
-      @address.y = 0.0
+      @result[:x] = 0.0
+      @result[:y] = 0.0
       message = "Postcode to x & y returned no results"
       handle_error(StandardError.new(message), message, postcode: @address.postcode)
     end

@@ -42,16 +42,19 @@ module WasteExemptionsEngine
     private
 
     def update_site_details
-      PopulateAddressXAndYService.run(address: self) if update_x_and_y?
-
+      update_x_and_y
       update_grid_reference_from_x_and_y if grid_reference.blank?
       update_area_from_x_and_y if area.blank?
 
       save!
     end
 
-    def update_x_and_y?
-      x.blank? || y.blank?
+    def update_x_and_y
+      return unless x.blank? || y.blank?
+
+      result = XAndYFromAddressService.run(address: self)
+      self.x = result[:x]
+      self.y = result[:y]
     end
 
     def update_grid_reference_from_x_and_y
