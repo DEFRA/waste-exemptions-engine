@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       location = os_map_ref_location("#{easting}, #{northing}")
 
       location.map_reference
-    rescue OsMapRef::Error => e
+    rescue StandardError => e
       handle_error(e, "Easting & Northing to grid reference failed:\n #{e}", x: easting, y: northing)
       ""
     end
