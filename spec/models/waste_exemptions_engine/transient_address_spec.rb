@@ -24,6 +24,30 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#valid_x_and_y?" do
+      context "when x and y are set and not 0.0" do
+        subject(:transient_address) { build(:transient_address, :site_using_address_lookup) }
+
+        it "returns true" do
+          expect(subject.valid_x_and_y?).to be(true)
+        end
+      end
+
+      context "when x and y are blank" do
+        subject(:transient_address) { build(:transient_address) }
+        it "returns false" do
+          expect(subject.valid_x_and_y?).to be(false)
+        end
+      end
+
+      context "when x and y are 0.0" do
+        subject(:transient_address) { build(:transient_address, x: 0.0, y: 0.0) }
+        it "returns false" do
+          expect(subject.valid_x_and_y?).to be(false)
+        end
+      end
+    end
+
     describe "hooks" do
       context "creating a site address" do
         context "populated from a grid reference" do

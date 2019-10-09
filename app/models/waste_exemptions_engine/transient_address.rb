@@ -19,6 +19,13 @@ module WasteExemptionsEngine
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
     end
 
+    def valid_x_and_y?
+      return false if x.blank? || y.blank?
+      return false if x == 0.0 || y == 0.0
+
+      true
+    end
+
     def self.create_from_address_finder_data(data, address_type)
       data = data.except("address").except("state_date")
       data["uprn"] = data["uprn"].to_s
