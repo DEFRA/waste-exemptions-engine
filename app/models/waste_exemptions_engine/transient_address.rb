@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
-    after_create :update_site_details
+    after_create :update_site_details, if: :site?
 
     def address_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
@@ -64,10 +64,7 @@ module WasteExemptionsEngine
     # we reduce what they need to know to just 'have i got the data I need'.
     #
     # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/PerceivedComplexity
     def update_site_details
-      return unless site?
-
       update_x_and_y_from_grid_reference if x.blank? || y.blank?
       update_x_and_y_from_postcode if x.blank? || y.blank?
       update_grid_reference_from_x_and_y if grid_reference.blank?
@@ -76,7 +73,6 @@ module WasteExemptionsEngine
       save!
     end
     # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/PerceivedComplexity
 
     def update_x_and_y_from_grid_reference
       return if grid_reference.blank?
