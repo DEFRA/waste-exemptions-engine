@@ -41,13 +41,13 @@ module WasteExemptionsEngine
             expect(described_class.run(arguments)).to eq(x: 0.0, y: 0.0)
           end
         end
+      end
 
-        context "and both are blank" do
-          let(:arguments) { { grid_reference: nil, postcode: nil } }
+      context "when both grid reference and postcode are blank" do
+        let(:arguments) { { grid_reference: nil, postcode: nil } }
 
-          it "returns a hash of x & y set to nil" do
-            expect(described_class.run(arguments)).to eq(x: nil, y: nil)
-          end
+        it "returns a hash of x & y set to nil" do
+          expect(described_class.run(arguments)).to eq(x: nil, y: nil)
         end
       end
 
