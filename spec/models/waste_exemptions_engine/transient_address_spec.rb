@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "airbrake"
 
 module WasteExemptionsEngine
   RSpec.describe TransientAddress, type: :model do
@@ -50,115 +49,116 @@ module WasteExemptionsEngine
 
     describe "hooks" do
       context "creating a site address" do
+        let(:area_result) { "Wessex" }
+        let(:grid_reference_result) { "ST 58337 72855" }
+        let(:x_y_result) { { x: 358_337.0, y: 172_855.0 } }
+
+        before(:each) do
+          allow(AreaLookupService)
+            .to receive(:run)
+            .and_return(area_result)
+          allow(DetermineGridReferenceService)
+            .to receive(:run)
+            .and_return(grid_reference_result)
+          allow(DetermineXAndYService)
+            .to receive(:run)
+            .and_return(x_y_result)
+        end
+
         context "populated from a grid reference" do
-          before(:context) { VCR.insert_cassette("site_address_area_grid_reference", allow_playback_repeats: true) }
-          after(:context) { VCR.eject_cassette }
-
           subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
-          it "updates the x & y fields" do
-            expect(subject.x).to eq(358_337.0)
-            expect(subject.y).to eq(172_855.0)
-          end
 
-          it "updates the area" do
-            expect(subject.area).to eq("Wessex")
+          it "updates the x & y and area fields" do
+            expect(subject.x).to eq(x_y_result[:x])
+            expect(subject.y).to eq(x_y_result[:y])
+            expect(subject.area).to eq(area_result)
           end
 
           context "if the grid reference is somehow blank" do
+            let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
+
             it "will do nothing" do
-              expect(subject.x).to be_nil
-              expect(subject.y).to be_nil
+              expect(subject.x).to eq(x_y_result[:x])
+              expect(subject.y).to eq(x_y_result[:y])
+              expect(subject.area).to be_nil
             end
           end
 
           context "if the grid reference is invalid" do
-            it "will notify Errbit of the error and set x & y to 0.0" do
-              expect(Airbrake).to receive(:notify)
+            let(:x_y_result) { { x: 0.0, y: 0.0 } }
+            subject(:transient_address) { create(:transient_address, :site_using_invalid_grid_reference) }
 
-              address = create(:transient_address, :site_using_invalid_grid_reference)
-              expect(address.x).to eq(0.0)
-              expect(address.y).to eq(0.0)
+            it "set x & y to 0.0 and not update the area" do
+              expect(subject.x).to eq(x_y_result[:x])
+              expect(subject.y).to eq(x_y_result[:y])
+              expect(subject.area).to be_nil
             end
           end
         end
 
         context "populated from a manual address" do
-          before(:context) { VCR.insert_cassette("site_address_manual", allow_playback_repeats: true) }
-          after(:context) { VCR.eject_cassette }
-
           subject(:transient_address) { create(:transient_address, :site_using_a_manual_address) }
 
-          it "updates the x & y fields" do
-            expect(subject.x).to eq(358_205.03)
-            expect(subject.y).to eq(172_708.07)
-          end
-
-          it "updates the grid reference" do
-            expect(subject.grid_reference).to eq("ST 58205 72708")
-          end
-
-          it "updates the area" do
-            address = nil
-            # Used the block syntax for VCR here because we need to make 2 calls
-            # in this scenario, so this allows us to 'load' more than one VCR
-            # cassette at a time
-            VCR.use_cassette("site_address_area_manual") do
-              address = create(:transient_address, :site_using_a_manual_address)
-            end
-
-            expect(address.area).to eq("Wessex")
+          it "updates the x & y, grid reference and area fields" do
+            expect(subject.x).to eq(x_y_result[:x])
+            expect(subject.y).to eq(x_y_result[:y])
+            expect(subject.grid_reference).to eq(grid_reference_result)
+            expect(subject.area).to eq(area_result)
           end
 
           context "if the postcode is somehow blank" do
+            let(:grid_reference_result) { nil }
+            let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
+
             it "will do nothing" do
-              expect(subject.x).to be_nil
-              expect(subject.y).to be_nil
-              expect(subject.grid_reference).to be_nil
+              expect(subject.x).to eq(x_y_result[:x])
+              expect(subject.y).to eq(x_y_result[:y])
+              expect(subject.grid_reference).to eq(grid_reference_result)
+              expect(subject.area).to be_nil
             end
           end
 
           context "if the postcode is invalid" do
-            it "will notify Errbit of the error, set x & y to 0.0 and grid reference to ''" do
-              expect(Airbrake).to receive(:notify).twice
+            let(:x_y_result) { { x: 0.0, y: 0.0 } }
+            subject(:transient_address) { create(:transient_address, :site_using_invalid_manual_address) }
 
-              address = create(:transient_address, :site_using_invalid_manual_address)
-
-              expect(address.x).to eq(0.0)
-              expect(address.y).to eq(0.0)
-              expect(address.grid_reference).to eq("")
+            it "will set x & y to 0.0" do
+              expect(subject.x).to eq(x_y_result[:x])
+              expect(subject.y).to eq(x_y_result[:y])
+              expect(subject.grid_reference).to be_nil
+              expect(subject.area).to be_nil
             end
           end
         end
 
         context "populated from address lookup" do
-          before(:context) { VCR.insert_cassette("site_address_area_lookup", allow_playback_repeats: true) }
-          after(:context) { VCR.eject_cassette }
-
           subject(:transient_address) { create(:transient_address, :site_using_address_lookup) }
-          it "updates the grid reference" do
-            expect(subject.grid_reference).to eq("ST 58337 72855")
+
+          it "updates the grid reference and area fields" do
+            expect(subject.grid_reference).to eq(grid_reference_result)
+            expect(subject.area).to eq(area_result)
           end
 
-          it "updates the area" do
-            expect(subject.area).to eq("Wessex")
-          end
-
-          context "if the x & y is somehow blank" do
+          context "if the x & y are somehow blank" do
+            let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
+
             it "will do nothing" do
               expect(subject.grid_reference).to be_nil
+              expect(subject.area).to be_nil
             end
           end
 
           context "if the x & y is invalid" do
-            it "will notify Errbit of the error and set grid reference to ''" do
-              expect(Airbrake).to receive(:notify)
+            let(:grid_reference_result) { "" }
+            let(:area_result) { "Outside England" }
+            subject(:transient_address) { create(:transient_address, :site_using_invalid_address_lookup) }
 
-              address = create(:transient_address, :site_using_invalid_address_lookup)
-
-              expect(address.grid_reference).to eq("")
+            it "will do nothing" do
+              expect(subject.grid_reference).to eq(grid_reference_result)
+              expect(subject.area).to eq(area_result)
             end
           end
         end

@@ -57,7 +57,7 @@ module WasteExemptionsEngine
     end
 
     def update_x_and_y
-      return unless x.blank? || y.blank?
+      return if valid_x_and_y?
 
       result = DetermineXAndYService.run(grid_reference: grid_reference, postcode: postcode)
       self.x = result[:x]
@@ -65,16 +65,15 @@ module WasteExemptionsEngine
     end
 
     def update_grid_reference
+      return unless valid_x_and_y?
       return unless grid_reference.blank?
 
       self.grid_reference = DetermineGridReferenceService.run(easting: x, northing: y)
     end
 
     def update_area_from_x_and_y
-      return if x.blank? || y.blank?
+      return unless valid_x_and_y?
 
-      # The AreaLookup service handles errors and notifies Errbit in the event
-      # of an error. This is why unlike other methods we don't have a rescue here
       self.area = AreaLookupService.run(easting: x, northing: y)
     end
   end
