@@ -29,7 +29,8 @@
       </fieldset>
     </div>
 
-    <%= f.hidden_field :token, value: @start_form.token %>
+    <%= hidden_field_tag :token, @start_form.token %>
+
     <div class="form-group">
       <%= f.submit t(".next_button"), class: "button" %>
     </div>

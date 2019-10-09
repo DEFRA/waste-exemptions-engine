@@ -16,14 +16,14 @@ module WasteExemptionsEngine
     it_behaves_like "a validated form", :contact_position_form do
       let(:valid_params) do
         [
-          { token: form.token, contact_position: "Chief Waste Carrier" },
-          { token: form.token, contact_position: "" }
+          { contact_position: "Chief Waste Carrier" },
+          { contact_position: "" }
         ]
       end
       let(:invalid_params) do
         [
-          { token: form.token, contact_position: Helpers::TextGenerator.random_string(71) },
-          { token: form.token, contact_position: "**Invalid_@_Position**" }
+          { contact_position: Helpers::TextGenerator.random_string(71) },
+          { contact_position: "**Invalid_@_Position**" }
         ]
       end
     end
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the contact position" do
           contact_position = "Waste Carrier Manager"
-          valid_params = { token: form.token, contact_position: contact_position }
+          valid_params = { contact_position: contact_position }
           transient_registration = form.transient_registration
 
           expect(transient_registration.contact_position).to be_blank

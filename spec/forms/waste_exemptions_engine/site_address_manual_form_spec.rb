@@ -19,7 +19,6 @@ module WasteExemptionsEngine
       let(:valid_params) do
         [
           {
-            token: form.token,
             site_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
@@ -29,7 +28,6 @@ module WasteExemptionsEngine
             }
           },
           {
-            token: form.token,
             site_address: {
               premises: "Horizon House",
               street_address: "Deanery Rd",
@@ -43,7 +41,6 @@ module WasteExemptionsEngine
       let(:invalid_params) do
         [
           {
-            token: form.token,
             site_address: {
               premises: "",
               street_address: "",
@@ -53,7 +50,6 @@ module WasteExemptionsEngine
             }
           },
           {
-            token: form.token,
             site_address: {
               premises: Helpers::TextGenerator.random_string(201), # The max length is 200.
               street_address: Helpers::TextGenerator.random_string(161), # The max length is 160.
@@ -92,8 +88,8 @@ module WasteExemptionsEngine
             }
           }
         end
-        let(:valid_params) { address_data.merge(token: form.token) }
-        let(:white_space_params) { white_space_address_data.merge(token: form.token) }
+        let(:valid_params) { address_data }
+        let(:white_space_params) { white_space_address_data }
         let(:transient_registration) { form.transient_registration }
 
         it "updates the transient registration with the submitted address data" do

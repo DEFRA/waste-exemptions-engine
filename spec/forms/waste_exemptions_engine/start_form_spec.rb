@@ -18,11 +18,11 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :start_form do
-      let(:valid_params) { { token: form.token, start_option: START_OPTIONS.sample } }
+      let(:valid_params) { { start_option: START_OPTIONS.sample } }
       let(:invalid_params) do
         [
-          { token: form.token, start_option: "foo" },
-          { token: form.token, start_option: "" }
+          { start_option: "foo" },
+          { start_option: "" }
         ]
       end
     end
@@ -31,7 +31,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the selected start option" do
           start_option = START_OPTIONS.sample
-          valid_params = { token: form.token, start_option: start_option }
+          valid_params = { start_option: start_option }
           transient_registration = form.transient_registration
 
           expect(transient_registration.start_option).to be_blank

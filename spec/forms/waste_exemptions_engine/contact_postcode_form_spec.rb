@@ -7,11 +7,11 @@ module WasteExemptionsEngine
     subject(:form) { build(:contact_postcode_form) }
 
     it_behaves_like "a validated form", :contact_postcode_form do
-      let(:valid_params) { { token: form.token, temp_contact_postcode: "BS1 5AH" } }
+      let(:valid_params) { { temp_contact_postcode: "BS1 5AH" } }
       let(:invalid_params) do
         [
-          { token: form.token, temp_contact_postcode: Helpers::TextGenerator.random_string(256) },
-          { token: form.token, temp_contact_postcode: "" }
+          { temp_contact_postcode: Helpers::TextGenerator.random_string(256) },
+          { temp_contact_postcode: "" }
         ]
       end
     end
@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the contact postcode" do
           postcode = "BS1 5AH"
-          valid_params = { token: form.token, temp_contact_postcode: postcode }
+          valid_params = { temp_contact_postcode: postcode }
           transient_registration = form.transient_registration
 
           expect(transient_registration.temp_contact_postcode).to be_blank

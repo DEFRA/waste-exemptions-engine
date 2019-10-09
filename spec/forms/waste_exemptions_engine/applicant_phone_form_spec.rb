@@ -14,11 +14,11 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :applicant_phone_form do
-      let(:valid_params) { { token: form.token, applicant_phone: "01234567890" } }
+      let(:valid_params) { { applicant_phone: "01234567890" } }
       let(:invalid_params) do
         [
-          { token: form.token, applicant_phone: "#123" },
-          { token: form.token, applicant_phone: "" }
+          { applicant_phone: "#123" },
+          { applicant_phone: "" }
         ]
       end
     end
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the applicant phone number" do
           applicant_phone = "01234567890"
-          valid_params = { token: form.token, applicant_phone: applicant_phone }
+          valid_params = { applicant_phone: applicant_phone }
           transient_registration = form.transient_registration
 
           expect(transient_registration.applicant_phone).to be_blank

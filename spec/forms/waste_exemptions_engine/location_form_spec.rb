@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :location_form do
-      let(:valid_params) { { token: form.token, location: LOCATIONS.sample } }
+      let(:valid_params) { { location: LOCATIONS.sample } }
       let(:invalid_params) do
         [
           { location: "foo" },

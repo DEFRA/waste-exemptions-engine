@@ -24,13 +24,13 @@ module WasteExemptionsEngine
 
     it_behaves_like "a validated form", :contact_name_form do
       let(:valid_params) do
-        { token: form.token, contact_first_name: "Joe", contact_last_name: "Bloggs" }
+        { contact_first_name: "Joe", contact_last_name: "Bloggs" }
       end
       let(:invalid_params) do
         [
-          { token: form.token, contact_first_name: "", contact_last_name: "Bloggs" },
-          { token: form.token, contact_first_name: "Joe", contact_last_name: "" },
-          { token: form.token, contact_first_name: "", contact_last_name: "" }
+          { contact_first_name: "", contact_last_name: "Bloggs" },
+          { contact_first_name: "Joe", contact_last_name: "" },
+          { contact_first_name: "", contact_last_name: "" }
         ]
       end
     end
@@ -40,7 +40,7 @@ module WasteExemptionsEngine
         it "updates the transient registration with the contact name" do
           first_name = "Joe"
           last_name = "Bloggs"
-          valid_params = { token: form.token, contact_first_name: first_name, contact_last_name: last_name }
+          valid_params = { contact_first_name: first_name, contact_last_name: last_name }
           transient_registration = form.transient_registration
 
           expect(transient_registration.contact_first_name).to be_blank

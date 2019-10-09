@@ -18,13 +18,13 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :registration_number_form do
-      let(:valid_params) { { token: form.token, company_no: "09360070" } }
-      let(:invalid_params) { { token: form.token, company_no: "foo" } }
+      let(:valid_params) { { company_no: "09360070" } }
+      let(:invalid_params) { { company_no: "foo" } }
     end
 
     describe "#submit" do
       context "when the form is valid" do
-        let(:valid_params) { { token: form.token, company_no: "09360070" } }
+        let(:valid_params) { { company_no: "09360070" } }
 
         it "updates the transient registration with the registration number" do
           company_number = valid_params[:company_no]

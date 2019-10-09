@@ -8,14 +8,14 @@ module WasteExemptionsEngine
 
     it_behaves_like "a validated form", :main_people_form do
       let(:valid_params) do
-        { token: form.token, first_name: "Joe", last_name: "Bloggs" }
+        { first_name: "Joe", last_name: "Bloggs" }
       end
       let(:invalid_params) do
         [
-          { token: form.token, first_name: "", last_name: "Bloggs" },
-          { token: form.token, first_name: "Joe", last_name: "" },
-          { token: form.token, first_name: "", last_name: "" },
-          { token: form.token, first_name: "Bob", last_name: "This Name Is Far Too Long 1 .... 36!" }
+          { first_name: "", last_name: "Bloggs" },
+          { first_name: "Joe", last_name: "" },
+          { first_name: "", last_name: "" },
+          { first_name: "Bob", last_name: "This Name Is Far Too Long 1 .... 36!" }
         ]
       end
     end
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
         it "updates the transient registration with the main person" do
           first_name = "Joe"
           last_name = "Bloggs"
-          valid_params = { token: form.token, first_name: first_name, last_name: last_name }
+          valid_params = { first_name: first_name, last_name: last_name }
           transient_registration = form.transient_registration
 
           expect(transient_registration.transient_people).to be_empty
