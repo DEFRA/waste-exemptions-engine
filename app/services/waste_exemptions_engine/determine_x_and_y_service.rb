@@ -37,18 +37,16 @@ module WasteExemptionsEngine
 
       results = AddressFinderService.new(postcode).search_by_postcode
 
-      error_from_postcode_lookup_for_x_and_y_update(postcode, results) && return if results.is_a?(Symbol)
+      if results.is_a?(Symbol)
+        @result[:x] = 0.0
+        @result[:y] = 0.0
+        return
+      end
+
       no_result_from_postcode_lookup_for_x_and_y_update(postcode) && return if results.empty?
 
       @result[:x] = results.first["x"].to_f
       @result[:y] = results.first["y"].to_f
-    end
-
-    def error_from_postcode_lookup_for_x_and_y_update(postcode, results)
-      @result[:x] = 0.0
-      @result[:y] = 0.0
-      message = "Postcode to x & y failed:\n #{results}"
-      handle_error(StandardError.new(message), message, postcode: postcode)
     end
 
     def no_result_from_postcode_lookup_for_x_and_y_update(postcode)
