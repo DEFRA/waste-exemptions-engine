@@ -10,6 +10,7 @@ module WasteExemptionsEngine
       let(:invalid_grid_reference) { "ZZ 00001 00001" }
       let(:valid_postcode) { "BS1 5AH" }
       let(:invalid_postcode) { "BS1 9XX" }
+      let(:address_finder_results) { [{ "x" => 358_205.03, "y" => 172_708.07 }] }
 
       context "when both grid reference and postcode are set" do
         let(:arguments) { { grid_reference: valid_grid_reference, postcode: valid_postcode } }
@@ -19,8 +20,10 @@ module WasteExemptionsEngine
         end
 
         context "and grid reference is invalid" do
-          before(:context) { VCR.insert_cassette("site_address_manual", allow_playback_repeats: true) }
-          after(:context) { VCR.eject_cassette }
+          before do
+            allow_any_instance_of(AddressFinderService).to receive(:search_by_postcode)
+              .and_return(address_finder_results)
+          end
 
           let(:arguments) { { grid_reference: invalid_grid_reference, postcode: valid_postcode } }
 
@@ -66,16 +69,19 @@ module WasteExemptionsEngine
       end
 
       context "when only postcode is set" do
-        before(:context) { VCR.insert_cassette("site_address_manual", allow_playback_repeats: true) }
-        after(:context) { VCR.eject_cassette }
-
         let(:arguments) { { grid_reference: nil, postcode: valid_postcode } }
+
+        before do
+          allow_any_instance_of(AddressFinderService).to receive(:search_by_postcode)
+            .and_return(address_finder_results)
+        end
 
         it "returns a hash of x & y based on the postcode" do
           expect(described_class.run(arguments)).to eq(x: 358_205.03, y: 172_708.07)
         end
 
         context "and it is invalid" do
+          let(:address_finder_results) { [] }
           let(:arguments) { { grid_reference: nil, postcode: invalid_postcode } }
 
           it "will notify Errbit of the error and returns a hash of x & y set to 0.0" do
