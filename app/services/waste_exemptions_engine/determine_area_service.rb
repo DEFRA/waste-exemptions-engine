@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class AreaLookupService < BaseService
+  class DetermineAreaService < BaseService
     def run(easting:, northing:)
       @easting = easting
       @northing = northing

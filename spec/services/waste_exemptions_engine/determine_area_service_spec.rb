@@ -16,7 +16,7 @@ module Test
 end
 
 module WasteExemptionsEngine
-  RSpec.describe AreaLookupService do
+  RSpec.describe DetermineAreaService do
     describe ".run" do
 
       context "when the lookup is successful" do

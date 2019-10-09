@@ -74,7 +74,7 @@ module WasteExemptionsEngine
     def update_area_from_x_and_y
       return unless valid_x_and_y?
 
-      self.area = AreaLookupService.run(easting: x, northing: y)
+      self.area = DetermineAreaService.run(easting: x, northing: y)
     end
   end
 end
