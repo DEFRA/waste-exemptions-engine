@@ -32,23 +32,17 @@ module WasteExemptionsEngine
 
           subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
           it "updates the x & y fields" do
-            subject.reload
-
             expect(subject.x).to eq(358_337.0)
             expect(subject.y).to eq(172_855.0)
           end
 
           it "updates the area" do
-            subject.reload
-
             expect(subject.area).to eq("Wessex")
           end
 
           context "if the grid reference is somehow blank" do
             subject(:transient_address) { create(:transient_address, :site_address) }
             it "will do nothing" do
-              subject.reload
-
               expect(subject.x).to be_nil
               expect(subject.y).to be_nil
             end
@@ -59,8 +53,6 @@ module WasteExemptionsEngine
               expect(Airbrake).to receive(:notify)
 
               address = create(:transient_address, :site_using_invalid_grid_reference)
-              address.reload
-
               expect(address.x).to eq(0.0)
               expect(address.y).to eq(0.0)
             end
@@ -74,15 +66,11 @@ module WasteExemptionsEngine
           subject(:transient_address) { create(:transient_address, :site_using_a_manual_address) }
 
           it "updates the x & y fields" do
-            subject.reload
-
             expect(subject.x).to eq(358_205.03)
             expect(subject.y).to eq(172_708.07)
           end
 
           it "updates the grid reference" do
-            subject.reload
-
             expect(subject.grid_reference).to eq("ST 58205 72708")
           end
 
@@ -94,7 +82,6 @@ module WasteExemptionsEngine
             VCR.use_cassette("site_address_area_manual") do
               address = create(:transient_address, :site_using_a_manual_address)
             end
-            address.reload
 
             expect(address.area).to eq("Wessex")
           end
@@ -102,8 +89,6 @@ module WasteExemptionsEngine
           context "if the postcode is somehow blank" do
             subject(:transient_address) { create(:transient_address, :site_address) }
             it "will do nothing" do
-              subject.reload
-
               expect(subject.x).to be_nil
               expect(subject.y).to be_nil
               expect(subject.grid_reference).to be_nil
@@ -115,7 +100,6 @@ module WasteExemptionsEngine
               expect(Airbrake).to receive(:notify).twice
 
               address = create(:transient_address, :site_using_invalid_manual_address)
-              address.reload
 
               expect(address.x).to eq(0.0)
               expect(address.y).to eq(0.0)
@@ -130,22 +114,16 @@ module WasteExemptionsEngine
 
           subject(:transient_address) { create(:transient_address, :site_using_address_lookup) }
           it "updates the grid reference" do
-            subject.reload
-
             expect(subject.grid_reference).to eq("ST 58337 72855")
           end
 
           it "updates the area" do
-            subject.reload
-
             expect(subject.area).to eq("Wessex")
           end
 
           context "if the x & y is somehow blank" do
             subject(:transient_address) { create(:transient_address, :site_address) }
             it "will do nothing" do
-              subject.reload
-
               expect(subject.grid_reference).to be_nil
             end
           end
@@ -155,7 +133,6 @@ module WasteExemptionsEngine
               expect(Airbrake).to receive(:notify)
 
               address = create(:transient_address, :site_using_invalid_address_lookup)
-              address.reload
 
               expect(address.grid_reference).to eq("")
             end
