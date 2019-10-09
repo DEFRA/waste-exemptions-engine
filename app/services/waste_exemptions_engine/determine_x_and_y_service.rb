@@ -24,7 +24,7 @@ module WasteExemptionsEngine
       @result[:y] = location.northing.to_f
 
       true
-    rescue OsMapRef::Error => e
+    rescue StandardError => e
       @result[:x] = 0.00
       @result[:y] = 0.00
       handle_error(e, "Grid reference to x & y failed:\n #{e}", grid_reference: grid_reference)
