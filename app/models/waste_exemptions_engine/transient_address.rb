@@ -43,7 +43,7 @@ module WasteExemptionsEngine
 
     def update_site_details
       update_x_and_y
-      update_grid_reference_from_x_and_y if grid_reference.blank?
+      update_grid_reference
       update_area_from_x_and_y if area.blank?
 
       save!
@@ -57,14 +57,10 @@ module WasteExemptionsEngine
       self.y = result[:y]
     end
 
-    def update_grid_reference_from_x_and_y
-      return if x.blank? || y.blank?
+    def update_grid_reference
+      return unless grid_reference.blank?
 
-      location = OsMapRef::Location.for("#{x}, #{y}")
-      self.grid_reference = location.map_reference
-    rescue OsMapRef::Error => e
-      self.grid_reference = ""
-      handle_error(e, "X & Y to grid reference failed:\n #{e}", x: x, y: y)
+      self.grid_reference = DetermineGridReferenceService.run(easting: x, northing: y)
     end
 
     def update_area_from_x_and_y
@@ -73,11 +69,6 @@ module WasteExemptionsEngine
       # The AreaLookup service handles errors and notifies Errbit in the event
       # of an error. This is why unlike other methods we don't have a rescue here
       self.area = AreaLookupService.run(easting: x, northing: y)
-    end
-
-    def handle_error(error, message, metadata)
-      Airbrake.notify(error, metadata) if defined?(Airbrake)
-      Rails.logger.error(message)
     end
   end
 end
