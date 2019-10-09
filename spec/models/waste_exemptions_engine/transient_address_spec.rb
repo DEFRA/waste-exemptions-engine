@@ -48,6 +48,21 @@ module WasteExemptionsEngine
     end
 
     describe "hooks" do
+      context "creating a non-site address" do
+        it "does not attempt to update the x, y, grid reference or area fields" do
+          expect(AreaLookupService).not_to receive(:run)
+          expect(DetermineGridReferenceService).not_to receive(:run)
+          expect(DetermineXAndYService).not_to receive(:run)
+
+          address = create(:transient_address)
+
+          expect(address.x).to be_nil
+          expect(address.y).to be_nil
+          expect(address.grid_reference).to be_nil
+          expect(address.area).to be_nil
+        end
+      end
+
       context "creating a site address" do
         let(:area_result) { "Wessex" }
         let(:grid_reference_result) { "ST 58337 72855" }
