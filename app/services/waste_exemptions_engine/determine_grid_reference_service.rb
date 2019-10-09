@@ -5,12 +5,12 @@ module WasteExemptionsEngine
     # Easting and northing is just another name for x & y. We've gone with
     # easting and northing here purely to keep rubocop happy!
     def run(easting:, northing:)
-      grid_reference_from_x_and_y(easting, northing)
+      grid_reference_from_easting_northing(easting, northing)
     end
 
     private
 
-    def grid_reference_from_x_and_y(easting, northing)
+    def grid_reference_from_easting_northing(easting, northing)
       return nil if easting.blank? || northing.blank?
 
       location = os_map_ref_location("#{easting}, #{northing}")
