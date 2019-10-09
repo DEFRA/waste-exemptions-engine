@@ -52,7 +52,7 @@ module WasteExemptionsEngine
     def update_x_and_y
       return unless x.blank? || y.blank?
 
-      result = XAndYFromAddressService.run(address: self)
+      result = DetermineXAndYService.run(grid_reference: grid_reference, postcode: postcode)
       self.x = result[:x]
       self.y = result[:y]
     end
