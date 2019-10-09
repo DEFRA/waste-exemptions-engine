@@ -42,8 +42,8 @@ module WasteExemptionsEngine
     private
 
     def update_site_details
-      update_x_and_y_from_grid_reference if update_x_and_y?
-      update_x_and_y_from_postcode if update_x_and_y?
+      PopulateAddressXAndYService.run(address: self) if update_x_and_y?
+
       update_grid_reference_from_x_and_y if grid_reference.blank?
       update_area_from_x_and_y if area.blank?
 
@@ -52,30 +52,6 @@ module WasteExemptionsEngine
 
     def update_x_and_y?
       x.blank? || y.blank?
-    end
-
-    def update_x_and_y_from_grid_reference
-      return if grid_reference.blank?
-
-      location = OsMapRef::Location.for(grid_reference)
-      self.x = location.easting.to_f
-      self.y = location.northing.to_f
-    rescue OsMapRef::Error => e
-      self.x = 0.00
-      self.y = 0.00
-      handle_error(e, "Grid reference to x & y failed:\n #{e}", grid_reference: grid_reference)
-    end
-
-    def update_x_and_y_from_postcode
-      return if postcode.blank?
-
-      results = AddressFinderService.new(postcode).search_by_postcode
-
-      error_from_postcode_lookup_for_x_and_y_update(results) && return if results.is_a?(Symbol)
-      no_result_from_postcode_lookup_for_x_and_y_update && return if results.empty?
-
-      self.x = results.first["x"].to_f
-      self.y = results.first["y"].to_f
     end
 
     def update_grid_reference_from_x_and_y
@@ -94,20 +70,6 @@ module WasteExemptionsEngine
       # The AreaLookup service handles errors and notifies Errbit in the event
       # of an error. This is why unlike other methods we don't have a rescue here
       self.area = AreaLookupService.run(easting: x, northing: y)
-    end
-
-    def error_from_postcode_lookup_for_x_and_y_update(results)
-      self.x = 0.0
-      self.y = 0.0
-      message = "Postcode to x & y failed:\n #{results}"
-      handle_error(StandardError.new(message), message, postcode: postcode)
-    end
-
-    def no_result_from_postcode_lookup_for_x_and_y_update
-      self.x = 0.0
-      self.y = 0.0
-      message = "Postcode to x & y returned no results"
-      handle_error(StandardError.new(message), message, postcode: postcode)
     end
 
     def handle_error(error, message, metadata)
