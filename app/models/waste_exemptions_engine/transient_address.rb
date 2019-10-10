@@ -59,13 +59,13 @@ module WasteExemptionsEngine
     end
 
     def update_grid_reference
-      return unless grid_reference.blank?
+      return if grid_reference.present?
 
       self.grid_reference = DetermineGridReferenceService.run(easting: x, northing: y)
     end
 
     def update_area_from_x_and_y
-      return unless area.blank?
+      return if area.present?
 
       self.area = DetermineAreaService.run(easting: x, northing: y)
     end
