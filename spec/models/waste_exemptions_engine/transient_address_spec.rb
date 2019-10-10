@@ -235,25 +235,6 @@ module WasteExemptionsEngine
           expect(address.send(property)).to eq(expectations[property])
         end
       end
-
-      it "does not automatically determine the grid reference" do
-        expect(address.grid_reference).to be_nil
-      end
-
-      context "when the address is a site address" do
-        before(:context) { VCR.insert_cassette("site_address_from_lookup_auto_area", allow_playback_repeats: true) }
-        after(:context) { VCR.eject_cassette }
-
-        let(:address_type) { 3 }
-
-        it "does automatically determine the grid reference" do
-          expect(address.grid_reference).to eq("ST 58205 72708")
-        end
-
-        it "does automatically determine the area" do
-          expect(address.area).to eq("Wessex")
-        end
-      end
     end
 
     describe ".create_from_grid_reference_data" do
@@ -273,15 +254,6 @@ module WasteExemptionsEngine
         grid_reference_data.keys.each do |property|
           expect(address.send(property)).to eq(grid_reference_data[property])
         end
-      end
-
-      it "automatically determines the x & y values" do
-        x_and_y = { x: address.x, y: address.y }
-        expect(x_and_y).to eq(x: 358_337.0, y: 172_855.0)
-      end
-
-      it "does automatically determine the area" do
-        expect(address.area).to eq("Wessex")
       end
     end
   end
