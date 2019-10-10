@@ -8,17 +8,11 @@ module WasteExemptionsEngine
     private
 
     def valid_coordinates?(easting, northing)
-      return false unless valid_coordinate?(easting)
-      return false unless valid_coordinate?(northing)
-
-      true
+      valid_coordinate?(easting) && valid_coordinate?(northing)
     end
 
     def valid_coordinate?(coordinate)
-      return false unless coordinate.is_a?(Numeric)
-      return false unless coordinate.positive?
-
-      true
+      coordinate.is_a?(Numeric) && coordinate.positive?
     end
   end
 end

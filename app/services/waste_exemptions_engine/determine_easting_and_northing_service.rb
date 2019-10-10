@@ -17,15 +17,7 @@ module WasteExemptionsEngine
     private
 
     def valid_arguments?(grid_reference, postcode)
-      return false unless valid_argument?(grid_reference) || valid_argument?(postcode)
-
-      true
-    end
-
-    def valid_argument?(argument)
-      return false if argument.blank?
-
-      true
+      grid_reference.present? || postcode.present?
     end
 
     def easting_and_northing_from_grid_reference(grid_reference)
