@@ -90,6 +90,7 @@ module WasteExemptionsEngine
           end
 
           context "if the grid reference is somehow blank" do
+            let(:area_result) { nil }
             let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
 
@@ -101,6 +102,7 @@ module WasteExemptionsEngine
           end
 
           context "if the grid reference is invalid" do
+            let(:area_result) { nil }
             let(:x_y_result) { { x: 0.0, y: 0.0 } }
             subject(:transient_address) { create(:transient_address, :site_using_invalid_grid_reference) }
 
@@ -123,6 +125,7 @@ module WasteExemptionsEngine
           end
 
           context "if the postcode is somehow blank" do
+            let(:area_result) { nil }
             let(:grid_reference_result) { nil }
             let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
@@ -136,6 +139,8 @@ module WasteExemptionsEngine
           end
 
           context "if the postcode is invalid" do
+            let(:area_result) { nil }
+            let(:grid_reference_result) { nil }
             let(:x_y_result) { { x: 0.0, y: 0.0 } }
             subject(:transient_address) { create(:transient_address, :site_using_invalid_manual_address) }
 
@@ -157,6 +162,8 @@ module WasteExemptionsEngine
           end
 
           context "if the x & y are somehow blank" do
+            let(:area_result) { nil }
+            let(:grid_reference_result) { nil }
             let(:x_y_result) { { x: nil, y: nil } }
             subject(:transient_address) { create(:transient_address, :site_address) }
 
