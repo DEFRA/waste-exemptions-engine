@@ -20,8 +20,8 @@ module WasteExemptionsEngine
     end
 
     def valid_x_and_y?
-      return false if x.blank? || y.blank?
-      return false if x == 0.0 || y == 0.0
+      return false unless valid_coordinate?(x)
+      return false unless valid_coordinate?(y)
 
       true
     end
@@ -75,6 +75,13 @@ module WasteExemptionsEngine
       return unless valid_x_and_y?
 
       self.area = DetermineAreaService.run(easting: x, northing: y)
+    end
+
+    def valid_coordinate?(coordinate)
+      return false unless coordinate.is_a?(Numeric)
+      return false unless coordinate.positive?
+
+      true
     end
   end
 end
