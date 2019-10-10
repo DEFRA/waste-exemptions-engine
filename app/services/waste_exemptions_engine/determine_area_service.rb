@@ -3,35 +3,39 @@
 module WasteExemptionsEngine
   class DetermineAreaService < BaseService
     def run(easting:, northing:)
-      @easting = easting
-      @northing = northing
+      return unless valid_arguments?(easting, northing)
 
-      return unless valid_arguments?
-
-      lookup_area
+      lookup_area(easting, northing)
     end
 
     private
 
-    def lookup_area
-      response = DefraRuby::Area::PublicFaceAreaService.run(@easting, @northing)
-
-      return response.areas.first.long_name if response.successful?
-      return "Outside England" if response.error.instance_of?(DefraRuby::Area::NoMatchError)
-
-      handle_error(response.error)
-      nil
-    end
-
-    def valid_arguments?
-      return false unless @easting.is_a?(Numeric) && @northing.is_a?(Numeric)
-      return false unless @easting.positive? && @northing.positive?
+    def valid_arguments?(easting, northing)
+      return false unless valid_argument?(easting)
+      return false unless valid_argument?(northing)
 
       true
     end
 
-    def handle_error(error)
-      Airbrake.notify(error, easting: @easting, northing: @northing) if defined? Airbrake
+    def valid_argument?(argument)
+      return false unless argument.is_a?(Numeric)
+      return false unless argument.positive?
+
+      true
+    end
+
+    def lookup_area(easting, northing)
+      response = DefraRuby::Area::PublicFaceAreaService.run(easting, @orthing)
+
+      return response.areas.first.long_name if response.successful?
+      return "Outside England" if response.error.instance_of?(DefraRuby::Area::NoMatchError)
+
+      handle_error(response.error, easting, northing)
+      nil
+    end
+
+    def handle_error(error, easting, northing)
+      Airbrake.notify(error, easting: easting, northing: northing) if defined? Airbrake
       Rails.logger.error "Area lookup failed:\n #{error}"
     end
 
