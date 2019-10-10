@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class DetermineXAndYService < BaseService
     def run(grid_reference:, postcode:)
       @result = { x: nil, y: nil }
-      return @result if grid_reference.blank? && postcode.blank?
+      return @result unless valid_arguments?(grid_reference, postcode)
 
       # Preference is to take it from the grid reference if available as it
       # doesn't require a call to an external service, and is likely to be more
@@ -15,6 +15,18 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def valid_arguments?(grid_reference, postcode)
+      return false unless valid_argument?(grid_reference) || valid_argument?(postcode)
+
+      true
+    end
+
+    def valid_argument?(argument)
+      return false if argument.blank?
+
+      true
+    end
 
     def x_and_y_from_grid_reference(grid_reference)
       return false if grid_reference.blank?
