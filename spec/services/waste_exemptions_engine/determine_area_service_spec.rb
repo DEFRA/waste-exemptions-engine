@@ -23,6 +23,7 @@ module WasteExemptionsEngine
         before(:each) do
           allow(DefraRuby::Area::PublicFaceAreaService)
             .to receive(:run)
+            .with(coordinates[:easting], coordinates[:northing])
             .and_return(response)
         end
 
@@ -45,6 +46,7 @@ module WasteExemptionsEngine
         before(:each) do
           allow(DefraRuby::Area::PublicFaceAreaService)
             .to receive(:run)
+            .with(coordinates[:easting], coordinates[:northing])
             .and_return(response)
         end
 
