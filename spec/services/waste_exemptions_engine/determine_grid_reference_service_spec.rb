@@ -27,11 +27,21 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when both easting and nrothing are blank" do
-        let(:arguments) { { easting: nil, northing: nil } }
+      context "when passed invalid arguments" do
+        context "for example 'nil'" do
+          let(:arguments) { { easting: nil, northing: 215_313 } }
 
-        it "returns nil" do
-          expect(described_class.run(arguments)).to eq(nil)
+          it "returns 'nil'" do
+            expect(described_class.run(arguments)).to be_nil
+          end
+        end
+
+        context "for example not a numeric value" do
+          let(:arguments) { { easting: "not_a_number", northing: 215_313 } }
+
+          it "returns 'nil'" do
+            expect(described_class.run(arguments)).to be_nil
+          end
         end
       end
     end
