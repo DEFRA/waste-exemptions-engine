@@ -44,7 +44,10 @@ module WasteExemptionsEngine
     def update_site_details
       AssignSiteDetailsService.run(address: self)
 
-      self.save
+      save!
+    rescue StandardError => e
+      Airbrake.notify(e, transient_address_id: id) if defined? Airbrake
+      Rails.logger.error "Update site details failed:\n #{e}"
     end
   end
 end
