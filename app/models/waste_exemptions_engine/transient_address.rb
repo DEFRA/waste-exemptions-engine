@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
-    after_create :update_site_details, if: :site?
+    before_create :assign_site_details, if: :site?
 
     def address_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
@@ -41,13 +41,8 @@ module WasteExemptionsEngine
 
     private
 
-    def update_site_details
+    def assign_site_details
       AssignSiteDetailsService.run(address: self)
-
-      save!
-    rescue StandardError => e
-      Airbrake.notify(e, transient_address_id: id) if defined? Airbrake
-      Rails.logger.error "Update site details failed:\n #{e}"
     end
   end
 end
