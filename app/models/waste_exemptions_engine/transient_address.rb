@@ -45,7 +45,7 @@ module WasteExemptionsEngine
     def update_site_details
       update_x_and_y
       update_grid_reference
-      update_area_from_x_and_y if area.blank?
+      update_area_from_x_and_y
 
       save!
     end
@@ -65,6 +65,8 @@ module WasteExemptionsEngine
     end
 
     def update_area_from_x_and_y
+      return unless area.blank?
+
       self.area = DetermineAreaService.run(easting: x, northing: y)
     end
   end
