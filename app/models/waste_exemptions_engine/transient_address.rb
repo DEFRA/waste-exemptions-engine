@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     self.table_name = "transient_addresses"
 
     include CanBeLocatedByGridReference
+    include CanCheckEastingAndNorthingValues
 
     belongs_to :transient_registration
 
@@ -17,13 +18,6 @@ module WasteExemptionsEngine
 
     def address_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
-    end
-
-    def valid_x_and_y?
-      return false unless valid_coordinate?(x)
-      return false unless valid_coordinate?(y)
-
-      true
     end
 
     def self.create_from_address_finder_data(data, address_type)
@@ -57,7 +51,7 @@ module WasteExemptionsEngine
     end
 
     def update_x_and_y
-      return if valid_x_and_y?
+      return if valid_coordinates?(x, y)
 
       result = DetermineXAndYService.run(grid_reference: grid_reference, postcode: postcode)
       self.x = result[:x]
@@ -72,13 +66,6 @@ module WasteExemptionsEngine
 
     def update_area_from_x_and_y
       self.area = DetermineAreaService.run(easting: x, northing: y)
-    end
-
-    def valid_coordinate?(coordinate)
-      return false unless coordinate.is_a?(Numeric)
-      return false unless coordinate.positive?
-
-      true
     end
   end
 end

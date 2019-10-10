@@ -2,27 +2,15 @@
 
 module WasteExemptionsEngine
   class DetermineAreaService < BaseService
+    include CanCheckEastingAndNorthingValues
+
     def run(easting:, northing:)
-      return unless valid_arguments?(easting, northing)
+      return unless valid_coordinates?(easting, northing)
 
       lookup_area(easting, northing)
     end
 
     private
-
-    def valid_arguments?(easting, northing)
-      return false unless valid_argument?(easting)
-      return false unless valid_argument?(northing)
-
-      true
-    end
-
-    def valid_argument?(argument)
-      return false unless argument.is_a?(Numeric)
-      return false unless argument.positive?
-
-      true
-    end
 
     def lookup_area(easting, northing)
       response = DefraRuby::Area::PublicFaceAreaService.run(easting, @orthing)
