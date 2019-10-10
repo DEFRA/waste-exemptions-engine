@@ -53,9 +53,9 @@ module WasteExemptionsEngine
     def update_x_and_y
       return if valid_coordinates?(x, y)
 
-      result = DetermineXAndYService.run(grid_reference: grid_reference, postcode: postcode)
-      self.x = result[:x]
-      self.y = result[:y]
+      result = DetermineEastingAndNorthingService.run(grid_reference: grid_reference, postcode: postcode)
+      self.x = result[:easting]
+      self.y = result[:northing]
     end
 
     def update_grid_reference
