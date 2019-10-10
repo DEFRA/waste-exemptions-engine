@@ -36,7 +36,7 @@ module WasteExemptionsEngine
         it "does attempt to update the x, y, grid reference or area fields" do
           expect(AssignSiteDetailsService).to receive(:run)
 
-          create(:transient_address)
+          create(:transient_address, :site_address)
         end
       end
     end
