@@ -7,7 +7,6 @@ module WasteExemptionsEngine
     self.table_name = "transient_addresses"
 
     include CanBeLocatedByGridReference
-    include CanCheckEastingAndNorthingValues
 
     belongs_to :transient_registration
 
@@ -43,31 +42,9 @@ module WasteExemptionsEngine
     private
 
     def update_site_details
-      update_x_and_y
-      update_grid_reference
-      update_area_from_x_and_y
+      AssignSiteDetailsService.run(address: self)
 
-      save!
-    end
-
-    def update_x_and_y
-      return if valid_coordinates?(x, y)
-
-      result = DetermineEastingAndNorthingService.run(grid_reference: grid_reference, postcode: postcode)
-      self.x = result[:easting]
-      self.y = result[:northing]
-    end
-
-    def update_grid_reference
-      return if grid_reference.present?
-
-      self.grid_reference = DetermineGridReferenceService.run(easting: x, northing: y)
-    end
-
-    def update_area_from_x_and_y
-      return if area.present?
-
-      self.area = DetermineAreaService.run(easting: x, northing: y)
+      self.save
     end
   end
 end

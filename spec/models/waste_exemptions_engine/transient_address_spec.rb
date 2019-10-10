@@ -26,141 +26,18 @@ module WasteExemptionsEngine
     describe "hooks" do
       context "creating a non-site address" do
         it "does not attempt to update the x, y, grid reference or area fields" do
-          expect(DetermineAreaService).not_to receive(:run)
-          expect(DetermineGridReferenceService).not_to receive(:run)
-          expect(DetermineEastingAndNorthingService).not_to receive(:run)
+          expect(AssignSiteDetailsService).not_to receive(:run)
 
-          address = create(:transient_address)
-
-          expect(address.x).to be_nil
-          expect(address.y).to be_nil
-          expect(address.grid_reference).to be_nil
-          expect(address.area).to be_nil
+          create(:transient_address)
         end
       end
 
       context "creating a site address" do
-        let(:area_result) { "Wessex" }
-        let(:grid_reference_result) { "ST 58337 72855" }
-        let(:easting_northing_result) { { easting: 358_337.0, northing: 172_855.0 } }
+        it "does attempt to update the x, y, grid reference or area fields" do
+          expect(AssignSiteDetailsService).to receive(:run)
 
-        before(:each) do
-          allow(DetermineAreaService)
-            .to receive(:run)
-            .and_return(area_result)
-          allow(DetermineGridReferenceService)
-            .to receive(:run)
-            .and_return(grid_reference_result)
-          allow(DetermineEastingAndNorthingService)
-            .to receive(:run)
-            .and_return(easting_northing_result)
+          create(:transient_address)
         end
-
-        context "populated from a grid reference" do
-          subject(:transient_address) { create(:transient_address, :site_using_grid_reference) }
-
-          it "updates the x & y and area fields" do
-            expect(subject.x).to eq(easting_northing_result[:easting])
-            expect(subject.y).to eq(easting_northing_result[:northing])
-            expect(subject.area).to eq(area_result)
-          end
-
-          context "if the grid reference is somehow blank" do
-            let(:area_result) { nil }
-            let(:easting_northing_result) { { easting: nil, northing: nil } }
-            subject(:transient_address) { create(:transient_address, :site_address) }
-
-            it "will do nothing" do
-              expect(subject.x).to eq(easting_northing_result[:easting])
-              expect(subject.y).to eq(easting_northing_result[:northing])
-              expect(subject.area).to be_nil
-            end
-          end
-
-          context "if the grid reference is invalid" do
-            let(:area_result) { nil }
-            let(:easting_northing_result) { { easting: 0.0, northing: 0.0 } }
-            subject(:transient_address) { create(:transient_address, :site_using_invalid_grid_reference) }
-
-            it "set x & y to 0.0 and not update the area" do
-              expect(subject.x).to eq(easting_northing_result[:easting])
-              expect(subject.y).to eq(easting_northing_result[:northing])
-              expect(subject.area).to be_nil
-            end
-          end
-        end
-
-        context "populated from a manual address" do
-          subject(:transient_address) { create(:transient_address, :site_using_a_manual_address) }
-
-          it "updates the x & y, grid reference and area fields" do
-            expect(subject.x).to eq(easting_northing_result[:easting])
-            expect(subject.y).to eq(easting_northing_result[:northing])
-            expect(subject.grid_reference).to eq(grid_reference_result)
-            expect(subject.area).to eq(area_result)
-          end
-
-          context "if the postcode is somehow blank" do
-            let(:area_result) { nil }
-            let(:grid_reference_result) { nil }
-            let(:easting_northing_result) { { easting: nil, northing: nil } }
-            subject(:transient_address) { create(:transient_address, :site_address) }
-
-            it "will do nothing" do
-              expect(subject.x).to eq(easting_northing_result[:easting])
-              expect(subject.y).to eq(easting_northing_result[:northing])
-              expect(subject.grid_reference).to eq(grid_reference_result)
-              expect(subject.area).to be_nil
-            end
-          end
-
-          context "if the postcode is invalid" do
-            let(:area_result) { nil }
-            let(:grid_reference_result) { nil }
-            let(:easting_northing_result) { { easting: 0.0, northing: 0.0 } }
-            subject(:transient_address) { create(:transient_address, :site_using_invalid_manual_address) }
-
-            it "will set x & y to 0.0" do
-              expect(subject.x).to eq(easting_northing_result[:easting])
-              expect(subject.y).to eq(easting_northing_result[:northing])
-              expect(subject.grid_reference).to be_nil
-              expect(subject.area).to be_nil
-            end
-          end
-        end
-
-        context "populated from address lookup" do
-          subject(:transient_address) { create(:transient_address, :site_using_address_lookup) }
-
-          it "updates the grid reference and area fields" do
-            expect(subject.grid_reference).to eq(grid_reference_result)
-            expect(subject.area).to eq(area_result)
-          end
-
-          context "if the x & y are somehow blank" do
-            let(:area_result) { nil }
-            let(:grid_reference_result) { nil }
-            let(:easting_northing_result) { { easting: nil, northing: nil } }
-            subject(:transient_address) { create(:transient_address, :site_address) }
-
-            it "will do nothing" do
-              expect(subject.grid_reference).to be_nil
-              expect(subject.area).to be_nil
-            end
-          end
-
-          context "if the x & y is invalid" do
-            let(:grid_reference_result) { "" }
-            let(:area_result) { "Outside England" }
-            subject(:transient_address) { create(:transient_address, :site_using_invalid_address_lookup) }
-
-            it "will do nothing" do
-              expect(subject.grid_reference).to eq(grid_reference_result)
-              expect(subject.area).to eq(area_result)
-            end
-          end
-        end
-
       end
     end
 

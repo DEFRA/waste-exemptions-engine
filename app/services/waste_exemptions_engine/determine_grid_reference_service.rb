@@ -2,19 +2,9 @@
 
 module WasteExemptionsEngine
   class DetermineGridReferenceService < BaseService
-    include CanCheckEastingAndNorthingValues
-
     # Easting and northing is just another name for x & y. We've gone with
     # easting and northing here purely to keep rubocop happy!
     def run(easting:, northing:)
-      return unless valid_coordinates?(easting, northing)
-
-      grid_reference_from_easting_northing(easting, northing)
-    end
-
-    private
-
-    def grid_reference_from_easting_northing(easting, northing)
       location = os_map_ref_location("#{easting}, #{northing}")
 
       location.map_reference
@@ -22,6 +12,8 @@ module WasteExemptionsEngine
       handle_error(e, "Easting & Northing to grid reference failed:\n #{e}", x: easting, y: northing)
       ""
     end
+
+    private
 
     def os_map_ref_location(coordinates)
       OsMapRef::Location.for(coordinates)
