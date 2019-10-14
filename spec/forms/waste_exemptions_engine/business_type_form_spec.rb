@@ -16,11 +16,11 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :business_type_form do
-      let(:valid_params) { { token: form.token, business_type: BUSINESS_TYPES.sample } }
+      let(:valid_params) { { business_type: BUSINESS_TYPES.sample } }
       let(:invalid_params) do
         [
-          { token: form.token, business_type: "foo" },
-          { token: form.token, business_type: "" }
+          { business_type: "foo" },
+          { business_type: "" }
         ]
       end
     end
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the selected business type" do
           business_type = BUSINESS_TYPES.sample
-          valid_params = { token: form.token, business_type: business_type }
+          valid_params = { business_type: business_type }
           transient_registration = form.transient_registration
 
           expect(transient_registration.business_type).to be_blank

@@ -11,8 +11,6 @@
 
       <%= render("waste_exemptions_engine/shared/person_name", form: @main_people_form, f: f) %>
 
-      <%= f.hidden_field :token, value: @main_people_form.token %>
-
       <% if @main_people_form.transient_people.count < 1 %>
         <div class="form-group">
           <%= f.submit t(".add_person_link"), class: "button" %>

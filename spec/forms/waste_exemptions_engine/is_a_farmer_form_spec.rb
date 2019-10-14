@@ -31,7 +31,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the is a farmer answer" do
           is_a_farmer = true
-          valid_params = { token: form.token, is_a_farmer: is_a_farmer }
+          valid_params = { is_a_farmer: is_a_farmer }
           transient_registration = form.transient_registration
 
           expect(transient_registration.is_a_farmer).to be_blank

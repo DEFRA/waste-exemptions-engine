@@ -38,14 +38,14 @@ module WasteExemptionsEngine
 
     it_behaves_like "a validated form", :applicant_email_form do
       let(:valid_params) do
-        { token: form.token, applicant_email: "test@example.com", confirmed_email: "test@example.com" }
+        { applicant_email: "test@example.com", confirmed_email: "test@example.com" }
       end
       let(:invalid_params) do
         [
-          { token: form.token, applicant_email: "test@example.com", confirmed_email: "different@example.com" },
-          { token: form.token, applicant_email: "", confirmed_email: "test@example.com" },
-          { token: form.token, applicant_email: "test@example.com", confirmed_email: "" },
-          { token: form.token, applicant_email: "", confirmed_email: "" }
+          { applicant_email: "test@example.com", confirmed_email: "different@example.com" },
+          { applicant_email: "", confirmed_email: "test@example.com" },
+          { applicant_email: "test@example.com", confirmed_email: "" },
+          { applicant_email: "", confirmed_email: "" }
         ]
       end
     end
@@ -54,7 +54,7 @@ module WasteExemptionsEngine
       context "when the form is valid" do
         it "updates the transient registration with the applicant email address" do
           email = "test@example.com"
-          valid_params = { token: form.token, applicant_email: email, confirmed_email: email }
+          valid_params = { applicant_email: email, confirmed_email: email }
           transient_registration = form.transient_registration
 
           expect(transient_registration.applicant_email).to be_blank

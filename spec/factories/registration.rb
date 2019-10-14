@@ -92,7 +92,7 @@ FactoryBot.define do
         [
           build(:address, :operator_address, :postal),
           build(:address, :contact_address, :postal),
-          build(:address, :site_address, :auto)
+          build(:address, :site_using_grid_reference, :auto)
         ]
       end
     end

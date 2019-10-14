@@ -88,8 +88,8 @@ module WasteExemptionsEngine
             }
           }
         end
-        let(:valid_params) { address_data.merge(token: form.token) }
-        let(:white_space_params) { white_space_address_data.merge(token: form.token) }
+        let(:valid_params) { address_data }
+        let(:white_space_params) { white_space_address_data }
         let(:transient_registration) { form.transient_registration }
 
         it "updates the transient registration with the submitted address data" do

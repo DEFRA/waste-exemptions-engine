@@ -2,10 +2,12 @@
 
 module WasteExemptionsEngine
   class SiteAddressManualForm < BaseForm
-    delegate :premises, :street_address, :locality, :city, to: :site_address, allow_nil: true
-    delegate :site_address, :business_type, to: :transient_registration
+    include CanClearAddressFinderError
 
-    attr_accessor :postcode, :address_finder_error
+    delegate :site_address, to: :transient_registration
+    delegate :premises, :street_address, :locality, :postcode, :city, to: :site_address, allow_nil: true
+
+    attr_accessor :postcode
 
     validates :site_address, "waste_exemptions_engine/manual_address": true
 
@@ -18,21 +20,14 @@ module WasteExemptionsEngine
     private
 
     def setup_postcode
-      self.postcode = transient_registration.temp_site_postcode
-
-      # Check if the user reached this page through an Address finder error.
-      # Then wipe the temp attribute as we only need it for routing
-      self.address_finder_error = transient_registration.address_finder_error
-      transient_registration.update_attributes(address_finder_error: nil)
+      self.postcode = transient_registration.temp_contact_postcode
 
       # Prefill the existing address unless the postcode has changed from the existing address's postcode
       transient_registration.site_address = nil unless saved_address_still_valid?
     end
 
     def saved_address_still_valid?
-      return false unless site_address
-
-      postcode == site_address.postcode
+      postcode == site_address&.postcode
     end
   end
 end
