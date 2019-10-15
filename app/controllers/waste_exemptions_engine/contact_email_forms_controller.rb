@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:contact_email_form).permit(:confirmed_email, :contact_email)
+      params.fetch(:contact_email_form, {}).permit(:confirmed_email, :contact_email)
     end
   end
 end

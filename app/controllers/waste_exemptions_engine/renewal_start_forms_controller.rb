@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:renewal_start_form).permit(:temp_renew_without_changes)
+      params.fetch(:renewal_start_form, {}).permit(:temp_renew_without_changes)
     end
   end
 end

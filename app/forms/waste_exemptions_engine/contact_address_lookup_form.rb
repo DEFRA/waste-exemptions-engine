@@ -10,7 +10,8 @@ module WasteExemptionsEngine
     validates :contact_address, "waste_exemptions_engine/address": true
 
     def submit(params)
-      contact_address_attributes = get_address_data(params[:contact_address][:uprn], :contact)
+      contact_address_params = params.fetch(:contact_address, {})
+      contact_address_attributes = get_address_data(contact_address_params[:uprn], :contact)
 
       super(contact_address_attributes: contact_address_attributes)
     end
