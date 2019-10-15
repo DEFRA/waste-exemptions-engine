@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:contact_address_lookup_form).permit(contact_address: [:uprn])
+      params.fetch(:contact_address_lookup_form, {}).permit(contact_address: [:uprn])
     end
   end
 end

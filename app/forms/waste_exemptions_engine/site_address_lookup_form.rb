@@ -10,7 +10,8 @@ module WasteExemptionsEngine
     validates :site_address, "waste_exemptions_engine/address": true
 
     def submit(params)
-      site_address_attributes = get_address_data(params[:site_address][:uprn], :site)
+      site_address_params = params.fetch(:site_address, {})
+      site_address_attributes = get_address_data(site_address_params[:uprn], :site)
 
       super(site_address_attributes: site_address_attributes)
     end

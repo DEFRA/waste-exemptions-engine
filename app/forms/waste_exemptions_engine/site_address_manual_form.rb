@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     after_initialize :setup_postcode
 
     def submit(params)
-      super(site_address_attributes: params[:site_address])
+      super(site_address_attributes: params[:site_address] || {})
     end
 
     private

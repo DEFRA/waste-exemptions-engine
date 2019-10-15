@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:operator_postcode_form).permit(:temp_operator_postcode)
+      params.fetch(:operator_postcode_form, {}).permit(:temp_operator_postcode)
     end
   end
 end

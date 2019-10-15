@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:business_type_form).permit(:business_type)
+      params.fetch(:business_type_form, {}).permit(:business_type)
     end
   end
 end
