@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(ApplicantEmailForm, "applicant_email_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:applicant_email_form).permit(:confirmed_email, :applicant_email)
+    end
   end
 end

@@ -9,11 +9,5 @@ module WasteExemptionsEngine
     def self.can_navigate_flexibly?
       false
     end
-
-    def submit(params)
-      attributes = { declaration: params[:declaration].to_i }
-
-      super(attributes)
-    end
   end
 end

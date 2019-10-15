@@ -30,10 +30,6 @@ module WasteExemptionsEngine
 
     after_initialize :valid
 
-    def submit(_params)
-      super({})
-    end
-
     private
 
     def company_no_required?

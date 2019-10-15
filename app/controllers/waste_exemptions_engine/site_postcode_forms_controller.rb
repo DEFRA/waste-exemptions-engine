@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(SitePostcodeForm, "site_postcode_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:site_postcode_form).permit(:temp_site_postcode)
+    end
   end
 end

@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(RenewalStartForm, "renewal_start_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:renewal_start_form).permit(:temp_renew_without_changes)
+    end
   end
 end

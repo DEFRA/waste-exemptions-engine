@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(ContactNameForm, "contact_name_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:contact_name_form).permit(:contact_first_name, :contact_last_name)
+    end
   end
 end

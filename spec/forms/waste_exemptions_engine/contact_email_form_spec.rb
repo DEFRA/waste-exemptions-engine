@@ -58,7 +58,7 @@ module WasteExemptionsEngine
           transient_registration = form.transient_registration
 
           expect(transient_registration.contact_email).to be_blank
-          form.submit(valid_params)
+          form.submit(ActionController::Parameters.new(valid_params).permit!)
           expect(transient_registration.contact_email).to eq(email)
         end
       end

@@ -13,9 +13,7 @@ module WasteExemptionsEngine
       # Assign the params for validation and pass them to the BaseForm method for updating
       self.confirmed_email = params[:confirmed_email]
 
-      attributes = { applicant_email: params[:applicant_email] }
-
-      super(attributes)
+      super(params.permit(:applicant_email))
     end
 
     def confirmed_email

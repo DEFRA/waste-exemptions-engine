@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       return false unless set_up_form(form_class, form, params[:token])
 
       # Submit the form by getting the instance variable we just set
-      submit_form(instance_variable_get("@#{form}"), params[form])
+      submit_form(instance_variable_get("@#{form}"), transient_registration_attributes)
     end
 
     def go_back
@@ -28,6 +28,11 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def transient_registration_attributes
+      # Subclassess to define correct permitted attributes when relevant
+      params.permit
+    end
 
     def find_or_initialize_registration(token)
       @transient_registration = TransientRegistration.find_by(

@@ -4,6 +4,8 @@ FactoryBot.define do
   address_types = WasteExemptionsEngine::TransientAddress.address_types
 
   factory :transient_address, class: WasteExemptionsEngine::TransientAddress do
+    uprn { 123 }
+
     trait :operator_address do
       address_type { address_types[:operator] }
     end

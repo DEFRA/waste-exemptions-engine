@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(OperatorNameForm, "operator_name_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:operator_name_form).permit(:operator_name)
+    end
   end
 end

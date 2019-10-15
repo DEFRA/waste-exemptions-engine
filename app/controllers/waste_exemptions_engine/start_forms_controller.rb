@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(StartForm, "start_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:start_form).permit(:start_option)
+    end
   end
 end

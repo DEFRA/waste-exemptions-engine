@@ -2,10 +2,12 @@
 
 module WasteExemptionsEngine
   class AddressValidator < BaseValidator
-    include CanValidatePresence
-
     def validate_each(record, attribute, value)
-      value_is_present?(record, attribute, value)
+      return true if value && (value[:uprn].present? || value[:postcode].present?)
+
+      record.errors[attribute] << error_message(record, attribute, "blank")
+
+      false
     end
   end
 end

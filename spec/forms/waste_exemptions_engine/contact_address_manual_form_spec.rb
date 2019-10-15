@@ -96,7 +96,7 @@ module WasteExemptionsEngine
           # Ensure the test data is properly configured:
           expect(transient_registration.transient_addresses).to be_empty
 
-          form.submit(ActionController::Parameters.new(valid_params))
+          form.submit(ActionController::Parameters.new(valid_params).permit!)
 
           expect(transient_registration.transient_addresses.count).to eq(1)
           submitted_address = transient_registration.transient_addresses.first
@@ -114,7 +114,7 @@ module WasteExemptionsEngine
             end
             expect(transient_registration.transient_addresses).to be_empty
 
-            form.submit(ActionController::Parameters.new(white_space_params))
+            form.submit(ActionController::Parameters.new(white_space_params).permit!)
 
             expect(transient_registration.reload.transient_addresses.count).to eq(1)
             submitted_address = transient_registration.transient_addresses.first

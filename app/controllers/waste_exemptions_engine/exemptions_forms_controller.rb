@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(ExemptionsForm, "exemptions_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.fetch(:exemptions_form, {}).permit(exemption_ids: [])
+    end
   end
 end

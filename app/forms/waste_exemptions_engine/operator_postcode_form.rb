@@ -7,10 +7,10 @@ module WasteExemptionsEngine
     validates :temp_operator_postcode, "waste_exemptions_engine/postcode": true
 
     def submit(params)
-      temp_operator_postcode = format_postcode(params[:temp_operator_postcode])
+      params[:temp_operator_postcode] = format_postcode(params[:temp_operator_postcode])
 
       # We persist the postcode regardless of validations.
-      transient_registration.update_attributes(temp_operator_postcode: temp_operator_postcode)
+      transient_registration.update_attributes(params)
 
       super({})
     end

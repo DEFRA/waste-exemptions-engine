@@ -4,20 +4,17 @@ module WasteExemptionsEngine
   class ContactAddressManualForm < BaseForm
     include CanClearAddressFinderError
 
-    attr_accessor :postcode
-
     delegate :contact_address, to: :transient_registration
     delegate :premises, :street_address, :locality, :postcode, :city, to: :contact_address, allow_nil: true
+
+    attr_accessor :postcode
 
     validates :contact_address, "waste_exemptions_engine/manual_address": true
 
     after_initialize :setup_postcode
 
     def submit(params)
-      permitted_attributes = params.require(:contact_address)
-      permitted_attributes = permitted_attributes.permit(:locality, :postcode, :city, :premises, :street_address, :mode)
-
-      super(contact_address_attributes: permitted_attributes)
+      super(contact_address_attributes: params[:contact_address])
     end
 
     private
@@ -30,9 +27,7 @@ module WasteExemptionsEngine
     end
 
     def saved_address_still_valid?
-      return true if postcode.blank?
-
-      postcode == contact_address.postcode
+      postcode == contact_address&.postcode
     end
   end
 end

@@ -10,10 +10,9 @@ module WasteExemptionsEngine
     validates :operator_address, "waste_exemptions_engine/address": true
 
     def submit(params)
-      # Assign the params for validation and pass them to the BaseForm method for updating
-      operator_address = create_address(params[:operator_address][:uprn], :operator)
+      operator_address_attributes = get_address_data(params[:operator_address][:uprn], :operator)
 
-      super(operator_address: operator_address)
+      super(operator_address_attributes: operator_address_attributes)
     end
   end
 end

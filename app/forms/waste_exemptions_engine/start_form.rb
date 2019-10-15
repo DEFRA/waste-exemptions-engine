@@ -5,11 +5,5 @@ module WasteExemptionsEngine
     delegate :start_option, to: :transient_registration
 
     validates :start_option, "waste_exemptions_engine/start": true
-
-    def submit(params)
-      attributes = { start_option: params[:start_option] }
-
-      super(attributes)
-    end
   end
 end

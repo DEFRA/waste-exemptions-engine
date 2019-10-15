@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     def create
       super(IsAFarmerForm, "is_a_farmer_form")
     end
+
+    private
+
+    def transient_registration_attributes
+      params.require(:is_a_farmer_form).permit(:is_a_farmer)
+    end
   end
 end
