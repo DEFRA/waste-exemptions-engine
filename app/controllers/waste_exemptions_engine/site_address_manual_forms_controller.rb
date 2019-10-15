@@ -14,7 +14,7 @@ module WasteExemptionsEngine
 
     def transient_registration_attributes
       params
-        .require(:site_address_manual_form)
+        .fetch(:site_address_manual_form, {})
         .permit(site_address: %i[locality postcode city premises street_address mode])
     end
   end

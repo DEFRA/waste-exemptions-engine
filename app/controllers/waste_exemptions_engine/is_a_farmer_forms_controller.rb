@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.require(:is_a_farmer_form).permit(:is_a_farmer)
+      params.fetch(:is_a_farmer_form, {}).permit(:is_a_farmer)
     end
   end
 end

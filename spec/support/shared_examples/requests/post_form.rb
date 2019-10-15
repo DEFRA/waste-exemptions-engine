@@ -8,6 +8,20 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
 
   describe "POST #{form_factory}" do
     context "when the form is not valid", unless: empty_form_is_valid do
+      context "when the form is empty" do
+        context "for a form that performs validations" do
+          it "renders the same template" do
+            post post_request_path
+            expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
+          end
+
+          it "responds to the POST request with a 200 status code" do
+            post post_request_path
+            expect(response.code).to eq("200")
+          end
+        end
+      end
+
       it "includes validation errors for the form data" do
         invalid_form_data.each do |invalid_data|
           post post_request_path, form_factory => invalid_data

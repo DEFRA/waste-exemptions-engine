@@ -21,7 +21,7 @@ module WasteExemptionsEngine
 
     def transient_registration_attributes
       params
-        .require(:site_grid_reference_form)
+        .fetch(:site_grid_reference_form, {})
         .permit(:description, :grid_reference)
     end
   end

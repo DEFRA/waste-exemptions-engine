@@ -10,7 +10,8 @@ module WasteExemptionsEngine
     validates :operator_address, "waste_exemptions_engine/address": true
 
     def submit(params)
-      operator_address_attributes = get_address_data(params[:operator_address][:uprn], :operator)
+      operator_address_params = params.fetch(:operator_address, {})
+      operator_address_attributes = get_address_data(operator_address_params[:uprn], :operator)
 
       super(operator_address_attributes: operator_address_attributes)
     end
