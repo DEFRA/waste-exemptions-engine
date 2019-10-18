@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     private
 
     def setup_postcode
-      self.postcode = transient_registration.temp_contact_postcode
+      self.postcode = transient_registration.temp_site_postcode
 
       # Prefill the existing address unless the postcode has changed from the existing address's postcode
       transient_registration.site_address = nil unless saved_address_still_valid?
