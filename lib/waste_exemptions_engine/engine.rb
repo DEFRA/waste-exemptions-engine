@@ -5,6 +5,7 @@ require "has_secure_token"
 require "high_voltage"
 require "paper_trail"
 require "defra_ruby_validators"
+require "defra_ruby/address"
 require "defra_ruby/area"
 require "wicked_pdf"
 
