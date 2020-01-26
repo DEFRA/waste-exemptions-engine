@@ -10,12 +10,15 @@ module WasteExemptionsEngine
 
     # Look up addresses based on the postcode
     def look_up_addresses
-      if postcode.present?
-        address_finder = AddressFinderService.new(postcode)
-        self.temp_addresses = address_finder.search_by_postcode
-      else
-        self.temp_addresses = []
-      end
+      self.temp_addresses = if postcode.present?
+                              request_matching_addresses
+                            else
+                              []
+                            end
+    end
+
+    def request_matching_addresses
+      DefraRuby::Address::EaAddressFacadeV1Service.run(postcode).results
     end
 
     def get_address_data(uprn, type)
