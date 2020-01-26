@@ -34,24 +34,31 @@ module WasteExemptionsEngine
     def easting_and_northing_from_postcode(postcode)
       return if postcode.blank?
 
-      results = AddressFinderService.new(postcode).search_by_postcode
+      response = DefraRuby::Address::EaAddressFacadeV1Service.run(postcode)
 
-      if results.is_a?(Symbol)
-        default_do_not_fetch_again_coordinates
+      if response.successful?
+        @result[:easting] = response.results.first["x"].to_f
+        @result[:northing] = response.results.first["y"].to_f
 
         return
       end
 
-      no_result_from_postcode_lookup(postcode) && return if results.empty?
+      no_match_from_postcode_lookup(postcode) && return if response.error.is_a?(DefraRuby::Address::NoMatchError)
 
-      @result[:easting] = results.first["x"].to_f
-      @result[:northing] = results.first["y"].to_f
+      error_from_postcode_lookup(postcode, response.error)
     end
 
-    def no_result_from_postcode_lookup(postcode)
+    def no_match_from_postcode_lookup(postcode)
       default_do_not_fetch_again_coordinates
 
       message = "Postcode to easting and northing returned no results"
+      handle_error(StandardError.new(message), message, postcode: postcode)
+    end
+
+    def error_from_postcode_lookup(postcode, error)
+      default_do_not_fetch_again_coordinates
+
+      message = "Postcode to easting and northing errored: #{error.message}"
       handle_error(StandardError.new(message), message, postcode: postcode)
     end
 
