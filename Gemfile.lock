@@ -292,7 +292,7 @@ DEPENDENCIES
   pdf-reader
   pry-byebug
   rspec-rails (~> 3.8.0)
-  simplecov
+  simplecov (~> 0.17.1)
   timecop
   vcr
   w3c_validators
