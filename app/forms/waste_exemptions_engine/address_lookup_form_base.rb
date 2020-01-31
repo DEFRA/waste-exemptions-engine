@@ -18,7 +18,7 @@ module WasteExemptionsEngine
     end
 
     def request_matching_addresses
-      DefraRuby::Address::EaAddressFacadeV1Service.run(postcode).results
+      AddressLookupService.run(postcode).results
     end
 
     def get_address_data(uprn, type)

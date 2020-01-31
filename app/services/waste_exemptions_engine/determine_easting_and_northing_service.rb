@@ -34,7 +34,7 @@ module WasteExemptionsEngine
     def easting_and_northing_from_postcode(postcode)
       return if postcode.blank?
 
-      response = DefraRuby::Address::EaAddressFacadeV1Service.run(postcode)
+      response = AddressLookupService.run(postcode)
 
       if response.successful?
         @result[:easting] = response.results.first["x"].to_f

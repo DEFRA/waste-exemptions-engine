@@ -28,7 +28,7 @@ module WasteExemptionsEngine
     end
 
     def postcode_returns_results?(record, attribute, value)
-      response = DefraRuby::Address::EaAddressFacadeV1Service.run(value)
+      response = AddressLookupService.run(value)
 
       return true if response.successful?
 

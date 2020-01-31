@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       let(:address_finder_results) { [{ "x" => 358_205.03, "y" => 172_708.07 }] }
 
       before do
-        allow_any_instance_of(DefraRuby::Address::EaAddressFacadeV1Service).to receive(:run)
+        allow_any_instance_of(AddressLookupService).to receive(:run)
           .and_return(address_lookup_response)
       end
 
