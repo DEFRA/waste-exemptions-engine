@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=AA11AA
+    uri: http://localhost:3002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=AA1%201AA
     body:
       encoding: US-ASCII
       string: ''
@@ -30,7 +30,7 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"totalMatches":0,"startMatch":null,"endMatch":null,"uri_to_supplier":"https://api.ordnancesurvey.co.uk/places/v1/addresses/postcode?lr=EN&postcode=AA11AA&maxresults=100&dataset=DPA","uri_from_client":"stub","results":[]}'
-    http_version: 
+      string: '{"totalMatches":0,"startMatch":null,"endMatch":null,"uri_to_supplier":"https://api.ordnancesurvey.co.uk/places/v1/addresses/postcode?lr=EN&postcode=AA1%201AA&maxresults=100&dataset=DPA","uri_from_client":"stub","results":[]}'
+    http_version:
   recorded_at: Tue, 28 Jan 2020 15:44:13 GMT
 recorded_with: VCR 5.0.0
