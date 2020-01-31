@@ -37,15 +37,17 @@ module WasteExemptionsEngine
       response = AddressLookupService.run(postcode)
 
       if response.successful?
-        @result[:easting] = response.results.first["x"].to_f
-        @result[:northing] = response.results.first["y"].to_f
-
-        return
+        apply_result_coordinates(response.results.first)
+      elsif response.error.is_a?(DefraRuby::Address::NoMatchError)
+        no_match_from_postcode_lookup(postcode)
+      else
+        error_from_postcode_lookup(postcode, response.error)
       end
+    end
 
-      no_match_from_postcode_lookup(postcode) && return if response.error.is_a?(DefraRuby::Address::NoMatchError)
-
-      error_from_postcode_lookup(postcode, response.error)
+    def apply_result_coordinates(result)
+      @result[:easting] = result["x"].to_f
+      @result[:northing] = result["y"].to_f
     end
 
     def no_match_from_postcode_lookup(postcode)
