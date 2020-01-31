@@ -21,7 +21,7 @@ module WasteExemptionsEngine
       end
 
       context "when a race condition calls the service twice" do
-        # rubocop:disable Lint/HandleExceptions
+        # rubocop:disable Lint/SuppressedException
         it "generates only one record and fail to execute subsequent calls" do
           # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
           # https://github.com/DEFRA/ruby-services-team/issues/54
@@ -59,7 +59,7 @@ module WasteExemptionsEngine
           WasteExemptionsEngine::RegistrationExemption.delete_all
           WasteExemptionsEngine::Registration.delete_all
         end
-        # rubocop:enable Lint/HandleExceptions
+        # rubocop:enable Lint/SuppressedException
       end
 
       context "when the registration can be completed" do
