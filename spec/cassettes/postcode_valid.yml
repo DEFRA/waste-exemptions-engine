@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS15AH
+    uri: http://localhost:3002/address-service/v1/addresses/postcode?client-id=0&key=client1&postcode=BS1%205AH
     body:
       encoding: US-ASCII
       string: ''
@@ -30,14 +30,14 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"totalMatches":2,"startMatch":1,"endMatch":2,"uri_to_supplier":"https://api.ordnancesurvey.co.uk/places/v1/addresses/postcode?lr=EN&postcode=BS15AH&maxresults=100&dataset=DPA","uri_from_client":"stub","results":[{"uprn":340116,"address":"ENVIRONMENT
+      string: '{"totalMatches":2,"startMatch":1,"endMatch":2,"uri_to_supplier":"https://api.ordnancesurvey.co.uk/places/v1/addresses/postcode?lr=EN&postcode=BS1%205AH&maxresults=100&dataset=DPA","uri_from_client":"stub","results":[{"uprn":340116,"address":"ENVIRONMENT
         AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH","organisation":"ENVIRONMENT
         AGENCY","premises":"HORIZON HOUSE","street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358205.03","y":"172708.07","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"},{"uprn":340117,"address":"THRIVE
         RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH","organisation":"THRIVE RENEWABLES
         PLC","premises":null,"street_address":"DEANERY ROAD","locality":null,"city":"BRISTOL","postcode":"BS1
         5AH","x":"358130.1","y":"172687.87","coordinate_system":null,"state_date":"12/10/2009","blpu_state_code":null,"postal_address_code":null,"logical_status_code":null,"source_data_type":"dpa"}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 28 Jan 2020 15:40:05 GMT
 - request:
     method: get
@@ -96,6 +96,6 @@ http_interactions:
             </ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas>
           </gml:featureMember>
         </wfs:FeatureCollection>
-    http_version: 
+    http_version:
   recorded_at: Tue, 28 Jan 2020 15:40:05 GMT
 recorded_with: VCR 5.0.0

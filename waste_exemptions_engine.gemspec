@@ -34,6 +34,10 @@ Gem::Specification.new do |s|
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
 
+  # Used to handle requests to the address lookup web service used (currently
+  # EA Address Facade v1)
+  s.add_dependency "defra_ruby_address"
+
   # Used to identify the EA area for a registration
   s.add_dependency "defra_ruby_area"
 

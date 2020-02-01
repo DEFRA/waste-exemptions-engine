@@ -22,8 +22,6 @@ module WasteExemptionsEngine
   class Configuration
     # General config
     attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry, :default_assistance_mode
-    # Addressbase config
-    attr_accessor :addressbase_url
     # Edit config
     attr_writer :edit_enabled
     # Email config
@@ -36,6 +34,9 @@ module WasteExemptionsEngine
     attr_accessor :use_current_user_for_whodunnit
     # Renewing
     attr_accessor :renewal_window_before_expiry_in_days, :renewal_window_after_expiry_in_days
+
+    # Address lookup config
+    attr_reader :address_host
 
     # Companies house API config
     attr_reader :companies_house_host, :companies_house_api_key
@@ -58,6 +59,13 @@ module WasteExemptionsEngine
 
     def use_last_email_cache
       change_string_to_boolean_for(@use_last_email_cache)
+    end
+
+    def address_host=(value)
+      @address_host = value
+      DefraRuby::Address.configure do |configuration|
+        configuration.host = value
+      end
     end
 
     def companies_house_host=(value)
