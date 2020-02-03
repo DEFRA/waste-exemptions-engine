@@ -31,3 +31,4 @@ WasteExemptionsEngine.configure do |config|
   config.airbrake_project_key = "abcde12345"
   config.airbrake_blacklist = [/password/i]
 end
+WasteExemptionsEngine.start_airbrake
