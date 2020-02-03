@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "defra_ruby/alert"
 require "waste_exemptions_engine/engine"
 
 module WasteExemptionsEngine
