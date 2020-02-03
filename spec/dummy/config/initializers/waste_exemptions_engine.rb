@@ -24,4 +24,10 @@ WasteExemptionsEngine.configure do |config|
   # Renewing config
   config.renewal_window_before_expiry_in_days = ENV["RENEWAL_WINDOW_BEFORE_EXPIRY_IN_DAYS"] || 28
   config.renewal_window_after_expiry_in_days = ENV["RENEWAL_WINDOW_AFTER_EXPIRY_IN_DAYS"] || 30
+
+  # Airbrake config
+  config.airbrake_enabled = false
+  config.airbrake_host = "http://localhost"
+  config.airbrake_project_key = "abcde12345"
+  config.airbrake_blacklist = [/password/i]
 end
