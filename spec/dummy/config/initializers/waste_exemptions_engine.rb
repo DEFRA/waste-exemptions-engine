@@ -29,6 +29,6 @@ WasteExemptionsEngine.configure do |config|
   config.airbrake_enabled = false
   config.airbrake_host = "http://localhost"
   config.airbrake_project_key = "abcde12345"
-  config.airbrake_blacklist = [/password/i]
+  config.airbrake_blacklist = [/password/i, /authorization/i]
 end
 WasteExemptionsEngine.start_airbrake
