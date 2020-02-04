@@ -1,17 +1,10 @@
-GIT
-  remote: https://github.com/DEFRA/defra-ruby-alert
-  revision: 503087106b8c086c4612222820e8ecd1b59f8d6f
-  branch: use-wex-and-wcr-compatible-airbrake
-  specs:
-    defra_ruby_alert (1.0.0)
-      airbrake (~> 5.8.1)
-
 PATH
   remote: .
   specs:
     waste_exemptions_engine (0.0.1)
       aasm (~> 4.12)
       defra_ruby_address
+      defra_ruby_alert (~> 1.0.0)
       defra_ruby_area
       defra_ruby_validators (~> 2.2.0)
       has_secure_token
@@ -87,6 +80,8 @@ GEM
     database_cleaner (1.8.2)
     defra_ruby_address (0.1.0)
       rest-client (~> 2.0)
+    defra_ruby_alert (1.0.0)
+      airbrake (~> 5.8.1)
     defra_ruby_area (2.0.0)
       nokogiri (~> 1.10.4)
       rest-client (~> 2.0)
@@ -293,7 +288,6 @@ PLATFORMS
 DEPENDENCIES
   bullet
   database_cleaner
-  defra_ruby_alert!
   defra_ruby_style
   dotenv-rails
   factory_bot_rails

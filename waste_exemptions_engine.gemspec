@@ -35,6 +35,9 @@ Gem::Specification.new do |s|
   # EA Address Facade v1)
   s.add_dependency "defra_ruby_address"
 
+  # defra_ruby_alert is a gem we created to manage airbrake across projects
+  s.add_dependency "defra_ruby_alert", "~> 1.0.0"
+
   # Used to identify the EA area for a registration
   s.add_dependency "defra_ruby_area"
 
