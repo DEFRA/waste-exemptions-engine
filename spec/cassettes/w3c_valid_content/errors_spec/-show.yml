@@ -8,9 +8,9 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
         />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<h1 class=\"heading-large\">\n  There was a problem\n</h1>\n\n<p>Sorry,
-        the system wasn&#39;t able to complete that step.</p>\n<p>You could go back
-        and try it again.</p>\n\n\n</body>\n</html>\n"
+        \ \n</head>\n<body>\n\n<h1 class=\"heading-large\">\n  Unauthorised\n</h1>\n\n<p>Sorry,
+        you don&#39;t have permission to access this page.</p>\n<p>Please check the
+        web address you entered is correct.</p>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -26,7 +26,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 28 Jan 2020 15:47:39 GMT
+      - Mon, 10 Feb 2020 11:48:42 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -57,7 +57,7 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5cbiAgVGhlcmUgd2FzIGEgcHJvYmxlbVxuPC9oMT5cblxuPHA+U29ycnksIHRoZSBzeXN0ZW0gd2FzbiYjMzk7dCBhYmxlIHRvIGNvbXBsZXRlIHRoYXQgc3RlcC48L3A+XG48cD5Zb3UgY291bGQgZ28gYmFjayBhbmQgdHJ5IGl0IGFnYWluLjwvcD5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-    http_version: 
-  recorded_at: Tue, 28 Jan 2020 15:42:55 GMT
-recorded_with: VCR 5.0.0
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5cbiAgVW5hdXRob3Jpc2VkXG48L2gxPlxuXG48cD5Tb3JyeSwgeW91IGRvbiYjMzk7dCBoYXZlIHBlcm1pc3Npb24gdG8gYWNjZXNzIHRoaXMgcGFnZS48L3A+XG48cD5QbGVhc2UgY2hlY2sgdGhlIHdlYiBhZGRyZXNzIHlvdSBlbnRlcmVkIGlzIGNvcnJlY3QuPC9wPlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+    http_version: null
+  recorded_at: Mon, 10 Feb 2020 11:48:40 GMT
+recorded_with: VCR 5.1.0
