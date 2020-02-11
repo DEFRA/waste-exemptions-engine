@@ -41,6 +41,10 @@ Gem::Specification.new do |s|
   # Used to identify the EA area for a registration
   s.add_dependency "defra_ruby_area"
 
+  # Used as part of testing. When enabled adds a /last-email route from which
+  # details of the last email sent by the app can be accessed
+  s.add_dependency "defra_ruby_email"
+
   s.add_dependency "pg", "~> 0.18.4"
 
   # Used for auditing and version control
