@@ -8,7 +8,7 @@ require "defra_ruby_validators"
 require "defra_ruby/address"
 require "defra_ruby/alert"
 require "defra_ruby/area"
-require "defra_ruby/email"
+require "defra_ruby_email"
 require "wicked_pdf"
 
 module WasteExemptionsEngine
