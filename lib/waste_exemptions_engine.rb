@@ -112,7 +112,7 @@ module WasteExemptionsEngine
     # Last Email caching and retrieval functionality
     def use_last_email_cache=(value)
       DefraRubyEmail.configure do |configuration|
-        configuration.enabled = change_string_to_boolean_for(value)
+        configuration.enable = change_string_to_boolean_for(value)
       end
     end
 
