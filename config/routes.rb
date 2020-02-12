@@ -509,5 +509,7 @@ WasteExemptionsEngine::Engine.routes.draw do
 
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
+
+  mount DefraRubyEmail::Engine => "/last-email"
 end
 # rubocop:enable Metrics/BlockLength
