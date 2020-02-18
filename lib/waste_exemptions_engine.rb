@@ -32,8 +32,6 @@ module WasteExemptionsEngine
     attr_accessor :email_service_email
     # PDF config
     attr_writer :use_xvfb_for_wickedpdf
-    # Last Email chaching and retrieval functionality
-    attr_writer :use_last_email_cache
     # PaperTrail config
     attr_accessor :use_current_user_for_whodunnit
     # Renewing
@@ -108,6 +106,13 @@ module WasteExemptionsEngine
     def airbrake_blacklist=(value)
       DefraRuby::Alert.configure do |configuration|
         configuration.blacklist = value
+      end
+    end
+
+    # Last Email caching and retrieval functionality
+    def use_last_email_cache=(value)
+      DefraRubyEmail.configure do |configuration|
+        configuration.enable = change_string_to_boolean_for(value)
       end
     end
 
