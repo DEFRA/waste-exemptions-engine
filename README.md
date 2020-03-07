@@ -1,8 +1,8 @@
 # Waste Exemptions Engine
 
 [![Build Status](https://travis-ci.com/DEFRA/waste-exemptions-engine.svg?branch=master)](https://travis-ci.com/DEFRA/waste-exemptions-engine)
-[![Maintainability](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/maintainability)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/cf17f3b143d5481d1515/test_coverage)](https://codeclimate.com/github/DEFRA/waste-exemptions-engine/test_coverage)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_waste-exemptions-engine&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DEFRA_waste-exemptions-engine)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_waste-exemptions-engine&metric=coverage)](https://sonarcloud.io/dashboard?id=DEFRA_waste-exemptions-engine)
 [![security](https://hakiri.io/github/DEFRA/waste-exemptions-engine/master.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-engine/master)
 [![Licence](https://img.shields.io/badge/Licence-OGLv3-blue.svg)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3)
 
