@@ -174,7 +174,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (0.18.4)
-    phonelib (0.6.42)
+    phonelib (0.6.43)
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
