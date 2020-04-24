@@ -84,7 +84,7 @@ module WasteExemptionsEngine
       subject(:address) { described_class.create_from_address_finder_data(address_finder_data, address_type) }
 
       it "creates an address from the address finder data" do
-        expectations.keys.each do |property|
+        expectations.each_key do |property|
           expect(address.send(property)).to eq(expectations[property])
         end
       end
@@ -100,12 +100,18 @@ module WasteExemptionsEngine
           description: "The waste is stored in an out-building next to the barn."
         }
       end
+      let(:expectations) do
+        {
+          grid_reference: "ST 58337 72855",
+          description: "The waste is stored in an out-building next to the barn."
+        }
+      end
       let(:address_type) { 3 }
       subject(:address) { described_class.create_from_grid_reference_data(grid_reference_data, address_type) }
 
       it "creates an address from the grid reference" do
-        grid_reference_data.keys.each do |property|
-          expect(address.send(property)).to eq(grid_reference_data[property])
+        expectations.each_key do |property|
+          expect(address.send(property)).to eq(expectations[property])
         end
       end
     end

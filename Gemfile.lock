@@ -88,8 +88,8 @@ GEM
       rest-client (~> 2.0)
     defra_ruby_email (0.2.0)
       rails (~> 4.2.11.1)
-    defra_ruby_style (0.1.4)
-      rubocop (~> 0.79)
+    defra_ruby_style (0.2.1)
+      rubocop (~> 0.82)
     defra_ruby_validators (2.2.0)
       activemodel
       os_map_ref
@@ -165,7 +165,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.32.0)
       parallel
-    parser (2.7.0.2)
+    parser (2.7.1.1)
       ast (~> 2.4.0)
     pdf-reader (2.4.0)
       Ascii85 (~> 1.0.0)
@@ -219,6 +219,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
+    rexml (3.2.4)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.6)
@@ -236,13 +237,14 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.3)
-    rubocop (0.79.0)
+    rubocop (0.82.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      rexml
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.10.1)
     ruby-rc4 (0.1.5)
     safe_yaml (1.0.5)
@@ -271,7 +273,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    unicode-display_width (1.6.1)
+    unicode-display_width (1.7.0)
     uniform_notifier (1.13.0)
     validates_email_format_of (1.6.3)
       i18n
