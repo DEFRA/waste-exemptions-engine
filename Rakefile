@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/SuppressedException
 begin
   require "parallel_tests/tasks"
 rescue LoadError
   # No parallel_tests available. Perhaps running in production mode.
 end
-# rubocop:enable Lint/SuppressedException
 
 begin
   require "bundler/setup"
@@ -36,7 +34,6 @@ Bundler::GemHelper.install_tasks
 # This is wrapped to prevent an error when rake is called in environments where
 # rspec may not be available, e.g. production. As such we don't need to handle
 # the error.
-# rubocop:disable Lint/SuppressedException
 begin
   require "rspec/core/rake_task"
 
@@ -46,4 +43,3 @@ begin
 rescue LoadError
   # no rspec available
 end
-# rubocop:enable Lint/SuppressedException
