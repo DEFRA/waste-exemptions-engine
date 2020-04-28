@@ -13,8 +13,6 @@ VCR.configure do |c|
 
   c.ignore_hosts "127.0.0.1", "codeclimate.com"
 
-  c.default_cassette_options = { re_record_interval: 14.days }
-
   # Strip out authorization info
   c.filter_sensitive_data("Basic <API_KEY>") do |interaction|
     auth = interaction.request.headers["Authorization"]
