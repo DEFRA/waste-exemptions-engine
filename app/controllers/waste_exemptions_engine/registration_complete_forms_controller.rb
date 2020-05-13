@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     helper PluralsHelper
 
     include CannotGoBackForm
-    include UnsubmittableForm
+    include CannotSubmitForm
 
     def new
       return unless super(RegistrationCompleteForm, "registration_complete_form")

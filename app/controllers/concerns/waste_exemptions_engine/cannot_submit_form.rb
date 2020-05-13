@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  module UnsubmittableForm
+  module CannotSubmitForm
     extend ActiveSupport::Concern
 
     included do

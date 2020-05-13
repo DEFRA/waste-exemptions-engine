@@ -6,7 +6,7 @@ module WasteExemptionsEngine
 
     include EditPermissionChecks
     include CannotGoBackForm
-    include UnsubmittableForm
+    include CannotSubmitForm
 
     def new
       return unless super(EditCancelledForm, "edit_cancelled_form")

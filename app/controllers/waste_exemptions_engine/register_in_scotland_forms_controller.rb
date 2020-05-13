@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class RegisterInScotlandFormsController < FormsController
-    include UnsubmittableForm
+    include CannotSubmitForm
 
     def new
       super(RegisterInScotlandForm, "register_in_scotland_form")
