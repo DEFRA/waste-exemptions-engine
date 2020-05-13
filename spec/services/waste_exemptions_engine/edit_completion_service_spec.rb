@@ -70,6 +70,24 @@ module WasteExemptionsEngine
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(0)
       end
 
+      it "deletes the edit_registration addresses" do
+        edit_registration_id = EditRegistration.find_by(reference: edit_registration.reference).id
+        expect(TransientAddress.where(transient_registration_id: edit_registration_id).count).to eq(3)
+
+        run_service
+
+        expect(TransientAddress.where(transient_registration_id: edit_registration_id).count).to eq(0)
+      end
+
+      it "deletes the edit_registration people" do
+        edit_registration_id = EditRegistration.find_by(reference: edit_registration.reference).id
+        expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(3)
+
+        run_service
+
+        expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(0)
+      end
+
       describe "PaperTrail", versioning: true do
         it "creates a new version" do
           expect { run_service }.to change { registration.versions.count }.by(1)
