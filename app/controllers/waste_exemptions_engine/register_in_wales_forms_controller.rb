@@ -2,11 +2,10 @@
 
 module WasteExemptionsEngine
   class RegisterInWalesFormsController < FormsController
+    include CannotSubmitForm
+
     def new
       super(RegisterInWalesForm, "register_in_wales_form")
     end
-
-    # Override this method as user shouldn't be able to "submit" this page
-    def create; end
   end
 end
