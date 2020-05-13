@@ -7,19 +7,11 @@ RSpec.shared_examples "GET form" do |form_factory, path|
     context "when the registration is in the correct state" do
       let(:good_request_path) { "/waste_exemptions_engine/#{correct_form.token}#{path}" }
 
-      it "renders the appropriate template" do
+      it "renders the appropriate template, returns a 200 status and valid HTML content" do
         get good_request_path
+
         expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-      end
-
-      it "responds to the GET request with a 200 status code" do
-        get good_request_path
         expect(response.code).to eq("200")
-      end
-
-      it "returns W3C valid HTML content", vcr: true do
-        get good_request_path
-
         expect(response.body).to have_valid_html
       end
     end
@@ -33,23 +25,15 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
         let(:incorrect_form) { build(incorrect_workflow_state) }
 
-        it "renders the appropriate template" do
-          get bad_request_path
-          expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-        end
-
-        it "responds to the GET request with a 200 status code" do
-          get bad_request_path
-          expect(response.code).to eq("200")
-        end
-
-        it "updates the transient registration to the correct workflow state" do
-          # Start with a fresh form since incorrect_form could already have an updated workflow state
-          form = build(incorrect_workflow_state)
-          trans_reg_id = form.transient_registration.id
+        it "renders the appropriate template, returns a 200 status and updates the transient registration to the correct workflow state" do
+          trans_reg_id = incorrect_form.transient_registration.id
           expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(incorrect_workflow_state.to_s)
-          get "/waste_exemptions_engine/#{form.token}#{path}"
+
+          get bad_request_path
+
           expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(form_factory.to_s)
+          expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
+          expect(response.code).to eq("200")
         end
       end
 
