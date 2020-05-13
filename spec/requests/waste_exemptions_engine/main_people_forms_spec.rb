@@ -30,13 +30,10 @@ module WasteExemptionsEngine
       let(:trans_reg_id) { form.transient_registration.id }
 
       describe "submit and add another" do
-        it "re-renders the form template" do
+        it "re-renders the form template and returns a #{status_code} status code" do
           post add_person_post_request_path, person_one_request_body
-          expect(response.location).to include(form_path)
-        end
 
-        it "responds to the POST request with a #{status_code} status code" do
-          post add_person_post_request_path, person_one_request_body
+          expect(response.location).to include(form_path)
           expect(response.code).to eq(status_code.to_s)
         end
 
@@ -63,13 +60,10 @@ module WasteExemptionsEngine
 
         before(:each) { form.transient_registration.people = [person_one, person_two] }
 
-        it "re-renders the form template" do
+        it "re-renders the form template and returns a #{status_code} status code" do
           delete delete_person_main_people_forms_path(token: form.token, id: person_one.id)
-          expect(response.location).to include(form_path)
-        end
 
-        it "responds to the DELETE request with a #{status_code} status code" do
-          delete delete_person_main_people_forms_path(token: form.token, id: person_one.id)
+          expect(response.location).to include(form_path)
           expect(response.code).to eq(status_code.to_s)
         end
 

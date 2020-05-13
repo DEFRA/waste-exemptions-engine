@@ -11,21 +11,17 @@ module WasteExemptionsEngine
       context "with a valid renew token" do
         let(:token) { registration.renew_token }
 
-        it "redirects to the start renewal page" do
-          get request_path
-          follow_redirect!
+        it "redirects to the start renewal page, creates a new RenewingRegistration and returns a 303 status code" do
+          expected_count = RenewingRegistration.count + 1
 
-          expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
-        end
-
-        it "creates a new RenewingRegistration" do
-          expect { get request_path }.to change { RenewingRegistration.count }.by(1)
-        end
-
-        it "responds to the GET request with a 303 status code" do
           get request_path
 
           expect(response.code).to eq("303")
+
+          follow_redirect!
+
+          expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
+          expect(RenewingRegistration.count).to eq(expected_count)
         end
 
         context "when a renewal was left in progress" do
@@ -52,21 +48,11 @@ module WasteExemptionsEngine
           create(:registration, referring_registration_id: registration.id)
         end
 
-        it "respond with a 200 status" do
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
           get request_path
 
           expect(response.code).to eq("200")
-        end
-
-        it "renders the appropriate template" do
-          get request_path
-
           expect(response).to render_template("waste_exemptions_engine/renews/already_renewed")
-        end
-
-        it "returns W3C valid HTML content", vcr: true do
-          get request_path
-
           expect(response.body).to have_valid_html
         end
       end
@@ -75,21 +61,11 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :complete, :past_renewal_window) }
         let(:token) { registration.renew_token }
 
-        it "respond with a 200 status" do
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
           get request_path
 
           expect(response.code).to eq("200")
-        end
-
-        it "renders the appropriate template" do
-          get request_path
-
           expect(response).to render_template("waste_exemptions_engine/renews/past_renewal_window")
-        end
-
-        it "returns W3C valid HTML content", vcr: true do
-          get request_path
-
           expect(response.body).to have_valid_html
         end
       end
@@ -97,21 +73,11 @@ module WasteExemptionsEngine
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 
-        it "returns a 404 status" do
+        it "returns a 404 status, renders the correct template and returns W3C valid HTML content", vcr: true do
           get request_path
 
           expect(response.code).to eq("404")
-        end
-
-        it "returns the correct template" do
-          get request_path
-
           expect(response).to render_template("waste_exemptions_engine/renews/invalid_magic_link")
-        end
-
-        it "returns W3C valid HTML content", vcr: true do
-          get request_path
-
           expect(response.body).to have_valid_html
         end
       end

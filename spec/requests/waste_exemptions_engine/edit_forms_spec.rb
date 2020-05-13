@@ -16,18 +16,11 @@ module WasteExemptionsEngine
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
         let(:edit_enabled) { "true" }
 
-        it "renders the appropriate template" do
+        it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
           get request_path
+
           expect(response).to render_template("waste_exemptions_engine/edit_forms/new")
-        end
-
-        it "responds to the GET request with a 200 status code" do
-          get request_path
           expect(response.code).to eq("200")
-        end
-
-        it "returns W3C valid HTML content", vcr: true do
-          get request_path
           expect(response.body).to have_valid_html
         end
 
@@ -36,18 +29,11 @@ module WasteExemptionsEngine
 
           let(:request_path) { "/waste_exemptions_engine/#{registration.reference}/edit" }
 
-          it "renders the appropriate template" do
+          it "renders the appropriate template, returns a 200 status code and loads the correct page" do
             get request_path
+
             expect(response).to render_template("waste_exemptions_engine/edit_forms/new")
-          end
-
-          it "responds to the GET request with a 200 status code" do
-            get request_path
             expect(response.code).to eq("200")
-          end
-
-          it "loads the edit form for that registration" do
-            get request_path
             expect(response.body).to include(registration.reference)
           end
 

@@ -13,18 +13,11 @@ module WasteExemptionsEngine
     describe "GET edit_complete_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit-complete" }
 
-      it "renders the appropriate template" do
+      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
         get request_path
+
         expect(response).to render_template("waste_exemptions_engine/edit_complete_forms/new")
-      end
-
-      it "responds to the GET request with a 200 status code" do
-        get request_path
         expect(response.code).to eq("200")
-      end
-
-      it "returns W3C valid HTML content", vcr: true do
-        get request_path
         expect(response.body).to have_valid_html
       end
 

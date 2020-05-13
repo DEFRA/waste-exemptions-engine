@@ -8,13 +8,9 @@ RSpec.shared_examples "go back" do |form_factory, path|
   status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
   describe "GET #{form_factory} back" do
-    it "renders the appropriate template" do
+    it "renders the appropriate template and returns a #{status_code} status code" do
       get back_request_path
       expect(response.location).to include(redirection_path)
-    end
-
-    it "responds to the GET request with a #{status_code} status code" do
-      get back_request_path
       expect(response.code).to eq(status_code.to_s)
     end
   end
