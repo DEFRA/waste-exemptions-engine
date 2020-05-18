@@ -28,6 +28,9 @@ Gem::Specification.new do |s|
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.0"
 
+  # sprockets-4.0.0 requires ruby version >= 2.5.0, which is incompatible with the current version, ruby 2.4.2p198
+  s.add_dependency "sprockets", "~> 3.7.2"
+
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
 
