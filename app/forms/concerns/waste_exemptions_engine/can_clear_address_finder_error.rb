@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       # Then wipe the temp attribute as we only need it for routing
       def clear_address_finder_error
         self.address_finder_error = transient_registration.address_finder_error
-        transient_registration.update_attributes(address_finder_error: nil)
+        transient_registration.update(address_finder_error: nil)
       end
     end
   end

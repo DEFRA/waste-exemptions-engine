@@ -2,9 +2,11 @@
 
 module WasteExemptionsEngine
   class BaseService
-    def self.run(attrs = nil)
-      if attrs
-        new.run(attrs)
+    def self.run(options = nil)
+      if options.is_a?(String)
+        new.run(options)
+      elsif options
+        new.run(**options)
       else
         new.run
       end

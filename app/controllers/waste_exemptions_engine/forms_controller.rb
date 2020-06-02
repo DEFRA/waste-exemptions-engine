@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class FormsController < ApplicationController
+  class FormsController < ::WasteExemptionsEngine::ApplicationController
     include ActionView::Helpers::UrlHelper
     include CanRedirectFormToCorrectPath
 
@@ -77,7 +77,7 @@ module WasteExemptionsEngine
     end
 
     def update_workflow_state(workflow_state)
-      @transient_registration.update_attributes(workflow_state: workflow_state)
+      @transient_registration.update(workflow_state: workflow_state)
     end
 
     def state_can_navigate_flexibly?(state)

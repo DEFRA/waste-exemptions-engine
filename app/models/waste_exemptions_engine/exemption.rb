@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class Exemption < ActiveRecord::Base
+  class Exemption < ApplicationRecord
 
     self.table_name = "exemptions"
 

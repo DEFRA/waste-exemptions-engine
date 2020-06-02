@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       params[:temp_contact_postcode] = format_postcode(params[:temp_contact_postcode])
 
       # We persist the postcode regardless of validations.
-      transient_registration.update_attributes(params)
+      transient_registration.update(params)
 
       super({})
     end

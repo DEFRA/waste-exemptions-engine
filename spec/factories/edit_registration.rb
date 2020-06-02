@@ -41,6 +41,9 @@ FactoryBot.define do
       after(:build) do |edit_registration|
         edit_registration.addresses.each do |address|
           address.attributes.each do |key, value|
+            # Skip enumed attributes
+            next if key == "address_type" || key == "mode"
+
             # Append 'foo' to the end of all string attributes
             address[key] = "#{value}foo" if value.is_a?(String)
           end

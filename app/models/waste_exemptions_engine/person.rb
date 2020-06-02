@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class Person < ActiveRecord::Base
+  class Person < ApplicationRecord
 
     self.table_name = "people"
 
-    belongs_to :registration
+    belongs_to :registration, optional: true
   end
 end

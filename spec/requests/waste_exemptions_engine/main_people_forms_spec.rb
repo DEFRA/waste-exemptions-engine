@@ -31,7 +31,7 @@ module WasteExemptionsEngine
 
       describe "submit and add another" do
         it "re-renders the form template and returns a #{status_code} status code" do
-          post add_person_post_request_path, person_one_request_body
+          post add_person_post_request_path, params: person_one_request_body
 
           expect(response.location).to include(form_path)
           expect(response.code).to eq(status_code.to_s)
@@ -41,10 +41,10 @@ module WasteExemptionsEngine
           it "updates the transient registration accordingly" do
             transient_registration = form.transient_registration
 
-            expect { post add_person_post_request_path, person_one_request_body }
+            expect { post add_person_post_request_path, params: person_one_request_body }
               .to change { transient_registration.reload.people.count }
               .from(0).to(1)
-            expect { post add_person_post_request_path, person_two_request_body }
+            expect { post add_person_post_request_path, params: person_two_request_body }
               .to change { transient_registration.reload.people.count }
               .from(1).to(2)
 

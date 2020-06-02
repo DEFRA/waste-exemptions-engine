@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class Registration < ActiveRecord::Base
+  class Registration < ApplicationRecord
     include CanHaveRegistrationAttributes
 
     has_paper_trail meta: { json: :json_for_version }
 
     self.table_name = "registrations"
 
-    has_many :addresses
-    has_many :people
-    has_many :registration_exemptions
+    has_many :addresses, dependent: :destroy
+    has_many :people, dependent: :destroy
+    has_many :registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :registration_exemptions
     has_many(
       :active_exemptions,
@@ -30,13 +30,13 @@ module WasteExemptionsEngine
       through: :registration_exemptions,
       source: :exemption
     )
-    belongs_to :referring_registration, class_name: "Registration"
-    has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
+    belongs_to :referring_registration, class_name: "Registration", optional: true
+    has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id", dependent: :destroy
 
     # In this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
-    has_one :site_address, -> { where(address_type: 3) }, class_name: "Address"
-    has_one :contact_address, -> { where(address_type: 2) }, class_name: "Address"
-    has_one :operator_address, -> { where(address_type: 1) }, class_name: "Address"
+    has_one :site_address, -> { where(address_type: 3) }, class_name: "Address", dependent: :destroy
+    has_one :contact_address, -> { where(address_type: 2) }, class_name: "Address", dependent: :destroy
+    has_one :operator_address, -> { where(address_type: 1) }, class_name: "Address", dependent: :destroy
     accepts_nested_attributes_for :site_address
     accepts_nested_attributes_for :contact_address
     accepts_nested_attributes_for :operator_address

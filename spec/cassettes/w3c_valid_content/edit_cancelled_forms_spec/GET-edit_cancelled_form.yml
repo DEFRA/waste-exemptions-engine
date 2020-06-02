@@ -6,15 +6,14 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
-        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
-        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<div class=\"text\">\n  <form class=\"new_edit_cancelled_form\"
-        id=\"new_edit_cancelled_form\" action=\"/waste_exemptions_engine/t6fdjSGvYuuBQbLKHQZU6dPg/edit-cancelled\"
-        accept-charset=\"UTF-8\" method=\"post\"><input name=\"utf8\" type=\"hidden\"
-        value=\"&#x2713;\" />\n    \n\n    <h1 class=\"heading-large\">Edit cancelled</h1>\n\n
-        \   <p>Your changes have been discarded. The registration was not updated.</p>\n\n
-        \   <div class=\"form-group\">\n      <a class=\"button\" href=\"/\">View
-        registration</a>\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
+        data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
+        \ <form class=\"new_edit_cancelled_form\" id=\"new_edit_cancelled_form\" action=\"/waste_exemptions_engine/11ecQG7ncuTziXWkk5oweiCo/edit-cancelled\"
+        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">Edit
+        cancelled</h1>\n\n    <p>Your changes have been discarded. The registration
+        was not updated.</p>\n\n    <div class=\"form-group\">\n      <a class=\"button\"
+        href=\"/\">View registration</a>\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -30,7 +29,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Apr 2020 10:55:40 GMT
+      - Tue, 02 Jun 2020 10:36:40 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -61,7 +60,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X2VkaXRfY2FuY2VsbGVkX2Zvcm1cIiBpZD1cIm5ld19lZGl0X2NhbmNlbGxlZF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3Q2ZmRqU0d2WXV1QlFiTEtIUVpVNmRQZy9lZGl0LWNhbmNlbGxlZFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+PGlucHV0IG5hbWU9XCJ1dGY4XCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiJiN4MjcxMztcIiAvPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPkVkaXQgY2FuY2VsbGVkPC9oMT5cblxuICAgIDxwPllvdXIgY2hhbmdlcyBoYXZlIGJlZW4gZGlzY2FyZGVkLiBUaGUgcmVnaXN0cmF0aW9uIHdhcyBub3QgdXBkYXRlZC48L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGEgY2xhc3M9XCJidXR0b25cIiBocmVmPVwiL1wiPlZpZXcgcmVnaXN0cmF0aW9uPC9hPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 10:55:37 GMT
-recorded_with: VCR 5.1.0
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X2VkaXRfY2FuY2VsbGVkX2Zvcm1cIiBpZD1cIm5ld19lZGl0X2NhbmNlbGxlZF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lLzExZWNRRzduY3VUemlYV2trNW93ZWlDby9lZGl0LWNhbmNlbGxlZFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+RWRpdCBjYW5jZWxsZWQ8L2gxPlxuXG4gICAgPHA+WW91ciBjaGFuZ2VzIGhhdmUgYmVlbiBkaXNjYXJkZWQuIFRoZSByZWdpc3RyYXRpb24gd2FzIG5vdCB1cGRhdGVkLjwvcD5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8YSBjbGFzcz1cImJ1dHRvblwiIGhyZWY9XCIvXCI+VmlldyByZWdpc3RyYXRpb248L2E+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Tue, 02 Jun 2020 10:36:40 GMT
+recorded_with: VCR 6.0.0

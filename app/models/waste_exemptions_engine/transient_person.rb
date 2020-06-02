@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class TransientPerson < ActiveRecord::Base
+  class TransientPerson < ApplicationRecord
 
     self.table_name = "transient_people"
 
-    belongs_to :transient_registration
+    belongs_to :transient_registration, optional: true
 
     enum person_type: { partner: 0 }
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ErrorsController < ApplicationController
+  class ErrorsController < ::WasteExemptionsEngine::ApplicationController
     def show
       render(
         template: file_for(template),
@@ -15,6 +15,22 @@ module WasteExemptionsEngine
     def error_code
       @error_code ||= params[:status]
     end
+
+    # def render_error
+
+    #   # --- FOR RAILS 4: ---
+    #   ## @exception = env["action_dispatch.exception"]
+    #   ## exception_wrapper = ActionDispatch::ExceptionWrapper.new(env, @exception)
+
+    #   # --- FOR RAILS 5: ---
+    #   @exception = request.env["action_dispatch.exception"]
+    #   exception_wrapper = ActionDispatch::ExceptionWrapper.new(request.env['action_dispatch.backtrace_cleaner'], @exception)
+
+    #   trace = exception_wrapper.application_trace
+
+    #   # Custom notifications and stuff...
+
+    # end
 
     def template_exists(name)
       File.exist?(template_path(name))
@@ -36,7 +52,7 @@ module WasteExemptionsEngine
     end
 
     def exception
-      env["action_dispatch.exception"]
+      request.env["action_dispatch.exception"]
     end
   end
 end

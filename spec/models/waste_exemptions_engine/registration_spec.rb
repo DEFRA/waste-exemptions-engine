@@ -232,7 +232,7 @@ module WasteExemptionsEngine
         it "includes related addresses in the JSON" do
           street_address = Faker::Address.street_address
 
-          registration.contact_address.update_attributes(street_address: street_address)
+          registration.contact_address.update(street_address: street_address)
           registration.reload.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(street_address)
@@ -241,7 +241,7 @@ module WasteExemptionsEngine
         it "includes related people in the JSON" do
           first_name = Faker::Name.first_name
 
-          registration.people.first.update_attributes(first_name: first_name)
+          registration.people.first.update(first_name: first_name)
           registration.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(first_name)
@@ -250,7 +250,7 @@ module WasteExemptionsEngine
         it "includes related registration_exemptions in the JSON" do
           expected_message = Faker::Lorem.sentence
 
-          registration.registration_exemptions.first.update_attributes(deregistration_message: expected_message)
+          registration.registration_exemptions.first.update(deregistration_message: expected_message)
           registration.paper_trail.save_with_version
 
           expect(registration.versions.last.json.to_s).to include(expected_message)
