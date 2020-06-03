@@ -3,7 +3,7 @@
 module WasteExemptionsEngine
   class BaseService
     def self.run(options = nil)
-      if options.is_a?(String)
+      if options && !options.is_a?(Hash)
         new.run(options)
       elsif options
         new.run(**options)

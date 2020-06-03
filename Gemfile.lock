@@ -1,3 +1,20 @@
+GIT
+  remote: https://github.com/DEFRA/defra-ruby-alert
+  revision: 8a1ab195a9fa4991d76e183385d9c356253b4a98
+  branch: update-airbrake-version
+  specs:
+    defra_ruby_alert (1.0.0)
+      airbrake
+
+GIT
+  remote: https://github.com/DEFRA/defra-ruby-email
+  revision: 4fc72aee2f684ec9fd0147041f5e2d7c7055515b
+  branch: rails-upgrade
+  specs:
+    defra_ruby_email (0.2.0)
+      rails (~> 6.0.3.1)
+      sprockets (~> 3.7.2)
+
 PATH
   remote: .
   specs:
@@ -19,19 +36,6 @@ PATH
       uk_postcode
       validates_email_format_of
       wicked_pdf
-
-PATH
-  remote: /Users/cintamanipuddu/projects/defra-ruby-alert
-  specs:
-    defra_ruby_alert (1.0.0)
-      airbrake
-
-PATH
-  remote: /Users/cintamanipuddu/projects/defra-ruby-email
-  specs:
-    defra_ruby_email (0.2.0)
-      rails (~> 6.0.3.1)
-      sprockets (~> 3.7.2)
 
 GEM
   remote: https://rubygems.org/
