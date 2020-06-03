@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_112625) do
+ActiveRecord::Schema.define(version: 2020_05_19_114115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_confirmation_letters_exports", id: :serial, force: :cascade do |t|
+    t.date "created_on"
+    t.string "file_name"
+    t.integer "number_of_letters"
+    t.string "printed_by"
+    t.date "printed_on"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ad_renewal_letters_exports", id: :serial, force: :cascade do |t|
     t.date "expires_on"
