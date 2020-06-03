@@ -69,7 +69,11 @@ module WasteExemptionsEngine
                                                            "registration_id",
                                                            "created_at",
                                                            "updated_at")
-            expect(renewing_registration.people[index].attributes).to include(copyable_attributes)
+            person = renewing_registration.people.find do |person|
+              (person.attributes.to_a & copyable_attributes.to_a) == copyable_attributes.to_a
+            end
+
+            expect(person).to be_present
           end
         end
 
