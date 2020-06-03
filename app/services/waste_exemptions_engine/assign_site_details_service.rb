@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class AssignSiteDetailsService < BaseService
     attr_reader :address
+
     delegate :x, :y, :grid_reference, :postcode, :area, to: :address
 
     def run(address:)

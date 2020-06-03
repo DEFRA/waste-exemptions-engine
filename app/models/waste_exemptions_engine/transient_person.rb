@@ -5,7 +5,7 @@ module WasteExemptionsEngine
 
     self.table_name = "transient_people"
 
-    belongs_to :transient_registration, optional: true
+    belongs_to :transient_registration
 
     enum person_type: { partner: 0 }
 

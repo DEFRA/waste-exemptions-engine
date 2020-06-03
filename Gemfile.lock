@@ -31,7 +31,6 @@ PATH
       phonelib
       rails (~> 6.0.3.1)
       rest-client (~> 2.0)
-      sassc-rails
       sprockets
       uk_postcode
       validates_email_format_of

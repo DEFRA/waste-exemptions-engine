@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateExemptions < ActiveRecord::Migration
+class CreateExemptions < ActiveRecord::Migration[4.2]
   def change
     create_table :exemptions do |t|
       t.integer :category

@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     include CanBeLocatedByGridReference
 
-    belongs_to :transient_registration, optional: true
+    belongs_to :transient_registration
 
     enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
     enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }

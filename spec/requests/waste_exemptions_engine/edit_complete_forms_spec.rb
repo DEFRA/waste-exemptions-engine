@@ -42,7 +42,6 @@ module WasteExemptionsEngine
 
           get request_path
 
-
           expect(registration.reload.versions.last.whodunnit).to eq("public user")
         end
       end

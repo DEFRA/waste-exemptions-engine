@@ -6,8 +6,8 @@ module WasteExemptionsEngine
 
     include CanActivateExemption
 
-    belongs_to :transient_registration, optional: true
-    belongs_to :exemption, optional: true
+    belongs_to :transient_registration
+    belongs_to :exemption
 
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
 

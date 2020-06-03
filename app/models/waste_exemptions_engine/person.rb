@@ -5,6 +5,6 @@ module WasteExemptionsEngine
 
     self.table_name = "people"
 
-    belongs_to :registration, optional: true
+    belongs_to :registration
   end
 end

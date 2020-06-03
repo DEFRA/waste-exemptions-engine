@@ -1,4 +1,4 @@
-class AddRenewTokenToRegistration < ActiveRecord::Migration
+class AddRenewTokenToRegistration < ActiveRecord::Migration[4.2]
   def change
     add_column :registrations, :renew_token, :string
     add_index :registrations, :renew_token, unique: true

@@ -4,7 +4,7 @@
 # trail records from the previous version of the service. Hence we have copied
 # the code from the `create_versions` migration as we want a table structured
 # in exactly the same way.
-class CreateVersionArchives < ActiveRecord::Migration
+class CreateVersionArchives < ActiveRecord::Migration[4.2]
 
   # The largest text column available in all supported RDBMS is
   # 1024^3 - 1 bytes, roughly one gibibyte.  We specify a size

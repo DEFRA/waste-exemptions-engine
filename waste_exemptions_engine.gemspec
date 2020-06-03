@@ -24,14 +24,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency "has_secure_token"
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "sassc-rails"
   s.add_dependency "rails", "~> 6.0.3.1"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.0"
 
   # sprockets-4.0.0 requires ruby version >= 2.5.0, which is incompatible with the current version, ruby 2.4.2p198
-  s.add_dependency "sprockets" #, "~> 3.7.2"
+  s.add_dependency "sprockets"
 
   # Used to convert national grid references to easting and northing coordinates
   s.add_dependency "os_map_ref", "~> 0.5"
@@ -88,7 +87,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "parallel_tests"
   s.add_development_dependency "pdf-reader"
   s.add_development_dependency "pry-byebug"
-  s.add_development_dependency "rspec-rails"#, "~> 3.8.0"
+  s.add_development_dependency "rspec-rails"
   s.add_development_dependency "simplecov", "~> 0.17.1"
   s.add_development_dependency "timecop"
   s.add_development_dependency "vcr"

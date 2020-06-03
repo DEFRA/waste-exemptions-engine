@@ -16,22 +16,6 @@ module WasteExemptionsEngine
       @error_code ||= params[:status]
     end
 
-    # def render_error
-
-    #   # --- FOR RAILS 4: ---
-    #   ## @exception = env["action_dispatch.exception"]
-    #   ## exception_wrapper = ActionDispatch::ExceptionWrapper.new(env, @exception)
-
-    #   # --- FOR RAILS 5: ---
-    #   @exception = request.env["action_dispatch.exception"]
-    #   exception_wrapper = ActionDispatch::ExceptionWrapper.new(request.env['action_dispatch.backtrace_cleaner'], @exception)
-
-    #   trace = exception_wrapper.application_trace
-
-    #   # Custom notifications and stuff...
-
-    # end
-
     def template_exists(name)
       File.exist?(template_path(name))
     end
