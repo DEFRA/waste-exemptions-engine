@@ -16,11 +16,3 @@ gemspec
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
-
-gem "defra_ruby_email",
-    git: "https://github.com/DEFRA/defra-ruby-email",
-    branch: "rails-upgrade"
-
-gem "defra_ruby_alert",
-    git: "https://github.com/DEFRA/defra-ruby-alert",
-    branch: "update-airbrake-version"

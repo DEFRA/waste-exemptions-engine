@@ -40,16 +40,14 @@ Gem::Specification.new do |s|
   s.add_dependency "defra_ruby_address"
 
   # # defra_ruby_alert is a gem we created to manage airbrake across projects
-  # TODO: Restpre me with version
-  # s.add_dependency "defra_ruby_alert", "~> 1.0.0"
+  s.add_dependency "defra_ruby_alert"
 
   # Used to identify the EA area for a registration
   s.add_dependency "defra_ruby_area"
 
   # Used as part of testing. When enabled adds a /last-email route from which
   # details of the last email sent by the app can be accessed
-  # TODO: restore me with version
-  # s.add_dependency "defra_ruby_email", branch: "rails-upgrade"
+  s.add_dependency "defra_ruby_email"
 
   s.add_dependency "pg"
 
