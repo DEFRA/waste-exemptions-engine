@@ -64,12 +64,17 @@ module WasteExemptionsEngine
         end
 
         it "copies the people from the registration" do
-          registration.people.each_with_index do |person, index|
+          registration.people.each do |person|
             copyable_attributes = person.attributes.except("id",
                                                            "registration_id",
                                                            "created_at",
                                                            "updated_at")
-            expect(renewing_registration.people[index].attributes).to include(copyable_attributes)
+
+            renewing_person = renewing_registration.people.find do |find_person|
+              (find_person.attributes.to_a & copyable_attributes.to_a) == copyable_attributes.to_a
+            end
+
+            expect(renewing_person).to be_present
           end
         end
 

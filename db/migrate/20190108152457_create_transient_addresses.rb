@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateTransientAddresses < ActiveRecord::Migration
+class CreateTransientAddresses < ActiveRecord::Migration[4.2]
   # rubocop:disable Metrics/MethodLength
   def change
     create_table :transient_addresses do |t|

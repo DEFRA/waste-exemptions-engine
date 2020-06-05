@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class TransientRegistrationExemption < ActiveRecord::Base
+  class TransientRegistrationExemption < ApplicationRecord
     self.table_name = "transient_registration_exemptions"
 
     include CanActivateExemption

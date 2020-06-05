@@ -38,8 +38,7 @@ module WasteExemptionsEngine
 
     def submit(attributes)
       attributes = strip_whitespace(attributes)
-
-      transient_registration.assign_attributes(attributes)
+      transient_registration.attributes = attributes
 
       return transient_registration.save! if valid?
 

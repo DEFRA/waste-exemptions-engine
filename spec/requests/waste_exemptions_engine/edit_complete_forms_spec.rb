@@ -38,8 +38,10 @@ module WasteExemptionsEngine
 
       context "when the host application does not have a current_user" do
         it "assigns the correct whodunnit to the registration version", versioning: true do
+          registration = form.transient_registration.registration
+
           get request_path
-          registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
+
           expect(registration.reload.versions.last.whodunnit).to eq("public user")
         end
       end

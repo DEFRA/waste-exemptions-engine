@@ -21,7 +21,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
 
       it "includes validation errors for the form data" do
         invalid_form_data.each do |invalid_data|
-          post post_request_path, form_factory => invalid_data
+          post post_request_path, params: { form_factory => invalid_data }
 
           invalid_form = build(form_factory)
           invalid_form.submit(ActionController::Parameters.new(invalid_data).permit!)
@@ -43,7 +43,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
 
       it "renders the start form and returns a #{status_code} status code" do
-        post modified_token_post_request_path, request_body
+        post modified_token_post_request_path, params: request_body
 
         expect(response.location).to include("/waste_exemptions_engine/start")
         expect(response.code).to eq(status_code.to_s)
@@ -59,7 +59,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       # If this test fails for a given form because the status is 200 instead of 303 it is most
       # likely because the form object is not valid.
       it "responds to the POST request with a #{status_code} status code" do
-        post post_request_path, good_request_body
+        post post_request_path, params: good_request_body
         expect(response.code).to eq(status_code.to_s)
       end
     end
@@ -77,9 +77,9 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
 
       before do
         if transient_registration.is_a?(WasteExemptionsEngine::EditRegistration)
-          transient_registration.update_attributes!(workflow_state: :edit_form)
+          transient_registration.update!(workflow_state: :edit_form)
         else
-          transient_registration.update_attributes!(workflow_state: :register_in_wales_form)
+          transient_registration.update!(workflow_state: :register_in_wales_form)
         end
       end
 
@@ -89,7 +89,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
         trans_reg_id = incorrect_form.transient_registration.id
         expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(incorrect_workflow_state.to_s)
 
-        post post_request_path, bad_request_body
+        post post_request_path, params: bad_request_body
 
         if transient_registration.is_a?(WasteExemptionsEngine::EditRegistration)
           expect(response.location).to include(edit_forms_path(token: form.token))

@@ -26,7 +26,7 @@ module WasteExemptionsEngine
       # A successful POST request redirects to the next form in the work flow. We have chosen to
       # differentiate 'good' rediection as 303 and 'bad' redirection as 302.
       it "responds to the POST request with a #{status_code} status code" do
-        post request_path, request_body
+        post request_path, params: request_body
         expect(response.code).to eq(status_code.to_s)
       end
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class Address < ActiveRecord::Base
+  class Address < ApplicationRecord
     include CanBeLocatedByGridReference
 
     self.table_name = "addresses"
@@ -13,7 +13,7 @@ module WasteExemptionsEngine
 
     scope :missing_easting_or_northing, -> { where("x IS NULL OR y IS NULL") }
     scope :with_postcode, -> { where.not(postcode: [nil, ""]) }
-    scope :with_valid_easting_and_northing, -> { where.not(x: [nil, 0.00], y: [nil, 0.00]) }
+    scope :with_valid_easting_and_northing, -> { where.not(x: [nil, 0.00]).where.not(y: [nil, 0.00]) }
     scope :missing_area, -> { where(area: [nil, ""]) }
   end
 end

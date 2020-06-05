@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RenewsController < ApplicationController
+  class RenewsController < ::WasteExemptionsEngine::ApplicationController
     include CanRedirectFormToCorrectPath
 
     before_action :validate_renew_token

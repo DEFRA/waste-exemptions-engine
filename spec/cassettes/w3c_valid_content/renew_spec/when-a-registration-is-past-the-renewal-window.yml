@@ -6,11 +6,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
-        media=\"all\" href=\"/stylesheets/application.css\" data-turbolinks-track=\"true\"
-        />\n  <script src=\"/javascripts/application.js\" data-turbolinks-track=\"true\"></script>\n
-        \ \n</head>\n<body>\n\n<div class=\"text\">\n  <h1 class=\"heading-large\">That
-        renewal has expired</h1>\n\n  <p>Your registration has expired, so you cannot
-        renew.</p>\n\n  <p><a class=\"button\" href=\"/waste_exemptions_engine/start\">Register
+        media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
+        data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
+        \ <h1 class=\"heading-large\">That renewal has expired</h1>\n\n  <p>Your registration
+        has expired, so you cannot renew.</p>\n\n  <p><a class=\"button\" href=\"/waste_exemptions_engine/start\">Register
         your exemptions again</a></p>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
@@ -27,7 +27,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Apr 2020 10:55:48 GMT
+      - Tue, 02 Jun 2020 10:36:27 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -58,7 +58,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9zdHlsZXNoZWV0cy9hcHBsaWNhdGlvbi5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvamF2YXNjcmlwdHMvYXBwbGljYXRpb24uanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5UaGF0IHJlbmV3YWwgaGFzIGV4cGlyZWQ8L2gxPlxuXG4gIDxwPllvdXIgcmVnaXN0cmF0aW9uIGhhcyBleHBpcmVkLCBzbyB5b3UgY2Fubm90IHJlbmV3LjwvcD5cblxuICA8cD48YSBjbGFzcz1cImJ1dHRvblwiIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc3RhcnRcIj5SZWdpc3RlciB5b3VyIGV4ZW1wdGlvbnMgYWdhaW48L2E+PC9wPlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 10:55:46 GMT
-recorded_with: VCR 5.1.0
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5UaGF0IHJlbmV3YWwgaGFzIGV4cGlyZWQ8L2gxPlxuXG4gIDxwPllvdXIgcmVnaXN0cmF0aW9uIGhhcyBleHBpcmVkLCBzbyB5b3UgY2Fubm90IHJlbmV3LjwvcD5cblxuICA8cD48YSBjbGFzcz1cImJ1dHRvblwiIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc3RhcnRcIj5SZWdpc3RlciB5b3VyIGV4ZW1wdGlvbnMgYWdhaW48L2E+PC9wPlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Tue, 02 Jun 2020 10:36:28 GMT
+recorded_with: VCR 6.0.0

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class TransientRegistration < ActiveRecord::Base
+  class TransientRegistration < ApplicationRecord
     include CanHaveRegistrationAttributes
 
     self.table_name = "transient_registrations"
@@ -19,9 +19,9 @@ module WasteExemptionsEngine
     has_many :transient_addresses, dependent: :destroy
 
     # In this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
-    has_one :site_address, -> { where(address_type: 3) }, class_name: "TransientAddress"
-    has_one :contact_address, -> { where(address_type: 2) }, class_name: "TransientAddress"
-    has_one :operator_address, -> { where(address_type: 1) }, class_name: "TransientAddress"
+    has_one :site_address, -> { where(address_type: 3) }, class_name: "TransientAddress", dependent: :destroy
+    has_one :contact_address, -> { where(address_type: 2) }, class_name: "TransientAddress", dependent: :destroy
+    has_one :operator_address, -> { where(address_type: 1) }, class_name: "TransientAddress", dependent: :destroy
     accepts_nested_attributes_for :site_address
     accepts_nested_attributes_for :contact_address
     accepts_nested_attributes_for :operator_address

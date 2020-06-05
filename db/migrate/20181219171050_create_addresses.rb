@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateAddresses < ActiveRecord::Migration
+class CreateAddresses < ActiveRecord::Migration[4.2]
   # rubocop:disable Metrics/MethodLength
   def change
     create_table :addresses do |t|

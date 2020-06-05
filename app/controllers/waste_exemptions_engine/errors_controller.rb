@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ErrorsController < ApplicationController
+  class ErrorsController < ::WasteExemptionsEngine::ApplicationController
     def show
       render(
         template: file_for(template),
@@ -36,7 +36,7 @@ module WasteExemptionsEngine
     end
 
     def exception
-      env["action_dispatch.exception"]
+      request.env["action_dispatch.exception"]
     end
   end
 end

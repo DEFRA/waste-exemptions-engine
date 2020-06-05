@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateTransientRegistrationExemptions < ActiveRecord::Migration
+class CreateTransientRegistrationExemptions < ActiveRecord::Migration[4.2]
   def change
     create_table :transient_registration_exemptions do |t|
       t.string :state
