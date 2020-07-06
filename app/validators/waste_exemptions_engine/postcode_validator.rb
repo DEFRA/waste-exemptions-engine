@@ -4,6 +4,8 @@ require "uk_postcode"
 
 module WasteExemptionsEngine
   class PostcodeValidator < ActiveModel::EachValidator
+    include CanAddValidationErrors
+
     def validate_each(record, attribute, value)
       return unless value_is_present?(record, attribute, value)
       return unless value_uses_correct_format?(record, attribute, value)
@@ -16,14 +18,14 @@ module WasteExemptionsEngine
     def value_is_present?(record, attribute, value)
       return true if value.present?
 
-      record.errors[attribute] << error_message(record, attribute, "blank")
+      add_validation_error(record, attribute, :blank)
       false
     end
 
     def value_uses_correct_format?(record, attribute, value)
       return true if UKPostcode.parse(value).full_valid?
 
-      record.errors[attribute] << error_message(record, attribute, "wrong_format")
+      add_validation_error(record, attribute, :wrong_format)
       false
     end
 
@@ -33,17 +35,12 @@ module WasteExemptionsEngine
       return true if response.successful?
 
       if response.error.is_a?(DefraRuby::Address::NoMatchError)
-        record.errors[attribute] << error_message(record, attribute, "no_results")
+        add_validation_error(record, attribute, :no_results)
         false
       else
         record.address_finder_errored!
         true
       end
-    end
-
-    def error_message(record, attribute, error)
-      class_name = record.class.to_s.underscore
-      I18n.t("activemodel.errors.models.#{class_name}.attributes.#{attribute}.#{error}")
     end
   end
 end

@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     def validate_each(record, attribute, value)
       return true if value.present? && value.length.positive?
 
-      record.errors[attribute] << error_message(record, attribute, "inclusion")
+      add_validation_error(record, attribute, :inclusion)
       false
     end
   end

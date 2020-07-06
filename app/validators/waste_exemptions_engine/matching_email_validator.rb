@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       email_address_to_confirm = record.send(options[:compare_to])
       return true if value == email_address_to_confirm
 
-      record.errors[attribute] << error_message(record, attribute, "does_not_match")
+      add_validation_error(record, attribute, :does_not_match)
       false
     end
   end

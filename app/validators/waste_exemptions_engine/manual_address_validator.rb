@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ManualAddressValidator < ActiveModel::EachValidator
+    include CanAddValidationErrors
     include CanValidatePresence
     include CanValidateLength
 
@@ -21,13 +22,6 @@ module WasteExemptionsEngine
       end
 
       record.errors.empty?
-    end
-
-    private
-
-    def error_message(record, attribute, error)
-      class_name = record.class.to_s.underscore
-      I18n.t("activemodel.errors.models.#{class_name}.attributes.#{attribute}.#{error}")
     end
   end
 end

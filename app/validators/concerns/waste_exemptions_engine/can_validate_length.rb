@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       def value_is_not_too_long?(record, attribute, value, max_length)
         return true if value.length <= max_length
 
-        record.errors[attribute] << error_message(record, attribute, "too_long")
+        add_validation_error(record, attribute, :too_long)
         false
       end
     end
