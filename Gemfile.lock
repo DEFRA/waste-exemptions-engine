@@ -7,7 +7,7 @@ PATH
       defra_ruby_alert
       defra_ruby_area
       defra_ruby_email
-      defra_ruby_validators (~> 2.2.0)
+      defra_ruby_validators
       has_secure_token
       high_voltage (~> 3.1)
       os_map_ref (~> 0.5)
@@ -113,7 +113,7 @@ GEM
       sprockets (~> 3.7.2)
     defra_ruby_style (0.2.2)
       rubocop (~> 0.82)
-    defra_ruby_validators (2.2.0)
+    defra_ruby_validators (2.4.1)
       activemodel
       os_map_ref
       phonelib
@@ -337,7 +337,7 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.1.0)
       activesupport
-    zeitwerk (2.3.0)
+    zeitwerk (2.3.1)
 
 PLATFORMS
   ruby
