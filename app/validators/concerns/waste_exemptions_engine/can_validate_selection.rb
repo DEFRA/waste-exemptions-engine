@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       def value_is_included?(record, attribute, value, valid_options)
         return true if value.present? && valid_options.include?(value)
 
-        record.errors[attribute] << error_message(record, attribute, "inclusion")
+        add_validation_error(record, attribute, :inclusion)
         false
       end
     end

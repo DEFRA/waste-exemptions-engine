@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       def value_is_present?(record, attribute, value)
         return true if value.present?
 
-        record.errors[attribute] << error_message(record, attribute, "blank")
+        add_validation_error(record, attribute, :blank)
         false
       end
     end

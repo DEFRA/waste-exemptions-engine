@@ -5,8 +5,7 @@ module WasteExemptionsEngine
     def validate_each(record, attribute, value)
       return true if value && (value[:uprn].present? || value[:postcode].present?)
 
-      record.errors[attribute] << error_message(record, attribute, "blank")
-
+      add_validation_error(record, attribute, :blank)
       false
     end
   end

@@ -19,7 +19,7 @@ module WasteExemptionsEngine
       # Name fields must contain only letters, spaces, commas, full stops, hyphens and apostrophes
       return true if value.match?(/\A[-a-z\s,.']+\z/i)
 
-      record.errors[attribute] << error_message(record, attribute, "invalid")
+      add_validation_error(record, attribute, :invalid)
       false
     end
   end
