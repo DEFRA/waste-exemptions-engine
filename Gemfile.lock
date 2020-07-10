@@ -103,7 +103,7 @@ GEM
     database_cleaner (1.8.5)
     defra_ruby_address (0.1.0)
       rest-client (~> 2.0)
-    defra_ruby_alert (2.1.0)
+    defra_ruby_alert (2.1.1)
       airbrake
     defra_ruby_area (2.0.0)
       nokogiri (~> 1.10.4)
