@@ -30,5 +30,8 @@ WasteExemptionsEngine.configure do |config|
   config.airbrake_host = "http://localhost"
   config.airbrake_project_key = "abcde12345"
   config.airbrake_blocklist = [/password/i, /authorization/i]
+
+  # Notify config
+  config.notify_api_key = ENV["NOTIFY_API_KEY"]
 end
 WasteExemptionsEngine.start_airbrake

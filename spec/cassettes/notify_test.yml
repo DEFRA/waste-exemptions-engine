@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/email
+    body:
+      encoding: UTF-8
+      string: '{"email_address":"foo@example.com","template_id":"4ea25669-1203-4ed7-8f0f-45f0dcaa8199","personalisation":{"name":"Foo"}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.3.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 11 Aug 2020 13:28:58 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-B3-Spanid:
+      - b964a5388a07c6d5
+      X-B3-Traceid:
+      - b964a5388a07c6d5
+      X-Vcap-Request-Id:
+      - 338c0ecb-2a9d-486c-5ddc-05ea5e1bb670
+      Content-Length:
+      - '547'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"This is a test message for Foo.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"This
+        is a test message"},"id":"eeaaccb2-68bb-4e18-8bc4-30d80d08dbdb","reference":null,"scheduled_for":null,"template":{"id":"4ea25669-1203-4ed7-8f0f-45f0dcaa8199","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/4ea25669-1203-4ed7-8f0f-45f0dcaa8199","version":2},"uri":"https://api.notifications.service.gov.uk/v2/notifications/eeaaccb2-68bb-4e18-8bc4-30d80d08dbdb"}
+
+'
+  recorded_at: Tue, 11 Aug 2020 13:28:58 GMT
+recorded_with: VCR 6.0.0

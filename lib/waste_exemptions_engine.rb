@@ -43,6 +43,9 @@ module WasteExemptionsEngine
     # Companies house API config
     attr_reader :companies_house_host, :companies_house_api_key
 
+    # Notify config
+    attr_accessor :notify_api_key
+
     def initialize
       @service_name = "Waste Exemptions Service"
       @years_before_expiry = 3
