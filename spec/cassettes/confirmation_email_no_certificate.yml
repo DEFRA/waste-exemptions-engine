@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/email
+    body:
+      encoding: UTF-8
+      string: '{"email_address":"arturo@example.net","template_id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","personalisation":{"reference":"WEX000002"}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.3.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 28 Aug 2020 11:38:37 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-B3-Spanid:
+      - 5acbd3bd20c44648
+      X-B3-Traceid:
+      - 5acbd3bd20c44648
+      X-Vcap-Request-Id:
+      - 7171b556-0e7a-47d3-5e20-812344dcba36
+      Content-Length:
+      - '1660'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"# Registration complete\r\n\r\nThe registration
+        number is WEX000002\r\n\r\nThis is not a permit.\r\n\r\n# Responsibilities\r\n\r\nThe
+        business or organisation responsible for carrying out the exempt waste operations
+        agrees to:\r\n\r\n* comply with all limits on waste types and quantities\r\n*
+        comply with all conditions governing how waste must be stored, handled and
+        treated\r\n* carry out the operations without endangering human health or
+        harming the environment\r\n\r\nFor the operations to remain exempt they must
+        be carried out without:\r\n\r\n* causing risk to water, air, soil, plants
+        or animals\r\n* causing a nuisance through noise and odours\r\n* negatively
+        affecting the countryside or places of special interest\r\n\r\nIn sensitive
+        locations extra controls may be needed over and above those set out in the
+        exemptions to make sure this happens.\r\n\r\nIf you have enquiries please
+        contact the Environment Agency helpline: 03708 506506.\r\n\r\n---\r\n\r\nHow
+        we use your personal information:\r\nhttps://wasteexemptions.service.gov.uk/pages/privacy\r\n\r\nThis
+        is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
+        exemptions registration WEX000002 completed"},"id":"8fe59ae8-c122-4d99-ab77-69bbd3071b3a","reference":null,"scheduled_for":null,"template":{"id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/8fcf5d04-944f-4cd1-b261-962fedd3859f","version":1},"uri":"https://api.notifications.service.gov.uk/v2/notifications/8fe59ae8-c122-4d99-ab77-69bbd3071b3a"}
+
+'
+  recorded_at: Fri, 28 Aug 2020 11:38:37 GMT
+recorded_with: VCR 6.0.0
