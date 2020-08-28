@@ -75,7 +75,7 @@ module WasteExemptionsEngine
 
     def send_confirmation_email
       distinct_recipients.each do |recipient|
-        ConfirmationMailer.send_confirmation_email(@registration, recipient).deliver_now
+        ConfirmationEmailService.run(registration: @registration, recipient: recipient)
       end
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)

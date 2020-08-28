@@ -109,23 +109,23 @@ module WasteExemptionsEngine
           expect(NewRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
-        it "sends a confirmation email to both the applicant and the contant emails" do
-          old_emails_sent_count = ActionMailer::Base.deliveries.count
+        it "sends a confirmation email to both the applicant and the contact emails" do
+          expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
+                                                                 recipient: new_registration.applicant_email)
+          expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
+                                                                 recipient: new_registration.contact_email)
 
           run_service
-
-          expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 2)
         end
 
         context "when applicant and contact emails coincide" do
           let(:new_registration) { create(:new_registration, :complete, :same_applicant_and_contact_email) }
 
           it "only sends one confirmation email" do
-            old_emails_sent_count = ActionMailer::Base.deliveries.count
+            expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
+                                                                   recipient: new_registration.applicant_email).once
 
             run_service
-
-            expect(ActionMailer::Base.deliveries.count).to eq(old_emails_sent_count + 1)
           end
         end
 
