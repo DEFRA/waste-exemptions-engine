@@ -23,21 +23,21 @@ module WasteExemptionsEngine
     def options_with_certificate
       {
         email_address: @recipient,
-                       template_id: "98d5dcee-ea29-415f-952e-b8e287555e10",
-                       personalisation: {
-                         reference: @registration.reference,
-                         link_to_file: Notifications.prepare_upload(prepare_pdf_certificate)
-                       }
+        template_id: "98d5dcee-ea29-415f-952e-b8e287555e10",
+        personalisation: {
+          reference: @registration.reference,
+          link_to_file: Notifications.prepare_upload(prepare_pdf_certificate)
+        }
       }
     end
 
     def options_without_certificate
       {
         email_address: @recipient,
-                       template_id: "8fcf5d04-944f-4cd1-b261-962fedd3859f",
-                       personalisation: {
-                         reference: @registration.reference
-                       }
+        template_id: "8fcf5d04-944f-4cd1-b261-962fedd3859f",
+        personalisation: {
+          reference: @registration.reference
+        }
       }
     end
 

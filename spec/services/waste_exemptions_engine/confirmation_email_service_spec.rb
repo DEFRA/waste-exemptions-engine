@@ -12,7 +12,7 @@ module WasteExemptionsEngine
                                      recipient: recipient)
       end
 
-      before { allow(registration).to receive(:reference).and_return("TEST")}
+      before { allow(registration).to receive(:reference).and_return("TEST") }
 
       context "when the PDF is generated" do
         it "sends an email" do
