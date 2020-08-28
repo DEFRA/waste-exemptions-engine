@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.notifications.service.gov.uk/v2/notifications/email
     body:
       encoding: UTF-8
-      string: '{"email_address":"arturo@example.net","template_id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","personalisation":{"reference":"WEX000002"}}'
+      string: '{"email_address":"norris.beatty@example.org","template_id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","personalisation":{"reference":"TEST"}}'
     headers:
       User-Agent:
       - NOTIFY-API-RUBY-CLIENT/5.3.0
@@ -31,25 +31,25 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 28 Aug 2020 11:38:37 GMT
+      - Fri, 28 Aug 2020 11:57:51 GMT
       Server:
       - nginx
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
       X-B3-Spanid:
-      - 5acbd3bd20c44648
+      - '011683a59c197035'
       X-B3-Traceid:
-      - 5acbd3bd20c44648
+      - '011683a59c197035'
       X-Vcap-Request-Id:
-      - 7171b556-0e7a-47d3-5e20-812344dcba36
+      - 8ad504d2-b99a-4821-4de6-23c78c93c2f9
       Content-Length:
-      - '1660'
+      - '1650'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: '{"content":{"body":"# Registration complete\r\n\r\nThe registration
-        number is WEX000002\r\n\r\nThis is not a permit.\r\n\r\n# Responsibilities\r\n\r\nThe
+        number is TEST\r\n\r\nThis is not a permit.\r\n\r\n# Responsibilities\r\n\r\nThe
         business or organisation responsible for carrying out the exempt waste operations
         agrees to:\r\n\r\n* comply with all limits on waste types and quantities\r\n*
         comply with all conditions governing how waste must be stored, handled and
@@ -63,8 +63,8 @@ http_interactions:
         contact the Environment Agency helpline: 03708 506506.\r\n\r\n---\r\n\r\nHow
         we use your personal information:\r\nhttps://wasteexemptions.service.gov.uk/pages/privacy\r\n\r\nThis
         is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
-        exemptions registration WEX000002 completed"},"id":"8fe59ae8-c122-4d99-ab77-69bbd3071b3a","reference":null,"scheduled_for":null,"template":{"id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/8fcf5d04-944f-4cd1-b261-962fedd3859f","version":1},"uri":"https://api.notifications.service.gov.uk/v2/notifications/8fe59ae8-c122-4d99-ab77-69bbd3071b3a"}
+        exemptions registration TEST completed"},"id":"8e6ea3ba-ca67-415a-8b0b-00d8c6a029d2","reference":null,"scheduled_for":null,"template":{"id":"8fcf5d04-944f-4cd1-b261-962fedd3859f","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/8fcf5d04-944f-4cd1-b261-962fedd3859f","version":1},"uri":"https://api.notifications.service.gov.uk/v2/notifications/8e6ea3ba-ca67-415a-8b0b-00d8c6a029d2"}
 
 '
-  recorded_at: Fri, 28 Aug 2020 11:38:37 GMT
+  recorded_at: Fri, 28 Aug 2020 11:57:51 GMT
 recorded_with: VCR 6.0.0
