@@ -76,10 +76,10 @@ module WasteExemptionsEngine
     def send_confirmation_email
       distinct_recipients.each do |recipient|
         ConfirmationEmailService.run(registration: @registration, recipient: recipient)
+      rescue StandardError => e
+        Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+        Rails.logger.error "Confirmation email error: #{e}"
       end
-    rescue StandardError => e
-      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
-      Rails.logger.error "Confirmation email error: #{e}"
     end
 
     def distinct_recipients
