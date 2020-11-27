@@ -9,10 +9,10 @@ jobs:
     env:
       ENV_VARIABLE_TEST_FEATURE: true
       NOTIFY_API_KEY: ${{ secrets.ACTIONS_NOTIFY_API_KEY }}
-      POSTGRES_HOST: localhost
-      POSTGRES_PASSWORD: pinafore
-      POSTGRES_PORT: 5432
-      POSTGRES_USERNAME: postgres
+      PG_HOST: localhost
+      PG_PASSWORD: pinafore
+      PG_PORT: 5432
+      PG_USERNAME: postgres
 
     # Service containers to run with `runner-job`
     services:
