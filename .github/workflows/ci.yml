@@ -51,7 +51,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install xvfb -y
-          sudo apt-get install ttf-liberation -y
           sudo apt-get install wkhtmltopdf -y
 
       - name: Database migrations
