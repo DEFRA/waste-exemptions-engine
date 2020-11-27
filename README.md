@@ -1,6 +1,6 @@
 # Waste Exemptions Engine
 
-[![Build Status](https://travis-ci.com/DEFRA/waste-exemptions-engine.svg?branch=main)](https://travis-ci.com/DEFRA/waste-exemptions-engine)
+![Build Status](https://github.com/DEFRA/waste-exemptions-engine/workflows/CI/badge.svg?branch=main)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_waste-exemptions-engine&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DEFRA_waste-exemptions-engine)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_waste-exemptions-engine&metric=coverage)](https://sonarcloud.io/dashboard?id=DEFRA_waste-exemptions-engine)
 [![security](https://hakiri.io/github/DEFRA/waste-exemptions-engine/main.svg)](https://hakiri.io/github/DEFRA/waste-exemptions-engine/main)
