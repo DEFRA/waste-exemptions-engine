@@ -1,4 +1,0 @@
-test:
-  adapter: postgresql
-  database: travis_ci_test_<%= ENV["TEST_ENV_NUMBER"] %>
-  username: postgres
