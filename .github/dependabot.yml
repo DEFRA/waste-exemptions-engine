@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  versioning-strategy: lockfile-only
+  ignore:
+  - dependency-name: aasm
+    versions:
+    - "< 6"
+    - ">= 5.a"
+  - dependency-name: rails
+    versions:
+    - "< 6"
+    - ">= 5.a"
