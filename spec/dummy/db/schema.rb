@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2020_06_29_141525) do
     t.text "guidance"
   end
 
+  create_table "feature_toggles", force: :cascade do |t|
+    t.string "key"
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people", id: :serial, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -260,13 +267,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_141525) do
     t.datetime "created_at"
     t.json "json"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  end
-
-  create_table "feature_toggles", force: :cascade do |t|
-    t.string "key"
-    t.boolean "active"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "addresses", "registrations"
