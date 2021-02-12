@@ -12,15 +12,15 @@ FactoryBot.define do
     end
 
     trait :with_active_exemptions do
-      registration_exemptions { build_list(:registration_exemption, 5, state: :active) }
+      registration_exemptions { build_list(:registration_exemption, 3, state: :active) }
     end
 
     trait :with_expired_exemptions do
-      registration_exemptions { build_list(:registration_exemption, 5, state: :expired) }
+      registration_exemptions { build_list(:registration_exemption, 3, state: :expired) }
     end
 
     trait :with_expired_and_active_exemptions do
-      registration_exemptions { build_list(:registration_exemption, 5, state: %i[expired active].sample) }
+      registration_exemptions { build_list(:registration_exemption, 3, state: %i[expired active].sample) }
     end
 
     trait :limited_company do
@@ -46,6 +46,7 @@ FactoryBot.define do
 
     trait :sole_trader do
       business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:sole_trader] }
+      company_no { nil }
     end
 
     trait :with_manual_site_address do
@@ -94,6 +95,22 @@ FactoryBot.define do
           build(:address, :contact_address, :postal),
           build(:address, :site_using_grid_reference, :auto)
         ]
+      end
+    end
+
+    trait :with_short_site_description do
+      addresses do
+        [build(:address, :operator_address),
+         build(:address, :contact_address),
+         build(:address, :site_using_grid_reference, :short_description)]
+      end
+    end
+
+    trait :with_long_site_description do
+      addresses do
+        [build(:address, :operator_address),
+         build(:address, :contact_address),
+         build(:address, :site_using_grid_reference, :long_description)]
       end
     end
   end

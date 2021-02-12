@@ -1,0 +1,41 @@
+en:
+  notify_confirmation_letter:
+    business_details:
+      type: "Business or organisation type:"
+      partner_enumerator: "Accountable partner %{count}:"
+      name:
+        soleTrader: "Business or organisation name:"
+        limitedCompany: "Registered name of the company:"
+        partnership: "Business or organisation name:"
+        limitedLiabilityPartnership: "Registered name of the partnership:"
+        localAuthority: "Business or organisation name:"
+        charity: "Business or organisation name:"
+      number:
+        soleTrader: "Registration number of the business or organisation:"
+        limitedCompany: "Registration number of the company:"
+        partnership: "Registration number of the business or organisation:"
+        limitedLiabilityPartnership: "Registration number of the partnership:"
+        localAuthority: "Registration number of the business or organisation:"
+        charity: "Registration number of the business or organisation:"
+      address:
+        soleTrader: "Business or organisation address:"
+        limitedCompany: "Registered address of the company:"
+        partnership: "Partnership address:"
+        limitedLiabilityPartnership: "Registered address of the partnership:"
+        localAuthority: "Business or organisation address:"
+        charity: "Business or organisation address:"
+    waste_operation_contact:
+      name: "Name:"
+      position: "Position:"
+      telephone: "Telephone:"
+      email: "Email:"
+    waste_operation_location:
+      address: "Waste operation location:"
+      ngr: "Grid reference:"
+      details: "Site details:"
+    waste_exemptions:
+      status:
+        active: "Expires on %{display_date}"
+        ceased: "Ceased on %{display_date}"
+        revoked: "Revoked on %{display_date}"
+        expired: "Expired on %{display_date}"

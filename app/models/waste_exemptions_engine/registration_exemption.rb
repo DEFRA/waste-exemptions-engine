@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class RegistrationExemption < ApplicationRecord
     self.table_name = "registration_exemptions"
 
+    include CanBeOrderedByStateAndExemptionId
+
     belongs_to :registration
     belongs_to :exemption
 

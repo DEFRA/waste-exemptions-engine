@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/letter
+    body:
+      encoding: UTF-8
+      string: '{"template_id":"81cae4bd-9f4c-4e14-bf3c-44573cee4f5b","personalisation":{"reference":"WEX000001","date_registered":"12
+        February 2021","applicant_name":"Lashaun Predovic","applicant_email":"merideth@example.com","applicant_phone":"01234567890","business_details":["Business
+        or organisation type: Limited company","Registered name of the company: Harvey,
+        Crona and Oberbrunner","Registration number of the company: 09360070","Registered
+        address of the company: Park Estates, 95738 Corkery Pine, United States of
+        America, Nienowchester, BS1 1AA"],"contact_name":"Veronika Frami","contact_details":["Name:
+        Veronika Frami","Position: attorney","Telephone: 01234567890","Email: kandy.jones@example.net"],"site_details":["Grid
+        reference: ST 58337 72855","Site details: Veritatis quia autem deserunt."],"exemption_details":["U1:
+        Dolore magnam consequatur autem. – Expires on 12 February 2024","U2: Quasi
+        nostrum unde vitae. – Expires on 12 February 2024","U3: Eligendi et hic pariatur.
+        – Expires on 12 February 2024"],"deregistered_exemption_details":[],"show_deregistered_exemption_details":false,"address_line_1":"Veronika
+        Frami","address_line_2":"Royal Place","address_line_3":"780 Antonetta Village","address_line_4":"Cape
+        Verde","address_line_5":"Vandervortstad","address_line_6":"BS1 1AA"}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.3.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 12 Feb 2021 17:53:42 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-B3-Spanid:
+      - c9491bd20455024c
+      X-B3-Traceid:
+      - c9491bd20455024c
+      X-Vcap-Request-Id:
+      - 03e60a1c-7872-4c92-6a84-040ed504d28d
+      Content-Length:
+      - '2670'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"Dear Veronika Frami\r\n\r\n# Your reference: WEX000001\r\n\r\nCheck
+        on the back of this sheet as this may print on more than one page.\r\n\r\n#
+        Your responsibilities\r\n\r\nThe business or organisation responsible for
+        carrying out the exempt waste operations agrees to:\r\n\r\n- comply with all
+        conditions governing how waste must be stored, handled and treated\r\n- carry
+        out the operations without endangering human health or harming the environment\r\n\r\nFor
+        the operations to remain exempt they must be carried out without:\r\n\r\n-
+        causing risk to water, air, soil, plants or animals\r\n- causing a nuisance
+        through noise and odours\r\n- negatively affecting the countryside or places
+        of special interest\r\n\r\nIn sensitive locations extra controls may be needed
+        over and above those set out in the exemptions to make sure this happens.\r\n\r\n#
+        Registration details\r\n\r\n- Reference number: WEX000001\r\n- Activation
+        date: 12 February 2021\r\n\r\n# Registration completed by\r\n\r\n- Name: Lashaun
+        Predovic\r\n- Business telephone number: 01234567890\r\n- Business email:
+        merideth@example.com\r\n\r\n# Business details\r\n\r\n\n\n* Business or organisation
+        type: Limited company\n* Registered name of the company: Harvey, Crona and
+        Oberbrunner\n* Registration number of the company: 09360070\n* Registered
+        address of the company: Park Estates, 95738 Corkery Pine, United States of
+        America, Nienowchester, BS1 1AA\r\n\r\n# Waste operation contact\r\n\r\n\n\n*
+        Name: Veronika Frami\n* Position: attorney\n* Telephone: 01234567890\n* Email:
+        kandy.jones@example.net\r\n\r\n# Waste operation location or site\r\n\r\n\n\n*
+        Grid reference: ST 58337 72855\n* Site details: Veritatis quia autem deserunt.\r\n\r\n#
+        Waste exemptions\r\n\r\n\n\n* U1: Dolore magnam consequatur autem. \u2013
+        Expires on 12 February 2024\n* U2: Quasi nostrum unde vitae. \u2013 Expires
+        on 12 February 2024\n* U3: Eligendi et hic pariatur. \u2013 Expires on 12
+        February 2024\r\n\r\n\r\n\r\n\r\n\r\n# If you need to contact us\r\n\r\nIf
+        you need help or advice call the Environment Agency helpline: 03708 506506\r\n\r\nIt''s
+        open Monday to Friday, between 8am and 6pm.\r\n\r\nYours sincerely,\r\nWaste
+        Exemptions Team","subject":"Confirmation of waste exemption registration"},"id":"eed576dd-6749-43c1-8398-9bc9967ec69c","reference":null,"scheduled_for":null,"template":{"id":"81cae4bd-9f4c-4e14-bf3c-44573cee4f5b","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/81cae4bd-9f4c-4e14-bf3c-44573cee4f5b","version":9},"uri":"https://api.notifications.service.gov.uk/v2/notifications/eed576dd-6749-43c1-8398-9bc9967ec69c"}
+
+'
+  recorded_at: Fri, 12 Feb 2021 17:53:42 GMT
+recorded_with: VCR 6.0.0
