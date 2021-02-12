@@ -19,6 +19,7 @@ FactoryBot.define do
 
     trait :site_using_grid_reference do
       site_address
+      mode { modes[:auto] }
       description { Faker::Lorem.sentence }
       grid_reference { "ST 58337 72855" }
       x { 358_337.0 }
@@ -49,6 +50,14 @@ FactoryBot.define do
 
     trait :auto do
       mode { modes[:auto] }
+    end
+
+    trait :short_description do
+      description { Faker::Lorem.sentence(word_count: 3) }
+    end
+
+    trait :long_description do
+      description { Faker::Lorem.sentence(word_count: 100) }
     end
   end
 end
