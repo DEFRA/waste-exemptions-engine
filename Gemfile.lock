@@ -106,8 +106,8 @@ GEM
       rest-client (~> 2.0)
     defra_ruby_alert (2.1.1)
       airbrake
-    defra_ruby_area (0.2.0)
-      nokogiri (~> 1.10)
+    defra_ruby_area (2.0.1)
+      nokogiri (~> 1.11.1)
       rest-client (~> 2.0)
     defra_ruby_email (1.1.0)
       notifications-ruby-client
