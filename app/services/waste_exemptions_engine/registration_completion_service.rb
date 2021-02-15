@@ -24,7 +24,7 @@ module WasteExemptionsEngine
         @transient_registration.destroy
       end
 
-      send_confirmation_emails
+      send_confirmation_messages
 
       @registration
     rescue StandardError => e
@@ -71,6 +71,21 @@ module WasteExemptionsEngine
     def add_metadata
       @registration.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode
       @registration.submitted_at = Date.today
+    end
+
+    def send_confirmation_messages
+      if @registration.contact_email == WasteExemptionsEngine.configuration.assisted_digital_email
+        send_confirmation_letter
+      else
+        send_confirmation_emails
+      end
+    end
+
+    def send_confirmation_letter
+      NotifyConfirmationLetterService.run(registration: @registration)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Confirmation letter error: #{e}"
     end
 
     def send_confirmation_emails

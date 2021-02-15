@@ -30,6 +30,10 @@ FactoryBot.define do
       contact_email { applicant_email }
     end
 
+    trait :has_ad_contact_email do
+      contact_email { WasteExemptionsEngine.configuration.assisted_digital_email }
+    end
+
     trait :has_people do
       people { build_list(:transient_person, 2) }
     end
