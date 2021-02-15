@@ -24,6 +24,8 @@ module WasteExemptionsEngine
   end
 
   class Configuration
+    # AD config
+    attr_accessor :assisted_digital_email
     # General config
     attr_accessor :service_name, :application_name, :git_repository_url, :years_before_expiry, :default_assistance_mode
     # Edit config
