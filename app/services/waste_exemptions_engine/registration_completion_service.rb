@@ -24,7 +24,7 @@ module WasteExemptionsEngine
         @transient_registration.destroy
       end
 
-      send_confirmation_emails
+      send_confirmation_messages
 
       @registration
     rescue StandardError => e
@@ -73,9 +73,22 @@ module WasteExemptionsEngine
       @registration.submitted_at = Date.today
     end
 
+    def send_confirmation_messages
+      send_confirmation_letter if ad_email_address?(@registration.contact_email)
+
+      send_confirmation_emails
+    end
+
+    def send_confirmation_letter
+      NotifyConfirmationLetterService.run(registration: @registration)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Confirmation letter error: #{e}"
+    end
+
     def send_confirmation_emails
       distinct_recipients.each do |recipient|
-        send_confirmation_email(recipient)
+        send_confirmation_email(recipient) unless ad_email_address?(recipient)
       end
     end
 
@@ -88,6 +101,10 @@ module WasteExemptionsEngine
 
     def distinct_recipients
       [@registration.applicant_email, @registration.contact_email].map(&:downcase).uniq
+    end
+
+    def ad_email_address?(email)
+      email == WasteExemptionsEngine.configuration.assisted_digital_email
     end
   end
 end
