@@ -138,16 +138,37 @@ module WasteExemptionsEngine
         context "when the contact email is the NCCC email" do
           let(:new_registration) { create(:new_registration, :complete, :has_ad_contact_email) }
 
-          it "sends a confirmation letter" do
-            expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
+          context "when the applicant email is the NCCC email" do
+            before { new_registration.update(applicant_email: new_registration.contact_email) }
 
-            run_service
+            it "sends a confirmation letter" do
+              expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
+
+              run_service
+            end
+
+            it "does not send any confirmation emails" do
+              expect(ConfirmationEmailService).to_not receive(:run)
+
+              run_service
+            end
           end
 
-          it "does not send any confirmation emails" do
-            expect(ConfirmationEmailService).to_not receive(:run)
+          context "when the applicant email is not the NCCC email" do
+            it "sends a confirmation letter" do
+              expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
 
-            run_service
+              run_service
+            end
+
+            it "only emails the applicant email" do
+              expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
+                                                                     recipient: new_registration.applicant_email).once
+              expect(ConfirmationEmailService).to_not receive(:run).with(registration: instance_of(Registration),
+                                                                         recipient: new_registration.contact_email)
+
+              run_service
+            end
           end
         end
 
