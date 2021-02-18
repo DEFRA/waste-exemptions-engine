@@ -6,8 +6,10 @@ en:
         heading: Registration complete
         highlight_text: "Your registration number is"
         confirmation_email_text:
-          one: "We have sent a confirmation email to %{contact}."
-          many: "We have sent a confirmation email to %{applicant} and %{contact}."
+          letter: "We have sent a confirmation letter to your contact address."
+          contact_email: "We have sent a confirmation email to %{contact}."
+          applicant_email: "We have sent a confirmation email to %{applicant} and a confirmation letter to your contact address."
+          both_emails: "We have sent a confirmation email to %{applicant} and %{contact}."
         what_happens_next:
           subheading: What happens next
           bullet_1: |

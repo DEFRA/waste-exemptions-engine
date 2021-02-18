@@ -2,8 +2,20 @@
 
 module WasteExemptionsEngine
   module PluralsHelper
-    def emails_plural(form)
-      form.applicant_email == form.contact_email ? "one" : "many"
+    def confirmation_comms(form)
+      emails = [form.applicant_email, form.contact_email]
+      emails.uniq!
+      emails.delete(WasteExemptionsEngine.configuration.assisted_digital_email)
+
+      if emails.empty?
+        "letter"
+      elsif emails == [form.contact_email]
+        "contact_email"
+      elsif emails == [form.applicant_email]
+        "applicant_email"
+      else
+        "both_emails"
+      end
     end
 
     def exemptions_plural(form)
