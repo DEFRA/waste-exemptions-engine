@@ -3,7 +3,7 @@
 module WasteExemptionsEngine
   class AddressLookupService < BaseService
     def run(postcode)
-      DefraRuby::Address::EaAddressFacadeV1Service.run(postcode)
+      DefraRuby::Address::EaAddressFacadeV11Service.run(postcode)
     end
   end
 end

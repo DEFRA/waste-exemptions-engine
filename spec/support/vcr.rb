@@ -19,6 +19,9 @@ VCR.configure do |c|
     auth.first unless auth.nil? || auth.empty?
   end
 
+  c.filter_sensitive_data("<CLIENT_ID>") { ENV["ADDRESS_FACADE_CLIENT_ID"] }
+  c.filter_sensitive_data("<CLIENT_KEY>") { ENV["ADDRESS_FACADE_CLIENT_KEY"] }
+
   c.register_request_matcher :html_body_content do |request_one, request_two|
     HtmlBodyContentMatcher.new(request_one, request_two).match?
   end

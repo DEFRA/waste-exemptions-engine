@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       ENV_VARIABLE_TEST_FEATURE: true
+      ADDRESS_FACADE_CLIENT_ID: ${{ secrets.ACTIONS_ADDRESS_FACADE_CLIENT_ID }}
+      ADDRESS_FACADE_CLIENT_KEY: ${{ secrets.ACTIONS_ADDRESS_FACADE_CLIENT_KEY }}
       NOTIFY_API_KEY: ${{ secrets.ACTIONS_NOTIFY_API_KEY }}
       PG_HOST: localhost
       PG_PASSWORD: pinafore
