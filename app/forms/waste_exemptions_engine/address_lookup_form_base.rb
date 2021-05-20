@@ -4,6 +4,23 @@ module WasteExemptionsEngine
   class AddressLookupFormBase < BaseForm
     attr_accessor :temp_addresses
 
+    ADDRESS_DATA_KEYS = %w[uprn
+                           organisation
+                           premises
+                           street_address
+                           locality
+                           city
+                           postcode
+                           x
+                           y
+                           coordinate_system
+                           blpu_state_code
+                           postal_address_code
+                           logical_status_code
+                           source_data_type
+                           country_iso
+                           grid_reference].freeze
+
     after_initialize :look_up_addresses
 
     private
@@ -28,8 +45,7 @@ module WasteExemptionsEngine
       return {} unless data
 
       data
-        .except("address")
-        .except("state_date")
+        .slice(*ADDRESS_DATA_KEYS)
         .merge(address_type: type, mode: :lookup)
     end
   end
