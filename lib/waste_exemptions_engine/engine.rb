@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "aasm"
-require "has_secure_token"
 require "high_voltage"
 require "paper_trail"
 require "defra_ruby_validators"
