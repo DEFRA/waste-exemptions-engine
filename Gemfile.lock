@@ -130,6 +130,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    deep_merge (1.2.1)
     defra_ruby_address (0.1.0)
       rest-client (~> 2.0)
     defra_ruby_alert (2.1.1)
@@ -199,6 +200,11 @@ GEM
       rake (>= 10.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    govuk_design_system_formbuilder (2.7.4)
+      actionview (>= 6.0)
+      activemodel (>= 6.0)
+      activesupport (>= 6.0)
+      deep_merge (~> 1.2.1)
     hashdiff (1.0.1)
     hashery (2.1.2)
     high_voltage (3.1.2)
@@ -407,6 +413,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   github_changelog_generator
+  govuk_design_system_formbuilder
   parallel_tests
   pdf-reader
   pry-byebug

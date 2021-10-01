@@ -10,6 +10,8 @@ source "https://rubygems.org"
 # See: https://github.com/sass/sassc-rails/issues/114
 gem "sassc-rails"
 
+gem "govuk_design_system_formbuilder"
+
 gemspec
 
 # Declare any dependencies that are still in development here instead of in
