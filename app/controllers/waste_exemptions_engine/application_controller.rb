@@ -14,6 +14,8 @@ module WasteExemptionsEngine
     # Use the host application's default layout
     layout "application"
 
+    default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
+
     before_action :set_paper_trail_whodunnit
 
     def user_for_paper_trail
