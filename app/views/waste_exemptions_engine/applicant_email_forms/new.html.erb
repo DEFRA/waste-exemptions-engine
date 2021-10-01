@@ -1,35 +1,19 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_applicant_email_forms_path(@applicant_email_form.token)) %>
 
-<div class="text">
-  <%= form_for(@applicant_email_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @applicant_email_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @applicant_email_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @applicant_email_form.errors[:applicant_email].any? %>">
-      <fieldset id="applicant_email">
-        <% if @applicant_email_form.errors[:applicant_email].any? %>
-          <span class="error-message"><%= @applicant_email_form.errors[:applicant_email].join(", ") %></span>
-        <% end %>
+      <%= f.govuk_email_field :applicant_email,
+          label: { text: t(".applicant_email_label") } %>
 
-        <%= f.label :applicant_email, t(".applicant_email_label"), class: "form-label" %>
-        <%= f.email_field :applicant_email, value: @applicant_email_form.applicant_email, class: "form-control" %>
-      </fieldset>
-    </div>
+      <%= f.govuk_email_field :confirmed_email,
+          label: { text: t(".confirmed_email_label") } %>
 
-    <div class="form-group <%= "form-group-error" if @applicant_email_form.errors[:confirmed_email].any? %>">
-      <fieldset id="confirmed_email">
-        <% if @applicant_email_form.errors[:confirmed_email].any? %>
-          <span class="error-message"><%= @applicant_email_form.errors[:confirmed_email].join(", ") %></span>
-        <% end %>
-
-        <%= f.label :confirmed_email, t(".confirmed_email_label"), class: "form-label" %>
-        <%= f.email_field :confirmed_email, value: @applicant_email_form.confirmed_email, class: "form-control" %>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
 </div>
