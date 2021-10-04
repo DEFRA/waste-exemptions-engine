@@ -8,10 +8,9 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
-        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<a class=\"link-back\"
-        href=\"/waste_exemptions_engine/NDidHUvC2fanpYjJobraiTuK/renew-with-changes/back\">Back</a>\n\n\n<div
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
         class=\"text\">\n  <form class=\"new_renew_with_changes_form\" id=\"new_renew_with_changes_form\"
-        action=\"/waste_exemptions_engine/NDidHUvC2fanpYjJobraiTuK/renew-with-changes\"
+        action=\"/waste_exemptions_engine/AbCNRdLvcxVKiLfxkdU4pKBG/renew-with-changes\"
         accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">We&#39;ll
         fill in the form with your current registration details</h1>\n\n    <p>Check
         the details as you go through each screen.</p>\n    <p>You can change any
@@ -32,10 +31,10 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: ''
     headers:
       Date:
-      - Tue, 02 Jun 2020 10:36:23 GMT
+      - Mon, 04 Oct 2021 12:53:55 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -50,10 +49,8 @@ http_interactions:
       - application/json;charset=utf-8
       Vary:
       - Accept-Encoding, User-Agent
-      Transfer-Encoding:
-      - chunked
       Server:
-      - Jetty(9.4.z-SNAPSHOT)
+      - Jetty(9.4.43.v20210629)
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -63,9 +60,11 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9ORGlkSFV2QzJmYW5wWWpKb2JyYWlUdUsvcmVuZXctd2l0aC1jaGFuZ2VzL2JhY2tcIj5CYWNrPC9hPlxuXG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X3JlbmV3X3dpdGhfY2hhbmdlc19mb3JtXCIgaWQ9XCJuZXdfcmVuZXdfd2l0aF9jaGFuZ2VzX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvTkRpZEhVdkMyZmFucFlqSm9icmFpVHVLL3JlbmV3LXdpdGgtY2hhbmdlc1wiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+V2UmIzM5O2xsIGZpbGwgaW4gdGhlIGZvcm0gd2l0aCB5b3VyIGN1cnJlbnQgcmVnaXN0cmF0aW9uIGRldGFpbHM8L2gxPlxuXG4gICAgPHA+Q2hlY2sgdGhlIGRldGFpbHMgYXMgeW91IGdvIHRocm91Z2ggZWFjaCBzY3JlZW4uPC9wPlxuICAgIDxwPllvdSBjYW4gY2hhbmdlIGFueSBkZXRhaWxzIGlmIHlvdSBuZWVkIHRvLjwvcD5cbiAgICA8cD5Zb3UmIzM5O2xsIGhhdmUgYSBjaGFuY2UgdG8gbWFrZSBhIGZpbmFsIGNoZWNrIGJlZm9yZSB5b3UgcmVuZXcuPC9wPlxuICAgIDxwPkEgcmVnaXN0cmF0aW9uIGxhc3RzIGZvciAzIHllYXJzLiBZb3UmIzM5O2xsIGdldCBhIG5ldyByZWdpc3RyYXRpb24gbnVtYmVyLjwvcD5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8aW5wdXQgdHlwZT1cInN1Ym1pdFwiIG5hbWU9XCJjb21taXRcIiB2YWx1ZT1cIkNvbnRpbnVlXCIgY2xhc3M9XCJidXR0b25cIiBkYXRhLWRpc2FibGUtd2l0aD1cIkNvbnRpbnVlXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Tue, 02 Jun 2020 10:36:23 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19yZW5ld193aXRoX2NoYW5nZXNfZm9ybVwiIGlkPVwibmV3X3JlbmV3X3dpdGhfY2hhbmdlc19mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL0FiQ05SZEx2Y3hWS2lMZnhrZFU0cEtCRy9yZW5ldy13aXRoLWNoYW5nZXNcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldlJiMzOTtsbCBmaWxsIGluIHRoZSBmb3JtIHdpdGggeW91ciBjdXJyZW50IHJlZ2lzdHJhdGlvbiBkZXRhaWxzPC9oMT5cblxuICAgIDxwPkNoZWNrIHRoZSBkZXRhaWxzIGFzIHlvdSBnbyB0aHJvdWdoIGVhY2ggc2NyZWVuLjwvcD5cbiAgICA8cD5Zb3UgY2FuIGNoYW5nZSBhbnkgZGV0YWlscyBpZiB5b3UgbmVlZCB0by48L3A+XG4gICAgPHA+WW91JiMzOTtsbCBoYXZlIGEgY2hhbmNlIHRvIG1ha2UgYSBmaW5hbCBjaGVjayBiZWZvcmUgeW91IHJlbmV3LjwvcD5cbiAgICA8cD5BIHJlZ2lzdHJhdGlvbiBsYXN0cyBmb3IgMyB5ZWFycy4gWW91JiMzOTtsbCBnZXQgYSBuZXcgcmVnaXN0cmF0aW9uIG51bWJlci48L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgZGF0YS1kaXNhYmxlLXdpdGg9XCJDb250aW51ZVwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Mon, 04 Oct 2021 12:50:41 GMT
 recorded_with: VCR 6.0.0

@@ -8,23 +8,23 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
-        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<a class=\"link-back\"
-        href=\"/waste_exemptions_engine/VRzKXXDQXRpFP8pE4VAzi2Gp/applicant-email/back\">Back</a>\n\n\n<div
-        class=\"text\">\n  <form class=\"new_applicant_email_form\" id=\"new_applicant_email_form\"
-        action=\"/waste_exemptions_engine/VRzKXXDQXRpFP8pE4VAzi2Gp/applicant-email\"
-        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">What&#39;s
-        the email address of the person filling in this form?</h1>\n\n    <div class=\"form-group
-        \">\n      <fieldset id=\"applicant_email\">\n\n        <label class=\"form-label\"
-        for=\"applicant_email_form_applicant_email\">Email address</label>\n        <input
-        class=\"form-control\" type=\"email\" name=\"applicant_email_form[applicant_email]\"
-        id=\"applicant_email_form_applicant_email\" />\n      </fieldset>\n    </div>\n\n
-        \   <div class=\"form-group \">\n      <fieldset id=\"confirmed_email\">\n\n
-        \       <label class=\"form-label\" for=\"applicant_email_form_confirmed_email\">Confirm
-        email address</label>\n        <input class=\"form-control\" type=\"email\"
-        name=\"applicant_email_form[confirmed_email]\" id=\"applicant_email_form_confirmed_email\"
-        />\n      </fieldset>\n    </div>\n\n    <div class=\"form-group\">\n      <input
-        type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" data-disable-with=\"Continue\"
-        />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_applicant_email_form\" id=\"new_applicant_email_form\"
+        action=\"/waste_exemptions_engine/nZb7hCgJSpCjjmidsyTi5dzb/applicant-email\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">What&#39;s the email address of the person
+        filling in this form?</h1>\n\n      <div class=\"govuk-form-group\"><label
+        for=\"applicant-email-form-applicant-email-field\" class=\"govuk-label\">Email
+        address</label><input id=\"applicant-email-form-applicant-email-field\" class=\"govuk-input\"
+        type=\"email\" name=\"applicant_email_form[applicant_email]\" /></div>\n\n
+        \     <div class=\"govuk-form-group\"><label for=\"applicant-email-form-confirmed-email-field\"
+        class=\"govuk-label\">Confirm email address</label><input id=\"applicant-email-form-confirmed-email-field\"
+        class=\"govuk-input\" type=\"email\" name=\"applicant_email_form[confirmed_email]\"
+        /></div>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -37,10 +37,10 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: ''
     headers:
       Date:
-      - Tue, 02 Jun 2020 10:36:18 GMT
+      - Mon, 04 Oct 2021 12:50:24 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -55,10 +55,8 @@ http_interactions:
       - application/json;charset=utf-8
       Vary:
       - Accept-Encoding, User-Agent
-      Transfer-Encoding:
-      - chunked
       Server:
-      - Jetty(9.4.z-SNAPSHOT)
+      - Jetty(9.4.43.v20210629)
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -68,9 +66,11 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxhIGNsYXNzPVwibGluay1iYWNrXCIgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9WUnpLWFhEUVhScEZQOHBFNFZBemkyR3AvYXBwbGljYW50LWVtYWlsL2JhY2tcIj5CYWNrPC9hPlxuXG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X2FwcGxpY2FudF9lbWFpbF9mb3JtXCIgaWQ9XCJuZXdfYXBwbGljYW50X2VtYWlsX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvVlJ6S1hYRFFYUnBGUDhwRTRWQXppMkdwL2FwcGxpY2FudC1lbWFpbFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+V2hhdCYjMzk7cyB0aGUgZW1haWwgYWRkcmVzcyBvZiB0aGUgcGVyc29uIGZpbGxpbmcgaW4gdGhpcyBmb3JtPzwvaDE+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cImFwcGxpY2FudF9lbWFpbFwiPlxuXG4gICAgICAgIDxsYWJlbCBjbGFzcz1cImZvcm0tbGFiZWxcIiBmb3I9XCJhcHBsaWNhbnRfZW1haWxfZm9ybV9hcHBsaWNhbnRfZW1haWxcIj5FbWFpbCBhZGRyZXNzPC9sYWJlbD5cbiAgICAgICAgPGlucHV0IGNsYXNzPVwiZm9ybS1jb250cm9sXCIgdHlwZT1cImVtYWlsXCIgbmFtZT1cImFwcGxpY2FudF9lbWFpbF9mb3JtW2FwcGxpY2FudF9lbWFpbF1cIiBpZD1cImFwcGxpY2FudF9lbWFpbF9mb3JtX2FwcGxpY2FudF9lbWFpbFwiIC8+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZGl2PlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXAgXCI+XG4gICAgICA8ZmllbGRzZXQgaWQ9XCJjb25maXJtZWRfZW1haWxcIj5cblxuICAgICAgICA8bGFiZWwgY2xhc3M9XCJmb3JtLWxhYmVsXCIgZm9yPVwiYXBwbGljYW50X2VtYWlsX2Zvcm1fY29uZmlybWVkX2VtYWlsXCI+Q29uZmlybSBlbWFpbCBhZGRyZXNzPC9sYWJlbD5cbiAgICAgICAgPGlucHV0IGNsYXNzPVwiZm9ybS1jb250cm9sXCIgdHlwZT1cImVtYWlsXCIgbmFtZT1cImFwcGxpY2FudF9lbWFpbF9mb3JtW2NvbmZpcm1lZF9lbWFpbF1cIiBpZD1cImFwcGxpY2FudF9lbWFpbF9mb3JtX2NvbmZpcm1lZF9lbWFpbFwiIC8+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgIDwvZGl2PlxuXG4gICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgIDxpbnB1dCB0eXBlPVwic3VibWl0XCIgbmFtZT1cImNvbW1pdFwiIHZhbHVlPVwiQ29udGludWVcIiBjbGFzcz1cImJ1dHRvblwiIGRhdGEtZGlzYWJsZS13aXRoPVwiQ29udGludWVcIiAvPlxuICAgIDwvZGl2PlxuPC9mb3JtPjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-  recorded_at: Tue, 02 Jun 2020 10:36:18 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19hcHBsaWNhbnRfZW1haWxfZm9ybVwiIGlkPVwibmV3X2FwcGxpY2FudF9lbWFpbF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL25aYjdoQ2dKU3BDamptaWRzeVRpNWR6Yi9hcHBsaWNhbnQtZW1haWxcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+V2hhdCYjMzk7cyB0aGUgZW1haWwgYWRkcmVzcyBvZiB0aGUgcGVyc29uIGZpbGxpbmcgaW4gdGhpcyBmb3JtPzwvaDE+XG5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGxhYmVsIGZvcj1cImFwcGxpY2FudC1lbWFpbC1mb3JtLWFwcGxpY2FudC1lbWFpbC1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWxcIj5FbWFpbCBhZGRyZXNzPC9sYWJlbD48aW5wdXQgaWQ9XCJhcHBsaWNhbnQtZW1haWwtZm9ybS1hcHBsaWNhbnQtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWlucHV0XCIgdHlwZT1cImVtYWlsXCIgbmFtZT1cImFwcGxpY2FudF9lbWFpbF9mb3JtW2FwcGxpY2FudF9lbWFpbF1cIiAvPjwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cFwiPjxsYWJlbCBmb3I9XCJhcHBsaWNhbnQtZW1haWwtZm9ybS1jb25maXJtZWQtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+Q29uZmlybSBlbWFpbCBhZGRyZXNzPC9sYWJlbD48aW5wdXQgaWQ9XCJhcHBsaWNhbnQtZW1haWwtZm9ybS1jb25maXJtZWQtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWlucHV0XCIgdHlwZT1cImVtYWlsXCIgbmFtZT1cImFwcGxpY2FudF9lbWFpbF9mb3JtW2NvbmZpcm1lZF9lbWFpbF1cIiAvPjwvZGl2PlxuXG4gICAgICA8YnV0dG9uIHR5cGU9XCJzdWJtaXRcIiBmb3Jtbm92YWxpZGF0ZT1cImZvcm1ub3ZhbGlkYXRlXCIgY2xhc3M9XCJnb3Z1ay1idXR0b25cIiBkYXRhLW1vZHVsZT1cImdvdnVrLWJ1dHRvblwiIGRhdGEtcHJldmVudC1kb3VibGUtY2xpY2s9XCJ0cnVlXCI+Q29udGludWU8L2J1dHRvbj5cbjwvZm9ybT4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Mon, 04 Oct 2021 12:47:10 GMT
 recorded_with: VCR 6.0.0
