@@ -1,36 +1,34 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_main_people_forms_path(@main_people_form.token)) %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
     <%= form_for(@main_people_form) do |f| %>
-      <%= render("waste_exemptions_engine/shared/errors", object: @main_people_form) %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-      <h1 class="heading-large"><%= t(".heading.#{@main_people_form.business_type}") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading.#{@main_people_form.business_type}") %></h1>
 
-      <p><%= t(".description_1.#{@main_people_form.business_type}") %></p>
+      <p class="govuk-hint"><%= t(".description_1.#{@main_people_form.business_type}") %></p>
 
       <%= render("waste_exemptions_engine/shared/person_name", form: @main_people_form, f: f) %>
 
       <% if @main_people_form.transient_people.count < 1 %>
-        <div class="form-group">
-          <%= f.submit t(".add_person_link"), class: "button" %>
-        </div>
+        <%= f.govuk_submit t(".add_person_link") %>
       <% else %>
-        <div class="form-group">
+        <div class="govuk-form-group">
           <%= f.submit t(".add_person_link"), class: "button-link" %>
         </div>
-        <div class="form-group">
-          <%= f.submit t(".next_button"), class: "button" %>
+        <div class="govuk-form-group">
+          <%= f.govuk_submit t(".next_button") %>
         </div>
       <% end %>
     <% end %>
-  </div> <!-- closes .column-two-thirds -->
+  </div> <!-- closes .govuk-grid-column-two-thirds -->
 
   <% if @main_people_form.transient_people.count > 0 %>
-    <div class="column-one-third">
-      <h2 class="heading-small"><%= t(".list_of_people") %></h2>
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-s"><%= t(".list_of_people") %></h2>
 
-      <ul class="main-person-list">
+      <ul class="govuk-list">
         <% @transient_registration.transient_people.each do |person| %>
           <li>
             <%= person.first_name %> <%= person.last_name %>
@@ -41,13 +39,13 @@
                 params: { token: @main_people_form.token }
             ) do %>
               <%= t(".delete_person_link") %>
-              <span class="visually-hidden">
+              <span class="govuk-visually-hidden">
                 <%= person.first_name %> <%= person.last_name %>
               </span>
             <% end %>
           </li>
         <% end %>
       </ul>
-    </div> <!-- closes .column-one-third -->
+    </div> <!-- closes .govuk-grid-column-one-third -->
   <% end %>
-</div> <!-- closes .grid-row -->
+</div> <!-- closes .govuk-grid-grid-row -->
