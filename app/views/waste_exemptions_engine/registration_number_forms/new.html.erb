@@ -12,6 +12,15 @@
           hint: { text: t(".company_no_hint") },
           width: 10 %>
 
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text"><%= t(".detail_subheading") %></span>
+        </summary>
+        <div class="govuk-details__text">
+          <%= t(".detail.#{@registration_number_form.business_type}") %>
+        </div>
+      </details>
+
       <p class="govuk-body"><%= t(".explanation.#{@registration_number_form.business_type}") %></p>
 
       <%= f.govuk_submit %>
