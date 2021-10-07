@@ -10,7 +10,7 @@ http_interactions:
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
         \ <h1 class=\"heading-large\">That registration has already been renewed</h1>\n\n
-        \ <p>Our records show that registration WEX000031 has already been renewed.</p>\n
+        \ <p>Our records show that registration WEX000370 has already been renewed.</p>\n
         \ <p>If you need to register other waste exemptions you should <a href=\"/\">make
         a new registration</a>.</p>\n  <p>If you want to discuss this registration,
         contact the Environment Agency. You will need your registration number.</p>\n
@@ -29,10 +29,10 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: ''
     headers:
       Date:
-      - Tue, 02 Jun 2020 10:36:27 GMT
+      - Mon, 04 Oct 2021 12:51:17 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -47,10 +47,8 @@ http_interactions:
       - application/json;charset=utf-8
       Vary:
       - Accept-Encoding, User-Agent
-      Transfer-Encoding:
-      - chunked
       Server:
-      - Jetty(9.4.z-SNAPSHOT)
+      - Jetty(9.4.43.v20210629)
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -60,9 +58,11 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5UaGF0IHJlZ2lzdHJhdGlvbiBoYXMgYWxyZWFkeSBiZWVuIHJlbmV3ZWQ8L2gxPlxuXG4gIDxwPk91ciByZWNvcmRzIHNob3cgdGhhdCByZWdpc3RyYXRpb24gV0VYMDAwMDMxIGhhcyBhbHJlYWR5IGJlZW4gcmVuZXdlZC48L3A+XG4gIDxwPklmIHlvdSBuZWVkIHRvIHJlZ2lzdGVyIG90aGVyIHdhc3RlIGV4ZW1wdGlvbnMgeW91IHNob3VsZCA8YSBocmVmPVwiL1wiPm1ha2UgYSBuZXcgcmVnaXN0cmF0aW9uPC9hPi48L3A+XG4gIDxwPklmIHlvdSB3YW50IHRvIGRpc2N1c3MgdGhpcyByZWdpc3RyYXRpb24sIGNvbnRhY3QgdGhlIEVudmlyb25tZW50IEFnZW5jeS4gWW91IHdpbGwgbmVlZCB5b3VyIHJlZ2lzdHJhdGlvbiBudW1iZXIuPC9wPlxuICA8cD5cbiAgICBFbnZpcm9ubWVudCBBZ2VuY3kgaGVscGxpbmU6IDxici8+XG4gICAgMDM3MDggNTA2IDUwNiAoTW9uZGF5IHRvIEZyaWRheSwgOGFtIHRvIDZwbSkgPGJyLz5cbiAgICA8YSBocmVmPVwibWFpbHRvOmVucXVpcmllc0BlbnZpcm9ubWVudC1hZ2VuY3kuZ292LnVrXCI+ZW5xdWlyaWVzQGVudmlyb25tZW50LWFnZW5jeS5nb3YudWs8L2E+XG4gIDwvcD5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-  recorded_at: Tue, 02 Jun 2020 10:36:27 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5UaGF0IHJlZ2lzdHJhdGlvbiBoYXMgYWxyZWFkeSBiZWVuIHJlbmV3ZWQ8L2gxPlxuXG4gIDxwPk91ciByZWNvcmRzIHNob3cgdGhhdCByZWdpc3RyYXRpb24gV0VYMDAwMzcwIGhhcyBhbHJlYWR5IGJlZW4gcmVuZXdlZC48L3A+XG4gIDxwPklmIHlvdSBuZWVkIHRvIHJlZ2lzdGVyIG90aGVyIHdhc3RlIGV4ZW1wdGlvbnMgeW91IHNob3VsZCA8YSBocmVmPVwiL1wiPm1ha2UgYSBuZXcgcmVnaXN0cmF0aW9uPC9hPi48L3A+XG4gIDxwPklmIHlvdSB3YW50IHRvIGRpc2N1c3MgdGhpcyByZWdpc3RyYXRpb24sIGNvbnRhY3QgdGhlIEVudmlyb25tZW50IEFnZW5jeS4gWW91IHdpbGwgbmVlZCB5b3VyIHJlZ2lzdHJhdGlvbiBudW1iZXIuPC9wPlxuICA8cD5cbiAgICBFbnZpcm9ubWVudCBBZ2VuY3kgaGVscGxpbmU6IDxici8+XG4gICAgMDM3MDggNTA2IDUwNiAoTW9uZGF5IHRvIEZyaWRheSwgOGFtIHRvIDZwbSkgPGJyLz5cbiAgICA8YSBocmVmPVwibWFpbHRvOmVucXVpcmllc0BlbnZpcm9ubWVudC1hZ2VuY3kuZ292LnVrXCI+ZW5xdWlyaWVzQGVudmlyb25tZW50LWFnZW5jeS5nb3YudWs8L2E+XG4gIDwvcD5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Mon, 04 Oct 2021 12:48:03 GMT
 recorded_with: VCR 6.0.0

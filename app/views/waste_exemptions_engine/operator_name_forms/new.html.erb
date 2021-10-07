@@ -1,30 +1,24 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_operator_name_forms_path(@operator_name_form.token)) %>
 
-<div class="text">
-  <%= form_for(@operator_name_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @operator_name_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @operator_name_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading.#{@operator_name_form.business_type}") %></h1>
+      <h1 class="govuk-heading-l">
+        <%= t(".heading.#{@operator_name_form.business_type}") %>
+      </h1>
 
-    <p><%= t(".description") %></p>
+      <p class="govuk-hint">
+        <%= t(".description") %>
+      </p>
 
-    <div class="form-group <%= "form-group-error" if @operator_name_form.errors[:operator_name].any? %>">
-      <fieldset id="operator_name">
-        <legend class="visuallyhidden">
-          <%= t(".heading.#{@operator_name_form.business_type}") %>
-        </legend>
+      <%= f.govuk_text_field :operator_name,
+          label: {
+            text: t(".operator_name_label.#{@operator_name_form.business_type}")
+          } %>
 
-        <% if @operator_name_form.errors[:operator_name].any? %>
-          <span class="error-message"><%= @operator_name_form.errors[:operator_name].join(", ") %></span>
-        <% end %>
-
-        <%= f.label :operator_name, t(".operator_name_label.#{@operator_name_form.business_type}"), class: "form-label" %>
-        <%= f.text_field :operator_name, value: @operator_name_form.operator_name, class: "form-control" %>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
 </div>

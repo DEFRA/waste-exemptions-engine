@@ -1,38 +1,15 @@
-<div class="text">
-  <%= form_for(@start_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @start_form) %>
+<%= form_for @start_form do |f| %>
+  <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+  <%= f.govuk_collection_radio_buttons :start_option,
+      [
+        OpenStruct.new(id: :new, name: t(".options.new")),
+        OpenStruct.new(id: :reregister, name: t(".options.reregister")),
+        OpenStruct.new(id: :change, name: t(".options.change"))
+      ],
+      :id,
+      :name,
+      legend: { text: t(".heading"), size: "l", tag: "h1" } %>
 
-    <div class="form-group <%= "form-group-error" if @start_form.errors[:start_option].any? %>">
-      <fieldset id="start_option">
-        <legend class="visuallyhidden">
-          <%= t(".heading") %>
-        </legend>
-
-        <% if @start_form.errors[:start_option].any? %>
-          <span class="error-message"><%= @start_form.errors[:start_option].join(", ") %></span>
-        <% end %>
-
-        <div class="multiple-choice">
-          <%= f.radio_button :start_option, 'new' %>
-          <%= f.label :start_option, t(".options.new"), value: 'new' %>
-        </div>
-        <div class="multiple-choice">
-          <%= f.radio_button :start_option, 'reregister' %>
-          <%= f.label :start_option, t(".options.reregister"), value: 'reregister' %>
-        </div>
-        <div class="multiple-choice">
-          <%= f.radio_button :start_option, 'change' %>
-          <%= f.label :start_option, t(".options.change"), value: 'change' %>
-        </div>
-      </fieldset>
-    </div>
-
-    <%= hidden_field_tag :token, @start_form.token %>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
-</div>
+  <%= f.govuk_submit %>
+<% end %>

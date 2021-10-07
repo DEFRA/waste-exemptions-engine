@@ -8,24 +8,26 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
-        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
-        \ <form class=\"new_start_form\" id=\"new_start_form\" action=\"/waste_exemptions_engine/start\"
-        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">What
-        do you want to do?</h1>\n\n    <div class=\"form-group \">\n      <fieldset
-        id=\"start_option\">\n        <legend class=\"visuallyhidden\">\n          What
-        do you want to do?\n        </legend>\n\n\n        <div class=\"multiple-choice\">\n
-        \         <input type=\"radio\" value=\"new\" name=\"start_form[start_option]\"
-        id=\"start_form_start_option_new\" />\n          <label for=\"start_form_start_option_new\">Start
-        a new waste exemption registration</label>\n        </div>\n        <div class=\"multiple-choice\">\n
-        \         <input type=\"radio\" value=\"reregister\" name=\"start_form[start_option]\"
-        id=\"start_form_start_option_reregister\" />\n          <label for=\"start_form_start_option_reregister\">Renew
-        a registration</label>\n        </div>\n        <div class=\"multiple-choice\">\n
-        \         <input type=\"radio\" value=\"change\" name=\"start_form[start_option]\"
-        id=\"start_form_start_option_change\" />\n          <label for=\"start_form_start_option_change\">Change
-        the details of an existing registration</label>\n        </div>\n      </fieldset>\n
-        \   </div>\n\n    <input type=\"hidden\" name=\"token\" id=\"token\" />\n\n
-        \   <div class=\"form-group\">\n      <input type=\"submit\" name=\"commit\"
-        value=\"Continue\" class=\"button\" data-disable-with=\"Continue\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<form class=\"new_start_form\"
+        id=\"new_start_form\" action=\"/waste_exemptions_engine/start\" accept-charset=\"UTF-8\"
+        method=\"post\">\n  <div class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   \n  </div>\n</div>\n\n\n  <div class=\"govuk-form-group\"><fieldset class=\"govuk-fieldset\"><legend
+        class=\"govuk-fieldset__legend govuk-fieldset__legend--l\"><h1 class=\"govuk-fieldset__heading\">What
+        do you want to do?</h1></legend><input value=\"\" type=\"hidden\" name=\"start_form[start_option]\"
+        id=\"start_form_start_option\" /><div class=\"govuk-radios\" data-module=\"govuk-radios\"><div
+        class=\"govuk-radios__item\"><input id=\"start-form-start-option-new-field\"
+        class=\"govuk-radios__input\" type=\"radio\" value=\"new\" name=\"start_form[start_option]\"
+        /><label for=\"start-form-start-option-new-field\" class=\"govuk-label govuk-radios__label\">Start
+        a new waste exemption registration</label></div><div class=\"govuk-radios__item\"><input
+        id=\"start-form-start-option-reregister-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"reregister\" name=\"start_form[start_option]\" /><label
+        for=\"start-form-start-option-reregister-field\" class=\"govuk-label govuk-radios__label\">Renew
+        a registration</label></div><div class=\"govuk-radios__item\"><input id=\"start-form-start-option-change-field\"
+        class=\"govuk-radios__input\" type=\"radio\" value=\"change\" name=\"start_form[start_option]\"
+        /><label for=\"start-form-start-option-change-field\" class=\"govuk-label
+        govuk-radios__label\">Change the details of an existing registration</label></div></div></fieldset></div>\n\n
+        \ <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
+        data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -38,10 +40,10 @@ http_interactions:
   response:
     status:
       code: 200
-      message: OK
+      message: ''
     headers:
       Date:
-      - Tue, 02 Jun 2020 10:36:11 GMT
+      - Mon, 04 Oct 2021 12:51:44 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -56,10 +58,8 @@ http_interactions:
       - application/json;charset=utf-8
       Vary:
       - Accept-Encoding, User-Agent
-      Transfer-Encoding:
-      - chunked
       Server:
-      - Jetty(9.4.z-SNAPSHOT)
+      - Jetty(9.4.43.v20210629)
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -69,9 +69,11 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X3N0YXJ0X2Zvcm1cIiBpZD1cIm5ld19zdGFydF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3N0YXJ0XCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICBcblxuICAgIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XaGF0IGRvIHlvdSB3YW50IHRvIGRvPzwvaDE+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cInN0YXJ0X29wdGlvblwiPlxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHloaWRkZW5cIj5cbiAgICAgICAgICBXaGF0IGRvIHlvdSB3YW50IHRvIGRvP1xuICAgICAgICA8L2xlZ2VuZD5cblxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJuZXdcIiBuYW1lPVwic3RhcnRfZm9ybVtzdGFydF9vcHRpb25dXCIgaWQ9XCJzdGFydF9mb3JtX3N0YXJ0X29wdGlvbl9uZXdcIiAvPlxuICAgICAgICAgIDxsYWJlbCBmb3I9XCJzdGFydF9mb3JtX3N0YXJ0X29wdGlvbl9uZXdcIj5TdGFydCBhIG5ldyB3YXN0ZSBleGVtcHRpb24gcmVnaXN0cmF0aW9uPC9sYWJlbD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJyZXJlZ2lzdGVyXCIgbmFtZT1cInN0YXJ0X2Zvcm1bc3RhcnRfb3B0aW9uXVwiIGlkPVwic3RhcnRfZm9ybV9zdGFydF9vcHRpb25fcmVyZWdpc3RlclwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cInN0YXJ0X2Zvcm1fc3RhcnRfb3B0aW9uX3JlcmVnaXN0ZXJcIj5SZW5ldyBhIHJlZ2lzdHJhdGlvbjwvbGFiZWw+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwibXVsdGlwbGUtY2hvaWNlXCI+XG4gICAgICAgICAgPGlucHV0IHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwiY2hhbmdlXCIgbmFtZT1cInN0YXJ0X2Zvcm1bc3RhcnRfb3B0aW9uXVwiIGlkPVwic3RhcnRfZm9ybV9zdGFydF9vcHRpb25fY2hhbmdlXCIgLz5cbiAgICAgICAgICA8bGFiZWwgZm9yPVwic3RhcnRfZm9ybV9zdGFydF9vcHRpb25fY2hhbmdlXCI+Q2hhbmdlIHRoZSBkZXRhaWxzIG9mIGFuIGV4aXN0aW5nIHJlZ2lzdHJhdGlvbjwvbGFiZWw+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9maWVsZHNldD5cbiAgICA8L2Rpdj5cblxuICAgIDxpbnB1dCB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cInRva2VuXCIgaWQ9XCJ0b2tlblwiIC8+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgZGF0YS1kaXNhYmxlLXdpdGg9XCJDb250aW51ZVwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-  recorded_at: Tue, 02 Jun 2020 10:36:11 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxmb3JtIGNsYXNzPVwibmV3X3N0YXJ0X2Zvcm1cIiBpZD1cIm5ld19zdGFydF9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3N0YXJ0XCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cFwiPjxmaWVsZHNldCBjbGFzcz1cImdvdnVrLWZpZWxkc2V0XCI+PGxlZ2VuZCBjbGFzcz1cImdvdnVrLWZpZWxkc2V0X19sZWdlbmQgZ292dWstZmllbGRzZXRfX2xlZ2VuZC0tbFwiPjxoMSBjbGFzcz1cImdvdnVrLWZpZWxkc2V0X19oZWFkaW5nXCI+V2hhdCBkbyB5b3Ugd2FudCB0byBkbz88L2gxPjwvbGVnZW5kPjxpbnB1dCB2YWx1ZT1cIlwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwic3RhcnRfZm9ybVtzdGFydF9vcHRpb25dXCIgaWQ9XCJzdGFydF9mb3JtX3N0YXJ0X29wdGlvblwiIC8+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc1wiIGRhdGEtbW9kdWxlPVwiZ292dWstcmFkaW9zXCI+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc19faXRlbVwiPjxpbnB1dCBpZD1cInN0YXJ0LWZvcm0tc3RhcnQtb3B0aW9uLW5ldy1maWVsZFwiIGNsYXNzPVwiZ292dWstcmFkaW9zX19pbnB1dFwiIHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwibmV3XCIgbmFtZT1cInN0YXJ0X2Zvcm1bc3RhcnRfb3B0aW9uXVwiIC8+PGxhYmVsIGZvcj1cInN0YXJ0LWZvcm0tc3RhcnQtb3B0aW9uLW5ldy1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstcmFkaW9zX19sYWJlbFwiPlN0YXJ0IGEgbmV3IHdhc3RlIGV4ZW1wdGlvbiByZWdpc3RyYXRpb248L2xhYmVsPjwvZGl2PjxkaXYgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2l0ZW1cIj48aW5wdXQgaWQ9XCJzdGFydC1mb3JtLXN0YXJ0LW9wdGlvbi1yZXJlZ2lzdGVyLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2lucHV0XCIgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJyZXJlZ2lzdGVyXCIgbmFtZT1cInN0YXJ0X2Zvcm1bc3RhcnRfb3B0aW9uXVwiIC8+PGxhYmVsIGZvcj1cInN0YXJ0LWZvcm0tc3RhcnQtb3B0aW9uLXJlcmVnaXN0ZXItZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLXJhZGlvc19fbGFiZWxcIj5SZW5ldyBhIHJlZ2lzdHJhdGlvbjwvbGFiZWw+PC9kaXY+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc19faXRlbVwiPjxpbnB1dCBpZD1cInN0YXJ0LWZvcm0tc3RhcnQtb3B0aW9uLWNoYW5nZS1maWVsZFwiIGNsYXNzPVwiZ292dWstcmFkaW9zX19pbnB1dFwiIHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwiY2hhbmdlXCIgbmFtZT1cInN0YXJ0X2Zvcm1bc3RhcnRfb3B0aW9uXVwiIC8+PGxhYmVsIGZvcj1cInN0YXJ0LWZvcm0tc3RhcnQtb3B0aW9uLWNoYW5nZS1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstcmFkaW9zX19sYWJlbFwiPkNoYW5nZSB0aGUgZGV0YWlscyBvZiBhbiBleGlzdGluZyByZWdpc3RyYXRpb248L2xhYmVsPjwvZGl2PjwvZGl2PjwvZmllbGRzZXQ+PC9kaXY+XG5cbiAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+XG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Mon, 04 Oct 2021 12:48:30 GMT
 recorded_with: VCR 6.0.0

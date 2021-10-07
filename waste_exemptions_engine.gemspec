@@ -22,9 +22,8 @@ Gem::Specification.new do |s|
   # Use AASM to manage states and transitions
   s.add_dependency "aasm", "~> 4.12"
 
-  s.add_dependency "has_secure_token"
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 6.0.3.1"
+  s.add_dependency "rails", "~> 6.1"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.0"
@@ -43,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency "defra_ruby_alert"
 
   # Used to identify the EA area for a registration
-  s.add_dependency "defra_ruby_area"
+  s.add_dependency "defra_ruby_area", "~> 2.0"
 
   # Used as part of testing. When enabled adds a /last-email route from which
   # details of the last email sent by the app can be accessed
@@ -57,7 +56,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rails-controller-testing"
 
   # Used for auditing and version control
-  s.add_dependency "paper_trail", "~> 10.2.0"
+  s.add_dependency "paper_trail"
 
   # Validations
   # A defra created gem of shared validators

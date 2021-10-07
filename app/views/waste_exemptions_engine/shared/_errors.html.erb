@@ -3,8 +3,8 @@
     <h2 class="heading-medium error-summary-heading"><%= t(".heading") %></h2>
 
     <ul class="error-summary-list">
-      <% object.errors.each do |field, message| %>
-        <li><a href="#<%= field %>" data-turbolinks="false"><%= message %></a></li>
+      <% object.errors.each do |error| %>
+        <li><a href="#<%= error.attribute %>" data-turbolinks="false"><%= error.message %></a></li>
       <% end %>
     </ul>
   </div>

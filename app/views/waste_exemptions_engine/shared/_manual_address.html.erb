@@ -1,48 +1,34 @@
-<div class="form-group <%= "form-group-error" if form.errors[:premises].any? %>">
-  <fieldset id="premises">
-    <% if form.errors[:premises].any? %>
-      <span class="error-message"><%= form.errors[:premises].join(", ") %></span>
-    <% end %>
-
-    <%= f.label :premises, class: "form-label" do %>
-      <%= t(".premises_label") %>
-      <span class='form-hint'><%= t(".premises_hint") %></span>
-    <% end %>
-    <%= f.text_field :premises, value: form.premises, class: "form-control" %>
-  </fieldset>
+<div class="govuk-form-group <%= "govuk-form-group--error" if form.errors[:premises].any? %>">
+  <% if form.errors[:premises].any? %>
+    <span class="govuk-error-message"><%= form.errors[:premises].join(", ") %></span>
+  <% end %>
+  <%= f.govuk_text_field :premises,
+      label: { text: t(".premises_label") },
+      hint: { text: t(".premises_hint") } %>
 </div>
 
-<div class="form-group <%= "form-group-error" if form.errors[:street_address].any? %>">
-  <fieldset id="street_address">
-    <% if form.errors[:street_address].any? %>
-      <span class="error-message"><%= form.errors[:street_address].join(", ") %></span>
-    <% end %>
-
-    <%= f.label :street_address, t(".street_address_label"), class: "form-label" %>
-    <%= f.text_field :street_address, value: form.street_address, class: "form-control" %>
-  </fieldset>
+<div class="govuk-form-group <%= "govuk-form-group--error" if form.errors[:street_address].any? %>">
+  <% if form.errors[:street_address].any? %>
+    <span class="govuk-error-message"><%= form.errors[:street_address].join(", ") %></span>
+  <% end %>
+  <%= f.govuk_text_field :street_address,
+      label: { text: t(".street_address_label") } %>
 </div>
 
-<div class="form-group <%= "form-group-error" if form.errors[:locality].any? %>">
-  <fieldset id="locality">
-    <% if form.errors[:locality].any? %>
-    <span class="error-message"><%= form.errors[:locality].join(", ") %></span>
-    <% end %>
-
-    <%= f.label :locality, t(".locality_label"), class: "form-label" %>
-    <%= f.text_field :locality, value: form.locality, class: "form-control" %>
-  </fieldset>
+<div class="govuk-form-group <%= "govuk-form-group--error" if form.errors[:locality].any? %>">
+  <% if form.errors[:locality].any? %>
+    <span class="govuk-error-message"><%= form.errors[:locality].join(", ") %></span>
+  <% end %>
+  <%= f.govuk_text_field :locality,
+      label: { text: t(".locality_label") } %>
 </div>
 
-<div class="form-group <%= "form-group-error" if form.errors[:city].any? %>">
-  <fieldset id="city">
-    <% if form.errors[:city].any? %>
-      <span class="error-message"><%= form.errors[:city].join(", ") %></span>
-    <% end %>
-
-    <%= f.label :city, t(".city_label"), class: "form-label" %>
-    <%= f.text_field :city, value: form.city, class: "form-control" %>
-  </fieldset>
+<div class="govuk-form-group <%= "govuk-form-group--error" if form.errors[:city].any? %>">
+  <% if form.errors[:city].any? %>
+    <span class="govuk-error-message"><%= form.errors[:city].join(", ") %></span>
+  <% end %>
+  <%= f.govuk_text_field :city,
+      label: { text: t(".city_label") } %>
 </div>
 
 <%= f.hidden_field :postcode, value: form.postcode %>
