@@ -9,40 +9,47 @@ http_interactions:
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
-        class=\"text\">\n  <form class=\"new_site_grid_reference_form\" id=\"new_site_grid_reference_form\"
-        action=\"/waste_exemptions_engine/ssKzrkam2Vgnv4DLZyYSAmr8/site-grid-reference\"
-        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">Where
-        will this waste operation take place?</h1>\n\n    <div class=\"panel panel-border-wide\">\n
-        \     <p class=\"strong\">\n        Enter a grid reference or\n        <a
-        href=\"/waste_exemptions_engine/ssKzrkam2Vgnv4DLZyYSAmr8/site-grid-reference/skip_to_address/ssKzrkam2Vgnv4DLZyYSAmr8\">use
-        an address instead</a>\n      </p>\n    </div>\n\n    <div class=\"form-group
-        \">\n      <fieldset id=\"grid_reference\">\n\n        <label class=\"form-label\"
-        for=\"site_grid_reference_form_grid_reference\">\n          National Grid
-        reference\n          <span class='form-hint'>Enter 2 letters and 10 digits.
-        For example, ST 58132 72695</span>\n</label>        <input class=\"form-control
-        govuk-input--width-10\" type=\"text\" name=\"site_grid_reference_form[grid_reference]\"
-        id=\"site_grid_reference_form_grid_reference\" />\n      </fieldset>\n    </div>\n\n
-        \   <div class=\"form-group\">\n      <details>\n        <summary>\n          <span
-        class=\"summary\">Help finding a grid reference</span>\n        </summary>\n
-        \       <div class=\"panel panel-border-narrow\">\n          <p>Use the free
-        <a rel=\"external\" target=\"_blank\" href=\"http://gridreferencefinder.com/\">UK
-        Grid Reference Finder (opens new window).</a>\n          </p>\n          <ul
-        class=\"list list-number\">\n            <li>Search for the location or postcode
-        on the left of the page.</li>\n            <li>Right-click to display the
-        grid reference.</li>\n            <li>Select the grid reference then copy
-        and paste back on this page.</li>\n          </ul>\n        </div>\n      </details>\n
-        \   </div>\n\n    <div class=\"form-group \">\n      <fieldset id=\"description\">\n\n
-        \       <label class=\"form-label\" for=\"site_grid_reference_form_description\">\n
-        \         Site details\n</label>        <span class='form-hint'>\n          Useful
-        information includes:\n        </span>\n        <ul class=\"list list-bullet
-        form-hint\">\n          <li>nearby landmarks</li>\n          <li>description
-        of the site</li>\n          <li>man-made features, for example roads, walls
-        or buildings</li>\n          <li>natural features, for example rivers, trees
-        or hedges</li>\n        </ul>\n        <textarea class=\"form-control\" rows=\"4\"
-        name=\"site_grid_reference_form[description]\" id=\"site_grid_reference_form_description\">\n</textarea>\n
-        \     </fieldset>\n      <p>500 character limit</p>\n    </div>\n\n    <div
-        class=\"form-group\">\n      <input type=\"submit\" name=\"commit\" value=\"Continue\"
-        class=\"button\" data-disable-with=\"Continue\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_site_grid_reference_form\" id=\"new_site_grid_reference_form\"
+        action=\"/waste_exemptions_engine/VGcLj464CJbQ3NAEQMA8L67p/site-grid-reference\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <span class=\"govuk-visually-hidden\">\n        <span class=\"translation_missing\"
+        title=\"translation missing: en.waste_exemptions_engine.site_grid_reference_forms.new.legend\">Legend</span>\n
+        \     </span>\n\n      <h1 class=\"govuk-heading-l\">\n        Where will
+        this waste operation take place?\n      </h1>\n\n      <div class=\"govuk-inset-text\">\n
+        \       Enter a grid reference or\n        <a href=\"/waste_exemptions_engine/VGcLj464CJbQ3NAEQMA8L67p/site-grid-reference/skip_to_address/VGcLj464CJbQ3NAEQMA8L67p\">use
+        an address instead</a>\n      </div>\n\n      <div class=\"govuk-form-group\"><label
+        for=\"site-grid-reference-form-grid-reference-field\" class=\"govuk-label
+        govuk-label--s\">National Grid reference</label><span class=\"govuk-hint\"
+        id=\"site-grid-reference-form-grid-reference-hint\">Enter 2 letters and 10
+        digits. For example, ST 58132 72695</span><input id=\"site-grid-reference-form-grid-reference-field\"
+        class=\"govuk-input govuk-!-width-one-third\" aria-describedby=\"site-grid-reference-form-grid-reference-hint\"
+        type=\"text\" name=\"site_grid_reference_form[grid_reference]\" /></div>\n\n
+        \     <details class=\"govuk-details\" data-module=\"govuk-details\">\n        <summary
+        class=\"govuk-details__summary\">\n          <span class=\"govuk-details__summary-text\">\n
+        \           Help finding a grid reference\n          </span>\n        </summary>\n
+        \       <div class=\"govuk-details__text\">\n          <p>\n            Use
+        the free <a rel=\"external\" target=\"_blank\" href=\"http://gridreferencefinder.com/\">UK
+        Grid Reference Finder (opens new window).</a>\n          </p>\n          <ol
+        class=\"govuk-list govuk-list--number\">\n            <li>Search for the location
+        or postcode on the left of the page.</li>\n            <li>Right-click to
+        display the grid reference.</li>\n            <li>Select the grid reference
+        then copy and paste back on this page.</li>\n          </ol>\n        </div>\n
+        \     </details>\n\n      <div class=\"govuk-character-count\" data-module=\"govuk-character-count\"
+        data-maxlength=\"500\"><div class=\"govuk-form-group\"><label for=\"site-grid-reference-form-description-field\"
+        class=\"govuk-label govuk-label--s\">Site details</label><span class=\"govuk-hint\"
+        id=\"site-grid-reference-form-description-hint\">Useful information includes:<ul><li>nearby
+        landmarks</li><li>description of the site</li><li>man-made features, for example
+        roads, walls or buildings</li><li>natural features, for example rivers, trees
+        or hedges</li></ul></span><textarea id=\"site-grid-reference-form-description-field\"
+        class=\"govuk-textarea govuk-js-character-count\" rows=\"5\" aria-describedby=\"site-grid-reference-form-description-hint
+        site-grid-reference-form-description-field-info\" name=\"site_grid_reference_form[description]\">\n</textarea><span
+        id=\"site-grid-reference-form-description-field-info\" class=\"govuk-hint
+        govuk-character-count__message\" aria-live=\"polite\">You can enter up to
+        500 characters</span></div></div>\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -58,7 +65,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 04 Oct 2021 12:49:36 GMT
+      - Fri, 15 Oct 2021 17:13:33 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -89,6 +96,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBpZD1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc3NLenJrYW0yVmdudjRETFp5WVNBbXI4L3NpdGUtZ3JpZC1yZWZlcmVuY2VcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldoZXJlIHdpbGwgdGhpcyB3YXN0ZSBvcGVyYXRpb24gdGFrZSBwbGFjZT88L2gxPlxuXG4gICAgPGRpdiBjbGFzcz1cInBhbmVsIHBhbmVsLWJvcmRlci13aWRlXCI+XG4gICAgICA8cCBjbGFzcz1cInN0cm9uZ1wiPlxuICAgICAgICBFbnRlciBhIGdyaWQgcmVmZXJlbmNlIG9yXG4gICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvc3NLenJrYW0yVmdudjRETFp5WVNBbXI4L3NpdGUtZ3JpZC1yZWZlcmVuY2Uvc2tpcF90b19hZGRyZXNzL3NzS3pya2FtMlZnbnY0RExaeVlTQW1yOFwiPnVzZSBhbiBhZGRyZXNzIGluc3RlYWQ8L2E+XG4gICAgICA8L3A+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cCBcIj5cbiAgICAgIDxmaWVsZHNldCBpZD1cImdyaWRfcmVmZXJlbmNlXCI+XG5cbiAgICAgICAgPGxhYmVsIGNsYXNzPVwiZm9ybS1sYWJlbFwiIGZvcj1cInNpdGVfZ3JpZF9yZWZlcmVuY2VfZm9ybV9ncmlkX3JlZmVyZW5jZVwiPlxuICAgICAgICAgIE5hdGlvbmFsIEdyaWQgcmVmZXJlbmNlXG4gICAgICAgICAgPHNwYW4gY2xhc3M9J2Zvcm0taGludCc+RW50ZXIgMiBsZXR0ZXJzIGFuZCAxMCBkaWdpdHMuIEZvciBleGFtcGxlLCBTVCA1ODEzMiA3MjY5NTwvc3Bhbj5cbjwvbGFiZWw+ICAgICAgICA8aW5wdXQgY2xhc3M9XCJmb3JtLWNvbnRyb2wgZ292dWstaW5wdXQtLXdpZHRoLTEwXCIgdHlwZT1cInRleHRcIiBuYW1lPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtW2dyaWRfcmVmZXJlbmNlXVwiIGlkPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtX2dyaWRfcmVmZXJlbmNlXCIgLz5cbiAgICAgIDwvZmllbGRzZXQ+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGRldGFpbHM+XG4gICAgICAgIDxzdW1tYXJ5PlxuICAgICAgICAgIDxzcGFuIGNsYXNzPVwic3VtbWFyeVwiPkhlbHAgZmluZGluZyBhIGdyaWQgcmVmZXJlbmNlPC9zcGFuPlxuICAgICAgICA8L3N1bW1hcnk+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJwYW5lbCBwYW5lbC1ib3JkZXItbmFycm93XCI+XG4gICAgICAgICAgPHA+VXNlIHRoZSBmcmVlIDxhIHJlbD1cImV4dGVybmFsXCIgdGFyZ2V0PVwiX2JsYW5rXCIgaHJlZj1cImh0dHA6Ly9ncmlkcmVmZXJlbmNlZmluZGVyLmNvbS9cIj5VSyBHcmlkIFJlZmVyZW5jZSBGaW5kZXIgKG9wZW5zIG5ldyB3aW5kb3cpLjwvYT5cbiAgICAgICAgICA8L3A+XG4gICAgICAgICAgPHVsIGNsYXNzPVwibGlzdCBsaXN0LW51bWJlclwiPlxuICAgICAgICAgICAgPGxpPlNlYXJjaCBmb3IgdGhlIGxvY2F0aW9uIG9yIHBvc3Rjb2RlIG9uIHRoZSBsZWZ0IG9mIHRoZSBwYWdlLjwvbGk+XG4gICAgICAgICAgICA8bGk+UmlnaHQtY2xpY2sgdG8gZGlzcGxheSB0aGUgZ3JpZCByZWZlcmVuY2UuPC9saT5cbiAgICAgICAgICAgIDxsaT5TZWxlY3QgdGhlIGdyaWQgcmVmZXJlbmNlIHRoZW4gY29weSBhbmQgcGFzdGUgYmFjayBvbiB0aGlzIHBhZ2UuPC9saT5cbiAgICAgICAgICA8L3VsPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGV0YWlscz5cbiAgICA8L2Rpdj5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwiZGVzY3JpcHRpb25cIj5cblxuICAgICAgICA8bGFiZWwgY2xhc3M9XCJmb3JtLWxhYmVsXCIgZm9yPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtX2Rlc2NyaXB0aW9uXCI+XG4gICAgICAgICAgU2l0ZSBkZXRhaWxzXG48L2xhYmVsPiAgICAgICAgPHNwYW4gY2xhc3M9J2Zvcm0taGludCc+XG4gICAgICAgICAgVXNlZnVsIGluZm9ybWF0aW9uIGluY2x1ZGVzOlxuICAgICAgICA8L3NwYW4+XG4gICAgICAgIDx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXQgZm9ybS1oaW50XCI+XG4gICAgICAgICAgPGxpPm5lYXJieSBsYW5kbWFya3M8L2xpPlxuICAgICAgICAgIDxsaT5kZXNjcmlwdGlvbiBvZiB0aGUgc2l0ZTwvbGk+XG4gICAgICAgICAgPGxpPm1hbi1tYWRlIGZlYXR1cmVzLCBmb3IgZXhhbXBsZSByb2Fkcywgd2FsbHMgb3IgYnVpbGRpbmdzPC9saT5cbiAgICAgICAgICA8bGk+bmF0dXJhbCBmZWF0dXJlcywgZm9yIGV4YW1wbGUgcml2ZXJzLCB0cmVlcyBvciBoZWRnZXM8L2xpPlxuICAgICAgICA8L3VsPlxuICAgICAgICA8dGV4dGFyZWEgY2xhc3M9XCJmb3JtLWNvbnRyb2xcIiByb3dzPVwiNFwiIG5hbWU9XCJzaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1bZGVzY3JpcHRpb25dXCIgaWQ9XCJzaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1fZGVzY3JpcHRpb25cIj5cbjwvdGV4dGFyZWE+XG4gICAgICA8L2ZpZWxkc2V0PlxuICAgICAgPHA+NTAwIGNoYXJhY3RlciBsaW1pdDwvcD5cbiAgICA8L2Rpdj5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwXCI+XG4gICAgICA8aW5wdXQgdHlwZT1cInN1Ym1pdFwiIG5hbWU9XCJjb21taXRcIiB2YWx1ZT1cIkNvbnRpbnVlXCIgY2xhc3M9XCJidXR0b25cIiBkYXRhLWRpc2FibGUtd2l0aD1cIkNvbnRpbnVlXCIgLz5cbiAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Mon, 04 Oct 2021 12:46:22 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImVycm9yIiwibGFzdExpbmUiOjU2LCJsYXN0Q29sdW1uIjozNDMsImZpcnN0Q29sdW1uIjozNDAsIm1lc3NhZ2UiOiJFbGVtZW50IOKAnHVs4oCdIG5vdCBhbGxvd2VkIGFzIGNoaWxkIG9mIGVsZW1lbnQg4oCcc3BhbuKAnSBpbiB0aGlzIGNvbnRleHQuIChTdXBwcmVzc2luZyBmdXJ0aGVyIGVycm9ycyBmcm9tIHRoaXMgc3VidHJlZS4pIiwiZXh0cmFjdCI6IiBpbmNsdWRlczo8dWw+PGxpPm5lIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjR9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBpZD1cIm5ld19zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvVkdjTGo0NjRDSmJRM05BRVFNQThMNjdwL3NpdGUtZ3JpZC1yZWZlcmVuY2VcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPHNwYW4gY2xhc3M9XCJnb3Z1ay12aXN1YWxseS1oaWRkZW5cIj5cbiAgICAgICAgPHNwYW4gY2xhc3M9XCJ0cmFuc2xhdGlvbl9taXNzaW5nXCIgdGl0bGU9XCJ0cmFuc2xhdGlvbiBtaXNzaW5nOiBlbi53YXN0ZV9leGVtcHRpb25zX2VuZ2luZS5zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1zLm5ldy5sZWdlbmRcIj5MZWdlbmQ8L3NwYW4+XG4gICAgICA8L3NwYW4+XG5cbiAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPlxuICAgICAgICBXaGVyZSB3aWxsIHRoaXMgd2FzdGUgb3BlcmF0aW9uIHRha2UgcGxhY2U/XG4gICAgICA8L2gxPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstaW5zZXQtdGV4dFwiPlxuICAgICAgICBFbnRlciBhIGdyaWQgcmVmZXJlbmNlIG9yXG4gICAgICAgIDxhIGhyZWY9XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvVkdjTGo0NjRDSmJRM05BRVFNQThMNjdwL3NpdGUtZ3JpZC1yZWZlcmVuY2Uvc2tpcF90b19hZGRyZXNzL1ZHY0xqNDY0Q0piUTNOQUVRTUE4TDY3cFwiPnVzZSBhbiBhZGRyZXNzIGluc3RlYWQ8L2E+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48bGFiZWwgZm9yPVwic2l0ZS1ncmlkLXJlZmVyZW5jZS1mb3JtLWdyaWQtcmVmZXJlbmNlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1sYWJlbCBnb3Z1ay1sYWJlbC0tc1wiPk5hdGlvbmFsIEdyaWQgcmVmZXJlbmNlPC9sYWJlbD48c3BhbiBjbGFzcz1cImdvdnVrLWhpbnRcIiBpZD1cInNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1ncmlkLXJlZmVyZW5jZS1oaW50XCI+RW50ZXIgMiBsZXR0ZXJzIGFuZCAxMCBkaWdpdHMuIEZvciBleGFtcGxlLCBTVCA1ODEzMiA3MjY5NTwvc3Bhbj48aW5wdXQgaWQ9XCJzaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZ3JpZC1yZWZlcmVuY2UtZmllbGRcIiBjbGFzcz1cImdvdnVrLWlucHV0IGdvdnVrLSEtd2lkdGgtb25lLXRoaXJkXCIgYXJpYS1kZXNjcmliZWRieT1cInNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1ncmlkLXJlZmVyZW5jZS1oaW50XCIgdHlwZT1cInRleHRcIiBuYW1lPVwic2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtW2dyaWRfcmVmZXJlbmNlXVwiIC8+PC9kaXY+XG5cbiAgICAgIDxkZXRhaWxzIGNsYXNzPVwiZ292dWstZGV0YWlsc1wiIGRhdGEtbW9kdWxlPVwiZ292dWstZGV0YWlsc1wiPlxuICAgICAgICA8c3VtbWFyeSBjbGFzcz1cImdvdnVrLWRldGFpbHNfX3N1bW1hcnlcIj5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cImdvdnVrLWRldGFpbHNfX3N1bW1hcnktdGV4dFwiPlxuICAgICAgICAgICAgSGVscCBmaW5kaW5nIGEgZ3JpZCByZWZlcmVuY2VcbiAgICAgICAgICA8L3NwYW4+XG4gICAgICAgIDwvc3VtbWFyeT5cbiAgICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWRldGFpbHNfX3RleHRcIj5cbiAgICAgICAgICA8cD5cbiAgICAgICAgICAgIFVzZSB0aGUgZnJlZSA8YSByZWw9XCJleHRlcm5hbFwiIHRhcmdldD1cIl9ibGFua1wiIGhyZWY9XCJodHRwOi8vZ3JpZHJlZmVyZW5jZWZpbmRlci5jb20vXCI+VUsgR3JpZCBSZWZlcmVuY2UgRmluZGVyIChvcGVucyBuZXcgd2luZG93KS48L2E+XG4gICAgICAgICAgPC9wPlxuICAgICAgICAgIDxvbCBjbGFzcz1cImdvdnVrLWxpc3QgZ292dWstbGlzdC0tbnVtYmVyXCI+XG4gICAgICAgICAgICA8bGk+U2VhcmNoIGZvciB0aGUgbG9jYXRpb24gb3IgcG9zdGNvZGUgb24gdGhlIGxlZnQgb2YgdGhlIHBhZ2UuPC9saT5cbiAgICAgICAgICAgIDxsaT5SaWdodC1jbGljayB0byBkaXNwbGF5IHRoZSBncmlkIHJlZmVyZW5jZS48L2xpPlxuICAgICAgICAgICAgPGxpPlNlbGVjdCB0aGUgZ3JpZCByZWZlcmVuY2UgdGhlbiBjb3B5IGFuZCBwYXN0ZSBiYWNrIG9uIHRoaXMgcGFnZS48L2xpPlxuICAgICAgICAgIDwvb2w+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kZXRhaWxzPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstY2hhcmFjdGVyLWNvdW50XCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1jaGFyYWN0ZXItY291bnRcIiBkYXRhLW1heGxlbmd0aD1cIjUwMFwiPjxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGxhYmVsIGZvcj1cInNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstbGFiZWwtLXNcIj5TaXRlIGRldGFpbHM8L2xhYmVsPjxzcGFuIGNsYXNzPVwiZ292dWstaGludFwiIGlkPVwic2l0ZS1ncmlkLXJlZmVyZW5jZS1mb3JtLWRlc2NyaXB0aW9uLWhpbnRcIj5Vc2VmdWwgaW5mb3JtYXRpb24gaW5jbHVkZXM6PHVsPjxsaT5uZWFyYnkgbGFuZG1hcmtzPC9saT48bGk+ZGVzY3JpcHRpb24gb2YgdGhlIHNpdGU8L2xpPjxsaT5tYW4tbWFkZSBmZWF0dXJlcywgZm9yIGV4YW1wbGUgcm9hZHMsIHdhbGxzIG9yIGJ1aWxkaW5nczwvbGk+PGxpPm5hdHVyYWwgZmVhdHVyZXMsIGZvciBleGFtcGxlIHJpdmVycywgdHJlZXMgb3IgaGVkZ2VzPC9saT48L3VsPjwvc3Bhbj48dGV4dGFyZWEgaWQ9XCJzaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZGVzY3JpcHRpb24tZmllbGRcIiBjbGFzcz1cImdvdnVrLXRleHRhcmVhIGdvdnVrLWpzLWNoYXJhY3Rlci1jb3VudFwiIHJvd3M9XCI1XCIgYXJpYS1kZXNjcmliZWRieT1cInNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1oaW50IHNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1maWVsZC1pbmZvXCIgbmFtZT1cInNpdGVfZ3JpZF9yZWZlcmVuY2VfZm9ybVtkZXNjcmlwdGlvbl1cIj5cbjwvdGV4dGFyZWE+PHNwYW4gaWQ9XCJzaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZGVzY3JpcHRpb24tZmllbGQtaW5mb1wiIGNsYXNzPVwiZ292dWstaGludCBnb3Z1ay1jaGFyYWN0ZXItY291bnRfX21lc3NhZ2VcIiBhcmlhLWxpdmU9XCJwb2xpdGVcIj5Zb3UgY2FuIGVudGVyIHVwIHRvIDUwMCBjaGFyYWN0ZXJzPC9zcGFuPjwvZGl2PjwvZGl2PlxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Fri, 15 Oct 2021 17:13:33 GMT
 recorded_with: VCR 6.0.0
