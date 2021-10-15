@@ -7,7 +7,7 @@ en:
           localAuthority: Chief executive details
           limitedCompany: Company director details
           limitedLiabilityPartnership: Member details
-          partnership: Partner details
+          partnership: What are the names of all the business partners?
           soleTrader: Business owner details
           charity: Chief executive details
         description: Enter the name for each partner of the business
