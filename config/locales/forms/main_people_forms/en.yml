@@ -36,11 +36,13 @@ en:
             other: "You may only the details of at most %{count} people"
           attributes:
             first_name:
-              blank: "You must enter a first name"
+              blank: "Enter a first name"
               too_long: "The first name must be no longer than 35 characters"
+              invalid: "Enter a valid first name"
             last_name:
-              blank: "You must enter a last name"
+              blank: "Enter a last name"
               too_long: "The last name must be no longer than 35 characters"
+              invalid: "Enter a valid last name"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
