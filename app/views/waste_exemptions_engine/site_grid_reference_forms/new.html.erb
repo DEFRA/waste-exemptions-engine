@@ -1,84 +1,78 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
 
-<div class="text">
-  <%= form_for(@site_grid_reference_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @site_grid_reference_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @site_grid_reference_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <span class="govuk-visually-hidden">
+        <%= t(".legend") %>
+      </span>
 
-    <div class="panel panel-border-wide">
-      <p class="strong">
+      <h1 class="govuk-heading-l">
+        <%= t(".heading") %>
+      </h1>
+
+      <div class="govuk-inset-text">
         <%= t(".grid_reference_or_address.message") %>
         <%= link_to(t(".grid_reference_or_address.manual_address_label"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
-      </p>
-    </div>
+      </div>
 
-    <div class="form-group <%= "form-group-error" if @site_grid_reference_form.errors[:grid_reference].any? %>">
-      <fieldset id="grid_reference">
-        <% if @site_grid_reference_form.errors[:grid_reference].any? %>
-          <span class="error-message"><%= @site_grid_reference_form.errors[:grid_reference].join(", ") %></span>
-        <% end %>
+      <%= f.govuk_text_field :grid_reference,
+        label: {
+          text: t(".grid_reference_label"),
+          size: "s"
+        },
+        width: "one-third",
+        hint: {
+          text: t(".grid_reference_hint")
+        }
+      %>
 
-        <%= f.label :grid_reference, class: "form-label" do %>
-          <%= t(".grid_reference_label") %>
-          <span class='form-hint'><%= t(".grid_reference_hint") %></span>
-        <% end %>
-        <%= f.text_field :grid_reference, value: @site_grid_reference_form.grid_reference, class: "form-control govuk-input--width-10" %>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <details>
-        <summary>
-          <span class="summary"><%= t(".grid_reference_help_link") %></span>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            <%= t(".grid_reference_help_link") %>
+          </span>
         </summary>
-        <div class="panel panel-border-narrow">
-          <p><%=
-            t(
-              ".grid_reference_help_hint",
-              link: link_to(
-                t(".grid_reference_help_tool_link"),
-                "http://gridreferencefinder.com/",
+        <div class="govuk-details__text">
+          <p>
+            <%=
+              t(".grid_reference_help_hint",
+                link: link_to( t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/",
                 rel: "external",
-                target: "_blank"
-                )
-            ).html_safe
+                target: "_blank")
+              ).html_safe
             %>
           </p>
-          <ul class="list list-number">
+          <ol class="govuk-list govuk-list--number">
             <li><%= t(".grid_reference_help_step_1") %></li>
             <li><%= t(".grid_reference_help_step_2") %></li>
             <li><%= t(".grid_reference_help_step_3") %></li>
-          </ul>
+          </ol>
         </div>
       </details>
-    </div>
 
-    <div class="form-group <%= "form-group-error" if @site_grid_reference_form.errors[:description].any? %>">
-      <fieldset id="description">
-        <% if @site_grid_reference_form.errors[:description].any? %>
-          <span class="error-message"><%= @site_grid_reference_form.errors[:description].join(", ") %></span>
-        <% end %>
-
-        <%= f.label :description, class: "form-label" do %>
-          <%= t(".description_label") %>
-        <% end %>
-        <span class='form-hint'>
-          <%= t(".description_hint") %>
-        </span>
-        <ul class="list list-bullet form-hint">
-          <li><%= t(".description_hint_bullet_1") %></li>
-          <li><%= t(".description_hint_bullet_2") %></li>
-          <li><%= t(".description_hint_bullet_3") %></li>
-          <li><%= t(".description_hint_bullet_4") %></li>
-        </ul>
-        <%= f.text_area :description, value: @site_grid_reference_form.description, class: "form-control", rows: 4 %>
-      </fieldset>
-      <p><%= t(".description_limit") %></p>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_text_area :description,
+        label: {
+          text: t(".description_label"),
+          size: "s"
+        },
+        hint: {
+          text:
+            [
+              t(".description_hint"),
+              "<ul>",
+              "<li>#{t('.description_hint_bullet_1')}</li>",
+              "<li>#{t('.description_hint_bullet_2')}</li>",
+              "<li>#{t('.description_hint_bullet_3')}</li>",
+              "<li>#{t('.description_hint_bullet_4')}</li>",
+              "</ul>"
+            ].join.html_safe
+        },
+        max_chars: 500
+      %>
+      <%= f.govuk_submit t(".next_button") %>
+    <% end %>
+  </div>
 </div>
