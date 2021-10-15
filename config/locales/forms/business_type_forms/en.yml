@@ -21,7 +21,7 @@ en:
         waste_exemptions_engine/business_type_form:
           attributes:
             business_type:
-              inclusion: "You must answer this question"
+              inclusion: "Select a business type or organisation"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
