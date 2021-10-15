@@ -12,7 +12,7 @@
       <%= render("waste_exemptions_engine/shared/person_name", form: @main_people_form, f: f) %>
 
       <% if @main_people_form.transient_people.count < 1 %>
-        <%= f.govuk_submit t(".add_person_link") %>
+        <%= f.submit t(".add_person_link"), class: "govuk-button" %>
       <% else %>
         <div class="govuk-form-group">
           <%= f.submit t(".add_person_link"), class: "button-link" %>
