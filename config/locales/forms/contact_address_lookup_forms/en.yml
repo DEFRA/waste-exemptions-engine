@@ -3,7 +3,7 @@ en:
     contact_address_lookup_forms:
       new:
         title: Contact address selection
-        heading: What's their address?
+        heading: Select their address
         postcode_label: Postcode
         postcode_change_link: "Change postcode"
         manual_address_link: "I cannot find the address in the list"
@@ -15,4 +15,4 @@ en:
         waste_exemptions_engine/contact_address_lookup_form:
           attributes:
             contact_address:
-              blank: "You must select an address"
+              blank: "Select an address"
