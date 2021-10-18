@@ -9,40 +9,74 @@ http_interactions:
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
-        class=\"text\">\n\n    <form class=\"new_check_your_answers_form\" id=\"new_check_your_answers_form\"
-        action=\"/waste_exemptions_engine/vLyWPX3GZwN85rVMfbKZjMae/check-your-answers\"
-        accept-charset=\"UTF-8\" method=\"post\">\n      \n\n      <h1 class=\"heading-large\">Check
-        your answers before completing your registration</h1>\n\n      <p>We will
-        send a copy of this summary in a confirmation email</p>\n\n      <h2 class=\"heading-medium\">Exemptions</h2>\n<ul
-        class=\"list list-bullet\">\n    <li><span class=\"strong\">U5278</span> -
-        Ut officiis eaque dolore.</li>\n    <li><span class=\"strong\">U5279</span>
-        - Et voluptatem magni quia.</li>\n    <li><span class=\"strong\">U5280</span>
-        - Architecto eos excepturi et.</li>\n    <li><span class=\"strong\">U5281</span>
-        - Aut necessitatibus inventore consequatur.</li>\n    <li><span class=\"strong\">U5282</span>
-        - Nulla aut nostrum reprehenderit.</li>\n</ul>\n\n<hr>\n\n      <h2 class=\"heading-medium\">You
-        told us</h2>\n<p>the waste operation will take place in <span class=\"strong\">England</span></p>\n\n<hr>\n\n
-        \     <h2 class=\"heading-medium\">Person who filled in the form</h2>\n<ul
-        class=\"list list-bullet\">\n  <li>your name is <span class=\"strong\">Dan
-        Hilll</span></li>\n  <li>your phone number is <span class=\"strong\">01234567890</span></li>\n
-        \ <li>your email is <span class=\"strong\">ila.paucek@example.org</span></li>\n</ul>\n\n<hr>\n\n
-        \     <h2 class=\"heading-medium\">Operator details</h2>\n<ul class=\"list
-        list-bullet\">\n  <li>the operator is a <span class=\"strong\">limited company</span></li>\n
-        \ <li>the company name is <span class=\"strong\">Green Inc</span></li>\n    <li>the
-        Companies House number is <span class=\"strong\">09360070</span></li>\n</ul>\n\n<hr>\n\n<h2
-        class=\"heading-medium\">Operator address</h2>\n<ul class=\"list\">\n</ul>\n\n<hr>\n\n
-        \     <h2 class=\"heading-medium\">Contact details</h2>\n<ul class=\"list
-        list-bullet\">\n  <li>the contact's name is <span class=\"strong\">Erwin Lindgren</span></li>\n
-        \   <li>the contact's position is <span class=\"strong\">mechanic</span></li>\n
-        \ <li>the contact's phone number is <span class=\"strong\">01234567890</span></li>\n
-        \ <li>the contact's email is <span class=\"strong\">hertha@example.net</span></li>\n</ul>\n\n<hr>\n\n<h2
-        class=\"heading-medium\">Contact address</h2>\n<ul class=\"list\">\n</ul>\n\n<hr>\n\n
-        \     <h2 class=\"heading-medium\">Farming information</h2>\n<ul class=\"list
-        list-bullet\">\n  <li>the operation <span class=\"strong\">will</span> take
-        place on a farm</li>\n  <li>the operator <span class=\"strong\">is</span>
-        a farmer</li>\n</ul>\n\n<hr>\n\n      <h2 class=\"heading-medium\">Site address</h2>\n
-        \ <ul class=\"list\">\n  </ul>\n\n<hr>\n\n\n      <div class=\"form-group\">\n
-        \       <input type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\"
-        data-disable-with=\"Continue\" />\n      </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \     <form class=\"new_check_your_answers_form\" id=\"new_check_your_answers_form\"
+        action=\"/waste_exemptions_engine/BoGH1pA3A2Y5NYHWaRDuKJWH/check-your-answers\"
+        accept-charset=\"UTF-8\" method=\"post\">\n        <h1 class=\"govuk-heading-l\">Check
+        your answers before completing your registration</h1>\n\n        <p class=\"govuk-body\">We
+        will send a copy of this summary in a confirmation email</p>\n\n        <h2
+        class=\"govuk-heading-m\">\n  Company details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n
+        \ The information you&#39;ve given us about the company\n</span>\n\n<dl class=\"govuk-summary-list
+        govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row\">\n    <dt
+        class=\"govuk-summary-list__key\">\n      Business type\n    </dt>\n    <dd
+        class=\"govuk-summary-list__value\">\n      Limited company\n    </dd>\n    <dd
+        class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Operator name\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Kunze LLC\n    </dd>\n
+        \   <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div
+        class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Companies House number\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     09360070\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Place of business\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     England\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n      Franecki-Pagac<br>391<br>68442
+        Armstrong Bypass<br>East<br>Beerborough<br>BS1 5AH\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact name\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Kurt Wiegand\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact position\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     receptionist\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Gottlieb Inc<br>586<br>170 Cody Plains<br>North<br>West Chi<br>BS1 5AH\n
+        \   </dd>\n    <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n
+        \ <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact details\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     01234567890<br>lesia.zemlak@example.org\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n</dl>\n\n        <h2 class=\"govuk-heading-m\">\n  Registration
+        details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n  The information
+        you&#39;ve given us about the registration\n</span>\n\n<dl class=\"govuk-summary-list
+        govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row\">\n    <dt
+        class=\"govuk-summary-list__key\">\n      Exemptions\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     U1, U2, U3, U4, U5\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Will this waste operation take place on a farm?\n    </dt>\n    <dd
+        class=\"govuk-summary-list__value\">\n      Yes\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Are the waste exemptions used by a farmer or farming business?\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Yes\n    </dd>\n    <dd
+        class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Form completed by\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Juan Moore\n    </dd>\n
+        \   <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div
+        class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Telephone number\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     01234567890\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Email address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     ma_gulgowski@example.org\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Grid reference\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     ST 58337 72855\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Site description\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Adipisci commodi ex aperiam.\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n</dl>\n\n\n        <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -58,7 +92,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 04 Oct 2021 12:52:55 GMT
+      - Mon, 18 Oct 2021 15:34:49 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -89,6 +123,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuXG4gICAgPGZvcm0gY2xhc3M9XCJuZXdfY2hlY2tfeW91cl9hbnN3ZXJzX2Zvcm1cIiBpZD1cIm5ld19jaGVja195b3VyX2Fuc3dlcnNfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS92THlXUFgzR1p3Tjg1clZNZmJLWmpNYWUvY2hlY2steW91ci1hbnN3ZXJzXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgIFxuXG4gICAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+Q2hlY2sgeW91ciBhbnN3ZXJzIGJlZm9yZSBjb21wbGV0aW5nIHlvdXIgcmVnaXN0cmF0aW9uPC9oMT5cblxuICAgICAgPHA+V2Ugd2lsbCBzZW5kIGEgY29weSBvZiB0aGlzIHN1bW1hcnkgaW4gYSBjb25maXJtYXRpb24gZW1haWw8L3A+XG5cbiAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+RXhlbXB0aW9uczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTUyNzg8L3NwYW4+IC0gVXQgb2ZmaWNpaXMgZWFxdWUgZG9sb3JlLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTUyNzk8L3NwYW4+IC0gRXQgdm9sdXB0YXRlbSBtYWduaSBxdWlhLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTUyODA8L3NwYW4+IC0gQXJjaGl0ZWN0byBlb3MgZXhjZXB0dXJpIGV0LjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTUyODE8L3NwYW4+IC0gQXV0IG5lY2Vzc2l0YXRpYnVzIGludmVudG9yZSBjb25zZXF1YXR1ci48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlU1MjgyPC9zcGFuPiAtIE51bGxhIGF1dCBub3N0cnVtIHJlcHJlaGVuZGVyaXQuPC9saT5cbjwvdWw+XG5cbjxocj5cblxuICAgICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5Zb3UgdG9sZCB1czwvaDI+XG48cD50aGUgd2FzdGUgb3BlcmF0aW9uIHdpbGwgdGFrZSBwbGFjZSBpbiA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPkVuZ2xhbmQ8L3NwYW4+PC9wPlxuXG48aHI+XG5cbiAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+UGVyc29uIHdobyBmaWxsZWQgaW4gdGhlIGZvcm08L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+eW91ciBuYW1lIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+RGFuIEhpbGxsPC9zcGFuPjwvbGk+XG4gIDxsaT55b3VyIHBob25lIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjAxMjM0NTY3ODkwPC9zcGFuPjwvbGk+XG4gIDxsaT55b3VyIGVtYWlsIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+aWxhLnBhdWNla0BleGFtcGxlLm9yZzwvc3Bhbj48L2xpPlxuPC91bD5cblxuPGhyPlxuXG4gICAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPk9wZXJhdG9yIGRldGFpbHM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIG9wZXJhdG9yIGlzIGEgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5saW1pdGVkIGNvbXBhbnk8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb21wYW55IG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5HcmVlbiBJbmM8L3NwYW4+PC9saT5cbiAgICA8bGk+dGhlIENvbXBhbmllcyBIb3VzZSBudW1iZXIgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj4wOTM2MDA3MDwvc3Bhbj48L2xpPlxuPC91bD5cblxuPGhyPlxuXG48aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPk9wZXJhdG9yIGFkZHJlc3M8L2gyPlxuPHVsIGNsYXNzPVwibGlzdFwiPlxuPC91bD5cblxuPGhyPlxuXG4gICAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkNvbnRhY3QgZGV0YWlsczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gIDxsaT50aGUgY29udGFjdCdzIG5hbWUgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5FcndpbiBMaW5kZ3Jlbjwvc3Bhbj48L2xpPlxuICAgIDxsaT50aGUgY29udGFjdCdzIHBvc2l0aW9uIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+bWVjaGFuaWM8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb250YWN0J3MgcGhvbmUgbnVtYmVyIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+MDEyMzQ1Njc4OTA8L3NwYW4+PC9saT5cbiAgPGxpPnRoZSBjb250YWN0J3MgZW1haWwgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5oZXJ0aGFAZXhhbXBsZS5uZXQ8L3NwYW4+PC9saT5cbjwvdWw+XG5cbjxocj5cblxuPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5Db250YWN0IGFkZHJlc3M8L2gyPlxuPHVsIGNsYXNzPVwibGlzdFwiPlxuPC91bD5cblxuPGhyPlxuXG4gICAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkZhcm1pbmcgaW5mb3JtYXRpb248L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIG9wZXJhdGlvbiA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPndpbGw8L3NwYW4+IHRha2UgcGxhY2Ugb24gYSBmYXJtPC9saT5cbiAgPGxpPnRoZSBvcGVyYXRvciA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPmlzPC9zcGFuPiBhIGZhcm1lcjwvbGk+XG48L3VsPlxuXG48aHI+XG5cbiAgICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+U2l0ZSBhZGRyZXNzPC9oMj5cbiAgPHVsIGNsYXNzPVwibGlzdFwiPlxuICA8L3VsPlxuXG48aHI+XG5cblxuICAgICAgPGRpdiBjbGFzcz1cImZvcm0tZ3JvdXBcIj5cbiAgICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgZGF0YS1kaXNhYmxlLXdpdGg9XCJDb250aW51ZVwiIC8+XG4gICAgICA8L2Rpdj5cbjwvZm9ybT48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Mon, 04 Oct 2021 12:49:42 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICAgIDxmb3JtIGNsYXNzPVwibmV3X2NoZWNrX3lvdXJfYW5zd2Vyc19mb3JtXCIgaWQ9XCJuZXdfY2hlY2tfeW91cl9hbnN3ZXJzX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvQm9HSDFwQTNBMlk1TllIV2FSRHVLSldIL2NoZWNrLXlvdXItYW5zd2Vyc1wiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPkNoZWNrIHlvdXIgYW5zd2VycyBiZWZvcmUgY29tcGxldGluZyB5b3VyIHJlZ2lzdHJhdGlvbjwvaDE+XG5cbiAgICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+V2Ugd2lsbCBzZW5kIGEgY29weSBvZiB0aGlzIHN1bW1hcnkgaW4gYSBjb25maXJtYXRpb24gZW1haWw8L3A+XG5cbiAgICAgICAgPGgyIGNsYXNzPVwiZ292dWstaGVhZGluZy1tXCI+XG4gIENvbXBhbnkgZGV0YWlsc1xuPC9oMj5cblxuPHNwYW4gY2xhc3M9XCJnb3Z1ay12aXN1YWxseS1oaWRkZW5cIj5cbiAgVGhlIGluZm9ybWF0aW9uIHlvdSYjMzk7dmUgZ2l2ZW4gdXMgYWJvdXQgdGhlIGNvbXBhbnlcbjwvc3Bhbj5cblxuPGRsIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0IGdvdnVrLSEtbWFyZ2luLWJvdHRvbS05XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBCdXNpbmVzcyB0eXBlXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBMaW1pdGVkIGNvbXBhbnlcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgT3BlcmF0b3IgbmFtZVxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgS3VuemUgTExDXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIENvbXBhbmllcyBIb3VzZSBudW1iZXJcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIDA5MzYwMDcwXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIFBsYWNlIG9mIGJ1c2luZXNzXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBFbmdsYW5kXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIEFkZHJlc3NcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIEZyYW5lY2tpLVBhZ2FjPGJyPjM5MTxicj42ODQ0MiBBcm1zdHJvbmcgQnlwYXNzPGJyPkVhc3Q8YnI+QmVlcmJvcm91Z2g8YnI+QlMxIDVBSFxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBDb250YWN0IG5hbWVcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIEt1cnQgV2llZ2FuZFxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBDb250YWN0IHBvc2l0aW9uXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICByZWNlcHRpb25pc3RcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQ29udGFjdCBhZGRyZXNzXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBHb3R0bGllYiBJbmM8YnI+NTg2PGJyPjE3MCBDb2R5IFBsYWluczxicj5Ob3J0aDxicj5XZXN0IENoaTxicj5CUzEgNUFIXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIENvbnRhY3QgZGV0YWlsc1xuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgMDEyMzQ1Njc4OTA8YnI+bGVzaWEuemVtbGFrQGV4YW1wbGUub3JnXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbjwvZGw+XG5cbiAgICAgICAgPGgyIGNsYXNzPVwiZ292dWstaGVhZGluZy1tXCI+XG4gIFJlZ2lzdHJhdGlvbiBkZXRhaWxzXG48L2gyPlxuXG48c3BhbiBjbGFzcz1cImdvdnVrLXZpc3VhbGx5LWhpZGRlblwiPlxuICBUaGUgaW5mb3JtYXRpb24geW91JiMzOTt2ZSBnaXZlbiB1cyBhYm91dCB0aGUgcmVnaXN0cmF0aW9uXG48L3NwYW4+XG5cbjxkbCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdCBnb3Z1ay0hLW1hcmdpbi1ib3R0b20tOVwiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgRXhlbXB0aW9uc1xuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgVTEsIFUyLCBVMywgVTQsIFU1XG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIFdpbGwgdGhpcyB3YXN0ZSBvcGVyYXRpb24gdGFrZSBwbGFjZSBvbiBhIGZhcm0/XG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBZZXNcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQXJlIHRoZSB3YXN0ZSBleGVtcHRpb25zIHVzZWQgYnkgYSBmYXJtZXIgb3IgZmFybWluZyBidXNpbmVzcz9cbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIFllc1xuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBGb3JtIGNvbXBsZXRlZCBieVxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgSnVhbiBNb29yZVxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBUZWxlcGhvbmUgbnVtYmVyXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICAwMTIzNDU2Nzg5MFxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBFbWFpbCBhZGRyZXNzXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBtYV9ndWxnb3dza2lAZXhhbXBsZS5vcmdcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgR3JpZCByZWZlcmVuY2VcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIFNUIDU4MzM3IDcyODU1XG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIFNpdGUgZGVzY3JpcHRpb25cbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIEFkaXBpc2NpIGNvbW1vZGkgZXggYXBlcmlhbS5cbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuPC9kbD5cblxuXG4gICAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGZvcm1ub3ZhbGlkYXRlPVwiZm9ybW5vdmFsaWRhdGVcIiBjbGFzcz1cImdvdnVrLWJ1dHRvblwiIGRhdGEtbW9kdWxlPVwiZ292dWstYnV0dG9uXCIgZGF0YS1wcmV2ZW50LWRvdWJsZS1jbGljaz1cInRydWVcIj5Db250aW51ZTwvYnV0dG9uPlxuPC9mb3JtPiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+  recorded_at: Mon, 18 Oct 2021 15:27:18 GMT
 recorded_with: VCR 6.0.0

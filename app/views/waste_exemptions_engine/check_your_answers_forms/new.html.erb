@@ -1,41 +1,32 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_check_your_answers_forms_path(@check_your_answers_form.token)) %>
 
-<div class="text">
-  <% if @check_your_answers_form.errors.any? %>
-    <div class="error-summary" role="alert">
-      <h2 class="heading-medium error-summary-heading"><%= t(".error_heading") %></h2>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <% if @check_your_answers_form.errors.any? %>
+      <div class="govuk-error-summary" role="alert">
+        <h2 class="govuk-error-summary__title"><%= t(".error_heading") %></h2>
 
-      <p><%= t(".error_description_1") %></p>
+        <p class="govuk-body"><%= t(".error_description_1") %></p>
 
-      <ul class="list list-bullet">
-      <% @check_your_answers_form.errors.each do |_field, message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul class="govuk-list govuk-error-summary__list">
+          <% @check_your_answers_form.errors.each do |_field, message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
 
-      <p><%= t(".error_description_2") %></p>
-    </div>
-
-  <% else %>
-
-    <%= form_for(@check_your_answers_form) do |f| %>
-      <%= render("waste_exemptions_engine/shared/errors", object: @check_your_answers_form) %>
-
-      <h1 class="heading-large"><%= t(".heading") %></h1>
-
-      <p><%= t(".description") %></p>
-
-      <%= render("waste_exemptions_engine/shared/data_overview/exemptions", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/location") %>
-      <%= render("waste_exemptions_engine/shared/data_overview/applicant", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/operator", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/contact", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/farming", form: @check_your_answers_form) %>
-      <%= render("waste_exemptions_engine/shared/data_overview/site", form: @check_your_answers_form) %>
-
-      <div class="form-group">
-        <%= f.submit t(".next_button"), class: "button" %>
+        <p class="govuk-body"><%= t(".error_description_2") %></p>
       </div>
+    <% else %>
+      <%= form_for(@check_your_answers_form) do |f| %>
+        <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+        <p class="govuk-body"><%= t(".description") %></p>
+
+        <%= render("waste_exemptions_engine/shared/data_overview/company_info", form: @check_your_answers_form) %>
+        <%= render("waste_exemptions_engine/shared/data_overview/registration_info", form: @check_your_answers_form) %>
+
+        <%= f.govuk_submit t(".next_button") %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

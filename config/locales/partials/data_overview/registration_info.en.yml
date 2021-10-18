@@ -1,0 +1,31 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        registration_info:
+          subheading: Registration details
+          table_summary: "The information you've given us about the registration"
+          exemptions:
+            title: Exemptions
+          on_a_farm:
+            title: Will this waste operation take place on a farm?
+            value:
+              "true": "Yes"
+              "false": "No"
+          is_a_farmer:
+            title: Are the waste exemptions used by a farmer or farming business?
+            value:
+              "true": "Yes"
+              "false": "No"
+          applicant_name:
+            title: Form completed by
+          applicant_phone:
+            title: Telephone number
+          applicant_email:
+            title: Email address
+          site_address:
+            title: Site address
+          grid_reference:
+            title: Grid reference
+          site_description:
+            title: Site description

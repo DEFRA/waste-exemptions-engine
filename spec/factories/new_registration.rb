@@ -45,9 +45,9 @@ FactoryBot.define do
     trait :with_all_addresses do
       addresses do
         [
-          build(:transient_address, :operator_address, :manual),
-          build(:transient_address, :contact_address, :manual),
-          build(:transient_address, :site_address, :manual)
+          build(:transient_address, :operator_address, :using_postal_address, :manual),
+          build(:transient_address, :contact_address, :using_postal_address, :manual),
+          build(:transient_address, :site_using_grid_reference, :auto)
         ]
       end
     end

@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class CheckYourAnswersForm < BaseForm
     include DataOverviewForm
 
+    delegate :company_rows, :registration_rows, to: :data_overview_presenter
+
     validates :location, "defra_ruby/validators/location": true
     validates :applicant_first_name, :applicant_last_name, "waste_exemptions_engine/person_name": true
     validates :applicant_phone, "defra_ruby/validators/phone_number": true
@@ -31,6 +33,10 @@ module WasteExemptionsEngine
     after_initialize :valid
 
     private
+
+    def data_overview_presenter
+      @_data_overview_presenter ||= DataOverviewPresenter.new(transient_registration)
+    end
 
     def company_no_required?
       @transient_registration.company_no_required?
