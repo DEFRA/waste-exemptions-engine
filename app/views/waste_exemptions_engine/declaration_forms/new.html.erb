@@ -1,35 +1,37 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_declaration_forms_path(@declaration_form.token)) %>
 
-<div class="text">
-  <%= form_for(@declaration_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @declaration_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@declaration_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <%= f.govuk_check_boxes_fieldset :declaration,
+          multiple: false,
+          legend: { text:  t(".heading"), size: "l", tag: "h1" } do %>
 
-    <p class="heading-small inline"><%= t '.notice' %></p>
+        <p class="govuk-body govuk-!-font-weight-bold">
+          <%= t(".notice") %>
+        </p>
 
-    <ul class="list list-bullet">
-      <li><%= t(".list_item_1") %></li>
-      <li><%= t(".list_item_2") %></li>
-    </ul>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><%= t(".list_item_1") %></li>
+          <li><%= t(".list_item_2") %></li>
+        </ul>
 
-    <div class="form-group <%= "form-group-error" if @declaration_form.errors[:declaration].any? %>">
-      <fieldset id="declaration">
-        <% if @declaration_form.errors[:declaration].any? %>
-          <span class="error-message"><%= @declaration_form.errors[:declaration].join(", ") %></span>
-        <% end %>
+        <%= f.govuk_check_box :declaration,
+            1,
+            0,
+            multiple: false,
+            link_errors: true,
+            label: { text: t(".declaration_text") } %>
 
-        <div class="multiple-choice">
-          <%= f.check_box :declaration %>
-          <%= f.label :declaration, t(".declaration_text") %>
-        </div>
-      </fieldset>
-    </div>
+      <% end %>
 
-    <p><%= link_to t(".privacy_link_text"), page_path("privacy"),  target: "_blank" %></p>
+      <p class="govuk-body">
+        <%= link_to t(".privacy_link_text"), page_path("privacy"),  target: "_blank" %>
+      </p>
 
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit t(".next_button") %>
+    <% end %>
+  </div>
 </div>

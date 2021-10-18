@@ -1,28 +1,18 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_contact_phone_forms_path(@contact_phone_form.token)) %>
 
-<div class="text">
-  <%= form_for(@contact_phone_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @contact_phone_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @contact_phone_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @contact_phone_form.errors[:contact_phone].any? %>">
-      <fieldset id="contact_phone">
-        <% if @contact_phone_form.errors[:contact_phone].any? %>
-          <span class="error-message"><%= @contact_phone_form.errors[:contact_phone].join(", ") %></span>
-        <% end %>
+      <%= f.govuk_phone_field :contact_phone,
+          width: "one-half",
+          label: { text: t(".contact_phone_label") },
+          hint: { text: t(".contact_phone_hint")} %>
 
-        <%= f.label :contact_phone, class: "form-label" do %>
-          <%= t(".contact_phone_label") %>
-          <span class='form-hint'><%= t(".contact_phone_hint") %></span>
-        <% end %>
-
-        <%= f.telephone_field :contact_phone, value: @contact_phone_form.contact_phone, class: "form-control govuk-input--width-10" %>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
 </div>

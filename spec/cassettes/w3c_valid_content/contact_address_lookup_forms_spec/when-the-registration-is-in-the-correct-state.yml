@@ -23,13 +23,14 @@ http_interactions:
         addresses found</option>\n<option value=\"340116\">ENVIRONMENT AGENCY, HORIZON
         HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH</option>\n<option value=\"340117\">THRIVE
         RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH</option></select>\n  </fieldset>\n</div>\n\n\n
-        \   <div class=\"form-group\">\n      <a href=\"/waste_exemptions_engine/bu2c5FWm88sdhDwZCzzUujMC/contact-address-lookup/skip_to_manual_address\">I
-        cannot find the address in the list</a>\n    </div>\n\n    <div class=\"form-group\">\n
-        \     <input type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\"
-        data-disable-with=\"Continue\" />\n    </div>\n</form>\n  <hr>\n<p class=\"govuk-body-s\">\n
-        \ © Crown copyright and database rights 2018 Ordnance Survey 100024198. Use
-        of this addressing data is subject to the <a target=\"_blank\" href=\"/waste_exemptions_engine/pages/os-terms\">address
-        data terms and conditions (opens new tab)</a>.\n</p>\n\n</div>\n\n\n</body>\n</html>\n"
+        \     <p class=\"govuk-body\">\n        <a href=\"/waste_exemptions_engine/y8yuoXRaYVKuTrfQv66qdXiW/contact-address-lookup/skip_to_manual_address\">I
+        cannot find the address in the list</a>\n      </p>\n\n      <button type=\"submit\"
+        formnovalidate=\"formnovalidate\" class=\"govuk-button\" data-module=\"govuk-button\"
+        data-prevent-double-click=\"true\">Continue</button>\n</form>\n    <hr>\n<p
+        class=\"govuk-body-s\">\n  © Crown copyright and database rights 2018 Ordnance
+        Survey 100024198. Use of this addressing data is subject to the <a target=\"_blank\"
+        href=\"/waste_exemptions_engine/pages/os-terms\">address data terms and conditions
+        (opens new tab)</a>.\n</p>\n\n  </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8

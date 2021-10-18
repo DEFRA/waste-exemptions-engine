@@ -15,10 +15,10 @@ en:
           attributes:
             contact_email:
               blank: "Enter an email address"
-              invalid_format: "Enter a valid email address - there’s a mistake in that one"
+              invalid_format: "Enter a valid email address"
             confirmed_email:
-              blank: "Enter the email address again to confirm it"
-              invalid_format: "Enter a valid confirmed email address - there’s a mistake in that one"
+              blank: "Enter your email address again to confirm it"
+              invalid_format: "Enter a valid confirmed email address"
               does_not_match: "The email addresses you’ve entered don’t match"
             token:
               invalid_format: "The token is not valid"
