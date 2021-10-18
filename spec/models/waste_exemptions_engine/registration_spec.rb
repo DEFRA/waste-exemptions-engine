@@ -195,6 +195,16 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#expiry_month" do
+      subject(:registration) { create(:registration, :with_active_exemptions) }
+
+      it "returns the expiry month and year" do
+        expected_text = "#{3.years.from_now.strftime('%B')} #{3.years.from_now.year}"
+
+        expect(registration.expiry_month).to eq(expected_text)
+      end
+    end
+
     describe "PaperTrail", versioning: true do
       subject(:registration) { create(:registration, :complete) }
 
