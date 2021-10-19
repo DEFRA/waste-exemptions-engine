@@ -203,6 +203,14 @@ module WasteExemptionsEngine
 
         expect(registration.expiry_month).to eq(expected_text)
       end
+
+      context "when there's no valid expiry date" do
+        subject(:registration) { create(:registration) }
+
+        it "returns nil" do
+          expect(registration.expiry_month).to eq(nil)
+        end
+      end
     end
 
     describe "PaperTrail", versioning: true do
