@@ -62,6 +62,15 @@ module WasteExemptionsEngine
       referring_registration.present?
     end
 
+    def expiry_month
+      return unless expires_on.present?
+
+      month = expires_on.strftime("%B")
+      year = expires_on.year
+
+      "#{month} #{year}"
+    end
+
     private
 
     def apply_reference

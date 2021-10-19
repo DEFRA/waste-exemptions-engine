@@ -3,28 +3,16 @@ en:
     registration_complete_forms:
       new:
         title: Registration complete
-        heading: Registration complete
+        heading: You have registered your exemptions for 3 years
         highlight_text: "Your registration number is"
+        subheading: What will happen next
         confirmation_email_text:
           letter: "We have sent a confirmation letter to your contact address."
           contact_email: "We have sent a confirmation email to %{contact}."
           applicant_email: "We have sent a confirmation email to %{applicant} and a confirmation letter to your contact address."
           both_emails: "We have sent a confirmation email to %{applicant} and %{contact}."
-        what_happens_next:
-          subheading: What happens next
-          bullet_1: |
-            your organisation’s details will be processed and appear on the public register within 5 days
-          bullet_2:
-            one: we’ll send a renewal reminder when this waste exemption is due to expire
-            many: we’ll send a renewal reminder when these waste exemptions are due to expire
-        registration_checks:
-          subheading: Registration checks
-          note: |
-            Waste exemption registrations are subject to checks. Deliberately providing false details, or not complying with exemption rules, can lead to de-registration and prosecution.
-        paragraph_6: If any of your details change you must update your registration within 28 days.
-        call_helpline_text: Call our helpline on 03708 506 506 if you have any questions about your registration.
-        survey_link_text: What do you think of this service?
-        survey_link_hint: (takes 30 seconds)
+        paragraph_1: These exemptions will expire in %{expiry_month}. We will send you a reminder 1 month before they are due to expire.
+        paragraph_2: We will add your registration to the public register. This includes the name and address of the individual or organisation responsible, the site address and the exemptions you have registered.
         error_heading: A problem to fix
         next_button: Finished
   activemodel:
