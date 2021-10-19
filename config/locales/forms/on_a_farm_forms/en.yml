@@ -15,7 +15,7 @@ en:
         waste_exemptions_engine/on_a_farm_form:
           attributes:
             on_a_farm:
-              inclusion: "You must answer this question"
+              inclusion: "Select yes or no"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
