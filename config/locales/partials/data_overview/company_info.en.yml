@@ -1,0 +1,39 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      data_overview:
+        company_info:
+          subheading: Company details
+          table_summary: "The information you've given us about the company"
+          business_type:
+            title: Business type
+            value:
+              sole_trader: Individual or sole trader
+              limited_company: Limited company
+              partnership: Partnership
+              limited_liability_partnership: Limited liability partnership
+              local_authority: Local authority or public body
+              charity: Charity or trust
+          operator_name:
+            title: Operator name
+          company_no:
+            title: Companies House number
+          partners:
+            title: Partners
+          location:
+            title: Place of business
+            value:
+              england: England
+              wales: Wales
+              scotland: Scotland
+              northern_ireland: Northern Ireland
+          operator_address:
+            title: Address
+          contact_name:
+            title: Contact name
+          contact_position:
+            title: Contact position
+          contact_address:
+            title: Contact address
+          contact_details:
+            title: Contact details
