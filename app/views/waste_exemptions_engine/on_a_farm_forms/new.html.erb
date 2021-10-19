@@ -1,34 +1,32 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_on_a_farm_forms_path(@on_a_farm_form.token)) %>
 
-<div class="text">
-  <%= form_for(@on_a_farm_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @on_a_farm_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@on_a_farm_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @on_a_farm_form.errors[:on_a_farm].any? %>">
-      <fieldset class="inline" id="on_a_farm">
-        <legend class="visuallyhidden">
-          <%= t(".heading") %>
-        </legend>
+      <%= f.govuk_collection_radio_buttons :on_a_farm,
+        [
+          OpenStruct.new(
+            id: true,
+            name: t(".options.yes")
+          ),
+          OpenStruct.new(
+            id: false,
+            name: t(".options.no")
+          )
+        ],
+        :id,
+        :name,
+        legend: {
+          text: t(".heading"),
+          hidden: true
+        },
+        inline: true %>
 
-        <% if @on_a_farm_form.errors[:on_a_farm].any? %>
-          <span class="error-message"><%= @on_a_farm_form.errors[:on_a_farm].join(", ") %></span>
-        <% end %>
-
-        <div class="multiple-choice">
-          <%= f.radio_button :on_a_farm, "true" %>
-          <%= f.label :on_a_farm, t(".options.yes"), value: "true" %>
-        </div>
-        <div class="multiple-choice">
-          <%= f.radio_button :on_a_farm, "false" %>
-          <%= f.label :on_a_farm, t(".options.no"), value: "false" %>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
 </div>

@@ -25,6 +25,19 @@ FactoryBot.define do
       grid_reference { "ST 58337 72855" }
     end
 
+    trait :using_postal_address do
+      organisation   { Faker::Company.name }
+      premises       { Faker::Address.building_number }
+      street_address { Faker::Address.street_address }
+      locality       { Faker::Address.city_prefix }
+      city           { Faker::Address.city }
+      postcode       { "BS1 5AH" }
+    end
+
+    trait :auto do
+      mode { WasteExemptionsEngine::TransientAddress.modes[:auto] }
+    end
+
     trait :manual do
       mode { WasteExemptionsEngine::TransientAddress.modes[:manual] }
     end

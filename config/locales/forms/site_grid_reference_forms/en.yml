@@ -16,12 +16,7 @@ en:
         grid_reference_help_step_2: Right-click to display the grid reference.
         grid_reference_help_step_3: Select the grid reference then copy and paste back on this page.
         description_label: Site details
-        description_hint: "Useful information includes:"
-        description_hint_bullet_1: nearby landmarks
-        description_hint_bullet_2: description of the site
-        description_hint_bullet_3: man-made features, for example roads, walls or buildings
-        description_hint_bullet_4: natural features, for example rivers, trees or hedges
-        description_limit: "500 character limit"
+        description_hint: Useful information includes a description of the site, nearby landmarks, and any built or natural features
         error_heading: A problem to fix
         next_button: Continue
         use_address_link: Use an address instead
@@ -31,7 +26,7 @@ en:
         waste_exemptions_engine/site_grid_reference_form:
           attributes:
             grid_reference:
-              blank: Enter a grid reference
+              blank: Enter a National Grid reference
               wrong_format: The grid reference should have 2 letters and 10 digits
               invalid: The grid reference is not a valid coordinate
             description:

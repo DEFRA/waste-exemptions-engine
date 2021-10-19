@@ -1,29 +1,33 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
 
-<div class="text">
-  <%= form_for(@site_address_lookup_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @site_address_lookup_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @site_address_lookup_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-    <div class="form-group">
-      <label class="form-label"><%= t(".postcode_label") %></label>
-      <span class="postcode"><%= @site_address_lookup_form.postcode %></span>
-      <%= link_to(t(".postcode_change_link"), back_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
-    </div>
+      <p class="govuk-body">
+        <%= t(".postcode_label") %>
+        <br/>
+        <span class="postcode govuk-!-font-weight-bold">
+          <%= @site_address_lookup_form.postcode %>
+        </span>
+        <%= link_to(t(".postcode_change_link"),
+            back_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
+      </p>
 
-    <%= f.fields_for :site_address do |f| %>
-      <%= render("waste_exemptions_engine/shared/select_address", form: @site_address_lookup_form, address: :site_address, f: f) %>
+      <%= f.fields_for :site_address do |f| %>
+        <%= render("waste_exemptions_engine/shared/select_address", form: @site_address_lookup_form, address: :site_address, f: f) %>
+      <% end %>
+
+      <p class="govuk-body">
+        <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
+      </p>
+
+      <%= f.govuk_submit t(".next_button") %>
     <% end %>
 
-    <div class="form-group">
-      <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_address_lookup_forms_path(@site_address_lookup_form.token)) %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
-
-  <%= render("waste_exemptions_engine/shared/os_terms_footer") %>
+    <%= render("waste_exemptions_engine/shared/os_terms_footer") %>
+  </div>
 </div>
