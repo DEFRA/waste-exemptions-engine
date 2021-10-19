@@ -9,7 +9,6 @@ en:
         list_item_2: The business or organisation carrying out the waste operation has authorised me to provide this information
         declaration_text: I understand and agree with the declaration above
         privacy_link_text: "Privacy: how we use your personal information (opens new tab)"
-        alt_text: Important message
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
@@ -18,7 +17,7 @@ en:
         waste_exemptions_engine/declaration_form:
           attributes:
             declaration:
-              inclusion: "You cannot register if you do not understand and agree with the declaration"
+              inclusion: "You must agree with the declaration before you can continue"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"

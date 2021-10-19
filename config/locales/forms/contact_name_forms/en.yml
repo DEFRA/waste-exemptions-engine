@@ -15,11 +15,11 @@ en:
         waste_exemptions_engine/contact_name_form:
           attributes:
             contact_first_name:
-              blank: "You must enter a first name"
+              blank: "Enter a first name"
               invalid: "The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
               too_long: "The first name must have no more than 70 characters"
             contact_last_name:
-              blank: "You must enter a last name"
+              blank: "Enter a last name"
               invalid: "The last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
               too_long: "The last name must have no more than 70 characters"
             token:
