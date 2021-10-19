@@ -1,34 +1,32 @@
 <%= render("waste_exemptions_engine/shared/back", back_path: back_is_a_farmer_forms_path(@is_a_farmer_form.token)) %>
 
-<div class="text">
-  <%= form_for(@is_a_farmer_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @is_a_farmer_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@is_a_farmer_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <h1 class="heading-large"><%= t(".heading") %></h1>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-    <div class="form-group <%= "form-group-error" if @is_a_farmer_form.errors[:is_a_farmer].any? %>">
-      <fieldset class="inline" id="is_a_farmer">
-        <legend class="visuallyhidden">
-          <%= t(".heading") %>
-        </legend>
+      <%= f.govuk_collection_radio_buttons :is_a_farmer,
+        [
+          OpenStruct.new(
+            id: true,
+            name: t(".options.yes")
+          ),
+          OpenStruct.new(
+            id: false,
+            name: t(".options.no")
+          )
+        ],
+        :id,
+        :name,
+        legend: {
+          text: t(".heading"),
+          hidden: true
+        },
+        inline: true %>
 
-        <% if @is_a_farmer_form.errors[:is_a_farmer].any? %>
-          <span class="error-message"><%= @is_a_farmer_form.errors[:is_a_farmer].join(", ") %></span>
-        <% end %>
-
-        <div class="multiple-choice">
-          <%= f.radio_button :is_a_farmer, "true" %>
-          <%= f.label :is_a_farmer, t(".options.yes"), value: "true" %>
-        </div>
-        <div class="multiple-choice">
-          <%= f.radio_button :is_a_farmer, "false" %>
-          <%= f.label :is_a_farmer, t(".options.no"), value: "false" %>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t(".next_button"), class: "button" %>
-    </div>
-  <% end %>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
 </div>
