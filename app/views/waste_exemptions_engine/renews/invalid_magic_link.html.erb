@@ -1,10 +1,12 @@
-<div class="text">
-  <h1 class="heading-large"><%= t(".heading") %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-  <p><%= t(".things_to_try.title") %></p>
-  <ol class="list list-number">
-    <li><%= t(".things_to_try.one") %></li>
-    <li><%= t(".things_to_try.two") %></li>
-    <li><%= t(".things_to_try.three_html", start_a_new_registration_link: make_a_new_registration_link(t(".start_a_new_registration_link"))) %></li>
-  </ol>
+    <p class="govuk-body"><%= t(".things_to_try.title") %></p>
+    <ol class="govuk-list govuk-list--number">
+      <li><%= t(".things_to_try.one") %></li>
+      <li><%= t(".things_to_try.two") %></li>
+      <li><%= t(".things_to_try.three_html", start_a_new_registration_link: make_a_new_registration_link(t(".start_a_new_registration_link"))) %></li>
+    </ol>
+  </div>
 </div>

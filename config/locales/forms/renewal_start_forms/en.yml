@@ -4,6 +4,7 @@ en:
       new:
         title: "Start your renewal"
         heading: "Do you want to renew with these details?"
+        description: Some of your exemptions could be withdrawn before the end of your exemption period.
         options:
           "yes": "Renew with these details"
           "no": "I need to make changes"

@@ -9,16 +9,20 @@ http_interactions:
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
-        class=\"text\">\n  <form class=\"new_renew_with_changes_form\" id=\"new_renew_with_changes_form\"
-        action=\"/waste_exemptions_engine/AbCNRdLvcxVKiLfxkdU4pKBG/renew-with-changes\"
-        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">We&#39;ll
-        fill in the form with your current registration details</h1>\n\n    <p>Check
-        the details as you go through each screen.</p>\n    <p>You can change any
-        details if you need to.</p>\n    <p>You&#39;ll have a chance to make a final
-        check before you renew.</p>\n    <p>A registration lasts for 3 years. You&#39;ll
-        get a new registration number.</p>\n\n    <div class=\"form-group\">\n      <input
-        type=\"submit\" name=\"commit\" value=\"Continue\" class=\"button\" data-disable-with=\"Continue\"
-        />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_renew_with_changes_form\" id=\"new_renew_with_changes_form\"
+        action=\"/waste_exemptions_engine/3HezowfpGqQ1cty8FxBF7WME/renew-with-changes\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">We&#39;ll fill in the form with your current
+        registration details</h1>\n\n      <p class=\"govuk-body\">Check the details
+        as you go through each screen.</p>\n      <p class=\"govuk-body\">You can
+        change any details if you need to.</p>\n      <p class=\"govuk-body\">You&#39;ll
+        have a chance to make a final check before you renew.</p>\n      <p class=\"govuk-body\">A
+        registration lasts for 3 years. You&#39;ll get a new registration number.</p>\n\n
+        \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
+        data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -34,7 +38,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 04 Oct 2021 12:53:55 GMT
+      - Wed, 20 Oct 2021 13:06:58 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -65,6 +69,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwidGV4dFwiPlxuICA8Zm9ybSBjbGFzcz1cIm5ld19yZW5ld193aXRoX2NoYW5nZXNfZm9ybVwiIGlkPVwibmV3X3JlbmV3X3dpdGhfY2hhbmdlc19mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL0FiQ05SZEx2Y3hWS2lMZnhrZFU0cEtCRy9yZW5ldy13aXRoLWNoYW5nZXNcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgIFxuXG4gICAgPGgxIGNsYXNzPVwiaGVhZGluZy1sYXJnZVwiPldlJiMzOTtsbCBmaWxsIGluIHRoZSBmb3JtIHdpdGggeW91ciBjdXJyZW50IHJlZ2lzdHJhdGlvbiBkZXRhaWxzPC9oMT5cblxuICAgIDxwPkNoZWNrIHRoZSBkZXRhaWxzIGFzIHlvdSBnbyB0aHJvdWdoIGVhY2ggc2NyZWVuLjwvcD5cbiAgICA8cD5Zb3UgY2FuIGNoYW5nZSBhbnkgZGV0YWlscyBpZiB5b3UgbmVlZCB0by48L3A+XG4gICAgPHA+WW91JiMzOTtsbCBoYXZlIGEgY2hhbmNlIHRvIG1ha2UgYSBmaW5hbCBjaGVjayBiZWZvcmUgeW91IHJlbmV3LjwvcD5cbiAgICA8cD5BIHJlZ2lzdHJhdGlvbiBsYXN0cyBmb3IgMyB5ZWFycy4gWW91JiMzOTtsbCBnZXQgYSBuZXcgcmVnaXN0cmF0aW9uIG51bWJlci48L3A+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgZGF0YS1kaXNhYmxlLXdpdGg9XCJDb250aW51ZVwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-  recorded_at: Mon, 04 Oct 2021 12:50:41 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19yZW5ld193aXRoX2NoYW5nZXNfZm9ybVwiIGlkPVwibmV3X3JlbmV3X3dpdGhfY2hhbmdlc19mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lLzNIZXpvd2ZwR3FRMWN0eThGeEJGN1dNRS9yZW5ldy13aXRoLWNoYW5nZXNcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+V2UmIzM5O2xsIGZpbGwgaW4gdGhlIGZvcm0gd2l0aCB5b3VyIGN1cnJlbnQgcmVnaXN0cmF0aW9uIGRldGFpbHM8L2gxPlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5DaGVjayB0aGUgZGV0YWlscyBhcyB5b3UgZ28gdGhyb3VnaCBlYWNoIHNjcmVlbi48L3A+XG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5Zb3UgY2FuIGNoYW5nZSBhbnkgZGV0YWlscyBpZiB5b3UgbmVlZCB0by48L3A+XG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5Zb3UmIzM5O2xsIGhhdmUgYSBjaGFuY2UgdG8gbWFrZSBhIGZpbmFsIGNoZWNrIGJlZm9yZSB5b3UgcmVuZXcuPC9wPlxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+QSByZWdpc3RyYXRpb24gbGFzdHMgZm9yIDMgeWVhcnMuIFlvdSYjMzk7bGwgZ2V0IGEgbmV3IHJlZ2lzdHJhdGlvbiBudW1iZXIuPC9wPlxuXG4gICAgICA8YnV0dG9uIHR5cGU9XCJzdWJtaXRcIiBmb3Jtbm92YWxpZGF0ZT1cImZvcm1ub3ZhbGlkYXRlXCIgY2xhc3M9XCJnb3Z1ay1idXR0b25cIiBkYXRhLW1vZHVsZT1cImdvdnVrLWJ1dHRvblwiIGRhdGEtcHJldmVudC1kb3VibGUtY2xpY2s9XCJ0cnVlXCI+Q29udGludWU8L2J1dHRvbj5cbjwvZm9ybT4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Wed, 20 Oct 2021 13:06:58 GMT
 recorded_with: VCR 6.0.0

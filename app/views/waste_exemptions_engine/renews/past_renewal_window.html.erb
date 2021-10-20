@@ -1,7 +1,9 @@
-<div class="text">
-  <h1 class="heading-large"><%= t(".heading") %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-  <p><%= t(".paragraph_1") %></p>
+    <p class="govuk-body"><%= t(".paragraph_1") %></p>
 
-  <p><%= link_to(t(".button"), new_start_form_path, class: "button") %></p>
+    <%= link_to(t(".button"), new_start_form_path, class: "govuk-button") %>
+  </div>
 </div>
