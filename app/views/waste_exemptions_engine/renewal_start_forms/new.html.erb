@@ -13,12 +13,12 @@
       <%= f.govuk_collection_radio_buttons :temp_renew_without_changes,
         [
           OpenStruct.new(
-            id: false,
-            name: t(".options.no")
-          ),
-          OpenStruct.new(
             id: true,
             name: t(".options.yes")
+          ),
+          OpenStruct.new(
+            id: false,
+            name: t(".options.no")
           )
         ],
         :id,
