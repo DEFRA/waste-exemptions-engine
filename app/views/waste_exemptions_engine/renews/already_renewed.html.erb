@@ -1,12 +1,14 @@
-<div class="text">
-  <h1 class="heading-large"><%= t(".heading") %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-  <p><%= t(".paragraph_1", reference: @registration.reference) %></p>
-  <p><%= t(".paragraph_2_html", make_a_new_registration_link: make_a_new_registration_link(t(".make_a_new_registration"))) %></p>
-  <p><%= t(".paragraph_3") %></p>
-  <p>
-    <%= t(".paragraph_4.line_1") %> <br/>
-    <%= t(".paragraph_4.line_2") %> <br/>
-    <a href="mailto:<%= t(".enquiries_email") %>"><%= t(".enquiries_email") %></a>
-  </p>
+    <p class="govuk-body"><%= t(".paragraph_1", reference: @registration.reference) %></p>
+    <p class="govuk-body"><%= t(".paragraph_2_html", make_a_new_registration_link: make_a_new_registration_link(t(".make_a_new_registration"))) %></p>
+    <p class="govuk-body"><%= t(".paragraph_3") %></p>
+    <p class="govuk-body">
+      <%= t(".paragraph_4.line_1") %> <br/>
+      <%= t(".paragraph_4.line_2") %> <br/>
+      <a href="mailto:<%= t(".enquiries_email") %>"><%= t(".enquiries_email") %></a>
+    </p>
+  </div>
 </div>

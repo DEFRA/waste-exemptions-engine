@@ -1,19 +1,29 @@
-<div class="column-two-thirds">
-  <%= form_for(@renewal_complete_form) do |f| %>
-    <%= render("waste_exemptions_engine/shared/errors", object: @renewal_complete_form) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@renewal_complete_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-    <div class="govuk-box-highlight">
-      <h1 class="heading-xlarge"><%= t(".heading") %></h1>
-      <p class="font-large"><%= t(".highlight_text") %><br><span class="strong"><%= @registration.reference %></span></p>
-    </div>
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+        <div class="govuk-panel__body">
+          <strong>
+            <span id="reg_identifier"><%= @registration.reference %></span>
+          </strong>
+        </div>
+      </div>
 
-    <p><%= t(".confirmation_email_text.#{confirmation_comms(@renewal_complete_form)}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
+      <p class="govuk-body"><%= t(".confirmation_email_text.#{confirmation_comms(@renewal_complete_form)}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
 
-    <p><%= t(".what_happens_next.paragraph_1", expire_month_year: registration_expires_month_year(@registration)) %></p>
-    <p><%= t(".what_happens_next.paragraph_2") %></p>
+      <p class="govuk-body"><%= t(".what_happens_next.paragraph_1", expire_month_year: registration_expires_month_year(@registration)) %></p>
+      <p class="govuk-body"><%= t(".what_happens_next.paragraph_2") %></p>
 
-    <br/>
+      <br/>
 
-    <p><%= link_to(t(".survey_link_text"), t("layouts.application.feedback_url")) %> <%= t(".survey_link_hint") %></p>
-  <% end %>
+      <p class="govuk-body"><%= link_to(t(".survey_link_text"), t("layouts.application.feedback_url")) %> <%= t(".survey_link_hint") %></p>
+    <% end %>
+  </div>
 </div>

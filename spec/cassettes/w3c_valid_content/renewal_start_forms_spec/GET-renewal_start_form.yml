@@ -8,62 +8,92 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
-        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
-        \ <form class=\"new_renewal_start_form\" id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/AeeVE9gXfF3kghwsW61D9oR5/renewal-start\"
-        accept-charset=\"UTF-8\" method=\"post\">\n    \n\n    <h1 class=\"heading-large\">Do
-        you want to renew with these details?</h1>\n\n    <h2 class=\"heading-medium\">Exemptions</h2>\n<ul
-        class=\"list list-bullet\">\n    <li><span class=\"strong\">U2123</span> -
-        Laudantium id quaerat quisquam.</li>\n    <li><span class=\"strong\">U2124</span>
-        - Quaerat deleniti culpa magni.</li>\n    <li><span class=\"strong\">U2125</span>
-        - Enim perferendis quibusdam numquam.</li>\n    <li><span class=\"strong\">U2126</span>
-        - Cumque voluptatibus molestiae optio.</li>\n    <li><span class=\"strong\">U2127</span>
-        - Quo a maxime voluptatem.</li>\n    <li><span class=\"strong\">U2128</span>
-        - Magnam quisquam voluptas officiis.</li>\n    <li><span class=\"strong\">U2129</span>
-        - Qui delectus sapiente non.</li>\n    <li><span class=\"strong\">U2130</span>
-        - Impedit quis reiciendis et.</li>\n    <li><span class=\"strong\">U2131</span>
-        - Eius qui et quos.</li>\n    <li><span class=\"strong\">U2132</span> - Quia
-        ut ducimus libero.</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Site
-        location</h2>\n  <ul class=\"list list-bullet\">\n    <li>the site is located
-        at grid reference <span class=\"strong\">ST 58337 72855</span></li>\n    <li>Sed
-        nihil ullam voluptates.</li>\n  </ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">You
-        told us</h2>\n<p>the waste operation will take place in <span class=\"strong\">England</span></p>\n\n<hr>\n\n
-        \   <h2 class=\"heading-medium\">Operator details</h2>\n<ul class=\"list list-bullet\">\n
-        \ <li>the operator is a <span class=\"strong\">limited company</span></li>\n
-        \ <li>the company name is <span class=\"strong\">Hirthe LLC</span></li>\n
-        \   <li>the Companies House number is <span class=\"strong\">09360070</span></li>\n
-        \   <li>the partners are:\n      <br>Odette Bartell\n      <br>Hiedi Fay\n
-        \     <br>Cristobal Turner\n    </li>\n</ul>\n\n<hr>\n\n<h2 class=\"heading-medium\">Operator
-        address</h2>\n<ul class=\"list\">\n    <li>Paradise Court</li>\n    <li>814
-        Marks Cliff</li>\n    <li>Bosnia and Herzegovina</li>\n    <li>East Dahliastad</li>\n
-        \   <li>BS428AA</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Contact
-        details</h2>\n<ul class=\"list list-bullet\">\n  <li>the contact's name is
-        <span class=\"strong\">Burma Ritchie</span></li>\n    <li>the contact's position
-        is <span class=\"strong\">photographer</span></li>\n  <li>the contact's phone
-        number is <span class=\"strong\">01234567890</span></li>\n  <li>the contact's
-        email is <span class=\"strong\">willie.oreilly@example.com</span></li>\n</ul>\n\n<hr>\n\n<h2
-        class=\"heading-medium\">Contact address</h2>\n<ul class=\"list\">\n    <li>Summer
-        Court</li>\n    <li>1542 Hessel Squares</li>\n    <li>Comoros</li>\n    <li>Constancemouth</li>\n
-        \   <li>BS429AA</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Farming
-        information</h2>\n<ul class=\"list list-bullet\">\n  <li>the operation <span
-        class=\"strong\">will</span> take place on a farm</li>\n  <li>the operator
-        <span class=\"strong\">is</span> a farmer</li>\n</ul>\n\n<hr>\n\n    <h2 class=\"heading-medium\">Person
-        who filled in the form</h2>\n<ul class=\"list list-bullet\">\n  <li>your name
-        is <span class=\"strong\">Malka Treutel</span></li>\n  <li>your phone number
-        is <span class=\"strong\">01234567890</span></li>\n  <li>your email is <span
-        class=\"strong\">alba@example.net</span></li>\n</ul>\n\n<hr>\n\n\n    <div
-        class=\"form-group \">\n      <fieldset id=\"temp_renew_without_changes\">\n\n
-        \       <legend class=\"visuallyhidden\">\n          Do you want to renew
-        with these details?\n        </legend>\n\n        <div class=\"multiple-choice\">\n
-        \         <input type=\"radio\" value=\"true\" name=\"renewal_start_form[temp_renew_without_changes]\"
-        id=\"renewal_start_form_temp_renew_without_changes_true\" />\n          <label
-        for=\"renewal_start_form_temp_renew_without_changes_true\">Renew with these
-        details</label>\n        </div>\n        <div class=\"multiple-choice\">\n
-        \         <input type=\"radio\" value=\"false\" name=\"renewal_start_form[temp_renew_without_changes]\"
-        id=\"renewal_start_form_temp_renew_without_changes_false\" />\n          <label
-        for=\"renewal_start_form_temp_renew_without_changes_false\">I need to make
-        changes</label>\n        </div>\n      </fieldset>\n    </div>\n\n    <div
-        class=\"form-group\">\n      <input type=\"submit\" name=\"commit\" value=\"Continue\"
-        class=\"button\" data-disable-with=\"Continue\" />\n    </div>\n</form></div>\n\n\n</body>\n</html>\n"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    <form class=\"new_renewal_start_form\"
+        id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/8NhVDxhoY9wj6vBH1WCfeSnR/renewal-start\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">Do you want to renew with these details?</h1>\n\n
+        \     <p class=\"govuk-body\">Some of your exemptions could be withdrawn before
+        the end of your exemption period.</p>\n\n      <h2 class=\"govuk-heading-m\">\n
+        \ Company details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n  The
+        information you&#39;ve given us about the company\n</span>\n\n<dl class=\"govuk-summary-list
+        govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row\">\n    <dt
+        class=\"govuk-summary-list__key\">\n      Business type\n    </dt>\n    <dd
+        class=\"govuk-summary-list__value\">\n      Limited company\n    </dd>\n    <dd
+        class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Operator name\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Cummerata Inc\n    </dd>\n
+        \   <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div
+        class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Companies House number\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     09360070\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Place of business\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     England\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n      Royal
+        Acres<br>5049 Bradford Haven<br>Haiti<br>New Alan<br>BS1102AA\n    </dd>\n
+        \   <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div
+        class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact name\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Odell Hyatt\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact position\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     cashier\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Park Square<br>556 Willian Curve<br>Thailand<br>East Tony<br>BS1103AA\n
+        \   </dd>\n    <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n
+        \ <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Contact details\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     01234567890<br>tyesha.batz@example.com\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n</dl>\n\n      <h2 class=\"govuk-heading-m\">\n  Registration
+        details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n  The information
+        you&#39;ve given us about the registration\n</span>\n\n<dl class=\"govuk-summary-list
+        govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row\">\n    <dt
+        class=\"govuk-summary-list__key\">\n      Exemptions\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     U5398, U5399, U5400, U5401, U5402, U5403, U5404, U5405, U5406, U5407\n
+        \   </dd>\n    <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n
+        \ <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Will this waste operation take place on a farm?\n    </dt>\n    <dd
+        class=\"govuk-summary-list__value\">\n      Yes\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Are the waste exemptions used by a farmer or farming business?\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Yes\n    </dd>\n    <dd
+        class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Form completed by\n    </dt>\n
+        \   <dd class=\"govuk-summary-list__value\">\n      Laurena Jerde\n    </dd>\n
+        \   <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n  <div
+        class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Telephone number\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     01234567890\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Email address\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     ernesto_zieme@example.org\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Grid reference\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     ST 58337 72855\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
+        \     Site description\n    </dt>\n    <dd class=\"govuk-summary-list__value\">\n
+        \     Odio quis quia neque.\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \   </dd>\n  </div>\n</dl>\n\n\n      <div class=\"govuk-form-group\"><fieldset
+        class=\"govuk-fieldset\"><legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m
+        govuk-visually-hidden\">Do you want to renew with these details?</legend><input
+        value=\"\" type=\"hidden\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        id=\"renewal_start_form_temp_renew_without_changes\" /><div class=\"govuk-radios
+        govuk-radios--small\" data-module=\"govuk-radios\"><div class=\"govuk-radios__item\"><input
+        id=\"renewal-start-form-temp-renew-without-changes-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"false\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        /><label for=\"renewal-start-form-temp-renew-without-changes-field\" class=\"govuk-label
+        govuk-radios__label\">I need to make changes</label></div><div class=\"govuk-radios__item\"><input
+        id=\"renewal-start-form-temp-renew-without-changes-true-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"true\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        /><label for=\"renewal-start-form-temp-renew-without-changes-true-field\"
+        class=\"govuk-label govuk-radios__label\">Renew with these details</label></div></div></fieldset></div>\n\n
+        \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
+        data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -79,7 +109,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 04 Oct 2021 12:50:11 GMT
+      - Wed, 20 Oct 2021 12:54:11 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -110,6 +140,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxmb3JtIGNsYXNzPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGlkPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9BZWVWRTlnWGZGM2tnaHdzVzYxRDlvUjUvcmVuZXdhbC1zdGFydFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgXG5cbiAgICA8aDEgY2xhc3M9XCJoZWFkaW5nLWxhcmdlXCI+RG8geW91IHdhbnQgdG8gcmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPzwvaDE+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkV4ZW1wdGlvbnM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMTIzPC9zcGFuPiAtIExhdWRhbnRpdW0gaWQgcXVhZXJhdCBxdWlzcXVhbS48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMTI0PC9zcGFuPiAtIFF1YWVyYXQgZGVsZW5pdGkgY3VscGEgbWFnbmkuPC9saT5cbiAgICA8bGk+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5VMjEyNTwvc3Bhbj4gLSBFbmltIHBlcmZlcmVuZGlzIHF1aWJ1c2RhbSBudW1xdWFtLjwvbGk+XG4gICAgPGxpPjxzcGFuIGNsYXNzPVwic3Ryb25nXCI+VTIxMjY8L3NwYW4+IC0gQ3VtcXVlIHZvbHVwdGF0aWJ1cyBtb2xlc3RpYWUgb3B0aW8uPC9saT5cbiAgICA8bGk+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5VMjEyNzwvc3Bhbj4gLSBRdW8gYSBtYXhpbWUgdm9sdXB0YXRlbS48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMTI4PC9zcGFuPiAtIE1hZ25hbSBxdWlzcXVhbSB2b2x1cHRhcyBvZmZpY2lpcy48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMTI5PC9zcGFuPiAtIFF1aSBkZWxlY3R1cyBzYXBpZW50ZSBub24uPC9saT5cbiAgICA8bGk+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5VMjEzMDwvc3Bhbj4gLSBJbXBlZGl0IHF1aXMgcmVpY2llbmRpcyBldC48L2xpPlxuICAgIDxsaT48c3BhbiBjbGFzcz1cInN0cm9uZ1wiPlUyMTMxPC9zcGFuPiAtIEVpdXMgcXVpIGV0IHF1b3MuPC9saT5cbiAgICA8bGk+PHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5VMjEzMjwvc3Bhbj4gLSBRdWlhIHV0IGR1Y2ltdXMgbGliZXJvLjwvbGk+XG48L3VsPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPlNpdGUgbG9jYXRpb248L2gyPlxuICA8dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gICAgPGxpPnRoZSBzaXRlIGlzIGxvY2F0ZWQgYXQgZ3JpZCByZWZlcmVuY2UgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5TVCA1ODMzNyA3Mjg1NTwvc3Bhbj48L2xpPlxuICAgIDxsaT5TZWQgbmloaWwgdWxsYW0gdm9sdXB0YXRlcy48L2xpPlxuICA8L3VsPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPllvdSB0b2xkIHVzPC9oMj5cbjxwPnRoZSB3YXN0ZSBvcGVyYXRpb24gd2lsbCB0YWtlIHBsYWNlIGluIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+RW5nbGFuZDwvc3Bhbj48L3A+XG5cbjxocj5cblxuICAgIDxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+T3BlcmF0b3IgZGV0YWlsczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0IGxpc3QtYnVsbGV0XCI+XG4gIDxsaT50aGUgb3BlcmF0b3IgaXMgYSA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPmxpbWl0ZWQgY29tcGFueTwvc3Bhbj48L2xpPlxuICA8bGk+dGhlIGNvbXBhbnkgbmFtZSBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPkhpcnRoZSBMTEM8L3NwYW4+PC9saT5cbiAgICA8bGk+dGhlIENvbXBhbmllcyBIb3VzZSBudW1iZXIgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj4wOTM2MDA3MDwvc3Bhbj48L2xpPlxuICAgIDxsaT50aGUgcGFydG5lcnMgYXJlOlxuICAgICAgPGJyPk9kZXR0ZSBCYXJ0ZWxsXG4gICAgICA8YnI+SGllZGkgRmF5XG4gICAgICA8YnI+Q3Jpc3RvYmFsIFR1cm5lclxuICAgIDwvbGk+XG48L3VsPlxuXG48aHI+XG5cbjxoMiBjbGFzcz1cImhlYWRpbmctbWVkaXVtXCI+T3BlcmF0b3IgYWRkcmVzczwvaDI+XG48dWwgY2xhc3M9XCJsaXN0XCI+XG4gICAgPGxpPlBhcmFkaXNlIENvdXJ0PC9saT5cbiAgICA8bGk+ODE0IE1hcmtzIENsaWZmPC9saT5cbiAgICA8bGk+Qm9zbmlhIGFuZCBIZXJ6ZWdvdmluYTwvbGk+XG4gICAgPGxpPkVhc3QgRGFobGlhc3RhZDwvbGk+XG4gICAgPGxpPkJTNDI4QUE8L2xpPlxuPC91bD5cblxuPGhyPlxuXG4gICAgPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5Db250YWN0IGRldGFpbHM8L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIGNvbnRhY3QncyBuYW1lIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+QnVybWEgUml0Y2hpZTwvc3Bhbj48L2xpPlxuICAgIDxsaT50aGUgY29udGFjdCdzIHBvc2l0aW9uIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+cGhvdG9ncmFwaGVyPC9zcGFuPjwvbGk+XG4gIDxsaT50aGUgY29udGFjdCdzIHBob25lIG51bWJlciBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPjAxMjM0NTY3ODkwPC9zcGFuPjwvbGk+XG4gIDxsaT50aGUgY29udGFjdCdzIGVtYWlsIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+d2lsbGllLm9yZWlsbHlAZXhhbXBsZS5jb208L3NwYW4+PC9saT5cbjwvdWw+XG5cbjxocj5cblxuPGgyIGNsYXNzPVwiaGVhZGluZy1tZWRpdW1cIj5Db250YWN0IGFkZHJlc3M8L2gyPlxuPHVsIGNsYXNzPVwibGlzdFwiPlxuICAgIDxsaT5TdW1tZXIgQ291cnQ8L2xpPlxuICAgIDxsaT4xNTQyIEhlc3NlbCBTcXVhcmVzPC9saT5cbiAgICA8bGk+Q29tb3JvczwvbGk+XG4gICAgPGxpPkNvbnN0YW5jZW1vdXRoPC9saT5cbiAgICA8bGk+QlM0MjlBQTwvbGk+XG48L3VsPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPkZhcm1pbmcgaW5mb3JtYXRpb248L2gyPlxuPHVsIGNsYXNzPVwibGlzdCBsaXN0LWJ1bGxldFwiPlxuICA8bGk+dGhlIG9wZXJhdGlvbiA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPndpbGw8L3NwYW4+IHRha2UgcGxhY2Ugb24gYSBmYXJtPC9saT5cbiAgPGxpPnRoZSBvcGVyYXRvciA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPmlzPC9zcGFuPiBhIGZhcm1lcjwvbGk+XG48L3VsPlxuXG48aHI+XG5cbiAgICA8aDIgY2xhc3M9XCJoZWFkaW5nLW1lZGl1bVwiPlBlcnNvbiB3aG8gZmlsbGVkIGluIHRoZSBmb3JtPC9oMj5cbjx1bCBjbGFzcz1cImxpc3QgbGlzdC1idWxsZXRcIj5cbiAgPGxpPnlvdXIgbmFtZSBpcyA8c3BhbiBjbGFzcz1cInN0cm9uZ1wiPk1hbGthIFRyZXV0ZWw8L3NwYW4+PC9saT5cbiAgPGxpPnlvdXIgcGhvbmUgbnVtYmVyIGlzIDxzcGFuIGNsYXNzPVwic3Ryb25nXCI+MDEyMzQ1Njc4OTA8L3NwYW4+PC9saT5cbiAgPGxpPnlvdXIgZW1haWwgaXMgPHNwYW4gY2xhc3M9XCJzdHJvbmdcIj5hbGJhQGV4YW1wbGUubmV0PC9zcGFuPjwvbGk+XG48L3VsPlxuXG48aHI+XG5cblxuICAgIDxkaXYgY2xhc3M9XCJmb3JtLWdyb3VwIFwiPlxuICAgICAgPGZpZWxkc2V0IGlkPVwidGVtcF9yZW5ld193aXRob3V0X2NoYW5nZXNcIj5cblxuICAgICAgICA8bGVnZW5kIGNsYXNzPVwidmlzdWFsbHloaWRkZW5cIj5cbiAgICAgICAgICBEbyB5b3Ugd2FudCB0byByZW5ldyB3aXRoIHRoZXNlIGRldGFpbHM/XG4gICAgICAgIDwvbGVnZW5kPlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJtdWx0aXBsZS1jaG9pY2VcIj5cbiAgICAgICAgICA8aW5wdXQgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJ0cnVlXCIgbmFtZT1cInJlbmV3YWxfc3RhcnRfZm9ybVt0ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc11cIiBpZD1cInJlbmV3YWxfc3RhcnRfZm9ybV90ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc190cnVlXCIgLz5cbiAgICAgICAgICA8bGFiZWwgZm9yPVwicmVuZXdhbF9zdGFydF9mb3JtX3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzX3RydWVcIj5SZW5ldyB3aXRoIHRoZXNlIGRldGFpbHM8L2xhYmVsPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm11bHRpcGxlLWNob2ljZVwiPlxuICAgICAgICAgIDxpbnB1dCB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cImZhbHNlXCIgbmFtZT1cInJlbmV3YWxfc3RhcnRfZm9ybVt0ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc11cIiBpZD1cInJlbmV3YWxfc3RhcnRfZm9ybV90ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc19mYWxzZVwiIC8+XG4gICAgICAgICAgPGxhYmVsIGZvcj1cInJlbmV3YWxfc3RhcnRfZm9ybV90ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc19mYWxzZVwiPkkgbmVlZCB0byBtYWtlIGNoYW5nZXM8L2xhYmVsPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZmllbGRzZXQ+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzPVwiZm9ybS1ncm91cFwiPlxuICAgICAgPGlucHV0IHR5cGU9XCJzdWJtaXRcIiBuYW1lPVwiY29tbWl0XCIgdmFsdWU9XCJDb250aW51ZVwiIGNsYXNzPVwiYnV0dG9uXCIgZGF0YS1kaXNhYmxlLXdpdGg9XCJDb250aW51ZVwiIC8+XG4gICAgPC9kaXY+XG48L2Zvcm0+PC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-  recorded_at: Mon, 04 Oct 2021 12:46:57 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGlkPVwibmV3X3JlbmV3YWxfc3RhcnRfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS84TmhWRHhob1k5d2o2dkJIMVdDZmVTblIvcmVuZXdhbC1zdGFydFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICBcbiAgPC9kaXY+XG48L2Rpdj5cblxuXG4gICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLWxcIj5EbyB5b3Ugd2FudCB0byByZW5ldyB3aXRoIHRoZXNlIGRldGFpbHM/PC9oMT5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+U29tZSBvZiB5b3VyIGV4ZW1wdGlvbnMgY291bGQgYmUgd2l0aGRyYXduIGJlZm9yZSB0aGUgZW5kIG9mIHlvdXIgZXhlbXB0aW9uIHBlcmlvZC48L3A+XG5cbiAgICAgIDxoMiBjbGFzcz1cImdvdnVrLWhlYWRpbmctbVwiPlxuICBDb21wYW55IGRldGFpbHNcbjwvaDI+XG5cbjxzcGFuIGNsYXNzPVwiZ292dWstdmlzdWFsbHktaGlkZGVuXCI+XG4gIFRoZSBpbmZvcm1hdGlvbiB5b3UmIzM5O3ZlIGdpdmVuIHVzIGFib3V0IHRoZSBjb21wYW55XG48L3NwYW4+XG5cbjxkbCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdCBnb3Z1ay0hLW1hcmdpbi1ib3R0b20tOVwiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQnVzaW5lc3MgdHlwZVxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgTGltaXRlZCBjb21wYW55XG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIE9wZXJhdG9yIG5hbWVcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIEN1bW1lcmF0YSBJbmNcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQ29tcGFuaWVzIEhvdXNlIG51bWJlclxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgMDkzNjAwNzBcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgUGxhY2Ugb2YgYnVzaW5lc3NcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIEVuZ2xhbmRcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQWRkcmVzc1xuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgUm95YWwgQWNyZXM8YnI+NTA0OSBCcmFkZm9yZCBIYXZlbjxicj5IYWl0aTxicj5OZXcgQWxhbjxicj5CUzExMDJBQVxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBDb250YWN0IG5hbWVcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIE9kZWxsIEh5YXR0XG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIENvbnRhY3QgcG9zaXRpb25cbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIGNhc2hpZXJcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQ29udGFjdCBhZGRyZXNzXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBQYXJrIFNxdWFyZTxicj41NTYgV2lsbGlhbiBDdXJ2ZTxicj5UaGFpbGFuZDxicj5FYXN0IFRvbnk8YnI+QlMxMTAzQUFcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgQ29udGFjdCBkZXRhaWxzXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICAwMTIzNDU2Nzg5MDxicj50eWVzaGEuYmF0ekBleGFtcGxlLmNvbVxuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG48L2RsPlxuXG4gICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLW1cIj5cbiAgUmVnaXN0cmF0aW9uIGRldGFpbHNcbjwvaDI+XG5cbjxzcGFuIGNsYXNzPVwiZ292dWstdmlzdWFsbHktaGlkZGVuXCI+XG4gIFRoZSBpbmZvcm1hdGlvbiB5b3UmIzM5O3ZlIGdpdmVuIHVzIGFib3V0IHRoZSByZWdpc3RyYXRpb25cbjwvc3Bhbj5cblxuPGRsIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0IGdvdnVrLSEtbWFyZ2luLWJvdHRvbS05XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBFeGVtcHRpb25zXG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBVNTM5OCwgVTUzOTksIFU1NDAwLCBVNTQwMSwgVTU0MDIsIFU1NDAzLCBVNTQwNCwgVTU0MDUsIFU1NDA2LCBVNTQwN1xuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBXaWxsIHRoaXMgd2FzdGUgb3BlcmF0aW9uIHRha2UgcGxhY2Ugb24gYSBmYXJtP1xuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgWWVzXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fcm93XCI+XG4gICAgPGR0IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19rZXlcIj5cbiAgICAgIEFyZSB0aGUgd2FzdGUgZXhlbXB0aW9ucyB1c2VkIGJ5IGEgZmFybWVyIG9yIGZhcm1pbmcgYnVzaW5lc3M/XG4gICAgPC9kdD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3ZhbHVlXCI+XG4gICAgICBZZXNcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgRm9ybSBjb21wbGV0ZWQgYnlcbiAgICA8L2R0PlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fdmFsdWVcIj5cbiAgICAgIExhdXJlbmEgSmVyZGVcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgVGVsZXBob25lIG51bWJlclxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgMDEyMzQ1Njc4OTBcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgRW1haWwgYWRkcmVzc1xuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgZXJuZXN0b196aWVtZUBleGFtcGxlLm9yZ1xuICAgIDwvZGQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19hY3Rpb25zXCI+XG4gICAgPC9kZD5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX3Jvd1wiPlxuICAgIDxkdCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fa2V5XCI+XG4gICAgICBHcmlkIHJlZmVyZW5jZVxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgU1QgNTgzMzcgNzI4NTVcbiAgICA8L2RkPlxuICAgIDxkZCBjbGFzcz1cImdvdnVrLXN1bW1hcnktbGlzdF9fYWN0aW9uc1wiPlxuICAgIDwvZGQ+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X19yb3dcIj5cbiAgICA8ZHQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2tleVwiPlxuICAgICAgU2l0ZSBkZXNjcmlwdGlvblxuICAgIDwvZHQ+XG4gICAgPGRkIGNsYXNzPVwiZ292dWstc3VtbWFyeS1saXN0X192YWx1ZVwiPlxuICAgICAgT2RpbyBxdWlzIHF1aWEgbmVxdWUuXG4gICAgPC9kZD5cbiAgICA8ZGQgY2xhc3M9XCJnb3Z1ay1zdW1tYXJ5LWxpc3RfX2FjdGlvbnNcIj5cbiAgICA8L2RkPlxuICA8L2Rpdj5cbjwvZGw+XG5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48ZmllbGRzZXQgY2xhc3M9XCJnb3Z1ay1maWVsZHNldFwiPjxsZWdlbmQgY2xhc3M9XCJnb3Z1ay1maWVsZHNldF9fbGVnZW5kIGdvdnVrLWZpZWxkc2V0X19sZWdlbmQtLW0gZ292dWstdmlzdWFsbHktaGlkZGVuXCI+RG8geW91IHdhbnQgdG8gcmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPzwvbGVnZW5kPjxpbnB1dCB2YWx1ZT1cIlwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwicmVuZXdhbF9zdGFydF9mb3JtW3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXVwiIGlkPVwicmVuZXdhbF9zdGFydF9mb3JtX3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXCIgLz48ZGl2IGNsYXNzPVwiZ292dWstcmFkaW9zIGdvdnVrLXJhZGlvcy0tc21hbGxcIiBkYXRhLW1vZHVsZT1cImdvdnVrLXJhZGlvc1wiPjxkaXYgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2l0ZW1cIj48aW5wdXQgaWQ9XCJyZW5ld2FsLXN0YXJ0LWZvcm0tdGVtcC1yZW5ldy13aXRob3V0LWNoYW5nZXMtZmllbGRcIiBjbGFzcz1cImdvdnVrLXJhZGlvc19faW5wdXRcIiB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cImZhbHNlXCIgbmFtZT1cInJlbmV3YWxfc3RhcnRfZm9ybVt0ZW1wX3JlbmV3X3dpdGhvdXRfY2hhbmdlc11cIiAvPjxsYWJlbCBmb3I9XCJyZW5ld2FsLXN0YXJ0LWZvcm0tdGVtcC1yZW5ldy13aXRob3V0LWNoYW5nZXMtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLXJhZGlvc19fbGFiZWxcIj5JIG5lZWQgdG8gbWFrZSBjaGFuZ2VzPC9sYWJlbD48L2Rpdj48ZGl2IGNsYXNzPVwiZ292dWstcmFkaW9zX19pdGVtXCI+PGlucHV0IGlkPVwicmVuZXdhbC1zdGFydC1mb3JtLXRlbXAtcmVuZXctd2l0aG91dC1jaGFuZ2VzLXRydWUtZmllbGRcIiBjbGFzcz1cImdvdnVrLXJhZGlvc19faW5wdXRcIiB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cInRydWVcIiBuYW1lPVwicmVuZXdhbF9zdGFydF9mb3JtW3RlbXBfcmVuZXdfd2l0aG91dF9jaGFuZ2VzXVwiIC8+PGxhYmVsIGZvcj1cInJlbmV3YWwtc3RhcnQtZm9ybS10ZW1wLXJlbmV3LXdpdGhvdXQtY2hhbmdlcy10cnVlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1sYWJlbCBnb3Z1ay1yYWRpb3NfX2xhYmVsXCI+UmVuZXcgd2l0aCB0aGVzZSBkZXRhaWxzPC9sYWJlbD48L2Rpdj48L2Rpdj48L2ZpZWxkc2V0PjwvZGl2PlxuXG4gICAgICA8YnV0dG9uIHR5cGU9XCJzdWJtaXRcIiBmb3Jtbm92YWxpZGF0ZT1cImZvcm1ub3ZhbGlkYXRlXCIgY2xhc3M9XCJnb3Z1ay1idXR0b25cIiBkYXRhLW1vZHVsZT1cImdvdnVrLWJ1dHRvblwiIGRhdGEtcHJldmVudC1kb3VibGUtY2xpY2s9XCJ0cnVlXCI+Q29udGludWU8L2J1dHRvbj5cbjwvZm9ybT4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Wed, 20 Oct 2021 12:54:11 GMT
 recorded_with: VCR 6.0.0

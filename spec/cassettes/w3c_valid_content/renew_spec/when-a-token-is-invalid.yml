@@ -8,13 +8,14 @@ http_interactions:
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
-        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"text\">\n
-        \ <h1 class=\"heading-large\">We cannot find that renewal</h1>\n\n  <p>Things
-        to try:</p>\n  <ol class=\"list list-number\">\n    <li>Go back to your email
-        and follow the link again.</li>\n    <li>Copy the whole link from the email
-        and paste it into your web browser. Make sure that you include all of the
-        numbers at the end of the link.</li>\n    <li>If that does not work, <a href=\"/\">start
-        a new registration</a>.</li>\n  </ol>\n</div>\n\n\n</body>\n</html>\n"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    <h1 class=\"govuk-heading-l\">We
+        cannot find that renewal</h1>\n\n    <p class=\"govuk-body\">Things to try:</p>\n
+        \   <ol class=\"govuk-list govuk-list--number\">\n      <li>Go back to your
+        email and follow the link again.</li>\n      <li>Copy the whole link from
+        the email and paste it into your web browser. Make sure that you include all
+        of the numbers at the end of the link.</li>\n      <li>If that does not work,
+        <a href=\"/\">start a new registration</a>.</li>\n    </ol>\n  </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -30,7 +31,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 04 Oct 2021 12:51:16 GMT
+      - Wed, 20 Oct 2021 13:16:58 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -61,6 +62,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJ0ZXh0XCI+XG4gIDxoMSBjbGFzcz1cImhlYWRpbmctbGFyZ2VcIj5XZSBjYW5ub3QgZmluZCB0aGF0IHJlbmV3YWw8L2gxPlxuXG4gIDxwPlRoaW5ncyB0byB0cnk6PC9wPlxuICA8b2wgY2xhc3M9XCJsaXN0IGxpc3QtbnVtYmVyXCI+XG4gICAgPGxpPkdvIGJhY2sgdG8geW91ciBlbWFpbCBhbmQgZm9sbG93IHRoZSBsaW5rIGFnYWluLjwvbGk+XG4gICAgPGxpPkNvcHkgdGhlIHdob2xlIGxpbmsgZnJvbSB0aGUgZW1haWwgYW5kIHBhc3RlIGl0IGludG8geW91ciB3ZWIgYnJvd3Nlci4gTWFrZSBzdXJlIHRoYXQgeW91IGluY2x1ZGUgYWxsIG9mIHRoZSBudW1iZXJzIGF0IHRoZSBlbmQgb2YgdGhlIGxpbmsuPC9saT5cbiAgICA8bGk+SWYgdGhhdCBkb2VzIG5vdCB3b3JrLCA8YSBocmVmPVwiL1wiPnN0YXJ0IGEgbmV3IHJlZ2lzdHJhdGlvbjwvYT4uPC9saT5cbiAgPC9vbD5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-  recorded_at: Mon, 04 Oct 2021 12:48:02 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPldlIGNhbm5vdCBmaW5kIHRoYXQgcmVuZXdhbDwvaDE+XG5cbiAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5UaGluZ3MgdG8gdHJ5OjwvcD5cbiAgICA8b2wgY2xhc3M9XCJnb3Z1ay1saXN0IGdvdnVrLWxpc3QtLW51bWJlclwiPlxuICAgICAgPGxpPkdvIGJhY2sgdG8geW91ciBlbWFpbCBhbmQgZm9sbG93IHRoZSBsaW5rIGFnYWluLjwvbGk+XG4gICAgICA8bGk+Q29weSB0aGUgd2hvbGUgbGluayBmcm9tIHRoZSBlbWFpbCBhbmQgcGFzdGUgaXQgaW50byB5b3VyIHdlYiBicm93c2VyLiBNYWtlIHN1cmUgdGhhdCB5b3UgaW5jbHVkZSBhbGwgb2YgdGhlIG51bWJlcnMgYXQgdGhlIGVuZCBvZiB0aGUgbGluay48L2xpPlxuICAgICAgPGxpPklmIHRoYXQgZG9lcyBub3Qgd29yaywgPGEgaHJlZj1cIi9cIj5zdGFydCBhIG5ldyByZWdpc3RyYXRpb248L2E+LjwvbGk+XG4gICAgPC9vbD5cbiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+  recorded_at: Wed, 20 Oct 2021 13:16:58 GMT
 recorded_with: VCR 6.0.0

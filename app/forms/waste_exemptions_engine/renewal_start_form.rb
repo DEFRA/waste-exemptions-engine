@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class RenewalStartForm < BaseForm
-    include DataOverviewForm
+    delegate :company_rows, :registration_rows, to: :data_overview_presenter
 
     delegate :temp_renew_without_changes, to: :transient_registration
 
@@ -13,5 +13,11 @@ module WasteExemptionsEngine
                                     ".attributes.temp_renew_without_changes.inclusion")
                 }
               }
+
+    private
+
+    def data_overview_presenter
+      @_data_overview_presenter ||= DataOverviewPresenter.new(transient_registration)
+    end
   end
 end
