@@ -4,6 +4,7 @@ en:
       new:
         title: Site grid reference
         heading: Where will this waste operation take place?
+        legend: Site grid reference
         grid_reference_or_address:
           message: Enter a grid reference or
           manual_address_label: use an address instead
