@@ -1,20 +1,18 @@
 <% content_for :title, "Version" %>
 
-<div class="text">
-  <h1 class="heading-large"><%= WasteExemptionsEngine.configuration.application_name %></h1>
+<h1 class="govuk-heading-l"><%= WasteExemptionsEngine.configuration.application_name %></h1>
 
-  <p>
-    <label><%= t(".commit") %></label>
-    <strong>
-      <%= link_to(current_git_commit,
-                  "#{WasteExemptionsEngine.configuration.git_repository_url}\/commit\/#{current_git_commit}",
-                  target: "_blank",
-                  class: "btn-link") %>
-    </strong>
-  </p>
+<p class="govuk-body">
+  <label><%= t(".commit") %></label>
+  <strong>
+    <%= link_to(current_git_commit,
+                "#{WasteExemptionsEngine.configuration.git_repository_url}\/commit\/#{current_git_commit}",
+                target: "_blank",
+                class: "btn-link") %>
+  </strong>
+</p>
 
-  <p>
-    <label><%= t(".render_time") %></label>
-    <strong><%= l Time.zone.now %></strong>
-  </p>
-</div>
+<p class="govuk-body">
+  <label><%= t(".render_time") %></label>
+  <strong><%= l Time.zone.now %></strong>
+</p>
