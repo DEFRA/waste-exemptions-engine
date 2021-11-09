@@ -28,4 +28,4 @@ en:
   # Custom error pages
   invalid_id_title: Invalid ID
   invalid_id_heading: The exemption registration ID is not valid
-  invalid_id_text: Maybe you should try again.
+  invalid_id_text: Try again later.
