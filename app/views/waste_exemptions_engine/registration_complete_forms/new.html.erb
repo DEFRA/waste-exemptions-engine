@@ -10,30 +10,27 @@
 
     <% else %>
 
-      <%= form_for(@registration_complete_form) do |f| %>
-        <%= render("waste_exemptions_engine/shared/errors", object: @registration_complete_form) %>
-
-        <div class="govuk-panel govuk-panel--confirmation">
-          <h1 class="govuk-panel__title">
-            <%= t(".heading") %>
-            <br />
-            <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
-          </h1>
-          <div class="govuk-panel__body">
-            <strong>
-              <span id="reg_identifier"><%= @registration.reference %></span>
-            </strong>
-          </div>
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+        <div class="govuk-panel__body">
+          <strong>
+            <span id="reg_identifier"><%= @registration.reference %></span>
+          </strong>
         </div>
+      </div>
 
-        <h2 class="govuk-heading-m"><%= t(".subheading") %></h2>
+      <h2 class="govuk-heading-m"><%= t(".subheading") %></h2>
 
-        <p class="govuk-body"><%= t(".confirmation_email_text.#{confirmation_comms(@registration_complete_form)}", applicant: @registration_complete_form.applicant_email, contact: @registration_complete_form.contact_email) %></p>
+      <p class="govuk-body"><%= t(".confirmation_email_text.#{confirmation_comms(@registration_complete_form)}", applicant: @registration_complete_form.applicant_email, contact: @registration_complete_form.contact_email) %></p>
 
-        <p class="govuk-body"><%= t(".paragraph_1", expiry_month: @registration.expiry_month) %></p>
+      <p class="govuk-body"><%= t(".paragraph_1", expiry_month: @registration.expiry_month) %></p>
 
-        <p class="govuk-body"><%= t(".paragraph_2") %></p>
-      <% end %>
+      <p class="govuk-body"><%= t(".paragraph_2") %></p>
+
     <% end %>
   </div>
 </div>
