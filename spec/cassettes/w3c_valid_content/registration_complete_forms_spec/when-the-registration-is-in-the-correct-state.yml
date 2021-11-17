@@ -9,22 +9,20 @@ http_interactions:
         media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
-        \ <div class=\"govuk-grid-column-two-thirds\">\n\n      <form class=\"new_registration_complete_form\"
-        id=\"new_registration_complete_form\" action=\"/waste_exemptions_engine/rhbeKR1oQu5Tcm5kGvTDj2cW/registration-complete\"
-        accept-charset=\"UTF-8\" method=\"post\">\n        \n\n        <div class=\"govuk-panel
-        govuk-panel--confirmation\">\n          <h1 class=\"govuk-panel__title\">\n
-        \           You have registered your exemptions for 3 years\n            <br
-        />\n            <span class=\"govuk-panel__body\">Your registration number
-        is</span>\n          </h1>\n          <div class=\"govuk-panel__body\">\n
-        \           <strong>\n              <span id=\"reg_identifier\">WEX000001</span>\n
-        \           </strong>\n          </div>\n        </div>\n\n        <h2 class=\"govuk-heading-m\">What
-        will happen next</h2>\n\n        <p class=\"govuk-body\">We have sent a confirmation
-        email to damian.hegmann@example.net and jack@example.net.</p>\n\n        <p
-        class=\"govuk-body\">These exemptions will expire in . We will send you a
-        reminder 1 month before they are due to expire.</p>\n\n        <p class=\"govuk-body\">We
-        will add your registration to the public register. This includes the name
-        and address of the individual or organisation responsible, the site address
-        and the exemptions you have registered.</p>\n</form>  </div>\n</div>\n\n\n</body>\n</html>\n"
+        \ <div class=\"govuk-grid-column-two-thirds\">\n\n      <div class=\"govuk-panel
+        govuk-panel--confirmation\">\n        <h1 class=\"govuk-panel__title\">\n
+        \         You have registered your exemptions for 3 years\n          <br />\n
+        \         <span class=\"govuk-panel__body\">Your registration number is</span>\n
+        \       </h1>\n        <div class=\"govuk-panel__body\">\n          <strong>\n
+        \           <span id=\"reg_identifier\">WEX000697</span>\n          </strong>\n
+        \       </div>\n      </div>\n\n      <h2 class=\"govuk-heading-m\">What will
+        happen next</h2>\n\n      <p class=\"govuk-body\">We have sent a confirmation
+        email to sunni@example.org and benito@example.net.</p>\n\n      <p class=\"govuk-body\">These
+        exemptions will expire in November 2024. We will send you a reminder 1 month
+        before they are due to expire.</p>\n\n      <p class=\"govuk-body\">We will
+        add your registration to the public register. This includes the name and address
+        of the individual or organisation responsible, the site address and the exemptions
+        you have registered.</p>\n\n  </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -40,7 +38,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Mon, 18 Oct 2021 16:18:57 GMT
+      - Wed, 10 Nov 2021 11:15:11 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -71,6 +69,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuXG4gICAgICA8Zm9ybSBjbGFzcz1cIm5ld19yZWdpc3RyYXRpb25fY29tcGxldGVfZm9ybVwiIGlkPVwibmV3X3JlZ2lzdHJhdGlvbl9jb21wbGV0ZV9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3JoYmVLUjFvUXU1VGNtNWtHdlREajJjVy9yZWdpc3RyYXRpb24tY29tcGxldGVcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgICBcblxuICAgICAgICA8ZGl2IGNsYXNzPVwiZ292dWstcGFuZWwgZ292dWstcGFuZWwtLWNvbmZpcm1hdGlvblwiPlxuICAgICAgICAgIDxoMSBjbGFzcz1cImdvdnVrLXBhbmVsX190aXRsZVwiPlxuICAgICAgICAgICAgWW91IGhhdmUgcmVnaXN0ZXJlZCB5b3VyIGV4ZW1wdGlvbnMgZm9yIDMgeWVhcnNcbiAgICAgICAgICAgIDxiciAvPlxuICAgICAgICAgICAgPHNwYW4gY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPllvdXIgcmVnaXN0cmF0aW9uIG51bWJlciBpczwvc3Bhbj5cbiAgICAgICAgICA8L2gxPlxuICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgICAgPHN0cm9uZz5cbiAgICAgICAgICAgICAgPHNwYW4gaWQ9XCJyZWdfaWRlbnRpZmllclwiPldFWDAwMDAwMTwvc3Bhbj5cbiAgICAgICAgICAgIDwvc3Ryb25nPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLW1cIj5XaGF0IHdpbGwgaGFwcGVuIG5leHQ8L2gyPlxuXG4gICAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPldlIGhhdmUgc2VudCBhIGNvbmZpcm1hdGlvbiBlbWFpbCB0byBkYW1pYW4uaGVnbWFubkBleGFtcGxlLm5ldCBhbmQgamFja0BleGFtcGxlLm5ldC48L3A+XG5cbiAgICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+VGhlc2UgZXhlbXB0aW9ucyB3aWxsIGV4cGlyZSBpbiAuIFdlIHdpbGwgc2VuZCB5b3UgYSByZW1pbmRlciAxIG1vbnRoIGJlZm9yZSB0aGV5IGFyZSBkdWUgdG8gZXhwaXJlLjwvcD5cblxuICAgICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5XZSB3aWxsIGFkZCB5b3VyIHJlZ2lzdHJhdGlvbiB0byB0aGUgcHVibGljIHJlZ2lzdGVyLiBUaGlzIGluY2x1ZGVzIHRoZSBuYW1lIGFuZCBhZGRyZXNzIG9mIHRoZSBpbmRpdmlkdWFsIG9yIG9yZ2FuaXNhdGlvbiByZXNwb25zaWJsZSwgdGhlIHNpdGUgYWRkcmVzcyBhbmQgdGhlIGV4ZW1wdGlvbnMgeW91IGhhdmUgcmVnaXN0ZXJlZC48L3A+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-  recorded_at: Mon, 18 Oct 2021 16:11:28 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstcGFuZWwgZ292dWstcGFuZWwtLWNvbmZpcm1hdGlvblwiPlxuICAgICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fdGl0bGVcIj5cbiAgICAgICAgICBZb3UgaGF2ZSByZWdpc3RlcmVkIHlvdXIgZXhlbXB0aW9ucyBmb3IgMyB5ZWFyc1xuICAgICAgICAgIDxiciAvPlxuICAgICAgICAgIDxzcGFuIGNsYXNzPVwiZ292dWstcGFuZWxfX2JvZHlcIj5Zb3VyIHJlZ2lzdHJhdGlvbiBudW1iZXIgaXM8L3NwYW4+XG4gICAgICAgIDwvaDE+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgIDxzdHJvbmc+XG4gICAgICAgICAgICA8c3BhbiBpZD1cInJlZ19pZGVudGlmaWVyXCI+V0VYMDAwNjk3PC9zcGFuPlxuICAgICAgICAgIDwvc3Ryb25nPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLW1cIj5XaGF0IHdpbGwgaGFwcGVuIG5leHQ8L2gyPlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5XZSBoYXZlIHNlbnQgYSBjb25maXJtYXRpb24gZW1haWwgdG8gc3VubmlAZXhhbXBsZS5vcmcgYW5kIGJlbml0b0BleGFtcGxlLm5ldC48L3A+XG5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPlRoZXNlIGV4ZW1wdGlvbnMgd2lsbCBleHBpcmUgaW4gTm92ZW1iZXIgMjAyNC4gV2Ugd2lsbCBzZW5kIHlvdSBhIHJlbWluZGVyIDEgbW9udGggYmVmb3JlIHRoZXkgYXJlIGR1ZSB0byBleHBpcmUuPC9wPlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5XZSB3aWxsIGFkZCB5b3VyIHJlZ2lzdHJhdGlvbiB0byB0aGUgcHVibGljIHJlZ2lzdGVyLiBUaGlzIGluY2x1ZGVzIHRoZSBuYW1lIGFuZCBhZGRyZXNzIG9mIHRoZSBpbmRpdmlkdWFsIG9yIG9yZ2FuaXNhdGlvbiByZXNwb25zaWJsZSwgdGhlIHNpdGUgYWRkcmVzcyBhbmQgdGhlIGV4ZW1wdGlvbnMgeW91IGhhdmUgcmVnaXN0ZXJlZC48L3A+XG5cbiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+  recorded_at: Wed, 10 Nov 2021 11:15:11 GMT
 recorded_with: VCR 6.0.0
