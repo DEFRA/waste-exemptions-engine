@@ -215,7 +215,7 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.5.1)
     jwt (2.2.3)
-    loofah (2.2.1)
+    loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -256,7 +256,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.2.3)
-    phonelib (0.6.54)
+    phonelib (0.6.55)
     protocol-hpack (1.4.2)
     protocol-http (0.22.5)
     protocol-http1 (0.14.2)
@@ -400,7 +400,7 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.1.0)
       activesupport
-    zeitwerk (2.5.2)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
