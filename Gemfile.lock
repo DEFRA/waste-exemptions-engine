@@ -144,7 +144,7 @@ GEM
       sprockets (~> 3.7.2)
     defra_ruby_style (0.2.2)
       rubocop (~> 0.82)
-    defra_ruby_validators (2.4.1)
+    defra_ruby_validators (2.5.0)
       activemodel
       os_map_ref
       phonelib
@@ -215,16 +215,16 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.5.1)
     jwt (2.2.3)
-    loofah (2.2.1)
+    loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
     method_source (1.0.0)
-    mime-types (3.3.1)
+    mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0901)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.15.0)
@@ -256,7 +256,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.2.3)
-    phonelib (0.6.54)
+    phonelib (0.6.55)
     protocol-hpack (1.4.2)
     protocol-http (0.22.5)
     protocol-http1 (0.14.2)
@@ -400,7 +400,7 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.1.0)
       activesupport
-    zeitwerk (2.5.2)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
