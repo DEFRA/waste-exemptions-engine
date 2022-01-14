@@ -68,7 +68,7 @@ module WasteExemptionsEngine
           context "and the feature toggle is an environment variable" do
             before do
               # Change the environment variable value for this test only
-              allow(ENV).to receive(:[]).with('ENV_VARIABLE_TEST_FEATURE').and_return('true')
+              stub_const('ENV', ENV.to_hash.merge('ENV_VARIABLE_TEST_FEATURE' => 'true'))
               # Force reload of the toggle settings after setting the environment variable
               described_class.send('reload_feature_toggles')
             end
