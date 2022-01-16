@@ -11,7 +11,7 @@ module WasteExemptionsEngine
       expect(validators.keys).to include(:declaration)
 
       inclusion_validators = validators[:declaration].select do |v|
-        v.class == ActiveModel::Validations::InclusionValidator
+        v.instance_of?(ActiveModel::Validations::InclusionValidator)
       end
       expect(inclusion_validators.count).to eq(1)
       expect(inclusion_validators.first.options).to eq(in: [true])

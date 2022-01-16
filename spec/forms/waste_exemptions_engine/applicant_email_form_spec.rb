@@ -28,7 +28,7 @@ module WasteExemptionsEngine
           expect(validators.keys).to include(:confirmed_email)
 
           matching_email_validators = validators[:confirmed_email].select do |v|
-            v.class == WasteExemptionsEngine::MatchingEmailValidator
+            v.instance_of?(WasteExemptionsEngine::MatchingEmailValidator)
           end
           expect(matching_email_validators.count).to eq(1)
           expect(matching_email_validators.first.options).to eq(compare_to: :applicant_email)

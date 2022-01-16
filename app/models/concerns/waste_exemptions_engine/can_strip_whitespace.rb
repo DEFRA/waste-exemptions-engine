@@ -9,13 +9,21 @@ module WasteExemptionsEngine
     def strip_whitespace(attributes)
       # Loop over each value and strip the whitespace, or strip the whitespace from values nested within it
       attributes.each_pair do |key, value|
-        if value.is_a?(String)
+        case value
+        when String
           attributes[key] = strip_string(value)
-        elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
+        when Hash, ActionController::Parameters
           strip_hash(value)
-        elsif value.is_a?(Array)
+        when Array
           strip_array(value)
         end
+        # if value.is_a?(String)
+        #   attributes[key] = strip_string(value)
+        # elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
+        #   strip_hash(value)
+        # elsif value.is_a?(Array)
+        #   strip_array(value)
+        # end
       end
     end
 
