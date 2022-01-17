@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     business_type_forms:
       new:
-        title: Business type
+        title: What kind of business or organisation is carrying out the waste operation?
         heading: What kind of business or organisation is carrying out the waste operation?
         description: Choose the option that most closely describes the business or organisation registering the waste operation
         options:

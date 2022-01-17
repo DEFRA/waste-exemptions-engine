@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     on_a_farm_forms:
       new:
-        title: On a farm
+        title: Will this waste operation take place on a farm?
         heading: Will this waste operation take place on a farm?
         options:
           "yes": "Yes"

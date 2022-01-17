@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     site_address_lookup_forms:
       new:
-        title: Site address selection
+        title: Select the address of the waste operation
         heading: Select the address of the waste operation
         postcode_label: Postcode
         postcode_change_link: "Change postcode"

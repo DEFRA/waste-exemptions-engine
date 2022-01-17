@@ -4,12 +4,12 @@ en:
       new:
         title: Operator name
         heading:
-          localAuthority: What's the name of the local authority or public body?
-          limitedCompany: What's the registered name of the company?
-          limitedLiabilityPartnership: What's the registered name of the limited liability partnership?
-          partnership: What's the name of the partnership?
+          localAuthority: What’s the name of the local authority or public body?
+          limitedCompany: What’s the registered name of the company?
+          limitedLiabilityPartnership: What’s the registered name of the limited liability partnership?
+          partnership: What’s the name of the partnership?
           soleTrader: Who’s carrying out the waste operation?
-          charity: What's the name of the charity or trust?
+          charity: What’s the name of the charity or trust?
         description: This is the name of the operator responsible for the waste operation
         operator_name_label:
           localAuthority: Local authority or public body name

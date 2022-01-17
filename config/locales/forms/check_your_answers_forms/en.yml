@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     check_your_answers_forms:
       new:
-        title: Check your details
+        title: Check your answers before completing your registration
         heading: Check your answers before completing your registration
         error_heading: A problem to fix
         error_description_1: "We're missing some of the information we need to complete your registration:"
