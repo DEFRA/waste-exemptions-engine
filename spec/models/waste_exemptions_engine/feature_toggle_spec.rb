@@ -66,9 +66,14 @@ module WasteExemptionsEngine
           end
 
           context "and the feature toggle is an environment variable" do
-            it "returns true" do
-              ENV["ENV_VARIABLE_TEST_FEATURE"] = "true"
+            before do
+              # Change the environment variable value for this test only
+              stub_const("ENV", ENV.to_hash.merge("ENV_VARIABLE_TEST_FEATURE" => "true"))
+              # Force reload of the toggle settings after setting the environment variable
+              described_class.send("reload_feature_toggles")
+            end
 
+            it "returns true" do
               expect(described_class.active?("env_variable_test_feature")).to be_truthy
             end
           end

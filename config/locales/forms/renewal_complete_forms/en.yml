@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     renewal_complete_forms:
       new:
-        title: "Renewal complete"
+        title: "You have renewed your exemptions for 3 years"
         heading: "You have renewed your exemptions for 3 years"
         highlight_text: "Your new registration number is"
         confirmation_email_text:
