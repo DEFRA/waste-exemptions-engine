@@ -16,14 +16,9 @@ module WasteExemptionsEngine
           strip_hash(value)
         when Array
           strip_array(value)
+        else
+          value
         end
-        # if value.is_a?(String)
-        #   attributes[key] = strip_string(value)
-        # elsif value.is_a?(Hash) || value.is_a?(ActionController::Parameters)
-        #   strip_hash(value)
-        # elsif value.is_a?(Array)
-        #   strip_array(value)
-        # end
       end
     end
 
