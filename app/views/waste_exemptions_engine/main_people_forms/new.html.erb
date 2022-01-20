@@ -1,4 +1,4 @@
-<% content_for :title, t(".heading.#{@main_people_form.business_type}") %>
+<% content_for :title, t(".heading.#{@main_people_form.business_type}").try(:html_safe) %>
 
 <%= render("waste_exemptions_engine/shared/back", back_path: back_main_people_forms_path(@main_people_form.token)) %>
 
