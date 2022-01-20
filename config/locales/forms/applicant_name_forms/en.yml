@@ -4,7 +4,7 @@ en:
       new:
         title: Who is filling in this form?
         heading: Who is filling in this form?
-        description: Enter your name, even if you’re an agent, employee or other third-party
+        description: Enter your name, even if you're an agent, employee or other third-party
         applicant_first_name_label: First name
         applicant_last_name_label: Last name
         error_heading: A problem to fix
