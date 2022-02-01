@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     renewal_start_forms:
       new:
-        title: "Start your renewal"
+        title: "Do you want to renew with these details?"
         heading: "Do you want to renew with these details?"
         description: Some of your exemptions could be withdrawn before the end of your exemption period.
         options:

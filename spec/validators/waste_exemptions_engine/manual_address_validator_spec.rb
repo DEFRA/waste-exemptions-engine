@@ -3,8 +3,8 @@
 require "rails_helper"
 
 module Test
+  MockTransientAddress = Struct.new(:premises, :street_address, :locality, :city, :postcode)
   ManualAddressValidatable = Struct.new(:premises, :street_address, :locality, :city, :postcode, :transient_address) do
-    MockTransientAddress = Struct.new(:premises, :street_address, :locality, :city, :postcode)
 
     include ActiveModel::Validations
 
