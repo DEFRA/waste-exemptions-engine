@@ -9,7 +9,7 @@ module WasteExemptionsEngine
 
     # Expects a form class name (eg BusinessTypeForm) and a snake_case name for the form (eg business_type_form)
     def new(form_class, form)
-      set_up_form(form_class, form, params[:token], true)
+      set_up_form(form_class, form, params[:token], get_request: true)
     end
 
     # Expects a form class name (eg BusinessTypeForm) and a snake_case name for the form (eg business_type_form)
@@ -42,7 +42,7 @@ module WasteExemptionsEngine
 
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
     # and the token param
-    def set_up_form(form_class, form, token, get_request = false)
+    def set_up_form(form_class, form, token, get_request: false)
       find_or_initialize_registration(token)
       set_workflow_state if get_request
       return false unless setup_checks_pass?

@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe BusinessTypeForm, type: :model do
     subject(:form) { build(:business_type_form) }
 
-    BUSINESS_TYPES = TransientRegistration::BUSINESS_TYPES.values
+    business_types = TransientRegistration::BUSINESS_TYPES.values
 
     it "validates the business type using the BusinessTypeValidator class" do
       validators = form._validators
@@ -16,7 +16,7 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :business_type_form do
-      let(:valid_params) { { business_type: BUSINESS_TYPES.sample } }
+      let(:valid_params) { { business_type: business_types.sample } }
       let(:invalid_params) do
         [
           { business_type: "foo" },
@@ -28,7 +28,7 @@ module WasteExemptionsEngine
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the selected business type" do
-          business_type = BUSINESS_TYPES.sample
+          business_type = business_types.sample
           valid_params = { business_type: business_type }
           transient_registration = form.transient_registration
 

@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     is_a_farmer_forms:
       new:
-        title: Is a farmer
+        title: Are the waste exemptions used by a farmer or farming business?
         heading: Are the waste exemptions used by a farmer or farming business?
         options:
           "yes": "Yes"
