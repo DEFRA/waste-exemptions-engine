@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     site_grid_reference_forms:
       new:
-        title: Site grid reference
+        title: Where will this waste operation take place?
         heading: Where will this waste operation take place?
         legend: Where will this waste operation take place?
         grid_reference_or_address:

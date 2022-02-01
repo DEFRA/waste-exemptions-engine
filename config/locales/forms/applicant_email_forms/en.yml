@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     applicant_email_forms:
       new:
-        title: Your email address
+        title: What's the email address of the person filling in this form?
         heading: What's the email address of the person filling in this form?
         error_heading: A problem to fix
         applicant_email_label: Email address

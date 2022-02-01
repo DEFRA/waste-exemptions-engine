@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     start_forms:
       new:
-        title: Exemptions start
+        title: What do you want to do?
         heading: What do you want to do?
         options:
           new: Start a new waste exemption registration

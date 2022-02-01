@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     renew_with_changes_forms:
       new:
-        title: "Renewing with changes"
+        title: "We'll fill in the form with your current registration details"
         heading: "We'll fill in the form with your current registration details"
         paragraph_1: "Check the details as you go through each screen."
         paragraph_2: "You can change any details if you need to."

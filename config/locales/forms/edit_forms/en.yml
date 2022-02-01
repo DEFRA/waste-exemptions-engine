@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     edit_forms:
       new:
-        title: Edit
+        title: Edit %{reference} registration
         heading: Edit %{reference} registration
         paragraph_1: "Use the links below to make changes to this registration. Changes will not be applied until you hit the continue button at the bottom of the page."
         paragraph_2: "You must confirm these changes using the 'continue' button."

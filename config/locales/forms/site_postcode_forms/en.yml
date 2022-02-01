@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     site_postcode_forms:
       new:
-        title: Site address postcode
+        title: What's the postcode of the waste operation?
         heading: What's the postcode of the waste operation?
         postcode_label: Please enter a UK postcode
         postcode_hint: For example, BS1 5AH

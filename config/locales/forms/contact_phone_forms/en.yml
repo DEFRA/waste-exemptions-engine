@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     contact_phone_forms:
       new:
-        title: Contact telephone number
+        title: What's their telephone number?
         heading: What's their telephone number?
         contact_phone_label: Telephone number
         contact_phone_hint: This can be a landline or mobile
