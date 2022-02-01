@@ -9,7 +9,6 @@ module WasteExemptionsEngine
 
     def self.active?(feature_name)
       from_database = where(key: feature_name).first
-
       return from_file(feature_name) unless from_database.present?
 
       from_database.active
@@ -18,11 +17,9 @@ module WasteExemptionsEngine
     class << self
       private
 
-      # rubocop:disable Style/ClassVars
       def feature_toggles
-        @@feature_toggles ||= load_feature_toggles
+        @feature_toggles ||= load_feature_toggles
       end
-      # rubocop:enable Style/ClassVars
 
       def from_file(feature_name)
         feature_toggles[feature_name] && (
@@ -33,6 +30,12 @@ module WasteExemptionsEngine
 
       def load_feature_toggles
         HashWithIndifferentAccess.new(YAML.safe_load(ERB.new(File.read(file_path)).result))
+      end
+
+      # Allow reloading of toggle settings
+      # This is to support unit testing of environment-variable-based settings
+      def reload_feature_toggles
+        @feature_toggles = nil
       end
 
       def file_path

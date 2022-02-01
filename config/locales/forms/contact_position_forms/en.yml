@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     contact_position_forms:
       new:
-        title: Contact position
+        title: What's their position?
         heading: What's their position?
         position_label: Position (optional)
         position_hint: For example, Manager

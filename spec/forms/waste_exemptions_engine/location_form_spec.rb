@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe LocationForm, type: :model do
     subject(:form) { build(:location_form) }
 
-    LOCATIONS = %w[
+    locations = %w[
       england
       northern_ireland
       scotland
@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     end
 
     it_behaves_like "a validated form", :location_form do
-      let(:valid_params) { { location: LOCATIONS.sample } }
+      let(:valid_params) { { location: locations.sample } }
       let(:invalid_params) do
         [
           { location: "foo" },
@@ -33,7 +33,7 @@ module WasteExemptionsEngine
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the location" do
-          location = LOCATIONS.sample
+          location = locations.sample
           valid_params = { location: location }
           transient_registration = form.transient_registration
 

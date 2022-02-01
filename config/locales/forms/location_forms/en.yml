@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     location_forms:
       new:
-        title: Site location
+        title: In which country will you use the exemptions?
         heading: In which country will you use the exemptions?
         location_detail_subheading: What is a waste operation?
         location_detail_paragraph: "A waste operation is any activity that involves using, treating, recovering, storing or disposing of waste."

@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     contact_agency_forms:
       new:
-        title: Contact Environment Agency
+        title: Contact the Environment Agency
         heading: Contact the Environment Agency
         paragraph_1: "You'll need to contact the Environment Agency to:"
         contact_reasons:

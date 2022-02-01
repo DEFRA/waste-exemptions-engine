@@ -2,15 +2,15 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <% if @check_your_answers_form.errors.any? %>
+  <% if @check_your_answers_form.errors.any? %>
       <div class="govuk-error-summary" role="alert">
         <h2 class="govuk-error-summary__title"><%= t(".error_heading") %></h2>
 
         <p class="govuk-body"><%= t(".error_description_1") %></p>
 
         <ul class="govuk-list govuk-error-summary__list">
-          <% @check_your_answers_form.errors.each do |_field, message| %>
-            <li><%= message %></li>
+          <% @check_your_answers_form.errors.each do |error| %>
+            <li><%= error.message %></li>
           <% end %>
         </ul>
 
