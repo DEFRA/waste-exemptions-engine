@@ -10,13 +10,13 @@ http_interactions:
         data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n<div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    <form class=\"new_contact_position_form\"
-        id=\"new_contact_position_form\" action=\"/waste_exemptions_engine/qWHETtd6dHDG6e8TPvS32b2n/contact-position\"
+        id=\"new_contact_position_form\" action=\"/waste_exemptions_engine/LsBXTobKXqHrxedyt3dYnrQe/contact-position\"
         accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
         \     <h1 class=\"govuk-heading-l\">What&#39;s their position?</h1>\n\n      <div
         class=\"govuk-form-group\"><label for=\"contact-position-form-contact-position-field\"
-        class=\"govuk-label\">Position (optional)</label><span class=\"govuk-hint\"
-        id=\"contact-position-form-contact-position-hint\">For example, Manager</span><input
+        class=\"govuk-label\">Position (optional)</label><div class=\"govuk-hint\"
+        id=\"contact-position-form-contact-position-hint\">For example, Manager</div><input
         id=\"contact-position-form-contact-position-field\" class=\"govuk-input govuk-!-width-one-half\"
         aria-describedby=\"contact-position-form-contact-position-hint\" type=\"text\"
         name=\"contact_position_form[contact_position]\" /></div>\n\n      <button
@@ -37,7 +37,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Fri, 15 Oct 2021 16:18:45 GMT
+      - Tue, 01 Feb 2022 16:08:36 GMT
       Accept-Encoding:
       - gzip
       Access-Control-Allow-Origin:
@@ -53,7 +53,7 @@ http_interactions:
       Vary:
       - Accept-Encoding, User-Agent
       Server:
-      - Jetty(9.4.43.v20210629)
+      - Jetty(9.4.44.v20210927)
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -63,11 +63,13 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      X-Request-Id:
+      - 61f95b046b3d534c
       Transfer-Encoding:
       - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgPGZvcm0gY2xhc3M9XCJuZXdfY29udGFjdF9wb3NpdGlvbl9mb3JtXCIgaWQ9XCJuZXdfY29udGFjdF9wb3NpdGlvbl9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3FXSEVUdGQ2ZEhERzZlOFRQdlMzMmIybi9jb250YWN0LXBvc2l0aW9uXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIFxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbiAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPldoYXQmIzM5O3MgdGhlaXIgcG9zaXRpb24/PC9oMT5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48bGFiZWwgZm9yPVwiY29udGFjdC1wb3NpdGlvbi1mb3JtLWNvbnRhY3QtcG9zaXRpb24tZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+UG9zaXRpb24gKG9wdGlvbmFsKTwvbGFiZWw+PHNwYW4gY2xhc3M9XCJnb3Z1ay1oaW50XCIgaWQ9XCJjb250YWN0LXBvc2l0aW9uLWZvcm0tY29udGFjdC1wb3NpdGlvbi1oaW50XCI+Rm9yIGV4YW1wbGUsIE1hbmFnZXI8L3NwYW4+PGlucHV0IGlkPVwiY29udGFjdC1wb3NpdGlvbi1mb3JtLWNvbnRhY3QtcG9zaXRpb24tZmllbGRcIiBjbGFzcz1cImdvdnVrLWlucHV0IGdvdnVrLSEtd2lkdGgtb25lLWhhbGZcIiBhcmlhLWRlc2NyaWJlZGJ5PVwiY29udGFjdC1wb3NpdGlvbi1mb3JtLWNvbnRhY3QtcG9zaXRpb24taGludFwiIHR5cGU9XCJ0ZXh0XCIgbmFtZT1cImNvbnRhY3RfcG9zaXRpb25fZm9ybVtjb250YWN0X3Bvc2l0aW9uXVwiIC8+PC9kaXY+XG5cbiAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGZvcm1ub3ZhbGlkYXRlPVwiZm9ybW5vdmFsaWRhdGVcIiBjbGFzcz1cImdvdnVrLWJ1dHRvblwiIGRhdGEtbW9kdWxlPVwiZ292dWstYnV0dG9uXCIgZGF0YS1wcmV2ZW50LWRvdWJsZS1jbGljaz1cInRydWVcIj5Db250aW51ZTwvYnV0dG9uPlxuPC9mb3JtPiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Fri, 15 Oct 2021 16:18:45 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgPGZvcm0gY2xhc3M9XCJuZXdfY29udGFjdF9wb3NpdGlvbl9mb3JtXCIgaWQ9XCJuZXdfY29udGFjdF9wb3NpdGlvbl9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL0xzQlhUb2JLWHFIcnhlZHl0M2RZbnJRZS9jb250YWN0LXBvc2l0aW9uXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIFxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbiAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPldoYXQmIzM5O3MgdGhlaXIgcG9zaXRpb24/PC9oMT5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48bGFiZWwgZm9yPVwiY29udGFjdC1wb3NpdGlvbi1mb3JtLWNvbnRhY3QtcG9zaXRpb24tZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+UG9zaXRpb24gKG9wdGlvbmFsKTwvbGFiZWw+PGRpdiBjbGFzcz1cImdvdnVrLWhpbnRcIiBpZD1cImNvbnRhY3QtcG9zaXRpb24tZm9ybS1jb250YWN0LXBvc2l0aW9uLWhpbnRcIj5Gb3IgZXhhbXBsZSwgTWFuYWdlcjwvZGl2PjxpbnB1dCBpZD1cImNvbnRhY3QtcG9zaXRpb24tZm9ybS1jb250YWN0LXBvc2l0aW9uLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dCBnb3Z1ay0hLXdpZHRoLW9uZS1oYWxmXCIgYXJpYS1kZXNjcmliZWRieT1cImNvbnRhY3QtcG9zaXRpb24tZm9ybS1jb250YWN0LXBvc2l0aW9uLWhpbnRcIiB0eXBlPVwidGV4dFwiIG5hbWU9XCJjb250YWN0X3Bvc2l0aW9uX2Zvcm1bY29udGFjdF9wb3NpdGlvbl1cIiAvPjwvZGl2PlxuXG4gICAgICA8YnV0dG9uIHR5cGU9XCJzdWJtaXRcIiBmb3Jtbm92YWxpZGF0ZT1cImZvcm1ub3ZhbGlkYXRlXCIgY2xhc3M9XCJnb3Z1ay1idXR0b25cIiBkYXRhLW1vZHVsZT1cImdvdnVrLWJ1dHRvblwiIGRhdGEtcHJldmVudC1kb3VibGUtY2xpY2s9XCJ0cnVlXCI+Q29udGludWU8L2J1dHRvbj5cbjwvZm9ybT4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
+  recorded_at: Tue, 01 Feb 2022 16:08:36 GMT
 recorded_with: VCR 6.0.0
