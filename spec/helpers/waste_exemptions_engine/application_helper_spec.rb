@@ -33,11 +33,11 @@ module WasteExemptionsEngine
         end
       end
 
-        context "when no specific title is provided" do
-          it "returns the correct full title" do
-            expect(helper.title).to eq("Register your waste exemptions - GOV.UK")
-          end
+      context "when no specific title is provided" do
+        it "returns the correct full title" do
+          expect(helper.title).to eq("Register your waste exemptions - GOV.UK")
         end
-    end 
+      end
+    end
   end
 end
