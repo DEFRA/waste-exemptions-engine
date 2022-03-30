@@ -1,0 +1,16 @@
+en:
+  waste_exemptions_engine:
+    check_contact_phone_forms:
+      new:
+        title: Do you want to use this telephone number as a contact number?
+        heading: Do you want to use this telephone number as a contact number?
+        options:
+          "yes": "Yes"
+          "no": "No"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_contact_phone_form:
+          attributes:
+            temp_reuse_applicant_phone:
+              inclusion: "You must select yes or no"

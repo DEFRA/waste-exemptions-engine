@@ -45,6 +45,7 @@ module WasteExemptionsEngine
         # Contact details
         state :contact_name_form
         state :contact_position_form
+        state :check_contact_phone_form
         state :contact_phone_form
         state :contact_email_form
         state :contact_postcode_form
@@ -151,7 +152,15 @@ module WasteExemptionsEngine
                       to: :contact_position_form
 
           transitions from: :contact_position_form,
-                      to: :contact_phone_form
+                      to: :check_contact_phone_form
+
+          transitions from: :check_contact_phone_form,
+                      to: :contact_phone_form,
+                      unless: :reuse_applicant_phone?
+
+          transitions from: :check_contact_phone_form,
+                      to: :contact_email_form,
+                      if: :reuse_applicant_phone?
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form
@@ -289,10 +298,18 @@ module WasteExemptionsEngine
                       to: :contact_name_form
 
           transitions from: :contact_phone_form,
+                      to: :check_contact_phone_form
+
+          transitions from: :check_contact_phone_form,
                       to: :contact_position_form
 
           transitions from: :contact_email_form,
-                      to: :contact_phone_form
+                      to: :contact_phone_form,
+                      unless: :reuse_applicant_phone?
+
+          transitions from: :contact_email_form,
+                      to: :check_contact_phone_form,
+                      if: :reuse_applicant_phone?
 
           transitions from: :contact_postcode_form,
                       to: :contact_email_form
@@ -424,6 +441,10 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
+    end
+
+    def reuse_applicant_phone?
+      temp_reuse_applicant_phone?
     end
   end
 end

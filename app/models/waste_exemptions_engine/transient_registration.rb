@@ -43,6 +43,7 @@ module WasteExemptionsEngine
                               temp_operator_postcode
                               temp_contact_postcode
                               temp_grid_reference
+                              temp_reuse_applicant_phone
                               temp_site_description
                               temp_site_postcode
                               temp_renew_without_changes
