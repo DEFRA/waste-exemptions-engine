@@ -156,11 +156,11 @@ module WasteExemptionsEngine
 
           transitions from: :check_contact_phone_form,
                       to: :contact_phone_form,
-                      unless: :reuse_applicant_phone?
+                      unless: :temp_reuse_applicant_phone?
 
           transitions from: :check_contact_phone_form,
                       to: :contact_email_form,
-                      if: :reuse_applicant_phone?
+                      if: :temp_reuse_applicant_phone?
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form
@@ -305,11 +305,11 @@ module WasteExemptionsEngine
 
           transitions from: :contact_email_form,
                       to: :contact_phone_form,
-                      unless: :reuse_applicant_phone?
+                      unless: :temp_reuse_applicant_phone?
 
           transitions from: :contact_email_form,
                       to: :check_contact_phone_form,
-                      if: :reuse_applicant_phone?
+                      if: :temp_reuse_applicant_phone?
 
           transitions from: :contact_postcode_form,
                       to: :contact_email_form
@@ -441,10 +441,6 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
-    end
-
-    def reuse_applicant_phone?
-      temp_reuse_applicant_phone?
     end
   end
 end
