@@ -20,12 +20,8 @@
         :id,
         :name,
         inline: true,
-        legend: { text: t(".heading"), size: "l", tag: "h1" } do %>
-
-        <p class="govuk-body">
-          <%= @check_contact_phone_form.applicant_phone %>
-        </p>
-      <% end %>
+        legend: { text: t(".heading"), size: "l", tag: "h1" },
+        hint: { text: @check_contact_phone_form.applicant_phone } %>
 
       <%= f.govuk_submit %>
     <% end %>
