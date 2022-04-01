@@ -1,0 +1,16 @@
+en:
+  waste_exemptions_engine:
+    check_contact_email_forms:
+      new:
+        title: &title Do you want to use this email address as a contact?
+        heading: *title
+        options:
+          "yes": "Yes"
+          "no": "No"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_contact_email_form:
+          attributes:
+            temp_reuse_applicant_email:
+              inclusion: "You must select yes or no"
