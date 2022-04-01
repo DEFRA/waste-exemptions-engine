@@ -9,8 +9,7 @@ module WasteExemptionsEngine
     validates :temp_reuse_applicant_phone, "defra_ruby/validators/true_false": true
 
     def submit(params)
-      params[:contact_phone] = applicant_phone if params[:temp_reuse_applicant_phone] == true
-
+      params[:contact_phone] = applicant_phone if params[:temp_reuse_applicant_phone] == "true"
       super(params)
     end
   end
