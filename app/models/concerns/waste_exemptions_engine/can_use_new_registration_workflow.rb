@@ -46,6 +46,7 @@ module WasteExemptionsEngine
         state :contact_name_form
         state :contact_position_form
         state :check_contact_phone_form
+        state :check_contact_email_form
         state :contact_phone_form
         state :contact_email_form
         state :contact_postcode_form
@@ -159,11 +160,19 @@ module WasteExemptionsEngine
                       unless: :temp_reuse_applicant_phone?
 
           transitions from: :check_contact_phone_form,
-                      to: :contact_email_form,
+                      to: :check_contact_email_form,
                       if: :temp_reuse_applicant_phone?
 
           transitions from: :contact_phone_form,
-                      to: :contact_email_form
+                      to: :check_contact_email_form
+
+          transitions from: :check_contact_email_form,
+                      to: :contact_email_form,
+                      unless: :temp_reuse_applicant_email?
+
+          transitions from: :check_contact_email_form,
+                      to: :contact_postcode_form,
+                      if: :temp_reuse_applicant_email?
 
           transitions from: :contact_email_form,
                       to: :contact_postcode_form
@@ -303,16 +312,24 @@ module WasteExemptionsEngine
           transitions from: :check_contact_phone_form,
                       to: :contact_position_form
 
-          transitions from: :contact_email_form,
+          transitions from: :check_contact_email_form,
                       to: :contact_phone_form,
                       unless: :temp_reuse_applicant_phone?
 
-          transitions from: :contact_email_form,
+          transitions from: :check_contact_email_form,
                       to: :check_contact_phone_form,
                       if: :temp_reuse_applicant_phone?
 
+          transitions from: :contact_email_form,
+                      to: :check_contact_email_form
+
           transitions from: :contact_postcode_form,
-                      to: :contact_email_form
+                      to: :contact_email_form,
+                      unless: :temp_reuse_applicant_email?
+
+          transitions from: :contact_postcode_form,
+                      to: :check_contact_email_form,
+                      if: :temp_reuse_applicant_email?
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_postcode_form
