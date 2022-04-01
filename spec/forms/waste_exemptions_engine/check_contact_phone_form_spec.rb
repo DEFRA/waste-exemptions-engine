@@ -26,7 +26,7 @@ module WasteExemptionsEngine
       end
 
       context "when temp_reuse_applicant_phone is true" do
-        let(:temp_reuse_applicant_phone) { true }
+        let(:temp_reuse_applicant_phone) { "true" }
 
         it "assigns the applicant_phone as the contact_phone" do
           subject
@@ -36,7 +36,7 @@ module WasteExemptionsEngine
       end
 
       context "when temp_reuse_applicant_phone is false" do
-        let(:temp_reuse_applicant_phone) { false }
+        let(:temp_reuse_applicant_phone) { "false" }
 
         it "does not assign the contact_phone" do
           subject
