@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_01_131927) do
+ActiveRecord::Schema.define(version: 2022_04_01_153506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 2022_04_01_131927) do
     t.boolean "temp_renew_without_changes"
     t.boolean "temp_reuse_applicant_phone"
     t.boolean "temp_reuse_applicant_email"
+    t.boolean "temp_reuse_operator_address"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
 

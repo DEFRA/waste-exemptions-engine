@@ -45,6 +45,7 @@ module WasteExemptionsEngine
                               temp_grid_reference
                               temp_reuse_applicant_phone
                               temp_reuse_applicant_email
+                              temp_reuse_operator_address
                               temp_site_description
                               temp_site_postcode
                               temp_renew_without_changes
