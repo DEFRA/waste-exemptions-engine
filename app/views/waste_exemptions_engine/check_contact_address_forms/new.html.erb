@@ -21,7 +21,7 @@
         :name,
         inline: true,
         legend: { text: t(".heading"), size: "l", tag: "h1" },
-        hint: { text: displayable_address(@check_contact_address_form.operator_address).join("<br>").html_safe } %>
+        hint: { text: sanitize(displayable_address(@check_contact_address_form.operator_address).join("<br>")) } %>
       <%= f.govuk_submit %>
     <% end %>
   </div>
