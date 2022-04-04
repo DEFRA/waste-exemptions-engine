@@ -56,6 +56,11 @@ module WasteExemptionsEngine
       image_tag "file:///#{WasteExemptionsEngine::Engine.root.join('app', 'assets', 'images', img)}", options
     end
 
+    # Return a string suitable for use as a HTML id
+    def html_id_for(prefix, text)
+      "#{prefix}_#{text}".downcase.parameterize(separator: "_")
+    end
+
     private
 
     def title_text
