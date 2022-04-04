@@ -47,6 +47,7 @@ module WasteExemptionsEngine
         state :contact_position_form
         state :check_contact_phone_form
         state :check_contact_email_form
+        state :check_contact_address_form
         state :contact_phone_form
         state :contact_email_form
         state :contact_postcode_form
@@ -171,11 +172,19 @@ module WasteExemptionsEngine
                       unless: :temp_reuse_applicant_email?
 
           transitions from: :check_contact_email_form,
-                      to: :contact_postcode_form,
+                      to: :check_contact_address_form,
                       if: :temp_reuse_applicant_email?
 
           transitions from: :contact_email_form,
-                      to: :contact_postcode_form
+                      to: :check_contact_address_form
+
+          transitions from: :check_contact_address_form,
+                      to: :contact_postcode_form,
+                      unless: :temp_reuse_operator_address?
+
+          transitions from: :check_contact_address_form,
+                      to: :on_a_farm_form,
+                      if: :temp_reuse_operator_address?
 
           transitions from: :contact_postcode_form,
                       to: :contact_address_manual_form,
@@ -323,13 +332,16 @@ module WasteExemptionsEngine
           transitions from: :contact_email_form,
                       to: :check_contact_email_form
 
-          transitions from: :contact_postcode_form,
+          transitions from: :check_contact_address_form,
                       to: :contact_email_form,
                       unless: :temp_reuse_applicant_email?
 
-          transitions from: :contact_postcode_form,
+          transitions from: :check_contact_address_form,
                       to: :check_contact_email_form,
                       if: :temp_reuse_applicant_email?
+
+          transitions from: :contact_postcode_form,
+                      to: :check_contact_address_form
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_postcode_form
@@ -343,7 +355,12 @@ module WasteExemptionsEngine
                       if: :contact_address_was_manually_entered?
 
           transitions from: :on_a_farm_form,
-                      to: :contact_address_lookup_form
+                      to: :contact_address_lookup_form,
+                      unless: :temp_reuse_operator_address?
+
+          transitions from: :on_a_farm_form,
+                      to: :check_contact_address_form,
+                      if: :temp_reuse_operator_address?
 
           transitions from: :is_a_farmer_form,
                       to: :on_a_farm_form
