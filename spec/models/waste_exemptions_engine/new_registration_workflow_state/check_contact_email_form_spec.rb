@@ -14,10 +14,10 @@ module WasteExemptionsEngine
       context "when temp_reuse_applicant_email is true" do
         let(:temp_reuse_applicant_email) { "true" }
 
-        it "transitions to :contact_postcode_form" do
+        it "transitions to :check_contact_address_form" do
           expect(new_registration)
             .to transition_from(:check_contact_email_form)
-            .to(:contact_postcode_form)
+            .to(:check_contact_address_form)
             .on_event(:next)
         end
       end

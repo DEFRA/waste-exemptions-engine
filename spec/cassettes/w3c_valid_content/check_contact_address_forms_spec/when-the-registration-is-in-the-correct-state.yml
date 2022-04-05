@@ -1,0 +1,94 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
+        data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_check_contact_address_form\" id=\"new_check_contact_address_form\"
+        action=\"/waste_exemptions_engine/v1UShq1anb9wn15ADAS7vLsQ/check-contact-address\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <div class=\"govuk-form-group\"><fieldset class=\"govuk-fieldset\"><legend
+        class=\"govuk-fieldset__legend govuk-fieldset__legend--l\"><h1 class=\"govuk-fieldset__heading\">Do
+        you want to use this address as a contact address?</h1></legend><input value=\"\"
+        autocomplete=\"off\" type=\"hidden\" name=\"check_contact_address_form[temp_reuse_operator_address]\"
+        id=\"check_contact_address_form_temp_reuse_operator_address\" /><div class=\"govuk-radios
+        govuk-radios--inline\" data-module=\"govuk-radios\"><div class=\"govuk-radios__item\"><input
+        id=\"check-contact-address-form-temp-reuse-operator-address-true-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"true\" name=\"check_contact_address_form[temp_reuse_operator_address]\"
+        /><label for=\"check-contact-address-form-temp-reuse-operator-address-true-field\"
+        class=\"govuk-label govuk-radios__label\">Yes</label></div><div class=\"govuk-radios__item\"><input
+        id=\"check-contact-address-form-temp-reuse-operator-address-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"false\" name=\"check_contact_address_form[temp_reuse_operator_address]\"
+        /><label for=\"check-contact-address-form-temp-reuse-operator-address-field\"
+        class=\"govuk-label govuk-radios__label\">No</label></div></div></fieldset></div>\n
+        \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
+        data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 04 Apr 2022 14:37:08 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding, User-Agent
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Request-Id:
+      - 6f6ac7c01aa47689
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6f6ac7c01aa47689-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19jaGVja19jb250YWN0X2FkZHJlc3NfZm9ybVwiIGlkPVwibmV3X2NoZWNrX2NvbnRhY3RfYWRkcmVzc19mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3YxVVNocTFhbmI5d24xNUFEQVM3dkxzUS9jaGVjay1jb250YWN0LWFkZHJlc3NcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48ZmllbGRzZXQgY2xhc3M9XCJnb3Z1ay1maWVsZHNldFwiPjxsZWdlbmQgY2xhc3M9XCJnb3Z1ay1maWVsZHNldF9fbGVnZW5kIGdvdnVrLWZpZWxkc2V0X19sZWdlbmQtLWxcIj48aDEgY2xhc3M9XCJnb3Z1ay1maWVsZHNldF9faGVhZGluZ1wiPkRvIHlvdSB3YW50IHRvIHVzZSB0aGlzIGFkZHJlc3MgYXMgYSBjb250YWN0IGFkZHJlc3M/PC9oMT48L2xlZ2VuZD48aW5wdXQgdmFsdWU9XCJcIiBhdXRvY29tcGxldGU9XCJvZmZcIiB0eXBlPVwiaGlkZGVuXCIgbmFtZT1cImNoZWNrX2NvbnRhY3RfYWRkcmVzc19mb3JtW3RlbXBfcmV1c2Vfb3BlcmF0b3JfYWRkcmVzc11cIiBpZD1cImNoZWNrX2NvbnRhY3RfYWRkcmVzc19mb3JtX3RlbXBfcmV1c2Vfb3BlcmF0b3JfYWRkcmVzc1wiIC8+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvcyBnb3Z1ay1yYWRpb3MtLWlubGluZVwiIGRhdGEtbW9kdWxlPVwiZ292dWstcmFkaW9zXCI+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc19faXRlbVwiPjxpbnB1dCBpZD1cImNoZWNrLWNvbnRhY3QtYWRkcmVzcy1mb3JtLXRlbXAtcmV1c2Utb3BlcmF0b3ItYWRkcmVzcy10cnVlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2lucHV0XCIgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJ0cnVlXCIgbmFtZT1cImNoZWNrX2NvbnRhY3RfYWRkcmVzc19mb3JtW3RlbXBfcmV1c2Vfb3BlcmF0b3JfYWRkcmVzc11cIiAvPjxsYWJlbCBmb3I9XCJjaGVjay1jb250YWN0LWFkZHJlc3MtZm9ybS10ZW1wLXJldXNlLW9wZXJhdG9yLWFkZHJlc3MtdHJ1ZS1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstcmFkaW9zX19sYWJlbFwiPlllczwvbGFiZWw+PC9kaXY+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc19faXRlbVwiPjxpbnB1dCBpZD1cImNoZWNrLWNvbnRhY3QtYWRkcmVzcy1mb3JtLXRlbXAtcmV1c2Utb3BlcmF0b3ItYWRkcmVzcy1maWVsZFwiIGNsYXNzPVwiZ292dWstcmFkaW9zX19pbnB1dFwiIHR5cGU9XCJyYWRpb1wiIHZhbHVlPVwiZmFsc2VcIiBuYW1lPVwiY2hlY2tfY29udGFjdF9hZGRyZXNzX2Zvcm1bdGVtcF9yZXVzZV9vcGVyYXRvcl9hZGRyZXNzXVwiIC8+PGxhYmVsIGZvcj1cImNoZWNrLWNvbnRhY3QtYWRkcmVzcy1mb3JtLXRlbXAtcmV1c2Utb3BlcmF0b3ItYWRkcmVzcy1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstcmFkaW9zX19sYWJlbFwiPk5vPC9sYWJlbD48L2Rpdj48L2Rpdj48L2ZpZWxkc2V0PjwvZGl2PlxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Mon, 04 Apr 2022 14:37:07 GMT
+recorded_with: VCR 6.1.0
