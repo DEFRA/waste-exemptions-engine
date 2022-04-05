@@ -39,5 +39,26 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#html_id_for" do
+
+      context "with spaces in the text" do
+        let(:prefix) { Faker::Lorem.word }
+        let(:text) { Faker::Lorem.words(number: 3).join(" ") }
+
+        it "replaces the spaces with underscores" do
+          expect(helper.html_id_for(prefix, text)).to eq "#{prefix}_#{text.gsub(' ', '_')}".downcase
+        end
+      end
+
+      context "with both upper and lower case values in the text" do
+        let(:prefix) { Faker::Lorem.word.upcase }
+        let(:text) { "Alpha beTa deltaGamma" }
+
+        it "produces lower case text only" do
+          expect(helper.html_id_for(prefix, text)).to eq "#{prefix.downcase}_alpha_beta_deltagamma"
+        end
+      end
+    end
   end
 end

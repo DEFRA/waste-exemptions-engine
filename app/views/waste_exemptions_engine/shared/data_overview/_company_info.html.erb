@@ -12,7 +12,7 @@
     <dt class="govuk-summary-list__key">
       <%= row[:title] %>
     </dt>
-    <dd class="govuk-summary-list__value">
+    <dd id="<%= html_id_for("company", row[:title]) %>" class="govuk-summary-list__value">
       <%= row[:value] %>
     </dd>
     <dd class="govuk-summary-list__actions">
