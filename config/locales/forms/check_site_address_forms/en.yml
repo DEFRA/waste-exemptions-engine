@@ -1,0 +1,14 @@
+en:
+  waste_exemptions_engine:
+    check_site_address_forms:
+      new:
+        title: What is the address of the site location?
+        heading: What is the address of the site location?
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_site_address_form:
+          attributes:
+            temp_reuse_address:
+              inclusion: "You must select an address or different address"
