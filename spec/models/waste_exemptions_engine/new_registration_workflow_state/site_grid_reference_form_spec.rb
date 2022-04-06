@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       context "when a NewRegistration's state is #{current_state}" do
         context "when new_registration.skip_to_manual_address? is false" do
           next_state = :check_your_answers_form
-          alt_state = :site_postcode_form
+          alt_state = :check_site_address_form
 
           it "can only transition to either #{previous_state}, #{next_state}, or #{alt_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         end
 
         context "when new_registration.skip_to_manual_address? is true" do
-          next_state = :site_postcode_form
+          next_state = :check_site_address_form
 
           before(:each) { new_registration.address_finder_error = true }
 
