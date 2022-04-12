@@ -17,6 +17,5 @@ module WasteExemptionsEngine
                        a_different_address].sample
 
     it_behaves_like "a validator", Test::ReusingAddressForSiteAddressValidator, :temp_reuse_address_for_site_location, valid_options
-    it_behaves_like "a selection validator", Test::ReusingAddressForSiteAddressValidator, :temp_reuse_address_for_site_location, valid_options
   end
 end
