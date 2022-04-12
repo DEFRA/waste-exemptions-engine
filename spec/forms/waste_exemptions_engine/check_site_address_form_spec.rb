@@ -47,7 +47,7 @@ module WasteExemptionsEngine
           subject
 
           address_attributes.each do |attr|
-            expect(form.transient_registration.site_address.send(attr)).to eq(form.operator_address.send(attr))
+            expect(form.transient_registration.site_address.send(attr)).to eq(form.contact_address.send(attr))
           end
         end
       end
