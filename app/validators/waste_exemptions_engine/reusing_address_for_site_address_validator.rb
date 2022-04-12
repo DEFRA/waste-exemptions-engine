@@ -5,13 +5,11 @@ module WasteExemptionsEngine
     include CanValidateSelection
 
     def validate_each(record, attribute, value)
-      valid_values = %w[operator_address_option
+      valid_options = %w[operator_address_option
                         contact_address_option
                         a_different_address]
-      return true if valid_values.include?(value)
 
-      add_validation_error(record, attribute, :inclusion)
-      false
+      value_is_included?(record, attribute, value, valid_options)
     end
   end
 end
