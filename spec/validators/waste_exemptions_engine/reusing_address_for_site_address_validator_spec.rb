@@ -12,10 +12,11 @@ end
 
 module WasteExemptionsEngine
   RSpec.describe ReusingAddressForSiteAddressValidator, type: :model do
-    valid_options = %w[operator_address_option
-                       contact_address_option
-                       a_different_address].sample
-
-    it_behaves_like "a validator", Test::ReusingAddressForSiteAddressValidator, :temp_reuse_address_for_site_location, valid_options
+    %w[operator_address_option contact_address_option a_different_address].each do |valid_option|
+      it_behaves_like "a validator",
+                      Test::ReusingAddressForSiteAddressValidator,
+                      :temp_reuse_address_for_site_location,
+                      valid_option
+    end
   end
 end
