@@ -60,6 +60,7 @@ module WasteExemptionsEngine
 
         # Site questions
         state :site_grid_reference_form
+        state :check_site_address_form
         state :site_postcode_form
         state :site_address_lookup_form
         state :site_address_manual_form
@@ -212,10 +213,17 @@ module WasteExemptionsEngine
                       to: :site_grid_reference_form
 
           transitions from: :site_grid_reference_form,
-                      to: :site_postcode_form,
+                      to: :check_site_address_form,
                       if: :skip_to_manual_address?
 
           transitions from: :site_grid_reference_form,
+                      to: :check_your_answers_form
+
+          transitions from: :check_site_address_form,
+                      to: :site_postcode_form,
+                      unless: :reuse_address_for_site_location?
+
+          transitions from: :check_site_address_form,
                       to: :check_your_answers_form
 
           transitions from: :site_postcode_form,
@@ -369,6 +377,13 @@ module WasteExemptionsEngine
           transitions from: :site_grid_reference_form,
                       to: :is_a_farmer_form
 
+          transitions from: :check_site_address_form,
+                      to: :site_grid_reference_form
+
+          transitions from: :site_postcode_form,
+                      to: :check_site_address_form,
+                      unless: :reuse_address_for_site_location?
+
           transitions from: :site_postcode_form,
                       to: :site_grid_reference_form
 
@@ -379,6 +394,10 @@ module WasteExemptionsEngine
                       to: :site_postcode_form
 
           # End pages
+          transitions from: :check_your_answers_form,
+                      to: :check_site_address_form,
+                      if: :reuse_address_for_site_location?
+
           transitions from: :check_your_answers_form,
                       to: :site_address_manual_form,
                       if: :site_address_was_manually_entered?
@@ -416,7 +435,7 @@ module WasteExemptionsEngine
 
         event :skip_to_address do
           transitions from: :site_grid_reference_form,
-                      to: :site_postcode_form
+                      to: :check_site_address_form
         end
       end
     end
@@ -449,6 +468,12 @@ module WasteExemptionsEngine
       return unless site_address
 
       site_address.lookup?
+    end
+
+    def reuse_address_for_site_location?
+      return true if %w[operator_address_option contact_address_option].include? temp_reuse_address_for_site_location
+
+      false
     end
 
     def should_contact_the_agency?

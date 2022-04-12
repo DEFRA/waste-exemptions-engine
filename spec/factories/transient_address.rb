@@ -7,10 +7,12 @@ FactoryBot.define do
     uprn { 123 }
 
     trait :operator_address do
+      premises { "Operator Premises" }
       address_type { address_types[:operator] }
     end
 
     trait :contact_address do
+      premises { "Contact Premises" }
       address_type { address_types[:contact] }
     end
 

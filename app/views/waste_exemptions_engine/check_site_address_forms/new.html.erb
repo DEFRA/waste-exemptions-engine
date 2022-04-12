@@ -1,0 +1,28 @@
+ <%= render("waste_exemptions_engine/shared/back", back_path: back_check_site_address_forms_path(@check_site_address_form.token))%>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+  
+    <%= form_for @check_site_address_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+        <%= f.govuk_radio_buttons_fieldset(
+              :temp_reuse_address_for_site_location,
+              legend: { text: t(".heading"),
+              size: "l", tag: "h1" }
+            ) do %>
+
+          <%= f.govuk_radio_button :temp_reuse_address_for_site_location, 'operator_address_option', label: { text: sanitize(displayable_address(@check_site_address_form.operator_address).join(", " )) }, link_errors: true %>
+
+          <% unless @check_site_address_form.temp_reuse_operator_address  %>
+            <%= f.govuk_radio_button :temp_reuse_address_for_site_location, 'contact_address_option', label: { text: sanitize(displayable_address(@check_site_address_form.contact_address).join(", " )) } %>
+          <% end %>
+
+          <%= f.govuk_radio_button :temp_reuse_address_for_site_location, 'a_different_address', label: { text: t(".options.a_different_address") } %>
+
+        <% end %>
+
+        <%= f.govuk_submit %>
+      <% end %>
+  </div>
+</div>

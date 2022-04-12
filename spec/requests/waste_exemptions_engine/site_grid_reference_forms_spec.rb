@@ -24,7 +24,7 @@ module WasteExemptionsEngine
       end
     end
 
-    context "can skip to a site address form" do
+    context "can skip to check site address form" do
       let(:form) { build(:site_grid_reference_form) }
       let(:site_address_request_path) { skip_to_address_site_grid_reference_forms_path(token: form.token) }
 
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
         it "renders the appropriate template and returns a 303 status code" do
           get site_address_request_path
 
-          expect(response.location).to include(site_postcode_forms_path(token: form.token))
+          expect(response.location).to include(check_site_address_forms_path(token: form.token))
           expect(response.code).to eq("303")
         end
       end
