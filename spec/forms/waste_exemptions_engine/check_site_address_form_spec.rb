@@ -4,16 +4,6 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe CheckSiteAddressForm, type: :model do
-    let(:form_data) do
-      {
-        premises: "Example Operator House",
-        street_address: "2 On The Road",
-        locality: "Near Horizon House",
-        city: "Bristol",
-        postcode: "BS1 5AH"
-      }
-    end
-
     it_behaves_like "a validated form", :check_site_address_form do
       let(:valid_params) do
         [
