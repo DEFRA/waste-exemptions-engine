@@ -108,6 +108,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
+    resources :check_registered_name_and_address_forms,
+              only: %i[new create],
+              path: "check-registered-name-and-address",
+              path_names: { new: "" } do
+                get "back",
+                    to: "check_registered_name_and_address_forms#go_back",
+                    as: "back",
+                    on: :collection
+              end
+
     resources :main_people_forms,
               only: %i[new create],
               path: "main-people",

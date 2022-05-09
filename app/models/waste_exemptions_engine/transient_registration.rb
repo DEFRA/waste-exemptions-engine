@@ -40,6 +40,7 @@ module WasteExemptionsEngine
                               reference
                               id
                               start_option
+                              temp_use_registered_company_details
                               temp_operator_postcode
                               temp_contact_postcode
                               temp_grid_reference
