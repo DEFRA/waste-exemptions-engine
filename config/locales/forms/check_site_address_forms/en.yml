@@ -2,8 +2,8 @@ en:
   waste_exemptions_engine:
     check_site_address_forms:
       new:
-        title: What is the address of the site location?
-        heading: What is the address of the site location?
+        title: Where will the waste operation take place?
+        heading: Where will the waste operation take place?
         options:
           a_different_address: A different address
         next_button: Continue
