@@ -36,7 +36,7 @@ module WasteExemptionsEngine
       end
 
       context "when temp_use_registered_company_details is true" do
-        let(:temp_use_registered_company_details) { "yes" }
+        let(:temp_use_registered_company_details) { "true" }
 
         it "assigns the registered company name as the operator name" do
           subject
@@ -46,7 +46,7 @@ module WasteExemptionsEngine
       end
 
       context "when temp_use_registered_company_details is false" do
-        let(:temp_use_registered_company_details) { "no" }
+        let(:temp_use_registered_company_details) { "false" }
 
         it "does not assign the operator name" do
           subject

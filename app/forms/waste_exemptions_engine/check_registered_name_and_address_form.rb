@@ -18,7 +18,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      params[:operator_name] = registered_company_name if params[:temp_use_registered_company_details] == "yes"
+      params[:operator_name] = registered_company_name if params[:temp_use_registered_company_details] == "true"
       super(params)
     end
 

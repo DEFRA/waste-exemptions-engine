@@ -9,10 +9,10 @@ en:
           "no": "No"
         company_number: "Companies House Number - %{company_no}"
         enter_a_different_number: "Enter a different number"
-activemodel:
-  errors:
-    models:
-      waste_exemptions_engine/check_registered_name_and_address_form:
-        attributes:
-          temp_use_registered_company_details:
-            inclusion: "You must select yes or no"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_registered_name_and_address_form:
+          attributes:
+            temp_use_registered_company_details:
+              inclusion: "You must select yes or no"

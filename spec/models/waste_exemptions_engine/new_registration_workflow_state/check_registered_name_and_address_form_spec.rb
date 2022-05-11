@@ -25,10 +25,10 @@ module WasteExemptionsEngine
       context "when temp_use_registered_company_details is false" do
         let(:temp_use_registered_company_details) { false }
 
-        it "transitions to :incorrect_company_house_details" do
+        it "transitions to :incorrect_companies_house_details" do
           expect(new_registration)
             .to transition_from(:check_registered_name_and_address_form)
-            .to(:operator_postcode_form)
+            .to(:incorrect_companies_house_details_form)
             .on_event(:next)
         end
       end

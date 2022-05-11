@@ -118,6 +118,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
+    resources :incorrect_companies_house_details_forms,
+              only: %i[new create],
+              path: "incorrect-companies-house-details",
+              path_names: { new: "" } do
+                get "back",
+                    to: "incorrect_companies_house_details_forms#go_back",
+                    as: "back",
+                    on: :collection
+              end
+
     resources :main_people_forms,
               only: %i[new create],
               path: "main-people",

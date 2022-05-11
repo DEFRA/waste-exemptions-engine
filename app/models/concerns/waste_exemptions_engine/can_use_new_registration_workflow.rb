@@ -38,6 +38,7 @@ module WasteExemptionsEngine
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
+        state :incorrect_companies_house_details_form
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_lookup_form
@@ -132,7 +133,14 @@ module WasteExemptionsEngine
                       to: :check_registered_name_and_address_form
 
           transitions from: :check_registered_name_and_address_form,
+                      to: :incorrect_companies_house_details_form,
+                      if: :companies_house_details_incorrect?
+
+          transitions from: :check_registered_name_and_address_form,
                       to: :operator_postcode_form
+
+          transitions from: :incorrect_companies_house_details_form,
+                      to: :registration_number_form
 
           transitions from: :operator_name_form,
                       to: :operator_postcode_form
@@ -306,6 +314,9 @@ module WasteExemptionsEngine
 
           transitions from: :check_registered_name_and_address_form,
                       to: :registration_number_form
+
+          transitions from: :incorrect_companies_house_details_form,
+                      to: :check_registered_name_and_address_form
 
           transitions from: :operator_postcode_form,
                       to: :check_registered_name_and_address_form,
@@ -508,6 +519,10 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
+    end
+
+    def companies_house_details_incorrect?
+      temp_use_registered_company_details == false
     end
   end
 end
