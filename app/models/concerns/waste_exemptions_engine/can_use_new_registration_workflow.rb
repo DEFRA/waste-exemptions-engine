@@ -38,10 +38,7 @@ module WasteExemptionsEngine
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
-<<<<<<< HEAD
         state :incorrect_company_form
-=======
->>>>>>> f8d796c (Playback of company name and address passing specs)
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_lookup_form
