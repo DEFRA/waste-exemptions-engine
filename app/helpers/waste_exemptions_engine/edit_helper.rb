@@ -13,5 +13,13 @@ module WasteExemptionsEngine
     def edits_made?(edit_registration)
       edit_registration.updated_at != edit_registration.created_at
     end
+
+    def name_label(edit_registration)
+      if %w[limitedCompany limitedLiabilityPartnership].include?(edit_registration.business_type)
+        "Registered name"
+      else
+        "Name"
+      end
+    end
   end
 end

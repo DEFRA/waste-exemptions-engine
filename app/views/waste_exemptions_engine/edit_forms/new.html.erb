@@ -100,15 +100,19 @@
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            <%= t(".sections.operator.labels.operator_name") %>
+            <%= name_label(@edit_form) %>
           </dt>
           <dd class="govuk-summary-list__value">
             <%= @edit_form.operator_name %>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>
-              <%= t(".edit_links.default") %>
-              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.operator_name") %></span>
+            <% if %w[limitedCompany limitedLiabilityPartnership].include?(@edit_form.business_type) %>
+              <%= t(".edit_links.no_edit") %>
+            <% else %>
+              <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>
+                <%= t(".edit_links.default") %>
+                <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.operator_name") %></span>
+              <% end %>
             <% end %>
           </dd>
         </div>
