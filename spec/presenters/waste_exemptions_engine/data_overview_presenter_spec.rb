@@ -21,7 +21,7 @@ module WasteExemptionsEngine
             value: "Limited company"
           },
           {
-            title: "Operator name",
+            title: "Registered Name",
             value: new_registration.operator_name
           },
           {
@@ -69,8 +69,22 @@ module WasteExemptionsEngine
         ]
       end
 
-      it "returns the properly-formatted data" do
+      it "returns the properly-formatted data for a company" do
         expect(subject.company_rows).to eq(expected_data)
+      end
+
+      context "for a charity" do
+        before do
+          new_registration.business_type = "charity"
+          expected_data[0][:value] = "Charity or trust"
+          expected_data[1][:title] = "Operator name"
+          expected_data.slice!(2)
+          # expected_data.delete_at(expected_data.index 2)
+        end
+
+        it "returns the properly-formatted data" do
+          expect(subject.company_rows).to eq(expected_data)
+        end
       end
 
       context "when the registration is a partnership" do
@@ -88,6 +102,7 @@ module WasteExemptionsEngine
                          "#{second_partner.first_name} #{second_partner.last_name}".html_safe
 
           expected_data[0][:value] = "Partnership"
+          expected_data[1][:title] = "Operator name"
           # Replace the Companies House info with partners instead
           expected_data[2] = { title: "Partners", value: partner_text }
         end

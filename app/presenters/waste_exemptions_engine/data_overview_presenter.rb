@@ -68,10 +68,17 @@ module WasteExemptionsEngine
     end
 
     def operator_name_row
-      {
-        title: I18n.t("#{company_i18n_scope}.operator_name.title"),
-        value: operator_name
-      }
+      if company_no_required?
+        {
+          title: I18n.t("#{company_i18n_scope}.business_name.registered_name"),
+          value: operator_name
+        }
+      else
+        {
+          title: I18n.t("#{company_i18n_scope}.business_name.operator_name"),
+          value: operator_name
+        }
+      end
     end
 
     def company_no_row
