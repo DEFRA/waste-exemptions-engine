@@ -37,6 +37,8 @@ module WasteExemptionsEngine
         state :business_type_form
         state :main_people_form
         state :registration_number_form
+        state :check_registered_name_and_address_form
+        state :incorrect_company_form
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_lookup_form
@@ -128,7 +130,17 @@ module WasteExemptionsEngine
                       to: :operator_name_form
 
           transitions from: :registration_number_form,
-                      to: :operator_name_form
+                      to: :check_registered_name_and_address_form
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :incorrect_company_form,
+                      if: :companies_house_details_incorrect?
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :operator_postcode_form
+
+          transitions from: :incorrect_company_form,
+                      to: :registration_number_form
 
           transitions from: :operator_name_form,
                       to: :operator_postcode_form
@@ -300,8 +312,15 @@ module WasteExemptionsEngine
                       to: :business_type_form,
                       if: :skip_registration_number?
 
-          transitions from: :operator_name_form,
+          transitions from: :check_registered_name_and_address_form,
                       to: :registration_number_form
+
+          transitions from: :incorrect_company_form,
+                      to: :check_registered_name_and_address_form
+
+          transitions from: :operator_postcode_form,
+                      to: :check_registered_name_and_address_form,
+                      unless: :skip_registration_number?
 
           transitions from: :operator_postcode_form,
                       to: :operator_name_form
@@ -500,6 +519,10 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
+    end
+
+    def companies_house_details_incorrect?
+      temp_use_registered_company_details == false
     end
   end
 end

@@ -1,0 +1,18 @@
+en:
+  waste_exemptions_engine:
+    check_registered_name_and_address_forms:
+      new:
+        title: Is this information correct as we will use it to complete your registration?
+        heading: Is this information correct as we will use it to complete your registration?
+        options: 
+          "yes": "Yes"
+          "no": "No"
+        company_number: "Companies House Number - %{company_no}"
+        enter_a_different_number: "Enter a different number"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_registered_name_and_address_form:
+          attributes:
+            temp_use_registered_company_details:
+              inclusion: "You must select yes or no"
