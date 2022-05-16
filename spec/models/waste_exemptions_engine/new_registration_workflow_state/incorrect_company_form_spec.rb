@@ -6,9 +6,9 @@ module WasteExemptionsEngine
   RSpec.describe NewRegistration, type: :model do
     describe "#workflow_state" do
       it_behaves_like "a simple bidirectional transition",
-                      previous_state: :business_type_form,
-                      current_state: :registration_number_form,
-                      next_state: :check_registered_name_and_address_form,
+                      previous_state: :check_registered_name_and_address_form,
+                      current_state: :incorrect_company_form,
+                      next_state: :registration_number_form,
                       factory: :new_registration
     end
   end
