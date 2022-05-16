@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class EditForm < BaseForm
     include DataOverviewForm
 
-    delegate :reference, to: :transient_registration
+    delegate :reference, :llp_or_ltd?, to: :transient_registration
 
     after_initialize :persist_registration
 

@@ -33,5 +33,30 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "entity_name_label" do
+      let(:edit_registration) { create(:edit_registration, business_type: business_type) }
+      let(:result) { helper.entity_name_label(edit_registration) }
+
+      context "when business type is llp" do
+        let(:business_type) { "limitedLiabilityPartnership" }
+
+        it { expect(result).to eq("Registered name") }
+      end
+
+      context "when business type is ltd" do
+        let(:business_type) { "limitedLiabilityPartnership" }
+
+        it { expect(result).to eq("Registered name") }
+      end
+
+      context "when business type is anything else" do
+        %w[soleTrader partnership localAuthority charity].each do |type|
+          let(:business_type) { type }
+
+          it { expect(helper.entity_name_label(edit_registration)).to eq("Name") }
+        end
+      end
+    end
   end
 end

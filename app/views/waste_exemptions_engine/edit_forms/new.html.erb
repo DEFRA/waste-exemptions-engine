@@ -100,13 +100,13 @@
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            <%= name_label(@edit_form) %>
+            <%= entity_name_label(@edit_form) %>
           </dt>
           <dd class="govuk-summary-list__value">
             <%= @edit_form.operator_name %>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <% if %w[limitedCompany limitedLiabilityPartnership].include?(@edit_form.business_type) %>
+            <% if @edit_form.llp_or_ltd? %>
               <%= t(".edit_links.no_edit") %>
             <% else %>
               <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>
