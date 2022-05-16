@@ -14,8 +14,9 @@ en:
               limited_liability_partnership: Limited liability partnership
               local_authority: Local authority or public body
               charity: Charity or trust
-          operator_name:
-            title: Operator name
+          business_name:
+            operator_name: Operator name
+            registered_name: Registered name
           company_no:
             title: Companies House number
           partners:
