@@ -16,7 +16,7 @@ en:
               charity: Charity or trust
           business_name:
             operator_name: Operator name
-            registered_name: Registered Name
+            registered_name: Registered name
           company_no:
             title: Companies House number
           partners:

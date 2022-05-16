@@ -323,10 +323,6 @@ module WasteExemptionsEngine
                       unless: :skip_registration_number?
 
           transitions from: :operator_postcode_form,
-                      to: :check_registered_name_and_address_form,
-                      unless: :skip_registration_number?
-
-          transitions from: :operator_postcode_form,
                       to: :operator_name_form
 
           transitions from: :operator_address_lookup_form,

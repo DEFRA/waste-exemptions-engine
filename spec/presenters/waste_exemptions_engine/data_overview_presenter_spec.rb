@@ -21,7 +21,7 @@ module WasteExemptionsEngine
             value: "Limited company"
           },
           {
-            title: "Registered Name",
+            title: "Registered name",
             value: new_registration.operator_name
           },
           {
