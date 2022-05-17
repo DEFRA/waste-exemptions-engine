@@ -2,8 +2,6 @@
 
 module WasteExemptionsEngine
   module EditHelper
-    LOCALE = "waste_exemptions_engine.edit_forms"
-
     def edit_back_path(_edit_registration)
       "/"
     end
@@ -17,10 +15,10 @@ module WasteExemptionsEngine
     end
 
     def entity_name_label(edit_registration)
-      if edit_registration.llp_or_ltd?
-        t("new.sections.operator.labels.operator_name", scope: LOCALE)
+      if edit_registration.company_no_required?
+        t(".sections.operator.labels.operator_name")
       else
-        t("new.sections.operator.labels.name", scope: LOCALE)
+        t(".sections.operator.labels.name")
       end
     end
   end

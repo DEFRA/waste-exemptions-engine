@@ -106,7 +106,7 @@
             <%= @edit_form.operator_name %>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <% if @edit_form.llp_or_ltd? %>
+            <% if @edit_form.company_no_required? %>
               <%= t(".edit_links.no_edit") %>
             <% else %>
               <%= link_to operator_name_edit_forms_path(@edit_form.token) do %>

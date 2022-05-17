@@ -15,10 +15,6 @@ module WasteExemptionsEngine
 
     # Some business types should not have a company_no
     def company_no_required?
-      llp_or_ltd?
-    end
-
-    def llp_or_ltd?
       [BUSINESS_TYPES[:limited_company],
        BUSINESS_TYPES[:limited_liability_partnership]].include?(business_type)
     end
