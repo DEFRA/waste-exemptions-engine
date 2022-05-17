@@ -29,7 +29,8 @@ en:
           operator:
             heading: "Operator details"
             labels:
-              operator_name: "Name"
+              operator_name: "Registered name"
+              name: "Name"
               business_type: "Type"
               people: "Main people"
               company_no: "Companies House number"
