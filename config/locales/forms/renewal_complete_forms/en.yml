@@ -11,7 +11,7 @@ en:
           applicant_email: "We have sent a confirmation email to %{applicant} and a confirmation letter to your contact address."
           both_emails: "We have sent a confirmation email to %{applicant} and %{contact}."
         what_happens_next:
-          paragraph_1: These exemptions will expire in %{expire_month_year}. We will send you a reminder 1 month before they are due to expire.
+          paragraph_1: These exemptions will expire on %{expire_day_month_year}. We will send you a reminder 1 month before they are due to expire.
           paragraph_2: We will add your registration to the public register. This includes the name and address of the individual or organisation responsible, the site address and the exemptions you have registered. We will not include other names, or your email or telephone number.
         survey_link_text: What do you think of this service?
         survey_link_hint: (takes 30 seconds)
