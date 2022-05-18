@@ -18,7 +18,7 @@
 
       <p class="govuk-body"><%= t(".confirmation_email_text.#{confirmation_comms(@renewal_complete_form)}", applicant: @renewal_complete_form.applicant_email, contact: @renewal_complete_form.contact_email) %></p>
 
-      <p class="govuk-body"><%= t(".what_happens_next.paragraph_1", expire_month_year: registration_expires_day_month_year(@registration)) %></p>
+      <p class="govuk-body"><%= t(".what_happens_next.paragraph_1", expire_day_month_year: registration_expires_day_month_year(@registration)) %></p>
       <p class="govuk-body"><%= t(".what_happens_next.paragraph_2") %></p>
 
       <br/>
