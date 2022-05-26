@@ -11,5 +11,13 @@ module WasteExemptionsEngine
         new.run
       end
     end
+
+    private
+
+    # :nocov:
+    def log(message)
+      puts message unless Rails.env.test?
+    end
+    # :nocov:
   end
 end
