@@ -205,6 +205,21 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            <%= t(".sections.contact.labels.contact_position") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= @edit_form.contact_position %>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to contact_position_edit_forms_path(@edit_form.token) do %>
+              <%= t(".edit_links.default") %>
+              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.contact_position") %></span>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             <%= t(".sections.contact.labels.contact_phone") %>
           </dt>
           <dd class="govuk-summary-list__value">

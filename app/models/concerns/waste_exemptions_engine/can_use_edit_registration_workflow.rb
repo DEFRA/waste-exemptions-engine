@@ -110,6 +110,11 @@ module WasteExemptionsEngine
                       to: :contact_name_form
         end
 
+        event :edit_contact_position do
+          transitions from: :edit_form,
+                      to: :contact_position_form
+        end
+
         event :edit_contact_phone do
           transitions from: :edit_form,
                       to: :contact_phone_form

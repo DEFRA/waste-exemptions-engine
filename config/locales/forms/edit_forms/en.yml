@@ -84,6 +84,7 @@ en:
             operator_name: "operator name"
             operator_postcode: "operator address"
             contact_name: "contact name"
+            contact_position: "contact position"
             contact_phone: "contact phone"
             contact_email: "contact email"
             contact_postcode: "contact address"

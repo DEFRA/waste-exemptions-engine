@@ -138,6 +138,7 @@ module WasteExemptionsEngine
        operator_name
        operator_postcode
        contact_name
+       contact_position
        contact_phone
        contact_email
        contact_postcode

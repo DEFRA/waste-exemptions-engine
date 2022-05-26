@@ -468,6 +468,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "contact_name",
                     on: :collection
 
+                get "contact_position",
+                    to: "edit_forms#edit_contact_position",
+                    as: "contact_position",
+                    on: :collection
+
                 get "contact_phone",
                     to: "edit_forms#edit_contact_phone",
                     as: "contact_phone",
