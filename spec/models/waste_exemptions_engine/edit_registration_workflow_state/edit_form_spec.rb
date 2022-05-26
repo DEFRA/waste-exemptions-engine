@@ -17,6 +17,7 @@ module WasteExemptionsEngine
         operator_name_form
         operator_postcode_form
         contact_name_form
+        contact_position_form
         contact_phone_form
         contact_email_form
         contact_postcode_form
