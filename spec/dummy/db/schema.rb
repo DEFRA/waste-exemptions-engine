@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_134655) do
+ActiveRecord::Schema.define(version: 2022_05_24_150518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_05_10_134655) do
     t.string "assistance_mode"
     t.string "renew_token"
     t.integer "referring_registration_id"
+    t.datetime "companies_house_updated_at"
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
   end
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(version: 2022_05_10_134655) do
     t.boolean "temp_reuse_operator_address"
     t.string "temp_reuse_address_for_site_location"
     t.boolean "temp_use_registered_company_details"
+    t.datetime "companies_house_updated_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
 

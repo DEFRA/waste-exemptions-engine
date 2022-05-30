@@ -41,6 +41,7 @@ module WasteExemptionsEngine
                               id
                               start_option
                               temp_use_registered_company_details
+                              companies_house_updated_at
                               temp_operator_postcode
                               temp_contact_postcode
                               temp_grid_reference
