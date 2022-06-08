@@ -253,7 +253,7 @@ GEM
       parallel
     parser (3.1.1.0)
       ast (~> 2.4.1)
-    pdf-reader (2.9.2)
+    pdf-reader (2.10.0)
       Ascii85 (~> 1.0)
       afm (~> 0.2.1)
       hashery (~> 2.0)
@@ -382,7 +382,7 @@ GEM
     tilt (2.0.10)
     timecop (0.9.5)
     timers (4.3.3)
-    ttfunk (1.7.0)
+    ttfunk (1.6.2.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uk_postcode (2.1.7)
