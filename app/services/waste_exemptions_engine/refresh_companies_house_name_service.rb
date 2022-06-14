@@ -7,7 +7,6 @@ module WasteExemptionsEngine
     def run(company_reference)
       registration = Registration.find_by(reference: company_reference)
       company_name = DefraRubyCompaniesHouse.new(registration.company_no).company_name
-      raise StandardError if company_name == nil?
 
       registration.operator_name = company_name
       registration.companies_house_updated_at = Time.current

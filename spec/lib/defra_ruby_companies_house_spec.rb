@@ -70,4 +70,14 @@ RSpec.describe DefraRubyCompaniesHouse do
       end
     end
   end
+
+  context "when the service is down" do
+    before do
+      allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_raise(StandardError)
+    end
+
+    it "throws a standard error" do
+      expect { subject }.to raise_error(StandardError)
+    end
+  end
 end
