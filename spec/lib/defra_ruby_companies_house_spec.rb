@@ -26,8 +26,8 @@ RSpec.describe DefraRubyCompaniesHouse do
 
     context "with an invalid company number" do
       let(:company_no) { invalid_company_no }
-      it "returns nil" do
-        expect(subject).to be_nil
+      it "raises a standard error" do
+        expect { subject }.to raise_error(StandardError)
       end
     end
 
@@ -51,8 +51,8 @@ RSpec.describe DefraRubyCompaniesHouse do
 
     context "with an invalid company number" do
       let(:company_no) { invalid_company_no }
-      it "returns an empty array" do
-        expect(subject).to eq []
+      it "raises a standard error" do
+        expect { subject }.to raise_error(StandardError)
       end
     end
 
@@ -68,6 +68,12 @@ RSpec.describe DefraRubyCompaniesHouse do
       it "returns the address lines" do
         expect(subject).to eq ["R House", "Middle Street", "Thereabouts", "HD1 2BN"]
       end
+    end
+  end
+
+  context "when the call to the CH API returns a 404" do
+    it "raises a standard error" do
+      expect { subject }.to raise_error(StandardError)
     end
   end
 end
