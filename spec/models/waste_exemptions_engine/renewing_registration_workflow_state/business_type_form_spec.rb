@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       context "when a RenewingRegistration's state is #{current_state}" do
         context "when neither renewing_registration.partnership? nor " \
         "renewing_registration.skip_registration_number? are true" do
-          next_state = :registration_number_form
+          next_state = :operator_postcode_form
 
           [TransientRegistration::BUSINESS_TYPES[:limited_company],
            TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]].each do |business_type|
