@@ -28,7 +28,7 @@ module WasteExemptionsEngine
         form.submit(temp_reuse_address_for_site_location: temp_reuse_address_for_site_location)
       end
 
-      context "when temp_reuse_address_for_site_location is wet to operator_address_option" do
+      context "when temp_reuse_address_for_site_location is set to operator_address_option" do
         let(:temp_reuse_address_for_site_location) { "operator_address_option" }
 
         it "uses the operator address as the site address" do
