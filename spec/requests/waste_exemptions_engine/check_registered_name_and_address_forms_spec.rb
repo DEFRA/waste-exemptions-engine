@@ -42,8 +42,14 @@ module WasteExemptionsEngine
 
         it "displays a link to enter a different number" do
           get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
-          
+
           expect(response.body).to have_html_escaped_string("Enter a different number")
+        end
+
+        it "displays a back button" do
+          get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
+
+          expect(response.body).to have_html_escaped_string("Back")
         end
       end
     end

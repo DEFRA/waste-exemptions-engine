@@ -1,27 +1,56 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "defra_ruby_companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe "Renew", type: :request do
     describe "GET renew/:token" do
       let(:registration) { create(:registration, :complete) }
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
+      let(:company_name) { Faker::Company.name }
+      let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
+
+      before do
+        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
+        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:company_name).and_return(company_name)
+        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:registered_office_address_lines).and_return(company_address)
+      end
 
       context "with a valid renew token" do
         let(:token) { registration.renew_token }
 
-        it "redirects to the start renewal page, creates a new RenewingRegistration and returns a 303 status code" do
-          expected_count = RenewingRegistration.count + 1
+        context "when the business type is a company or llp" do
 
-          get request_path
+          let(:company_no_required?) { "true" }
+          it "redirects to the check registered name and address form, creates a new RenewingRegistration and returns a 303 status code" do
+            expected_count = RenewingRegistration.count + 1
 
-          expect(response.code).to eq("303")
+            get request_path
 
-          follow_redirect!
+            expect(response.code).to eq("303")
 
-          expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
-          expect(RenewingRegistration.count).to eq(expected_count)
+            follow_redirect!
+
+            expect(response).to render_template("/waste_exemptions_engine/check_registered_name_and_address/new")
+            expect(RenewingRegistration.count).to eq(expected_count)
+          end
+        end
+
+        context "when the business type is not a company or llp" do
+
+          it "redirects to the renewal start form, creates a new RenewingRegistration and returns a 303 status code" do
+            expected_count = RenewingRegistration.count + 1
+
+            get request_path
+
+            expect(response.code).to eq("303")
+
+            follow_redirect!
+
+            expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
+            expect(RenewingRegistration.count).to eq(expected_count)
+          end
         end
 
         context "when a renewal was left in progress" do
