@@ -10,6 +10,7 @@ module WasteExemptionsEngine
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
       let(:company_name) { Faker::Company.name }
       let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
+      let(:transient_registration_token) { RenewingRegistration.first.token }
 
       before do
         allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
@@ -21,51 +22,58 @@ module WasteExemptionsEngine
         let(:token) { registration.renew_token }
 
         context "when the business type is a company or llp" do
-
-          let(:company_no_required?) { "true" }
           it "redirects to the check registered name and address form, creates a new RenewingRegistration and returns a 303 status code" do
             expected_count = RenewingRegistration.count + 1
 
             get request_path
 
-            expect(response.code).to eq("303")
-
-            follow_redirect!
-
-            expect(response).to render_template("/waste_exemptions_engine/check_registered_name_and_address/new")
+            expect(response).to redirect_to(new_check_registered_name_and_address_form_path(token: transient_registration_token))
             expect(RenewingRegistration.count).to eq(expected_count)
           end
         end
 
         context "when the business type is not a company or llp" do
+          before { registration.update_attribute(:business_type, "soleTrader") }
 
           it "redirects to the renewal start form, creates a new RenewingRegistration and returns a 303 status code" do
             expected_count = RenewingRegistration.count + 1
 
             get request_path
 
-            expect(response.code).to eq("303")
-
-            follow_redirect!
-
-            expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
+            expect(response).to redirect_to(new_renewal_start_form_path(token: transient_registration_token))
             expect(RenewingRegistration.count).to eq(expected_count)
           end
         end
 
         context "when a renewal was left in progress" do
-          it "redirects to the correct flow state page" do
-            # Request the page once so we generate a valid renewing registration
-            get request_path
+          context "when the business type is a company" do
+            it "redirects to the correct flow state page" do
+              # Request the page once so we generate a valid renewing registration
+              get request_path
 
-            # Update the workflow of the transient registration
-            renewing_registration = RenewingRegistration.last
-            renewing_registration.update workflow_state: "location_form"
+              # Update the workflow of the transient registration
+              renewing_registration = RenewingRegistration.last
+              renewing_registration.update workflow_state: "location_form"
 
-            get request_path
-            follow_redirect!
+              get request_path
+              expect(response).to redirect_to(new_check_registered_name_and_address_form_path(token: transient_registration_token))
+            end
+          end
 
-            expect(response).to render_template("waste_exemptions_engine/location_forms/new")
+          context "when the business type is not a company or llp" do
+            before { registration.update_attribute(:business_type, "soleTrader") }
+
+            it "redirects to the correct flow state page" do
+              # Request the page once so we generate a valid renewing registration
+              get request_path
+
+              # Update the workflow of the transient registration
+              renewing_registration = RenewingRegistration.last
+              renewing_registration.update workflow_state: "location_form"
+
+              get request_path
+              expect(response).to redirect_to(new_renewal_start_form_path(token: transient_registration_token))
+            end
           end
         end
       end
