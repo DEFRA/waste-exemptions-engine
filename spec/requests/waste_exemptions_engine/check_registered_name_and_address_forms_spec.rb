@@ -22,20 +22,28 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ temp_use_registered_company_details: "" }] }
     end
 
-    context "when check_registered_name_and_address_form is given a valid companies house number" do
-      let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+    context "during a new registration" do
+      context "when check_registered_name_and_address_form is given a valid companies house number" do
+        let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
 
-      it "displays the registered company name" do
-        get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
+        it "displays the registered company name" do
+          get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
 
-        expect(response.body).to have_html_escaped_string(company_name)
-      end
+          expect(response.body).to have_html_escaped_string(company_name)
+        end
 
-      it "displays the regsitered company address" do
-        get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
+        it "displays the regsitered company address" do
+          get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
 
-        company_address.each do |line|
-          expect(response.body).to include(line)
+          company_address.each do |line|
+            expect(response.body).to include(line)
+          end
+        end
+
+        it "displays a link to enter a different number" do
+          get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
+
+          expect(response.body).to have_html_escaped_string("Enter a different number")
         end
       end
     end

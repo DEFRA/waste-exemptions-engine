@@ -18,6 +18,8 @@ module WasteExemptionsEngine
       aasm column: :workflow_state do
         # States / forms
         state :renewal_start_form, initial: true
+        state :check_registered_name_and_address_form
+        state :incorrect_company_form
         state :renew_with_changes_form
         state :renew_without_changes_form
 
@@ -35,7 +37,6 @@ module WasteExemptionsEngine
         # Operator details
         state :business_type_form
         state :main_people_form
-        state :registration_number_form
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_lookup_form
@@ -69,6 +70,13 @@ module WasteExemptionsEngine
 
         # Transitions
         event :next do
+          transitions from: :check_registered_name_and_address_form,
+                      to: :renewal_start_form,
+                      unless: :companies_house_details_incorrect?
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :incorrect_company_form
+
           transitions from: :renewal_start_form,
                       to: :renew_with_changes_form,
                       unless: :should_renew_without_changes?
@@ -120,12 +128,9 @@ module WasteExemptionsEngine
                       if: :skip_registration_number?
 
           transitions from: :business_type_form,
-                      to: :registration_number_form
+                      to: :operator_postcode_form
 
           transitions from: :main_people_form,
-                      to: :operator_name_form
-
-          transitions from: :registration_number_form,
                       to: :operator_name_form
 
           transitions from: :operator_name_form,
@@ -227,6 +232,13 @@ module WasteExemptionsEngine
         end
 
         event :back do
+          transitions from: :incorrect_company_form,
+                      to: :check_registered_name_and_address_form
+
+          transitions from: :renewal_start_form,
+                      to: :check_registered_name_and_address_form,
+                      unless: :skip_registration_number?
+
           transitions from: :renew_with_changes_form,
                       to: :renewal_start_form
 
@@ -456,6 +468,10 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
+    end
+
+    def companies_house_details_incorrect?
+      temp_use_registered_company_details == false
     end
   end
 end

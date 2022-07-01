@@ -1,4 +1,6 @@
+<% if @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration) %>
 <%= render("waste_exemptions_engine/shared/back", back_path: back_check_registered_name_and_address_forms_path(@check_registered_name_and_address_form.token)) %>
+<% end %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -45,8 +47,6 @@
     <p class="govuk-body">
       <% if @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration) %>
         <%= link_to t(".enter_a_different_number"), new_registration_number_form_path %>
-      <% else %>
-        <%= t(".must_create_new_registration") %>
       <% end %>
     </p>
   </div>
