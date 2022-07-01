@@ -47,10 +47,6 @@
     <p class="govuk-body">
       <% if @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration) %>
         <%= link_to t(".enter_a_different_number"), new_registration_number_form_path %>
-      <% elsif @transient_registration.is_a?(WasteExemptionsEngine::RenewingRegistration) %>
-
-      <% else %>
-        <%= t(".must_create_new_registration") %>
       <% end %>
     </p>
   </div>
