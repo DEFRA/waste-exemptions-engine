@@ -27,7 +27,17 @@ class DefraRubyCompaniesHouse
     ].compact
   end
 
+  def status
+    status_is_allowed?(load_company) ? :active : :inactive
+  rescue RestClient::ResourceNotFound
+    :not_found
+  end
+
   private
+
+  def status_is_allowed?(load_company)
+    %w[active voluntary-arrangement].include?(load_company[:company_status])
+  end
 
   def load_company
     @company =

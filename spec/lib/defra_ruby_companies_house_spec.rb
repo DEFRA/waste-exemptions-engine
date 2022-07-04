@@ -8,6 +8,7 @@ RSpec.describe DefraRubyCompaniesHouse do
   let(:valid_company_no) { "00987654" }
   let(:short_company_no) { "1987654" }
   let(:invalid_company_no) { "-" }
+  let(:inactive_company) { "07052532" }
 
   before do
     # stub all calls to fail first....
@@ -74,6 +75,32 @@ RSpec.describe DefraRubyCompaniesHouse do
   context "when the call to the CH API returns a 404" do
     it "raises a standard error" do
       expect { subject }.to raise_error(StandardError)
+    end
+  end
+
+  describe "#status" do
+    subject { described_class.new(company_no).status }
+    context "when the company is no longer active" do
+      let(:company_no) { inactive_company }
+
+      before do
+        stub_request(:get, /#{Rails.configuration.companies_house_host}[a-zA-Z\d]{8}/).to_return(
+          status: 200,
+          body: File.read("spec/fixtures/files/inactive_companies_house_response.json")
+        )
+      end
+
+      it "returns false" do
+        expect(subject).to eq(:inactive)
+      end
+    end
+
+    context "when the company is active" do
+      let(:company_no) { valid_company_no }
+
+      it "returns true" do
+        expect(subject).to eq(:active)
+      end
     end
   end
 end

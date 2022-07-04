@@ -13,6 +13,7 @@ module WasteExemptionsEngine
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:company_name).and_return(company_name)
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:registered_office_address_lines).and_return(company_address)
+      allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:active)
     end
 
     include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
