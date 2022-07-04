@@ -50,8 +50,9 @@ module WasteExemptionsEngine
     end
 
     context "during a renewal" do
+      let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+
       context "when the company status is no longer active" do
-        let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
 
         before do
           allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:inactive)
@@ -63,6 +64,17 @@ module WasteExemptionsEngine
           expect(response.code).to eq("200")
           expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
           expect(response.body).to have_valid_html
+        end
+      end
+
+      context "when the company status can't be found" do
+        subject { described_class.new(company_no) }
+        before do
+          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(nil)
+        end
+
+        it "raises a standard error" do
+          expect { subject }.to raise_error(StandardError)
         end
       end
     end
