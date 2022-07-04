@@ -48,5 +48,23 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    context "during a renewal" do
+      context "when the company status is no longer active" do
+        let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+
+        before do
+          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:inactive)
+        end
+
+        it "displays inactive company error" do
+          get "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address"
+
+          expect(response.code).to eq("200")
+          expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+          expect(response.body).to have_valid_html
+        end
+      end
+    end
   end
 end

@@ -23,6 +23,11 @@ module WasteExemptionsEngine
         true
       when :inactive
         false
+      when :not_found
+        raise StandardError "Failed to find company status"
+      else
+        # Sonarcloud suggested that not having an `else` is a code smell
+        raise StandardError "Failed to find company status"
       end
     end
 
