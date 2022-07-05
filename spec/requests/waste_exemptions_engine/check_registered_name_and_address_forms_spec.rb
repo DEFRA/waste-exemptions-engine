@@ -71,7 +71,7 @@ module WasteExemptionsEngine
 
     context "when the company house API is down" do
       before do
-        allow_any_instance_of(CheckRegisteredNameAndAddressFormsController).to receive(:validate_company_status).and_raise(StandardError)
+        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_raise(StandardError)
       end
 
       let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
