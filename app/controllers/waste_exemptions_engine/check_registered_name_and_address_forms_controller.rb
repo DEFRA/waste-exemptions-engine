@@ -6,7 +6,12 @@ module WasteExemptionsEngine
   class CheckRegisteredNameAndAddressFormsController < FormsController
     def new
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
-      company_number_active?
+      begin
+        return render(:inactive_company) unless validate_company_status
+      rescue StandardError
+        Rails.logger.error "Failed to load"
+        return render(:companies_house_down)  
+      end
     end
 
     def create
@@ -15,12 +20,12 @@ module WasteExemptionsEngine
 
     private
 
-    def transient_registration_attributes
-      params.fetch(:check_registered_name_and_address_form, {}).permit(:temp_use_registered_company_details)
+    def validate_company_status
+      DefraRubyCompaniesHouse.new(@transient_registration.company_no).status == :active
     end
 
-    def company_number_active?
-      return render(:inactive_company) unless @check_registered_name_and_address_form.validate_company_status
+    def transient_registration_attributes
+      params.fetch(:check_registered_name_and_address_form, {}).permit(:temp_use_registered_company_details)
     end
   end
 end

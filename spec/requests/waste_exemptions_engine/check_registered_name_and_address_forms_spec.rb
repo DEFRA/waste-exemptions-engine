@@ -67,35 +67,19 @@ module WasteExemptionsEngine
           expect(response.body).to have_valid_html
         end
       end
+    end
 
-      context "when the company house is down" do
-        before do
-          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(nil)
-        end
-
-        it "raises an error" do
-          expect { get request_path }.to raise_error(StandardError)
-        end
+    context "when the company house API is down" do
+      before do
+        allow_any_instance_of(CheckRegisteredNameAndAddressFormsController).to receive(:validate_company_status).and_raise(StandardError)
       end
 
-      context "when the company status cannot be found" do
-        before do
-          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:not_found)
-        end
-        it "raises an error" do
-          expect { get request_path }.to raise_error(StandardError)
-        end
-      end
+      let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+      it "raises an error" do
 
-      context "when the company status throws an error" do
-        before do
-          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:StandardError)
-        end
-        it "raises an error" do
-          expect { get request_path }.to raise_error(StandardError)
-        end
+        get request_path
+        expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/companies_house_down")
       end
-
     end
   end
 end
