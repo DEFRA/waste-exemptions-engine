@@ -17,6 +17,20 @@ module WasteExemptionsEngine
       companies_house_service.registered_office_address_lines
     end
 
+    def validate_company_status
+      case companies_house_service.status
+      when :active
+        true
+      when :inactive
+        false
+      when :not_found
+        raise StandardError "Failed to find company status"
+      else
+        # Sonarcloud suggested that not having an `else` is a code smell
+        raise StandardError "Failed to find company status"
+      end
+    end
+
     def submit(params)
       params[:operator_name] = registered_company_name if params[:temp_use_registered_company_details] == "true"
       super(params)
