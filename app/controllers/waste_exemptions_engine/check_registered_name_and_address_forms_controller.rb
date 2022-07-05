@@ -10,7 +10,7 @@ module WasteExemptionsEngine
         return render(:inactive_company) unless validate_company_status
       rescue StandardError
         Rails.logger.error "Failed to load"
-        return render(:companies_house_down)  
+        render(:companies_house_down)
       end
     end
 
