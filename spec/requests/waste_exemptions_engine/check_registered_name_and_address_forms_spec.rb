@@ -68,7 +68,7 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when the company status cannot be found" do
+      context "when the company house is down" do
         before do
           allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(nil)
         end
@@ -78,14 +78,24 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when the validate company status throws an erorr" do
+      context "when the company status cannot be found" do
         before do
-          allow_any_instance_of(CheckRegisteredNameAndAddressForm).to receive(:validate_company_status).and_raise(:StandardError)
+          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:not_found)
         end
         it "raises an error" do
           expect { get request_path }.to raise_error(StandardError)
         end
       end
+
+      context "when the company status throws an error" do
+        before do
+          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:StandardError)
+        end
+        it "raises an error" do
+          expect { get request_path }.to raise_error(StandardError)
+        end
+      end
+
     end
   end
 end
