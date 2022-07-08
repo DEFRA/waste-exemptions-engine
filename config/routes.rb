@@ -193,6 +193,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
+    resources :check_contact_name_forms,
+              only: %i[new create],
+              path: "check-contact-name",
+              path_names: { new: "" } do
+                get "back",
+                    to: "check_contact_name_forms#go_back",
+                    as: "back",
+                    on: :collection
+              end
+
     resources :contact_name_forms,
               only: %i[new create],
               path: "contact-name",

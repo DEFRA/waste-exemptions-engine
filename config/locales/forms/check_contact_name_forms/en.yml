@@ -1,0 +1,16 @@
+en:
+  waste_exemptions_engine:
+    check_contact_name_forms:
+      new:
+        title: Do you want to use this as the contact name?
+        heading: Do you want to use this as the contact name?
+        options:
+          "yes": "Yes"
+          "no": "No"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_contact_name_form:
+          attributes:
+            temp_reuse_applicant_name:
+              inclusion: "You must select yes or no"
