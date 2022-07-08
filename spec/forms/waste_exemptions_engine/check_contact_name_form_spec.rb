@@ -46,6 +46,16 @@ module WasteExemptionsEngine
           expect(form.transient_registration.contact_last_name).to be_blank
         end
       end
+
+      context "when temp_reuse_applicant_name is blank" do
+        let(:temp_reuse_applicant_name) { nil }
+
+        it "raises an error" do
+          subject
+
+          expect(form.errors[:temp_reuse_applicant_name]).to be_present
+        end
+      end
     end
   end
 end
