@@ -45,6 +45,7 @@ module WasteExemptionsEngine
                               temp_operator_postcode
                               temp_contact_postcode
                               temp_grid_reference
+                              temp_reuse_applicant_name
                               temp_reuse_applicant_phone
                               temp_reuse_applicant_email
                               temp_reuse_operator_address

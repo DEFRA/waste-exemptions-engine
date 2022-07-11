@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       it_behaves_like "a simple bidirectional transition",
                       previous_state: :operator_postcode_form,
                       current_state: :operator_address_manual_form,
-                      next_state: :contact_name_form,
+                      next_state: :check_contact_name_form,
                       factory: :new_registration
     end
   end

@@ -45,13 +45,14 @@ module WasteExemptionsEngine
         state :operator_address_manual_form
 
         # Contact details
+        state :check_contact_name_form
         state :contact_name_form
         state :contact_position_form
         state :check_contact_phone_form
-        state :check_contact_email_form
-        state :check_contact_address_form
         state :contact_phone_form
+        state :check_contact_email_form
         state :contact_email_form
+        state :check_contact_address_form
         state :contact_postcode_form
         state :contact_address_lookup_form
         state :contact_address_manual_form
@@ -157,12 +158,19 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :operator_address_lookup_form,
-                      to: :contact_name_form
+                      to: :check_contact_name_form
 
           transitions from: :operator_address_manual_form,
-                      to: :contact_name_form
+                      to: :check_contact_name_form
 
           # Contact details
+          transitions from: :check_contact_name_form,
+                      to: :contact_name_form,
+                      unless: :temp_reuse_applicant_name?
+
+          transitions from: :check_contact_name_form,
+                      to: :contact_position_form
+
           transitions from: :contact_name_form,
                       to: :contact_position_form
 
@@ -332,15 +340,22 @@ module WasteExemptionsEngine
                       to: :operator_postcode_form
 
           # Contact details
-          transitions from: :contact_name_form,
+          transitions from: :check_contact_name_form,
                       to: :operator_address_manual_form,
                       if: :operator_address_was_manually_entered?
 
-          transitions from: :contact_name_form,
+          transitions from: :check_contact_name_form,
                       to: :operator_address_lookup_form
 
+          transitions from: :contact_name_form,
+                      to: :check_contact_name_form
+
           transitions from: :contact_position_form,
-                      to: :contact_name_form
+                      to: :contact_name_form,
+                      unless: :temp_reuse_applicant_name?
+
+          transitions from: :contact_position_form,
+                      to: :check_contact_name_form
 
           transitions from: :contact_phone_form,
                       to: :check_contact_phone_form
