@@ -294,7 +294,11 @@ module WasteExemptionsEngine
                       to: :registration_number_form
 
           transitions from: :operator_postcode_form,
-                      to: :operator_name_form
+                      to: :operator_name_form,
+                      if: :skip_registration_number?
+
+          transitions from: :operator_postcode_form,
+                      to: :business_type_form
 
           transitions from: :operator_address_lookup_form,
                       to: :operator_postcode_form
