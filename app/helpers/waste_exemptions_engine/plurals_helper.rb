@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     def confirmation_comms(form)
       emails = [form.applicant_email, form.contact_email]
       emails.uniq!
-      emails.delete(WasteExemptionsEngine.configuration.assisted_digital_email)
+      emails.delete(nil)
 
       if emails.empty?
         "letter"

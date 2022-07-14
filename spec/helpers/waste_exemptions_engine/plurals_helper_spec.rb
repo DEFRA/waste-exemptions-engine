@@ -31,23 +31,23 @@ module WasteExemptionsEngine
         let(:applicant_email) { "applicant_email@test.com" }
         let(:contact_email) { "contact_email@test.com" }
 
-        context "when the applicant email is the AD email" do
-          let(:applicant_email) { WasteExemptionsEngine.configuration.assisted_digital_email }
+        context "when the applicant email is blank (AD)" do
+          let(:applicant_email) { nil }
 
           it "returns the string `contact_email`" do
             expect(helper.confirmation_comms(form)).to eq("contact_email")
           end
         end
 
-        context "when the contact email is the AD email" do
-          let(:contact_email) { WasteExemptionsEngine.configuration.assisted_digital_email }
+        context "when the contact email is blank (AD)" do
+          let(:contact_email) { nil }
 
           it "returns the string `applicant_email`" do
             expect(helper.confirmation_comms(form)).to eq("applicant_email")
           end
         end
 
-        context "when neither email is the AD email" do
+        context "when neither email is the blank (AD)" do
           it "returns the string `both_emails`" do
             expect(helper.confirmation_comms(form)).to eq("both_emails")
           end
@@ -58,8 +58,8 @@ module WasteExemptionsEngine
         let(:applicant_email) { "applicant_email@test.com" }
         let(:contact_email) { applicant_email }
 
-        context "when both emails are the AD email" do
-          let(:applicant_email) { WasteExemptionsEngine.configuration.assisted_digital_email }
+        context "when both emails are blank (AD)" do
+          let(:applicant_email) { nil }
 
           it "returns the string `letter`" do
             expect(helper.confirmation_comms(form)).to eq("letter")
