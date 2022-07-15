@@ -8,7 +8,6 @@ module WasteExemptionsEngine
     after(:each) { VCR.eject_cassette }
 
     include_examples "GET form", :operator_address_lookup_form, "/operator-address-lookup"
-    include_examples "go back", :operator_address_lookup_form, "/operator-address-lookup/back"
     include_examples "POST form", :operator_address_lookup_form, "/operator-address-lookup" do
       let(:form_data) { { operator_address: { uprn: "340116" } } }
       let(:invalid_form_data) { [{ operator_address: { uprn: nil } }] }
