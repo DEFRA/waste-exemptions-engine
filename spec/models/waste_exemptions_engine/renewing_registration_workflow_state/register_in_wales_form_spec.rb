@@ -6,7 +6,6 @@ module WasteExemptionsEngine
   RSpec.describe RenewingRegistration, type: :model do
     describe "#workflow_state" do
       it_behaves_like "a final state",
-                      previous_state: :location_form,
                       current_state: :register_in_wales_form,
                       factory: :renewing_registration
     end

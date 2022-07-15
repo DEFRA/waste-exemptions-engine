@@ -6,7 +6,6 @@ module WasteExemptionsEngine
   RSpec.describe NewRegistration, type: :model do
     describe "#workflow_state" do
       it_behaves_like "a postcode transition",
-                      previous_state: :operator_name_form,
                       address_type: "operator",
                       factory: :new_registration
     end

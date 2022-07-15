@@ -6,7 +6,6 @@ module WasteExemptionsEngine
   RSpec.describe RenewingRegistration, type: :model do
     describe "#workflow_state" do
       it_behaves_like "a simple bidirectional transition",
-                      previous_state: :business_type_form,
                       current_state: :main_people_form,
                       next_state: :operator_name_form,
                       factory: :renewing_registration

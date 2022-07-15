@@ -33,10 +33,6 @@ module WasteExemptionsEngine
           expect(subject).to transition_from(:check_registered_name_and_address_form).to(:renewal_start_form).on_event(:next)
         end
       end
-
-      it "is unable to tranisition when the 'back' event is issued" do
-        expect { renewing_registration.back }.to raise_error(AASM::InvalidTransition)
-      end
     end
   end
 end
