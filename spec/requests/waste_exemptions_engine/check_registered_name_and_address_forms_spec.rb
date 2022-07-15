@@ -18,7 +18,6 @@ module WasteExemptionsEngine
     end
 
     include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
-    include_examples "go back", :check_registered_name_and_address_form, "/check-registered-name-and-address/back"
     include_examples "POST form", :check_registered_name_and_address_form, "/check-registered-name-and-address" do
       let(:form_data) { { temp_use_registered_company_details: "true" } }
       let(:invalid_form_data) { [{ temp_use_registered_company_details: "" }] }

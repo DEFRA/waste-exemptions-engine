@@ -1,6 +1,6 @@
 <% content_for :title, t(".heading.#{@operator_name_form.business_type}").try(:html_safe) %>
 
-<%= render("waste_exemptions_engine/shared/back", back_path: back_operator_name_forms_path(@operator_name_form.token)) %>
+<%= render("waste_exemptions_engine/shared/back", token: @operator_name_form.token) %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">

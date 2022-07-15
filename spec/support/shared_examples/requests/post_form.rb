@@ -2,7 +2,7 @@
 
 RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = false|
   let(:correct_form) { build(form_factory) }
-  let(:post_request_path) { "/waste_exemptions_engine/#{form.token}#{path}" }
+  let(:post_request_path) { "/waste_exemptions_engine/#{correct_form.token}#{path}" }
   let(:form_data) { { override_me: "Set :form_data in the calling spec." } }
   let(:invalid_form_data) { { override_me: "Set :invalid_form_data in the calling spec." } }
 
@@ -68,7 +68,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       # Use a form which cannot be posted and so won't be using this shared example
       let(:incorrect_workflow_state) { :register_in_wales_form }
       let(:incorrect_form) { build(incorrect_workflow_state) }
-      let(:transient_registration) { form.transient_registration }
+      let(:transient_registration) { correct_form.transient_registration }
       let(:bad_request_body) { { form_factory => form_data } }
       let(:bad_request_redirection_path) do
         workflow_path = "new_#{incorrect_form.transient_registration.workflow_state}_path".to_sym
@@ -92,9 +92,9 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
         post post_request_path, params: bad_request_body
 
         if transient_registration.is_a?(WasteExemptionsEngine::EditRegistration)
-          expect(response.location).to include(edit_forms_path(token: form.token))
+          expect(response.location).to include(edit_forms_path(token: correct_form.token))
         else
-          expect(response.location).to include(register_in_wales_forms_path(token: form.token))
+          expect(response.location).to include(register_in_wales_forms_path(token: correct_form.token))
         end
         expect(response.code).to eq(status_code.to_s)
         expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(incorrect_workflow_state.to_s)

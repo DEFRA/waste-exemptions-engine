@@ -34,10 +34,6 @@ module WasteExemptionsEngine
             expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
           end
         end
-
-        it "is unable to transition when the 'back' event is issued" do
-          expect { new_registration.back }.to raise_error(AASM::InvalidTransition)
-        end
       end
     end
   end
