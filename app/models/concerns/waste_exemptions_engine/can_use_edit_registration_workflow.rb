@@ -231,54 +231,6 @@ module WasteExemptionsEngine
                       to: :edit_form
         end
 
-        event :back do
-          # Addresses
-          transitions from: :operator_address_lookup_form,
-                      to: :operator_postcode_form
-
-          transitions from: :operator_address_manual_form,
-                      to: :operator_postcode_form
-
-          transitions from: :contact_address_lookup_form,
-                      to: :contact_postcode_form
-
-          transitions from: :contact_address_manual_form,
-                      to: :contact_postcode_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :site_postcode_form
-
-          transitions from: :site_address_manual_form,
-                      to: :site_postcode_form
-
-          # Completing the edit process
-          transitions from: :declaration_form,
-                      to: :edit_form
-
-          # Cancelling the edit process
-          transitions from: :confirm_edit_cancelled_form,
-                      to: :edit_form
-
-          # Everything else should always go back to edit
-          transitions from: %i[applicant_name_form
-                               applicant_phone_form
-                               applicant_email_form
-                               main_people_form
-                               registration_number_form
-                               operator_name_form
-                               operator_postcode_form
-                               contact_name_form
-                               contact_position_form
-                               contact_phone_form
-                               contact_email_form
-                               contact_postcode_form
-                               on_a_farm_form
-                               is_a_farmer_form
-                               site_grid_reference_form
-                               site_postcode_form],
-                      to: :edit_form
-        end
-
         event :skip_to_manual_address do
           transitions from: :operator_postcode_form,
                       to: :operator_address_manual_form
