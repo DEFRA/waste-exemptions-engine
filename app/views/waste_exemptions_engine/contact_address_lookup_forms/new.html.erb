@@ -14,7 +14,7 @@
           <%= @contact_address_lookup_form.postcode %>
         </span>
         <%= link_to(t(".postcode_change_link"),
-            back_contact_address_lookup_forms_path(@contact_address_lookup_form.token)) %>
+            go_back_forms_path(@contact_address_lookup_form.token)) %>
       </p>
 
       <%= f.fields_for :contact_address do |f| %>
