@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class MainPersonFormValidator < PersonNameValidator
-    # class MainPersonFormValidator < ActiveModel::Validator
     include CanAddValidationErrors
 
     def validate(record)
