@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
     include_examples "GET form", :main_people_form, "/main-people"
     include_examples "go back", :main_people_form, "/main-people/back"
-    include_examples "POST form", :main_people_form, "/main-people" do
+    include_examples "POST form", :main_people_form, "/main-people", true do
       let(:form_data) { person_one }
       # TODO: There is a strange behaviour in validation of partners,
       # which must be fixed before this can be implemented correctly.

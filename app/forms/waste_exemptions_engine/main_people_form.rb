@@ -6,7 +6,7 @@ module WasteExemptionsEngine
 
     attr_accessor :first_name, :last_name
 
-    validates :first_name, :last_name, "waste_exemptions_engine/person_name": true
+    validates_with MainPersonFormValidator, attributes: %i[first_name last_name]
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
