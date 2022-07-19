@@ -41,7 +41,7 @@ module WasteExemptionsEngine
 
         subject(:form) { build(:main_people_form, transient_registration: registration) }
 
-        context "with insuffienct partners" do
+        context "with insufficient partners" do
           let(:people) { [create(:transient_person)] }
 
           it "does not submit successfully without parameters" do
@@ -54,6 +54,10 @@ module WasteExemptionsEngine
 
           it "submits successfully without parameters" do
             expect(form.submit({})).to be true
+          end
+
+          it "does not create a new person" do
+            expect { form.submit({}) }.not_to change { registration.transient_people.length }
           end
         end
       end

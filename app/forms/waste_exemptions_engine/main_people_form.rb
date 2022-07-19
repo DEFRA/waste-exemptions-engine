@@ -13,7 +13,7 @@ module WasteExemptionsEngine
       self.first_name = params[:first_name]
       self.last_name = params[:last_name]
 
-      set_up_new_person if valid?
+      set_up_new_person if valid? && self.first_name.present? && self.last_name.present?
 
       super({})
     end
