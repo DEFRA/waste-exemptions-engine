@@ -7,6 +7,7 @@ en:
         error_heading: A problem to fix
         contact_email_label: Email address
         confirmed_email_label: Confirm email address
+        no_contact_email_label: This customer has no access to an email address
         next_button: Continue
   activemodel:
     errors:
@@ -20,6 +21,8 @@ en:
               blank: "Enter your email address again to confirm it"
               invalid_format: "Enter a valid confirmed email address"
               does_not_match: "The email addresses you’ve entered don’t match"
+            no_email_address:
+              not_blank: You cannot enter email addresses and select 'This customer has no access to an email address'
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
