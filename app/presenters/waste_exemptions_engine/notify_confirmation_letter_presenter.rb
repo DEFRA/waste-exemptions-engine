@@ -12,6 +12,10 @@ module WasteExemptionsEngine
       "#{applicant_first_name} #{applicant_last_name}"
     end
 
+    def applicant_email_section
+      "#{applicant_email}" if applicant_email.present?
+    end
+
     def contact_name
       "#{contact_first_name} #{contact_last_name}"
     end
@@ -41,7 +45,7 @@ module WasteExemptionsEngine
       items << contact_name_text
       items << contact_position_text if contact_position.present?
       items << contact_phone_text
-      items << contact_email_text
+      items << contact_email_text if contact_email.present?
 
       items
     end
