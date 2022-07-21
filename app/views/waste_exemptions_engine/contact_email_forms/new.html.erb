@@ -13,6 +13,15 @@
       <%= f.govuk_email_field :confirmed_email,
           label: { text: t(".confirmed_email_label") } %>
 
+      <% if WasteExemptionsEngine.configuration.host_is_back_office? %>
+        <%= f.govuk_check_boxes_fieldset :no_email_address, multiple: false, legend: -> {} do %>
+          <%= f.govuk_check_box :no_email_address,
+              1, 0, multiple: false, link_errors: true, label: { text: t(".no_contact_email_label") }
+          %>
+          <p>
+        <% end %>
+      <% end %>
+
       <%= f.govuk_submit %>
     <% end %>
   </div>
