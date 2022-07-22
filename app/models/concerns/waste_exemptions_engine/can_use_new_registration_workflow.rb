@@ -182,8 +182,15 @@ module WasteExemptionsEngine
                       unless: :temp_reuse_applicant_phone?
 
           transitions from: :check_contact_phone_form,
-                      to: :check_contact_email_form,
-                      if: :temp_reuse_applicant_phone?
+                      to: :contact_email_form,
+                      unless: :applicant_email?
+
+          transitions from: :check_contact_phone_form,
+                      to: :check_contact_email_form
+
+          transitions from: :contact_phone_form,
+                      to: :contact_email_form,
+                      unless: :applicant_email
 
           transitions from: :contact_phone_form,
                       to: :check_contact_email_form

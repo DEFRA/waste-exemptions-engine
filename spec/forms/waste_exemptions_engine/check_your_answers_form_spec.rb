@@ -6,15 +6,16 @@ module WasteExemptionsEngine
   RSpec.describe CheckYourAnswersForm, type: :model do
     it_behaves_like "a data overview form", :check_your_answers_form
 
+    let(:form) { build(:check_your_answers_form) }
+
     describe "validations" do
-      subject(:validators) { build(:check_your_answers_form)._validators }
+      subject(:validators) { form._validators }
 
       expected_validators = [
         { property: :location, validator: :location_validator, namespace: "DefraRuby::Validators" },
         { property: :applicant_first_name, validator: :person_name_validator },
         { property: :applicant_last_name, validator: :person_name_validator },
         { property: :applicant_phone, validator: :phone_number_validator, namespace: "DefraRuby::Validators" },
-        { property: :applicant_email, validator: :email_validator, namespace: "DefraRuby::Validators" },
         { property: :business_type, validator: :business_type_validator, namespace: "DefraRuby::Validators" },
         { property: :operator_name, validator: :operator_name_validator },
         { property: :operator_address, validator: :address_validator },
@@ -22,7 +23,6 @@ module WasteExemptionsEngine
         { property: :contact_last_name, validator: :person_name_validator },
         { property: :contact_position, validator: :position_validator, namespace: "DefraRuby::Validators" },
         { property: :contact_phone, validator: :phone_number_validator, namespace: "DefraRuby::Validators" },
-        { property: :contact_email, validator: :email_validator, namespace: "DefraRuby::Validators" },
         { property: :contact_address, validator: :address_validator },
         { property: :exemptions, validator: :exemptions_validator },
         { property: :grid_reference, validator: :grid_reference_validator, namespace: "DefraRuby::Validators", options: { if: :uses_site_location? } },
@@ -62,6 +62,42 @@ module WasteExemptionsEngine
 
           expect(validators[property].first.options).to eq(in: [true, false])
         end
+      end
+    end
+
+    describe "#new" do
+      let(:transient_registration) { form.transient_registration }
+
+      shared_examples "is optional only in the back office" do |email_attribute|
+        context "when running in the front office" do
+          before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
+
+          it "raises an error" do
+            form.submit(ActionController::Parameters.new({}))
+            expect(form.errors.attribute_names).to include(email_attribute)
+          end
+        end
+
+        context "when running in the back office" do
+          before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true) }
+
+          it "does not raise an error" do
+            form.submit(ActionController::Parameters.new({}))
+            expect(form.errors.attribute_names).not_to include(email_attribute)
+          end
+        end
+      end
+
+      context "without an applicant_email" do
+        before { transient_registration.applicant_email = nil }
+
+        it_behaves_like "is optional only in the back office", :applicant_email
+      end
+
+      context "without a contact_email" do
+        before { transient_registration.contact_email = nil }
+
+        it_behaves_like "is optional only in the back office", :contact_email
       end
     end
   end
