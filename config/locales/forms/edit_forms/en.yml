@@ -29,7 +29,8 @@ en:
           operator:
             heading: "Operator details"
             labels:
-              operator_name: "Name"
+              operator_name: "Registered name"
+              name: "Name"
               business_type: "Type"
               people: "Main people"
               company_no: "Companies House number"
@@ -83,6 +84,7 @@ en:
             operator_name: "operator name"
             operator_postcode: "operator address"
             contact_name: "contact name"
+            contact_position: "contact position"
             contact_phone: "contact phone"
             contact_email: "contact email"
             contact_postcode: "contact address"

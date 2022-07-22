@@ -11,112 +11,67 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :contact_agency_forms,
               only: %i[new create],
               path: "contact-agency",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_agency_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :location_forms,
               only: %i[new create],
               path: "location",
-              path_names: { new: "" } do
-                get "back",
-                    to: "location_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :register_in_northern_ireland_forms,
               only: %i[new create],
               path: "register-in-northern-ireland",
-              path_names: { new: "" } do
-                get "back",
-                    to: "register_in_northern_ireland_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :register_in_scotland_forms,
               only: %i[new create],
               path: "register-in-scotland",
-              path_names: { new: "" } do
-                get "back",
-                    to: "register_in_scotland_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :register_in_wales_forms,
               only: %i[new create],
               path: "register-in-wales",
-              path_names: { new: "" } do
-                get "back",
-                    to: "register_in_wales_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :applicant_name_forms,
               only: %i[new create],
               path: "applicant-name",
-              path_names: { new: "" } do
-                get "back",
-                    to: "applicant_name_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :applicant_phone_forms,
               only: %i[new create],
               path: "applicant-phone",
-              path_names: { new: "" } do
-                get "back",
-                    to: "applicant_phone_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :applicant_email_forms,
               only: %i[new create],
               path: "applicant-email",
-              path_names: { new: "" } do
-                get "back",
-                    to: "applicant_email_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :business_type_forms,
               only: %i[new create],
               path: "business-type",
-              path_names: { new: "" } do
-                get "back",
-                    to: "business_type_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :registration_number_forms,
               only: %i[new create],
               path: "registration-number",
-              path_names: { new: "" } do
-                get "back",
-                    to: "registration_number_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
+
+    resources :check_registered_name_and_address_forms,
+              only: %i[new create],
+              path: "check-registered-name-and-address",
+              path_names: { new: "" }
+
+    resources :incorrect_company_forms,
+              only: %i[new create],
+              path: "incorrect-company",
+              path_names: { new: "" }
 
     resources :main_people_forms,
               only: %i[new create],
               path: "main-people",
               path_names: { new: "" } do
-                get "back",
-                    to: "main_people_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 delete "delete_person/:id",
                        to: "main_people_forms#delete_person",
                        as: "delete_person",
@@ -126,22 +81,12 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :operator_name_forms,
               only: %i[new create],
               path: "operator-name",
-              path_names: { new: "" } do
-                get "back",
-                    to: "operator_name_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :operator_postcode_forms,
               only: %i[new create],
               path: "operator-postcode",
               path_names: { new: "" } do
-                get "back",
-                    to: "operator_postcode_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "operator_postcode_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -152,11 +97,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               only: %i[new create],
               path: "operator-address-lookup",
               path_names: { new: "" } do
-                get "back",
-                    to: "operator_address_lookup_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "operator_address_lookup_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -166,92 +106,52 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :operator_address_manual_forms,
               only: %i[new create],
               path: "operator-address-manual",
-              path_names: { new: "" } do
-                get "back",
-                    to: "operator_address_manual_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
+
+    resources :check_contact_name_forms,
+              only: %i[new create],
+              path: "check-contact-name",
+              path_names: { new: "" }
 
     resources :contact_name_forms,
               only: %i[new create],
               path: "contact-name",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_name_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :contact_position_forms,
               only: %i[new create],
               path: "contact-position",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_position_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :check_contact_phone_forms,
               only: %i[new create],
               path: "check-contact-phone",
-              path_names: { new: "" } do
-                get "back",
-                    to: "check_contact_phone_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :contact_phone_forms,
               only: %i[new create],
               path: "contact-phone",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_phone_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :check_contact_email_forms,
               only: %i[new create],
               path: "check-contact-email",
-              path_names: { new: "" } do
-                get "back",
-                    to: "check_contact_email_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :contact_email_forms,
               only: %i[new create],
               path: "contact-email",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_email_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :check_contact_address_forms,
               only: %i[new create],
               path: "check-contact-address",
-              path_names: { new: "" } do
-                get "back",
-                    to: "check_contact_address_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :contact_postcode_forms,
               only: %i[new create],
               path: "contact-postcode",
               path_names: { new: "" } do
-                get "back",
-                    to: "contact_postcode_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "contact_postcode_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -262,11 +162,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               only: %i[new create],
               path: "contact-address-lookup",
               path_names: { new: "" } do
-                get "back",
-                    to: "contact_address_lookup_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "contact_address_lookup_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -276,42 +171,22 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :contact_address_manual_forms,
               only: %i[new create],
               path: "contact-address-manual",
-              path_names: { new: "" } do
-                get "back",
-                    to: "contact_address_manual_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :on_a_farm_forms,
               only: %i[new create],
               path: "on-a-farm",
-              path_names: { new: "" } do
-                get "back",
-                    to: "on_a_farm_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :is_a_farmer_forms,
               only: %i[new create],
               path: "is-a-farmer",
-              path_names: { new: "" } do
-                get "back",
-                    to: "is_a_farmer_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :site_grid_reference_forms,
               only: %i[new create],
               path: "site-grid-reference",
               path_names: { new: "" } do
-                get "back",
-                    to: "site_grid_reference_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_address/:token",
                     to: "site_grid_reference_forms#skip_to_address",
                     as: "skip_to_address",
@@ -321,22 +196,12 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :check_site_address_forms,
               only: %i[new create],
               path: "check-site-address",
-              path_names: { new: "" } do
-                get "back",
-                    to: "check_site_address_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :site_postcode_forms,
               only: %i[new create],
               path: "site-postcode",
               path_names: { new: "" } do
-                get "back",
-                    to: "site_postcode_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "site_postcode_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -347,11 +212,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               only: %i[new create],
               path: "site-address-lookup",
               path_names: { new: "" } do
-                get "back",
-                    to: "site_address_lookup_forms#go_back",
-                    as: "back",
-                    on: :collection
-
                 get "skip_to_manual_address",
                     to: "site_address_lookup_forms#skip_to_manual_address",
                     as: "skip_to_manual_address",
@@ -361,42 +221,22 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :site_address_manual_forms,
               only: %i[new create],
               path: "site-address-manual",
-              path_names: { new: "" } do
-                get "back",
-                    to: "site_address_manual_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :exemptions_forms,
               only: %i[new create],
               path: "exemptions",
-              path_names: { new: "" } do
-                get "back",
-                    to: "exemptions_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :check_your_answers_forms,
               only: %i[new create],
               path: "check-your-answers",
-              path_names: { new: "" } do
-                get "back",
-                    to: "check_your_answers_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :declaration_forms,
               only: %i[new create],
               path: "declaration",
-              path_names: { new: "" } do
-                get "back",
-                    to: "declaration_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :registration_complete_forms,
               only: %i[new create],
@@ -448,6 +288,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "contact_name",
                     on: :collection
 
+                get "contact_position",
+                    to: "edit_forms#edit_contact_position",
+                    as: "contact_position",
+                    on: :collection
+
                 get "contact_phone",
                     to: "edit_forms#edit_contact_phone",
                     as: "contact_phone",
@@ -492,12 +337,7 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :confirm_edit_cancelled_forms,
               only: %i[new create],
               path: "confirm-edit-cancelled",
-              path_names: { new: "" } do
-                get "back",
-                    to: "confirm_edit_cancelled_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :edit_cancelled_forms,
               only: %i[new create],
@@ -513,27 +353,20 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :renew_with_changes_forms,
               only: %i[new create],
               path: "renew-with-changes",
-              path_names: { new: "" } do
-                get "back",
-                    to: "renew_with_changes_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :renew_without_changes_forms,
               only: %i[new create],
               path: "renew-without-changes",
-              path_names: { new: "" } do
-                get "back",
-                    to: "renew_without_changes_forms#go_back",
-                    as: "back",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :renewal_complete_forms,
               only: %i[new create],
               path: "renewal-complete",
               path_names: { new: "" }
+
+    get "/back", to: "forms#go_back", as: "go_back_forms"
+
   end
 
   # See http://patrickperey.com/railscast-053-handling-exceptions/

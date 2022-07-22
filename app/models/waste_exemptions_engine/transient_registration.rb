@@ -40,9 +40,12 @@ module WasteExemptionsEngine
                               reference
                               id
                               start_option
+                              temp_use_registered_company_details
+                              companies_house_updated_at
                               temp_operator_postcode
                               temp_contact_postcode
                               temp_grid_reference
+                              temp_reuse_applicant_name
                               temp_reuse_applicant_phone
                               temp_reuse_applicant_email
                               temp_reuse_operator_address
@@ -56,7 +59,8 @@ module WasteExemptionsEngine
                               transient_people
                               type
                               updated_at
-                              workflow_state].freeze
+                              workflow_state
+                              workflow_history].freeze
 
     def renewal?
       false
@@ -64,6 +68,42 @@ module WasteExemptionsEngine
 
     def registration_attributes
       attributes.except(*TRANSIENT_ATTRIBUTES)
+    end
+
+    def next_state!
+      previous_state = workflow_state
+      next!
+      workflow_history << previous_state unless previous_state.nil?
+      save!
+    rescue AASM::UndefinedState, AASM::InvalidTransition => e
+      Airbrake.notify(e, reference) if defined?(Airbrake)
+      Rails.logger.warn "Failed to transition to next workflow state, registration #{reference}: #{e}"
+    end
+
+    def previous_valid_state!
+      return unless workflow_history&.length
+
+      last_popped = nil
+      until workflow_history.empty?
+        last_popped = workflow_history.pop
+        break if valid_state?(last_popped) && last_popped != workflow_state
+
+        last_popped = nil
+      end
+      self.workflow_state = last_popped || "start_form"
+      save!
+    end
+
+    private
+
+    def valid_state?(state)
+      return false unless state.present?
+
+      valid_state_names.include? state.to_sym
+    end
+
+    def valid_state_names
+      @valid_state_names ||= aasm.states.map(&:name)
     end
   end
 end

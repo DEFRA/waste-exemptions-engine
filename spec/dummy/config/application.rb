@@ -34,8 +34,8 @@ module Dummy
     # config.active_record.raise_in_transactional_callbacks = true
 
     # Companies House config
-    config.companies_house_host = ENV["WCRS_COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/company/"
-    config.companies_house_api_key = ENV["WCRS_COMPANIES_HOUSE_API_KEY"]
+    config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/company/"
+    config.companies_house_api_key = ENV["COMPANIES_HOUSE_API_KEY"]
 
     # https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#active-record-belongs-to-required-by-default-option
     config.active_record.belongs_to_required_by_default = false

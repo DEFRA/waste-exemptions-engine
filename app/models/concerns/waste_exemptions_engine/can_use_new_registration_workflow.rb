@@ -37,19 +37,22 @@ module WasteExemptionsEngine
         state :business_type_form
         state :main_people_form
         state :registration_number_form
+        state :check_registered_name_and_address_form
+        state :incorrect_company_form
         state :operator_name_form
         state :operator_postcode_form
         state :operator_address_lookup_form
         state :operator_address_manual_form
 
         # Contact details
+        state :check_contact_name_form
         state :contact_name_form
         state :contact_position_form
         state :check_contact_phone_form
-        state :check_contact_email_form
-        state :check_contact_address_form
         state :contact_phone_form
+        state :check_contact_email_form
         state :contact_email_form
+        state :check_contact_address_form
         state :contact_postcode_form
         state :contact_address_lookup_form
         state :contact_address_manual_form
@@ -128,7 +131,17 @@ module WasteExemptionsEngine
                       to: :operator_name_form
 
           transitions from: :registration_number_form,
-                      to: :operator_name_form
+                      to: :check_registered_name_and_address_form
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :incorrect_company_form,
+                      if: :companies_house_details_incorrect?
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :operator_postcode_form
+
+          transitions from: :incorrect_company_form,
+                      to: :registration_number_form
 
           transitions from: :operator_name_form,
                       to: :operator_postcode_form
@@ -145,12 +158,19 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :operator_address_lookup_form,
-                      to: :contact_name_form
+                      to: :check_contact_name_form
 
           transitions from: :operator_address_manual_form,
-                      to: :contact_name_form
+                      to: :check_contact_name_form
 
           # Contact details
+          transitions from: :check_contact_name_form,
+                      to: :contact_name_form,
+                      unless: :temp_reuse_applicant_name?
+
+          transitions from: :check_contact_name_form,
+                      to: :contact_position_form
+
           transitions from: :contact_name_form,
                       to: :contact_position_form
 
@@ -162,8 +182,15 @@ module WasteExemptionsEngine
                       unless: :temp_reuse_applicant_phone?
 
           transitions from: :check_contact_phone_form,
-                      to: :check_contact_email_form,
-                      if: :temp_reuse_applicant_phone?
+                      to: :contact_email_form,
+                      unless: :applicant_email?
+
+          transitions from: :check_contact_phone_form,
+                      to: :check_contact_email_form
+
+          transitions from: :contact_phone_form,
+                      to: :contact_email_form,
+                      unless: :applicant_email
 
           transitions from: :contact_phone_form,
                       to: :check_contact_email_form
@@ -248,169 +275,6 @@ module WasteExemptionsEngine
 
           transitions from: :declaration_form,
                       to: :registration_complete_form
-        end
-
-        event :back do
-          # Start
-          transitions from: :contact_agency_form,
-                      to: :start_form
-
-          # Location
-          transitions from: :location_form,
-                      to: :start_form
-
-          transitions from: :register_in_northern_ireland_form,
-                      to: :location_form
-
-          transitions from: :register_in_scotland_form,
-                      to: :location_form
-
-          transitions from: :register_in_wales_form,
-                      to: :location_form
-
-          # Exemptions
-          transitions from: :exemptions_form,
-                      to: :location_form
-
-          # Applicant details
-          transitions from: :applicant_name_form,
-                      to: :exemptions_form
-
-          transitions from: :applicant_phone_form,
-                      to: :applicant_name_form
-
-          transitions from: :applicant_email_form,
-                      to: :applicant_phone_form
-
-          transitions from: :business_type_form,
-                      to: :applicant_email_form
-
-          # Operator details
-          transitions from: :main_people_form,
-                      to: :business_type_form
-
-          transitions from: :registration_number_form,
-                      to: :business_type_form
-
-          transitions from: :operator_name_form,
-                      to: :main_people_form,
-                      if: :partnership?
-
-          transitions from: :operator_name_form,
-                      to: :business_type_form,
-                      if: :skip_registration_number?
-
-          transitions from: :operator_name_form,
-                      to: :registration_number_form
-
-          transitions from: :operator_postcode_form,
-                      to: :operator_name_form
-
-          transitions from: :operator_address_lookup_form,
-                      to: :operator_postcode_form
-
-          transitions from: :operator_address_manual_form,
-                      to: :operator_postcode_form
-
-          # Contact details
-          transitions from: :contact_name_form,
-                      to: :operator_address_manual_form,
-                      if: :operator_address_was_manually_entered?
-
-          transitions from: :contact_name_form,
-                      to: :operator_address_lookup_form
-
-          transitions from: :contact_position_form,
-                      to: :contact_name_form
-
-          transitions from: :contact_phone_form,
-                      to: :check_contact_phone_form
-
-          transitions from: :check_contact_phone_form,
-                      to: :contact_position_form
-
-          transitions from: :check_contact_email_form,
-                      to: :contact_phone_form,
-                      unless: :temp_reuse_applicant_phone?
-
-          transitions from: :check_contact_email_form,
-                      to: :check_contact_phone_form,
-                      if: :temp_reuse_applicant_phone?
-
-          transitions from: :contact_email_form,
-                      to: :check_contact_email_form
-
-          transitions from: :check_contact_address_form,
-                      to: :contact_email_form,
-                      unless: :temp_reuse_applicant_email?
-
-          transitions from: :check_contact_address_form,
-                      to: :check_contact_email_form,
-                      if: :temp_reuse_applicant_email?
-
-          transitions from: :contact_postcode_form,
-                      to: :check_contact_address_form
-
-          transitions from: :contact_address_lookup_form,
-                      to: :contact_postcode_form
-
-          transitions from: :contact_address_manual_form,
-                      to: :contact_postcode_form
-
-          # Farm questions
-          transitions from: :on_a_farm_form,
-                      to: :contact_address_manual_form,
-                      if: :contact_address_was_manually_entered?
-
-          transitions from: :on_a_farm_form,
-                      to: :contact_address_lookup_form,
-                      unless: :temp_reuse_operator_address?
-
-          transitions from: :on_a_farm_form,
-                      to: :check_contact_address_form,
-                      if: :temp_reuse_operator_address?
-
-          transitions from: :is_a_farmer_form,
-                      to: :on_a_farm_form
-
-          # Site questions
-          transitions from: :site_grid_reference_form,
-                      to: :is_a_farmer_form
-
-          transitions from: :check_site_address_form,
-                      to: :site_grid_reference_form
-
-          transitions from: :site_postcode_form,
-                      to: :check_site_address_form,
-                      unless: :reuse_address_for_site_location?
-
-          transitions from: :site_postcode_form,
-                      to: :site_grid_reference_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :site_postcode_form
-
-          transitions from: :site_address_manual_form,
-                      to: :site_postcode_form
-
-          # End pages
-          transitions from: :check_your_answers_form,
-                      to: :check_site_address_form,
-                      if: :reuse_address_for_site_location?
-
-          transitions from: :check_your_answers_form,
-                      to: :site_address_manual_form,
-                      if: :site_address_was_manually_entered?
-
-          transitions from: :check_your_answers_form,
-                      to: :site_address_lookup_form,
-                      if: :site_address_was_entered?
-
-          transitions from: :check_your_answers_form,
-                      to: :site_grid_reference_form
-
-          transitions from: :declaration_form,
-                      to: :check_your_answers_form
         end
 
         event :skip_to_manual_address do
@@ -500,6 +364,10 @@ module WasteExemptionsEngine
 
     def skip_to_manual_address?
       address_finder_error
+    end
+
+    def companies_house_details_incorrect?
+      temp_use_registered_company_details == false
     end
   end
 end

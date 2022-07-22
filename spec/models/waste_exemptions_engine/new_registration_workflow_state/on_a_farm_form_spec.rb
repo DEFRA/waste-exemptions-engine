@@ -18,32 +18,18 @@ module WasteExemptionsEngine
         end
 
         context "when new_registration.contact_address_was_manually_entered? is true" do
-          previous_state = :contact_address_manual_form
-
           before(:each) { new_registration.contact_address.manual! }
 
-          it "can only transition to either #{previous_state} or #{next_state}" do
+          it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-            expect(permitted_states).to match_array([previous_state, next_state])
-          end
-
-          it "changes to #{previous_state} after the 'back' event" do
-            expect(new_registration.send(:contact_address_was_manually_entered?)).to eq(true)
-            expect(new_registration).to transition_from(current_state).to(previous_state).on_event(:back)
+            expect(permitted_states).to match_array([next_state])
           end
         end
 
         context "when new_registration.contact_address_was_manually_entered? is false" do
-          previous_state = :contact_address_lookup_form
-
-          it "can only transition to either #{previous_state} or #{next_state}" do
+          it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-            expect(permitted_states).to match_array([previous_state, next_state])
-          end
-
-          it "changes to #{previous_state} after the 'back' event" do
-            expect(new_registration.send(:contact_address_was_manually_entered?)).to eq(false)
-            expect(new_registration).to transition_from(current_state).to(previous_state).on_event(:back)
+            expect(permitted_states).to match_array([next_state])
           end
         end
       end

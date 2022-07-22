@@ -1,4 +1,4 @@
-<%= render("waste_exemptions_engine/shared/back", back_path: back_site_address_manual_forms_path(@site_address_manual_form.token)) %>
+<%= render("waste_exemptions_engine/shared/back", token: @site_address_manual_form.token) %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -21,7 +21,7 @@
           <%= @site_address_manual_form.postcode %>
         </span>
         <%= link_to(t(".postcode_change_link"),
-            back_site_address_manual_forms_path(@site_address_manual_form.token)) %>
+            go_back_forms_path(@site_address_manual_form.token)) %>
       </p>
 
       <%= f.fields_for :site_address do |f| %>

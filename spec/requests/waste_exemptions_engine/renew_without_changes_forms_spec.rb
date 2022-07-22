@@ -19,7 +19,6 @@ module WasteExemptionsEngine
     end
 
     empty_form_is_valid = true
-    include_examples "go back", :renew_without_changes_form, "/renew-without-changes/back"
     include_examples "POST form", :renew_without_changes_form, "/renew-without-changes", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }

@@ -5,13 +5,14 @@ module WasteExemptionsEngine
     delegate :contact_email, to: :transient_registration
 
     attr_writer :confirmed_email
+    attr_accessor :no_email_address
 
-    validates :contact_email, :confirmed_email, "defra_ruby/validators/email": true
-    validates :confirmed_email, "waste_exemptions_engine/matching_email": { compare_to: :contact_email }
+    validates_with OptionalEmailFormValidator, attributes: [:contact_email]
 
     def submit(params)
       # Assign the params for validation and pass them to the BaseForm method for updating
       self.confirmed_email = params[:confirmed_email]
+      self.no_email_address = params[:no_email_address]
 
       super(params.permit(:contact_email))
     end

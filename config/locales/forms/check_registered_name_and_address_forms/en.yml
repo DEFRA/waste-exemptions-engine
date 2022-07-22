@@ -1,0 +1,32 @@
+en:
+  waste_exemptions_engine:
+    check_registered_name_and_address_forms:
+      new:
+        title: Is this information correct as we will use it to complete your registration?
+        heading: Is this information correct as we will use it to complete your registration?
+        options: 
+          "yes": "Yes"
+          "no": "No"
+        company_number: "Companies House Number - %{company_no}"
+        enter_a_different_number: "Enter a different number"
+      inactive_company:
+        title: We could not validate your Companies House number
+        heading: We could not validate your Companies House number
+        paragraph_1: There is an issue with your Companies House number (it is possible that your company is no longer active). You must either create a new registration, or speak to our contact centre.
+        paragraph_2:
+          line_1: Environment Agency
+          line_2: Telephone 03708 506 506, Monday to Friday (8am to 6pm)
+        enquiries_email: enquiries@environment-agency.gov.uk
+        continue: Continue
+      companies_house_down:
+        title: There is a problem with Companies House
+        heading: There is a problem with Companies House
+        paragraph_1: We are unable to verify your Companies House details at the moment
+        paragraph_2: Please try again later.
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/check_registered_name_and_address_form:
+          attributes:
+            temp_use_registered_company_details:
+              inclusion: "You must select yes or no"

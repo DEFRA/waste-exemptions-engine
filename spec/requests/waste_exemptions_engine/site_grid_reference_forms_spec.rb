@@ -5,7 +5,6 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe "Site Grid Reference Forms", type: :request do
     include_examples "GET form", :site_grid_reference_form, "/site-grid-reference"
-    include_examples "go back", :site_grid_reference_form, "/site-grid-reference/back"
     include_examples "POST form", :site_grid_reference_form, "/site-grid-reference" do
       let(:form_data) do
         {

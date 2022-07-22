@@ -22,7 +22,6 @@ module WasteExemptionsEngine
     end
 
     empty_form_is_valid = true
-    include_examples "go back", :confirm_edit_cancelled_form, "/confirm-edit-cancelled/back"
     include_examples "POST form", :confirm_edit_cancelled_form, "/confirm-edit-cancelled", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }
