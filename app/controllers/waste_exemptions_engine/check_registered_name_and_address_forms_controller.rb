@@ -6,8 +6,10 @@ module WasteExemptionsEngine
   class CheckRegisteredNameAndAddressFormsController < FormsController
     def new
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
+      return if new_registration
+
       begin
-        return render(:inactive_company) unless validate_company_status
+        return render(:inactive_company) unless validate_company_number && validate_company_status
       rescue StandardError
         Rails.logger.error "Failed to load"
         render(:companies_house_down)
@@ -20,8 +22,20 @@ module WasteExemptionsEngine
 
     private
 
+    VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX = Regexp.new(
+      /\A(\d{8,8}$)|([a-zA-Z]{2}\d{6}$)|([a-zA-Z]{2}\d{5}[a-zA-Z]{1}$)\z/i
+    ).freeze
+
+    def new_registration
+      @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration)
+    end
+
     def validate_company_status
       DefraRubyCompaniesHouse.new(@transient_registration.company_no).status == :active
+    end
+
+    def validate_company_number
+      @transient_registration.company_no&.match?(VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX)
     end
 
     def transient_registration_attributes

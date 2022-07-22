@@ -5,7 +5,7 @@ require "defra_ruby_companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe "Check Registered Name And Address Forms", type: :request do
-
+    let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
     let(:request_path) { "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address" }
@@ -25,8 +25,6 @@ module WasteExemptionsEngine
 
     context "during a new registration" do
       context "when check_registered_name_and_address_form is given a valid companies house number" do
-        let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
-
         it "displays the registered company name" do
           get request_path
 
@@ -50,10 +48,11 @@ module WasteExemptionsEngine
     end
 
     context "during a renewal" do
-      let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+      let(:renew_check_registered_name_and_address_form) { build(:renew_check_registered_name_and_address_form) }
+      let(:renewing_registration) { renew_check_registered_name_and_address_form.transient_registration }
+      let(:request_path) { "/waste_exemptions_engine/#{renewing_registration.token}/check-registered-name-and-address" }
 
       context "when the company status is no longer active" do
-
         before do
           allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:inactive)
         end
@@ -66,18 +65,31 @@ module WasteExemptionsEngine
           expect(response.body).to have_valid_html
         end
       end
-    end
 
-    context "when the company house API is down" do
-      before do
-        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_raise(StandardError)
+      context "when the company number is invalid" do
+        before do
+          renewing_registration.company_no = "1"
+          renewing_registration.save!
+        end
+
+        it "displays the inactive company error" do
+          get request_path
+
+          expect(response.code).to eq("200")
+          expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+          expect(response.body).to have_valid_html
+        end
       end
 
-      let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
-      it "raises an error" do
+      context "when the company house API is down" do
+        before do
+          allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_raise(StandardError)
+        end
 
-        get request_path
-        expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/companies_house_down")
+        it "raises an error" do
+          get request_path
+          expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/companies_house_down")
+        end
       end
     end
   end
