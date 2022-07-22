@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
     include_examples "GET form", :main_people_form, "/main-people"
-    include_examples "POST form", :main_people_form, "/main-people" do
+    include_examples "POST form", :main_people_form, "/main-people", true do
       let(:form_data) { person_one }
       let(:invalid_form_data) { [] }
     end
