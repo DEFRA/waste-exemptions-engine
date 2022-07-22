@@ -1,6 +1,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+    <h1 class="govuk-heading-l">
+    <%= t(".heading", company_no: @check_registered_name_and_address_form.company_no) %>
+    </h1>
     <p class="govuk-body"><%= t(".paragraph_1") %></p>
 
     <p class="govuk-body">
