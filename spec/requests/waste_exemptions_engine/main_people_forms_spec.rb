@@ -14,11 +14,8 @@ module WasteExemptionsEngine
     status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
     include_examples "GET form", :main_people_form, "/main-people"
-    include_examples "POST form", :main_people_form, "/main-people" do
+    include_examples "POST form", :main_people_form, "/main-people", true do
       let(:form_data) { person_one }
-      # TODO: There is a strange behaviour in validation of partners,
-      # which must be fixed before this can be implemented correctly.
-      # Tickets RUBY-463
       let(:invalid_form_data) { [] }
     end
 

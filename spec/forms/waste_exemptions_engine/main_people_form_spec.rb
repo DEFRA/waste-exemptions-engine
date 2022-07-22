@@ -14,7 +14,6 @@ module WasteExemptionsEngine
         [
           { first_name: "", last_name: "Bloggs" },
           { first_name: "Joe", last_name: "" },
-          { first_name: "", last_name: "" },
           { first_name: "Bob", last_name: "This Name Is Far Too Long 1 .... 36!" }
         ]
       end
@@ -34,6 +33,32 @@ module WasteExemptionsEngine
           person = transient_registration.transient_people.first
           expect(person.first_name).to eq(first_name)
           expect(person.last_name).to eq(last_name)
+        end
+      end
+
+      context "for a renewing partnership" do
+        let(:registration) { build(:renewing_registration, business_type: "partnership", people: people) }
+
+        subject(:form) { build(:main_people_form, transient_registration: registration) }
+
+        context "with insufficient partners" do
+          let(:people) { [create(:transient_person)] }
+
+          it "does not submit successfully without parameters" do
+            expect(form.submit({})).to be false
+          end
+        end
+
+        context "with sufficient partners" do
+          let(:people) { create_list(:transient_person, 2) }
+
+          it "submits successfully without parameters" do
+            expect(form.submit({})).to be true
+          end
+
+          it "does not create a new person" do
+            expect { form.submit({}) }.not_to change { registration.transient_people.length }
+          end
         end
       end
     end
