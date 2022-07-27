@@ -27,7 +27,7 @@ module WasteExemptionsEngine
         reference: @registration.reference,
         date_registered: @registration.date_registered,
         applicant_name: @registration.applicant_name,
-        applicant_email: @registration.applicant_email_section,
+        applicant_email: @registration.applicant_email,
         applicant_phone: @registration.applicant_phone,
         business_details: @registration.business_details_section,
         contact_name: @registration.contact_name,

@@ -12,10 +12,6 @@ module WasteExemptionsEngine
       "#{applicant_first_name} #{applicant_last_name}"
     end
 
-    def applicant_email_section
-      "#{applicant_email}" if applicant_email.present?
-    end
-
     def contact_name
       "#{contact_first_name} #{contact_last_name}"
     end
