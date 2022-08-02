@@ -12,6 +12,10 @@ module WasteExemptionsEngine
       "#{applicant_first_name} #{applicant_last_name}"
     end
 
+    def applicant_email_section
+      applicant_email.present? ? applicant_email.to_s : no_email_text
+    end
+
     def contact_name
       "#{contact_first_name} #{contact_last_name}"
     end
@@ -42,7 +46,7 @@ module WasteExemptionsEngine
       items << contact_position_text if contact_position.present?
       items << contact_phone_text
       items << contact_email_text if contact_email.present?
-
+      items << no_email_text if contact_email.blank?
       items
     end
 
@@ -124,6 +128,12 @@ module WasteExemptionsEngine
 
     def contact_email_text
       label_and_value("waste_operation_contact.email", contact_email)
+    end
+
+    def no_email_text
+      label_text = I18n.t("notify_confirmation_letter.waste_operation_contact.email")
+      value = I18n.t("notify_confirmation_letter.waste_operation_contact.no_email")
+      "#{label_text} #{value}"
     end
 
     # Location

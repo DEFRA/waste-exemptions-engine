@@ -29,6 +29,7 @@ en:
       position: "Position:"
       telephone: "Telephone:"
       email: "Email:"
+      no_email: "Not present"
     waste_operation_location:
       address: "Waste operation location:"
       ngr: "Grid reference:"
