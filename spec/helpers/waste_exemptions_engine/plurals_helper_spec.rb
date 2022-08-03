@@ -52,6 +52,22 @@ module WasteExemptionsEngine
             expect(helper.confirmation_comms(form)).to eq("both_emails")
           end
         end
+
+        context "when contact email is empty sting" do
+          let(:contact_email) { "" }
+
+          it "returns the string 'appliant email" do
+            expect(helper.confirmation_comms(form)).to eq("applicant_email")
+          end
+        end
+
+        context "when applicant email is an empty string" do
+          let(:applicant_email) { "" }
+
+          it "returns the string 'contact_email'" do
+            expect(helper.confirmation_comms(form)).to eq("contact_email")
+          end
+        end
       end
 
       context "when applicant and contact emails are equal" do

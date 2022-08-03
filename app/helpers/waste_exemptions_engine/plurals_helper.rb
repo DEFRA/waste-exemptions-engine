@@ -6,6 +6,7 @@ module WasteExemptionsEngine
       emails = [form.applicant_email, form.contact_email]
       emails.uniq!
       emails.delete(nil)
+      emails.delete("")
 
       if emails.empty?
         "letter"
