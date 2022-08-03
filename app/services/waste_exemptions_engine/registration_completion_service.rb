@@ -74,7 +74,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      send_confirmation_letter if ad_email_address?(@registration.contact_email)
+      send_confirmation_letter unless @registration.contact_email.present?
 
       send_confirmation_emails
     end
@@ -88,7 +88,7 @@ module WasteExemptionsEngine
 
     def send_confirmation_emails
       distinct_recipients.each do |recipient|
-        send_confirmation_email(recipient) unless ad_email_address?(recipient)
+        send_confirmation_email(recipient) if recipient.present?
       end
     end
 
@@ -100,11 +100,7 @@ module WasteExemptionsEngine
     end
 
     def distinct_recipients
-      [@registration.applicant_email, @registration.contact_email].map(&:downcase).uniq
-    end
-
-    def ad_email_address?(email)
-      email == WasteExemptionsEngine.configuration.assisted_digital_email
+      [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
     end
   end
 end
