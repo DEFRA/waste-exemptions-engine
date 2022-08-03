@@ -30,8 +30,8 @@ FactoryBot.define do
       contact_email { applicant_email }
     end
 
-    trait :has_ad_contact_email do
-      contact_email { WasteExemptionsEngine.configuration.assisted_digital_email }
+    trait :has_no_email do
+      contact_email { nil }
     end
 
     trait :has_people do
