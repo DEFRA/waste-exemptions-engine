@@ -109,7 +109,7 @@ module WasteExemptionsEngine
           expect(NewRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
-        context "when the contact email is not the NCCC email" do
+        context "when the contact email is not blank (AD)" do
           it "sends a confirmation email to both the applicant and the contact emails" do
             expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
                                                                    recipient: new_registration.applicant_email)
@@ -135,10 +135,10 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when the contact email is the NCCC email" do
-          let(:new_registration) { create(:new_registration, :complete, :has_ad_contact_email) }
+        context "when the contact email is blank (AD)" do
+          let(:new_registration) { create(:new_registration, :complete, :has_no_email) }
 
-          context "when the applicant email is the NCCC email" do
+          context "when the applicant email is blank (AD)" do
             before { new_registration.update(applicant_email: new_registration.contact_email) }
 
             it "sends a confirmation letter" do
@@ -148,13 +148,13 @@ module WasteExemptionsEngine
             end
 
             it "does not send any confirmation emails" do
+              allow(NotifyConfirmationLetterService).to receive(:run)
               expect(ConfirmationEmailService).to_not receive(:run)
-
               run_service
             end
           end
 
-          context "when the applicant email is not the NCCC email" do
+          context "when the applicant email is not blank" do
             it "sends a confirmation letter" do
               expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
 
@@ -162,6 +162,7 @@ module WasteExemptionsEngine
             end
 
             it "only emails the applicant email" do
+              allow(NotifyConfirmationLetterService).to receive(:run)
               expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
                                                                      recipient: new_registration.applicant_email).once
               expect(ConfirmationEmailService).to_not receive(:run).with(registration: instance_of(Registration),

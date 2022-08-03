@@ -20,6 +20,23 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#applicant_email" do
+      context "when an email is present" do
+        it "returns the correcrt value" do
+          expect(subject.applicant_email_section).to eq(registration.applicant_email.to_s)
+        end
+      end
+
+      context "when an email isn't present" do
+        let(:registration) { create(:registration, :complete, :with_active_exemptions, applicant_email: email) }
+        let(:email) { nil }
+
+        it "returns the correct value" do
+          expect(subject.applicant_email_section).to eq("Email: Not present")
+        end
+      end
+    end
+
     describe "#contact_name" do
       it "returns the correct value" do
         expect(subject.contact_name).to eq("#{registration.contact_first_name} #{registration.contact_last_name}")
@@ -118,6 +135,23 @@ module WasteExemptionsEngine
           ]
 
           expect(subject.contact_details_section).to eq(expected_array)
+        end
+
+        context "when a contact email is not specified" do
+          let(:registration) { create(:registration, :complete, :with_active_exemptions, contact_email: email, contact_position: position) }
+          let(:email) { nil }
+          let(:position) { "Head of Waste" }
+
+          it "returns an array with the correct data and labels" do
+            expected_array = [
+              "Name: #{registration.contact_first_name} #{registration.contact_last_name}",
+              "Position: Head of Waste",
+              "Telephone: #{registration.contact_phone}",
+              "Email: Not present"
+            ]
+
+            expect(subject.contact_details_section).to eq(expected_array)
+          end
         end
       end
 
