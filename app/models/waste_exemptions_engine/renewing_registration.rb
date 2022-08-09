@@ -27,5 +27,9 @@ module WasteExemptionsEngine
     def renewal?
       true
     end
+
+    def changing_business_type?
+      referring_registration.business_type != business_type
+    end
   end
 end
