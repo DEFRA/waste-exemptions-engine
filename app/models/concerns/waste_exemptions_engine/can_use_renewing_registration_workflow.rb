@@ -41,6 +41,7 @@ module WasteExemptionsEngine
         state :operator_postcode_form
         state :operator_address_lookup_form
         state :operator_address_manual_form
+        state :cannot_renew_type_change_form
 
         # Contact details
         state :contact_name_form
@@ -119,6 +120,10 @@ module WasteExemptionsEngine
                       to: :business_type_form
 
           # Operator details
+          transitions from: :business_type_form,
+                      to: :cannot_renew_type_change_form,
+                      if: :changing_business_type?
+
           transitions from: :business_type_form,
                       to: :main_people_form,
                       if: :partnership?
