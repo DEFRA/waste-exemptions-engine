@@ -75,13 +75,24 @@ RSpec.shared_examples "an optional email form", vcr: true do |form_factory, emai
           let(:email_address) { Faker::Internet.email }
 
           it_behaves_like "should submit"
+          
+          it "populates the email" do
+            expect { form.submit(ActionController::Parameters.new(params)) }
+              .to change { form.transient_registration.send(email_attribute) }
+              .from(nil).to(email_address)
+          end
         end
 
-        context "without an email address" do
-          let(:email_address) { nil }
+        context "with a blank email address" do
+          let(:email_address) { "" }
           let(:no_email_address) { "1" }
 
           it_behaves_like "should submit"
+
+          it "does not populate the email" do
+            expect { form.submit(ActionController::Parameters.new(params)) }
+              .not_to change { form.transient_registration.read_attribute(email_attribute) }.from(nil)
+          end
         end
       end
     end
