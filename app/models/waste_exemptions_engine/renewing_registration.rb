@@ -31,9 +31,9 @@ module WasteExemptionsEngine
     # renwals cannot change business type
     # this checks for an attempted change, and undoes it
     def changing_business_type?
-      if referring_registration.business_type != business_type
-        registration_attributes["business_type"] = referring_registration.business_type
-      end
+      return false unless referring_registration.business_type != business_type
+
+      registration_attributes["business_type"] = referring_registration.business_type
     end
   end
 end
