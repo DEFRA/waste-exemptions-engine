@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     def validate(record)
       email_address = record.send(attributes[0])
       if WasteExemptionsEngine.configuration.host_is_back_office? && record.no_email_address == "1"
-        if email_address.present?
+        unless email_address.nil?
           add_validation_error(record, :no_email_address, :not_blank)
           return false
         end
