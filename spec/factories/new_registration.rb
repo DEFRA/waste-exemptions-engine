@@ -52,6 +52,10 @@ FactoryBot.define do
       end
     end
 
+    trait :with_active_exemptions do
+      transient_registration_exemptions { build_list(:transient_registration_exemption, 3, :expires_on, :registered_on) }
+    end
+
     trait :complete do
       limited_company
       with_all_addresses
