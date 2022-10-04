@@ -69,7 +69,8 @@ module WasteExemptionsEngine
     end
 
     def add_metadata
-      @registration.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode
+      @registration.assistance_mode = @transient_registration.assistance_mode ||
+                                      WasteExemptionsEngine.configuration.default_assistance_mode
       @registration.submitted_at = Date.today
     end
 
