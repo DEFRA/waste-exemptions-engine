@@ -25,5 +25,28 @@ module WasteExemptionsEngine
         expect(new_registration).to_not be_a_renewal
       end
     end
+
+    describe "#assistance_mode" do
+
+      context "when the default_assistance_mode is set" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:default_assistance_mode).and_return("foo")
+        end
+
+        it "sets a new NewRegistration's assistance_mode to the correct value" do
+          expect(subject.assistance_mode).to eq("foo")
+        end
+      end
+
+      context "when the default_assistance_mode is not set" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:default_assistance_mode).and_return(nil)
+        end
+
+        it "sets a new NewRegistration's assistance_mode to nil" do
+          expect(subject.assistance_mode).to eq(nil)
+        end
+      end
+    end
   end
 end
