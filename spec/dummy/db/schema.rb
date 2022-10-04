@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_160813) do
+ActiveRecord::Schema.define(version: 2022_10_04_145505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_160813) do
     t.datetime "companies_house_updated_at"
     t.boolean "temp_reuse_applicant_name"
     t.text "workflow_history", default: [], array: true
+    t.string "assistance_mode"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
 
