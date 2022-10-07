@@ -18,12 +18,12 @@ module WasteExemptionsEngine
         end
 
         it "changes to #{previous_and_next_state} after the 'next' event" do
-          expect(edit_registration.send(:skip_to_manual_address?)).to eq(false)
+          expect(edit_registration.send(:skip_to_manual_address?)).to be(false)
           expect(edit_registration).to transition_from(current_state).to(previous_and_next_state).on_event(:next)
         end
 
         it "changes to #{alt_state} after the 'skip_to_address' event" do
-          expect(edit_registration.send(:skip_to_manual_address?)).to eq(false)
+          expect(edit_registration.send(:skip_to_manual_address?)).to be(false)
           expect(edit_registration)
             .to transition_from(current_state)
             .to(alt_state)

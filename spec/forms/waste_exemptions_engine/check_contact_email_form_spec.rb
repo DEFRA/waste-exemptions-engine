@@ -21,15 +21,13 @@ module WasteExemptionsEngine
     describe "#submit" do
       let(:form) { build(:check_contact_email_form) }
 
-      subject do
-        form.submit(temp_reuse_applicant_email: temp_reuse_applicant_email)
-      end
+      subject(:submit_form) { form.submit(temp_reuse_applicant_email: temp_reuse_applicant_email) }
 
       context "when temp_reuse_applicant_email is true" do
         let(:temp_reuse_applicant_email) { "true" }
 
         it "assigns the applicant_email as the contact_email" do
-          subject
+          submit_form
 
           expect(form.contact_email).to eq(form.applicant_email)
         end
@@ -39,7 +37,7 @@ module WasteExemptionsEngine
         let(:temp_reuse_applicant_email) { "false" }
 
         it "does not assign the contact_email" do
-          subject
+          submit_form
 
           expect(form.transient_registration.contact_email).to be_blank
         end

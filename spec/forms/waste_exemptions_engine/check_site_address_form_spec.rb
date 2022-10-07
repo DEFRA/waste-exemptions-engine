@@ -24,15 +24,13 @@ module WasteExemptionsEngine
     describe "submit" do
       let(:form) { build(:check_site_address_form) }
 
-      subject do
-        form.submit(temp_reuse_address_for_site_location: temp_reuse_address_for_site_location)
-      end
+      subject(:submit_form) { form.submit(temp_reuse_address_for_site_location: temp_reuse_address_for_site_location) }
 
       context "when temp_reuse_address_for_site_location is set to operator_address_option" do
         let(:temp_reuse_address_for_site_location) { "operator_address_option" }
 
         it "uses the operator address as the site address" do
-          subject
+          submit_form
 
           address_attributes.each do |attr|
             expect(form.transient_registration.site_address.send(attr)).to eq(form.operator_address.send(attr))
@@ -44,7 +42,7 @@ module WasteExemptionsEngine
         let(:temp_reuse_address_for_site_location) { "contact_address_option" }
 
         it "uses the contact address as the site address" do
-          subject
+          submit_form
 
           address_attributes.each do |attr|
             expect(form.transient_registration.site_address.send(attr)).to eq(form.contact_address.send(attr))
@@ -56,7 +54,7 @@ module WasteExemptionsEngine
         let(:temp_reuse_address_for_site_location) { "a_different_address" }
 
         it "uses the contact address as the site address" do
-          subject
+          submit_form
 
           expect(form.transient_registration.site_address).to be_blank
         end

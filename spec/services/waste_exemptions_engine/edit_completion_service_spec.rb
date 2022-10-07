@@ -64,9 +64,7 @@ module WasteExemptionsEngine
 
       it "deletes the edit_registration" do
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(1)
-        expect { run_service }.to change {
-          EditRegistration.count
-        }.by(-1)
+        expect { run_service }.to change(EditRegistration, :count).by(-1)
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(0)
       end
 
@@ -105,7 +103,7 @@ module WasteExemptionsEngine
           let(:edit_registration) { create(:edit_registration) }
 
           it "does not create a new version" do
-            expect { run_service }.to change { registration.versions.count }.by(0)
+            expect { run_service }.not_to change { registration.versions.count }
           end
         end
 

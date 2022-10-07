@@ -18,7 +18,7 @@ module WasteExemptionsEngine
         it "returns a 302 response" do
           get go_back_forms_path(transient_registration[:token])
 
-          expect(response).to have_http_status(303)
+          expect(response).to have_http_status(:see_other)
         end
 
         it "redirects to the previous form in the workflow_history" do

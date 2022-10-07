@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       context "when temp_reuse_applicant_phone is true" do
         let(:temp_reuse_applicant_phone) { true }
 
-        context "and applicant_email is present" do
+        context "when applicant_email is present" do
           let(:applicant_email) { Faker::Internet.email }
 
           it "transitions to :check_contact_email_form" do
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
           end
         end
 
-        context "and applicant email is not present" do
+        context "when applicant email is not present" do
           let(:applicant_email) { nil }
 
           it "transitions to :contact_email_form" do

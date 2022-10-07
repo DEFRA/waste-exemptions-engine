@@ -19,12 +19,12 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:skip_to_manual_address?)).to eq(false)
+            expect(new_registration.send(:skip_to_manual_address?)).to be(false)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
 
           it "changes to #{alt_state} after the 'skip_to_address' event" do
-            expect(new_registration.send(:skip_to_manual_address?)).to eq(false)
+            expect(new_registration.send(:skip_to_manual_address?)).to be(false)
             expect(new_registration)
               .to transition_from(current_state)
               .to(alt_state)
@@ -35,7 +35,7 @@ module WasteExemptionsEngine
         context "when new_registration.skip_to_manual_address? is true" do
           next_state = :check_site_address_form
 
-          before(:each) { new_registration.address_finder_error = true }
+          before { new_registration.address_finder_error = true }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -43,7 +43,7 @@ module WasteExemptionsEngine
           end
 
           it "changes to #{next_state} after the 'next' event" do
-            expect(new_registration.send(:skip_to_manual_address?)).to eq(true)
+            expect(new_registration.send(:skip_to_manual_address?)).to be(true)
             expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
           end
         end

@@ -10,12 +10,14 @@ module WasteExemptionsEngine
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
     let(:request_path) { "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address" }
 
+    # rubocop:disable RSpec/AnyInstance
     before do
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:company_name).and_return(company_name)
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:registered_office_address_lines).and_return(company_address)
       allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:active)
     end
+    # rubocop:enable RSpec/AnyInstance
 
     include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
     include_examples "POST form", :check_registered_name_and_address_form, "/check-registered-name-and-address" do
@@ -23,7 +25,7 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ temp_use_registered_company_details: "" }] }
     end
 
-    context "during a new registration" do
+    context "with a new registration" do
       context "when check_registered_name_and_address_form is given a valid companies house number" do
         it "displays the registered company name" do
           get request_path
@@ -47,15 +49,17 @@ module WasteExemptionsEngine
       end
     end
 
-    context "during a renewal" do
+    context "with a renewal" do
       let(:renew_check_registered_name_and_address_form) { build(:renew_check_registered_name_and_address_form) }
       let(:renewing_registration) { renew_check_registered_name_and_address_form.transient_registration }
       let(:request_path) { "/waste_exemptions_engine/#{renewing_registration.token}/check-registered-name-and-address" }
 
       context "when the company status is no longer active" do
+        # rubocop:disable RSpec/AnyInstance
         before do
           allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_return(:inactive)
         end
+        # rubocop:enable RSpec/AnyInstance
 
         it "displays inactive company error" do
           get request_path
@@ -82,9 +86,11 @@ module WasteExemptionsEngine
       end
 
       context "when the company house API is down" do
+        # rubocop:disable RSpec/AnyInstance
         before do
           allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:status).and_raise(StandardError)
         end
+        # rubocop:enable RSpec/AnyInstance
 
         it "raises an error" do
           get request_path

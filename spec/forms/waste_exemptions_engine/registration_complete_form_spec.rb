@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe RegistrationCompleteForm, type: :model do
     describe ".can_navigate_flexibly?" do
       it "returns false" do
-        expect(described_class.can_navigate_flexibly?).to be_falsey
+        expect(described_class).not_to be_can_navigate_flexibly
       end
     end
   end

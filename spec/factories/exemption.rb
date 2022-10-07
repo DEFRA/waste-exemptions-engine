@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :exemption, class: WasteExemptionsEngine::Exemption do
+  factory :exemption, class: "WasteExemptionsEngine::Exemption" do
 
     sequence :code do |n|
       "U#{n}"

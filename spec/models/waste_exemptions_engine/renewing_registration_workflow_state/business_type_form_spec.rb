@@ -17,9 +17,9 @@ module WasteExemptionsEngine
            TransientRegistration::BUSINESS_TYPES[:charity],
            TransientRegistration::BUSINESS_TYPES[:local_authority],
            TransientRegistration::BUSINESS_TYPES[:sole_trader]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "changes to #{next_state} after the 'next' event" do
                 expect(renewing_registration).to transition_from(current_state).to(next_state).on_event(:next)
               end
@@ -31,9 +31,9 @@ module WasteExemptionsEngine
           next_state = :operator_postcode_form
 
           [TransientRegistration::BUSINESS_TYPES[:limited_company]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
                 expect(permitted_states).to match_array([next_state])

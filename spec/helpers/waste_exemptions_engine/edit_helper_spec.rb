@@ -23,7 +23,7 @@ module WasteExemptionsEngine
 
       context "when the edit_registration has the same created_at and updated_at" do
         it "returns false" do
-          expect(helper.edits_made?(edit_registration)).to eq(false)
+          expect(helper.edits_made?(edit_registration)).to be(false)
         end
       end
 
@@ -31,7 +31,7 @@ module WasteExemptionsEngine
         before { edit_registration.updated_at = edit_registration.created_at + 1.minute }
 
         it "returns true" do
-          expect(helper.edits_made?(edit_registration)).to eq(true)
+          expect(helper.edits_made?(edit_registration)).to be(true)
         end
       end
     end
@@ -40,7 +40,7 @@ module WasteExemptionsEngine
       let(:edit_registration) { create(:edit_registration, business_type: business_type) }
       let(:result) { helper.entity_name_label(edit_registration) }
 
-      context "when business type is llp" do
+      context "when business type is llp", :tag do
         let(:business_type) { "limitedLiabilityPartnership" }
 
         it { expect(result).to eq("Registered name") }

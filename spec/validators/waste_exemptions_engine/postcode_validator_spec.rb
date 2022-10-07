@@ -18,30 +18,30 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the postcode is valid", vcr: true do
-        before(:each) { VCR.insert_cassette("postcode_valid") }
-        after(:each) { VCR.eject_cassette }
+        before { VCR.insert_cassette("postcode_valid") }
+        after { VCR.eject_cassette }
 
         it_behaves_like "a valid record", Test::PostcodeValidatable.new(valid_postcode)
       end
 
       context "when the postcode is not valid" do
-        context "because the postcode is not present" do
+        context "when the postcode is not present" do
           validatable = Test::PostcodeValidatable.new
           error_message = Helpers::Translator.error_message(validatable, :postcode, :blank)
 
           it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
-        context "because the postcode is not correctly formatted" do
+        context "when the postcode is not correctly formatted" do
           validatable = Test::PostcodeValidatable.new(invalid_postcode)
           error_message = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
 
           it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
-        context "because the postcode does not have associated adresses", vcr: true do
-          before(:each) { VCR.insert_cassette("postcode_no_matches") }
-          after(:each) { VCR.eject_cassette }
+        context "when the postcode does not have associated adresses", vcr: true do
+          before { VCR.insert_cassette("postcode_no_matches") }
+          after { VCR.eject_cassette }
 
           validatable = Test::PostcodeValidatable.new(postcode_without_addresses)
           error_message = Helpers::Translator.error_message(validatable, :postcode, :no_results)

@@ -4,8 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe OperatorAddressLookupForm, type: :model do
-    before(:each) { VCR.insert_cassette("postcode_valid") }
-    after(:each) { VCR.eject_cassette }
+    before { VCR.insert_cassette("postcode_valid") }
+    after { VCR.eject_cassette }
 
     it_behaves_like "an address lookup form"
 

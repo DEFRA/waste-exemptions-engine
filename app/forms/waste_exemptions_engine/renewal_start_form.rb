@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     validates :temp_renew_without_changes,
               "defra_ruby/validators/true_false": {
                 messages: {
-                  inclusion: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form"\
+                  inclusion: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form" \
                                     ".attributes.temp_renew_without_changes.inclusion")
                 }
               }

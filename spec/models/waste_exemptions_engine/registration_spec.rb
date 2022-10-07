@@ -56,7 +56,7 @@ module WasteExemptionsEngine
 
       context "when a referring registration is not present" do
         it "returns false" do
-          expect(registration).to_not be_a_renewal
+          expect(registration).not_to be_a_renewal
         end
       end
     end
@@ -76,7 +76,7 @@ module WasteExemptionsEngine
 
       context "when a referring registration is not present" do
         it "returns false" do
-          expect(registration).to_not be_already_renewed
+          expect(registration).not_to be_already_renewed
         end
       end
     end
@@ -131,7 +131,7 @@ module WasteExemptionsEngine
         let(:expires_on) { 50.days.from_now }
 
         it "returns false" do
-          expect(registration).to_not be_past_renewal_window
+          expect(registration).not_to be_past_renewal_window
         end
       end
 
@@ -166,7 +166,7 @@ module WasteExemptionsEngine
         let(:expires_on) { 50.days.from_now }
 
         it "returns false" do
-          expect(registration).to_not be_in_renewal_window
+          expect(registration).not_to be_in_renewal_window
         end
       end
 
@@ -190,7 +190,7 @@ module WasteExemptionsEngine
         let(:expires_on) { 50.days.ago }
 
         it "returns false" do
-          expect(registration).to_not be_in_renewal_window
+          expect(registration).not_to be_in_renewal_window
         end
       end
     end
@@ -208,7 +208,7 @@ module WasteExemptionsEngine
         subject(:registration) { create(:registration) }
 
         it "returns nil" do
-          expect(registration.expiry_month).to eq(nil)
+          expect(registration.expiry_month).to be_nil
         end
       end
     end

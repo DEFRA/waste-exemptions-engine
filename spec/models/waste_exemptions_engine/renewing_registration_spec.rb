@@ -107,7 +107,7 @@ module WasteExemptionsEngine
           end
 
           registration.exemptions.each do |exemption|
-            expect(renewing_registration.exemptions).to_not include(exemption)
+            expect(renewing_registration.exemptions).not_to include(exemption)
           end
         end
 
@@ -118,7 +118,7 @@ module WasteExemptionsEngine
           end
 
           registration.exemptions.each do |exemption|
-            expect(renewing_registration.exemptions).to_not include(exemption)
+            expect(renewing_registration.exemptions).not_to include(exemption)
           end
         end
       end

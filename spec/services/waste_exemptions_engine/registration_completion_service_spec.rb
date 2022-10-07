@@ -63,6 +63,11 @@ module WasteExemptionsEngine
       end
 
       context "when the registration can be completed" do
+        before do
+          allow(ConfirmationEmailService).to receive(:run)
+          allow(NotifyConfirmationLetterService).to receive(:run)
+        end
+
         it "copies attributes from the new_registration to the registration" do
           new_registration_attribute = new_registration.operator_name
           run_service
@@ -100,7 +105,7 @@ module WasteExemptionsEngine
 
           it "sets the registration's assistance mode to nil" do
             run_service
-            expect(registration.reload.assistance_mode).to eq(nil)
+            expect(registration.reload.assistance_mode).to be_nil
           end
         end
 
@@ -111,26 +116,28 @@ module WasteExemptionsEngine
 
         context "when the contact email is not blank (AD)" do
           it "sends a confirmation email to both the applicant and the contact emails" do
-            expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
-                                                                   recipient: new_registration.applicant_email)
-            expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
-                                                                   recipient: new_registration.contact_email)
-
             run_service
+
+            expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                         recipient: new_registration.applicant_email)
+            expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                         recipient: new_registration.contact_email)
           end
 
           it "does not send a confirmation letter" do
-            expect(NotifyConfirmationLetterService).to_not receive(:run)
+            run_service
+
+            expect(NotifyConfirmationLetterService).not_to have_received(:run)
           end
 
           context "when applicant and contact emails coincide" do
             let(:new_registration) { create(:new_registration, :complete, :same_applicant_and_contact_email) }
 
             it "only sends one confirmation email" do
-              expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
-                                                                     recipient: new_registration.applicant_email).once
-
               run_service
+
+              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                           recipient: new_registration.applicant_email).once
             end
           end
         end
@@ -142,33 +149,32 @@ module WasteExemptionsEngine
             before { new_registration.update(applicant_email: new_registration.contact_email) }
 
             it "sends a confirmation letter" do
-              expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
-
               run_service
+
+              expect(NotifyConfirmationLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
             end
 
             it "does not send any confirmation emails" do
-              allow(NotifyConfirmationLetterService).to receive(:run)
-              expect(ConfirmationEmailService).to_not receive(:run)
               run_service
+
+              expect(ConfirmationEmailService).not_to have_received(:run)
             end
           end
 
           context "when the applicant email is not blank" do
             it "sends a confirmation letter" do
-              expect(NotifyConfirmationLetterService).to receive(:run).with(registration: instance_of(Registration)).once
-
               run_service
+
+              expect(NotifyConfirmationLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
             end
 
             it "only emails the applicant email" do
-              allow(NotifyConfirmationLetterService).to receive(:run)
-              expect(ConfirmationEmailService).to receive(:run).with(registration: instance_of(Registration),
-                                                                     recipient: new_registration.applicant_email).once
-              expect(ConfirmationEmailService).to_not receive(:run).with(registration: instance_of(Registration),
-                                                                         recipient: new_registration.contact_email)
-
               run_service
+
+              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                           recipient: new_registration.applicant_email).once
+              expect(ConfirmationEmailService).not_to have_received(:run).with(registration: instance_of(Registration),
+                                                                               recipient: new_registration.contact_email)
             end
           end
         end
@@ -229,7 +235,7 @@ module WasteExemptionsEngine
             it "does not copy the company_no" do
               registration = described_class.run(transient_registration: new_registration)
 
-              expect(registration.company_no).to eq(nil)
+              expect(registration.company_no).to be_nil
             end
           end
         end

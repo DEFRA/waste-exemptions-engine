@@ -62,12 +62,10 @@ module WasteExemptionsEngine
     end
 
     describe "expiry date" do
-      context "it formats the date" do
-        let(:registration) { create(:registration, :complete) }
+      let(:registration) { create(:registration, :complete) }
 
-        it "returns the correct expiry date with day, month and year" do
-          expect(helper.registration_expires_day_month_year(registration)).to eq("#{3.years.from_now.strftime('%-d')} #{3.years.from_now.strftime('%B')} #{3.years.from_now.year}")
-        end
+      it "returns the correct expiry date with day, month and year" do
+        expect(helper.registration_expires_day_month_year(registration)).to eq("#{3.years.from_now.strftime('%-d')} #{3.years.from_now.strftime('%B')} #{3.years.from_now.year}")
       end
     end
   end

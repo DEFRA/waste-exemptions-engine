@@ -36,14 +36,14 @@ module WasteExemptionsEngine
 
           expect(transient_registration.declaration).to be_blank
           form.submit(valid_params)
-          expect(transient_registration.declaration).to eq(true)
+          expect(transient_registration.declaration).to be(true)
         end
       end
     end
 
     describe ".can_navigate_flexibly?" do
       it "returns false" do
-        expect(described_class.can_navigate_flexibly?).to be_falsey
+        expect(described_class).not_to be_can_navigate_flexibly
       end
     end
   end

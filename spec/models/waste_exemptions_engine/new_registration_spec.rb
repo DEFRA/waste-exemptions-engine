@@ -22,7 +22,7 @@ module WasteExemptionsEngine
 
     describe "#renewal?" do
       it "returns false" do
-        expect(new_registration).to_not be_a_renewal
+        expect(new_registration).not_to be_a_renewal
       end
     end
 
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         end
 
         it "sets a new NewRegistration's assistance_mode to the correct value" do
-          expect(subject.assistance_mode).to eq("foo")
+          expect(new_registration.assistance_mode).to eq("foo")
         end
       end
 
@@ -44,7 +44,7 @@ module WasteExemptionsEngine
         end
 
         it "sets a new NewRegistration's assistance_mode to nil" do
-          expect(subject.assistance_mode).to eq(nil)
+          expect(new_registration.assistance_mode).to be_nil
         end
       end
     end

@@ -12,7 +12,7 @@ module WasteExemptionsEngine
         context "when none of the should register in location conditions are true" do
           next_state = :exemptions_form
 
-          before(:each) { new_registration.location = "england" }
+          before { new_registration.location = "england" }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -27,7 +27,7 @@ module WasteExemptionsEngine
         context "when new_registration.should_register_in_northern_ireland? is true" do
           next_state = :register_in_northern_ireland_form
 
-          before(:each) { new_registration.location = "northern_ireland" }
+          before { new_registration.location = "northern_ireland" }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -42,7 +42,7 @@ module WasteExemptionsEngine
         context "when new_registration.should_register_in_scotland? is true" do
           next_state = :register_in_scotland_form
 
-          before(:each) { new_registration.location = "scotland" }
+          before { new_registration.location = "scotland" }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -57,7 +57,7 @@ module WasteExemptionsEngine
         context "when new_registration.should_register_in_wales? is true" do
           next_state = :register_in_wales_form
 
-          before(:each) { new_registration.location = "wales" }
+          before { new_registration.location = "wales" }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)

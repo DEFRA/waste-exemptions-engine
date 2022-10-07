@@ -9,17 +9,15 @@ module WasteExemptionsEngine
       let(:registration) do
         Registration.where(reference: edit_registration.reference).first
       end
-      let(:service) { EditCancellationService.run(edit_registration: edit_registration) }
+      let(:service) { described_class.run(edit_registration: edit_registration) }
 
       it "does not modify the registration" do
-        expect { service }.to_not change { registration }
+        expect { service }.not_to change { registration }
       end
 
       it "deletes the edit_registration" do
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(1)
-        expect { service }.to change {
-          EditRegistration.count
-        }.by(-1)
+        expect { service }.to change(EditRegistration, :count).by(-1)
         expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(0)
       end
     end

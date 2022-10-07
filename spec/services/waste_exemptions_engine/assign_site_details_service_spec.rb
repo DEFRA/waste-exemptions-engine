@@ -13,12 +13,14 @@ module WasteExemptionsEngine
       let(:y) { 1234.5 }
       let(:address) { build(:transient_address, x: x, y: y, grid_reference: grid_reference, area: area) }
 
-      context "updates x and y" do
+      context "when it updates x and y" do
         context "when the address x and y are positive" do
           it "does not lookup for x and y coordinates" do
-            expect(DetermineEastingAndNorthingService).to_not receive(:run)
+            allow(DetermineEastingAndNorthingService).to receive(:run)
 
             described_class.run(address: address)
+
+            expect(DetermineEastingAndNorthingService).not_to have_received(:run)
           end
         end
 
@@ -28,7 +30,7 @@ module WasteExemptionsEngine
           let(:result) { { easting: 123.4, northing: 123.5 } }
 
           it "does lookup for x and y coordinates" do
-            expect(DetermineEastingAndNorthingService).to receive(:run).and_return(result)
+            allow(DetermineEastingAndNorthingService).to receive(:run).and_return(result)
 
             described_class.run(address: address)
 
@@ -38,12 +40,12 @@ module WasteExemptionsEngine
         end
       end
 
-      context "updates grid reference" do
+      context "when it updates grid reference" do
         context "when the grid reference is missing" do
           let(:grid_reference) { nil }
 
           it "does lookup for a grid reference" do
-            expect(DetermineGridReferenceService).to receive(:run).and_return("ST 54321 54321")
+            allow(DetermineGridReferenceService).to receive(:run).and_return("ST 54321 54321")
 
             described_class.run(address: address)
 
@@ -53,19 +55,21 @@ module WasteExemptionsEngine
 
         context "when the grid reference is present already" do
           it "does not lookup for a grid reference" do
-            expect(DetermineGridReferenceService).to_not receive(:run)
+            allow(DetermineGridReferenceService).to receive(:run)
 
             described_class.run(address: address)
+
+            expect(DetermineGridReferenceService).not_to have_received(:run)
           end
         end
       end
 
-      context "updates area" do
+      context "when it updates area" do
         context "when the area is missing" do
           let(:area) { nil }
 
           it "does lookup for an area" do
-            expect(DetermineAreaService).to receive(:run).and_return("An Area!")
+            allow(DetermineAreaService).to receive(:run).and_return("An Area!")
 
             described_class.run(address: address)
 
@@ -75,9 +79,11 @@ module WasteExemptionsEngine
 
         context "when the area is present already" do
           it "does not lookup for an area" do
-            expect(DetermineAreaService).to_not receive(:run)
+            allow(DetermineAreaService).to receive(:run)
 
             described_class.run(address: address)
+
+            expect(DetermineAreaService).not_to have_received(:run)
           end
         end
       end

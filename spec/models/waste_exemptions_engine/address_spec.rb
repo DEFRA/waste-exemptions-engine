@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       end
     end
 
-    context "scopes" do
+    describe "scopes" do
       before do
         # TODO: This is necessary as those tests are generating random failures due to
         # the database not being cleaned properly by some other test
@@ -73,13 +73,13 @@ module WasteExemptionsEngine
     end
 
     describe "#located_by_grid_reference?" do
-      subject { described_class.new(mode: mode, address_type: :site) }
+      subject(:site_address) { described_class.new(mode: mode, address_type: :site) }
 
       context "when mode is manual" do
         let(:mode) { :manual }
 
         it "returns false" do
-          expect(subject).to_not be_located_by_grid_reference
+          expect(site_address).not_to be_located_by_grid_reference
         end
       end
 
@@ -87,7 +87,7 @@ module WasteExemptionsEngine
         let(:mode) { :auto }
 
         it "returns true" do
-          expect(subject).to be_located_by_grid_reference
+          expect(site_address).to be_located_by_grid_reference
         end
       end
     end

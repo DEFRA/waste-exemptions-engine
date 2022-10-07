@@ -22,7 +22,7 @@ module WasteExemptionsEngine
 
     describe "#renewal?" do
       it "returns false" do
-        expect(edit_registration).to_not be_a_renewal
+        expect(edit_registration).not_to be_a_renewal
       end
     end
 
@@ -84,7 +84,7 @@ module WasteExemptionsEngine
           end
 
           registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).to_not include(exemption)
+            expect(edit_registration.exemptions).not_to include(exemption)
           end
         end
 
@@ -95,7 +95,7 @@ module WasteExemptionsEngine
           end
 
           registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).to_not include(exemption)
+            expect(edit_registration.exemptions).not_to include(exemption)
           end
         end
 
@@ -106,7 +106,7 @@ module WasteExemptionsEngine
           end
 
           registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).to_not include(exemption)
+            expect(edit_registration.exemptions).not_to include(exemption)
           end
         end
       end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :registration, class: WasteExemptionsEngine::Registration do
+  factory :registration, class: "WasteExemptionsEngine::Registration" do
     # Normally the reference would be created in the transient_registration and
     # then transferred. However, since we're creating this Registration out of
     # thin air, we need to generate it here. Format should be WEX900001 to

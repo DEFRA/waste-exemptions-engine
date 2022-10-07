@@ -36,7 +36,7 @@ module WasteExemptionsEngine
         end
       end
 
-      context "for a renewing partnership" do
+      context "with a renewing partnership" do
         let(:registration) { build(:renewing_registration, business_type: "partnership", people: people) }
 
         subject(:form) { build(:main_people_form, transient_registration: registration) }

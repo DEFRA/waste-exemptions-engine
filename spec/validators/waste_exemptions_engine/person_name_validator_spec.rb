@@ -22,7 +22,7 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the name is not valid" do
-        context "because the name contains invalid characters" do
+        context "when the name contains invalid characters" do
           validatable = Test::PersonNameValidatable.new(invalid_name)
           error_message = Helpers::Translator.error_message(validatable, :name, :invalid)
 

@@ -4,9 +4,9 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe CheckYourAnswersForm, type: :model do
-    it_behaves_like "a data overview form", :check_your_answers_form
-
     let(:form) { build(:check_your_answers_form) }
+
+    it_behaves_like "a data overview form", :check_your_answers_form
 
     describe "validations" do
       subject(:validators) { form._validators }

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable RSpec/AnyInstance
 RSpec.shared_examples "a data overview form", vcr: true do |form_factory|
   let(:form) { build(form_factory) }
 
@@ -52,3 +53,4 @@ RSpec.shared_examples "a data overview form", vcr: true do |form_factory|
     end
   end
 end
+# rubocop:enable RSpec/AnyInstance

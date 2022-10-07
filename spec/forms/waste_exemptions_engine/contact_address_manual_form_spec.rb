@@ -6,14 +6,14 @@ module WasteExemptionsEngine
   RSpec.describe ContactAddressManualForm, type: :model do
     let(:form_factory) { :contact_address_manual_form }
 
+    after { VCR.eject_cassette }
+    before { VCR.insert_cassette("postcode_valid") }
+
     it "validates the address data using the ManualAddressValidator class" do
       validators = build(form_factory)._validators
       validator_classes = validators.values.flatten.map(&:class)
       expect(validator_classes).to include(WasteExemptionsEngine::ManualAddressValidator)
     end
-
-    before(:each) { VCR.insert_cassette("postcode_valid") }
-    after(:each) { VCR.eject_cassette }
 
     it_behaves_like "a validated form", :contact_address_manual_form do
       let(:valid_params) do

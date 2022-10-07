@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :operator_address_lookup_form, class: WasteExemptionsEngine::OperatorAddressLookupForm do
+  factory :operator_address_lookup_form, class: "WasteExemptionsEngine::OperatorAddressLookupForm" do
     initialize_with do
       new(
         create(:new_registration,
