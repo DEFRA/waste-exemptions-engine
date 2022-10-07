@@ -12,7 +12,7 @@ end
 
 module WasteExemptionsEngine
   RSpec.describe AddressValidator, type: :model do
-    valid_address = Struct.new(:uprn).new(uprn: 123)
+    valid_address = Struct.new(:uprn).new({ uprn: 123 })
 
     it_behaves_like "a validator", Test::AddressValidatable, :address, valid_address
   end
