@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.license     = "The Open Government Licence (OGL) Version 3"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
   s.required_ruby_version = ">= 3.1"
 
   # Use AASM to manage states and transitions
@@ -94,4 +93,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "vcr"
   s.add_development_dependency "w3c_validators"
   s.add_development_dependency "webmock"
+  s.metadata["rubygems_mfa_required"] = "true"
 end
