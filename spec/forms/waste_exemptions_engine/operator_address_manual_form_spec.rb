@@ -77,19 +77,7 @@ module WasteExemptionsEngine
             }
           }
         end
-        let(:white_space_address_data) do
-          {
-            operator_address: {
-              premises: "  Example House ",
-              street_address: " 2 On The Road  ",
-              locality: " Near Horizon House   ",
-              city: "  Bristol  ",
-              postcode: "   BS1 5AH  "
-            }
-          }
-        end
         let(:valid_params) { address_data.merge(token: form.token) }
-        let(:white_space_params) { white_space_address_data.merge(token: form.token) }
         let(:transient_registration) { form.transient_registration }
 
         it "updates the transient registration with the submitted address data" do
@@ -106,6 +94,19 @@ module WasteExemptionsEngine
         end
 
         context "when the address data includes extraneous white space" do
+          let(:white_space_address_data) do
+            {
+              operator_address: {
+                premises: "  Example House ",
+                street_address: " 2 On The Road  ",
+                locality: " Near Horizon House   ",
+                city: "  Bristol  ",
+                postcode: "   BS1 5AH  "
+              }
+            }
+          end
+          let(:white_space_params) { white_space_address_data.merge(token: form.token) }
+
           it "strips the extraneous white space from the submitted address data" do
             # Ensure the test data is properly configured:
             address_data[:operator_address].each do |key, value|

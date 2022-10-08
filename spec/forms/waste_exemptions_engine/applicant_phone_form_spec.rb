@@ -8,7 +8,6 @@ module WasteExemptionsEngine
 
     it "validates the phone number using the PhoneNumberValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:applicant_phone)
       expect(validators[:applicant_phone].first.class)
         .to eq(DefraRuby::Validators::PhoneNumberValidator)
     end

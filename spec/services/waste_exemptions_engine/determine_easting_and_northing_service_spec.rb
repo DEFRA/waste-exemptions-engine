@@ -12,7 +12,6 @@ module WasteExemptionsEngine
       let(:invalid_postcode) { "BS1 9XX" }
       let(:address_lookup_response) { instance_double(DefraRuby::Address::Response, successful?: successful, results: address_lookup_results, error: error) }
       let(:address_lookup_results) { [{ "x" => 358_205.03, "y" => 172_708.07 }] }
-      let(:address_finder_results) { [{ "x" => 358_205.03, "y" => 172_708.07 }] }
       let(:address_lookup_service) { instance_double(AddressLookupService) }
 
       before do

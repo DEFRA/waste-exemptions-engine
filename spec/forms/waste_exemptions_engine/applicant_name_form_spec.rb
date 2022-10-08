@@ -10,13 +10,11 @@ module WasteExemptionsEngine
       subject(:validators) { form._validators }
 
       it "validates the first name using the PersonNameValidator class" do
-        expect(validators.keys).to include(:applicant_first_name)
         expect(validators[:applicant_first_name].first.class)
           .to eq(WasteExemptionsEngine::PersonNameValidator)
       end
 
       it "validates the last name using the PersonNameValidator class" do
-        expect(validators.keys).to include(:applicant_last_name)
         expect(validators[:applicant_last_name].first.class)
           .to eq(WasteExemptionsEngine::PersonNameValidator)
       end
