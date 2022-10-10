@@ -4,8 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Operator Address Manual Forms", type: :request, vcr: true do
-    before(:each) { VCR.insert_cassette("postcode_valid") }
-    after(:each) { VCR.eject_cassette }
+    before { VCR.insert_cassette("postcode_valid") }
+    after { VCR.eject_cassette }
 
     include_examples "GET form", :operator_address_manual_form, "/operator-address-manual"
     include_examples "POST form", :operator_address_manual_form, "/operator-address-manual" do

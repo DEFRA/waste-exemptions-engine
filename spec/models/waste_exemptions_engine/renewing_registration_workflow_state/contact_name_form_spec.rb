@@ -8,6 +8,7 @@ module WasteExemptionsEngine
       next_state = :contact_position_form
       current_state = :contact_name_form
       let(:operator_address) { build(:transient_address, :operator_address) }
+
       subject(:renewing_registration) do
         create(:renewing_registration, workflow_state: current_state, addresses: [operator_address])
       end
@@ -18,7 +19,7 @@ module WasteExemptionsEngine
         end
 
         context "when renewing_registration.operator_address_was_manually_entered? is true" do
-          before(:each) { renewing_registration.operator_address.manual! }
+          before { renewing_registration.operator_address.manual! }
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)

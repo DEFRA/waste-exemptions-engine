@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
       context "when a NewRegistration's state is #{current_state}" do
         context "when new_registration.should_contact_the_agency? is true" do
-          before(:each) { new_registration.start_option = "change" }
+          before { new_registration.start_option = "change" }
 
           it "can only transition to :contact_agency_form" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
@@ -18,7 +18,7 @@ module WasteExemptionsEngine
           end
 
           it "changes to :contact_agency_form after the 'next' event" do
-            expect(new_registration.send(:should_contact_the_agency?)).to eq(true)
+            expect(new_registration.send(:should_contact_the_agency?)).to be(true)
             expect(new_registration).to transition_from(current_state).to(:contact_agency_form).on_event(:next)
           end
         end
@@ -30,7 +30,7 @@ module WasteExemptionsEngine
           end
 
           it "changes to :location_form after the 'next' event" do
-            expect(new_registration.send(:should_contact_the_agency?)).to eq(false)
+            expect(new_registration.send(:should_contact_the_agency?)).to be(false)
             expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
           end
         end

@@ -2,7 +2,7 @@
 
 RSpec.shared_examples "an invalid record" do |validatable, property, error_message|
   it "confirms the object is invalid" do
-    expect(validatable).to_not be_valid
+    expect(validatable).not_to be_valid
   end
 
   it "adds a single validation error to the record" do
@@ -12,7 +12,7 @@ RSpec.shared_examples "an invalid record" do |validatable, property, error_messa
 
   it "adds an appropriate validation error" do
     validatable.valid?
-    expect(error_message).to_not include("translation missing:")
+    expect(error_message).not_to include("translation missing:")
     expect(validatable.errors[property]).to eq([error_message])
   end
 end

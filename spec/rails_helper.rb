@@ -60,6 +60,6 @@ RSpec.configure do |config|
     config.include WasteExemptionsEngine::Engine.routes.url_helpers
   end
 
-  config.before(:each) { Bullet.start_request }
-  config.after(:each) { Bullet.end_request }
+  config.before { Bullet.start_request }
+  config.after { Bullet.end_request }
 end

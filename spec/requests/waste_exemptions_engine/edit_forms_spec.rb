@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:form) { build(:edit_form) }
 
     describe "GET edit_form" do
-      before(:each) do
+      before do
         WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
       end
 
@@ -48,7 +48,7 @@ module WasteExemptionsEngine
             let(:request_path) { "/waste_exemptions_engine/#{edit_registration.reference}/edit/" }
 
             it "does not create a new EditRegistration for the registration" do
-              expect { get request_path }.to_not change { EditRegistration.where(reference: edit_registration.reference).count }.from(1)
+              expect { get request_path }.not_to change { EditRegistration.where(reference: edit_registration.reference).count }.from(1)
             end
           end
         end
@@ -89,6 +89,7 @@ module WasteExemptionsEngine
 
     describe "unable to go submit GET back" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/back" }
+
       it "raises an error" do
         expect { get request_path }.to raise_error(ActionController::RoutingError)
       end
@@ -97,12 +98,13 @@ module WasteExemptionsEngine
     describe "POST edit_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/" }
 
-      before(:each) do
+      before do
         WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
       end
 
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
         let(:edit_enabled) { "true" }
+
         status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
         # A successful POST request redirects to the next form in the work flow. We have chosen to
@@ -147,7 +149,8 @@ module WasteExemptionsEngine
        site_grid_reference].each do |edit_action|
       describe "GET edit_#{edit_action}" do
         let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/#{edit_action}" }
-        before(:each) do
+
+        before do
           WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
         end
 
@@ -157,6 +160,7 @@ module WasteExemptionsEngine
           let(:redirection_path) do
             send("new_#{next_workflow_state}_path".to_sym, form.transient_registration.token)
           end
+
           status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
           it "redirects to the appropriate location" do

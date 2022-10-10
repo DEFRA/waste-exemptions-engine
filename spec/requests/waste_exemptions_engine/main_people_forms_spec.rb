@@ -54,7 +54,7 @@ module WasteExemptionsEngine
         let(:person_one) { create(:transient_person) }
         let(:person_two) { create(:transient_person) }
 
-        before(:each) { form.transient_registration.people = [person_one, person_two] }
+        before { form.transient_registration.people = [person_one, person_two] }
 
         it "re-renders the form template and returns a #{status_code} status code" do
           delete delete_person_main_people_forms_path(token: form.token, id: person_one.id)

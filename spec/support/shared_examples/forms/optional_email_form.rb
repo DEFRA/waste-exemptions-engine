@@ -27,6 +27,7 @@ RSpec.shared_examples "an optional email form", vcr: true do |form_factory, emai
     end
   end
 
+  # rubocop:disable RSpec/NestedGroups
   describe "#submit" do
     let(:params) do
       {
@@ -37,34 +38,32 @@ RSpec.shared_examples "an optional email form", vcr: true do |form_factory, emai
     end
     let(:email_address) { Faker::Internet.email }
     let(:is_back_office) { false }
+
     before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(is_back_office) }
 
     shared_examples "should submit" do
       it "submits the form successfully" do
-        expect(form.submit(ActionController::Parameters.new(params))).to eq(true)
+        expect(form.submit(ActionController::Parameters.new(params))).to be(true)
       end
     end
 
     shared_examples "should not submit" do
       it "does not submit the form successfully" do
-        expect(form.submit(ActionController::Parameters.new(params))).to eq(false)
+        expect(form.submit(ActionController::Parameters.new(params))).to be(false)
       end
     end
 
     context "when the form is valid" do
       context "when running in the front office" do
         let(:is_back_office) { false }
+        let(:email_address) { Faker::Internet.email }
 
-        context "with an email address" do
-          let(:email_address) { Faker::Internet.email }
+        it_behaves_like "should submit"
 
-          it_behaves_like "should submit"
-
-          it "updates the transient registration with the contact email address" do
-            expect { form.submit(ActionController::Parameters.new(params).permit!) }
-              .to change { form.transient_registration.send(email_attribute) }
-              .from(nil).to(email_address)
-          end
+        it "updates the transient registration with the contact email address" do
+          expect { form.submit(ActionController::Parameters.new(params).permit!) }
+            .to change { form.transient_registration.send(email_attribute) }
+            .from(nil).to(email_address)
         end
       end
 
@@ -127,4 +126,5 @@ RSpec.shared_examples "an optional email form", vcr: true do |form_factory, emai
       end
     end
   end
+  # rubocop:enable RSpec/NestedGroups
 end

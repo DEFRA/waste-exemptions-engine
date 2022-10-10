@@ -16,9 +16,9 @@ module WasteExemptionsEngine
 
         context "when renewing_registration.partnership? is true" do
           [TransientRegistration::BUSINESS_TYPES[:partnership]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
                 expect(permitted_states).to match_array([next_state])
@@ -31,9 +31,9 @@ module WasteExemptionsEngine
           [TransientRegistration::BUSINESS_TYPES[:charity],
            TransientRegistration::BUSINESS_TYPES[:local_authority],
            TransientRegistration::BUSINESS_TYPES[:sole_trader]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
                 expect(permitted_states).to match_array([next_state])

@@ -10,7 +10,7 @@ RSpec.shared_examples "an activator of exemptions" do |model_factory|
   end
 
   it "can use AASM defined scopes on statuses" do
-    expect { described_class.active.first }.to_not raise_error
+    expect { described_class.active.first }.not_to raise_error
   end
 
   describe "#activate_exemption" do
@@ -18,8 +18,8 @@ RSpec.shared_examples "an activator of exemptions" do |model_factory|
       registration_date = Date.today
       expiration_date = registration_date + WasteExemptionsEngine.configuration.years_before_expiry.years - 1.day
 
-      expect(instance.registered_on).to eq(nil)
-      expect(instance.expires_on).to eq(nil)
+      expect(instance.registered_on).to be_nil
+      expect(instance.expires_on).to be_nil
       instance.activate_exemption
       expect(instance.registered_on).to eq(registration_date)
       expect(instance.expires_on).to eq(expiration_date)

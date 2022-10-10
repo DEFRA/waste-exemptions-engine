@@ -5,25 +5,26 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe NotifyConfirmationLetterPresenter do
     let(:registration) { create(:registration, :complete, :with_active_exemptions) }
-    subject { described_class.new(registration) }
+
+    subject(:presenter) { described_class.new(registration) }
 
     describe "#date_registered" do
       it "returns the correct value" do
-        expect(registration.registration_exemptions.first).to receive(:registered_on).and_return(Date.new(2020, 1, 1))
-        expect(subject.date_registered).to eq("1 January 2020")
+        allow(registration.registration_exemptions.first).to receive(:registered_on).and_return(Date.new(2020, 1, 1))
+        expect(presenter.date_registered).to eq("1 January 2020")
       end
     end
 
     describe "#applicant_name" do
       it "returns the correct value" do
-        expect(subject.applicant_name).to eq("#{registration.applicant_first_name} #{registration.applicant_last_name}")
+        expect(presenter.applicant_name).to eq("#{registration.applicant_first_name} #{registration.applicant_last_name}")
       end
     end
 
     describe "#applicant_email" do
       context "when an email is present" do
         it "returns the correcrt value" do
-          expect(subject.applicant_email_section).to eq(registration.applicant_email.to_s)
+          expect(presenter.applicant_email_section).to eq(registration.applicant_email.to_s)
         end
       end
 
@@ -32,14 +33,14 @@ module WasteExemptionsEngine
         let(:email) { nil }
 
         it "returns the correct value" do
-          expect(subject.applicant_email_section).to eq("Email: Not present")
+          expect(presenter.applicant_email_section).to eq("Email: Not present")
         end
       end
     end
 
     describe "#contact_name" do
       it "returns the correct value" do
-        expect(subject.contact_name).to eq("#{registration.contact_first_name} #{registration.contact_last_name}")
+        expect(presenter.contact_name).to eq("#{registration.contact_first_name} #{registration.contact_last_name}")
       end
     end
 
@@ -64,7 +65,7 @@ module WasteExemptionsEngine
             "Business or organisation address: #{address_text}"
           ]
 
-          expect(subject.business_details_section).to eq(expected_array)
+          expect(presenter.business_details_section).to eq(expected_array)
         end
       end
 
@@ -91,7 +92,7 @@ module WasteExemptionsEngine
             "Partnership address: #{address_text}"
           ]
 
-          expect(subject.business_details_section).to eq(expected_array)
+          expect(presenter.business_details_section).to eq(expected_array)
         end
       end
 
@@ -116,7 +117,7 @@ module WasteExemptionsEngine
             "Registered address of the company: #{address_text}"
           ]
 
-          expect(subject.business_details_section).to eq(expected_array)
+          expect(presenter.business_details_section).to eq(expected_array)
         end
       end
     end
@@ -134,7 +135,7 @@ module WasteExemptionsEngine
             "Email: #{registration.contact_email}"
           ]
 
-          expect(subject.contact_details_section).to eq(expected_array)
+          expect(presenter.contact_details_section).to eq(expected_array)
         end
 
         context "when a contact email is not specified" do
@@ -150,7 +151,7 @@ module WasteExemptionsEngine
               "Email: Not present"
             ]
 
-            expect(subject.contact_details_section).to eq(expected_array)
+            expect(presenter.contact_details_section).to eq(expected_array)
           end
         end
       end
@@ -166,7 +167,7 @@ module WasteExemptionsEngine
             "Email: #{registration.contact_email}"
           ]
 
-          expect(subject.contact_details_section).to eq(expected_array)
+          expect(presenter.contact_details_section).to eq(expected_array)
         end
       end
     end
@@ -190,7 +191,7 @@ module WasteExemptionsEngine
             "Waste operation location: #{address_text}"
           ]
 
-          expect(subject.location_section).to eq(expected_array)
+          expect(presenter.location_section).to eq(expected_array)
         end
       end
 
@@ -203,7 +204,7 @@ module WasteExemptionsEngine
             "Site details: #{registration.site_address.description}"
           ]
 
-          expect(subject.location_section).to eq(expected_array)
+          expect(presenter.location_section).to eq(expected_array)
         end
       end
     end
@@ -211,9 +212,11 @@ module WasteExemptionsEngine
     describe "#exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
 
+      # rubocop:disable RSpec/AnyInstance
       before do
         allow_any_instance_of(RegistrationExemption).to receive(:expires_on).and_return(Date.new(2099, 1, 1))
       end
+      # rubocop:enable RSpec/AnyInstance
 
       it "returns an array with the correct exemptions" do
         expected_array = []
@@ -221,7 +224,7 @@ module WasteExemptionsEngine
           expected_array << "#{re.exemption.code}: #{re.exemption.summary} – Expires on 1 January 2099"
         end
 
-        expect(subject.exemptions_section).to eq(expected_array)
+        expect(presenter.exemptions_section).to eq(expected_array)
       end
 
       context "when some exemptions are not active" do
@@ -236,7 +239,7 @@ module WasteExemptionsEngine
             "#{active_exemption.code}: #{active_exemption.summary} – Expires on 1 January 2099"
           ]
 
-          expect(subject.exemptions_section).to eq(expected_array)
+          expect(presenter.exemptions_section).to eq(expected_array)
         end
       end
     end
@@ -244,12 +247,14 @@ module WasteExemptionsEngine
     describe "#deregistered_exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
 
+      # rubocop:disable RSpec/AnyInstance
       before do
         allow_any_instance_of(RegistrationExemption).to receive(:deregistered_at).and_return(Date.new(2000, 1, 1))
 
         registration.registration_exemptions[1].update(state: "ceased")
         registration.registration_exemptions[2].update(state: "revoked")
       end
+      # rubocop:enable RSpec/AnyInstance
 
       it "only lists inactive exemptions" do
         ceased_exemption = registration.registration_exemptions[1].exemption
@@ -259,7 +264,7 @@ module WasteExemptionsEngine
           "#{revoked_exemption.code}: #{revoked_exemption.summary} – Revoked on 1 January 2000"
         ]
 
-        expect(subject.deregistered_exemptions_section).to eq(expected_array)
+        expect(presenter.deregistered_exemptions_section).to eq(expected_array)
       end
     end
   end

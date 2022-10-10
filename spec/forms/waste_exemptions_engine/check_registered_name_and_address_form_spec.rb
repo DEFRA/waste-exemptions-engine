@@ -7,11 +7,13 @@ module WasteExemptionsEngine
   RSpec.describe CheckRegisteredNameAndAddressForm, type: :model do
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
+    let(:companies_house_instance) { instance_double(DefraRubyCompaniesHouse) }
 
     before do
-      allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
-      allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:company_name).and_return(company_name)
-      allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:registered_office_address_lines).and_return(company_address)
+      allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_instance)
+      allow(companies_house_instance).to receive(:load_company).and_return(true)
+      allow(companies_house_instance).to receive(:company_name).and_return(company_name)
+      allow(companies_house_instance).to receive(:registered_office_address_lines).and_return(company_address)
     end
 
     it_behaves_like "a validated form", :check_registered_name_and_address_form do
@@ -31,15 +33,13 @@ module WasteExemptionsEngine
     describe "#submit" do
       let(:form) { build(:check_registered_name_and_address_form) }
 
-      subject do
-        form.submit(temp_use_registered_company_details: temp_use_registered_company_details)
-      end
+      subject(:submit_form) { form.submit(temp_use_registered_company_details: temp_use_registered_company_details) }
 
       context "when temp_use_registered_company_details is true" do
         let(:temp_use_registered_company_details) { "true" }
 
         it "assigns the registered company name as the operator name" do
-          subject
+          submit_form
 
           expect(form.registered_company_name).to eq(form.operator_name)
         end
@@ -49,7 +49,7 @@ module WasteExemptionsEngine
         let(:temp_use_registered_company_details) { "false" }
 
         it "does not assign the operator name" do
-          subject
+          submit_form
 
           expect(form.transient_registration.operator_name).to be_blank
         end

@@ -13,7 +13,7 @@ module WasteExemptionsEngine
         context "when renewing_registrations business type is a company or llp" do
           [TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership],
            TransientRegistration::BUSINESS_TYPES[:limited_company]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
             it "can transition to #{next_state}" do
               expect(renewing_registration).to transition_from(current_state).to(next_state).on_event(:next)
@@ -26,7 +26,7 @@ module WasteExemptionsEngine
            TransientRegistration::BUSINESS_TYPES[:local_authority],
            TransientRegistration::BUSINESS_TYPES[:partnership],
            TransientRegistration::BUSINESS_TYPES[:sole_trader]].each do |business_type|
-            before(:each) { renewing_registration.business_type = business_type }
+            before { renewing_registration.business_type = business_type }
 
             it "can only transition to #{next_state}" do
               expect(renewing_registration).to transition_from(current_state).to(next_state).on_event(:next)

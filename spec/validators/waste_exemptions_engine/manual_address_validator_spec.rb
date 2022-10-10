@@ -66,10 +66,10 @@ module WasteExemptionsEngine
       end
 
       context "when the manual address is not valid" do
-        context "and the form is empty" do
+        context "when the form is empty" do
           subject(:validatable) { Test::ManualAddressValidatable.new }
           it "confirms the object is invalid" do
-            expect(validatable).to_not be_valid
+            expect(validatable).not_to be_valid
           end
 
           it "adds as many validation errors to the record as there are required fields" do
@@ -78,11 +78,11 @@ module WasteExemptionsEngine
           end
         end
 
-        context "and every attribute is too long" do
+        context "when every attribute is too long" do
           subject(:validatable) { Test::ManualAddressValidatable.new(*too_long_parameters) }
 
           it "confirms the object is invalid" do
-            expect(validatable).to_not be_valid
+            expect(validatable).not_to be_valid
           end
 
           it "adds as many validation errors to the record as there are length validated fields" do

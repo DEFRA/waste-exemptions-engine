@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe PluralsHelper, type: :helper do
     describe "#exemptions_plural" do
-      let(:form) { double(:form, exemptions: exemptions) }
+      let(:form) { instance_double(RegistrationCompleteForm, exemptions: exemptions) }
 
       context "when there is more than one exemption" do
         let(:exemptions) { %i[exemption_1 exemption_2] }
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
     end
 
     describe "#confirmation_comms" do
-      let(:form) { double(:form, applicant_email: applicant_email, contact_email: contact_email) }
+      let(:form) { instance_double(RegistrationCompleteForm, applicant_email: applicant_email, contact_email: contact_email) }
 
       context "when applicant and contact emails are different" do
         let(:applicant_email) { "applicant_email@test.com" }

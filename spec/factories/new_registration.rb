@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :new_registration, class: WasteExemptionsEngine::NewRegistration do
+  factory :new_registration, class: "WasteExemptionsEngine::NewRegistration" do
     trait :limited_company do
       business_type { WasteExemptionsEngine::NewRegistration::BUSINESS_TYPES[:limited_company] }
     end

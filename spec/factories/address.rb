@@ -4,7 +4,7 @@ FactoryBot.define do
   address_types = WasteExemptionsEngine::Address.address_types
   modes = WasteExemptionsEngine::Address.modes
 
-  factory :address, class: WasteExemptionsEngine::Address do
+  factory :address, class: "WasteExemptionsEngine::Address" do
     trait :operator_address do
       address_type { address_types[:operator] }
     end

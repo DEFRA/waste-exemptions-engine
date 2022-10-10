@@ -6,14 +6,14 @@ module WasteExemptionsEngine
   RSpec.describe ContactAddressManualForm, type: :model do
     let(:form_factory) { :contact_address_manual_form }
 
+    after { VCR.eject_cassette }
+    before { VCR.insert_cassette("postcode_valid") }
+
     it "validates the address data using the ManualAddressValidator class" do
       validators = build(form_factory)._validators
       validator_classes = validators.values.flatten.map(&:class)
       expect(validator_classes).to include(WasteExemptionsEngine::ManualAddressValidator)
     end
-
-    before(:each) { VCR.insert_cassette("postcode_valid") }
-    after(:each) { VCR.eject_cassette }
 
     it_behaves_like "a validated form", :contact_address_manual_form do
       let(:valid_params) do
@@ -77,19 +77,7 @@ module WasteExemptionsEngine
             }
           }
         end
-        let(:white_space_address_data) do
-          {
-            contact_address: {
-              premises: "  Example House ",
-              street_address: " 2 On The Road  ",
-              locality: " Near Horizon House   ",
-              city: "  Bristol  ",
-              postcode: "   BS1 5AH  "
-            }
-          }
-        end
         let(:valid_params) { address_data }
-        let(:white_space_params) { white_space_address_data }
         let(:transient_registration) { form.transient_registration }
 
         it "updates the transient registration with the submitted address data" do
@@ -106,6 +94,19 @@ module WasteExemptionsEngine
         end
 
         context "when the address data includes extraneous white space" do
+          let(:white_space_address_data) do
+            {
+              contact_address: {
+                premises: "  Example House ",
+                street_address: " 2 On The Road  ",
+                locality: " Near Horizon House   ",
+                city: "  Bristol  ",
+                postcode: "   BS1 5AH  "
+              }
+            }
+          end
+          let(:white_space_params) { white_space_address_data }
+
           it "strips the extraneous white space from the submitted address data" do
             # Ensure the test data is properly configured:
             address_data[:contact_address].each do |key, value|

@@ -2,7 +2,7 @@
 
 RSpec.shared_examples "a simple bidirectional transition" do |current_state:, next_state:, factory:|
   context "when a subject's state is #{current_state}" do
-    subject(:subject) { create(factory, workflow_state: current_state) }
+    subject { create(factory, workflow_state: current_state) }
 
     it "can only transition to #{next_state}" do
       permitted_states = Helpers::WorkflowStates.permitted_states(subject)

@@ -4,10 +4,12 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe NotifyConfirmationLetterService do
+
+    # rubocop:disable RSpec/AnyInstance
     describe "run" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
       let(:service) do
-        NotifyConfirmationLetterService.run(registration: registration)
+        described_class.run(registration: registration)
       end
 
       it "sends a letter" do
@@ -25,5 +27,6 @@ module WasteExemptionsEngine
         end
       end
     end
+    # rubocop:enable RSpec/AnyInstance
   end
 end

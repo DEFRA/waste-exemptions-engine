@@ -6,14 +6,15 @@ module WasteExemptionsEngine
   RSpec.describe "Edit Cancelled Forms", type: :request do
     let(:form) { build(:edit_cancelled_form) }
     let(:edit_enabled) { "true" }
-    before(:each) do
+
+    before do
       WasteExemptionsEngine.configuration.edit_enabled = edit_enabled
     end
 
     describe "GET edit_cancelled_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit-cancelled" }
 
-      it "renders the appropriate template, returns a 200 status  code and W3C valid HTML content" do
+      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content" do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/edit_cancelled_forms/new")

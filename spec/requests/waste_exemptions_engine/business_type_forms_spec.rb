@@ -18,9 +18,9 @@ module WasteExemptionsEngine
       end
 
       it "does not change the business type" do
-        expect { post "/waste_exemptions_engine/#{renew_business_type_form.token}/business-type", params: params }.not_to change {
-          renewing_registration.business_type
-        }
+        expect do
+          post "/waste_exemptions_engine/#{renew_business_type_form.token}/business-type", params: params
+        end.not_to change(renewing_registration, :business_type)
       end
     end
   end

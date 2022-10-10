@@ -20,14 +20,14 @@ module WasteExemptionsEngine
 
     describe "#validate_each" do
       context "when the exemptions selection is not valid" do
-        context "because the exemptions are not present" do
+        context "when the exemptions are not present" do
           validatable = Test::ExemptionsValidatable.new
           error_message = Helpers::Translator.error_message(validatable, :exemptions, :inclusion)
 
           it_behaves_like "an invalid record", validatable, :exemptions, error_message
         end
 
-        context "because the exemptions are empty" do
+        context "when the exemptions are empty" do
           validatable = Test::ExemptionsValidatable.new([])
           error_message = Helpers::Translator.error_message(validatable, :exemptions, :inclusion)
 

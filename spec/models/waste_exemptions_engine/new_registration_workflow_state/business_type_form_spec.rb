@@ -10,22 +10,22 @@ module WasteExemptionsEngine
 
       context "when a NewRegistration's state is #{current_state}" do
         context "when neither new_registration.partnership? nor " \
-        "new_registration.skip_registration_number? are true" do
+                "new_registration.skip_registration_number? are true" do
           next_state = :registration_number_form
 
           [TransientRegistration::BUSINESS_TYPES[:limited_company],
            TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]].each do |business_type|
-            before(:each) { new_registration.business_type = business_type }
+            before { new_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
                 expect(permitted_states).to match_array([next_state])
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to eq(false)
-                expect(new_registration.send(:skip_registration_number?)).to eq(false)
+                expect(new_registration.send(:partnership?)).to be(false)
+                expect(new_registration.send(:skip_registration_number?)).to be(false)
                 expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
               end
             end
@@ -36,17 +36,17 @@ module WasteExemptionsEngine
           next_state = :main_people_form
 
           [TransientRegistration::BUSINESS_TYPES[:partnership]].each do |business_type|
-            before(:each) { new_registration.business_type = business_type }
+            before { new_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
                 expect(permitted_states).to match_array([next_state])
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to eq(true)
-                expect(new_registration.send(:skip_registration_number?)).to eq(true)
+                expect(new_registration.send(:partnership?)).to be(true)
+                expect(new_registration.send(:skip_registration_number?)).to be(true)
                 expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
               end
             end
@@ -59,17 +59,17 @@ module WasteExemptionsEngine
           [TransientRegistration::BUSINESS_TYPES[:charity],
            TransientRegistration::BUSINESS_TYPES[:local_authority],
            TransientRegistration::BUSINESS_TYPES[:sole_trader]].each do |business_type|
-            before(:each) { new_registration.business_type = business_type }
+            before { new_registration.business_type = business_type }
 
-            context "and the business type is #{business_type}" do
+            context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
                 expect(permitted_states).to match_array([next_state])
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to eq(false)
-                expect(new_registration.send(:skip_registration_number?)).to eq(true)
+                expect(new_registration.send(:partnership?)).to be(false)
+                expect(new_registration.send(:skip_registration_number?)).to be(true)
                 expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
               end
             end

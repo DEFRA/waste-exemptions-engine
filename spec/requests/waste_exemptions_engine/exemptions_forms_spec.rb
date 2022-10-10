@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Exemptions Forms", type: :request do
-    before(:context) do
+    before do
       WasteExemptionsEngine::Exemption.delete_all
       create_list(:exemption, 5)
     end

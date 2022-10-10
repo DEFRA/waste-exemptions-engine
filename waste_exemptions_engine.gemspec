@@ -17,17 +17,16 @@ Gem::Specification.new do |s|
   s.license     = "The Open Government Licence (OGL) Version 3"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
-  s.required_ruby_version = ">= 2.4"
+  s.required_ruby_version = ">= 3.1"
 
   # Use AASM to manage states and transitions
-  s.add_dependency "aasm", "~> 4.12"
+  s.add_dependency "aasm", "~> 5.3"
 
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "~> 6.1"
 
   # Use rest-client for external requests, eg. to Companies House
-  s.add_dependency "rest-client", "~> 2.0"
+  s.add_dependency "rest-client", "~> 2.1"
 
   # sprockets-4.0.0 requires ruby version >= 2.5.0, which is incompatible with the current version, ruby 2.4.2p198
   s.add_dependency "sprockets"
@@ -89,9 +88,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pdf-reader"
   s.add_development_dependency "pry-byebug"
   s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "simplecov", "~> 0.17.1"
+  s.add_development_dependency "simplecov", "~> 0.21.2"
   s.add_development_dependency "timecop"
   s.add_development_dependency "vcr"
   s.add_development_dependency "w3c_validators"
   s.add_development_dependency "webmock"
+  s.metadata["rubygems_mfa_required"] = "true"
 end

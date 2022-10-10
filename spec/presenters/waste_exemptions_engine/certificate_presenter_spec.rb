@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe CertificatePresenter do
-    subject { described_class.new(registration) }
+    subject(:presenter) { described_class.new(registration) }
 
     describe "#partners_names" do
       let(:registration) { build(:registration, :partnership) }
@@ -14,7 +14,7 @@ module WasteExemptionsEngine
           "#{partner.first_name} #{partner.last_name}"
         end.join("</br>")
 
-        expect(subject.partners_names).to eq(result)
+        expect(presenter.partners_names).to eq(result)
       end
     end
   end

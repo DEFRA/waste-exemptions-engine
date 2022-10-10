@@ -21,7 +21,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
 
       flexible_navigation_allowed = Helpers::WorkflowStates.can_navigate_flexibly_to_state?(form_factory)
 
-      context "and the form can navigate flexibly", if: flexible_navigation_allowed do
+      context "when the form can navigate flexibly", if: flexible_navigation_allowed do
         let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
         let(:incorrect_form) { build(incorrect_workflow_state) }
 
@@ -37,7 +37,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         end
       end
 
-      context "and the form can not navigate flexibly", unless: flexible_navigation_allowed do
+      context "when the form can not navigate flexibly", unless: flexible_navigation_allowed do
         status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
         let(:incorrect_form) { build(:start_form) }
 

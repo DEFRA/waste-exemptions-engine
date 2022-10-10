@@ -21,15 +21,13 @@ module WasteExemptionsEngine
     describe "#submit" do
       let(:form) { build(:check_contact_phone_form) }
 
-      subject do
-        form.submit(temp_reuse_applicant_phone: temp_reuse_applicant_phone)
-      end
+      subject(:submit_form) { form.submit(temp_reuse_applicant_phone: temp_reuse_applicant_phone) }
 
       context "when temp_reuse_applicant_phone is true" do
         let(:temp_reuse_applicant_phone) { "true" }
 
         it "assigns the applicant_phone as the contact_phone" do
-          subject
+          submit_form
 
           expect(form.contact_phone).to eq(form.applicant_phone)
         end
@@ -39,7 +37,7 @@ module WasteExemptionsEngine
         let(:temp_reuse_applicant_phone) { "false" }
 
         it "does not assign the contact_phone" do
-          subject
+          submit_form
 
           expect(form.transient_registration.contact_phone).to be_blank
         end

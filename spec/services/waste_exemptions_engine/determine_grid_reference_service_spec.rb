@@ -8,28 +8,36 @@ module WasteExemptionsEngine
     describe ".run" do
       let(:easting) { 358_337.0 }
       let(:northing) { 172_855.0 }
-      let(:location) { double(:location) }
 
-      context "given 6-digit easting and northing values" do
+      before do
+        allow(Airbrake).to receive(:notify)
+        allow(Rails.logger).to receive(:error)
+      end
+
+      context "with 6-digit easting and northing values" do
         it "fetches a grid reference from OS Maps" do
           expect(described_class.run(easting: easting, northing: northing)).to eq("ST 58337 72855")
         end
 
         it "does not notify Airbrake and Rails" do
-          expect(Airbrake).to_not receive(:notify)
-          expect(Rails.logger).to_not receive(:error)
+          described_class.run(easting: easting, northing: northing)
+
+          expect(Airbrake).not_to have_received(:notify)
+          expect(Rails.logger).not_to have_received(:error)
         end
       end
 
-      context "given a 5-digit easting value" do
+      context "with a 5-digit easting value" do
         let(:easting) { 58_337.0 }
+
         it "fetches the correct grid reference" do
           expect(described_class.run(easting: easting, northing: northing)).to eq("SQ 58337 72855")
         end
       end
 
-      context "given a 5-digit northing value" do
+      context "with a 5-digit northing value" do
         let(:northing) { 70_817.0 }
+
         it "fetches the correct grid reference" do
           expect(described_class.run(easting: easting, northing: northing)).to eq("SY 58337 70817")
         end
@@ -37,7 +45,7 @@ module WasteExemptionsEngine
 
       context "when an error happens" do
         before do
-          expect(OsMapRef::Location).to receive(:for).and_raise(StandardError)
+          allow(OsMapRef::Location).to receive(:for).and_raise(StandardError)
         end
 
         it "returns nil" do
@@ -45,10 +53,10 @@ module WasteExemptionsEngine
         end
 
         it "notify Airbrake and Rails" do
-          expect(Airbrake).to receive(:notify)
-          expect(Rails.logger).to receive(:error)
-
           described_class.run(easting: easting, northing: northing)
+
+          expect(Airbrake).to have_received(:notify)
+          expect(Rails.logger).to have_received(:error)
         end
       end
     end

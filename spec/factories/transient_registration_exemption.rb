@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :transient_registration_exemption, class: WasteExemptionsEngine::TransientRegistrationExemption do
+  factory :transient_registration_exemption, class: "WasteExemptionsEngine::TransientRegistrationExemption" do
     trait :expires_on do
       expires_on { 3.years.from_now }
     end

@@ -9,9 +9,7 @@ module WasteExemptionsEngine
              :complete)
     end
 
-    subject do
-      described_class.new(new_registration)
-    end
+    subject(:presenter) { described_class.new(new_registration) }
 
     describe "#company_rows" do
       let(:expected_data) do
@@ -70,10 +68,10 @@ module WasteExemptionsEngine
       end
 
       it "returns the properly-formatted data for a company" do
-        expect(subject.company_rows).to eq(expected_data)
+        expect(presenter.company_rows).to eq(expected_data)
       end
 
-      context "for a charity" do
+      context "when the company is a charity" do
         before do
           new_registration.business_type = "charity"
           expected_data[0][:value] = "Charity or trust"
@@ -83,7 +81,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the properly-formatted data" do
-          expect(subject.company_rows).to eq(expected_data)
+          expect(presenter.company_rows).to eq(expected_data)
         end
       end
 
@@ -98,7 +96,7 @@ module WasteExemptionsEngine
         before do
           first_partner = new_registration.transient_people.first
           second_partner = new_registration.transient_people.last
-          partner_text = "#{first_partner.first_name} #{first_partner.last_name}<br>"\
+          partner_text = "#{first_partner.first_name} #{first_partner.last_name}<br>" \
                          "#{second_partner.first_name} #{second_partner.last_name}".html_safe
 
           expected_data[0][:value] = "Partnership"
@@ -108,7 +106,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the properly-formatted data" do
-          expect(subject.company_rows).to eq(expected_data)
+          expect(presenter.company_rows).to eq(expected_data)
         end
       end
     end
@@ -152,7 +150,7 @@ module WasteExemptionsEngine
       end
 
       it "returns the properly-formatted data" do
-        expect(subject.registration_rows).to eq(expected_data)
+        expect(presenter.registration_rows).to eq(expected_data)
       end
 
       context "when the site address is a postal address" do
@@ -175,7 +173,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the properly-formatted data" do
-          expect(subject.registration_rows).to eq(expected_data)
+          expect(presenter.registration_rows).to eq(expected_data)
         end
       end
     end

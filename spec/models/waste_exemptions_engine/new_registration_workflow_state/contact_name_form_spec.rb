@@ -8,6 +8,7 @@ module WasteExemptionsEngine
       current_state = :contact_name_form
       next_state = :contact_position_form
       let(:operator_address) { build(:transient_address, :operator_address) }
+
       subject(:new_registration) do
         create(:new_registration, workflow_state: current_state, addresses: [operator_address])
       end

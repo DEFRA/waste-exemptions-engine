@@ -4,9 +4,11 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationNumberForm, type: :model do
+    # rubocop:disable RSpec/AnyInstance
     before do
       allow_any_instance_of(DefraRuby::Validators::CompaniesHouseService).to receive(:status).and_return(:active)
     end
+    # rubocop:enable RSpec/AnyInstance
 
     subject(:form) { build(:registration_number_form) }
 
@@ -36,41 +38,41 @@ module WasteExemptionsEngine
         end
 
         context "when the company_no is less than 8 characters" do
-          before(:each) { valid_params[:company_no] = "946107" }
+          before { valid_params[:company_no] = "946107" }
 
-          it "should pad company_no with 0s" do
+          it "pads company_no with 0s" do
             form.submit(valid_params)
             expect(form.company_no).to eq("00946107")
           end
 
-          it "should submit" do
-            expect(form.submit(valid_params)).to eq(true)
+          it "submits" do
+            expect(form.submit(valid_params)).to be(true)
           end
         end
 
         context "when the company_no is lowercase" do
-          before(:each) { valid_params[:company_no] = "sc534714" }
+          before { valid_params[:company_no] = "sc534714" }
 
-          it "should convert company_no to uppercase" do
+          it "converts company_no to uppercase" do
             form.submit(valid_params)
             expect(form.company_no).to eq("SC534714")
           end
 
-          it "should submit" do
-            expect(form.submit(valid_params)).to eq(true)
+          it "submits" do
+            expect(form.submit(valid_params)).to be(true)
           end
         end
 
         context "when the company_no starts or ends with whitespace" do
-          before(:each) { valid_params[:company_no] = "  SC534714  " }
+          before { valid_params[:company_no] = "  SC534714  " }
 
-          it "should remove the whitespace" do
+          it "removes the whitespace" do
             form.submit(valid_params)
             expect(form.company_no).to eq("SC534714")
           end
 
-          it "should submit" do
-            expect(form.submit(valid_params)).to eq(true)
+          it "submits" do
+            expect(form.submit(valid_params)).to be(true)
           end
         end
       end

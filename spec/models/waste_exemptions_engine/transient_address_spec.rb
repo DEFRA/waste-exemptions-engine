@@ -24,19 +24,21 @@ module WasteExemptionsEngine
     end
 
     describe "hooks" do
-      context "creating a non-site address" do
-        it "does not attempt to update the x, y, grid reference or area fields" do
-          expect(AssignSiteDetailsService).not_to receive(:run)
+      before { allow(AssignSiteDetailsService).to receive(:run) }
 
+      context "when creating a non-site address" do
+        it "does not attempt to update the x, y, grid reference or area fields" do
           create(:transient_address)
+
+          expect(AssignSiteDetailsService).not_to have_received(:run)
         end
       end
 
-      context "creating a site address" do
+      context "when creating a site address" do
         it "does attempt to update the x, y, grid reference or area fields" do
-          expect(AssignSiteDetailsService).to receive(:run)
-
           create(:transient_address, :site_address)
+
+          expect(AssignSiteDetailsService).to have_received(:run)
         end
       end
     end
@@ -81,6 +83,7 @@ module WasteExemptionsEngine
         }
       end
       let(:address_type) { 2 }
+
       subject(:address) { described_class.create_from_address_finder_data(address_finder_data, address_type) }
 
       it "creates an address from the address finder data" do
@@ -91,8 +94,8 @@ module WasteExemptionsEngine
     end
 
     describe ".create_from_grid_reference_data", vcr: true do
-      before(:context) { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
-      after(:context) { VCR.eject_cassette }
+      before { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
+      after { VCR.eject_cassette }
 
       let(:grid_reference_data) do
         {
@@ -107,6 +110,7 @@ module WasteExemptionsEngine
         }
       end
       let(:address_type) { 3 }
+
       subject(:address) { described_class.create_from_grid_reference_data(grid_reference_data, address_type) }
 
       it "creates an address from the grid reference" do

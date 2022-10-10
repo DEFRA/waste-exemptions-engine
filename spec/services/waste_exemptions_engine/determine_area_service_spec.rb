@@ -16,7 +16,7 @@ module WasteExemptionsEngine
 
       context "when the lookup is successful" do
         let(:response) do
-          double(:response, successful?: true, areas: [double(:area, long_name: "Wessex")])
+          instance_double(DefraRuby::Area::Response, successful?: true, areas: [instance_double(DefraRuby::Area::Area, long_name: "Wessex")])
         end
 
         it "returns the matching area" do
@@ -24,32 +24,36 @@ module WasteExemptionsEngine
         end
 
         it "does not notify Airbrake of the error" do
-          expect(Airbrake).to_not receive(:notify)
+          allow(Airbrake).to receive(:notify)
 
           described_class.run(coordinates)
+
+          expect(Airbrake).not_to have_received(:notify)
         end
       end
 
       context "when the lookup is unsuccessful" do
-        context "because no match was found" do
-          let(:response) { double(:response, successful?: false, error: DefraRuby::Area::NoMatchError.new) }
+        context "with no match found" do
+          let(:response) { instance_double(DefraRuby::Area::Response, successful?: false, error: DefraRuby::Area::NoMatchError.new) }
 
           it "returns 'Outside England'" do
             expect(described_class.run(coordinates)).to eq("Outside England")
           end
         end
 
-        context "because it failed" do
-          let(:response) { double(:response, successful?: false, error: StandardError.new) }
+        context "with a failure" do
+          let(:response) { instance_double(DefraRuby::Area::Response, successful?: false, error: StandardError.new) }
 
           it "returns 'nil'" do
             expect(described_class.run(coordinates)).to be_nil
           end
 
           it "uses Airbrake to notify Errbit of the error" do
-            expect(Airbrake).to receive(:notify)
+            allow(Airbrake).to receive(:notify)
 
             described_class.run(coordinates)
+
+            expect(Airbrake).to have_received(:notify)
           end
         end
       end
