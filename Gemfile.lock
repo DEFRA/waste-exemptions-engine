@@ -247,7 +247,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (1.4.3)
+    pg (1.4.4)
     phonelib (0.7.3)
     protocol-hpack (1.4.2)
     protocol-http (0.23.12)
