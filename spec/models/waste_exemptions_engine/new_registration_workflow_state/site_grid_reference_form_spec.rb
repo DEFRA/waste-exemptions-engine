@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe NewRegistration, type: :model do
+  RSpec.describe NewRegistration do
     describe "#workflow_state" do
       current_state = :site_grid_reference_form
       subject(:new_registration) { create(:new_registration, workflow_state: current_state) }

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Applicant Phone Forms", type: :request do
+  RSpec.describe "Applicant Phone Forms" do
     include_examples "GET form", :applicant_phone_form, "/applicant-phone"
     include_examples "POST form", :applicant_phone_form, "/applicant-phone" do
       let(:form_data) { { applicant_phone: "01234567890" } }

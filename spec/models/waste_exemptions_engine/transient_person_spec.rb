@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe TransientPerson, type: :model do
+  RSpec.describe TransientPerson do
     subject(:transient_person) { build(:transient_person) }
 
     describe "public interface" do

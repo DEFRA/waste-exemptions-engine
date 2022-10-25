@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe RenewingRegistration, type: :model do
+  RSpec.describe RenewingRegistration do
     describe "#workflow_state" do
       next_state = :is_a_farmer_form
       current_state = :on_a_farm_form

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe RenewingRegistration, type: :model do
+  RSpec.describe RenewingRegistration do
     describe "#workflow_state" do
       current_state = :check_registered_name_and_address_form
       subject(:renewing_registration) { create(:renewing_registration, workflow_state: current_state) }

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration, type: :model do
+  RSpec.describe EditRegistration do
     subject(:edit_registration) { create(:edit_registration) }
 
     it_behaves_like "a transient_registration", :edit_registration

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Start Forms", type: :request do
+  RSpec.describe "Start Forms" do
     let(:form) { build(:start_form) }
 
     describe "GET start_form" do

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Renewal Start Forms", type: :request do
+  RSpec.describe "Renewal Start Forms" do
     let(:form) { build(:renewal_start_form) }
 
     describe "GET renewal_start_form" do

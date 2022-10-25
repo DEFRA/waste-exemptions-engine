@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe TransientAddress, type: :model do
+  RSpec.describe TransientAddress do
     subject(:transient_address) { build(:transient_address) }
 
     describe "public interface" do

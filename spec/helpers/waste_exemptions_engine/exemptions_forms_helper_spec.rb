@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe ExemptionsFormsHelper, type: :helper do
+  RSpec.describe ExemptionsFormsHelper do
     describe "#all_exemptions" do
       it "returns a list of all exemptions ordered by ID" do
         # FIXME: There are still tests leaving the DB dirty with exemptions.

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Operator Postcode Forms", type: :request do
+  RSpec.describe "Operator Postcode Forms" do
     include_examples "GET form", :operator_postcode_form, "/operator-postcode"
     include_examples "POST form", :operator_postcode_form, "/operator-postcode" do
       let(:form_data) { { temp_operator_postcode: "BS1 5AH" } }

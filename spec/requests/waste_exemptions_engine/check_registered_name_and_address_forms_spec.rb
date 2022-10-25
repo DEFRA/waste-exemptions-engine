@@ -4,7 +4,7 @@ require "rails_helper"
 require "defra_ruby_companies_house"
 
 module WasteExemptionsEngine
-  RSpec.describe "Check Registered Name And Address Forms", type: :request do
+  RSpec.describe "Check Registered Name And Address Forms" do
     let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }

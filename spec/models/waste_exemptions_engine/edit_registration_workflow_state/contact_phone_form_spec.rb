@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration, type: :model do
+  RSpec.describe EditRegistration do
     describe "#workflow_state" do
       it_behaves_like "a simple monodirectional transition",
                       previous_and_next_state: :edit_form,

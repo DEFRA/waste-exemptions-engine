@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditHelper, type: :helper do
+  RSpec.describe EditHelper do
     before { helper.instance_variable_set(:@virtual_path, "waste_exemptions_engine.edit_forms.new") }
 
     describe "edit_back_path" do

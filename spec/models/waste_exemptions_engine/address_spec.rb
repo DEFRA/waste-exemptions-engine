@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe Address, type: :model do
+  RSpec.describe Address do
     describe "public interface" do
       subject(:address) { build(:address) }
 

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration, type: :model do
+  RSpec.describe EditRegistration do
     describe "#workflow_state" do
       it_behaves_like "a postcode transition",
                       address_type: "contact",

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Contact Address Manual Forms", type: :request, vcr: true do
+  RSpec.describe "Contact Address Manual Forms", vcr: true do
     before { VCR.insert_cassette("postcode_valid") }
     after { VCR.eject_cassette }
 

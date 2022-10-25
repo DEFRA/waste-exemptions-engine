@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Edit Forms", type: :request do
+  RSpec.describe "Edit Forms" do
     let(:form) { build(:edit_form) }
 
     describe "GET edit_form" do

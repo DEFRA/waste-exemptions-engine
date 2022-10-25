@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Main People Forms", type: :request do
+  RSpec.describe "Main People Forms" do
     let(:form_factory) { :main_people_form }
     let(:form) { build(form_factory) }
     let(:form_path) { "/waste_exemptions_engine/#{form.token}/main-people" }

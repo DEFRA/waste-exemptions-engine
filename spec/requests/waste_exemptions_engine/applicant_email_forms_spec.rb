@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Applicant Email Forms", type: :request do
+  RSpec.describe "Applicant Email Forms" do
     include_examples "GET form", :applicant_email_form, "/applicant-email"
     include_examples "POST form", :applicant_email_form, "/applicant-email" do
       let(:form_data) { { applicant_email: "test@example.com", confirmed_email: "test@example.com" } }

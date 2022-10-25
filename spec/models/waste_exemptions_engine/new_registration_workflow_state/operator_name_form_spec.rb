@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe NewRegistration, type: :model do
+  RSpec.describe NewRegistration do
     describe "#workflow_state" do
       next_state = :operator_postcode_form
       current_state = :operator_name_form

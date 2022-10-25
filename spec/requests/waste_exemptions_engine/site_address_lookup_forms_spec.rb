@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Site Address Lookup Forms", type: :request, vcr: true do
+  RSpec.describe "Site Address Lookup Forms", vcr: true do
     before { VCR.insert_cassette("postcode_valid", allow_playback_repeats: true) }
     after { VCR.eject_cassette }
 

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Renewal Complete Forms", type: :request do
+  RSpec.describe "Renewal Complete Forms" do
     let(:form) { build(:renewal_complete_form) }
 
     describe "GET renewal_complete_form" do

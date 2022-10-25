@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe TransientRegistrationExemption, type: :model do
+  RSpec.describe TransientRegistrationExemption do
     subject(:transient_registration_exemption) { build(:transient_registration_exemption) }
 
     describe "public interface" do

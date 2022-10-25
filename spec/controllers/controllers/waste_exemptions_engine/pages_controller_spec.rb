@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe PagesController, type: :controller do
+  RSpec.describe PagesController do
     it "includes HighVoltage::StaticPage" do
       included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
 

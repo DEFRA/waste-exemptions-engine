@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Confirm Edit Cancelled Forms", type: :request do
+  RSpec.describe "Confirm Edit Cancelled Forms" do
     before do
       WasteExemptionsEngine.configuration.edit_enabled = "true"
     end
