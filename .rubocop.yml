@@ -7,6 +7,10 @@ require: rubocop-rspec
 Naming/VariableNumber:
   Enabled: false
 
+# This cop incorrectly flags the sequence of parameters passed to a shared_example:
+RSpec/SortMetadata:
+  Enabled: false
+
 # The effort to update the existing specs to align with these cops is too high.
 # Future changes to the specs should avoid adding more of these offenses
 # and, where possible, remove existing offenses.

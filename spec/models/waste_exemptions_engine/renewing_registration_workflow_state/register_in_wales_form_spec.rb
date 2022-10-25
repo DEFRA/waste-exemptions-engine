@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe RenewingRegistration, type: :model do
+  RSpec.describe RenewingRegistration do
     describe "#workflow_state" do
       it_behaves_like "a final state",
                       current_state: :register_in_wales_form,

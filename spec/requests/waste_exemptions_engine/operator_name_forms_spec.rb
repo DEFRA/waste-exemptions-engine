@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Operator Name Forms", type: :request do
+  RSpec.describe "Operator Name Forms" do
     include_examples "GET form", :operator_name_form, "/operator-name"
     include_examples "POST form", :operator_name_form, "/operator-name" do
       let(:form_data) { { operator_name: "Acme Waste Carriers" } }

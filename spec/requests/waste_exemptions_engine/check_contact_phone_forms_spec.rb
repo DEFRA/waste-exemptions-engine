@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Check Contact Phone Forms", type: :request do
+  RSpec.describe "Check Contact Phone Forms" do
     include_examples "GET form", :check_contact_phone_form, "/check-contact-phone"
     include_examples "POST form", :check_contact_phone_form, "/check-contact-phone" do
       let(:form_data) { { temp_reuse_applicant_phone: "true" } }

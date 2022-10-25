@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "On a Farm Forms", type: :request do
+  RSpec.describe "On a Farm Forms" do
     include_examples "GET form", :on_a_farm_form, "/on-a-farm"
     include_examples "POST form", :on_a_farm_form, "/on-a-farm" do
       let(:form_data) { { on_a_farm: "true" } }

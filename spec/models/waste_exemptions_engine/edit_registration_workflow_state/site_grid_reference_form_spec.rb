@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration, type: :model do
+  RSpec.describe EditRegistration do
     describe "#workflow_state" do
       previous_and_next_state = :edit_form
       current_state = :site_grid_reference_form

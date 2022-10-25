@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Location Forms", type: :request do
+  RSpec.describe "Location Forms" do
     include_examples "GET form", :location_form, "/location"
     include_examples "POST form", :location_form, "/location" do
       let(:form_data) { { location: "england" } }

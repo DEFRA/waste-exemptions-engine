@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Register In Scotland Forms", type: :request do
+  RSpec.describe "Register In Scotland Forms" do
     include_examples "GET form", :register_in_scotland_form, "/register-in-scotland"
     include_examples "unable to POST form", :register_in_scotland_form, "/register-in-scotland"
   end

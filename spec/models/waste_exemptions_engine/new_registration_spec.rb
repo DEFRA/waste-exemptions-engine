@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe NewRegistration, type: :model do
+  RSpec.describe NewRegistration do
     subject(:new_registration) { create(:new_registration) }
 
     it_behaves_like "a transient_registration", :new_registration

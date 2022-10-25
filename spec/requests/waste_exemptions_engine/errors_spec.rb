@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Errors", type: :request do
+  RSpec.describe "Errors" do
     describe "#show" do
       %w[401 403 404 422].each do |code|
         it "renders the error_#{code} template, responds with a status of #{code}, returns W3C valid HTML content", vcr: true do

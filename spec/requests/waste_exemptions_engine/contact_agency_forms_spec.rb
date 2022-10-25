@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Contact Agency Forms", type: :request do
+  RSpec.describe "Contact Agency Forms" do
     include_examples "GET form", :contact_agency_form, "/contact-agency"
     include_examples "unable to POST form", :contact_agency_form, "/contact-agency"
   end

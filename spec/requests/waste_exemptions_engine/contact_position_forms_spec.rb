@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Contact Position Forms", type: :request do
+  RSpec.describe "Contact Position Forms" do
     include_examples "GET form", :contact_position_form, "/contact-position"
 
     empty_form_is_valid = true

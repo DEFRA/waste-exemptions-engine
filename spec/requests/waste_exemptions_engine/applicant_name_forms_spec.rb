@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Applicant Name Forms", type: :request do
+  RSpec.describe "Applicant Name Forms" do
     include_examples "GET form", :applicant_name_form, "/applicant-name"
     include_examples "POST form", :applicant_name_form, "/applicant-name" do
       let(:form_data) { { applicant_first_name: "Joe", applicant_last_name: "Bloggs" } }

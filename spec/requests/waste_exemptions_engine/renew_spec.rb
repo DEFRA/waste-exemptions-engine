@@ -4,7 +4,7 @@ require "rails_helper"
 require "defra_ruby_companies_house"
 
 module WasteExemptionsEngine
-  RSpec.describe "Renew", type: :request do
+  RSpec.describe "Renew" do
     describe "GET renew/:token" do
       let(:registration) { create(:registration, :complete) }
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Renew Without Changes Forms", type: :request do
+  RSpec.describe "Renew Without Changes Forms" do
     let(:form) { build(:renew_without_changes_form) }
 
     describe "GET renew_without_changes_form" do

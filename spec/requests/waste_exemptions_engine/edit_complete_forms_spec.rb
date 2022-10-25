@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Edit Complete Forms", type: :request do
+  RSpec.describe "Edit Complete Forms" do
     let(:form) { build(:edit_complete_form) }
     let(:edit_enabled) { "true" }
 

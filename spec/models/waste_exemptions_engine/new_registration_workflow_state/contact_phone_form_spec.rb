@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe NewRegistration, type: :model do
+  RSpec.describe NewRegistration do
     describe "#workflow_state" do
       let(:new_registration) do
         create(:new_registration,

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Transient Registration", type: :request do
+  RSpec.describe "Transient Registration" do
     describe "GET go_back_forms_path" do
       context "when a valid transient registration exists" do
         let(:tier) { WasteCarriersEngine::Registration::UPPER_TIER }

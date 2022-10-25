@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Registration Complete Forms", type: :request do
+  RSpec.describe "Registration Complete Forms" do
     let(:form) { build(:registration_complete_form) }
 
     include_examples "GET form", :registration_complete_form, "/registration-complete"

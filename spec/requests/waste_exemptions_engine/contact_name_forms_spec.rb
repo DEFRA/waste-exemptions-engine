@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Contact Name Forms", type: :request do
+  RSpec.describe "Contact Name Forms" do
     include_examples "GET form", :contact_name_form, "/contact-name"
     include_examples "POST form", :contact_name_form, "/contact-name" do
       let(:form_data) { { contact_first_name: "Joe", contact_last_name: "Bloggs" } }

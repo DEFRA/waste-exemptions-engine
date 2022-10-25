@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe PluralsHelper, type: :helper do
+  RSpec.describe PluralsHelper do
     describe "#exemptions_plural" do
       let(:form) { instance_double(RegistrationCompleteForm, exemptions: exemptions) }
 

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe RegistrationExemption, type: :model do
+  RSpec.describe RegistrationExemption do
     describe "public interface" do
       subject(:registration_exemption) { build(:registration_exemption) }
 
