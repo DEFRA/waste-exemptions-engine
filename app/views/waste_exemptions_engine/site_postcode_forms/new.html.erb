@@ -13,12 +13,6 @@
           width: 10 %>
 
       <%= f.govuk_submit t(".next_button") %>
-
-      <% if @site_postcode_form.errors.added?(:temp_site_postcode, :no_results) %>
-        <div class="govuk-body">
-          <%= link_to(t(".manual_address_link"), skip_to_manual_address_site_postcode_forms_path(@site_postcode_form.token)) %>
-        </div>
-      <% end %>
     <% end %>
 
     <%= render("waste_exemptions_engine/shared/os_terms_footer") %>
