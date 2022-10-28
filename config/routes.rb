@@ -218,11 +218,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
-    resources :site_address_manual_forms,
-              only: %i[new create],
-              path: "site-address-manual",
-              path_names: { new: "" }
-
     resources :exemptions_forms,
               only: %i[new create],
               path: "exemptions",

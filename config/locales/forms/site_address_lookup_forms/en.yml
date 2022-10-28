@@ -6,7 +6,7 @@ en:
         heading: Select the address of the waste operation
         postcode_label: Postcode
         postcode_change_link: "Change postcode"
-        manual_address_link: "I cannot find the address in the list"
+        grid_reference_link: "Use grid reference instead"
         error_heading: A problem to fix
         next_button: Continue
   activemodel:

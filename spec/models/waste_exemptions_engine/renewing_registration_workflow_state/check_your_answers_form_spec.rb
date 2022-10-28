@@ -12,11 +12,6 @@ module WasteExemptionsEngine
                       next_state: :declaration_form,
                       factory: :renewing_registration
 
-      it_behaves_like "a simple bidirectional transition",
-                      current_state: :check_your_answers_form,
-                      next_state: :declaration_form,
-                      factory: :renewing_registration_with_manual_site_address
-
       next_state = :declaration_form
       current_state = :check_your_answers_form
 

@@ -14,8 +14,12 @@
       </h1>
 
       <div class="govuk-inset-text">
-        <%= t(".grid_reference_or_address.message") %>
-        <%= link_to(t(".grid_reference_or_address.manual_address_label"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
+        <%= t(".grid_reference_or_address.message",
+                link: link_to( t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/",
+                rel: "external",
+                target: "_blank")
+                ).html_safe %>
+        <%= link_to(t(".grid_reference_or_address.use_a_postcode_label"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
       </div>
 
       <%= f.govuk_text_field :grid_reference,
