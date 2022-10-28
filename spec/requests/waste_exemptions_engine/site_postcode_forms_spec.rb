@@ -10,10 +10,6 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ temp_site_postcode: "BS" }, { temp_site_postcode: nil }] }
     end
 
-    include_examples "skip to manual address",
-                     :site_postcode_form,
-                     address_type: :site
-
     context "when editing an existing registration" do
       let(:edit_site_postcode_form) { build(:edit_site_postcode_form) }
 

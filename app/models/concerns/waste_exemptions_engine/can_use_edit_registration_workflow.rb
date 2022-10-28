@@ -52,7 +52,6 @@ module WasteExemptionsEngine
         state :site_grid_reference_form
         state :site_postcode_form
         state :site_address_lookup_form
-        state :site_address_manual_form
 
         # End pages
         state :declaration_form
@@ -183,15 +182,7 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :site_postcode_form,
-                      to: :site_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :site_postcode_form,
                       to: :site_address_lookup_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :site_address_manual_form,
-                      if: :skip_to_manual_address?
 
           # Completing the edit process
           transitions from: :edit_form,
@@ -226,7 +217,6 @@ module WasteExemptionsEngine
                                is_a_farmer_form
                                site_grid_reference_form
                                site_address_lookup_form
-                               site_address_manual_form
                                exemptions_form],
                       to: :edit_form
         end
@@ -243,12 +233,6 @@ module WasteExemptionsEngine
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_address_manual_form
-
-          transitions from: :site_postcode_form,
-                      to: :site_address_manual_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :site_address_manual_form
         end
 
         event :skip_to_address do

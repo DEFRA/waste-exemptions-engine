@@ -6,13 +6,13 @@ en:
         heading: Where will this waste operation take place?
         legend: Where will this waste operation take place?
         grid_reference_or_address:
-          message: Enter a grid reference or
-          manual_address_label: use an address instead
+          message: Enter a grid reference using the %{link}
+          use_a_postcode_label:  or use a postcode instead
         grid_reference_label: National Grid reference
         grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
         grid_reference_help_link: Help finding a grid reference
         grid_reference_help_hint: Use the free %{link}
-        grid_reference_help_tool_link: UK Grid Reference Finder (opens new window).
+        grid_reference_help_tool_link: UK Grid Reference Finder (opens new window)
         grid_reference_help_step_1: Search for the location or postcode on the left of the page.
         grid_reference_help_step_2: Right-click to display the grid reference.
         grid_reference_help_step_3: Select the grid reference then copy and paste back on this page.

@@ -64,7 +64,3 @@ en:
           waste_operations_details:
             grid_reference: Grid reference
             site_details: Site details
-      site_address_manual:
-        registration_details:
-          waste_operations_details:
-            location: Waste operation location

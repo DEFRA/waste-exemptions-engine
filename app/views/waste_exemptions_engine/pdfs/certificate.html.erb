@@ -200,7 +200,7 @@
                   <% if presenter.site_address.located_by_grid_reference? %>
                     <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: presenter.site_address %>
                   <% else %>
-                    <%= render "waste_exemptions_engine/pdfs/site_address_manual", address: presenter.site_address %>
+                    <%= render "waste_exemptions_engine/pdfs/site_address_lines", address: presenter.site_address %>
                   <% end %>
                 </tbody>
               </table>

@@ -66,7 +66,6 @@ module WasteExemptionsEngine
         state :check_site_address_form
         state :site_postcode_form
         state :site_address_lookup_form
-        state :site_address_manual_form
 
         state :exemptions_form
 
@@ -254,21 +253,13 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :site_postcode_form,
-                      to: :site_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :site_postcode_form,
                       to: :site_address_lookup_form
 
           transitions from: :site_address_lookup_form,
-                      to: :site_address_manual_form,
-                      if: :skip_to_manual_address?
+                      to: :check_your_answers_form
 
           transitions from: :site_address_lookup_form,
-                      to: :check_your_answers_form
-
-          transitions from: :site_address_manual_form,
-                      to: :check_your_answers_form
+                      to: :site_grid_reference_form
 
           transitions from: :check_your_answers_form,
                       to: :declaration_form
@@ -289,12 +280,6 @@ module WasteExemptionsEngine
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_address_manual_form
-
-          transitions from: :site_postcode_form,
-                      to: :site_address_manual_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :site_address_manual_form
         end
 
         event :skip_to_address do

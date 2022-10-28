@@ -55,21 +55,6 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when the site address is manual" do
-        it "generates a PDF containing a normal address for the site" do
-          registration = create(:registration, :complete, :with_manual_site_address)
-
-          result = described_class.run(registration: registration)
-
-          address = registration.site_address
-          expect(result).to include_pdf_content(address.premises)
-          expect(result).to include_pdf_content(address.street_address)
-          expect(result).to include_pdf_content(address.locality)
-          expect(result).to include_pdf_content(address.city)
-          expect(result).to include_pdf_content(address.postcode)
-        end
-      end
-
       context "when the site address is lookup" do
         it "generates a PDF containing a normal address for the site" do
           registration = create(:registration, :complete, :with_lookup_site_address)
