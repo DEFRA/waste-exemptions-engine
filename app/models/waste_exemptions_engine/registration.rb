@@ -93,7 +93,7 @@ module WasteExemptionsEngine
     end
 
     def expires_on
-      @_expires_on ||= registration_exemptions.pluck(:expires_on).presence&.sort&.first
+      registration_exemptions.pluck(:expires_on).presence&.sort&.first
     end
   end
 end
