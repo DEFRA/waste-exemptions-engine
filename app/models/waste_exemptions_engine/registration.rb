@@ -71,6 +71,10 @@ module WasteExemptionsEngine
       "#{month} #{year}"
     end
 
+    def expires_on
+      registration_exemptions.pluck(:expires_on).presence&.sort&.first
+    end
+
     private
 
     def apply_reference
@@ -90,10 +94,6 @@ module WasteExemptionsEngine
 
     def renewal_window_after_expiry_in_days
       WasteExemptionsEngine.configuration.renewal_window_after_expiry_in_days.to_i
-    end
-
-    def expires_on
-      registration_exemptions.pluck(:expires_on).presence&.sort&.first
     end
   end
 end
