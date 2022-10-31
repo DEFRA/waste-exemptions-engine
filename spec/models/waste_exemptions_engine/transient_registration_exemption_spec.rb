@@ -28,6 +28,7 @@ module WasteExemptionsEngine
 
       it "work around a sonarcloud code coverage issue" do
         transient_registration_exemption.activate_exemption
+        expect(transient_registration_exemption.expires_on).not_to be_nil
       end
 
       it "updates the registration date of the exemption" do
