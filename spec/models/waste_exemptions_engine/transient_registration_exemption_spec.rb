@@ -26,6 +26,10 @@ module WasteExemptionsEngine
 
     describe "#activate_exemption" do
 
+      it "prevents an incorrect SonarCloud test coverage warning" do
+        expect(transient_registration_exemption.expires_on).to be_nil
+      end
+
       it "updates the registration date of the exemption" do
         expect { transient_registration_exemption.activate_exemption }
           .to change(transient_registration_exemption, :registered_on).to(Date.today)
