@@ -128,6 +128,7 @@ module WasteExemptionsEngine
 
       it "work around a sonarcloud code coverage issue" do
         registration.expires_on
+        expect(registration.expires_on).not_to be_nil
       end
 
       it "returns the expiry date of the first exemption to expire" do
