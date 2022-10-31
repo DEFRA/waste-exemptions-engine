@@ -8,16 +8,17 @@ en:
         postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix
         next_button: Find address
-        manual_address_link: "Enter address manually"
+        grid_reference_link: Use grid reference instead
+
   activemodel:
     errors:
       models:
         waste_exemptions_engine/site_postcode_form:
           attributes:
             temp_site_postcode:
-              blank: "Enter a postcode"
-              wrong_format: "Enter a valid UK postcode"
-              no_results: "We cannot find any addresses for that postcode. Check the postcode or enter the address manually."
+              blank: Enter a postcode
+              wrong_format: Enter a valid UK postcode
+              no_results: We cannot find any addresses for that postcode. Check the postcode or enter the address manually.
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing
