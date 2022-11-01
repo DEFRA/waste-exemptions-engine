@@ -22,6 +22,10 @@ group :development do
   gem "spring-commands-rspec"
 end
 
+group :test do
+  gem 'simplecov-json', :require => false
+end
+
 gemspec
 
 # Declare any dependencies that are still in development here instead of in
