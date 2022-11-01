@@ -70,6 +70,7 @@ jobs:
         run: |
           bundle exec rails test
           bundle exec rspec
+          ls -la coverage
 
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
