@@ -23,7 +23,7 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov-json', :require => false
+  gem "simplecov-json", require: false
 end
 
 gemspec
