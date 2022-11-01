@@ -75,6 +75,9 @@ jobs:
         run: |
           bundle exec rails test
           bundle exec rspec
+
+      - name: Update coverage output
+        run: |
           sed -i 's/\/home\/runner\/work\/waste-exemptions-engine\/waste-exemptions-engine\//\/github\/workspace\//g' coverage/.resultset.json
 
       - name: Analyze with SonarCloud
