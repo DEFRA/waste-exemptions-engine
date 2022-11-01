@@ -201,22 +201,12 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :site_postcode_forms,
               only: %i[new create],
               path: "site-postcode",
-              path_names: { new: "" } do
-                get "skip_to_manual_address",
-                    to: "site_postcode_forms#skip_to_manual_address",
-                    as: "skip_to_manual_address",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :site_address_lookup_forms,
               only: %i[new create],
               path: "site-address-lookup",
-              path_names: { new: "" } do
-                get "skip_to_manual_address",
-                    to: "site_address_lookup_forms#skip_to_manual_address",
-                    as: "skip_to_manual_address",
-                    on: :collection
-              end
+              path_names: { new: "" }
 
     resources :exemptions_forms,
               only: %i[new create],
