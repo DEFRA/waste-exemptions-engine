@@ -427,7 +427,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rspec
   sassc-rails
-  simplecov (~> 0.21.2)
+  simplecov (~> 0.17)
   simplecov-json
   spring
   spring-commands-rspec
