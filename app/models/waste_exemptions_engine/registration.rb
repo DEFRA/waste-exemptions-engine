@@ -71,6 +71,13 @@ module WasteExemptionsEngine
       "#{month} #{year}"
     end
 
+    # Temporarily exclude from coverage inspection pending resolution of SonarCloud issue
+    # :nocov:
+    def expires_on
+      registration_exemptions.pluck(:expires_on).presence&.sort&.first
+    end
+    # :nocov:
+
     private
 
     def apply_reference
@@ -90,10 +97,6 @@ module WasteExemptionsEngine
 
     def renewal_window_after_expiry_in_days
       WasteExemptionsEngine.configuration.renewal_window_after_expiry_in_days.to_i
-    end
-
-    def expires_on
-      registration_exemptions.pluck(:expires_on).presence&.sort&.first
     end
   end
 end
