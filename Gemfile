@@ -22,8 +22,8 @@ group :development do
   gem "spring-commands-rspec"
 end
 
-group :test do
-  gem "simplecov_json_formatter", require: false
+group :development, :test do
+  gem "simplecov-json", require: false
 end
 
 gemspec
