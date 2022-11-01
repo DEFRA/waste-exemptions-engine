@@ -72,6 +72,7 @@ module WasteExemptionsEngine
     end
 
     def expires_on
+      puts ">>> Registration expires_on, #{self.class}"
       registration_exemptions.pluck(:expires_on).presence&.sort&.first
     end
 
