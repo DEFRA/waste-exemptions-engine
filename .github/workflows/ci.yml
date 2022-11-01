@@ -77,10 +77,10 @@ jobs:
           bundle exec rails test
           bundle exec rspec
           echo "A: "
-          grep "waste-exemptions-engine" ./coverage/.resultset.json
+          grep "home/runner" ./coverage/.resultset.json
           sed -i 's/\/home\/runner\/work\/waste-exemptions-engine\/waste-exemptions-engine\//\/github\/workspace\//g' coverage/.resultset.json
           echo "B: "
-          grep "waste-exemptions-engine" ./coverage/.resultset.json
+          grep "github/workspace" ./coverage/.resultset.json
 
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
