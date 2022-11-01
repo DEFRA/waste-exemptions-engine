@@ -18,6 +18,10 @@ SimpleCov.start("rails") do
   # we have a test for it
   add_filter "lib/waste_exemptions_engine/version"
 
+  # This is a temporary measure to work around a spurious SonarCloud coverage report
+  add_filter "/app/models/waste_exemptions_engine/registration.rb"
+  add_filter "/app/models/waste_exemptions_engine/transient_registration_exemption.rb"
+
   add_group "Forms", "app/forms"
   add_group "Presenters", "app/presenters"
   add_group "Services", "app/services"
