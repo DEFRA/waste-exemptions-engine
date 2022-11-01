@@ -18,7 +18,7 @@ en:
             temp_site_postcode:
               blank: Enter a postcode
               wrong_format: Enter a valid UK postcode
-              no_results: We cannot find any addresses for that postcode. Check the postcode or enter the address manually.
+              no_results: We cannot find any addresses for that postcode. Check the postcode or use a grid reference instead.
             token:
               invalid_format: The token is not valid
               missing: The token is missing
