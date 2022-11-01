@@ -73,11 +73,6 @@ jobs:
       # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/6
       - name: Run unit tests
         run: |
-          echo "A:"
-          ls -la
-          rm -rf coverage
-          exho "B:"
-          ls -la
           bundle exec rails test
           bundle exec rspec
           sed -i 's/\/home\/runner\/work\/waste-exemptions-engine\/waste-exemptions-engine\//\/github\/workspace\//g' coverage/.resultset.json
