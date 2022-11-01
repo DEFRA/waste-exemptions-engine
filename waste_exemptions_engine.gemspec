@@ -88,7 +88,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pdf-reader"
   s.add_development_dependency "pry-byebug"
   s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "simplecov", "~> 0.21.2"
+  s.add_development_dependency "simplecov", "0.17.1"
   s.add_development_dependency "timecop"
   s.add_development_dependency "vcr"
   s.add_development_dependency "w3c_validators"

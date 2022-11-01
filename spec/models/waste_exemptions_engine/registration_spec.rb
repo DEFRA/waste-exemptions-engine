@@ -117,6 +117,20 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#expires_on" do
+      subject(:registration) { create(:registration, :with_active_exemptions) }
+
+      before do
+        registration.registration_exemptions.first.expires_on = 3.days.from_now
+        registration.registration_exemptions.last.expires_on = 2.days.from_now
+        registration.save!
+      end
+
+      it "returns the expiry date of the first exemption to expire" do
+        expect(registration.expires_on).to eq 2.days.from_now.to_date
+      end
+    end
+
     describe "#past_renewal_window?" do
       let(:registration_exemption) { build(:registration_exemption, expires_on: expires_on) }
 
