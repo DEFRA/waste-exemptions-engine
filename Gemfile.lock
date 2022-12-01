@@ -114,7 +114,7 @@ GEM
     async-pool (0.3.12)
       async (>= 1.25)
     builder (3.2.4)
-    bullet (7.0.3)
+    bullet (7.0.4)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.3)
@@ -403,7 +403,7 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.6.3)
       activesupport
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
