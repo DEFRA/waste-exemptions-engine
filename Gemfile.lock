@@ -203,7 +203,7 @@ GEM
     io-event (1.0.9)
     json (2.6.2)
     jwt (2.5.0)
-    loofah (2.19.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
