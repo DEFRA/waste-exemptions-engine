@@ -1,0 +1,45 @@
+<%= render("waste_exemptions_engine/shared/back", token: @renew_exemptions_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @renew_exemptions_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+      <p class="govuk-hint"><%= t(".description") %></p>
+
+      <h2 class="govuk-heading-m"><%= t(".current_heading") %></h1>
+
+      <div class="govuk-form-group <%= "govuk-form-group--error" if @renew_exemptions_form.errors[:exemptions].any? %>">
+        <fieldset id="<%="matched_exemptions"%>" class="govuk-fieldset">
+          <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
+
+          <% if @renew_exemptions_form.errors[:exemptions].any? %>
+            <span class="govuk-error-message"><%= @renew_exemptions_form.errors[:exemptions].join(", ") %></span>
+          <% end %>
+
+          <div class="govuk-checkboxes">
+            <% @renew_exemptions_form.referring_registration.exemptions.each do |exemption|  %>
+              <div class="govuk-checkboxes__item">
+                <%= f.check_box :exemption_ids,
+                    { :multiple => true,
+                      id: "exemptions_form_checkbox-#{exemption.code}",
+                      checked: @renew_exemptions_form.exemptions&.empty? || @renew_exemptions_form.exemptions&.map(&:id)&.include?(exemption.id),
+                      class: "govuk-checkboxes__input",
+                    }, exemption.id, nil %>
+                <%= f.label "checkbox-#{exemption.code}", class: "govuk-label govuk-checkboxes__label" do %>
+                  <span><%= exemption.code %></span> <span><%= exemption.summary %></span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
+      <%= f.govuk_submit %>
+
+      <p class="govuk-hint"><%= t(".guidance_text") %> <%= link_to t(".guidance_link_text"), t(".guidance_link") %></p>
+    <% end %>
+  </div>
+</div>

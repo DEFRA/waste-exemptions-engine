@@ -1,0 +1,8 @@
+en:
+  waste_exemptions_engine:
+    renew_no_exemptions_forms:
+      new:
+        title: You are about to remove all exemptions from this renewal
+        heading: You are about to remove all exemptions from this renewal
+        description: If you want to deregister all exemptions you can simply do nothing and your registration will end. If you did this in error you can go back and continue with this renewal.
+        back_link: Back

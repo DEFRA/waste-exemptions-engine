@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class ExemptionsForm < BaseForm
+  class RenewExemptionsForm < BaseForm
     delegate :exemptions, to: :transient_registration
-
-    validates :exemptions, "waste_exemptions_engine/exemptions": true
+    delegate :referring_registration, to: :transient_registration
 
     def submit(params)
       # TODO: This line here is in order to by-pass the Rails 4 bug for which

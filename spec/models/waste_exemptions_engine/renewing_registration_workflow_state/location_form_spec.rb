@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
       context "when a RenewingRegistration's state is #{current_state}" do
         context "when none of the should register in location conditions are true" do
-          next_state = :exemptions_form
+          next_state = :renew_exemptions_form
 
           before { renewing_registration.location = "england" }
 

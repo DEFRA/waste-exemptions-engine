@@ -23,6 +23,10 @@ module WasteExemptionsEngine
         state :renew_with_changes_form
         state :renew_without_changes_form
 
+        # Exemptions
+        state :renew_exemptions_form
+        state :renew_no_exemptions_form
+
         # Location
         state :location_form
         state :register_in_northern_ireland_form
@@ -60,8 +64,6 @@ module WasteExemptionsEngine
         state :site_grid_reference_form
         state :site_postcode_form
         state :site_address_lookup_form
-
-        state :exemptions_form
 
         # End pages
         state :check_your_answers_form
@@ -102,11 +104,16 @@ module WasteExemptionsEngine
                       if: :should_register_in_wales?
 
           transitions from: :location_form,
-                      to: :exemptions_form
+                      to: :renew_exemptions_form
 
           # Exemptions
-          transitions from: :exemptions_form,
-                      to: :applicant_name_form
+          transitions from: :renew_exemptions_form,
+                      to: :applicant_name_form,
+                      if: :any_exemptions_selected?
+
+          transitions from: :renew_exemptions_form,
+                      to: :renew_no_exemptions_form,
+                      unless: :any_exemptions_selected?
 
           # Applicant details
           transitions from: :applicant_name_form,
@@ -242,6 +249,10 @@ module WasteExemptionsEngine
     # rubocop:enable Metrics/BlockLength
 
     private
+
+    def any_exemptions_selected?
+      exemptions.any?
+    end
 
     def operator_address_was_manually_entered?
       return unless operator_address

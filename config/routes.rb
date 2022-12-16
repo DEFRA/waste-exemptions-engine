@@ -213,6 +213,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "exemptions",
               path_names: { new: "" }
 
+    resources :renew_exemptions_forms,
+              only: %i[new create],
+              path: "renew-exemptions",
+              path_names: { new: "" }
+
+    resources :renew_no_exemptions_forms,
+              only: %i[new],
+              path: "renew-no-exemptions",
+              path_names: { new: "" }
+
     resources :check_your_answers_forms,
               only: %i[new create],
               path: "check-your-answers",

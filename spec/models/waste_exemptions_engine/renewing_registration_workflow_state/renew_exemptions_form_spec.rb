@@ -5,9 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe RenewingRegistration do
     describe "#workflow_state" do
-      it_behaves_like "a simple bidirectional transition",
-                      current_state: :exemptions_form,
-                      next_state: :applicant_name_form,
+      it_behaves_like "a renew exemption transition",
                       factory: :renewing_registration
     end
   end
