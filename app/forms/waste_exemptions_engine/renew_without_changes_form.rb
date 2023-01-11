@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class RenewWithoutChangesForm < BaseForm
-    def submit(params)
+    def submit(_params)
       # When a user first renews with changes and deselects some or all
       # exemptions to renew and subsequently navigates back to renew without
       # changes we run into an edge case where exemptions do not match the
