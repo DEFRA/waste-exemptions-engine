@@ -24,7 +24,7 @@
               <div class="govuk-checkboxes__item">
                 <%= f.check_box :exemption_ids,
                     { :multiple => true,
-                      id: "exemptions_form_checkbox-#{exemption.code}",
+                      id: "renew_exemptions_form_checkbox-#{exemption.code}",
                       checked: @renew_exemptions_form.exemptions&.empty? || @renew_exemptions_form.exemptions&.map(&:id)&.include?(exemption.id),
                       class: "govuk-checkboxes__input",
                     }, exemption.id, nil %>
