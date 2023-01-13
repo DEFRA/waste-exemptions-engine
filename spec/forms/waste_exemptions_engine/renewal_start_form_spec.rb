@@ -27,6 +27,31 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#initialize" do
+      let(:transient_registration) { form.transient_registration }
+
+      let(:valid_params) { {} }
+
+      before do
+        transient_registration.registration_exemptions = []
+        transient_registration.save!
+        transient_registration.reload
+      end
+
+      it "resets exemptions based on the referring registration" do
+        expect(transient_registration.exemptions).to be_empty # sanity
+
+        described_class.new(transient_registration)
+
+        transient_registration.reload
+
+        expect(transient_registration.exemptions).not_to be_empty
+
+        expect(transient_registration.exemptions.map(&:id))
+          .to eq(transient_registration.referring_registration.exemptions.map(&:id))
+      end
+    end
+
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the renewal type answer" do

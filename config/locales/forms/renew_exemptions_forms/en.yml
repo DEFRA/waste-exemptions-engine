@@ -1,0 +1,22 @@
+en:
+  waste_exemptions_engine:
+    renew_exemptions_forms:
+      new:
+        title: Uncheck any exemptions that are no longer needed
+        heading: Uncheck any exemptions that are no longer needed
+        current_heading: Your current exemptions
+        description: Uncheck any exemptions that you don't need. You aren't allowed to de-register and then renew a U1 exemption at the same place within a 3 year period. If you need to add exemptions to your renewal you must create a new registration.
+        legend: Exemptions
+        error_heading: A problem to fix
+        next_button: Continue
+        guidance_text: You can get guidance about exemptions at
+        guidance_link_text: GovUK
+        guidance_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#choose
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/exemptions_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
