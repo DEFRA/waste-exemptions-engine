@@ -89,7 +89,7 @@ module WasteExemptionsEngine
       end
     end
 
-    # Airbrake configuration properties (viia defra_ruby_alert gem)
+    # Airbrake configuration properties (via defra_ruby_alert gem)
     def airbrake_enabled=(value)
       DefraRuby::Alert.configure do |configuration|
         configuration.enabled = change_string_to_boolean_for(value)
@@ -144,7 +144,7 @@ module WasteExemptionsEngine
       DefraRuby::Alert.configure do |configuration|
         configuration.root_directory = Rails.root
         configuration.logger = Rails.logger
-        configuration.environment = Rails.env
+        configuration.environment = ENV.fetch("AIRBRAKE_ENV_NAME", Rails.env)
       end
     end
   end
