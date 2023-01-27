@@ -90,11 +90,15 @@ module WasteExemptionsEngine
 
         last_popped = nil
       end
-      self.workflow_state = last_popped || "start_form"
+      self.workflow_state = last_popped || default_workflow_state
       save!
     end
 
     private
+
+    def default_workflow_state
+      "start_form"
+    end
 
     def valid_state?(state)
       return false unless state.present?

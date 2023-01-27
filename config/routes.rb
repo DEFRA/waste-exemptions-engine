@@ -213,6 +213,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "exemptions",
               path_names: { new: "" }
 
+    resources :edit_exemptions_forms,
+              only: %i[new create],
+              path: "edit-exemptions",
+              path_names: { new: "" }
+
+    resources :confirm_edit_exemptions_forms,
+              only: %i[new],
+              path: "confirm-edit-exemptions",
+              path_names: { new: "" }
+
     resources :renew_exemptions_forms,
               only: %i[new create],
               path: "renew-exemptions",
@@ -306,6 +316,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                 get "on_a_farm",
                     to: "edit_forms#edit_on_a_farm",
                     as: "on_a_farm",
+                    on: :collection
+
+                get "edit_exemptions",
+                    to: "edit_forms#edit_exemptions",
+                    as: "edit_exemptions",
                     on: :collection
 
                 get "is_a_farmer",

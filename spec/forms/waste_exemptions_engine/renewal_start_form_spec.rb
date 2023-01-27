@@ -47,8 +47,8 @@ module WasteExemptionsEngine
 
         expect(transient_registration.exemptions).not_to be_empty
 
-        expect(transient_registration.exemptions.map(&:id))
-          .to eq(transient_registration.referring_registration.exemptions.map(&:id))
+        expect(transient_registration.exemptions.map(&:id).sort)
+          .to eq(transient_registration.referring_registration.exemptions.map(&:id).sort)
       end
     end
 

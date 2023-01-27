@@ -13,5 +13,10 @@ FactoryBot.define do
       expires_on { 3.months.ago }
       state { :expired }
     end
+
+    trait :in_renewal_window do
+      expires_on { 1.day.from_now }
+      state { :expired }
+    end
   end
 end

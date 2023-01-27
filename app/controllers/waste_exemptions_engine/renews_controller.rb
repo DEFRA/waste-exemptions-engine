@@ -8,12 +8,7 @@ module WasteExemptionsEngine
 
     def new
       @transient_registration = RenewalStartService.run(registration: registration)
-      @transient_registration.workflow_state =
-        if @transient_registration.company_no_required?
-          :check_registered_name_and_address_form
-        else
-          :renewal_start_form
-        end
+      @transient_registration.aasm.enter_initial_state
       redirect_to_correct_form
     end
 
