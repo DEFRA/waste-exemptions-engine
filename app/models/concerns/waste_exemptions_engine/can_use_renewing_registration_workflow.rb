@@ -17,13 +17,26 @@ module WasteExemptionsEngine
 
       aasm column: :workflow_state do
         # States / forms
-        state :renewal_start_form, initial: true
+        state :renewal_start_form
+
+        initial_state lambda { |model|
+          return :edit_exemptions_form unless model.registration.in_renewal_window?
+
+          if model.company_no_required?
+            :check_registered_name_and_address_form
+          else
+            :renewal_start_form
+          end
+        }
+
         state :check_registered_name_and_address_form
         state :incorrect_company_form
         state :renew_with_changes_form
         state :renew_without_changes_form
 
         # Exemptions
+        state :edit_exemptions_form
+        state :confirm_edit_exemptions_form
         state :renew_exemptions_form
         state :renew_no_exemptions_form
 
@@ -114,6 +127,9 @@ module WasteExemptionsEngine
           transitions from: :renew_exemptions_form,
                       to: :renew_no_exemptions_form,
                       unless: :any_exemptions_selected?
+
+          transitions from: :edit_exemptions_form,
+                      to: :confirm_edit_exemptions_form
 
           # Applicant details
           transitions from: :applicant_name_form,
