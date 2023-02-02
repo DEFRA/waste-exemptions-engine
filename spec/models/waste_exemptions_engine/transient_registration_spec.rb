@@ -6,6 +6,33 @@ module WasteExemptionsEngine
   RSpec.describe NewRegistration do
     subject(:new_registration) { create(:new_registration) }
 
+    describe "#excluded_exemptions" do
+      let(:transient_registration) { create(:renewing_registration) }
+
+      subject(:excluded_exemptions) { transient_registration.excluded_exemptions }
+
+      context "with no excluded exmptions" do
+        it "returns an empty array" do
+          expect(excluded_exemptions).to be_empty
+        end
+      end
+
+      context "with excluded exemptions" do
+        let(:excluded) do
+          transient_registration.transient_registration_exemptions.sample
+        end
+
+        before do
+          excluded.destroy
+          transient_registration.reload
+        end
+
+        it "returns an array containing the excluded exemption" do
+          expect(excluded_exemptions).to eq([excluded.exemption])
+        end
+      end
+    end
+
     describe "#next_state!" do
       let(:new_registration) { build(:new_registration) }
 

@@ -1,3 +1,27 @@
 <%= render("waste_exemptions_engine/shared/back", token: @confirm_edit_exemptions_form.token) %>
 
-<h1>TODO</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @confirm_edit_exemptions_form do |f| %>
+      <% if @confirm_edit_exemptions_form.transient_registration.exemptions.empty? %>
+        <h1 class="govuk-heading-l"><%= t(".heading_deregister") %></h1>
+      <% else %>
+        <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+      <% end %>
+
+      <p class="govuk-hint"><%= t(".description") %></p>
+
+      <ul class="govuk-list">
+        <% @confirm_edit_exemptions_form.transient_registration.excluded_exemptions.each do |exemption| %>
+          <li><span><%= exemption.code %></span> <span><%= exemption.summary %></span></li>
+        <% end %>
+      </ul>
+
+      <%= f.govuk_collection_radio_buttons :workflow_state,
+          @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: nil %>
+
+      <%= f.govuk_submit %>
+
+    <% end %>
+  </div>
+</div>
