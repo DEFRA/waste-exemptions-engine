@@ -9,3 +9,5 @@ en:
         legend: Confirm edit exemptions
         radio_yes: "Yes"
         radio_no: "No"
+        errors:
+          workflow_state: "You must select Yes or No"

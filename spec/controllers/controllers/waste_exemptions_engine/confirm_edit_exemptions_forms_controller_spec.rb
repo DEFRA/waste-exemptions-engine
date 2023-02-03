@@ -60,6 +60,44 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when an invalid workflow_state has been provided" do
+        let(:invalid_params) do
+          {
+            confirm_edit_exemptions_form: {
+              workflow_state: "renewal_start"
+            }
+          }
+        end
+
+        it "re-renders the new template and displays a validation error" do
+          post request_path, params: invalid_params
+
+          aggregate_failures do
+            expect(response.code).to eq("200")
+            expect(response).to render_template("waste_exemptions_engine/confirm_edit_exemptions_forms/new")
+            expect(response.body).to have_html_escaped_string("You must select Yes or No")
+          end
+        end
+      end
+
+      context "when no workflow_state has been provided" do
+        let(:invalid_params) do
+          {
+            confirm_edit_exemptions_form: {}
+          }
+        end
+
+        it "re-renders the new template and displays a validation error" do
+          post request_path, params: invalid_params
+
+          aggregate_failures do
+            expect(response.code).to eq("200")
+            expect(response).to render_template("waste_exemptions_engine/confirm_edit_exemptions_forms/new")
+            expect(response.body).to have_html_escaped_string("You must select Yes or No")
+          end
+        end
+      end
     end
   end
 end
