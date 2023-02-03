@@ -17,10 +17,13 @@
         <% end %>
       </ul>
 
-      <%= f.govuk_collection_radio_buttons :workflow_state,
-          @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: nil %>
+      <fieldset id="confirm_edit_exemptions" class="govuk-fieldset">
+        <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
+        <%= f.govuk_collection_radio_buttons :workflow_state,
+            @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: nil %>
 
-      <%= f.govuk_submit %>
+        <%= f.govuk_submit %>
+      </fieldset>
 
     <% end %>
   </div>
