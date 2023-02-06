@@ -19,13 +19,12 @@
         <% end %>
       </ul>
 
-      <fieldset id="confirm_edit_exemptions" class="govuk-fieldset">
-        <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
+      <div class="govuk-form-group <%= "govuk-form-group--error" if @confirm_edit_exemptions_form.errors[:workflow_state].any? %>">
         <%= f.govuk_collection_radio_buttons :workflow_state,
-            @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: nil %>
+            @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: { text: t(".legend"), hidden: true } %>
 
         <%= f.govuk_submit %>
-      </fieldset>
+      </div>
 
     <% end %>
   </div>
