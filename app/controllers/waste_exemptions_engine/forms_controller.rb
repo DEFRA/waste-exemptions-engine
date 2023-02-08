@@ -51,10 +51,10 @@ module WasteExemptionsEngine
       instance_variable_set("@#{form}", form_class.new(@transient_registration))
     end
 
-    def submit_form(form, params)
+    def submit_form(form, params, redirect_to_next: true)
       respond_to do |format|
         if form.submit(params)
-          @transient_registration.next_state!
+          @transient_registration.next_state! if redirect_to_next
           format.html { redirect_to_correct_form }
           true
         else

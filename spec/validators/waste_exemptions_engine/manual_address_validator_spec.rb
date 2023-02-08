@@ -47,7 +47,7 @@ module WasteExemptionsEngine
 
     # Map all combinations of the 5 attributes where 4 are valid and one is either missing or too long.
     # The attributes have to be in an array in the same order as the ManualAddressValidatable params.
-    inputs = ordered_attributes.each_with_index.each_with_object({}) do |(attribute, i), h|
+    inputs = ordered_attributes.each_with_index.with_object({}) do |(attribute, i), h|
       h[attribute] = {
         missing: valid_parameters.each_with_index.map { |p, j| i == j ? "" : p },
         too_long: valid_parameters.each_with_index.map { |p, j| i == j ? too_long_parameters[i] : p }

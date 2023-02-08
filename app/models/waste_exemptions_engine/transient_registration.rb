@@ -70,6 +70,10 @@ module WasteExemptionsEngine
       attributes.except(*TRANSIENT_ATTRIBUTES)
     end
 
+    def excluded_exemptions
+      registration.active_exemptions.where.not(id: exemptions.map(&:id))
+    end
+
     def next_state!
       previous_state = workflow_state
       next!
