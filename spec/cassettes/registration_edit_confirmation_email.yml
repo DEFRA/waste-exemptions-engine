@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/email
+    body:
+      encoding: UTF-8
+      string: '{"email_address":"joey_white@example.net","template_id":"5426314f-98ef-419e-a66e-9522ba03f362","personalisation":{"reference":"WEX0123456","exemptions":[{"id":1,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":1,"created_at":"2023-02-10T16:59:55.863Z","updated_at":"2023-02-10T16:59:55.863Z","deregistration_message":null,"deregistered_at":null},{"id":2,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":2,"created_at":"2023-02-10T16:59:55.866Z","updated_at":"2023-02-10T16:59:55.866Z","deregistration_message":null,"deregistered_at":null},{"id":3,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":3,"created_at":"2023-02-10T16:59:55.867Z","updated_at":"2023-02-10T16:59:55.867Z","deregistration_message":null,"deregistered_at":null},{"id":4,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":4,"created_at":"2023-02-10T16:59:55.869Z","updated_at":"2023-02-10T16:59:55.869Z","deregistration_message":null,"deregistered_at":null},{"id":5,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":5,"created_at":"2023-02-10T16:59:55.871Z","updated_at":"2023-02-10T16:59:55.871Z","deregistration_message":null,"deregistered_at":null},{"id":6,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":6,"created_at":"2023-02-10T16:59:55.873Z","updated_at":"2023-02-10T16:59:55.873Z","deregistration_message":null,"deregistered_at":null},{"id":7,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":7,"created_at":"2023-02-10T16:59:55.875Z","updated_at":"2023-02-10T16:59:55.875Z","deregistration_message":null,"deregistered_at":null},{"id":8,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":8,"created_at":"2023-02-10T16:59:55.877Z","updated_at":"2023-02-10T16:59:55.877Z","deregistration_message":null,"deregistered_at":null},{"id":9,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":9,"created_at":"2023-02-10T16:59:55.878Z","updated_at":"2023-02-10T16:59:55.878Z","deregistration_message":null,"deregistered_at":null},{"id":10,"state":"active","registered_on":"2023-02-10","expires_on":"2026-02-10","registration_id":1,"exemption_id":10,"created_at":"2023-02-10T16:59:55.880Z","updated_at":"2023-02-10T16:59:55.880Z","deregistration_message":null,"deregistered_at":null}]}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.4.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4420'
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 10 Feb 2023 16:59:56 GMT
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-B3-Spanid:
+      - 5f49fb6fc4913366
+      X-B3-Traceid:
+      - 28d2c46fc25e15bb5f49fb6fc4913366
+      X-Vcap-Request-Id:
+      - e0e41dcf-33f4-4691-7246-8c2e23631c92
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 1872df29670137f21773bdb80da38e36.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LHR50-P3
+      X-Amz-Cf-Id:
+      - eWkHiiQ5xTzHN_lilppXak__ICdyGo4iDi4WnDOBgFZK6etx4VoMPQ==
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"#Registration edit complete\r\n\r\nThe registration
+        number is WEX0123456.\r\n\r\nYour exemptions are;\r\n\n\n* {''id'': 1, ''state'':
+        ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'': ''2026-02-10'',
+        ''registration_id'': 1, ''exemption_id'': 1, ''created_at'': ''2023-02-10T16:59:55.863Z'',
+        ''updated_at'': ''2023-02-10T16:59:55.863Z'', ''deregistration_message'':
+        None, ''deregistered_at'': None}\n* {''id'': 2, ''state'': ''active'', ''registered_on'':
+        ''2023-02-10'', ''expires_on'': ''2026-02-10'', ''registration_id'': 1, ''exemption_id'':
+        2, ''created_at'': ''2023-02-10T16:59:55.866Z'', ''updated_at'': ''2023-02-10T16:59:55.866Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 3,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 3, ''created_at'':
+        ''2023-02-10T16:59:55.867Z'', ''updated_at'': ''2023-02-10T16:59:55.867Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 4,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 4, ''created_at'':
+        ''2023-02-10T16:59:55.869Z'', ''updated_at'': ''2023-02-10T16:59:55.869Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 5,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 5, ''created_at'':
+        ''2023-02-10T16:59:55.871Z'', ''updated_at'': ''2023-02-10T16:59:55.871Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 6,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 6, ''created_at'':
+        ''2023-02-10T16:59:55.873Z'', ''updated_at'': ''2023-02-10T16:59:55.873Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 7,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 7, ''created_at'':
+        ''2023-02-10T16:59:55.875Z'', ''updated_at'': ''2023-02-10T16:59:55.875Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 8,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 8, ''created_at'':
+        ''2023-02-10T16:59:55.877Z'', ''updated_at'': ''2023-02-10T16:59:55.877Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 9,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 9, ''created_at'':
+        ''2023-02-10T16:59:55.878Z'', ''updated_at'': ''2023-02-10T16:59:55.878Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\n* {''id'': 10,
+        ''state'': ''active'', ''registered_on'': ''2023-02-10'', ''expires_on'':
+        ''2026-02-10'', ''registration_id'': 1, ''exemption_id'': 10, ''created_at'':
+        ''2023-02-10T16:59:55.880Z'', ''updated_at'': ''2023-02-10T16:59:55.880Z'',
+        ''deregistration_message'': None, ''deregistered_at'': None}\r\n\r\nThis is
+        not a permit.\r\n\r\nResponsibilities\r\n\r\nThe business or organisation
+        responsible for carrying out the exempt waste operations agrees to:\r\n* comply
+        with all limits on waste types and quantities\r\n* comply with all conditions
+        governing how waste must be stored, handled and treated\r\n* carry out the
+        operations without endangering human health or harming the environment\r\n\r\nFor
+        the operations to remain exempt they must be carried out without:\r\n* causing
+        risk to water, air, soil, plants or animals\r\n* causing a nuisance through
+        noise and odours\r\n* negatively affecting the countryside or places of special
+        interest\r\n\r\nIn sensitive locations extra controls may be needed over and
+        above those set out in the exemptions to make sure this happens.\r\n\r\nIf
+        you have enquiries please contact the Environment Agency helpline: 03708 506506.\r\n\r\nHow
+        we use your personal information:\r\nhttps://wasteexemptions.service.gov.uk/pages/privacy\r\n\r\nThis
+        is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
+        exemptions registration WEX0123456 edit confirmation"},"id":"167d9048-235d-49fc-ac40-540dadc75019","reference":null,"scheduled_for":null,"template":{"id":"5426314f-98ef-419e-a66e-9522ba03f362","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/5426314f-98ef-419e-a66e-9522ba03f362","version":3},"uri":"https://api.notifications.service.gov.uk/v2/notifications/167d9048-235d-49fc-ac40-540dadc75019"}
+
+        '
+  recorded_at: Fri, 10 Feb 2023 16:59:56 GMT
+recorded_with: VCR 6.1.0
