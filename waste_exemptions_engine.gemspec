@@ -53,8 +53,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "pg"
 
-  s.add_development_dependency "rails-controller-testing"
-
   # Used for auditing and version control
   s.add_dependency "paper_trail"
 
@@ -70,28 +68,6 @@ Gem::Specification.new do |s|
   # Used to generate a PDF from HTML
   s.add_dependency "wicked_pdf"
 
-  # Allows us to automatically generate the change log from the tags, issues,
-  # labels and pull requests on GitHub. Added as a dependency so all dev's have
-  # access to it to generate a log, and so they are using the same version.
-  # New dev's should first create GitHub personal app token and add it to their
-  # ~/.bash_profile (or equivalent)
-  # https://github.com/skywinder/github-changelog-generator#github-token
-  s.add_development_dependency "github_changelog_generator"
-
-  s.add_development_dependency "bullet"
-  s.add_development_dependency "database_cleaner"
-  s.add_development_dependency "defra_ruby_style"
-  s.add_development_dependency "dotenv-rails"
-  s.add_development_dependency "factory_bot_rails"
-  s.add_development_dependency "faker"
-  s.add_development_dependency "parallel_tests"
-  s.add_development_dependency "pdf-reader"
-  s.add_development_dependency "pry-byebug"
-  s.add_development_dependency "rspec-rails"
   s.add_development_dependency "simplecov", "0.17.1"
-  s.add_development_dependency "timecop"
-  s.add_development_dependency "vcr"
-  s.add_development_dependency "w3c_validators"
-  s.add_development_dependency "webmock"
   s.metadata["rubygems_mfa_required"] = "true"
 end

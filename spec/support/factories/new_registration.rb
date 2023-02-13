@@ -53,7 +53,9 @@ FactoryBot.define do
     end
 
     trait :with_active_exemptions do
-      transient_registration_exemptions { build_list(:transient_registration_exemption, 3, :expires_on, :registered_on) }
+      transient_registration_exemptions do
+        build_list(:transient_registration_exemption, 3, :expires_on, :registered_on)
+      end
     end
 
     trait :complete do

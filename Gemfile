@@ -17,13 +17,32 @@ gem "matrix"
 gem "net-smtp"
 
 group :development do
+  gem "github_changelog_generator"
   gem "rubocop-rspec"
   gem "spring"
   gem "spring-commands-rspec"
 end
 
 group :development, :test do
+  gem "bullet"
+  gem "defra_ruby_style"
+  gem "dotenv-rails"
+  gem "pdf-reader"
+  gem "pry-byebug"
+  gem "rails-controller-testing"
   gem "simplecov-json", require: false
+  gem "w3c_validators"
+end
+
+group :test do
+  gem "database_cleaner"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "parallel_tests"
+  gem "rspec-rails"
+  gem "timecop"
+  gem "vcr"
+  gem "webmock"
 end
 
 gemspec

@@ -43,6 +43,9 @@ module Dummy
     # https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#expiry-in-signed-or-encrypted-cookie-is-now-embedded-in-the-cookies-values
     # config.action_dispatch.use_authenticated_cookie_encryption = false
 
+    # Allow paper_trail to deserialise dates and times: https://stackoverflow.com/a/72970171
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeZone, ActiveSupport::TimeWithZone, Date, Time]
+    
     # Change automatic expire of renew's magic link token
     config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
     config.first_renewal_email_reminder_days = ENV["FIRST_RENEWAL_EMAIL_REMINDER_DAYS"]

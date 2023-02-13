@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/email
+    body:
+      encoding: UTF-8
+      string: '{"email_address":"curtis_schaden@example.net","template_id":"aea54f90-d36c-4fe7-a589-062446e549ca","personalisation":{"reference":"WEX0123456"}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.4.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '961'
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 10 Feb 2023 17:47:40 GMT
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-B3-Spanid:
+      - 56662d22a15c0a2f
+      X-B3-Traceid:
+      - 00b85260f1c7c73b56662d22a15c0a2f
+      X-Vcap-Request-Id:
+      - 7aab4d64-a345-437e-6780-cf867bdc44cf
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 507372273c5029d1ae2439349f7f1458.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LHR50-P3
+      X-Amz-Cf-Id:
+      - FiyDHb_oeT0Wumy5OCApcDuTCivi7CwLNlR0P7aSgWc_DxDyCqlnJQ==
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"#Deregistration complete\r\n\r\nYour registration
+        WEX0123456 is now inactive\r\n\r\nThis registration is now inactive and will
+        be removed from the public register.\r\n\r\nIf you have enquiries please contact
+        the Environment Agency helpline: 03708 506506.\r\n\r\nHow we use your personal
+        information:\r\nhttps://wasteexemptions.service.gov.uk/pages/privacy\r\nThis
+        is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
+        exemptions \u2013 deregistration complete confirmation"},"id":"4523fad9-1985-4cb1-a3dd-ca80960bea3b","reference":null,"scheduled_for":null,"template":{"id":"aea54f90-d36c-4fe7-a589-062446e549ca","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/aea54f90-d36c-4fe7-a589-062446e549ca","version":4},"uri":"https://api.notifications.service.gov.uk/v2/notifications/4523fad9-1985-4cb1-a3dd-ca80960bea3b"}
+
+        '
+  recorded_at: Fri, 10 Feb 2023 17:47:39 GMT
+recorded_with: VCR 6.1.0
