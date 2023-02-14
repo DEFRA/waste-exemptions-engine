@@ -25,6 +25,9 @@ en:
           one: 1 address found
           other: "%{count} addresses found"
 
+  self_serve_deregistration:
+    message: "Deregistered via self-serve"
+
   # Custom error pages
   invalid_id_title: Invalid ID
   invalid_id_heading: The exemption registration ID is not valid
