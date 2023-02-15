@@ -224,8 +224,13 @@ WasteExemptionsEngine::Engine.routes.draw do
               path_names: { new: "" }
 
     resources :edit_exemptions_declaration_forms,
-              only: %i[new],
+              only: %i[new create],
               path: "edit-exemptions-declaration",
+              path_names: { new: "" }
+
+    resources :edit_exemptions_success_forms,
+              only: %i[new],
+              path: "edit-exemptions-success",
               path_names: { new: "" }
 
     resources :renew_exemptions_forms,
