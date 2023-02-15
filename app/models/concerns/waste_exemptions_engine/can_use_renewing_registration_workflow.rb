@@ -37,6 +37,7 @@ module WasteExemptionsEngine
         # Exemptions
         state :edit_exemptions_form
         state :edit_exemptions_declaration_form
+        state :edit_exemptions_success_form
         state :confirm_edit_exemptions_form
         state :renew_exemptions_form
         state :renew_no_exemptions_form
@@ -134,6 +135,9 @@ module WasteExemptionsEngine
 
           transitions from: :confirm_edit_exemptions_form,
                       to: :edit_exemptions_declaration_form
+
+          transitions from: :edit_exemptions_declaration_form,
+                      to: :edit_exemptions_success_form
 
           # Applicant details
           transitions from: :applicant_name_form,
