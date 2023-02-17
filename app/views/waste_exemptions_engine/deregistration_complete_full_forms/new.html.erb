@@ -1,0 +1,30 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <% if @deregistration_complete_full_form.errors.any? %>
+
+      <h1 class="govuk-heading-l"><%= t(".error_heading") %></h1>
+
+      <% @deregistration_complete_full_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+
+    <% else %>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+      </div>
+
+      <h2 class="govuk-heading-m"><%= t(".subheading") %></h2>
+
+      <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_full_form.contact_email) %></p>
+      <p class="govuk-body"><%= t(".paragraph_1") %></p>
+      <p class="govuk-body"><%= t(".paragraph_2") %></p>
+      <p class="govuk-body"><%= t(".paragraph_3") %></p>
+
+    <% end %>
+  </div>
+</div>

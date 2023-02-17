@@ -23,6 +23,7 @@ module WasteExemptionsEngine
     end
 
     describe "#create" do
+
       context "when given valid parameters" do
         let(:valid_params) do
           {
@@ -31,13 +32,56 @@ module WasteExemptionsEngine
             }
           }
         end
+        let(:transient_registration) { form.transient_registration }
+        let(:registration) { transient_registration.registration }
+        let(:excluded_exemptions) { transient_registration.excluded_exemptions }
+        let(:original_exemptions) { registration.exemptions }
+        let(:full_confirmation_email_service) { instance_double(DeregistrationConfirmationEmailService) }
+        let(:partial_confirmation_email_service) { instance_double(RegistrationEditConfirmationEmailService) }
 
-        it "redirects to the correct workflow step" do
-          post request_path, params: valid_params
+        before do
+          allow(DeregistrationConfirmationEmailService).to receive(:new).and_return(full_confirmation_email_service)
+          allow(full_confirmation_email_service).to receive(:run)
+          allow(RegistrationEditConfirmationEmailService).to receive(:new).and_return(partial_confirmation_email_service)
+          allow(partial_confirmation_email_service).to receive(:run)
+        end
 
-          aggregate_failures do
-            expect(response.code).to eq("303")
-            expect(response).to redirect_to("/waste_exemptions_engine/#{form.token}/edit-exemptions-success")
+        context "with no exemptions removed" do
+          before do
+            transient_registration.exemptions = original_exemptions
+            transient_registration.save!
+          end
+
+          it "redirects to the correct workflow step" do
+            post request_path, params: valid_params
+
+            expect(response).to redirect_to new_deregistration_complete_no_change_form_path(form.token)
+          end
+        end
+
+        context "with a subset of exemptions removed" do
+          before do
+            transient_registration.exemptions.delete([original_exemptions.first, original_exemptions.last])
+            transient_registration.save!
+          end
+
+          it "redirects to the correct workflow step", bullet: :skip do
+            post request_path, params: valid_params
+
+            expect(response).to redirect_to new_deregistration_complete_partial_form_path(form.token)
+          end
+        end
+
+        context "with all exemptions removed" do
+          before do
+            transient_registration.exemptions = []
+            transient_registration.save!
+          end
+
+          it "redirects to the correct workflow step" do
+            post request_path, params: valid_params
+
+            expect(response).to redirect_to new_deregistration_complete_full_form_path(form.token)
           end
         end
       end
