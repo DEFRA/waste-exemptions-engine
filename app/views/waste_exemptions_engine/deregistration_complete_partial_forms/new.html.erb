@@ -4,9 +4,11 @@
 
       <h1 class="govuk-heading-l"><%= t(".error_heading") %></h1>
 
-      <% @deregistration_complete_partial_form.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <ul style="list-style-type:none;">
+        <% @deregistration_complete_partial_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
 
     <% else %>
 
