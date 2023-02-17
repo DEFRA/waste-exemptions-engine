@@ -65,7 +65,7 @@ module WasteExemptionsEngine
             transient_registration.save!
           end
 
-          it "redirects to the correct workflow step", bullet: :skip do
+          it "redirects to the correct workflow step" do
             post request_path, params: valid_params
 
             expect(response).to redirect_to new_deregistration_complete_partial_form_path(form.token)
