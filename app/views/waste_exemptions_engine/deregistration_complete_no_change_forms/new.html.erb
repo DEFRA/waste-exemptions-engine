@@ -1,0 +1,30 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <% if @deregistration_complete_no_change_form.errors.any? %>
+
+      <h1 class="govuk-heading-l"><%= t(".error_heading") %></h1>
+
+      <ul style="list-style-type:none;">
+        <% @deregistration_complete_no_change_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+
+    <% else %>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+        <div class="govuk-panel__body">
+          <strong>
+            <span id="reg_identifier"><%= @deregistration_complete_no_change_form.reference %></span>
+          </strong>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

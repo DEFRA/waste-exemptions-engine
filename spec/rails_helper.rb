@@ -62,4 +62,11 @@ RSpec.configure do |config|
 
   config.before { Bullet.start_request }
   config.after { Bullet.end_request }
+  config.before(:each, bullet: :skip) do
+    Bullet.enable = false
+  end
+
+  config.after(:each, bullet: :skip) do
+    Bullet.enable = true
+  end
 end

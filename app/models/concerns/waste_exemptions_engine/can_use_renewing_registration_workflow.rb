@@ -36,8 +36,6 @@ module WasteExemptionsEngine
 
         # Exemptions
         state :edit_exemptions_form
-        state :edit_exemptions_declaration_form
-        state :edit_exemptions_success_form
         state :confirm_edit_exemptions_form
         state :renew_exemptions_form
         state :renew_no_exemptions_form
@@ -80,10 +78,16 @@ module WasteExemptionsEngine
         state :site_postcode_form
         state :site_address_lookup_form
 
+        # deregistration
+        state :edit_exemptions_declaration_form
+
         # End pages
         state :check_your_answers_form
         state :declaration_form
         state :renewal_complete_form
+        state :deregistration_complete_full_form
+        state :deregistration_complete_partial_form
+        state :deregistration_complete_no_change_form
 
         # Transitions
         event :next do
@@ -137,7 +141,15 @@ module WasteExemptionsEngine
                       to: :edit_exemptions_declaration_form
 
           transitions from: :edit_exemptions_declaration_form,
-                      to: :edit_exemptions_success_form
+                      to: :deregistration_complete_no_change_form,
+                      if: :no_exemptions_deregistered?
+
+          transitions from: :edit_exemptions_declaration_form,
+                      to: :deregistration_complete_full_form,
+                      if: :all_exemptions_deregistered?
+
+          transitions from: :edit_exemptions_declaration_form,
+                      to: :deregistration_complete_partial_form
 
           # Applicant details
           transitions from: :applicant_name_form,
@@ -337,6 +349,14 @@ module WasteExemptionsEngine
 
     def companies_house_details_incorrect?
       temp_use_registered_company_details == false
+    end
+
+    def all_exemptions_deregistered?
+      excluded_exemptions.length == registration.exemptions.length
+    end
+
+    def no_exemptions_deregistered?
+      excluded_exemptions.empty?
     end
   end
 end

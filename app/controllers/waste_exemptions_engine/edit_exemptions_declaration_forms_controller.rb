@@ -8,6 +8,8 @@ module WasteExemptionsEngine
 
     def create
       super(EditExemptionsDeclarationForm, "edit_exemptions_declaration_form")
+
+      ExemptionDeregistrationService.run(@transient_registration)
     end
 
     private
