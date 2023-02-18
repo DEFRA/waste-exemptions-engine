@@ -37,6 +37,7 @@ module WasteExemptionsEngine
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
                               created_at
                               declaration
+                              excluded_exemptions
                               reference
                               id
                               start_option
@@ -68,10 +69,6 @@ module WasteExemptionsEngine
 
     def registration_attributes
       attributes.except(*TRANSIENT_ATTRIBUTES)
-    end
-
-    def excluded_exemptions
-      registration.active_exemptions.where.not(id: exemptions.map(&:id))
     end
 
     def next_state!

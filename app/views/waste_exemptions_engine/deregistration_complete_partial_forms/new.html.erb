@@ -15,11 +15,19 @@
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">
           <%= t(".heading") %>
-          <% @deregistration_complete_partial_form.excluded_exemptions.each do |exemption| %>
+        </h1>
+        <h1 class="govuk-panel__body">
+          <strong>
+            <% @deregistration_complete_partial_form.transient_registration.excluded_exemptions.each do |exemption_id| %>
+              <% exemption = WasteExemptionsEngine::Exemption.find_by(id: exemption_id) %>
+              <span><%= exemption.code %></span> <span><%= exemption.summary %></span></li>
+              <br />
+            <% end %>
+            <%= t(".exemption_list_end") %>
             <br />
-            <span class="govuk-panel__body"><%= exemption.name %></span>
-          <% end %>
-          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+            <br />
+            <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+          </strong>
         </h1>
         <div class="govuk-panel__body">
           <strong>

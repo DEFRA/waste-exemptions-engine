@@ -11,17 +11,15 @@ http_interactions:
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n\n      <div class=\"govuk-panel
         govuk-panel--confirmation\">\n        <h1 class=\"govuk-panel__title\">\n
-        \         <span class=\"translation_missing\" title=\"translation missing:
-        en.waste_exemptions_engine.deregistration_complete_full_forms.new.heading\">Heading</span>\n
-        \         <br />\n          <span class=\"govuk-panel__body\">Your registration
-        is inactive and will be removed from the public register.</span>\n        </h1>\n
-        \     </div>\n\n      <h2 class=\"govuk-heading-m\">What will happen next</h2>\n\n
-        \     <p class=\"govuk-body\">We have sent a confirmation email to gale_anderson@example.org</p>\n
-        \     <p class=\"govuk-body\">All of your exemptions have been removed and
-        your registration is now inactive.</p>\n      <p class=\"govuk-body\">We will
-        remove your registration from the public register, this could take up to 24
-        hours.</p>\n      <p class=\"govuk-body\">Tell us your thoughts - https://www.smartsurvey.co.uk/s/3S81FQ/</p>\n\n
-        \ </div>\n</div>\n\n\n</body>\n</html>\n"
+        \         <br/>\n          <span class=\"govuk-panel__body\">Your registration
+        is inactive and will be removed from the public register.</span>\n          <br/>&nbsp;\n
+        \       </h1>\n      </div>\n      <p>&nbsp;</p>\n\n      <h2 class=\"govuk-heading-m\">What
+        will happen next</h2>\n\n      <p class=\"govuk-body\">We have sent a confirmation
+        email to maria@example.org</p>\n      <p class=\"govuk-body\">All of your
+        exemptions have been removed and your registration is now inactive.</p>\n
+        \     <p class=\"govuk-body\">We will remove your registration from the public
+        register, this could take up to 24 hours.</p>\n      <p class=\"govuk-body\">Tell
+        us your thoughts - https://www.smartsurvey.co.uk/s/3S81FQ/</p>\n\n  </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -37,7 +35,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 Feb 2023 12:13:45 GMT
+      - Sat, 18 Feb 2023 17:09:32 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -66,22 +64,22 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 79a632f79886385e
+      - 79b85efeec6f719c
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=d_nkKEtrjyPl2T9tRoZJjSBFQQhUSr8mMVh_defOjDs-1676549625-0-AQRF+Ctwpe704K8ICFqTf0Rk0s1Ru3NwHUxxX8DEBzGkwSg7KWOXn2Qsh0K2BpS6Qb4JcYMQEeANPyBmtcPiugY=;
-        path=/; expires=Thu, 16-Feb-23 12:43:45 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=LctuKQ.y03yE8EyHBCnmseohg1b_Q4AL7xtrn5ddJL0-1676740172-0-AQlFG9vHgg66pQVvVjLtGe08y2K8+B8QSlUH64JJiu0Caxhg1QgAF1/Yk57AbBhb7WgpGvST3IczFNgo+GAUeyw=;
+        path=/; expires=Sat, 18-Feb-23 17:39:32 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 79a632f79886385e-LHR
+      - 79b85efeec6f719c-LHR
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgbWVkaWE9XCJhbGxcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1lM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1LmNzc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjE3LCJsYXN0Q29sdW1uIjoxNiwiZmlyc3RDb2x1bW4iOjExLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo2fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBtZWRpYT1cImFsbFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUuY3NzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1mOWQ4ZTVjZThmNTI4ZDk5N2Q1ODE1NmZmNWY4YzFkNGIwNzQxYWMyMmIzNjdhNmE2Mjk0YjNjN2U5NzU4ZTk2LmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLXBhbmVsIGdvdnVrLXBhbmVsLS1jb25maXJtYXRpb25cIj5cbiAgICAgICAgPGgxIGNsYXNzPVwiZ292dWstcGFuZWxfX3RpdGxlXCI+XG4gICAgICAgICAgPHNwYW4gY2xhc3M9XCJ0cmFuc2xhdGlvbl9taXNzaW5nXCIgdGl0bGU9XCJ0cmFuc2xhdGlvbiBtaXNzaW5nOiBlbi53YXN0ZV9leGVtcHRpb25zX2VuZ2luZS5kZXJlZ2lzdHJhdGlvbl9jb21wbGV0ZV9mdWxsX2Zvcm1zLm5ldy5oZWFkaW5nXCI+SGVhZGluZzwvc3Bhbj5cbiAgICAgICAgICA8YnIgLz5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cImdvdnVrLXBhbmVsX19ib2R5XCI+WW91ciByZWdpc3RyYXRpb24gaXMgaW5hY3RpdmUgYW5kIHdpbGwgYmUgcmVtb3ZlZCBmcm9tIHRoZSBwdWJsaWMgcmVnaXN0ZXIuPC9zcGFuPlxuICAgICAgICA8L2gxPlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxoMiBjbGFzcz1cImdvdnVrLWhlYWRpbmctbVwiPldoYXQgd2lsbCBoYXBwZW4gbmV4dDwvaDI+XG5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPldlIGhhdmUgc2VudCBhIGNvbmZpcm1hdGlvbiBlbWFpbCB0byBnYWxlX2FuZGVyc29uQGV4YW1wbGUub3JnPC9wPlxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+QWxsIG9mIHlvdXIgZXhlbXB0aW9ucyBoYXZlIGJlZW4gcmVtb3ZlZCBhbmQgeW91ciByZWdpc3RyYXRpb24gaXMgbm93IGluYWN0aXZlLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPldlIHdpbGwgcmVtb3ZlIHlvdXIgcmVnaXN0cmF0aW9uIGZyb20gdGhlIHB1YmxpYyByZWdpc3RlciwgdGhpcyBjb3VsZCB0YWtlIHVwIHRvIDI0IGhvdXJzLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPlRlbGwgdXMgeW91ciB0aG91Z2h0cyAtIGh0dHBzOi8vd3d3LnNtYXJ0c3VydmV5LmNvLnVrL3MvM1M4MUZRLzwvcD5cblxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
-  recorded_at: Thu, 16 Feb 2023 12:02:44 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgbWVkaWE9XCJhbGxcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1lM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1LmNzc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjE2LCJsYXN0Q29sdW1uIjoxNSwiZmlyc3RDb2x1bW4iOjExLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyLz5cbiAgICAgIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjV9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MTgsImxhc3RDb2x1bW4iOjE1LCJmaXJzdENvbHVtbiI6MTEsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6IiAgICAgICAgICA8YnIvPiZuYnNwOyIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo1fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBtZWRpYT1cImFsbFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUuY3NzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1mOWQ4ZTVjZThmNTI4ZDk5N2Q1ODE1NmZmNWY4YzFkNGIwNzQxYWMyMmIzNjdhNmE2Mjk0YjNjN2U5NzU4ZTk2LmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLXBhbmVsIGdvdnVrLXBhbmVsLS1jb25maXJtYXRpb25cIj5cbiAgICAgICAgPGgxIGNsYXNzPVwiZ292dWstcGFuZWxfX3RpdGxlXCI+XG4gICAgICAgICAgPGJyLz5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cImdvdnVrLXBhbmVsX19ib2R5XCI+WW91ciByZWdpc3RyYXRpb24gaXMgaW5hY3RpdmUgYW5kIHdpbGwgYmUgcmVtb3ZlZCBmcm9tIHRoZSBwdWJsaWMgcmVnaXN0ZXIuPC9zcGFuPlxuICAgICAgICAgIDxici8+Jm5ic3A7XG4gICAgICAgIDwvaDE+XG4gICAgICA8L2Rpdj5cbiAgICAgIDxwPiZuYnNwOzwvcD5cblxuICAgICAgPGgyIGNsYXNzPVwiZ292dWstaGVhZGluZy1tXCI+V2hhdCB3aWxsIGhhcHBlbiBuZXh0PC9oMj5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+V2UgaGF2ZSBzZW50IGEgY29uZmlybWF0aW9uIGVtYWlsIHRvIG1hcmlhQGV4YW1wbGUub3JnPC9wPlxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+QWxsIG9mIHlvdXIgZXhlbXB0aW9ucyBoYXZlIGJlZW4gcmVtb3ZlZCBhbmQgeW91ciByZWdpc3RyYXRpb24gaXMgbm93IGluYWN0aXZlLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPldlIHdpbGwgcmVtb3ZlIHlvdXIgcmVnaXN0cmF0aW9uIGZyb20gdGhlIHB1YmxpYyByZWdpc3RlciwgdGhpcyBjb3VsZCB0YWtlIHVwIHRvIDI0IGhvdXJzLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPlRlbGwgdXMgeW91ciB0aG91Z2h0cyAtIGh0dHBzOi8vd3d3LnNtYXJ0c3VydmV5LmNvLnVrL3MvM1M4MUZRLzwvcD5cblxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Sat, 18 Feb 2023 17:08:57 GMT
 recorded_with: VCR 6.1.0

@@ -14,7 +14,8 @@
       <p class="govuk-hint"><%= t(".description") %></p>
 
       <ul class="govuk-list">
-        <% @confirm_edit_exemptions_form.transient_registration.excluded_exemptions.each do |exemption| %>
+        <% @confirm_edit_exemptions_form.transient_registration.excluded_exemptions.each do |exemption_id| %>
+          <% exemption = WasteExemptionsEngine::Exemption.find_by(id: exemption_id) %>
           <li><span><%= exemption.code %></span> <span><%= exemption.summary %></span></li>
         <% end %>
       </ul>
