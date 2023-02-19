@@ -24,6 +24,7 @@
         <%= f.govuk_collection_radio_buttons :workflow_state,
             @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: { text: t(".legend"), hidden: true } %>
 
+        <br />
         <%= f.govuk_submit %>
       </div>
 
