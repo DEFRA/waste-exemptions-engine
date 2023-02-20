@@ -21,9 +21,17 @@ module WasteExemptionsEngine
         template_id: "5426314f-98ef-419e-a66e-9522ba03f362",
         personalisation: {
           reference: @registration.reference,
-          exemptions: @registration.registration_exemptions
+          exemptions: active_exemptions_text
         }
       }
+    end
+
+    def active_exemptions_text
+      @registration.registration_exemptions.active.map { |re| exemption_row(re.exemption) }
+    end
+
+    def exemption_row(exemption)
+      "#{exemption.code} #{exemption.summary}"
     end
   end
 end
