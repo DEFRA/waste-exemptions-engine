@@ -1,0 +1,11 @@
+en:
+  waste_exemptions_engine:
+    confirm_no_exemption_changes_forms:
+      new:
+        back_link: Back
+        heading: You have not removed any exemptions, are you sure?
+        legend: Confirm no changes
+        radio_yes: "Yes"
+        radio_no: "No"
+        errors:
+          workflow_state: "You must select Yes or No"
