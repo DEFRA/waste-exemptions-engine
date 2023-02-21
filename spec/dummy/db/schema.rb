@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "tsm_system_rows"
 
   create_table "ad_renewal_letters_exports", id: :serial, force: :cascade do |t|
     t.date "expires_on"
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
     t.text "deregistration_message"
     t.date "deregistered_at"
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
+    t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
     t.index ["registration_id"], name: "index_registration_exemptions_on_registration_id"
   end
 
@@ -117,6 +119,8 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
     t.string "renew_token"
     t.integer "referring_registration_id"
     t.datetime "companies_house_updated_at"
+    t.datetime "deregistration_email_sent_at"
+    t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
   end
