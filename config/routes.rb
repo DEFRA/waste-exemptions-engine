@@ -383,6 +383,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "confirm-edit-exemptions",
               path_names: { new: "" }
 
+    resources :confirm_no_exemption_changes_forms,
+              only: %i[new create],
+              path: "confirm-no-exemption-changes",
+              path_names: { new: "" }
+
     resources :edit_exemptions_declaration_forms,
               only: %i[new create],
               path: "edit-exemptions-declaration",

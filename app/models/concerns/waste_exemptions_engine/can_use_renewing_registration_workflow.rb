@@ -80,6 +80,7 @@ module WasteExemptionsEngine
 
         # deregistration
         state :edit_exemptions_declaration_form
+        state :confirm_no_exemption_changes_form
 
         # End pages
         state :check_your_answers_form
@@ -135,6 +136,10 @@ module WasteExemptionsEngine
                       unless: :any_exemptions_selected?
 
           transitions from: :edit_exemptions_form,
+                      to: :confirm_no_exemption_changes_form,
+                      if: :no_exemptions_deregistered?
+
+          transitions from: :edit_exemptions_form,
                       to: :confirm_edit_exemptions_form
 
           transitions from: :confirm_edit_exemptions_form,
@@ -143,6 +148,9 @@ module WasteExemptionsEngine
           transitions from: :edit_exemptions_declaration_form,
                       to: :deregistration_complete_no_change_form,
                       if: :no_exemptions_deregistered?
+
+          transitions from: :confirm_no_exemption_changes_form,
+                      to: :edit_exemptions_form
 
           transitions from: :edit_exemptions_declaration_form,
                       to: :deregistration_complete_full_form,

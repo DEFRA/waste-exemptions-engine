@@ -10,7 +10,8 @@ en:
         confirmation_email_text: We have sent a confirmation email to %{contact_email}
         paragraph_1: You aren't allowed to de-register and then renew a U1 exemption at the same place within a 3 year period.
         paragraph_2: We will add your changes to the public register, this could take up to 24 hours. This includes the name and address of the individual or organisation responsible, the site address and the remaining exemptions you have registered.
-        paragraph_3: Tell us your thoughts - https://www.smartsurvey.co.uk/s/3S81FQ/
+        paragraph_3: Tell us your thoughts about this process -
+        survey_link: https://www.smartsurvey.co.uk/s/3S81FQ/
   activemodel:
     errors:
       models:
