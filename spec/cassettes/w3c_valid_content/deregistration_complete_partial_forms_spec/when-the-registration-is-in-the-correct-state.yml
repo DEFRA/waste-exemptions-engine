@@ -11,20 +11,20 @@ http_interactions:
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n\n      <div class=\"govuk-panel
         govuk-panel--confirmation\">\n        <h1 class=\"govuk-panel__title\">\n
-        \         You have removed\n        </h1>\n        <h1 class=\"govuk-panel__body\">\n
+        \         You have removed\n        </h1>\n        <h2 class=\"govuk-panel__body\">\n
         \         <strong>\n            exemption(s)\n            <br />\n            <br
         />\n            <span class=\"govuk-panel__body\">Your registration number
-        has not changed. It is</span>\n          </strong>\n        </h1>\n        <div
-        class=\"govuk-panel__body\">\n          <strong>\n            <span id=\"reg_identifier\">WEX000390</span>\n
+        has not changed. It is</span>\n          </strong>\n        </h2>\n        <div
+        class=\"govuk-panel__body\">\n          <strong>\n            <span id=\"reg_identifier\">WEX000001</span>\n
         \         </strong>\n        </div>\n      </div>\n\n      <h2 class=\"govuk-heading-m\">What
         will happen next</h2>\n\n      <p class=\"govuk-body\">We have sent a confirmation
-        email to lavone@example.net</p>\n      <p class=\"govuk-body\">You aren&#39;t
-        allowed to de-register and then renew a U1 exemption at the same place within
-        a 3 year period.</p>\n      <p class=\"govuk-body\">We will add your changes
-        to the public register, this could take up to 24 hours. This includes the
-        name and address of the individual or organisation responsible, the site address
-        and the remaining exemptions you have registered.</p>\n      <p class=\"govuk-body\">Tell
-        us your thoughts about this process - <a href=\"/waste_exemptions_engine/yR4CzkrM3LVXHd2yxtsxKFxh/deregistration-complete-partial\">https://www.smartsurvey.co.uk/s/3S81FQ/</a></p>\n\n
+        email to morgan_quigley@example.com</p>\n      <p class=\"govuk-body\">You
+        aren&#39;t allowed to de-register and then renew a U1 exemption at the same
+        place within a 3 year period.</p>\n      <p class=\"govuk-body\">We will add
+        your changes to the public register, this could take up to 24 hours. This
+        includes the name and address of the individual or organisation responsible,
+        the site address and the remaining exemptions you have registered.</p>\n      <p
+        class=\"govuk-body\">Tell us your thoughts about this process - <a href=\"https://www.smartsurvey.co.uk/s/3S81FQ/\">https://www.smartsurvey.co.uk/s/3S81FQ/</a></p>\n\n
         \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
@@ -41,7 +41,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Feb 2023 17:06:44 GMT
+      - Wed, 15 Mar 2023 08:43:27 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -70,22 +70,22 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 79c8d5a1388add72
+      - 7a837807ecdf752d
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=3P8J54gCKYUbshCd2Va25UPFVNwMb.Qh4wzjYfIASE4-1676912804-0-AWirXB+O7BilbLbMRsA+/b2I0OxuL+AhB9hs8VWU/ZSbzBSFJZ3aiAJFGP8jSrY7xTJYQFDAxa5xvmK30L+SG1I=;
-        path=/; expires=Mon, 20-Feb-23 17:36:44 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=v7n8RjUh5YTfWlOSysVj.MbBH0UmXLWXTZwNfWAlxr0-1678869807-0-AeoqQdiEHBb77yJYmgLadfiiyD2YK/rreHZvRVWysnuUFixZj21AgDJN3Uiq5F0Q1CLxoP7jwh6KAMss+6L/GR8=;
+        path=/; expires=Wed, 15-Mar-23 09:13:27 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 79c8d5a1388add72-LHR
+      - 7a837807ecdf752d-LHR
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgbWVkaWE9XCJhbGxcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1lM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1LmNzc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIxLCJsYXN0Q29sdW1uIjoxOCwiZmlyc3RDb2x1bW4iOjEzLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo2fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIyLCJsYXN0Q29sdW1uIjoxOCwiZmlyc3RDb2x1bW4iOjEzLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo2fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBtZWRpYT1cImFsbFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUuY3NzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1mOWQ4ZTVjZThmNTI4ZDk5N2Q1ODE1NmZmNWY4YzFkNGIwNzQxYWMyMmIzNjdhNmE2Mjk0YjNjN2U5NzU4ZTk2LmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLXBhbmVsIGdvdnVrLXBhbmVsLS1jb25maXJtYXRpb25cIj5cbiAgICAgICAgPGgxIGNsYXNzPVwiZ292dWstcGFuZWxfX3RpdGxlXCI+XG4gICAgICAgICAgWW91IGhhdmUgcmVtb3ZlZFxuICAgICAgICA8L2gxPlxuICAgICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgIDxzdHJvbmc+XG4gICAgICAgICAgICBleGVtcHRpb24ocylcbiAgICAgICAgICAgIDxiciAvPlxuICAgICAgICAgICAgPGJyIC8+XG4gICAgICAgICAgICA8c3BhbiBjbGFzcz1cImdvdnVrLXBhbmVsX19ib2R5XCI+WW91ciByZWdpc3RyYXRpb24gbnVtYmVyIGhhcyBub3QgY2hhbmdlZC4gSXQgaXM8L3NwYW4+XG4gICAgICAgICAgPC9zdHJvbmc+XG4gICAgICAgIDwvaDE+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgIDxzdHJvbmc+XG4gICAgICAgICAgICA8c3BhbiBpZD1cInJlZ19pZGVudGlmaWVyXCI+V0VYMDAwMzkwPC9zcGFuPlxuICAgICAgICAgIDwvc3Ryb25nPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLW1cIj5XaGF0IHdpbGwgaGFwcGVuIG5leHQ8L2gyPlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5XZSBoYXZlIHNlbnQgYSBjb25maXJtYXRpb24gZW1haWwgdG8gbGF2b25lQGV4YW1wbGUubmV0PC9wPlxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+WW91IGFyZW4mIzM5O3QgYWxsb3dlZCB0byBkZS1yZWdpc3RlciBhbmQgdGhlbiByZW5ldyBhIFUxIGV4ZW1wdGlvbiBhdCB0aGUgc2FtZSBwbGFjZSB3aXRoaW4gYSAzIHllYXIgcGVyaW9kLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPldlIHdpbGwgYWRkIHlvdXIgY2hhbmdlcyB0byB0aGUgcHVibGljIHJlZ2lzdGVyLCB0aGlzIGNvdWxkIHRha2UgdXAgdG8gMjQgaG91cnMuIFRoaXMgaW5jbHVkZXMgdGhlIG5hbWUgYW5kIGFkZHJlc3Mgb2YgdGhlIGluZGl2aWR1YWwgb3Igb3JnYW5pc2F0aW9uIHJlc3BvbnNpYmxlLCB0aGUgc2l0ZSBhZGRyZXNzIGFuZCB0aGUgcmVtYWluaW5nIGV4ZW1wdGlvbnMgeW91IGhhdmUgcmVnaXN0ZXJlZC48L3A+XG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5UZWxsIHVzIHlvdXIgdGhvdWdodHMgYWJvdXQgdGhpcyBwcm9jZXNzIC0gPGEgaHJlZj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS95UjRDemtyTTNMVlhIZDJ5eHRzeEtGeGgvZGVyZWdpc3RyYXRpb24tY29tcGxldGUtcGFydGlhbFwiPmh0dHBzOi8vd3d3LnNtYXJ0c3VydmV5LmNvLnVrL3MvM1M4MUZRLzwvYT48L3A+XG5cbiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Mon, 20 Feb 2023 17:06:44 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgbWVkaWE9XCJhbGxcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1lM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1LmNzc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIxLCJsYXN0Q29sdW1uIjoxOCwiZmlyc3RDb2x1bW4iOjEzLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo2fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIyLCJsYXN0Q29sdW1uIjoxOCwiZmlyc3RDb2x1bW4iOjEzLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGJyIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo2fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBtZWRpYT1cImFsbFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUuY3NzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi1mOWQ4ZTVjZThmNTI4ZDk5N2Q1ODE1NmZmNWY4YzFkNGIwNzQxYWMyMmIzNjdhNmE2Mjk0YjNjN2U5NzU4ZTk2LmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLXBhbmVsIGdvdnVrLXBhbmVsLS1jb25maXJtYXRpb25cIj5cbiAgICAgICAgPGgxIGNsYXNzPVwiZ292dWstcGFuZWxfX3RpdGxlXCI+XG4gICAgICAgICAgWW91IGhhdmUgcmVtb3ZlZFxuICAgICAgICA8L2gxPlxuICAgICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgIDxzdHJvbmc+XG4gICAgICAgICAgICBleGVtcHRpb24ocylcbiAgICAgICAgICAgIDxiciAvPlxuICAgICAgICAgICAgPGJyIC8+XG4gICAgICAgICAgICA8c3BhbiBjbGFzcz1cImdvdnVrLXBhbmVsX19ib2R5XCI+WW91ciByZWdpc3RyYXRpb24gbnVtYmVyIGhhcyBub3QgY2hhbmdlZC4gSXQgaXM8L3NwYW4+XG4gICAgICAgICAgPC9zdHJvbmc+XG4gICAgICAgIDwvaDI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1wYW5lbF9fYm9keVwiPlxuICAgICAgICAgIDxzdHJvbmc+XG4gICAgICAgICAgICA8c3BhbiBpZD1cInJlZ19pZGVudGlmaWVyXCI+V0VYMDAwMDAxPC9zcGFuPlxuICAgICAgICAgIDwvc3Ryb25nPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8aDIgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLW1cIj5XaGF0IHdpbGwgaGFwcGVuIG5leHQ8L2gyPlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5XZSBoYXZlIHNlbnQgYSBjb25maXJtYXRpb24gZW1haWwgdG8gbW9yZ2FuX3F1aWdsZXlAZXhhbXBsZS5jb208L3A+XG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5Zb3UgYXJlbiYjMzk7dCBhbGxvd2VkIHRvIGRlLXJlZ2lzdGVyIGFuZCB0aGVuIHJlbmV3IGEgVTEgZXhlbXB0aW9uIGF0IHRoZSBzYW1lIHBsYWNlIHdpdGhpbiBhIDMgeWVhciBwZXJpb2QuPC9wPlxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+V2Ugd2lsbCBhZGQgeW91ciBjaGFuZ2VzIHRvIHRoZSBwdWJsaWMgcmVnaXN0ZXIsIHRoaXMgY291bGQgdGFrZSB1cCB0byAyNCBob3Vycy4gVGhpcyBpbmNsdWRlcyB0aGUgbmFtZSBhbmQgYWRkcmVzcyBvZiB0aGUgaW5kaXZpZHVhbCBvciBvcmdhbmlzYXRpb24gcmVzcG9uc2libGUsIHRoZSBzaXRlIGFkZHJlc3MgYW5kIHRoZSByZW1haW5pbmcgZXhlbXB0aW9ucyB5b3UgaGF2ZSByZWdpc3RlcmVkLjwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPlRlbGwgdXMgeW91ciB0aG91Z2h0cyBhYm91dCB0aGlzIHByb2Nlc3MgLSA8YSBocmVmPVwiaHR0cHM6Ly93d3cuc21hcnRzdXJ2ZXkuY28udWsvcy8zUzgxRlEvXCI+aHR0cHM6Ly93d3cuc21hcnRzdXJ2ZXkuY28udWsvcy8zUzgxRlEvPC9hPjwvcD5cblxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Tue, 14 Mar 2023 18:01:00 GMT
 recorded_with: VCR 6.1.0

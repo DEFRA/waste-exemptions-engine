@@ -16,7 +16,7 @@
         <h1 class="govuk-panel__title">
           <%= t(".heading") %>
         </h1>
-        <h1 class="govuk-panel__body">
+        <h2 class="govuk-panel__body">
           <strong>
             <% @deregistration_complete_partial_form.transient_registration.excluded_exemptions.each do |exemption_id| %>
               <% exemption = WasteExemptionsEngine::Exemption.find_by(id: exemption_id) %>
@@ -28,7 +28,7 @@
             <br />
             <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
           </strong>
-        </h1>
+        </h2>
         <div class="govuk-panel__body">
           <strong>
             <span id="reg_identifier"><%= @deregistration_complete_partial_form.reference %></span>
