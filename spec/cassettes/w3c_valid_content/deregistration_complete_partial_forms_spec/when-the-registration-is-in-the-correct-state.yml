@@ -18,9 +18,7 @@ http_interactions:
         class=\"govuk-panel__body\">\n          <strong>\n            <span id=\"reg_identifier\">WEX000390</span>\n
         \         </strong>\n        </div>\n      </div>\n\n      <h2 class=\"govuk-heading-m\">What
         will happen next</h2>\n\n      <p class=\"govuk-body\">We have sent a confirmation
-        email to lavone@example.net</p>\n      <p class=\"govuk-body\">You aren&#39;t
-        allowed to de-register and then renew a U1 exemption at the same place within
-        a 3 year period.</p>\n      <p class=\"govuk-body\">We will add your changes
+        email to lavone@example.net</p>\n      <p class=\"govuk-body\">We will add your changes
         to the public register, this could take up to 24 hours. This includes the
         name and address of the individual or organisation responsible, the site address
         and the remaining exemptions you have registered.</p>\n      <p class=\"govuk-body\">Tell
