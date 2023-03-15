@@ -5,7 +5,7 @@ en:
         title: Uncheck any exemptions that are no longer needed
         heading: Uncheck any exemptions that are no longer needed
         current_heading: Your current exemptions
-        description: Uncheck any exemptions that you don't need. You aren't allowed to de-register and then renew a U1 exemption at the same place within a 3 year period.
+        description: Uncheck any exemptions that you don't need.
         legend: Exemptions
         error_heading: A problem to fix
         next_button: Continue
