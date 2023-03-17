@@ -5,7 +5,7 @@ en:
         title: Untick any exemptions that are no longer needed
         heading: Untick any exemptions that are no longer needed
         current_heading: Your current exemptions
-        description: Uncheck any exemptions that you don't need.
+        description: Untick any exemptions that you don't need.
         legend: Exemptions
         error_heading: A problem to fix
         next_button: Continue
