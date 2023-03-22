@@ -15,12 +15,20 @@
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">
           <%= t(".heading") %>
-          <% @deregistration_complete_partial_form.excluded_exemptions.each do |exemption| %>
-            <br />
-            <span class="govuk-panel__body"><%= exemption.name %></span>
-          <% end %>
-          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
         </h1>
+        <h2 class="govuk-panel__body">
+          <strong>
+            <% @deregistration_complete_partial_form.transient_registration.excluded_exemptions.each do |exemption_id| %>
+              <% exemption = WasteExemptionsEngine::Exemption.find_by(id: exemption_id) %>
+              <span><%= exemption.code %></span> <span><%= exemption.summary %></span></li>
+              <br />
+            <% end %>
+            <%= t(".exemption_list_end") %>
+            <br />
+            <br />
+            <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+          </strong>
+        </h2>
         <div class="govuk-panel__body">
           <strong>
             <span id="reg_identifier"><%= @deregistration_complete_partial_form.reference %></span>
@@ -32,7 +40,7 @@
 
       <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_partial_form.contact_email) %></p>
       <p class="govuk-body"><%= t(".paragraph_1") %></p>
-      <p class="govuk-body"><%= t(".paragraph_2") %></p>
+      <p class="govuk-body"><%= t(".paragraph_2") %> <%= link_to(t(".survey_link"), t(".survey_link")) %></p>
 
     <% end %>
   </div>

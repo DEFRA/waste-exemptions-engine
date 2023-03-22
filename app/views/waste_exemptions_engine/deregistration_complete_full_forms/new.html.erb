@@ -14,18 +14,19 @@
 
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">
-          <%= t(".heading") %>
-          <br />
+          <br/>
           <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+          <br/>&nbsp;
         </h1>
       </div>
+      <p>&nbsp;</p>
 
       <h2 class="govuk-heading-m"><%= t(".subheading") %></h2>
 
       <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_full_form.contact_email) %></p>
       <p class="govuk-body"><%= t(".paragraph_1") %></p>
       <p class="govuk-body"><%= t(".paragraph_2") %></p>
-      <p class="govuk-body"><%= t(".paragraph_3") %></p>
+      <p class="govuk-body"><%= t(".paragraph_3") %> <%= link_to(t(".survey_link"), t(".survey_link")) %></p>
 
     <% end %>
   </div>

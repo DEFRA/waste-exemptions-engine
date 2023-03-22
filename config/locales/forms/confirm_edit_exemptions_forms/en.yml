@@ -5,7 +5,6 @@ en:
         back_link: Back
         heading: Are you sure you want to remove these exemptions?
         heading_deregister: Are you sure you want to deregister all of these exemptions and be removed from the public register?
-        description: You aren't allowed to de-register and then renew a U1 exemption at the same place within a 3 year period.
         legend: Confirm edit exemptions
         radio_yes: "Yes"
         radio_no: "No"

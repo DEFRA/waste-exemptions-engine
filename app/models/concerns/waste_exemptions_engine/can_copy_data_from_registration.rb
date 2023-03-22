@@ -21,6 +21,7 @@ module WasteExemptionsEngine
                                                   "created_at",
                                                   "updated_at",
                                                   "submitted_at",
+                                                  "deregistration_email_sent_at",
                                                   "referring_registration_id")
 
       assign_attributes(attributes)

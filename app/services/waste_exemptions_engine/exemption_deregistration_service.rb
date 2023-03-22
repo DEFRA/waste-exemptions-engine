@@ -47,7 +47,7 @@ module WasteExemptionsEngine
 
     def deregister_exemptions(registration_exemptions)
       registration_exemptions.update_all(
-        state: "inactive",
+        state: "ceased",
         deregistration_message: I18n.t("self_serve_deregistration.message"),
         deregistered_at: Time.zone.now
       )
