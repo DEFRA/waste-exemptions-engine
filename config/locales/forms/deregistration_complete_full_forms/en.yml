@@ -8,7 +8,8 @@ en:
         confirmation_email_text: We have sent a confirmation email to %{contact_email}
         paragraph_1: All of your exemptions have been removed and your registration is now inactive.
         paragraph_2: We will remove your registration from the public register, this could take up to 24 hours.
-        paragraph_3: Tell us your thoughts - https://www.smartsurvey.co.uk/s/3S81FQ/
+        paragraph_3: Tell us your thoughts about this process -
+        survey_link: https://www.smartsurvey.co.uk/s/3S81FQ/
   activemodel:
     errors:
       models:

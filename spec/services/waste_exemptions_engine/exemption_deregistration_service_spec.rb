@@ -49,7 +49,7 @@ module WasteExemptionsEngine
         it "deactivates all exemptions for the registration" do
           expect { run_service }.to change { registration.registration_exemptions.pluck(:state).uniq }
             .from(["active"])
-            .to(["inactive"])
+            .to(["ceased"])
         end
 
         it "sets the deregistered_at timestamp for all exemptions" do
@@ -91,14 +91,14 @@ module WasteExemptionsEngine
         end
 
         it "removes the exemptions" do
-          expect { run_service }.to change { registration.registration_exemptions.where(state: "inactive").count }
+          expect { run_service }.to change { registration.registration_exemptions.where(state: "ceased").count }
             .from(0)
             .to(removed_exemption_ids.length)
         end
 
         it "deactivates the removed exemptions" do
           expect { run_service }.to change { removed_registration_exemptions.pluck(:state).uniq }
-            .to(["inactive"])
+            .to(["ceased"])
         end
 
         it "sets the deregistered_at timestamp each removed exemption" do

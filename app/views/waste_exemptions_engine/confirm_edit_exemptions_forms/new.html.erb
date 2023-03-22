@@ -11,10 +11,9 @@
         <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
       <% end %>
 
-      <p class="govuk-hint"><%= t(".description") %></p>
-
       <ul class="govuk-list">
-        <% @confirm_edit_exemptions_form.transient_registration.excluded_exemptions.each do |exemption| %>
+        <% @confirm_edit_exemptions_form.transient_registration.excluded_exemptions.each do |exemption_id| %>
+          <% exemption = WasteExemptionsEngine::Exemption.find_by(id: exemption_id) %>
           <li><span><%= exemption.code %></span> <span><%= exemption.summary %></span></li>
         <% end %>
       </ul>
@@ -23,6 +22,7 @@
         <%= f.govuk_collection_radio_buttons :workflow_state,
             @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: { text: t(".legend"), hidden: true } %>
 
+        <br />
         <%= f.govuk_submit %>
       </div>
 
