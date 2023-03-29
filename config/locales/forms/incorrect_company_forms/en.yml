@@ -6,7 +6,7 @@ en:
         heading: My Companies House information is incorrect
         service_link: Update your Companies House information
         next_button: Continue
-        description: If your Companies House information is incorrect you must update it with Companies House before you can register as a waste carrier.
+        description: If your Companies House information is incorrect you must update it with Companies House before you can register a waste exemption.
         enter_a_different_number: Enter a different number
         new_window: (Opens in new window)
         must_create_new_registration: If you have a new companies house number you need to create a new registration
