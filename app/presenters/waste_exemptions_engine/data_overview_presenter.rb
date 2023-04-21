@@ -51,7 +51,7 @@ module WasteExemptionsEngine
     end
 
     def site_location_rows
-      if site_address.located_by_grid_reference?
+      if site_address&.located_by_grid_reference?
         [grid_reference_row, site_description_row]
       else
         site_address_row
@@ -204,14 +204,14 @@ module WasteExemptionsEngine
     def grid_reference_row
       {
         title: I18n.t("#{reg_i18n_scope}.grid_reference.title"),
-        value: site_address.grid_reference
+        value: site_address&.grid_reference
       }
     end
 
     def site_description_row
       {
         title: I18n.t("#{reg_i18n_scope}.site_description.title"),
-        value: site_address.description
+        value: site_address&.description
       }
     end
 

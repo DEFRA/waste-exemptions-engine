@@ -20,7 +20,7 @@ module WasteExemptionsEngine
           get request_path
 
           expect(response).to render_template("waste_exemptions_engine/edit_forms/new")
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response.body).to have_valid_html
         end
 
@@ -33,7 +33,7 @@ module WasteExemptionsEngine
             get request_path
 
             expect(response).to render_template("waste_exemptions_engine/edit_forms/new")
-            expect(response.code).to eq("200")
+            expect(response).to have_http_status(:ok)
             expect(response.body).to include(registration.reference)
           end
 

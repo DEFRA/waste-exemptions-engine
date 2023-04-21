@@ -32,7 +32,7 @@ module WasteExemptionsEngine
           get site_address_request_path
 
           expect(response.location).to include(check_site_address_forms_path(token: form.token))
-          expect(response.code).to eq("303")
+          expect(response).to have_http_status(:see_other)
         end
       end
     end

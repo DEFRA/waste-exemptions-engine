@@ -12,7 +12,7 @@ module WasteExemptionsEngine
         get request_path
 
         aggregate_failures do
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/confirm_no_exemption_changes_forms/new")
         end
       end
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
           post request_path, params: valid_params
 
           aggregate_failures do
-            expect(response.code).to eq("303")
+            expect(response).to have_http_status(:see_other)
             expect(response).to redirect_to("/waste_exemptions_engine/#{form.token}/edit-exemptions")
           end
         end
@@ -51,7 +51,7 @@ module WasteExemptionsEngine
           post request_path, params: valid_params
 
           aggregate_failures do
-            expect(response.code).to eq("303")
+            expect(response).to have_http_status(:see_other)
             expect(response).to redirect_to("/waste_exemptions_engine/#{form.token}/deregistration-complete-no-change")
           end
         end
@@ -70,7 +70,7 @@ module WasteExemptionsEngine
           post request_path, params: invalid_params
 
           aggregate_failures do
-            expect(response.code).to eq("200")
+            expect(response).to have_http_status(:ok)
             expect(response).to render_template("waste_exemptions_engine/confirm_no_exemption_changes_forms/new")
             expect(response.body).to have_html_escaped_string("You must select Yes or No")
           end
@@ -88,7 +88,7 @@ module WasteExemptionsEngine
           post request_path, params: invalid_params
 
           aggregate_failures do
-            expect(response.code).to eq("200")
+            expect(response).to have_http_status(:ok)
             expect(response).to render_template("waste_exemptions_engine/confirm_no_exemption_changes_forms/new")
             expect(response.body).to have_html_escaped_string("You must select Yes or No")
           end

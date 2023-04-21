@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
           it "can only transition to #{next_state}" do
             permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
-            expect(permitted_states).to match_array([next_state])
+            expect(permitted_states).to contain_exactly(next_state)
           end
 
           it "changes to :renew_with_changes_form after the 'next' event" do
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
 
           it "can only transition to :renew_without_changes_form" do
             permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
-            expect(permitted_states).to match_array([next_state])
+            expect(permitted_states).to contain_exactly(next_state)
           end
 
           it "changes to :renew_without_changes_form after the 'next' event" do

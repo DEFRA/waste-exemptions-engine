@@ -19,7 +19,7 @@ module WasteExemptionsEngine
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/renewal_complete_forms/new")
-        expect(response.code).to eq("200")
+        expect(response).to have_http_status(:ok)
         expect(Registration.count).to eq(initial_count + 1)
         expect(RenewingRegistration.where(token: form.token).count).to eq(0)
         expect(response.body).to include(Registration.last.reference)

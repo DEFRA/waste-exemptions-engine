@@ -64,7 +64,7 @@ module WasteExemptionsEngine
         it "displays inactive company error" do
           get request_path
 
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
           expect(response.body).to have_valid_html
         end
@@ -79,7 +79,7 @@ module WasteExemptionsEngine
         it "displays the inactive company error" do
           get request_path
 
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
           expect(response.body).to have_valid_html
         end

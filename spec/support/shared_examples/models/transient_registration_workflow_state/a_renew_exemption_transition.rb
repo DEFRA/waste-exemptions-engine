@@ -14,7 +14,7 @@ RSpec.shared_examples "a renew exemption transition" do |factory:|
 
         aggregate_failures do
           expect(subject.send(:any_exemptions_selected?)).to be(true)
-          expect(permitted_states).to match_array([next_state])
+          expect(permitted_states).to contain_exactly(next_state)
         end
       end
 
@@ -36,7 +36,7 @@ RSpec.shared_examples "a renew exemption transition" do |factory:|
 
         aggregate_failures do
           expect(subject.send(:any_exemptions_selected?)).to be(false)
-          expect(permitted_states).to match_array([next_state])
+          expect(permitted_states).to contain_exactly(next_state)
         end
       end
 

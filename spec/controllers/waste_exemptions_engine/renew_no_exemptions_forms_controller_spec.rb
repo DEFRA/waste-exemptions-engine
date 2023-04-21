@@ -16,7 +16,7 @@ module WasteExemptionsEngine
         get request_path
 
         aggregate_failures do
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/renew_no_exemptions_forms/new")
         end
       end

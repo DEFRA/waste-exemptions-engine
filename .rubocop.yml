@@ -9,7 +9,19 @@ Naming/VariableNumber:
 
 # This cop incorrectly flags the sequence of parameters passed to a shared_example:
 RSpec/SortMetadata:
-  Enabled: false
+  Exclude:
+    - "spec/**/*"
+
+# Allow "because" as a prefix:
+RSpec/ContextWording:
+  Prefixes:
+    - because
+    - when
+    - with
+    - without
+    - if
+    - unless
+    - for
 
 # TODO: Remove these exclusions 
 # The effort to update the existing specs to align with these cops is too high.

@@ -29,7 +29,7 @@ module WasteExemptionsEngine
 
         expect(transient_registration.exemptions).to be_empty
         form.submit({})
-        expect(transient_registration.exemptions).to match_array([])
+        expect(transient_registration.exemptions).to be_empty
       end
     end
   end
