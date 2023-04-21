@@ -13,7 +13,7 @@ module WasteExemptionsEngine
 
         it "can only transition to :incorrect_company_form" do
           permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
-          expect(permitted_states).to match_array([:incorrect_company_form])
+          expect(permitted_states).to contain_exactly(:incorrect_company_form)
         end
 
         it "changes to :incorrect_company_form after the 'next' event" do
@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
         it "can only transition to :renewal_start_form" do
           permitted_states = Helpers::WorkflowStates.permitted_states(renewing_registration)
-          expect(permitted_states).to match_array([:renewal_start_form])
+          expect(permitted_states).to contain_exactly(:renewal_start_form)
         end
 
         it "changes to :renewal_start_form after the 'next' event" do

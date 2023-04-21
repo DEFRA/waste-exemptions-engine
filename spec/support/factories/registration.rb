@@ -79,7 +79,7 @@ FactoryBot.define do
       applicant_first_name { Faker::Name.first_name }
       applicant_last_name { Faker::Name.last_name }
       applicant_phone { "01234567890" }
-      applicant_email { Faker::Internet.safe_email }
+      applicant_email { Faker::Internet.email }
       business_type { WasteExemptionsEngine::Registration::BUSINESS_TYPES[:limited_company] }
       company_no { "09360070" }
       operator_name { Faker::Company.name }
@@ -87,7 +87,7 @@ FactoryBot.define do
       contact_last_name { Faker::Name.last_name }
       contact_position { Faker::Company.profession }
       contact_phone { "01234567890" }
-      contact_email { Faker::Internet.safe_email }
+      contact_email { Faker::Internet.email }
       on_a_farm { true }
       is_a_farmer { true }
       registration_exemptions { build_list(:registration_exemption, 10) }

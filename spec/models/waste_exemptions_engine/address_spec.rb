@@ -43,7 +43,7 @@ module WasteExemptionsEngine
 
           valid_address = create(:address, postcode: "BS1 5AH")
 
-          expect(described_class.with_postcode).to match_array([valid_address])
+          expect(described_class.with_postcode).to contain_exactly(valid_address)
         end
       end
 
@@ -55,7 +55,7 @@ module WasteExemptionsEngine
 
           valid_address = create(:address, x: 123.4, y: 123.4)
 
-          expect(described_class.with_valid_easting_and_northing).to match_array([valid_address])
+          expect(described_class.with_valid_easting_and_northing).to contain_exactly(valid_address)
         end
       end
 

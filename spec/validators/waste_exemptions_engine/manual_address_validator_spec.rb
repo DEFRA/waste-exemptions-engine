@@ -59,7 +59,7 @@ module WasteExemptionsEngine
         it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*valid_parameters)
 
         optional_attributes.each do |property|
-          context "even though the #{property} is missing (because it is optional" do
+          context "when the #{property} is missing (because it is optional" do
             it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*(inputs[property][:missing]))
           end
         end

@@ -6,7 +6,7 @@ RSpec.shared_examples "a simple monodirectional transition" do |previous_and_nex
 
     it "can only transition to #{previous_and_next_state}" do
       permitted_states = Helpers::WorkflowStates.permitted_states(subject)
-      expect(permitted_states).to match_array([previous_and_next_state])
+      expect(permitted_states).to contain_exactly(previous_and_next_state)
     end
 
     it "changes to #{previous_and_next_state} after the 'next' event" do

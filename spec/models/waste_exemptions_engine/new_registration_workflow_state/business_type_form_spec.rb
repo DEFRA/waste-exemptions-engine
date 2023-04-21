@@ -20,7 +20,7 @@ module WasteExemptionsEngine
             context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-                expect(permitted_states).to match_array([next_state])
+                expect(permitted_states).to contain_exactly(next_state)
               end
 
               it "changes to #{next_state} after the 'next' event" do
@@ -41,7 +41,7 @@ module WasteExemptionsEngine
             context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-                expect(permitted_states).to match_array([next_state])
+                expect(permitted_states).to contain_exactly(next_state)
               end
 
               it "changes to #{next_state} after the 'next' event" do
@@ -64,7 +64,7 @@ module WasteExemptionsEngine
             context "when the business type is #{business_type}" do
               it "can only transition to #{next_state}" do
                 permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-                expect(permitted_states).to match_array([next_state])
+                expect(permitted_states).to contain_exactly(next_state)
               end
 
               it "changes to #{next_state} after the 'next' event" do

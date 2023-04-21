@@ -158,7 +158,7 @@ module WasteExemptionsEngine
         it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
           get request_path
 
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/renews/already_renewed")
           expect(response.body).to have_valid_html
         end
@@ -171,7 +171,7 @@ module WasteExemptionsEngine
         it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
           get request_path
 
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/renews/past_renewal_window")
           expect(response.body).to have_valid_html
         end
@@ -183,7 +183,7 @@ module WasteExemptionsEngine
         it "returns a 404 status, renders the correct template and returns W3C valid HTML content", vcr: true do
           get request_path
 
-          expect(response.code).to eq("404")
+          expect(response).to have_http_status(:not_found)
           expect(response).to render_template("waste_exemptions_engine/renews/invalid_magic_link")
           expect(response.body).to have_valid_html
         end

@@ -16,7 +16,7 @@ module WasteExemptionsEngine
         get request_path
 
         aggregate_failures do
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
           expect(response).to render_template("waste_exemptions_engine/edit_exemptions_declaration_forms/new")
         end
       end
@@ -97,7 +97,7 @@ module WasteExemptionsEngine
           post request_path, params: invalid_params
 
           aggregate_failures do
-            expect(response.code).to eq("200")
+            expect(response).to have_http_status(:ok)
             expect(response).to render_template("waste_exemptions_engine/edit_exemptions_declaration_forms/new")
           end
         end

@@ -13,7 +13,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
           post post_request_path
 
           expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
         end
       end
 

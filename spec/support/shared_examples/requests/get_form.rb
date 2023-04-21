@@ -11,7 +11,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         get good_request_path
 
         expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-        expect(response.code).to eq("200")
+        expect(response).to have_http_status(:ok)
         expect(response.body).to have_valid_html
       end
     end
@@ -33,7 +33,7 @@ RSpec.shared_examples "GET form" do |form_factory, path|
 
           expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(form_factory.to_s)
           expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
-          expect(response.code).to eq("200")
+          expect(response).to have_http_status(:ok)
         end
       end
 

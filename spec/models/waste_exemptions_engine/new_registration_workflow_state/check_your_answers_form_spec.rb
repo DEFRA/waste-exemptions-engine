@@ -24,7 +24,7 @@ module WasteExemptionsEngine
 
         it "can only transition to #{next_state}" do
           permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-          expect(permitted_states).to match_array([next_state])
+          expect(permitted_states).to contain_exactly(next_state)
         end
       end
 
@@ -33,7 +33,7 @@ module WasteExemptionsEngine
 
         it "can only transition to #{next_state}" do
           permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-          expect(permitted_states).to match_array([next_state])
+          expect(permitted_states).to contain_exactly(next_state)
         end
       end
     end
