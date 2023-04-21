@@ -274,7 +274,7 @@
       </h2>
 
       <dl class="govuk-summary-list">
-        <% if @edit_form.site_address.located_by_grid_reference? %>
+        <% if @edit_form.site_address&.located_by_grid_reference? %>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               <%=t ".sections.site.labels.grid_reference" %>

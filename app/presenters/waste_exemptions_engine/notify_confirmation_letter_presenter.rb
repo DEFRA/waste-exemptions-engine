@@ -53,7 +53,7 @@ module WasteExemptionsEngine
     def location_section
       items = []
 
-      if site_address.located_by_grid_reference?
+      if site_address&.located_by_grid_reference?
         items << grid_reference_text
         items << site_details_text
       else
@@ -139,11 +139,11 @@ module WasteExemptionsEngine
     # Location
 
     def grid_reference_text
-      label_and_value("waste_operation_location.ngr", site_address.grid_reference)
+      label_and_value("waste_operation_location.ngr", site_address&.grid_reference)
     end
 
     def site_details_text
-      label_and_value("waste_operation_location.details", site_address.description)
+      label_and_value("waste_operation_location.details", site_address&.description)
     end
 
     def site_address_text

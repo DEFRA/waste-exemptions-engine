@@ -348,7 +348,7 @@ module WasteExemptionsEngine
     end
 
     def located_by_grid_reference?
-      site_address.located_by_grid_reference?
+      site_address&.located_by_grid_reference?
     end
 
     def skip_to_manual_address?
