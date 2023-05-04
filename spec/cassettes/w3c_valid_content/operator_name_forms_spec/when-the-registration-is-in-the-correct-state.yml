@@ -18,7 +18,7 @@ http_interactions:
         the name of the operator responsible for the waste operation\n      </p>\n\n
         \     <div class=\"govuk-form-group\"><label for=\"operator-name-form-operator-name-field\"
         class=\"govuk-label\">Full name</label><input id=\"operator-name-form-operator-name-field\"
-        class=\"govuk-input\" type=\"text\" name=\"operator_name_form[operator_name]\"
+        class=\"govuk-input\" autocomplete=\"organization\" type=\"text\" name=\"operator_name_form[operator_name]\"
         /></div>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
         class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
         \ </div>\n</div>\n\n\n</body>\n</html>\n"

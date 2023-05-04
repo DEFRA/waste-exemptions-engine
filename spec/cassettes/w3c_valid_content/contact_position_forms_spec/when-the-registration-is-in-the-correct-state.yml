@@ -18,7 +18,7 @@ http_interactions:
         class=\"govuk-label\">Position (optional)</label><div class=\"govuk-hint\"
         id=\"contact-position-form-contact-position-hint\">For example, Manager</div><input
         id=\"contact-position-form-contact-position-field\" class=\"govuk-input govuk-!-width-one-half\"
-        aria-describedby=\"contact-position-form-contact-position-hint\" type=\"text\"
+        aria-describedby=\"contact-position-form-contact-position-hint\" autocomplete=\"organization-title\" type=\"text\"
         name=\"contact_position_form[contact_position]\" /></div>\n\n      <button
         type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\" data-module=\"govuk-button\"
         data-prevent-double-click=\"true\">Continue</button>\n</form>  </div>\n</div>\n\n\n</body>\n</html>\n"

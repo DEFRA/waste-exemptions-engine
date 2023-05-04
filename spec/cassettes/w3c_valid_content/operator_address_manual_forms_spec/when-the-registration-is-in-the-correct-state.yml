@@ -33,15 +33,15 @@ http_interactions:
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"operator-address-manual-form-operator-address-street-address-field\"
         class=\"govuk-label\">Address line 1</label><input id=\"operator-address-manual-form-operator-address-street-address-field\"
-        class=\"govuk-input\" type=\"text\" name=\"operator_address_manual_form[operator_address][street_address]\"
+        class=\"govuk-input\" autocomplete=\"address-line1\" type=\"text\" name=\"operator_address_manual_form[operator_address][street_address]\"
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"operator-address-manual-form-operator-address-locality-field\" class=\"govuk-label\">Address
         line 2 (optional)</label><input id=\"operator-address-manual-form-operator-address-locality-field\"
-        class=\"govuk-input\" type=\"text\" name=\"operator_address_manual_form[operator_address][locality]\"
+        class=\"govuk-input\" autocomplete=\"address-line2\" type=\"text\" name=\"operator_address_manual_form[operator_address][locality]\"
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"operator-address-manual-form-operator-address-city-field\" class=\"govuk-label\">Town
         or city</label><input id=\"operator-address-manual-form-operator-address-city-field\"
-        class=\"govuk-input\" type=\"text\" name=\"operator_address_manual_form[operator_address][city]\"
+        class=\"govuk-input\" autocomplete=\"address-level2\" type=\"text\" name=\"operator_address_manual_form[operator_address][city]\"
         /></div>\n</div>\n\n<input autocomplete=\"off\" type=\"hidden\" name=\"operator_address_manual_form[operator_address][postcode]\"
         id=\"operator_address_manual_form_operator_address_postcode\" />\n<input value=\"manual\"
         autocomplete=\"off\" type=\"hidden\" name=\"operator_address_manual_form[operator_address][mode]\"
