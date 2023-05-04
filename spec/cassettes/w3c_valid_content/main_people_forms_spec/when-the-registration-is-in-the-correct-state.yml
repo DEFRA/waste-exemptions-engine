@@ -25,10 +25,10 @@ http_interactions:
         the name and date of birth of the business owner.&quot;}</p>\n\n      <div
         class=\"govuk-form-group\"><label for=\"main-people-form-first-name-field\"
         class=\"govuk-label\">First name</label><input id=\"main-people-form-first-name-field\"
-        class=\"govuk-input govuk-input--width-20\" type=\"text\" name=\"main_people_form[first_name]\"
+        class=\"govuk-input govuk-input--width-20\" autocomplete=\"give-name\" type=\"text\" name=\"main_people_form[first_name]\"
         /></div>\n\n<div class=\"govuk-form-group\"><label for=\"main-people-form-last-name-field\"
         class=\"govuk-label\">Last name</label><input id=\"main-people-form-last-name-field\"
-        class=\"govuk-input govuk-input--width-20\" type=\"text\" name=\"main_people_form[last_name]\"
+        class=\"govuk-input govuk-input--width-20\" autocomplete=\"family-name\" type=\"text\" name=\"main_people_form[last_name]\"
         /></div>\n\n\n        <input type=\"submit\" name=\"commit\" value=\"Add another
         person\" class=\"govuk-button\" data-disable-with=\"Add another person\" />\n</form>
         \ </div> <!-- closes .govuk-grid-column-two-thirds -->\n\n</div> <!-- closes

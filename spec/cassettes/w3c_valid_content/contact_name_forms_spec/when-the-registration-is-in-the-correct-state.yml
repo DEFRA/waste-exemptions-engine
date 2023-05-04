@@ -18,10 +18,10 @@ http_interactions:
         this person if we need to discuss the waste operation</p>\n\n      <div class=\"govuk-form-group\"><label
         for=\"contact-name-form-contact-first-name-field\" class=\"govuk-label\">First
         name</label><input id=\"contact-name-form-contact-first-name-field\" class=\"govuk-input
-        govuk-!-width-one-half\" type=\"text\" name=\"contact_name_form[contact_first_name]\"
+        govuk-!-width-one-half\" autocomplete=\"given-name\" type=\"text\" name=\"contact_name_form[contact_first_name]\"
         /></div>\n\n      <div class=\"govuk-form-group\"><label for=\"contact-name-form-contact-last-name-field\"
         class=\"govuk-label\">Last name</label><input id=\"contact-name-form-contact-last-name-field\"
-        class=\"govuk-input govuk-!-width-one-half\" type=\"text\" name=\"contact_name_form[contact_last_name]\"
+        class=\"govuk-input govuk-!-width-one-half\" autocomplete=\"family-name\" type=\"text\" name=\"contact_name_form[contact_last_name]\"
         /></div>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
         class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
         \ </div>\n</div>\n\n\n</body>\n</html>\n"

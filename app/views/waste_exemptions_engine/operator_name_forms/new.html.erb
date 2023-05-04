@@ -18,7 +18,8 @@
       <%= f.govuk_text_field :operator_name,
           label: {
             text: t(".operator_name_label.#{@operator_name_form.business_type}")
-          } %>
+          },
+          autocomplete: "organization" %>
 
       <%= f.govuk_submit %>
     <% end %>

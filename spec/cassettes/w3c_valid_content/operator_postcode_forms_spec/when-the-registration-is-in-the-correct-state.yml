@@ -25,7 +25,7 @@ http_interactions:
         enter a UK postcode</label><div class=\"govuk-hint\" id=\"operator-postcode-form-temp-operator-postcode-hint\">For
         example, BS1 5AH</div><input id=\"operator-postcode-form-temp-operator-postcode-field\"
         class=\"govuk-input govuk-input--width-10\" aria-describedby=\"operator-postcode-form-temp-operator-postcode-hint\"
-        type=\"text\" name=\"operator_postcode_form[temp_operator_postcode]\" /></div>\n\n
+        autocomplete=\"postal-code\" type=\"text\" name=\"operator_postcode_form[temp_operator_postcode]\" /></div>\n\n
         \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
         data-module=\"govuk-button\" data-prevent-double-click=\"true\">Find address</button>\n\n</form>\n
         \   <hr>\n<p class=\"govuk-body-s\">\n  © Crown copyright and database rights

@@ -10,11 +10,13 @@
 
       <%= f.govuk_text_field :applicant_first_name,
           width: "one-half",
-          label: { text: t(".applicant_first_name_label") } %>
+          label: { text: t(".applicant_first_name_label") },
+          autocomplete: "given-name" %>
 
       <%= f.govuk_text_field :applicant_last_name,
           width: "one-half",
-          label: { text: t(".applicant_last_name_label") } %>
+          label: { text: t(".applicant_last_name_label") },
+          autocomplete: "family-name" %>
 
       <%= f.govuk_submit %>
     <% end %>

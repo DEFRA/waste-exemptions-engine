@@ -1,7 +1,9 @@
 <%= f.govuk_text_field :first_name,
     label: { text: t(".first_name") },
-    width: 20 %>
+    width: 20,
+    autocomplete: "given-name" %>
 
 <%= f.govuk_text_field :last_name,
     label: { text: t(".last_name") },
-    width: 20 %>
+    width: 20,
+    autocomplete: "family-name" %>

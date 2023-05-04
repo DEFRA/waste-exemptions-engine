@@ -20,7 +20,7 @@ http_interactions:
         id=\"contact-postcode-form-temp-contact-postcode-hint\">For example, BS1 5AH</div><input
         id=\"contact-postcode-form-temp-contact-postcode-field\" class=\"govuk-input
         govuk-input--width-10\" aria-describedby=\"contact-postcode-form-temp-contact-postcode-hint\"
-        type=\"text\" name=\"contact_postcode_form[temp_contact_postcode]\" /></div>\n\n
+        autocomplete=\"postal-code\" type=\"text\" name=\"contact_postcode_form[temp_contact_postcode]\" /></div>\n\n
         \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
         data-module=\"govuk-button\" data-prevent-double-click=\"true\">Find address</button>\n\n</form>\n
         \   <hr>\n<p class=\"govuk-body-s\">\n  © Crown copyright and database rights

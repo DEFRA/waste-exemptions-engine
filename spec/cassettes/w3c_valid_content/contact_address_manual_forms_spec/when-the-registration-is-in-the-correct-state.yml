@@ -27,15 +27,15 @@ http_interactions:
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"contact-address-manual-form-contact-address-street-address-field\" class=\"govuk-label\">Address
         line 1</label><input id=\"contact-address-manual-form-contact-address-street-address-field\"
-        class=\"govuk-input\" type=\"text\" name=\"contact_address_manual_form[contact_address][street_address]\"
+        class=\"govuk-input\" autocomplete=\"address-line1\" type=\"text\" name=\"contact_address_manual_form[contact_address][street_address]\"
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"contact-address-manual-form-contact-address-locality-field\" class=\"govuk-label\">Address
         line 2 (optional)</label><input id=\"contact-address-manual-form-contact-address-locality-field\"
-        class=\"govuk-input\" type=\"text\" name=\"contact_address_manual_form[contact_address][locality]\"
+        class=\"govuk-input\" autocomplete=\"address-line2\" type=\"text\" name=\"contact_address_manual_form[contact_address][locality]\"
         /></div>\n</div>\n\n<div class=\"govuk-form-group \">\n  <div class=\"govuk-form-group\"><label
         for=\"contact-address-manual-form-contact-address-city-field\" class=\"govuk-label\">Town
         or city</label><input id=\"contact-address-manual-form-contact-address-city-field\"
-        class=\"govuk-input\" type=\"text\" name=\"contact_address_manual_form[contact_address][city]\"
+        class=\"govuk-input\" autocomplete=\"address-level2\" type=\"text\" name=\"contact_address_manual_form[contact_address][city]\"
         /></div>\n</div>\n\n<input autocomplete=\"off\" type=\"hidden\" name=\"contact_address_manual_form[contact_address][postcode]\"
         id=\"contact_address_manual_form_contact_address_postcode\" />\n<input value=\"manual\"
         autocomplete=\"off\" type=\"hidden\" name=\"contact_address_manual_form[contact_address][mode]\"
