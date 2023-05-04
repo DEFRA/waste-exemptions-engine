@@ -9,7 +9,8 @@
       <%= f.govuk_text_field :contact_position,
           width: "one-half",
           label: { text: t(".position_label") },
-          hint: { text: t(".position_hint") } %>
+          hint: { text: t(".position_hint") },
+          autocomplete: "organization-title" %>
 
       <%= f.govuk_submit %>
     <% end %>
