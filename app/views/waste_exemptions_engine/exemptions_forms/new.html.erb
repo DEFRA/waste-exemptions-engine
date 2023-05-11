@@ -14,7 +14,7 @@
           <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
 
           <% if @exemptions_form.errors[:exemptions].any? %>
-            <span class="govuk-error-message"><%= @exemptions_form.errors[:exemptions].join(", ") %></span>
+            <span class="govuk-error-message" id="exemptions-form-exemptions-field-error"><%= @exemptions_form.errors[:exemptions].join(", ") %></span>
           <% end %>
           <div class="govuk-checkboxes">
             <% all_exemptions.each do |exemption|  %>
