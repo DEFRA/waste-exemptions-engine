@@ -3,7 +3,7 @@
     <legend class="govuk-visually-hidden"><%= t(".address_label") %></legend>
 
     <% if form.errors[address].any? %>
-      <span class="govuk-error-message"><%= form.errors[address].join(", ") %></span>
+      <span class="govuk-error-message" id="<%= field_prefix %>-address-field-error"%><%= form.errors[address].join(", ") %></span>
     <% end %>
 
     <%= f.label :uprn, t(".address_label"), class: "govuk-label" %>

@@ -20,7 +20,7 @@
       </p>
 
       <%= f.fields_for :operator_address do |f| %>
-        <%= render("waste_exemptions_engine/shared/select_address", form: @operator_address_lookup_form, address: :operator_address, f: f) %>
+        <%= render("waste_exemptions_engine/shared/select_address", form: @operator_address_lookup_form, field_prefix: "operator-address-lookup-form-operator", address: :operator_address, f: f) %>
       <% end %>
 
       <p class="govuk-body">

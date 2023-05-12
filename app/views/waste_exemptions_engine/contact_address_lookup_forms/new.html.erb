@@ -18,7 +18,7 @@
       </p>
 
       <%= f.fields_for :contact_address do |f| %>
-        <%= render("waste_exemptions_engine/shared/select_address", form: @contact_address_lookup_form, address: :contact_address, f: f) %>
+        <%= render("waste_exemptions_engine/shared/select_address", form: @contact_address_lookup_form, field_prefix: "contact-address-lookup-form-contact", address: :contact_address, f: f) %>
       <% end %>
 
       <p class="govuk-body">

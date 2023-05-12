@@ -27,7 +27,7 @@
       </p>
 
       <%= f.fields_for :operator_address do |f| %>
-        <%= render("waste_exemptions_engine/shared/manual_address", form: @operator_address_manual_form, f: f) %>
+        <%= render("waste_exemptions_engine/shared/manual_address", form: @operator_address_manual_form, field_prefix: "operator-address-manual-form", f: f) %>
       <% end %>
 
       <%= f.govuk_submit t(".next_button") %>
