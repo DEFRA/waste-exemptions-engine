@@ -16,15 +16,17 @@
         <ul class="govuk-list govuk-list--bullet">
           <li><%= t(".list_item_1") %></li>
           <li><%= t(".list_item_2") %></li>
+          <li><%= t(".list_item_3") %></li>
         </ul>
-
-        <%= f.govuk_check_box :declaration,
-            1,
-            0,
-            multiple: false,
-            link_errors: true,
-            label: { text: t(".declaration_text") } %>
-
+foo
+        <%= f.govuk_check_boxes_fieldset :declaration, multiple: false, legend: -> {} do %>
+          <%= f.govuk_check_box :declaration,
+              1,
+              0,
+              # multiple: false,
+              link_errors: true,
+              label: { text: t(".declaration_text") } %>
+        <% end %>
       <% end %>
 
       <p class="govuk-body">
