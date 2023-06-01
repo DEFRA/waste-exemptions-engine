@@ -104,7 +104,7 @@
             <div class="table-wrapper">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
-                  <% @presenter.registration_exemptions.order_by_exemption.each do |registration_exemption| %>
+                  <% @presenter.registration_exemptions.includes([:exemption]).order_by_exemption.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
                       <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
                       <td class="govuk-table__cell"><%= "Expires on #{registration_exemption.expires_on.to_formatted_s(:day_month_year)}" %></td>
