@@ -18,9 +18,9 @@ class CreateVersionArchives < ActiveRecord::Migration[4.2]
       t.integer  :item_id,   null: false
       t.string   :event,     null: false
       t.string   :whodunnit
-      t.text     :object,    limit: TEXT_BYTES
+      t.text     :object, limit: TEXT_BYTES
       t.datetime :created_at
     end
-    add_index :version_archives, %i(item_type item_id)
+    add_index :version_archives, %i[item_type item_id]
   end
 end

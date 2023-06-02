@@ -16,14 +16,16 @@ Gem::Specification.new do |s|
   s.description = "Rails engine for the Waste Exemptions service."
   s.license     = "The Open Government Licence (OGL) Version 3"
 
+  s.metadata["rubygems_mfa_required"] = "true"
+
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  s.required_ruby_version = ">= 3.1"
+  s.required_ruby_version = ">= 3.2"
 
   # Use AASM to manage states and transitions
-  s.add_dependency "aasm", "~> 5.3"
+  s.add_dependency "aasm", "~> 5.5"
 
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 6.1"
+  s.add_dependency "rails", "~> 7.0"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
@@ -67,7 +69,4 @@ Gem::Specification.new do |s|
   s.add_dependency "validates_email_format_of"
   # Used to generate a PDF from HTML
   s.add_dependency "wicked_pdf"
-
-  s.add_development_dependency "simplecov", "0.17.1"
-  s.metadata["rubygems_mfa_required"] = "true"
 end

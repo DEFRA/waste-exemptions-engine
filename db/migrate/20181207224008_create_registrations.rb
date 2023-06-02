@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CreateRegistrations < ActiveRecord::Migration[4.2]
-  # rubocop:disable Metrics/MethodLength
   def change
     create_table(:registrations) do |t|
       t.string :reference
@@ -25,5 +24,4 @@ class CreateRegistrations < ActiveRecord::Migration[4.2]
       t.index :reference, unique: true
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

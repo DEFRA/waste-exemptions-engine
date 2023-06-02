@@ -1,4 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path("boot", __dir__)
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -6,8 +8,8 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "dotenv/load"
-require 'rails/all'
-require 'active_record/connection_adapters/postgresql_adapter'
+require "rails/all"
+require "active_record/connection_adapters/postgresql_adapter"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -16,8 +18,8 @@ require "waste_exemptions_engine"
 
 module Dummy
   class Application < Rails::Application
-    config.load_defaults 6.0
-    config.autoloader = :classic
+    config.load_defaults 6.1
+    config.autoloader = :zeitwerk
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -35,7 +37,7 @@ module Dummy
 
     # Companies House config
     config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/company/"
-    config.companies_house_api_key = ENV["COMPANIES_HOUSE_API_KEY"]
+    config.companies_house_api_key = ENV.fetch("COMPANIES_HOUSE_API_KEY", nil)
 
     # https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#active-record-belongs-to-required-by-default-option
     config.active_record.belongs_to_required_by_default = false
@@ -44,11 +46,15 @@ module Dummy
     # config.action_dispatch.use_authenticated_cookie_encryption = false
 
     # Allow paper_trail to deserialise dates and times: https://stackoverflow.com/a/72970171
-    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeZone, ActiveSupport::TimeWithZone, Date, Time]
-    
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeZone, ActiveSupport::TimeWithZone, Date,
+                                                          Time]
+
     # Change automatic expire of renew's magic link token
     config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
-    config.first_renewal_email_reminder_days = ENV["FIRST_RENEWAL_EMAIL_REMINDER_DAYS"]
+    config.first_renewal_email_reminder_days = ENV.fetch("FIRST_RENEWAL_EMAIL_REMINDER_DAYS", nil)
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
+
+    # For Rails 7: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+    config.active_record.legacy_connection_handling = false
   end
 end

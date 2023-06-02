@@ -25,9 +25,9 @@ module WasteExemptionsEngine
 
     def registration_exemptions_delta
       # Avoid an N+1 condition:
-      ActiveRecord::Associations::Preloader.new.preload(
-        @original_registration, [{ registration_exemptions: [:exemption] }]
-      )
+      ActiveRecord::Associations::Preloader.new(
+        records: [@original_registration], associations: [{ registration_exemptions: [:exemption] }]
+      ).call
       exemptions_delta_ids ||= (@original_registration.exemptions - @transient_registration.exemptions).pluck(:id)
       @registration_exemptions_delta ||=
         @original_registration.registration_exemptions.where(exemption_id: exemptions_delta_ids)
