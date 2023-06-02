@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Feature/declaration text [\#806](https://github.com/DEFRA/waste-exemptions-engine/pull/806) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Update declaration text [\#805](https://github.com/DEFRA/waste-exemptions-engine/pull/805) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Feature/ruby 2374 remove reference to u1 exemptions [\#779](https://github.com/DEFRA/waste-exemptions-engine/pull/779) ([jjromeo](https://github.com/jjromeo))
 - Confirm no changes [\#771](https://github.com/DEFRA/waste-exemptions-engine/pull/771) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Add deregistration email migrations [\#770](https://github.com/DEFRA/waste-exemptions-engine/pull/770) ([endofunky](https://github.com/endofunky))
@@ -168,8 +170,13 @@
 
 **Fixed bugs:**
 
+- fixing bug when incorrect field is checked for errors [\#809](https://github.com/DEFRA/waste-exemptions-engine/pull/809) ([brujeo](https://github.com/brujeo))
+- Feature/declaration text [\#808](https://github.com/DEFRA/waste-exemptions-engine/pull/808) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Feature/declaration text [\#807](https://github.com/DEFRA/waste-exemptions-engine/pull/807) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Fix form error navigation anchors [\#802](https://github.com/DEFRA/waste-exemptions-engine/pull/802) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- adding autocomplete [\#798](https://github.com/DEFRA/waste-exemptions-engine/pull/798) ([brujeo](https://github.com/brujeo))
 - Fix/nil site address [\#792](https://github.com/DEFRA/waste-exemptions-engine/pull/792) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Fix last Uncheck -\> Untick [\#783](https://github.com/DEFRA/waste-exemptions-engine/pull/783) ([jjromeo](https://github.com/jjromeo))
 - Use correct heading for partial deregistrations [\#777](https://github.com/DEFRA/waste-exemptions-engine/pull/777) ([endofunky](https://github.com/endofunky))
 - fix survey link [\#772](https://github.com/DEFRA/waste-exemptions-engine/pull/772) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Deregistration fixes [\#769](https://github.com/DEFRA/waste-exemptions-engine/pull/769) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -275,11 +282,10 @@
 
 **Merged pull requests:**
 
-- adding autocomplete [\#798](https://github.com/DEFRA/waste-exemptions-engine/pull/798) ([brujeo](https://github.com/brujeo))
+- Update CHANGELOG [\#804](https://github.com/DEFRA/waste-exemptions-engine/pull/804) ([brujeo](https://github.com/brujeo))
 - Bump phonelib from 0.7.7 to 0.8.0 [\#786](https://github.com/DEFRA/waste-exemptions-engine/pull/786) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Removing reference to Waste carriers [\#785](https://github.com/DEFRA/waste-exemptions-engine/pull/785) ([timstone](https://github.com/timstone))
 - Bump activesupport from 6.1.7 to 6.1.7.3 [\#784](https://github.com/DEFRA/waste-exemptions-engine/pull/784) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Fix last Uncheck -\> Untick [\#783](https://github.com/DEFRA/waste-exemptions-engine/pull/783) ([jjromeo](https://github.com/jjromeo))
 - Bump rack from 2.2.6.2 to 2.2.6.4 [\#782](https://github.com/DEFRA/waste-exemptions-engine/pull/782) ([dependabot[bot]](https://github.com/apps/dependabot))
 - RUBY-2375 Change Uncheck text to Untick [\#781](https://github.com/DEFRA/waste-exemptions-engine/pull/781) ([jjromeo](https://github.com/jjromeo))
 - Update CHANGELOG [\#780](https://github.com/DEFRA/waste-exemptions-engine/pull/780) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
