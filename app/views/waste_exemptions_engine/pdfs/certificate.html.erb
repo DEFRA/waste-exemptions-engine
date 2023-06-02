@@ -1,3 +1,9 @@
+<%
+  # When this template is used by a controller, the @presenter variable is exposed.
+  # But when it is rendered from (eg) the RegistrationActivatedEmailService,
+  # the instance variable is not available, only the local one.
+  @presenter ||= presenter
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,7 +44,7 @@
       <main class="govuk-main-wrapper">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-l"><%=t ".confirmation.heading", registration_number: presenter.reference %></h1>
+            <h1 class="govuk-heading-l"><%=t ".confirmation.heading", registration_number: @presenter.reference %></h1>
             <p class="govuk-body">
               <%=t ".confirmation.paragraph1" %>
             </p>
@@ -48,7 +54,7 @@
             </p>
 
             <p class="govuk-body">
-              <%=t ".confirmation.paragraph2", company_registration_number: presenter.reference %>
+              <%=t ".confirmation.paragraph2", company_registration_number: @presenter.reference %>
               <br \>
               <%= link_to "https://environment.data.gov.uk/public-register/view/search-waste-exemptions", "https://environment.data.gov.uk/public-register/view/search-waste-exemptions" %>
             </p>
@@ -84,11 +90,11 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.reference_number" %></th>
-                    <td class="govuk-table__cell"><%= presenter.reference %></td>
+                    <td class="govuk-table__cell"><%= @presenter.reference %></td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.date_registered" %></th>
-                    <td class="govuk-table__cell"><%= presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
+                    <td class="govuk-table__cell"><%= @presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
                   </tr>
                 </tbody>
               </table>
@@ -98,7 +104,7 @@
             <div class="table-wrapper">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
-                  <% presenter.registration_exemptions.order_by_exemption.each do |registration_exemption| %>
+                  <% @presenter.registration_exemptions.includes([:exemption]).order_by_exemption.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
                       <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
                       <td class="govuk-table__cell"><%= "Expires on #{registration_exemption.expires_on.to_formatted_s(:day_month_year)}" %></td>
@@ -114,15 +120,15 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.name" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.applicant_name %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.applicant_name %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_telephone" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.applicant_phone %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.applicant_phone %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_email" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.applicant_email %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.applicant_email %> </td>
                   </tr>
                 </tbody>
               </table>
@@ -134,25 +140,25 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.business_type" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.human_business_type %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.human_business_type %> </td>
                   </tr>
-                  <% if presenter.partnership? %>
+                  <% if @presenter.partnership? %>
                     <tr class="govuk-table__row">
                       <th class="govuk-table__header" scope="row">
                         <%=t ".registration_details.business_details.partners" %>
                       </th>
-                      <td class="govuk-table__cell"> <%= presenter.partners_names %> </td>
+                      <td class="govuk-table__cell"> <%= @presenter.partners_names %> </td>
                     </tr>
                   <% else %>
                     <tr class="govuk-table__row">
                       <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person" %></th>
-                      <td class="govuk-table__cell"> <%= presenter.operator_name %> </td>
+                      <td class="govuk-table__cell"> <%= @presenter.operator_name %> </td>
                     </tr>
                   <% end %>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person_address" %></th>
                     <td class="govuk-table__cell">
-                      <% displayable_address(presenter.operator_address).each do |line| %>
+                      <% displayable_address(@presenter.operator_address).each do |line| %>
                         <%= line %><br>
                       <% end %>
                     </td>
@@ -167,24 +173,24 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.name" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.contact_name %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.contact_name %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.position" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.contact_position %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.contact_position %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.telephone_n" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.contact_phone %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.contact_phone %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.email" %></th>
-                    <td class="govuk-table__cell"> <%= presenter.contact_email %> </td>
+                    <td class="govuk-table__cell"> <%= @presenter.contact_email %> </td>
                   </tr>
                   <tr class="govuk-table__row">
                     <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.address" %></th>
                     <td class="govuk-table__cell">
-                      <% displayable_address(presenter.contact_address).each do |line| %>
+                      <% displayable_address(@presenter.contact_address).each do |line| %>
                         <%= line %><br>
                       <% end %>
                     </td>
@@ -197,10 +203,10 @@
             <div class="table-wrapper">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
-                  <% if presenter.site_address&.located_by_grid_reference? %>
-                    <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: presenter.site_address %>
+                  <% if @presenter.site_address&.located_by_grid_reference? %>
+                    <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: @presenter.site_address %>
                   <% else %>
-                    <%= render "waste_exemptions_engine/pdfs/site_address_lines", address: presenter.site_address %>
+                    <%= render "waste_exemptions_engine/pdfs/site_address_lines", address: @presenter.site_address %>
                   <% end %>
                 </tbody>
               </table>
