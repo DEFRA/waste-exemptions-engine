@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateTransientRegistrations < ActiveRecord::Migration[4.2]
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/BlockLength
   def change
     create_table :transient_registrations do |t|
       t.string :token
@@ -36,5 +36,5 @@ class CreateTransientRegistrations < ActiveRecord::Migration[4.2]
       t.index :reference, unique: true
     end
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Metrics/BlockLength
 end

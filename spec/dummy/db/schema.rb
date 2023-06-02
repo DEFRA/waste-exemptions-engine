@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_18_155859) do
+ActiveRecord::Schema.define(version: 20_230_218_155_859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +93,8 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
     t.text "deregistration_message"
     t.date "deregistered_at"
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
-    t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
+    t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions",
+                                 where: "((state)::text = 'active'::text)"
     t.index ["registration_id"], name: "index_registration_exemptions_on_registration_id"
   end
 
@@ -259,7 +262,7 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_version_archives_on_item_type_and_item_id"
+    t.index %w[item_type item_id], name: "index_version_archives_on_item_type_and_item_id"
   end
 
   create_table "versions", id: :serial, force: :cascade do |t|
@@ -270,7 +273,7 @@ ActiveRecord::Schema.define(version: 2023_02_18_155859) do
     t.text "object"
     t.datetime "created_at"
     t.json "json"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index %w[item_type item_id], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "addresses", "registrations"

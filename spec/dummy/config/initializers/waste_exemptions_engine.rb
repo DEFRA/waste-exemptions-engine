@@ -7,7 +7,7 @@ WasteExemptionsEngine.configure do |config|
 
   # Companies house API config
   config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/company/"
-  config.companies_house_api_key = ENV["COMPANIES_HOUSE_API_KEY"]
+  config.companies_house_api_key = ENV.fetch("COMPANIES_HOUSE_API_KEY", nil)
 
   # Address lookup config
   config.address_host = ENV["ADDRESSBASE_URL"] || "http://localhost:3002"
@@ -32,6 +32,6 @@ WasteExemptionsEngine.configure do |config|
   config.airbrake_blocklist = [/password/i, /authorization/i]
 
   # Notify config
-  config.notify_api_key = ENV["NOTIFY_API_KEY"]
+  config.notify_api_key = ENV.fetch("NOTIFY_API_KEY", nil)
 end
 WasteExemptionsEngine.start_airbrake

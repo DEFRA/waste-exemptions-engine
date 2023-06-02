@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "waste_exemptions_engine/exceptions/unsubmittable_form"
+require "waste_exemptions_engine/unsubmittable_form"
 
 RSpec.shared_examples "unable to POST form" do |form_factory, path|
   let(:form) { build(form_factory) }

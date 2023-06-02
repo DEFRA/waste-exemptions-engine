@@ -6,11 +6,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
-        media=\"all\" href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
-        data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-f9d8e5ce8f528d997d58156ff5f8c1d4b0741ac22b367a6a6294b3c7e9758e96.js\"
+        href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-e7473747669b589218de86035464048c90a00729227c3a03fb2b03b020fd274f.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
         class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
-        \   <form class=\"new_contact_email_form\" id=\"new_contact_email_form\" action=\"/waste_exemptions_engine/gmNCPDY4D1kDPJM17bG89YtA/contact-email\"
+        \   <form class=\"new_contact_email_form\" id=\"new_contact_email_form\" action=\"/waste_exemptions_engine/T7WkGVBJLBKpYKpsn2xM5AJD/contact-email\"
         accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
         \     <h1 class=\"govuk-heading-l\">What&#39;s their email address?</h1>\n\n
@@ -20,7 +20,7 @@ http_interactions:
         /></div>\n\n      <div class=\"govuk-form-group\"><label for=\"contact-email-form-confirmed-email-field\"
         class=\"govuk-label\">Confirm email address</label><input id=\"contact-email-form-confirmed-email-field\"
         class=\"govuk-input\" type=\"email\" name=\"contact_email_form[confirmed_email]\"
-        /></div>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        /></div>\n\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
         class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
         \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
@@ -38,7 +38,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 22 Mar 2022 11:14:07 GMT
+      - Thu, 01 Jun 2023 16:20:21 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -67,20 +67,22 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 6efe807a1db07495
+      - 7d08c88e2d3b0892
       Cf-Cache-Status:
       - DYNAMIC
-      Expect-Ct:
-      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Set-Cookie:
+      - __cf_bm=DCHSmznvImT.uTPKKSqXUBY1QXqsY0m4GNO5If8JxUE-1685636421-0-AZXkqyOrNYISGZAIHxyU8qTB/egJn1m6DbpUkWFPXZmUzs4hr5aJFQYvegBzUXk9tortMVCR+PgSgwsNVfNjqfE=;
+        path=/; expires=Thu, 01-Jun-23 16:50:21 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 6efe807a1db07495-LHR
+      - 7d08c88e2d3b0892-LHR
       Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIG1lZGlhPVwiYWxsXCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWY5ZDhlNWNlOGY1MjhkOTk3ZDU4MTU2ZmY1ZjhjMWQ0YjA3NDFhYzIyYjM2N2E2YTYyOTRiM2M3ZTk3NThlOTYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19jb250YWN0X2VtYWlsX2Zvcm1cIiBpZD1cIm5ld19jb250YWN0X2VtYWlsX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvZ21OQ1BEWTREMWtEUEpNMTdiRzg5WXRBL2NvbnRhY3QtZW1haWxcIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+V2hhdCYjMzk7cyB0aGVpciBlbWFpbCBhZGRyZXNzPzwvaDE+XG5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGxhYmVsIGZvcj1cImNvbnRhY3QtZW1haWwtZm9ybS1jb250YWN0LWVtYWlsLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1sYWJlbFwiPkVtYWlsIGFkZHJlc3M8L2xhYmVsPjxpbnB1dCBpZD1cImNvbnRhY3QtZW1haWwtZm9ybS1jb250YWN0LWVtYWlsLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dFwiIHR5cGU9XCJlbWFpbFwiIG5hbWU9XCJjb250YWN0X2VtYWlsX2Zvcm1bY29udGFjdF9lbWFpbF1cIiAvPjwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cFwiPjxsYWJlbCBmb3I9XCJjb250YWN0LWVtYWlsLWZvcm0tY29uZmlybWVkLWVtYWlsLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1sYWJlbFwiPkNvbmZpcm0gZW1haWwgYWRkcmVzczwvbGFiZWw+PGlucHV0IGlkPVwiY29udGFjdC1lbWFpbC1mb3JtLWNvbmZpcm1lZC1lbWFpbC1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXRcIiB0eXBlPVwiZW1haWxcIiBuYW1lPVwiY29udGFjdF9lbWFpbF9mb3JtW2NvbmZpcm1lZF9lbWFpbF1cIiAvPjwvZGl2PlxuXG4gICAgICA8YnV0dG9uIHR5cGU9XCJzdWJtaXRcIiBmb3Jtbm92YWxpZGF0ZT1cImZvcm1ub3ZhbGlkYXRlXCIgY2xhc3M9XCJnb3Z1ay1idXR0b25cIiBkYXRhLW1vZHVsZT1cImdvdnVrLWJ1dHRvblwiIGRhdGEtcHJldmVudC1kb3VibGUtY2xpY2s9XCJ0cnVlXCI+Q29udGludWU8L2J1dHRvbj5cbjwvZm9ybT4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-  recorded_at: Tue, 22 Mar 2022 11:14:06 GMT
-recorded_with: VCR 6.0.0
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjI1LCJsYXN0Q29sdW1uIjoyNTYsImZpcnN0Q29sdW1uIjoxMzAsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6InNzPC9sYWJlbD48aW5wdXQgaWQ9XCJjb250YWN0LWVtYWlsLWZvcm0tY29udGFjdC1lbWFpbC1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXRcIiB0eXBlPVwiZW1haWxcIiBuYW1lPVwiY29udGFjdF9lbWFpbF9mb3JtW2NvbnRhY3RfZW1haWxdXCIgLz48L2Rpdj4iLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTI3fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjI3LCJsYXN0Q29sdW1uIjoyNzAsImZpcnN0Q29sdW1uIjoxNDAsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6InNzPC9sYWJlbD48aW5wdXQgaWQ9XCJjb250YWN0LWVtYWlsLWZvcm0tY29uZmlybWVkLWVtYWlsLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dFwiIHR5cGU9XCJlbWFpbFwiIG5hbWU9XCJjb250YWN0X2VtYWlsX2Zvcm1bY29uZmlybWVkX2VtYWlsXVwiIC8+PC9kaXY+IiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjEzMX0seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjoyLCJmaXJzdExpbmUiOjEsImxhc3RDb2x1bW4iOjYsImZpcnN0Q29sdW1uIjoxNiwic3ViVHlwZSI6Indhcm5pbmciLCJtZXNzYWdlIjoiQ29uc2lkZXIgYWRkaW5nIGEg4oCcbGFuZ+KAnSBhdHRyaWJ1dGUgdG8gdGhlIOKAnGh0bWzigJ0gc3RhcnQgdGFnIHRvIGRlY2xhcmUgdGhlIGxhbmd1YWdlIG9mIHRoaXMgZG9jdW1lbnQuIiwiZXh0cmFjdCI6IlRZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6N31dLCJzb3VyY2UiOnsidHlwZSI6InRleHQvaHRtbCIsImVuY29kaW5nIjoiVVRGLTgiLCJjb2RlIjoiPCFET0NUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkPlxuICA8dGl0bGU+RHVtbXk8L3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2NyaXB0IHNyYz1cIi9hc3NldHMvYXBwbGljYXRpb24tZTc0NzM3NDc2NjliNTg5MjE4ZGU4NjAzNTQ2NDA0OGM5MGEwMDcyOTIyN2MzYTAzZmIyYjAzYjAyMGZkMjc0Zi5qc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIj48L3NjcmlwdD5cbiAgXG48L2hlYWQ+XG48Ym9keT5cblxuXG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X2NvbnRhY3RfZW1haWxfZm9ybVwiIGlkPVwibmV3X2NvbnRhY3RfZW1haWxfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9UN1drR1ZCSkxCS3BZS3BzbjJ4TTVBSkQvY29udGFjdC1lbWFpbFwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICBcbiAgPC9kaXY+XG48L2Rpdj5cblxuXG4gICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLWxcIj5XaGF0JiMzOTtzIHRoZWlyIGVtYWlsIGFkZHJlc3M/PC9oMT5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48bGFiZWwgZm9yPVwiY29udGFjdC1lbWFpbC1mb3JtLWNvbnRhY3QtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+RW1haWwgYWRkcmVzczwvbGFiZWw+PGlucHV0IGlkPVwiY29udGFjdC1lbWFpbC1mb3JtLWNvbnRhY3QtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWlucHV0XCIgdHlwZT1cImVtYWlsXCIgbmFtZT1cImNvbnRhY3RfZW1haWxfZm9ybVtjb250YWN0X2VtYWlsXVwiIC8+PC9kaXY+XG5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGxhYmVsIGZvcj1cImNvbnRhY3QtZW1haWwtZm9ybS1jb25maXJtZWQtZW1haWwtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+Q29uZmlybSBlbWFpbCBhZGRyZXNzPC9sYWJlbD48aW5wdXQgaWQ9XCJjb250YWN0LWVtYWlsLWZvcm0tY29uZmlybWVkLWVtYWlsLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dFwiIHR5cGU9XCJlbWFpbFwiIG5hbWU9XCJjb250YWN0X2VtYWlsX2Zvcm1bY29uZmlybWVkX2VtYWlsXVwiIC8+PC9kaXY+XG5cblxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Thu, 01 Jun 2023 16:15:04 GMT
+recorded_with: VCR 6.1.0
