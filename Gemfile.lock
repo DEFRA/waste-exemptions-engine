@@ -151,8 +151,10 @@ GEM
       sprockets-rails
     defra_ruby_style (0.3.0)
       rubocop (>= 1.0, < 2.0)
-    defra_ruby_validators (2.5.0)
+    defra_ruby_validators (2.5.1)
       activemodel
+      i18n
+      matrix
       os_map_ref
       phonelib
       rest-client (~> 2.0)
@@ -205,7 +207,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-event (1.0.9)
     json (2.6.3)
@@ -223,7 +225,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2022.0105)
+    mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
     minitest (5.18.0)
@@ -263,7 +265,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.5.3)
-    phonelib (0.8.1)
+    phonelib (0.8.2)
     protocol-hpack (1.4.2)
     protocol-http (0.23.12)
     protocol-http1 (0.14.6)
