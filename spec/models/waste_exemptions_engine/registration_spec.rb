@@ -227,6 +227,26 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#received_comms?" do
+      let(:registration) { create(:registration) }
+      let(:reg_comms_logs) { registration.communication_logs }
+      let(:target_label) { "Target label" }
+      let(:target_log) { create(:communication_log, template_label: target_label) }
+      let(:other_log) { create(:communication_log, template_label: "Other label") }
+
+      before { reg_comms_logs << other_log }
+
+      context "when a message of the relevant type has not been sent" do
+        it { expect(registration.received_comms?(target_label)).to be false }
+      end
+
+      context "when a message of the relevant type has been sent" do
+        before { reg_comms_logs << create(:communication_log, template_label: target_label) }
+
+        it { expect(registration.received_comms?(target_label)).to be true }
+      end
+    end
+
     describe "PaperTrail", versioning: true do
       subject(:registration) { create(:registration, :complete) }
 

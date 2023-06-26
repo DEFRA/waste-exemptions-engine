@@ -25,6 +25,13 @@ module Helpers
       area
     ].freeze
 
+    COMMUNICATION_LOG = %i[
+      message_type
+      template_id
+      template_label
+      sent_to
+    ].freeze
+
     EXEMPTION = %i[
       category
       code

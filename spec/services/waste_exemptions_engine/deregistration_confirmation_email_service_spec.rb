@@ -15,6 +15,12 @@ module WasteExemptionsEngine
         allow(registration).to receive(:reference).and_return(reference)
       end
 
+      it_behaves_like "CanHaveCommunicationLog" do
+        let(:service_class) { described_class }
+        let(:a_registration) { create(:registration, :complete) }
+        let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
+      end
+
       it "sends an email" do
         VCR.use_cassette("registration_edit_confirmation_email") do
           expect(run_service).to be_a(Notifications::Client::ResponseNotification)

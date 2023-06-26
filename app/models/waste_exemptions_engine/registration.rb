@@ -9,6 +9,8 @@ module WasteExemptionsEngine
     self.table_name = "registrations"
 
     has_many :addresses, dependent: :destroy
+    has_many :registration_communication_logs, dependent: :destroy
+    has_many :communication_logs, through: :registration_communication_logs
     has_many :people, dependent: :destroy
     has_many :registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :registration_exemptions
@@ -69,6 +71,10 @@ module WasteExemptionsEngine
       year = expires_on.year
 
       "#{month} #{year}"
+    end
+
+    def received_comms?(label)
+      communication_logs.find { |log| log.template_label == label }.present?
     end
 
     # Temporarily exclude from coverage inspection pending resolution of SonarCloud issue

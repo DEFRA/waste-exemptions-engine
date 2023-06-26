@@ -12,6 +12,12 @@ module WasteExemptionsEngine
         described_class.run(registration: registration)
       end
 
+      it_behaves_like "CanHaveCommunicationLog" do
+        let(:service_class) { described_class }
+        let(:a_registration) { create(:registration, :complete, :with_active_exemptions) }
+        let(:parameters) { { registration: a_registration } }
+      end
+
       it "sends a letter" do
         VCR.use_cassette("notify_confirmation_letter") do
           # Make sure it's a real postcode for Notify validation purposes
