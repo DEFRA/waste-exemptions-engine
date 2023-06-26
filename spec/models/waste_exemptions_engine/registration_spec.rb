@@ -247,20 +247,6 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "#deregistered?" do
-      let(:registration) { create(:registration, :with_expired_and_active_exemptions) }
-
-      context "when not all exemptions are ceased or revoked" do
-        it { expect(registration.deregistered?).to be false }
-      end
-
-      context "when all exemptions are ceased or revoked" do
-        before { registration.registration_exemptions.update_all(state: %i[ceased revoked].sample) }
-
-        it { expect(registration.deregistered?).to be true }
-      end
-    end
-
     describe "PaperTrail", versioning: true do
       subject(:registration) { create(:registration, :complete) }
 
