@@ -73,6 +73,10 @@ module WasteExemptionsEngine
       "#{month} #{year}"
     end
 
+    def received_comms?(label)
+      communication_logs.find { |log| log.template_label == label }.present?
+    end
+
     # Temporarily exclude from coverage inspection pending resolution of SonarCloud issue
     # :nocov:
     def expires_on
