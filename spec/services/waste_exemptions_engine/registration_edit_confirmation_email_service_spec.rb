@@ -11,6 +11,12 @@ module WasteExemptionsEngine
 
       subject(:run_service) { described_class.run(registration: registration, recipient: recipient) }
 
+      it_behaves_like "CanHaveCommunicationLog" do
+        let(:service_class) { described_class }
+        let(:a_registration) { create(:registration, :complete) }
+        let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
+      end
+
       before do
         allow(registration).to receive(:reference).and_return(reference)
       end

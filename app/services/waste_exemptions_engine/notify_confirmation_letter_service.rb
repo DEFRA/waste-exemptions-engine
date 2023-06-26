@@ -6,14 +6,28 @@ module WasteExemptionsEngine
   class NotifyConfirmationLetterService < BaseService
     # So we can use displayable_address()
     include ApplicationHelper
+    include CanHaveCommunicationLog
 
     def run(registration:)
       @registration = NotifyConfirmationLetterPresenter.new(registration)
 
       client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
 
-      client.send_letter(template_id: template,
-                         personalisation: personalisation)
+      notify_result = client.send_letter(template_id: template, personalisation: personalisation)
+
+      create_log(registration:)
+
+      notify_result
+    end
+
+    # For CanHaveCommunicationLog
+    def communications_log_params
+      {
+        message_type: "email",
+        template_id: template,
+        template_label: "Registration completion letter",
+        sent_to: recipient
+      }
     end
 
     private
@@ -39,12 +53,14 @@ module WasteExemptionsEngine
       }.merge(address_lines)
     end
 
-    def address_lines
-      address_values = [
+    def address_values
+      [
         @registration.contact_name,
         displayable_address(@registration.contact_address)
       ].flatten
+    end
 
+    def address_lines
       address_hash = {}
 
       address_values.each_with_index do |value, index|
@@ -53,6 +69,10 @@ module WasteExemptionsEngine
       end
 
       address_hash
+    end
+
+    def recipient
+      address_values.join(", ")
     end
   end
 end

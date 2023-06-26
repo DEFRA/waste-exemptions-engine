@@ -4,6 +4,8 @@ require "notifications/client"
 
 module WasteExemptionsEngine
   class ConfirmationEmailService < BaseService
+    include CanHaveCommunicationLog
+
     def run(registration:, recipient:)
       @registration = registration
       @recipient = recipient
@@ -11,11 +13,25 @@ module WasteExemptionsEngine
 
       client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
 
-      if @pdf.present?
-        client.send_email(options_with_certificate)
-      else
-        client.send_email(options_without_certificate)
-      end
+      result = client.send_email(@pdf.present? ? options_with_certificate : options_without_certificate)
+
+      create_log(registration:)
+
+      result
+    end
+
+    def template_id
+      @pdf.present? ? "98d5dcee-ea29-415f-952e-b8e287555e10" : "8fcf5d04-944f-4cd1-b261-962fedd3859f"
+    end
+
+    # For CanHaveCommunicationLog
+    def communications_log_params
+      {
+        message_type: "email",
+        template_id: template_id,
+        template_label: "Registration completion email",
+        sent_to: @recipient
+      }
     end
 
     private
@@ -23,7 +39,7 @@ module WasteExemptionsEngine
     def options_with_certificate
       {
         email_address: @recipient,
-        template_id: "98d5dcee-ea29-415f-952e-b8e287555e10",
+        template_id: template_id,
         personalisation: {
           reference: @registration.reference,
           link_to_file: Notifications.prepare_upload(prepare_pdf_certificate)
@@ -34,7 +50,7 @@ module WasteExemptionsEngine
     def options_without_certificate
       {
         email_address: @recipient,
-        template_id: "8fcf5d04-944f-4cd1-b261-962fedd3859f",
+        template_id: template_id,
         personalisation: {
           reference: @registration.reference
         }

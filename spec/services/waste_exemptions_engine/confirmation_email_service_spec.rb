@@ -4,22 +4,30 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe ConfirmationEmailService do
+
     # rubocop:disable RSpec/AnyInstance
     describe "run" do
+
       let(:registration) { create(:registration, :complete) }
       let(:recipient) { registration.contact_email }
-      let(:service) do
+      let(:run_service) do
         described_class.run(registration: registration, recipient: recipient)
       end
 
       before { allow(registration).to receive(:reference).and_return("TEST") }
+
+      it_behaves_like "CanHaveCommunicationLog" do
+        let(:service_class) { described_class }
+        let(:a_registration) { create(:registration, :complete) }
+        let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
+      end
 
       context "when the PDF is generated" do
         it "sends an email" do
           VCR.use_cassette("confirmation_email") do
             allow_any_instance_of(Notifications::Client).to receive(:send_email).and_call_original
 
-            response = service
+            response = run_service
 
             expect(response).to be_a(Notifications::Client::ResponseNotification)
             expect(response.template["id"]).to eq("98d5dcee-ea29-415f-952e-b8e287555e10")
@@ -35,7 +43,7 @@ module WasteExemptionsEngine
           VCR.use_cassette("confirmation_email_no_certificate") do
             allow_any_instance_of(Notifications::Client).to receive(:send_email).and_call_original
 
-            response = service
+            response = run_service
 
             expect(response).to be_a(Notifications::Client::ResponseNotification)
             expect(response.template["id"]).to eq("8fcf5d04-944f-4cd1-b261-962fedd3859f")
