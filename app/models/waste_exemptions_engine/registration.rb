@@ -9,6 +9,8 @@ module WasteExemptionsEngine
     self.table_name = "registrations"
 
     has_many :addresses, dependent: :destroy
+    has_many :registration_communication_logs, dependent: :destroy
+    has_many :communication_logs, through: :registration_communication_logs
     has_many :people, dependent: :destroy
     has_many :registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :registration_exemptions
