@@ -137,8 +137,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_114724) do
     t.string "renew_token"
     t.integer "referring_registration_id"
     t.datetime "companies_house_updated_at", precision: nil
-    t.datetime "deregistration_email_sent_at", precision: nil
-    t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
   end
