@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Feature/ruby 2841 comms history [\#818](https://github.com/DEFRA/waste-exemptions-engine/pull/818) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Use instance variable for presenter default [\#812](https://github.com/DEFRA/waste-exemptions-engine/pull/812) ([jjromeo](https://github.com/jjromeo))
 - Feature/declaration text [\#806](https://github.com/DEFRA/waste-exemptions-engine/pull/806) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Update declaration text [\#805](https://github.com/DEFRA/waste-exemptions-engine/pull/805) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Feature/ruby 2374 remove reference to u1 exemptions [\#779](https://github.com/DEFRA/waste-exemptions-engine/pull/779) ([jjromeo](https://github.com/jjromeo))
@@ -282,6 +284,10 @@
 
 **Merged pull requests:**
 
+- Bump defra\_ruby\_validators from 2.5.1 to 2.5.2 [\#820](https://github.com/DEFRA/waste-exemptions-engine/pull/820) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump defra\_ruby\_validators from 2.5.0 to 2.5.1 [\#817](https://github.com/DEFRA/waste-exemptions-engine/pull/817) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Upgrade to Rails 7 [\#815](https://github.com/DEFRA/waste-exemptions-engine/pull/815) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Update CHANGELOG [\#810](https://github.com/DEFRA/waste-exemptions-engine/pull/810) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Update CHANGELOG [\#804](https://github.com/DEFRA/waste-exemptions-engine/pull/804) ([brujeo](https://github.com/brujeo))
 - Bump phonelib from 0.7.7 to 0.8.0 [\#786](https://github.com/DEFRA/waste-exemptions-engine/pull/786) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Removing reference to Waste carriers [\#785](https://github.com/DEFRA/waste-exemptions-engine/pull/785) ([timstone](https://github.com/timstone))
