@@ -188,6 +188,19 @@ module WasteExemptionsEngine
           expect(response.body).to have_valid_html
         end
       end
+
+      context "when registration is deregistered" do
+        let(:registration) { create(:registration, :with_ceased_exemptions) }
+        let(:token) { registration.renew_token }
+
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
+          get request_path
+
+          expect(response).to have_http_status(:ok)
+          expect(response).to render_template("waste_exemptions_engine/renews/deregistered")
+          expect(response.body).to have_valid_html
+        end
+      end
     end
   end
 end
