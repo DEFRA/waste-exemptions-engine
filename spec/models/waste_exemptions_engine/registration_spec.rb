@@ -247,17 +247,17 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "#inactive?" do
-      let(:registration) { create(:registration, :with_active_exemptions) }
+    describe "#deregistered?" do
+      let(:registration) { create(:registration, :with_expired_and_active_exemptions) }
 
-      context "when active exepmtion is present" do
-        it { expect(registration.inactive?).to be false }
+      context "when not all exepmtion are ceased" do
+        it { expect(registration.deregistered?).to be false }
       end
 
-      context "when no active exepmtions present" do
+      context "when all exepmtion are ceased" do
         before { registration.registration_exemptions.update_all(state: "ceased") }
 
-        it { expect(registration.inactive?).to be true }
+        it { expect(registration.deregistered?).to be true }
       end
     end
 

@@ -26,7 +26,7 @@ en:
         heading: That renewal has expired
         paragraph_1: Your registration has expired, so you cannot renew.
         button: Register your exemptions again
-      inactive_registration:
+      deregistered:
         title: "You cannot renew this registration, it is no longer active"
         heading: "You cannot renew this registration, it is no longer active"
         contact_details: "If you think this is an error call the Environment Agency on 03708 506 506"
