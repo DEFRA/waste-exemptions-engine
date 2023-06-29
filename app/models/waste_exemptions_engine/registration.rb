@@ -84,6 +84,10 @@ module WasteExemptionsEngine
     end
     # :nocov:
 
+    def inactive?
+      active_exemptions.count.zero?
+    end
+
     private
 
     def apply_reference

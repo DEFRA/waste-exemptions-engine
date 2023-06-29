@@ -247,6 +247,20 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#inactive?" do
+      let(:registration) { create(:registration, :with_active_exemptions) }
+
+      context "when active exepmtion is present" do
+        it { expect(registration.inactive?).to be false }
+      end
+
+      context "when no active exepmtions present" do
+        before { registration.registration_exemptions.update_all(state: "ceased") }
+
+        it { expect(registration.inactive?).to be true }
+      end
+    end
+
     describe "PaperTrail", versioning: true do
       subject(:registration) { create(:registration, :complete) }
 
