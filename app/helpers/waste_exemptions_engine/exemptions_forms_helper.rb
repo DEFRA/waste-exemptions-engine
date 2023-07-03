@@ -5,5 +5,9 @@ module WasteExemptionsEngine
     def all_exemptions
       Exemption.all.order(:id)
     end
+
+    def all_visible_exemptions
+      Exemption.visible.order(:id)
+    end
   end
 end

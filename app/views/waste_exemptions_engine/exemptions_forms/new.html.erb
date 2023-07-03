@@ -17,7 +17,7 @@
             <span class="govuk-error-message" id="exemptions-form-exemptions-field-error"><%= @exemptions_form.errors[:exemptions].join(", ") %></span>
           <% end %>
           <div class="govuk-checkboxes">
-            <% all_exemptions.each do |exemption|  %>
+            <% all_visible_exemptions.each do |exemption|  %>
               <div class="govuk-checkboxes__item">
                 <%= f.check_box :exemption_ids,
                     { :multiple => true,
