@@ -20,7 +20,7 @@
           <% end %>
 
           <div class="govuk-checkboxes">
-            <% @renew_exemptions_form.referring_registration.exemptions.each do |exemption|  %>
+            <% @renew_exemptions_form.referring_registration.active_exemptions.each do |exemption|  %>
               <div class="govuk-checkboxes__item">
                 <%= f.check_box :exemption_ids,
                     { :multiple => true,
