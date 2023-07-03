@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_084300) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_03_114724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_084300) do
     t.string "summary"
     t.text "description"
     t.text "guidance"
+    t.boolean "hidden", default: false
   end
 
   create_table "feature_toggles", force: :cascade do |t|
