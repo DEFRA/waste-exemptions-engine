@@ -10,5 +10,9 @@ FactoryBot.define do
     category { WasteExemptionsEngine::Exemption.categories[:using_waste] }
     url { "https://www.gov.uk/guidance/waste-exemptions-#{code}-using--waste" }
     summary { Faker::Lorem.sentence }
+
+    trait :hidden do
+      hidden { true }
+    end
   end
 end
