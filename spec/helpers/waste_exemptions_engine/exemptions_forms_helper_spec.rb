@@ -14,5 +14,14 @@ module WasteExemptionsEngine
         expect(helper.all_exemptions).to eq(exemptions)
       end
     end
+
+    describe "#all_visible_exemptions" do
+      it "returns a list of visible (not hidden) exemptions ordered by ID" do
+        exemptions = create_list(:exemption, 3)
+        exemptions.first.update(hidden: true)
+
+        expect(helper.all_visible_exemptions.count).to eq(exemptions.count - 1)
+      end
+    end
   end
 end
