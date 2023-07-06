@@ -85,7 +85,7 @@ module WasteExemptionsEngine
     # :nocov:
 
     def deregistered?
-      registration_exemptions.pluck(:state).excluding("ceased").empty?
+      registration_exemptions.pluck(:state).excluding("ceased", "revoked").empty?
     end
 
     private
