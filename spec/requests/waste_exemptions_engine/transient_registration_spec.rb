@@ -6,7 +6,6 @@ module WasteExemptionsEngine
   RSpec.describe "Transient Registration" do
     describe "GET go_back_forms_path" do
       context "when a valid transient registration exists" do
-        let(:tier) { WasteCarriersEngine::Registration::UPPER_TIER }
         let(:workflow_state) { "register_in_wales_form" }
         let(:workflow_history) { %w[some_form location_form] }
         let(:transient_registration) do

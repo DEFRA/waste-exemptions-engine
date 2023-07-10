@@ -20,7 +20,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_carriers_engine/registration_complete_form:
+        waste_exemptions_engine/registration_complete_form:
           attributes:
             token:
               invalid_format: "The token is not valid"

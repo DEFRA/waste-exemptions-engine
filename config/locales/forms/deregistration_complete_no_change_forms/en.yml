@@ -8,7 +8,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_carriers_engine/deregistration_complete_no_change_form:
+        waste_exemptions_engine/deregistration_complete_no_change_form:
           attributes:
             token:
               invalid_format: "The token is not valid"
