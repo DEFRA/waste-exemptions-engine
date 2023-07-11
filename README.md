@@ -52,7 +52,7 @@ Then install the dependencies with `bundle install`.
 
 ## Testing the engine
 
-The engine is mounted in a dummy Rails 4 app (in /spec/dummy) so we can properly test its behaviour.
+The engine is mounted in a dummy Rails 7 app (in /spec/dummy) so we can properly test its behaviour.
 
 The test suite is written in RSpec.
 
