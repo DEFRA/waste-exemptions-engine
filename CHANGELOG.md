@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Feature/ruby 2841 comms history [\#831](https://github.com/DEFRA/waste-exemptions-engine/pull/831) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Feature/ruby 2322 wex remove t 27 exemption from choose exemptions page [\#827](https://github.com/DEFRA/waste-exemptions-engine/pull/827) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 2841 comms history [\#818](https://github.com/DEFRA/waste-exemptions-engine/pull/818) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Use instance variable for presenter default [\#812](https://github.com/DEFRA/waste-exemptions-engine/pull/812) ([jjromeo](https://github.com/jjromeo))
 - Feature/declaration text [\#806](https://github.com/DEFRA/waste-exemptions-engine/pull/806) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -172,6 +174,13 @@
 
 **Fixed bugs:**
 
+- Drop remove\_deregistration\_email\_sent\_at migration [\#832](https://github.com/DEFRA/waste-exemptions-engine/pull/832) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- fix/skip\_to\_address [\#830](https://github.com/DEFRA/waste-exemptions-engine/pull/830) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- RUBY-2302: taking revoked state into account when checking for deregistered [\#829](https://github.com/DEFRA/waste-exemptions-engine/pull/829) ([brujeo](https://github.com/brujeo))
+- add registration complete survey link [\#828](https://github.com/DEFRA/waste-exemptions-engine/pull/828) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Show only active registrations on the renewal page [\#826](https://github.com/DEFRA/waste-exemptions-engine/pull/826) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- RUBY-2302: show error when user is trying to renew deregistered registration [\#824](https://github.com/DEFRA/waste-exemptions-engine/pull/824) ([brujeo](https://github.com/brujeo))
+- fix deregistration\_email\_sent\_at [\#823](https://github.com/DEFRA/waste-exemptions-engine/pull/823) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - fixing bug when incorrect field is checked for errors [\#809](https://github.com/DEFRA/waste-exemptions-engine/pull/809) ([brujeo](https://github.com/brujeo))
 - Feature/declaration text [\#808](https://github.com/DEFRA/waste-exemptions-engine/pull/808) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Feature/declaration text [\#807](https://github.com/DEFRA/waste-exemptions-engine/pull/807) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -284,6 +293,8 @@
 
 **Merged pull requests:**
 
+- Bump actionpack from 7.0.5 to 7.0.5.1 [\#825](https://github.com/DEFRA/waste-exemptions-engine/pull/825) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#822](https://github.com/DEFRA/waste-exemptions-engine/pull/822) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Bump defra\_ruby\_validators from 2.5.1 to 2.5.2 [\#820](https://github.com/DEFRA/waste-exemptions-engine/pull/820) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump defra\_ruby\_validators from 2.5.0 to 2.5.1 [\#817](https://github.com/DEFRA/waste-exemptions-engine/pull/817) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Upgrade to Rails 7 [\#815](https://github.com/DEFRA/waste-exemptions-engine/pull/815) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
