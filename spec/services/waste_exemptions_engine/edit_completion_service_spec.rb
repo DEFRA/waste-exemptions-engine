@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe EditCompletionService do
     describe "run" do
-      let(:edit_registration) { create(:edit_registration, :modified) }
+      let(:edit_registration) { create(:back_office_edit_registration, :modified) }
       let(:registration) { edit_registration.registration }
 
       skipped_attributes = %w[registration_id
@@ -63,13 +63,13 @@ module WasteExemptionsEngine
       end
 
       it "deletes the edit_registration" do
-        expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(1)
-        expect { run_service }.to change(EditRegistration, :count).by(-1)
-        expect(EditRegistration.where(reference: edit_registration.reference).count).to eq(0)
+        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(1)
+        expect { run_service }.to change(BackOfficeEditRegistration, :count).by(-1)
+        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(0)
       end
 
       it "deletes the edit_registration addresses" do
-        edit_registration_id = EditRegistration.find_by(reference: edit_registration.reference).id
+        edit_registration_id = BackOfficeEditRegistration.find_by(reference: edit_registration.reference).id
         expect(TransientAddress.where(transient_registration_id: edit_registration_id).count).to eq(3)
 
         run_service
@@ -78,7 +78,7 @@ module WasteExemptionsEngine
       end
 
       it "deletes the edit_registration people" do
-        edit_registration_id = EditRegistration.find_by(reference: edit_registration.reference).id
+        edit_registration_id = BackOfficeEditRegistration.find_by(reference: edit_registration.reference).id
         expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(3)
 
         run_service
@@ -100,7 +100,7 @@ module WasteExemptionsEngine
         end
 
         context "when no data has changed" do
-          let(:edit_registration) { create(:edit_registration) }
+          let(:edit_registration) { create(:back_office_edit_registration) }
 
           it "does not create a new version" do
             expect { run_service }.not_to change { registration.versions.count }
@@ -108,7 +108,7 @@ module WasteExemptionsEngine
         end
 
         context "when only a related address's data has changed" do
-          let(:edit_registration) { create(:edit_registration, :modified_addresses) }
+          let(:edit_registration) { create(:back_office_edit_registration, :modified_addresses) }
 
           it "creates a new version" do
             expect { run_service }.to change { registration.versions.count }.by(1)
@@ -124,7 +124,7 @@ module WasteExemptionsEngine
         end
 
         context "when only a related person's data has changed" do
-          let(:edit_registration) { create(:edit_registration, :modified_people) }
+          let(:edit_registration) { create(:back_office_edit_registration, :modified_people) }
 
           it "creates a new version" do
             expect { run_service }.to change { registration.versions.count }.by(1)

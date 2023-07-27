@@ -9,7 +9,7 @@ FactoryBot.define do
 
   factory :edit_applicant_phone_form, class: "WasteExemptionsEngine::ApplicantPhoneForm" do
     initialize_with do
-      new(create(:edit_registration, workflow_state: "applicant_phone_form"))
+      new(create(:back_office_edit_registration, workflow_state: "applicant_phone_form"))
     end
   end
 

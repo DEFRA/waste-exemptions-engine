@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class EditRegistration < TransientRegistration
-    include CanUseEditRegistrationWorkflow
+  class BackOfficeEditRegistration < TransientRegistration
+    include CanUseBackOfficeEditRegistrationWorkflow
     include CanCopyDataFromRegistration
 
     private

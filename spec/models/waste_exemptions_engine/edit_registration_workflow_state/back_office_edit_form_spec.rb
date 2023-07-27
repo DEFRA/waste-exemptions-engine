@@ -3,10 +3,10 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration do
+  RSpec.describe BackOfficeEditRegistration do
     describe "#workflow_state" do
       current_state = :back_office_edit_form
-      subject(:edit_registration) { create(:edit_registration, workflow_state: current_state) }
+      subject(:edit_registration) { create(:back_office_edit_registration, workflow_state: current_state) }
 
       editable_form_states = %i[
         applicant_name_form
@@ -28,7 +28,7 @@ module WasteExemptionsEngine
 
       transitionable_states = editable_form_states + %i[declaration_form confirm_back_office_edit_cancelled_form]
 
-      context "when a WasteExemptionsEngine::EditRegistration's state is #{current_state}" do
+      context "when a WasteExemptionsEngine::BackOfficeEditRegistration's state is #{current_state}" do
         it "can only transition to the allowed states" do
           permitted_states = Helpers::WorkflowStates.permitted_states(edit_registration)
           expect(permitted_states).to match_array(transitionable_states)

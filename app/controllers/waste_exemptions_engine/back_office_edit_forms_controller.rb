@@ -92,9 +92,9 @@ module WasteExemptionsEngine
     end
 
     def find_or_initialize_edited_registration(reference)
-      @transient_registration = EditRegistration.where(
+      @transient_registration = BackOfficeEditRegistration.where(
         reference: reference
-      ).first || EditRegistration.new(reference: reference)
+      ).first || BackOfficeEditRegistration.new(reference: reference)
     end
 
     def transition_to_edit(transition)

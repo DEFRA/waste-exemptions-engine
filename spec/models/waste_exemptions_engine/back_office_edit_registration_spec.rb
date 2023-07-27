@@ -3,10 +3,10 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration do
-    subject(:edit_registration) { create(:edit_registration) }
+  RSpec.describe BackOfficeEditRegistration do
+    subject(:edit_registration) { create(:back_office_edit_registration) }
 
-    it_behaves_like "a transient_registration", :edit_registration
+    it_behaves_like "a transient_registration", :back_office_edit_registration
 
     it "subclasses TransientRegistration" do
       expect(described_class).to be < TransientRegistration

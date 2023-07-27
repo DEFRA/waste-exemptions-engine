@@ -5,7 +5,7 @@
 # does mean the module length breaks Rubocop's rules, hence the exception.
 # rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
-  module CanUseEditRegistrationWorkflow
+  module CanUseBackOfficeEditRegistrationWorkflow
     extend ActiveSupport::Concern
 
     # We believe in the case of the different states and transitions for the

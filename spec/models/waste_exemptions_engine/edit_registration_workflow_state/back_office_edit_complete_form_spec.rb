@@ -3,11 +3,11 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe EditRegistration do
+  RSpec.describe BackOfficeEditRegistration do
     describe "#workflow_state" do
       it_behaves_like "a fixed final state",
                       current_state: :back_office_edit_complete_form,
-                      factory: :edit_registration
+                      factory: :back_office_edit_registration
     end
   end
 end

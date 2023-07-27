@@ -8,18 +8,18 @@ module WasteExemptionsEngine
 
     describe "edit_back_path" do
       it "returns the correct value" do
-        expect(helper.edit_back_path(build(:edit_registration))).to eq("/")
+        expect(helper.edit_back_path(build(:back_office_edit_registration))).to eq("/")
       end
     end
 
     describe "edit_finished_path" do
       it "returns the correct value" do
-        expect(helper.edit_finished_path(build(:edit_registration))).to eq("/")
+        expect(helper.edit_finished_path(build(:back_office_edit_registration))).to eq("/")
       end
     end
 
     describe "edits_made?" do
-      let(:edit_registration) { create(:edit_registration) }
+      let(:edit_registration) { create(:back_office_edit_registration) }
 
       context "when the edit_registration has the same created_at and updated_at" do
         it "returns false" do
@@ -37,7 +37,7 @@ module WasteExemptionsEngine
     end
 
     describe "entity_name_label" do
-      let(:edit_registration) { create(:edit_registration, business_type: business_type) }
+      let(:edit_registration) { create(:back_office_edit_registration, business_type: business_type) }
       let(:result) { helper.entity_name_label(edit_registration) }
 
       context "when business type is llp", :tag do

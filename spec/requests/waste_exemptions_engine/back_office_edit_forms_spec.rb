@@ -38,17 +38,17 @@ module WasteExemptionsEngine
           end
 
           context "when the registration doesn't have an edit in progress" do
-            it "creates a new EditRegistration for the registration" do
-              expect { get request_path }.to change { EditRegistration.where(reference: registration.reference).count }.from(0).to(1)
+            it "creates a new BackOfficeEditRegistration for the registration" do
+              expect { get request_path }.to change { BackOfficeEditRegistration.where(reference: registration.reference).count }.from(0).to(1)
             end
           end
 
           context "when the registration already has an edit in progress" do
-            let(:edit_registration) { create(:edit_registration) }
+            let(:edit_registration) { create(:back_office_edit_registration) }
             let(:request_path) { "/waste_exemptions_engine/#{edit_registration.reference}/edit/" }
 
-            it "does not create a new EditRegistration for the registration" do
-              expect { get request_path }.not_to change { EditRegistration.where(reference: edit_registration.reference).count }.from(1)
+            it "does not create a new BackOfficeEditRegistration for the registration" do
+              expect { get request_path }.not_to change { BackOfficeEditRegistration.where(reference: edit_registration.reference).count }.from(1)
             end
           end
         end

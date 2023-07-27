@@ -9,7 +9,7 @@ FactoryBot.define do
 
   factory :edit_operator_postcode_form, class: "WasteExemptionsEngine::OperatorPostcodeForm" do
     initialize_with do
-      new(create(:edit_registration, workflow_state: "operator_postcode_form"))
+      new(create(:back_office_edit_registration, workflow_state: "operator_postcode_form"))
     end
   end
 

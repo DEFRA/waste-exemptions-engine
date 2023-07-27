@@ -133,7 +133,7 @@
 - Update confirmation PDF to reflect the latest layout and design [\#150](https://github.com/DEFRA/waste-exemptions-engine/pull/150) ([cintamani](https://github.com/cintamani))
 - Add a feature switch and permissions check for editing [\#147](https://github.com/DEFRA/waste-exemptions-engine/pull/147) ([irisfaraway](https://github.com/irisfaraway))
 - Change "can't" to "cannot" in privacy policy PDF [\#144](https://github.com/DEFRA/waste-exemptions-engine/pull/144) ([cintamani](https://github.com/cintamani))
-- Display metadata about EditRegistration [\#143](https://github.com/DEFRA/waste-exemptions-engine/pull/143) ([irisfaraway](https://github.com/irisfaraway))
+- Display metadata about BackOfficeEditRegistration [\#143](https://github.com/DEFRA/waste-exemptions-engine/pull/143) ([irisfaraway](https://github.com/irisfaraway))
 - Cancel an edit [\#142](https://github.com/DEFRA/waste-exemptions-engine/pull/142) ([irisfaraway](https://github.com/irisfaraway))
 - Implement editing [\#139](https://github.com/DEFRA/waste-exemptions-engine/pull/139) ([irisfaraway](https://github.com/irisfaraway))
 - Subclass TransientRegistration with NewRegistration [\#138](https://github.com/DEFRA/waste-exemptions-engine/pull/138) ([irisfaraway](https://github.com/irisfaraway))
