@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe EditHelper do
-    before { helper.instance_variable_set(:@virtual_path, "waste_exemptions_engine.edit_forms.new") }
+    before { helper.instance_variable_set(:@virtual_path, "waste_exemptions_engine.back_office_edit_forms.new") }
 
     describe "edit_back_path" do
       it "returns the correct value" do

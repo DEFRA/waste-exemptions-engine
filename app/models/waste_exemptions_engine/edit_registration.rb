@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     private
 
     def default_workflow_state
-      "edit_form"
+      "back_office_edit_form"
     end
   end
 end
