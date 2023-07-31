@@ -5,7 +5,7 @@ module WasteExemptionsEngine
 
     attr_accessor :reference, :contact_email
 
-    validates_with OptionalEmailValidator
+    validates_with OptionalEmailValidator, attributes: [:contact_email]
 
     def submit(params)
       self.contact_email = params[:contact_email]
