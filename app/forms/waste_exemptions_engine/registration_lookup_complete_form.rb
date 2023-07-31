@@ -7,8 +7,7 @@ module WasteExemptionsEngine
     end
 
     def self.can_navigate_flexibly?
-      # @todo change this to false
-      true
+      false
     end
   end
 end
