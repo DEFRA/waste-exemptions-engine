@@ -20,7 +20,12 @@ module WasteExemptionsEngine
 
         # Start
         state :start_form, initial: true
-        state :contact_agency_form
+        state :registration_lookup_form
+
+        # Registration lookup
+        state :registration_lookup_form
+        state :registration_lookup_email_form
+        state :registration_lookup_complete_form
 
         # Location
         state :location_form
@@ -78,11 +83,19 @@ module WasteExemptionsEngine
         event :next do
           # Start
           transitions from: :start_form,
-                      to: :contact_agency_form,
-                      if: :should_contact_the_agency?
+                      to: :registration_lookup_form,
+                      if: :should_edit?
 
           transitions from: :start_form,
                       to: :location_form
+
+          # Registration lookup
+          transitions from: :registration_lookup_form,
+                      to: :registration_lookup_email_form
+
+          # Registration lookup confirmation
+          transitions from: :registration_lookup_email_form,
+                      to: :registration_lookup_complete_form
 
           # Location
           transitions from: :location_form,
@@ -325,8 +338,8 @@ module WasteExemptionsEngine
       false
     end
 
-    def should_contact_the_agency?
-      start_option == "change"
+    def should_edit?
+      start_option == "edit"
     end
 
     def should_register_in_northern_ireland?
