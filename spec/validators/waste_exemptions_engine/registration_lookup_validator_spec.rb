@@ -24,7 +24,7 @@ module WasteExemptionsEngine
 
     shared_examples "is valid" do
       it "passes the validity check" do
-        registration.save!
+        registration.reload
         expect(validator).to be_valid
       end
     end
@@ -49,7 +49,7 @@ module WasteExemptionsEngine
 
     context "with a valid reference and active registration" do
       let(:reference) { "WEX000001" }
-      let(:registration) { build(:registration, :with_active_exemptions, reference: reference) }
+      let(:registration) { create(:registration, :with_active_exemptions, reference: reference) }
 
       it_behaves_like "is valid"
     end
