@@ -9,7 +9,10 @@ module WasteExemptionsEngine
     def create
       return false unless set_up_form(RegistrationLookupEmailForm, "registration_lookup_email_form", params[:token])
 
-      submit_form(@registration_lookup_email_form, transient_registration_attributes)
+      @registration_lookup_email_form.contact_email = transient_registration_attributes[:contact_email]
+      run_job_to_check_email_and_send_edit_link if @registration_lookup_email_form.valid?
+
+      super(RegistrationLookupEmailForm, "registration_lookup_email_form")
     end
 
     private
@@ -18,29 +21,14 @@ module WasteExemptionsEngine
       params.fetch(:registration_lookup_email_form, {}).permit(:reference, :contact_email)
     end
 
-    def submit_form(form, params)
-      respond_to do |format|
-        if form.submit(params)
-          run_jon_to_check_email_and_send_edit_link
-          format.html { redirect_to_registration_lookup_confirmation_journey }
-          true
-        else
-          format.html { render :new }
-          false
-        end
-      end
-    end
-
-    def run_jon_to_check_email_and_send_edit_link
+    def run_job_to_check_email_and_send_edit_link
       # Run a background job to check if email matches the one in the registration record and send the edit link
       # to the email address if it does
       # @todo - Implement backgroundd job and call it here
-      # CheckEmailAndSendEditLinkJob.perform_later(@registration_lookup_email_form)
-    end
-
-    def redirect_to_registration_lookup_confirmation_journey
-      @transient_registration.next_state!
-      redirect_to_correct_form
+      # CheckEmailAndSendEditLinkJob.perform_later(
+      #  transient_registration_attributes[:reference],
+      #  transient_registration_attributes[:contact_email]
+      # )
     end
   end
 end
