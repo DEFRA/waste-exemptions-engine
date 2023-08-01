@@ -5,13 +5,13 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe "Registration Lookup Email Forms" do
     let(:registration) { create(:registration, :with_active_exemptions) }
-    let(:registration_lookup_email_form) { build(:registration_lookup_email_form) }
+    let(:capture_email_form) { build(:capture_email_form) }
     let(:contact_email) { Faker::Internet.email }
 
-    include_examples "GET form", :registration_lookup_email_form, "/registration-lookup-email/"
-    describe "POST registration_lookup_email_form" do
-      let(:request_path) { "/waste_exemptions_engine/#{registration_lookup_email_form.token}/registration-lookup-email" }
-      let(:request_body) { { registration_lookup_email_form: { reference: registration.reference, contact_email: contact_email } } }
+    include_examples "GET form", :capture_email_form, "/registration-lookup-email/"
+    describe "POST capture_email_form" do
+      let(:request_path) { "/waste_exemptions_engine/#{capture_email_form.token}/registration-lookup-email" }
+      let(:request_body) { { capture_email_form: { reference: registration.reference, contact_email: contact_email } } }
 
       status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 

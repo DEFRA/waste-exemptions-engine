@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationLookupForm < BaseForm
+  class CaptureReferenceForm < BaseForm
     delegate :reference, to: :transient_registration
 
     validates_with RegistrationLookupValidator

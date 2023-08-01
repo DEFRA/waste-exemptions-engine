@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationLookupEmailFormsController < FormsController
+  class CaptureEmailFormsController < FormsController
     def new
-      super(RegistrationLookupEmailForm, "registration_lookup_email_form")
+      super(CaptureEmailForm, "capture_email_form")
     end
 
     def create
-      return false unless set_up_form(RegistrationLookupEmailForm, "registration_lookup_email_form", params[:token])
+      return false unless set_up_form(CaptureEmailForm, "capture_email_form", params[:token])
 
-      @registration_lookup_email_form.contact_email = transient_registration_attributes[:contact_email]
-      run_job_to_check_email_and_send_edit_link if @registration_lookup_email_form.valid?
+      @capture_email_form.contact_email = transient_registration_attributes[:contact_email]
+      run_job_to_check_email_and_send_edit_link if @capture_email_form.valid?
 
-      super(RegistrationLookupEmailForm, "registration_lookup_email_form")
+      super(CaptureEmailForm, "capture_email_form")
     end
 
     private
 
     def transient_registration_attributes
-      params.fetch(:registration_lookup_email_form, {}).permit(:reference, :contact_email)
+      params.fetch(:capture_email_form, {}).permit(:reference, :contact_email)
     end
 
     def run_job_to_check_email_and_send_edit_link

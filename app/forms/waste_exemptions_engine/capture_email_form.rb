@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationLookupEmailForm < BaseForm
+  class CaptureEmailForm < BaseForm
 
     attr_accessor :reference, :contact_email
 
