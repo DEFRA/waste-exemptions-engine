@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    registration_lookup_complete_forms:
+    capture_complete_forms:
       new:
         title: If the email address you entered is correct we will send a link to that email address
         heading: If the email address you entered is correct we will send a link to that email address

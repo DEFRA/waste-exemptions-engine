@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    registration_lookup_email_forms:
+    capture_email_forms:
       new:
         title: In order to send you a link to update your details, enter an email address that was used during registration
         heading: In order to send you a link to update your details, enter an email address that was used during registration
@@ -11,7 +11,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/registration_lookup_email_form:
+        waste_exemptions_engine/capture_email_form:
           attributes:
             contact_email:
               invalid_format: "You must enter a valid email address"

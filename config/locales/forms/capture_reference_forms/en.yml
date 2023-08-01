@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    registration_lookup_forms:
+    capture_reference_forms:
       new:
         title: Enter your waste exemption registration number
         heading: Enter your waste exemption registration number
@@ -14,7 +14,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/registration_lookup_form:
+        waste_exemptions_engine/capture_reference_form:
           attributes:
             reference:
               invalid_format: "Enter a valid number - it should have 8 digits, or 2 letters followed by 6 digits. If your number has only 7 digits, enter it with a zero at the start."

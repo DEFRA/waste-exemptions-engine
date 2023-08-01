@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationLookupCompleteForm < BaseForm
+  class CaptureCompleteForm < BaseForm
     def submit(_params)
       raise UnsubmittableForm
     end

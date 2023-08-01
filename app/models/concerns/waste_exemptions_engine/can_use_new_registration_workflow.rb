@@ -20,12 +20,12 @@ module WasteExemptionsEngine
 
         # Start
         state :start_form, initial: true
-        state :registration_lookup_form
+        state :capture_reference_form
 
-        # Registration lookup
-        state :registration_lookup_form
-        state :registration_lookup_email_form
-        state :registration_lookup_complete_form
+        # Capture registration data
+        state :capture_reference_form
+        state :capture_email_form
+        state :capture_complete_form
 
         # Location
         state :location_form
@@ -83,19 +83,19 @@ module WasteExemptionsEngine
         event :next do
           # Start
           transitions from: :start_form,
-                      to: :registration_lookup_form,
+                      to: :capture_reference_form,
                       if: :should_edit?
 
           transitions from: :start_form,
                       to: :location_form
 
           # Registration lookup
-          transitions from: :registration_lookup_form,
-                      to: :registration_lookup_email_form
+          transitions from: :capture_reference_form,
+                      to: :capture_email_form
 
           # Registration lookup confirmation
-          transitions from: :registration_lookup_email_form,
-                      to: :registration_lookup_complete_form
+          transitions from: :capture_email_form,
+                      to: :capture_complete_form
 
           # Location
           transitions from: :location_form,

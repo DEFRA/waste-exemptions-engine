@@ -12,14 +12,14 @@ module WasteExemptionsEngine
         context "when new_registration.should_contact_the_agency? is true" do
           before { new_registration.start_option = "edit" }
 
-          it "can only transition to :registration_lookup_form" do
+          it "can only transition to :capture_reference_form" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-            expect(permitted_states).to eq([:registration_lookup_form])
+            expect(permitted_states).to eq([:capture_reference_form])
           end
 
-          it "changes to :registration_lookup_form after the 'next' event" do
+          it "changes to :capture_reference_form after the 'next' event" do
             expect(new_registration.send(:should_edit?)).to be(true)
-            expect(new_registration).to transition_from(current_state).to(:registration_lookup_form).on_event(:next)
+            expect(new_registration).to transition_from(current_state).to(:capture_reference_form).on_event(:next)
           end
         end
 
