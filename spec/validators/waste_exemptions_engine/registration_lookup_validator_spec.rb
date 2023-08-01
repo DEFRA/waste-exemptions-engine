@@ -20,12 +20,11 @@ module WasteExemptionsEngine
 
     before do
       allow(validator).to receive(:reference).and_return(reference)
-      # allow(validator).to receive(:active_exemptions).and_return([1, 2])
     end
 
     shared_examples "is valid" do
       it "passes the validity check" do
-        registration
+        registration.save!
         expect(validator).to be_valid
       end
     end
@@ -50,7 +49,7 @@ module WasteExemptionsEngine
 
     context "with a valid reference and active registration" do
       let(:reference) { "WEX000001" }
-      let(:registration) { create(:registration, :with_active_exemptions, reference: reference) }
+      let(:registration) { build(:registration, :with_active_exemptions, reference: reference) }
 
       it_behaves_like "is valid"
     end
