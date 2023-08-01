@@ -1,0 +1,47 @@
+<%= render("waste_exemptions_engine/shared/back", back_path: "/") %>
+
+<%= form_for(@front_office_edit_form) do |f| %>
+  <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l"><%= t(".heading", reference: @front_office_edit_form.reference) %></h1>
+
+      <p class="govuk-body"><%= t(".paragraph_1") %></p>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <% transient_registration = @front_office_edit_form.transient_registration %>
+      <table class="govuk-table">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"> <%= t(".row_labels.exemptions") %> </td>
+          <td class="govuk-table__cell"> <%= transient_registration.exemptions.pluck(:code).join(",") %> </td>
+          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), edit_exemptions_front_office_edit_forms_path) %> </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"> <%= t(".row_labels.contact_name") %> </td>
+          <td class="govuk-table__cell"> <%= "#{transient_registration.contact_first_name} #{transient_registration.contact_last_name}" %> </td>
+          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_name_front_office_edit_forms_path) %> </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"> <%= t(".row_labels.contact_phone") %> </td>
+          <td class="govuk-table__cell"> <%= transient_registration.contact_phone %> </td>
+          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_phone_front_office_edit_forms_path) %> </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"> <%= t(".row_labels.contact_email") %> </td>
+          <td class="govuk-table__cell"> <%= transient_registration.contact_email %> </td>
+          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_email_front_office_edit_forms_path) %> </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-button-group">
+      <%= f.govuk_submit t(".next_button")%>
+    </div>
+  </div>
+<% end %>

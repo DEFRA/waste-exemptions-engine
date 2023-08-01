@@ -238,7 +238,7 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "registration-complete",
               path_names: { new: "" }
 
-    # Editing
+    # Editing: Back office
     resources :back_office_edit_forms,
               only: %i[new create],
               path: "edit",
@@ -344,6 +344,32 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "edit-cancelled",
               path_names: { new: "" }
 
+    # Editing: Front office
+    resources :front_office_edit_forms,
+              only: %i[new create],
+              path: "fo_edit",
+              path_names: { new: "" } do
+                get "contact_name",
+                    to: "front_office_edit_forms#edit_contact_name",
+                    as: "contact_name",
+                    on: :collection
+
+                get "contact_phone",
+                    to: "front_office_edit_forms#edit_contact_phone",
+                    as: "contact_phone",
+                    on: :collection
+
+                get "contact_email",
+                    to: "front_office_edit_forms#edit_contact_email",
+                    as: "contact_email",
+                    on: :collection
+
+                get "exemptions",
+                    to: "front_office_edit_forms#edit_exemptions",
+                    as: "edit_exemptions",
+                    on: :collection
+              end
+
     # Renewing
     resources :renewal_start_forms,
               only: %i[new create],
@@ -420,6 +446,11 @@ WasteExemptionsEngine::Engine.routes.draw do
       constraints: { token: /.*/ },
       to: "renews#new",
       as: "renew"
+
+  # Start a front-end editing session via magic link token
+  get "/edit_registration/:edit_token",
+      to: "front_office_edit_forms#validate_edit_token",
+      as: "validate_edit_token"
 
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
