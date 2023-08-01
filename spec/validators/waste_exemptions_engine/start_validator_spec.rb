@@ -12,7 +12,7 @@ end
 
 module WasteExemptionsEngine
   RSpec.describe StartValidator, type: :model do
-    valid_start = %w[new reregister change].sample
+    valid_start = %w[new reregister edit].sample
 
     it_behaves_like "a validator", Test::StartValidatable, :start, valid_start
     it_behaves_like "a selection validator", Test::StartValidatable, :start
