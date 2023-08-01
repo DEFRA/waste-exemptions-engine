@@ -20,7 +20,6 @@ module WasteExemptionsEngine
 
         # Start
         state :start_form, initial: true
-        state :capture_reference_form
 
         # Capture registration data
         state :capture_reference_form
@@ -88,6 +87,9 @@ module WasteExemptionsEngine
 
           transitions from: :start_form,
                       to: :location_form
+
+          transitions from: :start_form,
+                      to: :capture_reference_form
 
           # Registration lookup
           transitions from: :capture_reference_form,
