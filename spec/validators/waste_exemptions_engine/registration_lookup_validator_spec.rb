@@ -18,13 +18,15 @@ module WasteExemptionsEngine
 
     subject(:validator) { Test::RegistrationLookupValidatable.new }
 
+    let(:inactive_registration) { create(:registration) }
+    let(:active_registration) { create(:registration, :with_active_exemptions) }
+    
     before do
       allow(validator).to receive(:reference).and_return(reference)
     end
 
     shared_examples "is valid" do
       it "passes the validity check" do
-        registration.reload
         expect(validator).to be_valid
       end
     end
@@ -42,14 +44,13 @@ module WasteExemptionsEngine
     end
 
     context "with a valid reference, but inactive registration" do
-      let(:reference) { "WEX000001" }
+      let(:reference) { inactive_registration.reference }
 
       it_behaves_like "is not valid"
     end
 
     context "with a valid reference and active registration" do
-      let(:reference) { "WEX000001" }
-      let(:registration) { create(:registration, :with_active_exemptions, reference: reference) }
+      let(:reference) { active_registration.reference }
 
       it_behaves_like "is valid"
     end
