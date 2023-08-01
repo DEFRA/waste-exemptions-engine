@@ -20,7 +20,7 @@ module WasteExemptionsEngine
 
     let(:inactive_registration) { create(:registration) }
     let(:active_registration) { create(:registration, :with_active_exemptions) }
-    
+
     before do
       allow(validator).to receive(:reference).and_return(reference)
     end
