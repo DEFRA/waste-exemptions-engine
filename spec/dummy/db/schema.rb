@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_114724) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_175007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -126,6 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_114724) do
     t.string "renew_token"
     t.integer "referring_registration_id"
     t.datetime "companies_house_updated_at", precision: nil
+    t.string "edit_token"
+    t.datetime "edit_token_created_at"
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
   end
