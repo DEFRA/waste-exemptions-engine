@@ -128,6 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_175007) do
     t.datetime "companies_house_updated_at", precision: nil
     t.string "edit_token"
     t.datetime "edit_token_created_at"
+    t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
   end
