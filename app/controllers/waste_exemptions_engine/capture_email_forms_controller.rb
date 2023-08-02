@@ -22,13 +22,10 @@ module WasteExemptionsEngine
     end
 
     def run_job_to_check_email_and_send_edit_link
-      # Run a background job to check if email matches the one in the registration record and send the edit link
-      # to the email address if it does
-      # @todo - Implement backgroundd job and call it here
-      # CheckEmailAndSendEditLinkJob.perform_later(
-      #  transient_registration_attributes[:reference],
-      #  transient_registration_attributes[:contact_email]
-      # )
+      SendRegistrationEditEmailJob.perform_later(
+        reference: transient_registration_attributes[:reference],
+        email: transient_registration_attributes[:contact_email]
+      )
     end
   end
 end
