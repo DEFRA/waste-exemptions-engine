@@ -19,6 +19,8 @@ module WasteExemptionsEngine
                                                   "edit_token",
                                                   "edit_token_created_at",
                                                   "renew_token",
+                                                  "edit_token",
+                                                  "edit_token_created_at",
                                                   "assistance_mode",
                                                   "created_at",
                                                   "updated_at",
