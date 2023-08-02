@@ -24,6 +24,9 @@ en:
           zero: No addresses found
           one: 1 address found
           other: "%{count} addresses found"
+      
+  template_labels:
+    registration_edit_email: "Waste exemptions – Update your contact details and deregister your waste exemptions"
 
   self_serve_deregistration:
     message: "Deregistered via self-serve"
