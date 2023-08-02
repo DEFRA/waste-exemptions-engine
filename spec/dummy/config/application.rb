@@ -35,6 +35,10 @@ module Dummy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     # config.active_record.raise_in_transactional_callbacks = true
 
+    # Paths
+    config.front_office_url = ENV["FRONT_OFFICE_URL"] || "http://localhost:3000"
+    config.back_office_url = ENV["BACK_OFFICE_URL"] || "http://localhost:8000"
+
     # Companies House config
     config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/company/"
     config.companies_house_api_key = ENV.fetch("COMPANIES_HOUSE_API_KEY", nil)
