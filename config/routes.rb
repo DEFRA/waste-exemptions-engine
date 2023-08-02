@@ -436,6 +436,11 @@ WasteExemptionsEngine::Engine.routes.draw do
       to: "renews#new",
       as: "renew"
 
+  get "/edit/:token",
+      constraints: { token: /.*/ },
+      to: "edits#new",
+      as: "edit"
+
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
 
