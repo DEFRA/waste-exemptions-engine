@@ -5,14 +5,14 @@ http_interactions:
     uri: https://api.notifications.service.gov.uk/v2/notifications/email
     body:
       encoding: UTF-8
-      string: '{"email_address":"ellamae@hansen-rutherford.test","template_id":"09320726-38c6-4989-a831-17c7d4ff37db","personalisation":{"reference":"WEX0123456","contact_name":"Percy
-        Morar","site_details":["Grid reference: ST 58337 72855","Site details: Qui
-        et incidunt laborum."],"magic_link_url":"/waste_exemptions_engine/renew/TvbmPPnmiVYZVemtXv3j3rC4","exemptions":["U10
-        Velit aut libero nam.","U9 Ut esse voluptas explicabo.","U8 Laborum quasi
-        voluptatem culpa.","U7 Totam autem doloremque illum.","U6 Libero consectetur
-        maiores eos.","U5 Dolor nobis repellat consequatur.","U4 Tempore iusto assumenda
-        aliquid.","U3 Ex mollitia sit vero.","U2 Et architecto id nemo.","U1 Sed laudantium
-        hic quis."]}}'
+      string: '{"email_address":"elliot@von-grant.example","template_id":"09320726-38c6-4989-a831-17c7d4ff37db","personalisation":{"reference":"WEX0123456","contact_name":"Florence
+        Schultz","site_details":["Grid reference: ST 58337 72855","Site details: Itaque
+        doloremque voluptatibus fugiat."],"magic_link_url":"http://localhost:3000/waste_exemptions_engine/edit/rWiFivTGioee7AdWzTKEJp1J","exemptions":["U10
+        Necessitatibus quas dignissimos corrupti.","U9 Cumque voluptatum neque nihil.","U8
+        Enim laboriosam nulla eum.","U7 Laborum reprehenderit labore aut.","U6 Aut
+        quos cumque natus.","U5 Iste odit nihil vel.","U4 Consequatur ut ut atque.","U3
+        Cum officiis qui delectus.","U2 Quos et numquam ut.","U1 Harum assumenda ut
+        et."]}}'
     headers:
       User-Agent:
       - NOTIFY-API-RUBY-CLIENT/5.4.0
@@ -32,11 +32,11 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '1989'
+      - '2020'
       Connection:
       - keep-alive
       Date:
-      - Wed, 02 Aug 2023 18:48:07 GMT
+      - Wed, 02 Aug 2023 22:28:19 GMT
       Access-Control-Allow-Headers:
       - Content-Type,Authorization
       Access-Control-Allow-Methods:
@@ -48,22 +48,22 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-B3-Spanid:
-      - 4f4e75828900c8fd
+      - 76f06b80b2517fba
       X-B3-Traceid:
-      - 573012a674244e864f4e75828900c8fd
+      - f51ddbfa91fd4e8176f06b80b2517fba
       X-Vcap-Request-Id:
-      - 573012a6-7424-4e86-4f4e-75828900c8fd
+      - f51ddbfa-91fd-4e81-76f0-6b80b2517fba
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 242a81711c4fc113f186d0cca0b5bb94.cloudfront.net (CloudFront)
+      - 1.1 835f3c9e7c3bc0e7766edf13dac581de.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - LHR50-P3
       X-Amz-Cf-Id:
-      - lqD6hgJxCZUcP27Echz6KZaH0ohbCkeMP1xUGdrHQ1Cta3E1Ea9tDA==
+      - t8sFWxDM5CpsKZKvEHjFfhsUVxUJJwdbt4cEcHTy5xy9cvKUhy-mMw==
     body:
       encoding: UTF-8
-      string: '{"content":{"body":"Dear Percy Morar\r\n\r\n#Deregister your waste
+      string: '{"content":{"body":"Dear Florence Schultz\r\n\r\n#Deregister your waste
         exemptions and update your contact details before your renewal date\r\n\r\nYou
         should only hold an exemption for a waste activity you are carrying out. You
         do not usually need to register exemptions for storing waste you have produced.\r\n\r\nYou
@@ -71,18 +71,18 @@ http_interactions:
         this is free. Changing your exemptions will not extend your registration period.
         If there have been changes to your contact details you can also update them
         using this link.\r\n\r\nSite location: \n\n* Grid reference: ST 58337 72855\n*
-        Site details: Qui et incidunt laborum.\r\n\r\nRegistration number: WEX0123456\r\n\r\nYou
-        can use this link to update your contact details and deregister your waste
-        exemptions\r\n/waste_exemptions_engine/renew/TvbmPPnmiVYZVemtXv3j3rC4\r\n\r\n#These
-        are your current exemptions\r\n\n\n* U10 Velit aut libero nam.\n* U9 Ut esse
-        voluptas explicabo.\n* U8 Laborum quasi voluptatem culpa.\n* U7 Totam autem
-        doloremque illum.\n* U6 Libero consectetur maiores eos.\n* U5 Dolor nobis
-        repellat consequatur.\n* U4 Tempore iusto assumenda aliquid.\n* U3 Ex mollitia
-        sit vero.\n* U2 Et architecto id nemo.\n* U1 Sed laudantium hic quis.\r\n\r\nEnvironment
-        Agency helpline\r\n03708 506 506 (Monday to Friday 8am to 8pm)\r\nenquiries@environment-agency.gov.uk\r\n\r\nThis
+        Site details: Itaque doloremque voluptatibus fugiat.\r\n\r\nRegistration number:
+        WEX0123456\r\n\r\nYou can use this link to update your contact details and
+        deregister your waste exemptions\r\nhttp://localhost:3000/waste_exemptions_engine/edit/rWiFivTGioee7AdWzTKEJp1J\r\n\r\n#These
+        are your current exemptions\r\n\n\n* U10 Necessitatibus quas dignissimos corrupti.\n*
+        U9 Cumque voluptatum neque nihil.\n* U8 Enim laboriosam nulla eum.\n* U7 Laborum
+        reprehenderit labore aut.\n* U6 Aut quos cumque natus.\n* U5 Iste odit nihil
+        vel.\n* U4 Consequatur ut ut atque.\n* U3 Cum officiis qui delectus.\n* U2
+        Quos et numquam ut.\n* U1 Harum assumenda ut et.\r\n\r\nEnvironment Agency
+        helpline\r\n03708 506 506 (Monday to Friday 8am to 8pm)\r\nenquiries@environment-agency.gov.uk\r\n\r\nThis
         is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
-        exemptions \u2013 Update your contact details and deregister your waste exemptions"},"id":"589a75f2-96ac-4aa6-8e78-2ab38f87c319","reference":null,"scheduled_for":null,"template":{"id":"09320726-38c6-4989-a831-17c7d4ff37db","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/09320726-38c6-4989-a831-17c7d4ff37db","version":2},"uri":"https://api.notifications.service.gov.uk/v2/notifications/589a75f2-96ac-4aa6-8e78-2ab38f87c319"}
+        exemptions \u2013 Update your contact details and deregister your waste exemptions"},"id":"e49fa2e7-c2e6-4dd3-bbc5-515cb2cbfc83","reference":null,"scheduled_for":null,"template":{"id":"09320726-38c6-4989-a831-17c7d4ff37db","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/09320726-38c6-4989-a831-17c7d4ff37db","version":2},"uri":"https://api.notifications.service.gov.uk/v2/notifications/e49fa2e7-c2e6-4dd3-bbc5-515cb2cbfc83"}
 
         '
-  recorded_at: Wed, 02 Aug 2023 18:48:05 GMT
+  recorded_at: Wed, 02 Aug 2023 22:28:05 GMT
 recorded_with: VCR 6.2.0
