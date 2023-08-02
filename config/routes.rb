@@ -240,17 +240,17 @@ WasteExemptionsEngine::Engine.routes.draw do
 
     resources :capture_reference_forms,
               only: %i[new create],
-              path: "registration-lookup",
+              path: "enter-your-waste-exemption-registration-number",
               path_names: { new: "" }
 
     resources :capture_email_forms,
               only: %i[new create],
-              path: "registration-lookup-email",
+              path: "enter-an-email-address-that-was-used-during-registration",
               path_names: { new: "" }
 
     resources :capture_complete_forms,
               only: %i[new],
-              path: "registration-lookup-complete",
+              path: "we-will-send-a-link-to-that-email-address",
               path_names: { new: "" }
 
     # Editing
