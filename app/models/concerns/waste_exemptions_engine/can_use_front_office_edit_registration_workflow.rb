@@ -26,8 +26,8 @@ module WasteExemptionsEngine
         # End pages
         state :front_office_edit_declaration_form
         state :front_office_edit_complete_form
-        state :front_office_edit_complete_no_change_form
-        state :front_office_deregistration_complete_full_form
+        state :front_office_edit_complete_no_changes_form
+        state :deregistration_complete_full_form
 
         ## Edit transitions
         event :edit_exemptions do
@@ -50,10 +50,6 @@ module WasteExemptionsEngine
                       to: :contact_email_form
         end
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e17f7fd (Add front-office edit registration form and initial workflow)
         # Next transitions
         event :next do
 
@@ -71,7 +67,6 @@ module WasteExemptionsEngine
 
           # Completing the edit process
           transitions from: :front_office_edit_form,
-<<<<<<< HEAD
                       to: :front_office_edit_declaration_form
 
           transitions from: :front_office_edit_declaration_form,
@@ -79,23 +74,10 @@ module WasteExemptionsEngine
                       if: :all_exemptions_deregistered?
 
           transitions from: :front_office_edit_declaration_form,
-                      to: :front_office_edit_complete_no_change_form,
+                      to: :front_office_edit_complete_no_changes_form,
                       if: :no_changes?
 
           transitions from: :front_office_edit_declaration_form,
-=======
-                      to: :front_office_declaration_form
-
-          transitions from: :front_office_declaration_form,
-                      to: :deregistration_complete_full_form,
-                      if: :all_exemptions_deregistered?
-
-          transitions from: :front_office_declaration_form,
-                      to: :front_office_edit_complete_no_change_form,
-                      if: :no_changes?
-
-          transitions from: :front_office_declaration_form,
->>>>>>> e17f7fd (Add front-office edit registration form and initial workflow)
                       to: :front_office_edit_complete_form
 
           # Everything else should always return to the main edit page
@@ -109,11 +91,7 @@ module WasteExemptionsEngine
       end
 
       # helpers
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> e17f7fd (Add front-office edit registration form and initial workflow)
       def all_exemptions_deregistered?
         excluded_exemptions.length == registration.exemptions.length
       end
@@ -121,7 +99,6 @@ module WasteExemptionsEngine
       def no_exemptions_deregistered?
         excluded_exemptions.empty?
       end
-<<<<<<< HEAD
 
       def no_changes?
         !modified?
@@ -129,15 +106,6 @@ module WasteExemptionsEngine
 
       def exemption_edits_confirmed?
         temp_confirm_exemption_edits == true
-=======
-  
-      def no_changes?
-        excluded_exemptions.empty? && transient_registration_editable_attributes_unchanged
-      end
-
-      def exemption_edits_confirmed?
-        temp_confirm_exemption_edits == "no"
->>>>>>> e17f7fd (Add front-office edit registration form and initial workflow)
       end
     end
     # rubocop:enable Metrics/BlockLength
