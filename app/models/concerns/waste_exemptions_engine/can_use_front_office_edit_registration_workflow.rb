@@ -24,7 +24,7 @@ module WasteExemptionsEngine
         state :contact_email_form
 
         # End pages
-        state :front_office_declaration_form
+        state :front_office_edit_declaration_form
         state :front_office_edit_complete_form
         state :front_office_edit_complete_no_change_form
         state :front_office_deregistration_complete_full_form
@@ -67,17 +67,17 @@ module WasteExemptionsEngine
 
           # Completing the edit process
           transitions from: :front_office_edit_form,
-                      to: :front_office_declaration_form
+                      to: :front_office_edit_declaration_form
 
-          transitions from: :front_office_declaration_form,
+          transitions from: :front_office_edit_declaration_form,
                       to: :deregistration_complete_full_form,
                       if: :all_exemptions_deregistered?
 
-          transitions from: :front_office_declaration_form,
+          transitions from: :front_office_edit_declaration_form,
                       to: :front_office_edit_complete_no_change_form,
                       if: :no_changes?
 
-          transitions from: :front_office_declaration_form,
+          transitions from: :front_office_edit_declaration_form,
                       to: :front_office_edit_complete_form
 
           # Everything else should always return to the main edit page
@@ -101,7 +101,20 @@ module WasteExemptionsEngine
       end
 
       def no_changes?
-        excluded_exemptions.empty? && transient_registration_editable_attributes_unchanged
+        excluded_exemptions.empty? && editable_attributes_unchanged?
+      end
+
+      def editable_attributes_unchanged?
+        %i[
+          contact_first_name
+          contact_last_name
+          contact_phone
+          contact_email
+        ].each do |attr|
+          return false unless self.send(attr) == registration.send(attr)
+        end
+
+        true
       end
 
       def exemption_edits_confirmed?

@@ -15,7 +15,7 @@ module WasteExemptionsEngine
         contact_email_form
       ]
 
-      transitionable_states = editable_form_states + %i[front_office_declaration_form]
+      transitionable_states = editable_form_states + %i[front_office_edit_declaration_form]
 
       context "when a WasteExemptionsEngine::FrontOfficeEditRegistration's state is #{current_state}" do
         it "can only transition to the allowed states" do
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         end
 
         it "changes to declaration_form after the 'next' event" do
-          expect(edit_registration).to transition_from(current_state).to(:front_office_declaration_form).on_event(:next)
+          expect(edit_registration).to transition_from(current_state).to(:front_office_edit_declaration_form).on_event(:next)
         end
       end
     end

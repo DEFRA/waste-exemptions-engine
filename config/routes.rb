@@ -370,6 +370,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
+    resources :front_office_edit_declaration_forms,
+              only: %i[new create],
+              path: "front-office-edit-declaration",
+              path_names: { new: "" }
+
     # Renewing
     resources :renewal_start_forms,
               only: %i[new create],

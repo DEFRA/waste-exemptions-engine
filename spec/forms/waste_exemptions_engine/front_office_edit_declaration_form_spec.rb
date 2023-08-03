@@ -3,8 +3,8 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe DeclarationForm, type: :model do
-    subject(:form) { build(:declaration_form) }
+  RSpec.describe FrontOfficeEditDeclarationForm, type: :model do
+    subject(:form) { build(:front_office_edit_declaration_form) }
 
     it "validates the declaration using the InclusionValidator class" do
       validators = form._validators
@@ -17,7 +17,7 @@ module WasteExemptionsEngine
       expect(inclusion_validators.first.options).to eq(in: [true])
     end
 
-    it_behaves_like "a validated form", :declaration_form do
+    it_behaves_like "a validated form", :front_office_edit_declaration_form do
       let(:valid_params) { { declaration: 1 } }
       let(:invalid_params) do
         [

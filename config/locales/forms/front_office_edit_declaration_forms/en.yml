@@ -1,0 +1,25 @@
+en:
+  waste_exemptions_engine:
+    front_office_edit_declaration_forms:
+      new:
+        title: Declaration
+        heading: Declaration
+        notice: "I confirm that either:"
+        list_item_1: the waste operation(s) deregistered are no longer in operation at the place stated in our exemption registration / renewal or
+        list_item_2: the deregistered activity(s) no longer meets the requirements of exemptions from environmental permitting or
+        list_item_3: the exemption was registered in error or
+        list_item_4: the contact details are up-to-date
+        declaration_text: I understand and agree with the declaration above. You can be fined if you provide false or misleading information
+        privacy_link_text: "Privacy: how we use your personal information (opens new tab)"
+        error_heading: A problem to fix
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/edit_exemptions_declaration_form:
+          attributes:
+            declaration:
+              inclusion: "You must agree with the declaration before you can continue"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
