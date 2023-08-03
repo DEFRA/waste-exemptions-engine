@@ -3,12 +3,17 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe ConfirmEditExemptionsFormsController, type: :request do
+  RSpec.describe "confirm edit exemptions form" do
     let(:request_path) { "/waste_exemptions_engine/#{form.token}/confirm-edit-exemptions" }
     let(:form) { build(:confirm_edit_exemptions_form) }
+    let(:transient_registration) { form.transient_registration }
+    let(:exemptions) { transient_registration.exemptions }
+    let(:exemption_ids_to_remove) { [exemptions.first, exemptions.last].pluck(:id) }
+    let(:exemption_ids_to_retain) { (exemptions.pluck(:id) - exemption_ids_to_remove) }
 
-    it "is a FormController" do
-      expect(described_class.superclass).to eq(WasteExemptionsEngine::FormsController)
+    before do
+      transient_registration.excluded_exemptions = exemption_ids_to_remove
+      transient_registration.save!
     end
 
     describe "#new" do
@@ -27,7 +32,8 @@ module WasteExemptionsEngine
         let(:valid_params) do
           {
             confirm_edit_exemptions_form: {
-              workflow_state: "edit_exemptions_form"
+              exemption_ids: exemption_ids_to_retain,
+              temp_confirm_exemption_edits: "false"
             }
           }
         end
@@ -40,13 +46,19 @@ module WasteExemptionsEngine
             expect(response).to redirect_to("/waste_exemptions_engine/#{form.token}/edit-exemptions")
           end
         end
+
+        it "does not remove any exemptions" do
+          expect { post request_path, params: valid_params }
+            .not_to change { transient_registration.reload.exemptions.length }
+        end
       end
 
       context "when selecting the yes option" do
         let(:valid_params) do
           {
             confirm_edit_exemptions_form: {
-              workflow_state: "edit_exemptions_declaration_form"
+              exemption_ids: exemption_ids_to_retain,
+              temp_confirm_exemption_edits: "true"
             }
           }
         end
@@ -59,13 +71,27 @@ module WasteExemptionsEngine
             expect(response).to redirect_to("/waste_exemptions_engine/#{form.token}/edit-exemptions-declaration")
           end
         end
+
+        it "removes the exemptions selected for removal" do
+          aggregate_failures do
+            previous_exemption_count = exemptions.count
+
+            post request_path, params: valid_params
+
+            current_exemptions = transient_registration.reload.exemptions
+
+            expect(current_exemptions.length).to eq(previous_exemption_count - 2)
+            expect(current_exemptions).not_to include(exemptions.first)
+            expect(current_exemptions).not_to include(exemptions.last)
+          end
+        end
       end
 
-      context "when an invalid workflow_state has been provided" do
+      context "when an invalid option value has been provided" do
         let(:invalid_params) do
           {
             confirm_edit_exemptions_form: {
-              workflow_state: "renewal_start"
+              temp_confirm_exemption_edits: nil
             }
           }
         end

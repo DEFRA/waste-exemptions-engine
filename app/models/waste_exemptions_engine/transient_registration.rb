@@ -35,33 +35,35 @@ module WasteExemptionsEngine
     alias_attribute :registration_exemptions, :transient_registration_exemptions
 
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
+                              companies_house_updated_at
                               created_at
                               declaration
                               excluded_exemptions
-                              reference
                               id
+                              reference
                               start_option
-                              temp_use_registered_company_details
-                              companies_house_updated_at
-                              temp_operator_postcode
+                              temp_confirm_exemption_edits
+                              temp_confirm_no_exemption_changes
                               temp_contact_postcode
                               temp_grid_reference
+                              temp_operator_postcode
+                              temp_renew_without_changes
+                              temp_reuse_address_for_site_location
+                              temp_reuse_applicant_email
                               temp_reuse_applicant_name
                               temp_reuse_applicant_phone
-                              temp_reuse_applicant_email
                               temp_reuse_operator_address
-                              temp_reuse_address_for_site_location
                               temp_site_description
                               temp_site_postcode
-                              temp_renew_without_changes
+                              temp_use_registered_company_details
                               token
                               transient_addresses
-                              transient_registration_exemptions
                               transient_people
+                              transient_registration_exemptions
                               type
                               updated_at
-                              workflow_state
-                              workflow_history].freeze
+                              workflow_history
+                              workflow_state].freeze
 
     def renewal?
       false

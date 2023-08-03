@@ -449,6 +449,7 @@ WasteExemptionsEngine::Engine.routes.draw do
 
   # Start a front-end editing session via magic link token
   get "/edit_registration/:edit_token",
+      constraints: { edit_token: /.*/ },
       to: "front_office_edit_forms#validate_edit_token",
       as: "validate_edit_token"
 

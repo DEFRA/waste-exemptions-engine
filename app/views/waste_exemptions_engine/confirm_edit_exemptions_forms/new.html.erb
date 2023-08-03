@@ -19,8 +19,24 @@
       </ul>
 
       <div class="govuk-form-group <%= "govuk-form-group--error" if @confirm_edit_exemptions_form.errors[:workflow_state].any? %>">
-        <%= f.govuk_collection_radio_buttons :workflow_state,
-            @confirm_edit_exemptions_form.workflow_state_options_for_select, :id, :name, inline: true, legend: { text: t(".legend"), hidden: true } %>
+        <%= f.govuk_collection_radio_buttons :temp_confirm_exemption_edits,
+          [
+            OpenStruct.new(
+              id: true,
+              name: t(".options.yes")
+            ),
+            OpenStruct.new(
+              id: false,
+              name: t(".options.no")
+            )
+          ],
+          :id,
+          :name,
+          legend: {
+            text: t(".heading"),
+            hidden: true
+          },
+          inline: true %>
 
         <br />
         <%= f.govuk_submit %>

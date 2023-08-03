@@ -6,19 +6,24 @@ module WasteExemptionsEngine
   RSpec.describe ConfirmEditExemptionsForm, type: :model do
     subject(:form) { build(:confirm_edit_exemptions_form) }
 
-    describe "#workflow_state_options_for_select" do
-      subject(:options) { form.workflow_state_options_for_select }
+    it "validates the edit confirmation question using the YesNoValidator class" do
+      validators = form._validators
+      expect(validators.keys).to include(:temp_confirm_exemption_edits)
+      expect(validators[:temp_confirm_exemption_edits].first.class)
+        .to eq(DefraRuby::Validators::TrueFalseValidator)
+    end
 
-      it "returns a struct with Yes/No options" do
-        aggregate_failures do
-          expect(options.size).to eq(2)
-
-          expect(options.first.id).to eq("edit_exemptions_declaration_form")
-          expect(options.first.name).to eq("Yes")
-
-          expect(options.second.id).to eq("edit_exemptions_form")
-          expect(options.second.name).to eq("No")
-        end
+    it_behaves_like "a validated form", :confirm_edit_exemptions_form do
+      let(:valid_params) do
+        [
+          { temp_confirm_exemption_edits: "true" },
+          { temp_confirm_exemption_edits: "false" }
+        ]
+      end
+      let(:invalid_params) do
+        [
+          { temp_confirm_exemption_edits: "" }
+        ]
       end
     end
   end

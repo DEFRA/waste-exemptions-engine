@@ -143,7 +143,11 @@ module WasteExemptionsEngine
                       to: :confirm_edit_exemptions_form
 
           transitions from: :confirm_edit_exemptions_form,
-                      to: :edit_exemptions_declaration_form
+                      to: :edit_exemptions_declaration_form,
+                      if: :exemption_edits_confirmed?
+
+          transitions from: :confirm_edit_exemptions_form,
+                      to: :edit_exemptions_form
 
           transitions from: :edit_exemptions_declaration_form,
                       to: :deregistration_complete_no_change_form,
@@ -357,6 +361,10 @@ module WasteExemptionsEngine
 
     def companies_house_details_incorrect?
       temp_use_registered_company_details == false
+    end
+
+    def exemption_edits_confirmed?
+      temp_confirm_exemption_edits == true
     end
 
     def all_exemptions_deregistered?

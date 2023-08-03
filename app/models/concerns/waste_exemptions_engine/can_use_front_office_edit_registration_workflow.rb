@@ -50,7 +50,6 @@ module WasteExemptionsEngine
                       to: :contact_email_form
         end
 
-
         # Next transitions
         event :next do
 
@@ -92,7 +91,7 @@ module WasteExemptionsEngine
       end
 
       # helpers
-    
+
       def all_exemptions_deregistered?
         excluded_exemptions.length == registration.exemptions.length
       end
@@ -100,13 +99,13 @@ module WasteExemptionsEngine
       def no_exemptions_deregistered?
         excluded_exemptions.empty?
       end
-  
+
       def no_changes?
         excluded_exemptions.empty? && transient_registration_editable_attributes_unchanged
       end
 
       def exemption_edits_confirmed?
-        temp_confirm_exemption_edits == "no"
+        temp_confirm_exemption_edits == true
       end
     end
     # rubocop:enable Metrics/BlockLength
