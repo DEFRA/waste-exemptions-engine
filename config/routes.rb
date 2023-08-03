@@ -436,10 +436,11 @@ WasteExemptionsEngine::Engine.routes.draw do
       to: "renews#new",
       as: "renew"
 
-  get "/edit/:token",
-      constraints: { token: /.*/ },
-      to: "edits#new",
-      as: "edit"
+  # Start a front-end editing session via magic link token
+  get "/edit_registration/:edit_token",
+      constraints: { edit_token: /.*/ },
+      to: "front_office_edit_forms#validate_edit_token",
+      as: "validate_edit_token"
 
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
