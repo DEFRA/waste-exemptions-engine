@@ -9,7 +9,7 @@ module WasteExemptionsEngine
       subject(:new_registration) { create(:new_registration, workflow_state: current_state) }
 
       context "when a NewRegistration's state is #{current_state}" do
-        context "when new_registration.should_contact_the_agency? is true" do
+        context "when new_registration.should_edit? is true" do
           before { new_registration.start_option = "edit" }
 
           it "can only transition to :capture_reference_form" do
