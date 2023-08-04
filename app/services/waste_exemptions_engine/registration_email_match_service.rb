@@ -3,9 +3,7 @@
 module WasteExemptionsEngine
   class RegistrationEmailMatchService < BaseService
     def run(reference:, email:)
-      WasteExemptionsEngine::Registration.where(reference: reference, contact_email: email).or(
-        WasteExemptionsEngine::Registration.where(reference: reference, applicant_email: email)
-      ).first || false
+      WasteExemptionsEngine::Registration.where("reference ilike ? and (applicant_email ilike ? OR contact_email ilike ?)", reference, email, email).first || false
     end
   end
 end
