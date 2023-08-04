@@ -1,0 +1,31 @@
+<% registration = @transient_registration.registration %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@front_office_edit_complete_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+        <div class="govuk-panel__body">
+          <strong>
+            <span id="reg_identifier"><%= registration.reference %></span>
+          </strong>
+        </div>
+      </div>
+
+      <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @front_office_edit_complete_form.contact_email) %></p>
+
+      <p class="govuk-body"><%= t(".what_happens_next.paragraph_1", expire_day_month_year: registration_expires_day_month_year(registration)) %></p>
+
+      <br/>
+
+      <p class="govuk-body"><%= t(".survey_link_text") %></p>
+      <p class="govuk-body"><%= link_to(t(".survey_link_url"), target: "_blank") %> <%= t(".survey_link_hint") %></p>
+    <% end %>
+  </div>
+</div>

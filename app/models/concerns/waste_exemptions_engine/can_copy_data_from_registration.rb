@@ -16,6 +16,8 @@ module WasteExemptionsEngine
 
     def copy_data_from_registration
       attributes = registration.attributes.except("id",
+                                                  "edit_token",
+                                                  "edit_token_created_at",
                                                   "renew_token",
                                                   "assistance_mode",
                                                   "created_at",

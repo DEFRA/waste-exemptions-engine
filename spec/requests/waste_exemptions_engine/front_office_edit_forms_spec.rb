@@ -10,7 +10,6 @@ module WasteExemptionsEngine
     let(:registration) { create(:registration, edit_token: valid_edit_token, edit_token_created_at:) }
     let(:transient_registration_token) { FrontOfficeEditRegistration.last.token }
 
-
     describe "GET /waste_exemptions_engine/edit_registration/edit_token" do
 
       let(:request_path) { validate_edit_token_path(edit_token:) }

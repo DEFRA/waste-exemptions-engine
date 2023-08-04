@@ -86,5 +86,41 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe ".modified?" do
+      context "when no changes have been made" do
+        it { expect(edit_registration.modified?).to be false }
+      end
+
+      context "when an exemption has been removed" do
+        before { edit_registration.exemptions.last.destroy }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
+
+      context "when contact first name has been updated" do
+        before { edit_registration.contact_first_name = "foo" }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
+
+      context "when contact last name has been updated" do
+        before { edit_registration.contact_last_name = "foo" }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
+
+      context "when contact phone has been updated" do
+        before { edit_registration.contact_phone = "000000000" }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
+
+      context "when contact email has been updated" do
+        before { edit_registration.contact_email = "foo@bar.co.uk" }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
+    end
   end
 end

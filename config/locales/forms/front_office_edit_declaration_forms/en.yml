@@ -16,7 +16,7 @@ en:
   activemodel:
     errors:
       models:
-        waste_exemptions_engine/edit_exemptions_declaration_form:
+        waste_exemptions_engine/front_office_edit_declaration_form:
           attributes:
             declaration:
               inclusion: "You must agree with the declaration before you can continue"

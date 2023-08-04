@@ -46,6 +46,7 @@ module WasteExemptionsEngine
     after_create :apply_reference
 
     has_secure_token :renew_token
+    has_secure_token :edit_token
 
     def in_renewal_window?
       (expires_on - renewal_window_before_expiry_in_days.days) < Time.now &&

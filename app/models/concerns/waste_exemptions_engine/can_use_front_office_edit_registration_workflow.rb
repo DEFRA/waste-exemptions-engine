@@ -101,20 +101,7 @@ module WasteExemptionsEngine
       end
 
       def no_changes?
-        excluded_exemptions.empty? && editable_attributes_unchanged?
-      end
-
-      def editable_attributes_unchanged?
-        %i[
-          contact_first_name
-          contact_last_name
-          contact_phone
-          contact_email
-        ].each do |attr|
-          return false unless self.send(attr) == registration.send(attr)
-        end
-
-        true
+        !modified?
       end
 
       def exemption_edits_confirmed?
