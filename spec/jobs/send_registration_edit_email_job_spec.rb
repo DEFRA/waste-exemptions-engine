@@ -18,8 +18,8 @@ RSpec.describe SendRegistrationEditEmailJob do
       allow(notifications_client).to receive(:send_email)
     end
 
-    context "when reference and email provided are matching one of the existing registrations" do
-      before { registration.update!(contact_email: email) }
+    context "when reference and email match is successful and contact_email and applicant_email are identical" do
+      before { registration.update!(contact_email: email, applicant_email: email) }
 
       it "sends the email" do
         run_job
@@ -27,6 +27,24 @@ RSpec.describe SendRegistrationEditEmailJob do
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
           .to have_received(:run)
           .with(registration: registration, recipient: registration.contact_email)
+          .once
+      end
+    end
+
+    context "when reference and email match is successful and contact_email and applicant_email are different" do
+      before { registration.update!(contact_email: email, applicant_email: Faker::Internet.email) }
+
+      it "sends the email to both email addresses" do
+        run_job
+
+        expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
+          .to have_received(:run)
+          .with(registration: registration, recipient: registration.contact_email)
+          .once
+
+        expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
+          .to have_received(:run)
+          .with(registration: registration, recipient: registration.applicant_email)
           .once
       end
     end
