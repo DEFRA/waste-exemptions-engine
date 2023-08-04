@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     def run_job_to_check_email_and_send_edit_link
       SendRegistrationEditEmailJob.perform_later(
         reference: transient_registration_attributes[:reference],
-        email: transient_registration_attributes[:contact_email]
+        email: transient_registration_attributes[:contact_email].strip
       )
     end
   end
