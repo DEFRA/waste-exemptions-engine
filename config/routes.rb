@@ -238,6 +238,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "registration-complete",
               path_names: { new: "" }
 
+    resources :registration_lookup_forms,
+              only: %i[new create],
+              path: "registration-lookup",
+              path_names: { new: "" }
+
+    resources :registration_lookup_email_forms,
+              only: %i[new create],
+              path: "registration-lookup-email",
+              path_names: { new: "" }
+
+    resources :registration_lookup_complete_forms,
+              only: %i[new],
+              path: "registration-lookup-complete",
+              path_names: { new: "" }
+
     # Editing: Back office
     resources :back_office_edit_forms,
               only: %i[new create],

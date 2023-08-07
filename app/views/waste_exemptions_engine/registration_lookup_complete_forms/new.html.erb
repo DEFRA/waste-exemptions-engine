@@ -1,0 +1,22 @@
+<%= render("waste_exemptions_engine/shared/back", token: @registration_lookup_complete_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <% if @registration_lookup_complete_form.errors.any? %>
+
+      <h1 class="govuk-heading-l"><%= t(".error_heading") %></h1>
+
+      <ul style="list-style-type:none;">
+        <% @registration_lookup_complete_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+
+    <% else %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+      <p class="govuk-body"><%= t(".description") %></p>
+    <% end %>
+  </div>
+</div>
