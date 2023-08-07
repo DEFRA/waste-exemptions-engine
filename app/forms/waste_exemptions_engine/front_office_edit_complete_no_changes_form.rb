@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class FrontOfficeEditCompleteForm < BaseForm
+  class FrontOfficeEditCompleteNoChangesForm < BaseForm
 
     delegate :reference, :contact_email, to: :transient_registration
 

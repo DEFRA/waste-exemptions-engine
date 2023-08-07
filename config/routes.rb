@@ -395,7 +395,7 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "front-office-edit-complete",
               path_names: { new: "" }
 
-    resources :front_office_edit_complete_no_change_forms,
+    resources :front_office_edit_complete_no_changes_forms,
               only: %i[new create],
               path: "front-office-edit-complete-no-changes",
               path_names: { new: "" }
