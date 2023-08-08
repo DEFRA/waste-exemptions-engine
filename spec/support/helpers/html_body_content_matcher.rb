@@ -41,9 +41,9 @@ class HtmlBodyContentMatcher
   # <!DOCTYPE html><html><body><h1 class="Classes">Info</h1><p>Info</p></body></html>
   def normalize(string)
     string
-      .gsub(/""/, "\"FOO\"")
+      .gsub('""', "\"FOO\"")
       .gsub(/"[^"]*"/, "\"Classes\"")
-      .gsub(/></, ">BAR<")
+      .gsub("><", ">BAR<")
       .gsub(/>[^<>]*</, ">Info<")
   end
 end

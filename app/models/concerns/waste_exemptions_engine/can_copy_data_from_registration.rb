@@ -15,18 +15,18 @@ module WasteExemptionsEngine
     private
 
     def copy_data_from_registration
-      attributes = registration.attributes.except("id",
-                                                  "edit_token",
-                                                  "edit_token_created_at",
-                                                  "renew_token",
-                                                  "edit_token",
-                                                  "edit_token_created_at",
-                                                  "assistance_mode",
-                                                  "created_at",
-                                                  "updated_at",
-                                                  "submitted_at",
-                                                  "deregistration_email_sent_at",
-                                                  "referring_registration_id")
+      attributes = registration.attributes.except(
+        "assistance_mode",
+        "created_at",
+        "deregistration_email_sent_at",
+        "edit_token",
+        "edit_token_created_at",
+        "id",
+        "referring_registration_id",
+        "renew_token",
+        "submitted_at",
+        "updated_at"
+      )
 
       assign_attributes(attributes)
 
@@ -40,10 +40,14 @@ module WasteExemptionsEngine
 
     def copy_addresses_from_registration
       registration.addresses.each do |address|
-        addresses << TransientAddress.new(address.attributes.except("id",
-                                                                    "registration_id",
-                                                                    "created_at",
-                                                                    "updated_at"))
+        addresses << TransientAddress.new(
+          address.attributes.except(
+            "created_at",
+            "id",
+            "registration_id",
+            "updated_at"
+          )
+        )
       end
     end
 
@@ -55,10 +59,14 @@ module WasteExemptionsEngine
 
     def copy_people_from_registration
       registration.people.each do |person|
-        people << TransientPerson.new(person.attributes.except("id",
-                                                               "registration_id",
-                                                               "created_at",
-                                                               "updated_at"))
+        people << TransientPerson.new(
+          person.attributes.except(
+            "created_at",
+            "id",
+            "registration_id",
+            "updated_at"
+          )
+        )
       end
     end
 

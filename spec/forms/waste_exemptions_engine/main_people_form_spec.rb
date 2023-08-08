@@ -42,7 +42,7 @@ module WasteExemptionsEngine
         subject(:form) { build(:main_people_form, transient_registration: registration) }
 
         context "with insufficient partners" do
-          let(:people) { [create(:transient_person)] }
+          let(:people) { create_list(:transient_person, 1) }
 
           it "does not submit successfully without parameters" do
             expect(form.submit({})).to be false

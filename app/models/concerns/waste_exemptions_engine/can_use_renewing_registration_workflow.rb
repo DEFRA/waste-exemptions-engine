@@ -303,7 +303,7 @@ module WasteExemptionsEngine
     end
 
     def operator_address_was_manually_entered?
-      return unless operator_address
+      return false unless operator_address
 
       # We use the mode field to record whether the address was manually entered
       # and because it correlates to an enum, Activerecord magic gives us
@@ -312,19 +312,19 @@ module WasteExemptionsEngine
     end
 
     def contact_address_was_manually_entered?
-      return unless contact_address
+      return false unless contact_address
 
       contact_address.manual?
     end
 
     def site_address_was_manually_entered?
-      return unless site_address
+      return false unless site_address
 
       site_address.manual?
     end
 
     def site_address_was_entered?
-      return unless site_address
+      return false unless site_address
 
       site_address.lookup?
     end
