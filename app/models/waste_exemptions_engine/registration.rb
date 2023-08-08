@@ -89,6 +89,14 @@ module WasteExemptionsEngine
       registration_exemptions.pluck(:state).excluding("ceased", "revoked").empty?
     end
 
+    # regnerate the token and store the token timestamp
+    def regenerate_and_timestamp_edit_token
+      # provided by has_secure_token:
+      regenerate_edit_token
+
+      update(edit_token_created_at: Time.zone.now)
+    end
+
     private
 
     def apply_reference

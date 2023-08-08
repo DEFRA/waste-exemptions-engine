@@ -55,7 +55,7 @@ module WasteExemptionsEngine
     end
 
     def magic_link_token
-      @registration.regenerate_edit_token if @registration.edit_token.nil?
+      @registration.regenerate_and_timestamp_edit_token
       @registration.edit_token
     end
 

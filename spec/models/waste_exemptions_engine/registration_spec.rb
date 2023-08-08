@@ -245,6 +245,38 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#regenerate_and_timestamp_edit_token" do
+      # has_secure_token automatically generates the initial token value and it's
+      # regenerate_<token_name>_token method updates the token value, but neither
+      # step stores the time of the creation/update, so need custom behaviour and specs.
+
+      shared_examples "updates edit_token and sets edit_token_created_at" do
+        subject(:regenerate_token) { registration.regenerate_and_timestamp_edit_token }
+
+        let(:registration) { create(:registration) }
+
+        it { expect { regenerate_token }.to change(registration, :edit_token) }
+
+        it { expect { regenerate_token }.to change(registration, :edit_token_created_at) }
+
+        it do
+          regenerate_token
+
+          expect(registration.edit_token_created_at).to be_within(3).of(Time.zone.now)
+        end
+      end
+
+      context "when the registration is in its initial state" do
+        it_behaves_like "updates edit_token and sets edit_token_created_at"
+      end
+
+      context "when the edit_token has aready been updated" do
+        before { Timecop.freeze(3.days.ago) { registration.regenerate_and_timestamp_edit_token } }
+
+        it_behaves_like "updates edit_token and sets edit_token_created_at"
+      end
+    end
+
     describe "PaperTrail", versioning: true do
       subject(:registration) { create(:registration, :complete) }
 
