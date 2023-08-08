@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     # adding them as attachments rather than exposing them as links to the
     # service. We have found this a more reliable method and is used in WCR, WEX
     # and FRAE
-    def email_image_tag(image, **)
+    def email_image_tag(image, **options)
       path = "/app/assets/images/waste_exemptions_engine/#{image}"
 
       full_path = File.join(Rails.root, path)
@@ -19,7 +19,7 @@ module WasteExemptionsEngine
         mime_type: "image/png"
       }
 
-      image_tag(attachments[image].url, **)
+      image_tag(attachments[image].url, **options)
     end
 
   end
