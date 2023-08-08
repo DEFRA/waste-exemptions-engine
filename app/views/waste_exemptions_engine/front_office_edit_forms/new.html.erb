@@ -14,28 +14,70 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <% transient_registration = @front_office_edit_form.transient_registration %>
-      <table class="govuk-table">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"> <%= t(".row_labels.exemptions") %> </td>
-          <td class="govuk-table__cell"> <%= transient_registration.exemptions.pluck(:code).join(",") %> </td>
-          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), edit_exemptions_front_office_edit_forms_path) %> </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"> <%= t(".row_labels.contact_name") %> </td>
-          <td class="govuk-table__cell"> <%= "#{transient_registration.contact_first_name} #{transient_registration.contact_last_name}" %> </td>
-          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_name_front_office_edit_forms_path) %> </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"> <%= t(".row_labels.contact_phone") %> </td>
-          <td class="govuk-table__cell"> <%= transient_registration.contact_phone %> </td>
-          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_phone_front_office_edit_forms_path) %> </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"> <%= t(".row_labels.contact_email") %> </td>
-          <td class="govuk-table__cell"> <%= transient_registration.contact_email %> </td>
-          <td class="govuk-table__cell"> <%= link_to(t(".update_link_label"), contact_email_front_office_edit_forms_path) %> </td>
-        </tr>
-      </table>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <%= t(".row_labels.exemptions") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= transient_registration.exemptions.pluck(:code).join(",") %>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to edit_exemptions_front_office_edit_forms_path do %>
+              <%= t(".edit_links.update_link_label") %>
+              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.exemptions") %></span>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <%= t(".row_labels.contact_name") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= "#{transient_registration.contact_first_name} #{transient_registration.contact_last_name}" %>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to contact_name_front_office_edit_forms_path do %>
+              <%= t(".edit_links.update_link_label") %>
+              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.contact_name") %></span>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <%= t(".row_labels.contact_phone") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= transient_registration.contact_phone %>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to contact_phone_front_office_edit_forms_path do %>
+              <%= t(".edit_links.update_link_label") %>
+              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.contact_phone") %></span>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <%= t(".row_labels.contact_email") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= transient_registration.contact_email %>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to contact_email_front_office_edit_forms_path do %>
+              <%= t(".edit_links.update_link_label") %>
+              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.contact_email") %></span>
+            <% end %>
+          </dd>
+        </div>
+
+      </dl>
     </div>
   </div>
 

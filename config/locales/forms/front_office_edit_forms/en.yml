@@ -6,12 +6,18 @@ en:
         title: You can update some of your registration details
         heading: You can update some of your registration details
         paragraph_1: You can deregister your exemptions and update the contact details of your registration here. If you need to change any other details you will have to call us.
-        row_labeld:
+        row_labels:
           exemptions: Exemptions
           contact_name: Contact name
           contact_phone: Contact telephone number
           contact_email: Contact email address
-        update_link_label: Update
+        edit_links:
+          update_link_label: Update
+          visually_hidden:
+            exemptions: exemptions
+            contact_name: contact name
+            contact_phone: contact phone
+            contact_email: contact email
         next_button: Continue
 
       edit_link_expired:
