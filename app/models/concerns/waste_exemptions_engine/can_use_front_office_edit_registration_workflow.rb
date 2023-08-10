@@ -17,6 +17,7 @@ module WasteExemptionsEngine
         # Exemptions
         state :edit_exemptions_form
         state :confirm_edit_exemptions_form
+        state :edit_exemptions_declaration_form
 
         # Contact details
         state :contact_name_form
@@ -54,24 +55,40 @@ module WasteExemptionsEngine
         event :next do
 
           # exemptions
+
+          #   from edit_exemptions_form:
+          #     return to main edit form if there are no exemption changes:
           transitions from: :edit_exemptions_form,
                       to: :front_office_edit_form,
                       if: :no_exemptions_deregistered?
 
+          #     otherwise confirm exemption removal:
           transitions from: :edit_exemptions_form,
                       to: :confirm_edit_exemptions_form
 
+          #   from confirm_edit_exemptions_form:
+          #     exemptions declaration form if any exemptions are being deregistered
           transitions from: :confirm_edit_exemptions_form,
-                      to: :edit_exemptions_form,
-                      unless: :exemption_edits_confirmed?
+                      to: :edit_exemptions_declaration_form,
+                      if: :exemption_edits_confirmed?
+
+          #     otherwise back to the edit exemptions form
+          transitions from: :confirm_edit_exemptions_form,
+                      to: :edit_exemptions_form
+
+          #   from edit_exemptions_declaration_form:
+          #     to registration complete only if all exemptions are being deregistered
+          transitions from: :edit_exemptions_declaration_form,
+                      to: :deregistration_complete_full_form,
+                      if: :all_exemptions_deregistered?
+
+          #     otherwise back to the main edit form
+          transitions from: :edit_exemptions_declaration_form,
+                      to: :front_office_edit_form
 
           # Completing the edit process
           transitions from: :front_office_edit_form,
                       to: :front_office_edit_declaration_form
-
-          transitions from: :front_office_edit_declaration_form,
-                      to: :deregistration_complete_full_form,
-                      if: :all_exemptions_deregistered?
 
           transitions from: :front_office_edit_declaration_form,
                       to: :front_office_edit_complete_no_changes_form,
@@ -93,7 +110,7 @@ module WasteExemptionsEngine
       # helpers
 
       def all_exemptions_deregistered?
-        excluded_exemptions.length == registration.exemptions.length
+        exemptions.empty?
       end
 
       def no_exemptions_deregistered?
