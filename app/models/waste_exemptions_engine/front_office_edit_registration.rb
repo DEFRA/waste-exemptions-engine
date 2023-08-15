@@ -13,11 +13,9 @@ module WasteExemptionsEngine
         contact_last_name
         contact_phone
         contact_email
-      ].each do |attr|
-        return true if send(attr) != registration.send(attr)
+      ].any? do |attr|
+        send(attr) != registration.send(attr)
       end
-
-      false
     end
 
     private

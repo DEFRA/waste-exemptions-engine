@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class FrontOfficeEditFormsController < FormsController
+    helper EditHelper
 
     def new
       super(FrontOfficeEditForm, "front_office_edit_form")

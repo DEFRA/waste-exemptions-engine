@@ -22,7 +22,7 @@
             <%= t(".row_labels.exemptions") %>
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= transient_registration.exemptions.pluck(:code).join(",") %>
+            <%= exemptions_list(transient_registration) %>
           </dd>
           <dd class="govuk-summary-list__actions">
             <%= link_to edit_exemptions_front_office_edit_forms_path do %>
