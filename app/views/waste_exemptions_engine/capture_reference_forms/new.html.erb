@@ -8,8 +8,7 @@
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
       <%= f.govuk_text_field :reference,
-          label: nil,
-          hint: { text: t(".reference_hint") },
+          label: { text: t(".reference_hint") },
           width: 20 %>
 
       <details class="govuk-details" data-module="govuk-details">
