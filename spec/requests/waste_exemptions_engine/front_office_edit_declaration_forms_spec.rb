@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe FrontOfficeEditDeclarationFormsController do
+  RSpec.describe "Front Office Edit Declaration Forms" do
     let(:form) { build(:front_office_edit_declaration_form) }
 
     include_examples "GET form", :front_office_edit_declaration_form, "/front-office-edit-declaration"

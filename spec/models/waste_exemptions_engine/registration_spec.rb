@@ -262,7 +262,7 @@ module WasteExemptionsEngine
         it do
           regenerate_token
 
-          expect(registration.edit_token_created_at).to be_within(3).of(Time.zone.now)
+          expect(registration.edit_token_created_at).to be_within(3.seconds).of(Time.zone.now)
         end
       end
 
