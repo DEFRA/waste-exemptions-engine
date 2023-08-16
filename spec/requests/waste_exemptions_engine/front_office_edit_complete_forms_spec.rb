@@ -6,6 +6,8 @@ module WasteExemptionsEngine
   RSpec.describe "Front Office Edit Complete Forms" do
     let(:form) { build(:front_office_edit_complete_form) }
 
+    before { allow(RegistrationEditConfirmationEmailService).to receive(:run) }
+
     describe "GET front_office_edit_complete_form" do
       let(:request_path) { new_front_office_edit_complete_form_path(form.token) }
 

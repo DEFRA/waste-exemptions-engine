@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Front Office Edit Complete No Changes Forms" do
-    let(:form) { build(:front_office_edit_complete_form) }
+    let(:form) { build(:front_office_edit_complete_no_changes_form) }
 
     describe "GET front_office_edit_complete_form" do
       let(:request_path) { new_front_office_edit_complete_no_changes_form_path(form.token) }
