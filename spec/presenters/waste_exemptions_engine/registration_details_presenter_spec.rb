@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe NotifyConfirmationLetterPresenter do
+  RSpec.describe RegistrationDetailsPresenter do
     let(:registration) { create(:registration, :complete, :with_active_exemptions) }
 
     subject(:presenter) { described_class.new(registration) }

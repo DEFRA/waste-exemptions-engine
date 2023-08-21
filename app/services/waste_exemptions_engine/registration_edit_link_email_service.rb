@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     include CanHaveCommunicationLog
 
     def run(registration:, recipient:)
-      @registration = NotifyConfirmationLetterPresenter.new(registration)
+      @registration = RegistrationDetailsPresenter.new(registration)
       @recipient = recipient
 
       client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)

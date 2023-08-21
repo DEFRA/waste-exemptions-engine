@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   # rubocop:disable Metrics/ClassLength
-  class NotifyConfirmationLetterPresenter < BasePresenter
+  class RegistrationDetailsPresenter < BasePresenter
     def date_registered
       # Currently you can only add exemptions when you register, so we can assume they expire at the same time
       registration_exemptions.first.registered_on.to_formatted_s(:day_month_year)
