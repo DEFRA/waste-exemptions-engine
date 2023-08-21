@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe FrontOfficeEditCompletionService do
+  RSpec.describe FrontOfficeEditCompletionService, versioning: true do
 
     editable_attributes =
       %w[
@@ -122,6 +122,12 @@ module WasteExemptionsEngine
         end
       end
 
+      RSpec.shared_examples "creates a new paper_trail version" do
+        it "creates a new version" do
+          expect { run_service }.to change { registration.versions.count }.by(1)
+        end
+      end
+
       RSpec.shared_examples "deletes the transient registration" do
         it { expect { run_service }.to change(FrontOfficeEditRegistration, :count).by(-1) }
       end
@@ -129,6 +135,10 @@ module WasteExemptionsEngine
       context "with no changes" do
         it_behaves_like "does not update contact details"
         it_behaves_like "does not call the exemption deregistration service"
+
+        it "does not create a new version" do
+          expect { run_service }.not_to change { registration.versions.count }
+        end
 
         it "does not send a confirmation email" do
           run_service
@@ -145,6 +155,7 @@ module WasteExemptionsEngine
         it_behaves_like "calls the exemption deregistration service"
         it_behaves_like "sends a confirmation email via the exemption_deregistration_service"
         it_behaves_like "does not update contact details"
+        it_behaves_like "creates a new paper_trail version"
         it_behaves_like "deletes the transient registration"
       end
 
@@ -154,6 +165,7 @@ module WasteExemptionsEngine
         it_behaves_like "updates contact details"
         it_behaves_like "does not call the exemption deregistration service"
         it_behaves_like "sends a confirmation email outside of the exemption_deregistration_service"
+        it_behaves_like "creates a new paper_trail version"
         it_behaves_like "deletes the transient registration"
       end
 
@@ -165,6 +177,7 @@ module WasteExemptionsEngine
         it_behaves_like "sends a confirmation email via the exemption_deregistration_service"
         it_behaves_like "updates contact details"
         it_behaves_like "deletes the transient registration"
+        it { expect { run_service }.to change { registration.versions.count }.by(2) }
       end
     end
   end
