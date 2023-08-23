@@ -11,6 +11,7 @@ RSpec.describe SendRegistrationEditEmailJob do
     let(:registration) { create(:registration) }
     let(:notifications_client) { instance_double(Notifications::Client) }
     let(:template_label) { I18n.t("template_labels.registration_edit_email") }
+    let(:magic_link_token) { registration.edit_token }
 
     before do
       allow(WasteExemptionsEngine::RegistrationEditLinkEmailService).to receive(:run).with(anything).and_call_original
@@ -26,7 +27,7 @@ RSpec.describe SendRegistrationEditEmailJob do
 
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
           .to have_received(:run)
-          .with(registration: registration, recipient: registration.contact_email)
+          .with(registration:, magic_link_token: registration.reload.edit_token, recipient: registration.contact_email)
           .once
       end
     end
@@ -37,14 +38,16 @@ RSpec.describe SendRegistrationEditEmailJob do
       it "sends the email to both email addresses" do
         run_job
 
+        current_magic_link_token = registration.reload.edit_token
+
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
           .to have_received(:run)
-          .with(registration: registration, recipient: registration.contact_email)
+          .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.contact_email)
           .once
 
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
           .to have_received(:run)
-          .with(registration: registration, recipient: registration.applicant_email)
+          .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.applicant_email)
           .once
       end
     end

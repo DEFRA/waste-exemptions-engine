@@ -6,9 +6,10 @@ module WasteExemptionsEngine
   class RegistrationEditLinkEmailService < BaseService
     include CanHaveCommunicationLog
 
-    def run(registration:, recipient:)
+    def run(registration:, recipient:, magic_link_token:)
       @registration = RegistrationDetailsPresenter.new(registration)
       @recipient = recipient
+      @magic_link_token = magic_link_token
 
       client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
 
@@ -51,12 +52,7 @@ module WasteExemptionsEngine
 
     def magic_link_url
       Rails.configuration.front_office_url +
-        WasteExemptionsEngine::Engine.routes.url_helpers.validate_edit_token_path(edit_token: magic_link_token)
-    end
-
-    def magic_link_token
-      @registration.regenerate_and_timestamp_edit_token
-      @registration.edit_token
+        WasteExemptionsEngine::Engine.routes.url_helpers.validate_edit_token_path(edit_token: @magic_link_token)
     end
 
     def active_exemptions_text
