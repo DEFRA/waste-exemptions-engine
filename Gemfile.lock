@@ -270,7 +270,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.5.3)
-    phonelib (0.8.2)
+    phonelib (0.8.3)
     protocol-hpack (1.4.2)
     protocol-http (0.24.7)
     protocol-http1 (0.15.1)
