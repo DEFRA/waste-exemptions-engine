@@ -1,0 +1,41 @@
+en:
+  waste_exemptions_engine:
+    front_office_edit_forms:
+
+      new:
+        title: You can update some of your registration details
+        heading: You can update some of your registration details
+        paragraph_1: You can deregister your exemptions and update the contact details of your registration here. If you need to change any other details you will have to call us.
+        row_labels:
+          exemptions: Exemptions
+          contact_name: Contact name
+          contact_phone: Contact telephone number
+          contact_email: Contact email address
+        edit_links:
+          update_link_label: Update
+          visually_hidden:
+            exemptions: exemptions
+            contact_name: contact name
+            contact_phone: contact phone
+            contact_email: contact email
+        next_button: Continue
+
+      edit_link_expired:
+        title: This link has expired
+        heading: This link has expired
+        paragraph_1: You can create a new link %{start_link}.
+        start_link_text: here
+
+      invalid_edit_link:
+        title: This link is not valid
+        heading: This link is not valid
+        paragraph_1: Go back to the email and try again.
+        
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/front_office_edit_form:
+          attributes:
+            token:
+              invalid_format: The token is not valid
+              missing: The token is missing

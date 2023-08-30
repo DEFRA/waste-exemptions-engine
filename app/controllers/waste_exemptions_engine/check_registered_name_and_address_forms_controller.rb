@@ -22,9 +22,8 @@ module WasteExemptionsEngine
 
     private
 
-    VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX = Regexp.new(
+    VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX =
       /\A(\d{8,8}$)|([a-zA-Z]{2}\d{6}$)|([a-zA-Z]{2}\d{5}[a-zA-Z]{1}$)\z/i
-    ).freeze
 
     def new_registration
       @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration)

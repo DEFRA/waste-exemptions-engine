@@ -11,9 +11,7 @@ module WasteExemptionsEngine
 
     before do
       allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_instance)
-      allow(companies_house_instance).to receive(:load_company).and_return(true)
-      allow(companies_house_instance).to receive(:company_name).and_return(company_name)
-      allow(companies_house_instance).to receive(:registered_office_address_lines).and_return(company_address)
+      allow(companies_house_instance).to receive_messages(load_company: true, company_name: company_name, registered_office_address_lines: company_address)
     end
 
     it_behaves_like "a validated form", :check_registered_name_and_address_form do

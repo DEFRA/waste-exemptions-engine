@@ -7,7 +7,7 @@ en:
         options:
           new: Start a new waste exemption registration
           reregister: Renew a registration
-          change: Change the details of an existing registration
+          edit: Deregister exemptions and/or update your contact details
         next_button: Continue
   activemodel:
     errors:

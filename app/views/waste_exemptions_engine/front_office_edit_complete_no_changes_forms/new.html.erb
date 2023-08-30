@@ -1,0 +1,22 @@
+<% registration = @transient_registration.registration %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@front_office_edit_complete_no_changes_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          <%= t(".heading") %>
+          <br />
+          <span class="govuk-panel__body"><%= t(".highlight_text") %></span>
+        </h1>
+        <div class="govuk-panel__body">
+          <strong>
+            <span id="reg_identifier"><%= registration.reference %></span>
+          </strong>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

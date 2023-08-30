@@ -9,28 +9,28 @@ module WasteExemptionsEngine
       subject(:new_registration) { create(:new_registration, workflow_state: current_state) }
 
       context "when a NewRegistration's state is #{current_state}" do
-        context "when new_registration.should_contact_the_agency? is true" do
-          before { new_registration.start_option = "change" }
+        context "when new_registration.should_edit? is true" do
+          before { new_registration.start_option = "edit" }
 
-          it "can only transition to :contact_agency_form" do
+          it "can only transition to :capture_reference_form" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-            expect(permitted_states).to eq([:contact_agency_form])
+            expect(permitted_states).to eq([:capture_reference_form])
           end
 
-          it "changes to :contact_agency_form after the 'next' event" do
-            expect(new_registration.send(:should_contact_the_agency?)).to be(true)
-            expect(new_registration).to transition_from(current_state).to(:contact_agency_form).on_event(:next)
+          it "changes to :capture_reference_form after the 'next' event" do
+            expect(new_registration.send(:should_edit?)).to be(true)
+            expect(new_registration).to transition_from(current_state).to(:capture_reference_form).on_event(:next)
           end
         end
 
-        context "when new_registration.should_contact_the_agency? is false" do
+        context "when new_registration.should_edit? is false" do
           it "can only transition to :location_form" do
             permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
             expect(permitted_states).to eq([:location_form])
           end
 
           it "changes to :location_form after the 'next' event" do
-            expect(new_registration.send(:should_contact_the_agency?)).to be(false)
+            expect(new_registration.send(:should_edit?)).to be(false)
             expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
           end
         end

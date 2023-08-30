@@ -238,110 +238,166 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "registration-complete",
               path_names: { new: "" }
 
-    # Editing
-    resources :edit_forms,
+    resources :capture_reference_forms,
+              only: %i[new create],
+              path: "enter-your-waste-exemption-registration-number",
+              path_names: { new: "" }
+
+    resources :capture_email_forms,
+              only: %i[new create],
+              path: "enter-an-email-address-that-was-used-during-registration",
+              path_names: { new: "" }
+
+    resources :capture_complete_forms,
+              only: %i[new],
+              path: "we-will-send-a-link-to-that-email-address",
+              path_names: { new: "" }
+
+    # Editing: Back office
+    resources :back_office_edit_forms,
               only: %i[new create],
               path: "edit",
               path_names: { new: "" } do
                 get "applicant_name",
-                    to: "edit_forms#edit_applicant_name",
+                    to: "back_office_edit_forms#edit_applicant_name",
                     as: "applicant_name",
                     on: :collection
 
                 get "applicant_phone",
-                    to: "edit_forms#edit_applicant_phone",
+                    to: "back_office_edit_forms#edit_applicant_phone",
                     as: "applicant_phone",
                     on: :collection
 
                 get "applicant_email",
-                    to: "edit_forms#edit_applicant_email",
+                    to: "back_office_edit_forms#edit_applicant_email",
                     as: "applicant_email",
                     on: :collection
 
                 get "main_people",
-                    to: "edit_forms#edit_main_people",
+                    to: "back_office_edit_forms#edit_main_people",
                     as: "main_people",
                     on: :collection
 
                 get "registration_number",
-                    to: "edit_forms#edit_registration_number",
+                    to: "back_office_edit_forms#edit_registration_number",
                     as: "registration_number",
                     on: :collection
 
                 get "operator_name",
-                    to: "edit_forms#edit_operator_name",
+                    to: "back_office_edit_forms#edit_operator_name",
                     as: "operator_name",
                     on: :collection
 
                 get "operator_postcode",
-                    to: "edit_forms#edit_operator_postcode",
+                    to: "back_office_edit_forms#edit_operator_postcode",
                     as: "operator_postcode",
                     on: :collection
 
                 get "contact_name",
-                    to: "edit_forms#edit_contact_name",
+                    to: "back_office_edit_forms#edit_contact_name",
                     as: "contact_name",
                     on: :collection
 
                 get "contact_position",
-                    to: "edit_forms#edit_contact_position",
+                    to: "back_office_edit_forms#edit_contact_position",
                     as: "contact_position",
                     on: :collection
 
                 get "contact_phone",
-                    to: "edit_forms#edit_contact_phone",
+                    to: "back_office_edit_forms#edit_contact_phone",
                     as: "contact_phone",
                     on: :collection
 
                 get "contact_email",
-                    to: "edit_forms#edit_contact_email",
+                    to: "back_office_edit_forms#edit_contact_email",
                     as: "contact_email",
                     on: :collection
 
                 get "contact_postcode",
-                    to: "edit_forms#edit_contact_postcode",
+                    to: "back_office_edit_forms#edit_contact_postcode",
                     as: "contact_postcode",
                     on: :collection
 
                 get "on_a_farm",
-                    to: "edit_forms#edit_on_a_farm",
+                    to: "back_office_edit_forms#edit_on_a_farm",
                     as: "on_a_farm",
                     on: :collection
 
                 get "edit_exemptions",
-                    to: "edit_forms#edit_exemptions",
+                    to: "back_office_edit_forms#edit_exemptions",
                     as: "edit_exemptions",
                     on: :collection
 
                 get "is_a_farmer",
-                    to: "edit_forms#edit_is_a_farmer",
+                    to: "back_office_edit_forms#edit_is_a_farmer",
                     as: "is_a_farmer",
                     on: :collection
 
                 get "site_grid_reference",
-                    to: "edit_forms#edit_site_grid_reference",
+                    to: "back_office_edit_forms#edit_site_grid_reference",
                     as: "site_grid_reference",
                     on: :collection
 
                 get "cancel",
-                    to: "edit_forms#cancel",
+                    to: "back_office_edit_forms#cancel",
                     as: "cancel",
                     on: :collection
               end
 
-    resources :edit_complete_forms,
+    resources :back_office_edit_complete_forms,
               only: %i[new create],
               path: "edit-complete",
               path_names: { new: "" }
 
-    resources :confirm_edit_cancelled_forms,
+    resources :confirm_back_office_edit_cancelled_forms,
               only: %i[new create],
               path: "confirm-edit-cancelled",
               path_names: { new: "" }
 
-    resources :edit_cancelled_forms,
+    resources :back_office_edit_cancelled_forms,
               only: %i[new create],
               path: "edit-cancelled",
+              path_names: { new: "" }
+
+    # Editing: Front office
+    resources :front_office_edit_forms,
+              only: %i[new create],
+              path: "fo_edit",
+              path_names: { new: "" } do
+                get "contact_name",
+                    to: "front_office_edit_forms#edit_contact_name",
+                    as: "contact_name",
+                    on: :collection
+
+                get "contact_phone",
+                    to: "front_office_edit_forms#edit_contact_phone",
+                    as: "contact_phone",
+                    on: :collection
+
+                get "contact_email",
+                    to: "front_office_edit_forms#edit_contact_email",
+                    as: "contact_email",
+                    on: :collection
+
+                get "exemptions",
+                    to: "front_office_edit_forms#edit_exemptions",
+                    as: "edit_exemptions",
+                    on: :collection
+              end
+
+    resources :front_office_edit_declaration_forms,
+              only: %i[new create],
+              path: "front-office-edit-declaration",
+              path_names: { new: "" }
+
+    resources :front_office_edit_complete_forms,
+              only: %i[new create],
+              path: "front-office-edit-complete",
+              path_names: { new: "" }
+
+    resources :front_office_edit_complete_no_changes_forms,
+              only: %i[new create],
+              path: "front-office-edit-complete-no-changes",
               path_names: { new: "" }
 
     # Renewing
@@ -420,6 +476,12 @@ WasteExemptionsEngine::Engine.routes.draw do
       constraints: { token: /.*/ },
       to: "renews#new",
       as: "renew"
+
+  # Start a front-end editing session via magic link token
+  get "/edit_registration/:edit_token",
+      constraints: { edit_token: /.*/ },
+      to: "front_office_edit_forms#validate_edit_token",
+      as: "validate_edit_token"
 
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"

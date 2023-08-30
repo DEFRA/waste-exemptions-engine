@@ -1,0 +1,15 @@
+en:
+  waste_exemptions_engine:
+    front_office_edit_complete_no_changes_forms:
+      new:
+        title: You have not removed any exemptions or made any updates
+        heading: You have not removed any exemptions or made any updates
+        highlight_text: Your registration number has not changed. It is
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/front_office_edit_complete_no_changes_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

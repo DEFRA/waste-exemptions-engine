@@ -1,0 +1,8 @@
+en:
+  waste_exemptions_engine:
+    capture_complete_forms:
+      new:
+        title: If the email address you entered is correct we will send a link to that email address
+        heading: If the email address you entered is correct we will send a link to that email address
+        description: You can use the links in the email to update your contact details and deregister any or all of your exemptions. The link will expire after 48 hours.
+        

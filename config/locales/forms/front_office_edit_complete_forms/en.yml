@@ -1,0 +1,25 @@
+en:
+  waste_exemptions_engine:
+    front_office_edit_complete_forms:
+      new:
+        title: You have successfully updated your registration details
+        heading: You have successfully updated your registration details
+        highlight_text: Your registration number has not changed. It is
+        confirmation_email_text: We have sent a confirmation email to %{contact_email}
+        what_happens_next:
+          paragraph_1: |
+            We will add your changes to the public register, this could take up to 24 hours. This includes
+            the name and address of the individual or organisation responsible, the site address and the
+            remaining exemptions you have registered. Updating your details will not extend the length of
+            your registration.
+        survey_link_url: https://www.smartsurvey.co.uk/s/3S81FQ/
+        survey_link_text: You can send us feedback about this process at
+        survey_link_hint: (opens in a new window)
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/front_office_edit_complete_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

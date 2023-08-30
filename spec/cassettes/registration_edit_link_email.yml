@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notifications.service.gov.uk/v2/notifications/email
+    body:
+      encoding: UTF-8
+      string: '{"email_address":"elliot@von-grant.example","template_id":"09320726-38c6-4989-a831-17c7d4ff37db","personalisation":{"reference":"WEX0123456","contact_name":"Florence
+        Schultz","site_details":["Grid reference: ST 58337 72855","Site details: Itaque
+        doloremque voluptatibus fugiat."],"magic_link_url":"http://localhost:3000/waste_exemptions_engine/edit/rWiFivTGioee7AdWzTKEJp1J","exemptions":["U10
+        Necessitatibus quas dignissimos corrupti.","U9 Cumque voluptatum neque nihil.","U8
+        Enim laboriosam nulla eum.","U7 Laborum reprehenderit labore aut.","U6 Aut
+        quos cumque natus.","U5 Iste odit nihil vel.","U4 Consequatur ut ut atque.","U3
+        Cum officiis qui delectus.","U2 Quos et numquam ut.","U1 Harum assumenda ut
+        et."]}}'
+    headers:
+      User-Agent:
+      - NOTIFY-API-RUBY-CLIENT/5.4.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic <API_KEY>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2020'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 02 Aug 2023 22:28:19 GMT
+      Access-Control-Allow-Headers:
+      - Content-Type,Authorization
+      Access-Control-Allow-Methods:
+      - GET,PUT,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-B3-Spanid:
+      - 76f06b80b2517fba
+      X-B3-Traceid:
+      - f51ddbfa91fd4e8176f06b80b2517fba
+      X-Vcap-Request-Id:
+      - f51ddbfa-91fd-4e81-76f0-6b80b2517fba
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 835f3c9e7c3bc0e7766edf13dac581de.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LHR50-P3
+      X-Amz-Cf-Id:
+      - t8sFWxDM5CpsKZKvEHjFfhsUVxUJJwdbt4cEcHTy5xy9cvKUhy-mMw==
+    body:
+      encoding: UTF-8
+      string: '{"content":{"body":"Dear Florence Schultz\r\n\r\n#Deregister your waste
+        exemptions and update your contact details before your renewal date\r\n\r\nYou
+        should only hold an exemption for a waste activity you are carrying out. You
+        do not usually need to register exemptions for storing waste you have produced.\r\n\r\nYou
+        can deregister some, or all of your exemptions using the link in this email,
+        this is free. Changing your exemptions will not extend your registration period.
+        If there have been changes to your contact details you can also update them
+        using this link.\r\n\r\nSite location: \n\n* Grid reference: ST 58337 72855\n*
+        Site details: Itaque doloremque voluptatibus fugiat.\r\n\r\nRegistration number:
+        WEX0123456\r\n\r\nYou can use this link to update your contact details and
+        deregister your waste exemptions\r\nhttp://localhost:3000/waste_exemptions_engine/edit/rWiFivTGioee7AdWzTKEJp1J\r\n\r\n#These
+        are your current exemptions\r\n\n\n* U10 Necessitatibus quas dignissimos corrupti.\n*
+        U9 Cumque voluptatum neque nihil.\n* U8 Enim laboriosam nulla eum.\n* U7 Laborum
+        reprehenderit labore aut.\n* U6 Aut quos cumque natus.\n* U5 Iste odit nihil
+        vel.\n* U4 Consequatur ut ut atque.\n* U3 Cum officiis qui delectus.\n* U2
+        Quos et numquam ut.\n* U1 Harum assumenda ut et.\r\n\r\nEnvironment Agency
+        helpline\r\n03708 506 506 (Monday to Friday 8am to 8pm)\r\nenquiries@environment-agency.gov.uk\r\n\r\nThis
+        is an automated email, please do not reply.","from_email":"waste.exemptions@notifications.service.gov.uk","subject":"Waste
+        exemptions \u2013 Update your contact details and deregister your waste exemptions"},"id":"e49fa2e7-c2e6-4dd3-bbc5-515cb2cbfc83","reference":null,"scheduled_for":null,"template":{"id":"09320726-38c6-4989-a831-17c7d4ff37db","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/09320726-38c6-4989-a831-17c7d4ff37db","version":2},"uri":"https://api.notifications.service.gov.uk/v2/notifications/e49fa2e7-c2e6-4dd3-bbc5-515cb2cbfc83"}
+
+        '
+  recorded_at: Wed, 02 Aug 2023 22:28:05 GMT
+recorded_with: VCR 6.2.0

@@ -21,5 +21,9 @@ module WasteExemptionsEngine
         t(".sections.operator.labels.name")
       end
     end
+
+    def exemptions_list(edit_registration)
+      edit_registration.exemptions.pluck(:code).join(", ")
+    end
   end
 end

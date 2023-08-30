@@ -1,0 +1,21 @@
+en:
+  waste_exemptions_engine:
+    capture_email_forms:
+      new:
+        title: In order to send you a link to update your details, enter an email address that was used during registration
+        heading: In order to send you a link to update your details, enter an email address that was used during registration
+        contact_email_label: Email address
+        contact_email_hint: This is one of the email addresses that was entered during registration. If you no longer have access to these emails you can contact the helpline.
+        error_heading: A problem to fix
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/capture_email_form:
+          attributes:
+            contact_email:
+              invalid_format: You must enter a valid email address
+              blank: You must enter an email address
+            token:
+              invalid_format: The token is not valid
+              missing: The token is missing

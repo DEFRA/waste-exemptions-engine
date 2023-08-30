@@ -46,6 +46,7 @@ module WasteExemptionsEngine
     after_create :apply_reference
 
     has_secure_token :renew_token
+    has_secure_token :edit_token
 
     def in_renewal_window?
       (expires_on - renewal_window_before_expiry_in_days.days) < Time.now &&
@@ -86,6 +87,14 @@ module WasteExemptionsEngine
 
     def deregistered?
       registration_exemptions.pluck(:state).excluding("ceased", "revoked").empty?
+    end
+
+    # regnerate the token and store the token timestamp
+    def regenerate_and_timestamp_edit_token
+      # provided by has_secure_token:
+      regenerate_edit_token
+
+      update(edit_token_created_at: Time.zone.now)
     end
 
     private

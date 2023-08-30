@@ -6,7 +6,13 @@ en:
         heading: Are you sure you want to remove these exemptions?
         heading_deregister: Are you sure you want to deregister all of these exemptions and be removed from the public register?
         legend: Confirm edit exemptions
-        radio_yes: "Yes"
-        radio_no: "No"
-        errors:
-          workflow_state: "You must select Yes or No"
+        options:
+          "yes": "Yes"
+          "no": "No"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/confirm_edit_exemptions_form:
+          attributes:
+            temp_confirm_exemption_edits:
+              inclusion: "You must select Yes or No"

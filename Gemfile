@@ -16,6 +16,9 @@ gem "matrix"
 
 gem "net-smtp"
 
+# Used for handling background processes
+gem "sucker_punch", "~> 3.1"
+
 group :development do
   gem "github_changelog_generator"
   gem "rubocop-rspec"

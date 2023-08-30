@@ -20,7 +20,11 @@ module WasteExemptionsEngine
 
         # Start
         state :start_form, initial: true
-        state :contact_agency_form
+
+        # Capture registration data
+        state :capture_reference_form
+        state :capture_email_form
+        state :capture_complete_form
 
         # Location
         state :location_form
@@ -78,11 +82,22 @@ module WasteExemptionsEngine
         event :next do
           # Start
           transitions from: :start_form,
-                      to: :contact_agency_form,
-                      if: :should_contact_the_agency?
+                      to: :capture_reference_form,
+                      if: :should_edit?
 
           transitions from: :start_form,
                       to: :location_form
+
+          transitions from: :start_form,
+                      to: :capture_reference_form
+
+          # Registration lookup
+          transitions from: :capture_reference_form,
+                      to: :capture_email_form
+
+          # Registration lookup confirmation
+          transitions from: :capture_email_form,
+                      to: :capture_complete_form
 
           # Location
           transitions from: :location_form,
@@ -293,7 +308,7 @@ module WasteExemptionsEngine
     private
 
     def operator_address_was_manually_entered?
-      return unless operator_address
+      return false unless operator_address
 
       # We use the mode field to record whether the address was manually entered
       # and because it correlates to an enum, Activerecord magic gives us
@@ -302,19 +317,19 @@ module WasteExemptionsEngine
     end
 
     def contact_address_was_manually_entered?
-      return unless contact_address
+      return false unless contact_address
 
       contact_address.manual?
     end
 
     def site_address_was_manually_entered?
-      return unless site_address
+      return false unless site_address
 
       site_address.manual?
     end
 
     def site_address_was_entered?
-      return unless site_address
+      return false unless site_address
 
       site_address.lookup?
     end
@@ -325,8 +340,8 @@ module WasteExemptionsEngine
       false
     end
 
-    def should_contact_the_agency?
-      start_option == "change"
+    def should_edit?
+      start_option == "edit"
     end
 
     def should_register_in_northern_ireland?

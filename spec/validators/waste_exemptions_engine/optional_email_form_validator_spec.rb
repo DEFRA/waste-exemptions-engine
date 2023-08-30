@@ -23,9 +23,7 @@ module WasteExemptionsEngine
     let(:confirmed_email) { contact_email }
 
     before do
-      allow(validator).to receive(:contact_email).and_return(contact_email)
-      allow(validator).to receive(:confirmed_email).and_return(confirmed_email)
-      allow(validator).to receive(:no_email_address).and_return(no_email_address)
+      allow(validator).to receive_messages(contact_email: contact_email, confirmed_email: confirmed_email, no_email_address: no_email_address)
     end
 
     shared_examples "is valid" do
