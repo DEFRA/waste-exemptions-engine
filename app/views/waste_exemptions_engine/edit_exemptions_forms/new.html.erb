@@ -20,7 +20,7 @@
           <% end %>
 
           <div class="govuk-checkboxes">
-            <% @edit_exemptions_form.registration.active_exemptions.each do |exemption|  %>
+            <% @edit_exemptions_form.registration.active_exemptions.sort_by { |x| x.code }.each do |exemption|  %>
               <div class="govuk-checkboxes__item">
                 <%= f.check_box :exemption_ids,
                     { :multiple => true,
