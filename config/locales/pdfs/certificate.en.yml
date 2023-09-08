@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     pdfs:
       certificate:
-        busness_types:
+        business_types:
           soleTrader: Individual or sole trader
           limitedCompany: Limited company
           partnership: Partnership

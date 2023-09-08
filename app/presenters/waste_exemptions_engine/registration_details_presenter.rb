@@ -88,7 +88,7 @@ module WasteExemptionsEngine
     # Business details
 
     def business_type_text
-      human_business_type = I18n.t("waste_exemptions_engine.pdfs.certificate.busness_types.#{business_type}")
+      human_business_type = I18n.t("waste_exemptions_engine.pdfs.certificate.business_types.#{business_type}")
       label_and_value("business_details.type", human_business_type)
     end
 

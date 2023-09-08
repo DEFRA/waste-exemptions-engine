@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     end
 
     def human_business_type
-      I18n.t("waste_exemptions_engine.pdfs.certificate.busness_types.#{business_type}")
+      I18n.t("waste_exemptions_engine.pdfs.certificate.business_types.#{business_type}")
     end
 
     def contact_name
