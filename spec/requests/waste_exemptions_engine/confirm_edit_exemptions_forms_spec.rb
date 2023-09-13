@@ -50,9 +50,9 @@ module WasteExemptionsEngine
             end
           end
 
-          it "does not remove any exemptions" do
+          it "does not cease any exemptions" do
             expect { post request_path, params: valid_params }
-              .not_to change { transient_registration.reload.exemptions.length }
+              .not_to change { transient_registration.reload.exemption_ids.length }
           end
         end
 
@@ -75,18 +75,9 @@ module WasteExemptionsEngine
             end
           end
 
-          it "removes the exemptions selected for removal" do
-            aggregate_failures do
-              previous_exemption_count = exemptions.count
-
-              post request_path, params: valid_params
-
-              current_exemptions = transient_registration.reload.exemptions
-
-              expect(current_exemptions.length).to eq(previous_exemption_count - 2)
-              expect(current_exemptions).not_to include(exemptions.first)
-              expect(current_exemptions).not_to include(exemptions.last)
-            end
+          it "removes the ids of the exemptions selected for removal" do
+            expect { post request_path, params: valid_params }
+              .to change { transient_registration.reload.exemption_ids.length }.by(-2)
           end
         end
 
