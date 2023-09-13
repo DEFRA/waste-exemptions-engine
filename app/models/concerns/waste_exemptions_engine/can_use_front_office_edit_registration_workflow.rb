@@ -67,8 +67,14 @@ module WasteExemptionsEngine
                       to: :confirm_edit_exemptions_form
 
           #   from confirm_edit_exemptions_form:
+          #     return to main edit page if exemption changes are confirmed
           transitions from: :confirm_edit_exemptions_form,
-                      to: :front_office_edit_form
+                      to: :front_office_edit_form,
+                      if: :exemption_edits_confirmed?
+
+          #     otherwise back to the edit exemptions page
+          transitions from: :confirm_edit_exemptions_form,
+                      to: :edit_exemptions_form
 
           #   from edit_exemptions_declaration_form:
           #     to registration complete only if all exemptions are being deregistered
