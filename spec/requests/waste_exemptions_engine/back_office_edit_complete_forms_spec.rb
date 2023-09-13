@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     describe "GET back_office_edit_complete_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit-complete" }
 
-      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
+      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/back_office_edit_complete_forms/new")
@@ -33,7 +33,7 @@ module WasteExemptionsEngine
         end
         # rubocop:enable RSpec/AnyInstance
 
-        it "assigns the correct whodunnit to the registration version", versioning: true do
+        it "assigns the correct whodunnit to the registration version", :versioning do
           get request_path
           registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
           expect(registration.reload.versions.last.whodunnit).to eq(current_user.id.to_s)
@@ -41,7 +41,7 @@ module WasteExemptionsEngine
       end
 
       context "when the host application does not have a current_user" do
-        it "assigns the correct whodunnit to the registration version", versioning: true do
+        it "assigns the correct whodunnit to the registration version", :versioning do
           registration = form.transient_registration.registration
 
           get request_path

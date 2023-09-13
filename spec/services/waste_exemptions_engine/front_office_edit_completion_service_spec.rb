@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe FrontOfficeEditCompletionService, versioning: true do
+  RSpec.describe FrontOfficeEditCompletionService, :versioning do
 
     editable_attributes =
       %w[

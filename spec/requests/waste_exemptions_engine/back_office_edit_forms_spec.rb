@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is \"true\"" do
         let(:edit_enabled) { "true" }
 
-        it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
+        it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
           get request_path
 
           expect(response).to render_template("waste_exemptions_engine/back_office_edit_forms/new")

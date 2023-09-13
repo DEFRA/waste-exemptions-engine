@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "an optional email form", vcr: true do |form_factory, email_attribute|
+RSpec.shared_examples "an optional email form", :vcr do |form_factory, email_attribute|
   subject(:form) { build(form_factory) }
 
   describe "validations" do

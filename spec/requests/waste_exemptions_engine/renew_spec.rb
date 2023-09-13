@@ -155,7 +155,7 @@ module WasteExemptionsEngine
           create(:registration, referring_registration_id: registration.id)
         end
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)
@@ -168,7 +168,7 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :complete, :past_renewal_window) }
         let(:token) { registration.renew_token }
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)
@@ -180,7 +180,7 @@ module WasteExemptionsEngine
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 
-        it "returns a 404 status, renders the correct template and returns W3C valid HTML content", vcr: true do
+        it "returns a 404 status, renders the correct template and returns W3C valid HTML content", :vcr do
           get request_path
 
           expect(response).to have_http_status(:not_found)
@@ -193,7 +193,7 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :with_ceased_exemptions) }
         let(:token) { registration.renew_token }
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", vcr: true do
+        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)

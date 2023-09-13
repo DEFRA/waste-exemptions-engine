@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     describe "GET front_office_edit_complete_form" do
       let(:request_path) { new_front_office_edit_complete_no_changes_form_path(form.token) }
 
-      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
+      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
         get request_path
 
         aggregate_failures do

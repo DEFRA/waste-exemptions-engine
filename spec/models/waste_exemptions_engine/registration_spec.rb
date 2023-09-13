@@ -277,7 +277,7 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "PaperTrail", versioning: true do
+    describe "PaperTrail", :versioning do
       subject(:registration) { create(:registration, :complete) }
 
       it "has PaperTrail" do
