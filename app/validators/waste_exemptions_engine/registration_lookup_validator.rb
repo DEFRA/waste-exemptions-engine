@@ -8,7 +8,8 @@ module WasteExemptionsEngine
       registration = Registration.where(reference: record.reference).first
 
       return false unless valid_reference?(record, registration)
-      return false unless editable_status?(record, registration)
+
+      false unless editable_status?(record, registration)
     end
 
     private

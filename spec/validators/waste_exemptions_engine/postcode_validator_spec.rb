@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     postcode_without_addresses = "AA1 1AA"
 
     describe "#validate_each" do
-      context "when the postcode is valid", vcr: true do
+      context "when the postcode is valid", :vcr do
         before { VCR.insert_cassette("postcode_valid") }
         after { VCR.eject_cassette }
 
@@ -39,7 +39,7 @@ module WasteExemptionsEngine
           it_behaves_like "an invalid record", validatable, :postcode, error_message
         end
 
-        context "when the postcode does not have associated adresses", vcr: true do
+        context "when the postcode does not have associated adresses", :vcr do
           before { VCR.insert_cassette("postcode_no_matches") }
           after { VCR.eject_cassette }
 

@@ -19,7 +19,8 @@ module WasteExemptionsEngine
 
       return render(:deregistered) if registration.deregistered?
       return render(:already_renewed) if registration.already_renewed?
-      return render(:past_renewal_window) if registration.past_renewal_window?
+
+      render(:past_renewal_window) if registration.past_renewal_window?
     end
 
     def registration

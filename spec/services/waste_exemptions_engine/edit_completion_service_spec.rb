@@ -86,7 +86,7 @@ module WasteExemptionsEngine
         expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(0)
       end
 
-      describe "PaperTrail", versioning: true do
+      describe "PaperTrail", :versioning do
         it "creates a new version" do
           expect { run_service }.to change { registration.versions.count }.by(1)
         end

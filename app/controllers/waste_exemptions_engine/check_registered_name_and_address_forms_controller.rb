@@ -9,7 +9,7 @@ module WasteExemptionsEngine
       return if new_registration
 
       begin
-        return render(:inactive_company) unless validate_company_number && validate_company_status
+        render(:inactive_company) unless validate_company_number && validate_company_status
       rescue StandardError
         Rails.logger.error "Failed to load"
         render(:companies_house_down)

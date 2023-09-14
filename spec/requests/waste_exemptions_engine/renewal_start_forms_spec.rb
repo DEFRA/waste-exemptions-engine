@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     describe "GET renewal_start_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-start" }
 
-      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", vcr: true do
+      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")

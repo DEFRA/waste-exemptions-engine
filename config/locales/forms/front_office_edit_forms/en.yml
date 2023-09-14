@@ -12,12 +12,12 @@ en:
           contact_phone: Contact telephone number
           contact_email: Contact email address
         edit_links:
-          update_link_label: Update
+          update_link_text: Update
           visually_hidden:
-            exemptions: exemptions
-            contact_name: contact name
-            contact_phone: contact phone
-            contact_email: contact email
+            exemptions: Update Waste exemptions
+            contact_name: Update contact name
+            contact_phone: Update contact phone number
+            contact_email: Update contact email address
         next_button: Continue
 
       edit_link_expired:

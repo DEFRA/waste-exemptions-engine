@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Check Your Answers Forms", vcr: true do
+  RSpec.describe "Check Your Answers Forms", :vcr do
     before do
       WasteExemptionsEngine::Exemption.delete_all
       create_list(:exemption, 5)

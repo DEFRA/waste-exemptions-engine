@@ -93,7 +93,7 @@ module WasteExemptionsEngine
       end
     end
 
-    describe ".create_from_grid_reference_data", vcr: true do
+    describe ".create_from_grid_reference_data", :vcr do
       before { VCR.insert_cassette("site_address_from_grid_ref_auto_area", allow_playback_repeats: true) }
       after { VCR.eject_cassette }
 

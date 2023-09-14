@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     describe "GET renewal_complete_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-complete" }
 
-      it "renders the appropriate template, returns a 200 status code, creates a new registration, removes the renewing registration, display the correct reference number and returns W3C valid HTML content", vcr: true do
+      it "renders the appropriate template, returns a 200 status code, creates a new registration, removes the renewing registration, display the correct reference number and returns W3C valid HTML content", :vcr do
         # Execute let variable as the factory will generate a registration to renew which should be counted separately
         form
 
