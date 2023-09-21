@@ -35,18 +35,18 @@ module WasteExemptionsEngine
       # before { form.transient_registration.contact_email = nil }
 
       context "with a vald email address" do
-          let(:contact_email) { Faker::Internet.email }
+        let(:contact_email) { Faker::Internet.email }
 
-          it_behaves_like "submits and populates the contact_email"
-        end
-
-        context "with whitespace around the email address" do
-          let(:actual_email) { Faker::Internet.email }
-          let(:contact_email) { "  #{actual_email} " }
-
-          it_behaves_like "submits and populates the contact_email"
-        end
+        it_behaves_like "submits and populates the contact_email"
       end
+
+      context "with whitespace around the email address" do
+        let(:actual_email) { Faker::Internet.email }
+        let(:contact_email) { "  #{actual_email} " }
+
+        it_behaves_like "submits and populates the contact_email"
+      end
+    end
 
     context "with an invalid email address" do
       let(:contact_email) { "foo" }
