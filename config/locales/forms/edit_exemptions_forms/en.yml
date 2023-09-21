@@ -12,6 +12,7 @@ en:
         guidance_text: You can get guidance about exemptions at
         guidance_link_text: GovUK
         guidance_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#choose
+        guidance_link_hint: (opens in a new window)
   activemodel:
     errors:
       models:

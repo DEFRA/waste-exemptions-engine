@@ -39,7 +39,11 @@
 
       <%= f.govuk_submit %>
 
-      <p class="govuk-hint"><%= t(".guidance_text") %> <%= link_to t(".guidance_link_text"), t(".guidance_link") %></p>
+      <p class="govuk-hint">
+        <%= t(".guidance_text") %>
+        <%= link_to t(".guidance_link_text"), t(".guidance_link"), target: "_blank" %>
+        <%= t(".guidance_link_hint") %>
+      </p>
     <% end %>
   </div>
 </div>
