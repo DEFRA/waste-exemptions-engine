@@ -481,7 +481,8 @@ WasteExemptionsEngine::Engine.routes.draw do
   get "/edit_registration/:edit_token",
       constraints: { edit_token: /.*/ },
       to: "front_office_edit_forms#validate_edit_token",
-      as: "validate_edit_token"
+      as: "validate_edit_token",
+      defaults: { format: :html }
 
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"

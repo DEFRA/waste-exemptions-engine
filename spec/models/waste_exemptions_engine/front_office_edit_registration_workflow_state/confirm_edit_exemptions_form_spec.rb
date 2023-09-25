@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe ConfirmEditExemptionsForm do
-    subject(:form) { build(:confirm_edit_exemptions_form, transient_registration_factory: :front_office_edit_registration) }
+    subject(:form) { build(:confirm_edit_exemptions_form) }
 
     it "validates the form using the YesNoValidator class" do
       validators = form._validators
