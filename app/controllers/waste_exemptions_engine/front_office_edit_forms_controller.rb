@@ -41,11 +41,13 @@ module WasteExemptionsEngine
     private
 
     def registration
-      @registration ||= Registration.where(edit_token: params[:edit_token]).first
+      @registration ||= Registration.where(edit_token: params[:edit_token].split("/")[0]).first
     end
 
     def token_expired?
-      registration.edit_token_created_at < ENV.fetch("EDIT_TOKEN_VALIDITY_HOURS", 48).to_i.hours.ago
+      return false unless @registration.present?
+
+      @registration.edit_token_created_at < ENV.fetch("EDIT_TOKEN_VALIDITY_HOURS", 48).to_i.hours.ago
     end
 
     def transition_to_edit(transition)
