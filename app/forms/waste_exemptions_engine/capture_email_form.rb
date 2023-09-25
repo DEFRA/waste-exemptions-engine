@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     validates_with DefraRuby::Validators::EmailValidator, attributes: [:contact_email]
 
     def submit(params)
-      self.contact_email = params[:contact_email]
+      self.contact_email = params[:contact_email].strip
 
       super(params.permit(:reference, :contact_email))
     end

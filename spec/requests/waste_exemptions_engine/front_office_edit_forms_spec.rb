@@ -22,7 +22,7 @@ module WasteExemptionsEngine
       end
 
       context "when the edit_token is invalid" do
-        let(:edit_token) { "foo" }
+        let(:edit_token) { "foo/bar/baz.txt" }
 
         it "returns the expected invalid link response" do
           aggregate_failures do

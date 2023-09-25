@@ -67,6 +67,11 @@ module WasteExemptionsEngine
                       to: :confirm_edit_exemptions_form
 
           #   from confirm_edit_exemptions_form:
+          #     to edit exemptions declaration page if exemption changes are confirmed AND all exemptions deregistered
+          transitions from: :confirm_edit_exemptions_form,
+                      to: :edit_exemptions_declaration_form,
+                      if: :full_deregistration_confirmed?
+
           #     return to main edit page if exemption changes are confirmed
           transitions from: :confirm_edit_exemptions_form,
                       to: :front_office_edit_form,
@@ -123,6 +128,10 @@ module WasteExemptionsEngine
 
       def exemption_edits_confirmed?
         temp_confirm_exemption_edits == true
+      end
+
+      def full_deregistration_confirmed?
+        exemption_edits_confirmed? && all_exemptions_deregistered?
       end
     end
     # rubocop:enable Metrics/BlockLength
