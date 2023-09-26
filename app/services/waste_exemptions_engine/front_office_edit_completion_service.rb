@@ -41,7 +41,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_email
-      RegistrationEditConfirmationEmailService.run(registration: @registration, recipient: @registration.contact_email)
+      RegistrationEditConfirmationEmailService.run(registration: @registration, recipient: @edit_registration.contact_email)
     end
 
     def delete_edit_registration

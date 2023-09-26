@@ -49,12 +49,14 @@ module WasteExemptionsEngine
       end
 
       RSpec.shared_examples "sends a confirmation email via the exemption_deregistration_service" do
-        it "sends the email" do
+        it "sends the email to the contact_email of the transient registration" do
           run_service
 
           aggregate_failures do
             expect(ExemptionDeregistrationService).to have_received(:run)
-            expect(RegistrationEditConfirmationEmailService).to have_received(:run).once
+            expect(RegistrationEditConfirmationEmailService).to have_received(:run)
+              .with(registration:, recipient: edit_registration.contact_email)
+              .once
           end
         end
       end

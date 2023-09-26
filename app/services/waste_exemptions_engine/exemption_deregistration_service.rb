@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     def run(transient_registration)
       @transient_registration = transient_registration
       @original_registration = transient_registration.registration
-      @contact_email = @original_registration.contact_email
+      @contact_email = @transient_registration.contact_email
 
       case registration_exemptions_delta.length
       when 0

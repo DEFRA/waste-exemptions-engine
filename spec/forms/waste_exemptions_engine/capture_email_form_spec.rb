@@ -32,7 +32,7 @@ module WasteExemptionsEngine
     end
 
     context "when the form is valid" do
-      # before { form.transient_registration.contact_email = nil }
+      before { form.transient_registration.contact_email = nil }
 
       context "with a vald email address" do
         let(:contact_email) { Faker::Internet.email }
