@@ -26,8 +26,9 @@
       <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_full_form.contact_email) %></p>
       <p class="govuk-body"><%= t(".paragraph_1") %></p>
       <p class="govuk-body"><%= t(".paragraph_2") %></p>
-      <p class="govuk-body"><%= t(".paragraph_3") %> <%= link_to(t(".survey_link"), t(".survey_link")) %></p>
-
+      <p class="govuk-body"><%= t(".paragraph_3") %>
+        <%= link_to(t(".survey_link"), t(".survey_link"), target: "_blank") %> <%= t(".survey_link_hint") %>
+      </p>
     <% end %>
   </div>
 </div>

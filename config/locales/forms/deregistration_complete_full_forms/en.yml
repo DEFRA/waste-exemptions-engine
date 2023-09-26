@@ -2,14 +2,15 @@ en:
   waste_exemptions_engine:
     deregistration_complete_full_forms:
       new:
-        title: Your registration is inactive and will be removed from the public register.
-        highlight_text: Your registration is inactive and will be removed from the public register.
+        title: Your registration is now inactive and will be removed from the public register.
+        highlight_text: Your registration is now inactive and will be removed from the public register.
         subheading: What will happen next
         confirmation_email_text: We have sent a confirmation email to %{contact_email}
         paragraph_1: All of your exemptions have been removed and your registration is now inactive.
         paragraph_2: We will remove your registration from the public register, this could take up to 24 hours.
         paragraph_3: Tell us your thoughts about this process -
         survey_link: https://www.smartsurvey.co.uk/s/3S81FQ/
+        survey_link_hint: (opens in a new window)
   activemodel:
     errors:
       models:
