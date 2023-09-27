@@ -2,6 +2,13 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-      <p class="govuk-body"><%= t(".paragraph_1", start_link: link_to(t(".start_link_text"), start_forms_path)).html_safe %></p>
+      <p class="govuk-body">
+        <%= t(".paragraph_1") %>
+        <%= link_to start_forms_path do %>
+          <%= t(".start_link_text") %>
+          <span class="govuk-visually-hidden"> <%= t(".visually_hidden_start_link_text") %></span>
+        <% end %>
+      </p>
+
     </div>
   </div>

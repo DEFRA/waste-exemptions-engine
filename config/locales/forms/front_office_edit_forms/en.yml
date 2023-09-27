@@ -23,8 +23,9 @@ en:
       edit_link_expired:
         title: This link has expired
         heading: This link has expired
-        paragraph_1: You can create a new link %{start_link}.
-        start_link_text: here
+        paragraph_1: You can create a new link
+        start_link_text: here.
+        visually_hidden_start_link_text: Create a new edit link
 
       invalid_edit_link:
         title: This link is not valid
