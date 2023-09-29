@@ -73,14 +73,14 @@ module WasteExemptionsEngine
       end
 
       RSpec.shared_examples "calls the exemption deregistration service" do
-        it "and changes the exemption count" do
-          original_count = registration.exemptions.length
+        it "and changes the active exemption count" do
+          original_count = registration.active_exemptions.length
 
           run_service
 
           aggregate_failures do
             expect(ExemptionDeregistrationService).to have_received(:run)
-            expect(registration.reload.exemptions.length).to eq(original_count - 1)
+            expect(registration.reload.active_exemptions.length).to eq(original_count - 1)
           end
         end
       end

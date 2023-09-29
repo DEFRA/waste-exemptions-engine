@@ -27,8 +27,6 @@ module WasteExemptionsEngine
 
     def update_exemptions
       ExemptionDeregistrationService.run(@edit_registration)
-
-      @registration.exemptions = @edit_registration.exemptions
     end
 
     def exemption_changes?
