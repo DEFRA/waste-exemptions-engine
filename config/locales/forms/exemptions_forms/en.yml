@@ -4,7 +4,10 @@ en:
       new:
         title: Which exemptions are needed for this waste operation?
         heading: Which exemptions are needed for this waste operation?
-        description: Select all the waste exemptions you need to add to the registration
+        description: |
+          Select all the waste exemptions you need to add to the registration. 
+          An exempt waste operation cannot be carried on at an installation, 
+          and waste exemptions should not be registered at those locations.
         legend: Exemptions
         error_heading: A problem to fix
         next_button: Continue
