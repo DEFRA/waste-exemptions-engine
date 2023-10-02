@@ -30,7 +30,8 @@ module WasteExemptionsEngine
 
     def validate_edit_token
       return render(:invalid_edit_link, status: 404) unless registration.present?
-      return render(:edit_link_expired, status: 422) if token_expired?
+      # return 404 for an expired token as WAF is configured to not allow 422 responses:
+      return render(:edit_link_expired, status: 404) if token_expired?
 
       @transient_registration = FrontOfficeEditRegistration.find_or_create_by(reference: registration.reference)
       @transient_registration.aasm.enter_initial_state

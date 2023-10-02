@@ -39,7 +39,7 @@ module WasteExemptionsEngine
         it "returns the expected expired link response" do
           aggregate_failures do
             expect(response).to render_template("waste_exemptions_engine/front_office_edit_forms/edit_link_expired")
-            expect(response).to have_http_status(:unprocessable_entity)
+            expect(response).to have_http_status(:not_found)
             expect(response.body).to have_valid_html
           end
         end
