@@ -4,7 +4,9 @@ en:
       new:
         title: "Do you want to renew with these details?"
         heading: "Do you want to renew with these details?"
-        description: Some of your exemptions could be withdrawn before the end of your exemption period.
+        description: Some of your exemptions could be withdrawn before the end of your registration period.
+        guidance_link_label: "latest guidance"
+        guidance: "Before you renew your exemptions you must read the %{guidance_link} (opens in new tab) to see if there have been any changes."
         options:
           "yes": "Renew with these details"
           "no": "I need to make changes"
