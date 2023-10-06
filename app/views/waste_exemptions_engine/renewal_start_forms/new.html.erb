@@ -7,6 +7,13 @@
 
       <p class="govuk-body"><%= t(".description") %></p>
 
+
+      <div class="govuk-body">
+        <%= t(".guidance",
+            guidance_link: link_to( t(".guidance_link_label"), "https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits", rel: "external", target: "_blank")
+            ).html_safe %>
+      </div>
+
       <%= render("waste_exemptions_engine/shared/data_overview/company_info", form: @renewal_start_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/registration_info", form: @renewal_start_form) %>
 
