@@ -58,6 +58,9 @@ Gem::Specification.new do |s|
   # Used for auditing and version control
   s.add_dependency "paper_trail"
 
+  # paper_trail does not currently support activerecord v7.1
+  s.add_dependency "activerecord", "< 7.1"
+
   # Validations
   # A defra created gem of shared validators
   s.add_dependency "defra_ruby_validators"
