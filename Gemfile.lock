@@ -3,6 +3,7 @@ PATH
   specs:
     waste_exemptions_engine (0.1.0)
       aasm (~> 5.5)
+      activerecord (< 7.1)
       defra_ruby_address
       defra_ruby_alert
       defra_ruby_area (~> 2.0)
