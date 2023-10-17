@@ -4,19 +4,21 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationNumberForm, type: :model do
-    # rubocop:disable RSpec/AnyInstance
+    let(:companies_house_validator) { instance_double(DefraRuby::Validators::CompaniesHouseService) }
+
     before do
-      allow_any_instance_of(DefraRuby::Validators::CompaniesHouseService).to receive(:status).and_return(:active)
+      allow(DefraRuby::Validators::CompaniesHouseService).to receive(:new).and_return(companies_house_validator)
+      allow(companies_house_validator).to receive(:status).and_return(:active)
     end
-    # rubocop:enable RSpec/AnyInstance
 
     subject(:form) { build(:registration_number_form) }
 
     it "validates the company number using the CompaniesHouseNumberValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:company_no)
-      expect(validators[:company_no].first.class)
-        .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
+      aggregate_failures do
+        expect(validators[:company_no].first.class)
+          .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
+      end
     end
 
     it_behaves_like "a validated form", :registration_number_form do
@@ -32,9 +34,11 @@ module WasteExemptionsEngine
           company_number = valid_params[:company_no]
           transient_registration = form.transient_registration
 
-          expect(transient_registration.company_no).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.company_no).to eq(company_number)
+          aggregate_failures do
+            expect(transient_registration.company_no).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.company_no).to eq(company_number)
+          end
         end
 
         context "when the company_no is less than 8 characters" do

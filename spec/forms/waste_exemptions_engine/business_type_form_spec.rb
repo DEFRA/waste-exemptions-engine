@@ -31,9 +31,11 @@ module WasteExemptionsEngine
           valid_params = { business_type: business_type }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.business_type).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.business_type).to eq(business_type)
+          aggregate_failures do
+            expect(transient_registration.business_type).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.business_type).to eq(business_type)
+          end
         end
       end
     end

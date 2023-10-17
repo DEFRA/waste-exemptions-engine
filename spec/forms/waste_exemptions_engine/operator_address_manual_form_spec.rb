@@ -81,15 +81,17 @@ module WasteExemptionsEngine
         let(:transient_registration) { form.transient_registration }
 
         it "updates the transient registration with the submitted address data" do
-          # Ensure the test data is properly configured:
-          expect(transient_registration.transient_addresses).to be_empty
+          aggregate_failures do
+            # Ensure the test data is properly configured:
+            expect(transient_registration.transient_addresses).to be_empty
 
-          form.submit(ActionController::Parameters.new(valid_params).permit!)
+            form.submit(ActionController::Parameters.new(valid_params).permit!)
 
-          expect(transient_registration.transient_addresses.count).to eq(1)
-          submitted_address = transient_registration.transient_addresses.first
-          address_data[:operator_address].each do |key, value|
-            expect(submitted_address.send(key)).to eq(value)
+            expect(transient_registration.transient_addresses.count).to eq(1)
+            submitted_address = transient_registration.transient_addresses.first
+            address_data[:operator_address].each do |key, value|
+              expect(submitted_address.send(key)).to eq(value)
+            end
           end
         end
 
@@ -108,19 +110,21 @@ module WasteExemptionsEngine
           let(:white_space_params) { white_space_address_data.merge(token: form.token) }
 
           it "strips the extraneous white space from the submitted address data" do
-            # Ensure the test data is properly configured:
-            address_data[:operator_address].each do |key, value|
-              expect(white_space_params[:operator_address][key]).not_to eq(value)
-              expect(white_space_params[:operator_address][key].strip).to eq(value)
-            end
-            expect(transient_registration.transient_addresses).to be_empty
+            aggregate_failures do
+              # Ensure the test data is properly configured:
+              address_data[:operator_address].each do |key, value|
+                expect(white_space_params[:operator_address][key]).not_to eq(value)
+                expect(white_space_params[:operator_address][key].strip).to eq(value)
+              end
+              expect(transient_registration.transient_addresses).to be_empty
 
-            form.submit(ActionController::Parameters.new(white_space_params).permit!)
+              form.submit(ActionController::Parameters.new(white_space_params).permit!)
 
-            expect(transient_registration.reload.transient_addresses.count).to eq(1)
-            submitted_address = transient_registration.transient_addresses.first
-            address_data[:operator_address].each do |key, value|
-              expect(submitted_address.send(key)).to eq(value)
+              expect(transient_registration.reload.transient_addresses.count).to eq(1)
+              submitted_address = transient_registration.transient_addresses.first
+              address_data[:operator_address].each do |key, value|
+                expect(submitted_address.send(key)).to eq(value)
+              end
             end
           end
         end

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 WasteExemptionsEngine::Engine.routes.draw do
   resources :start_forms,
             only: %i[new create],
@@ -489,4 +488,3 @@ WasteExemptionsEngine::Engine.routes.draw do
 
   mount DefraRubyEmail::Engine => "/email"
 end
-# rubocop:enable Metrics/BlockLength

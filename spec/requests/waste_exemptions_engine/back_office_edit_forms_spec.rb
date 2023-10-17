@@ -19,9 +19,11 @@ module WasteExemptionsEngine
         it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
           get request_path
 
-          expect(response).to render_template("waste_exemptions_engine/back_office_edit_forms/new")
-          expect(response).to have_http_status(:ok)
-          expect(response.body).to have_valid_html
+          aggregate_failures do
+            expect(response).to render_template("waste_exemptions_engine/back_office_edit_forms/new")
+            expect(response).to have_http_status(:ok)
+            expect(response.body).to have_valid_html
+          end
         end
 
         context "when the token is a registration reference" do
@@ -32,9 +34,11 @@ module WasteExemptionsEngine
           it "renders the appropriate template, returns a 200 status code and loads the correct page" do
             get request_path
 
-            expect(response).to render_template("waste_exemptions_engine/back_office_edit_forms/new")
-            expect(response).to have_http_status(:ok)
-            expect(response.body).to include(registration.reference)
+            aggregate_failures do
+              expect(response).to render_template("waste_exemptions_engine/back_office_edit_forms/new")
+              expect(response).to have_http_status(:ok)
+              expect(response.body).to include(registration.reference)
+            end
           end
 
           context "when the registration doesn't have an edit in progress" do

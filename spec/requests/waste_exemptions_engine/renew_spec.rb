@@ -11,40 +11,44 @@ module WasteExemptionsEngine
       let(:company_name) { Faker::Company.name }
       let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
       let(:transient_registration_token) { RenewingRegistration.first.token }
+      let(:companies_house_service) { instance_double(DefraRubyCompaniesHouse) }
 
-      # rubocop:disable RSpec/AnyInstance
       before do
-        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:load_company).and_return(true)
-        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:company_name).and_return(company_name)
-        allow_any_instance_of(DefraRubyCompaniesHouse).to receive(:registered_office_address_lines).and_return(company_address)
+        allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_service)
+        allow(companies_house_service).to receive_messages(
+          load_company: true,
+          company_name: company_name,
+          registered_office_address_lines: company_address
+        )
       end
-      # rubocop:enable RSpec/AnyInstance
 
       context "with a valid renew token" do
         let(:token) { registration.renew_token }
 
         context "when the business type is a company or llp" do
           context "when in renewal window" do
-            it "redirects to the check registered name and address form, creates a new RenewingRegistration and returns a 303 status code" do
-              expected_count = RenewingRegistration.count + 1
-
+            it "redirects to the check registered name and address form" do
               get request_path
 
               expect(response).to redirect_to(new_check_registered_name_and_address_form_path(token: transient_registration_token))
-              expect(RenewingRegistration.count).to eq(expected_count)
+            end
+
+            it "creates a new RenewingRegistration" do
+              expect { get request_path }.to change(RenewingRegistration, :count).by(1)
             end
           end
 
           context "when not in renewal window" do
             let(:registration) { create(:registration, :complete) }
 
-            it "redirects to the edit exemptions form, creates a new RenewingRegistration and returns a 303 status code" do
-              expected_count = RenewingRegistration.count + 1
-
+            it "redirects to the edit exemptions form" do
               get request_path
 
               expect(response).to redirect_to(edit_exemptions_forms_path(token: transient_registration_token))
-              expect(RenewingRegistration.count).to eq(expected_count)
+            end
+
+            it "creates a new RenewingRegistration" do
+              expect { get request_path }.to change(RenewingRegistration, :count).by(1)
             end
           end
         end
@@ -55,26 +59,28 @@ module WasteExemptionsEngine
           end
 
           context "when in renewal window" do
-            it "redirects to the renewal start form, creates a new RenewingRegistration and returns a 303 status code" do
-              expected_count = RenewingRegistration.count + 1
-
+            it "redirects to the renewal start form" do
               get request_path
 
               expect(response).to redirect_to(new_renewal_start_form_path(token: transient_registration_token))
-              expect(RenewingRegistration.count).to eq(expected_count)
+            end
+
+            it "creates a new RenewingRegistration" do
+              expect { get request_path }.to change(RenewingRegistration, :count).by(1)
             end
           end
 
           context "when not in renewal window" do
             let(:registration) { create(:registration, :complete) }
 
-            it "redirects to the edit exemptions form, creates a new RenewingRegistration and returns a 303 status code" do
-              expected_count = RenewingRegistration.count + 1
-
+            it "redirects to the edit exemptions form" do
               get request_path
 
               expect(response).to redirect_to(edit_exemptions_forms_path(token: transient_registration_token))
-              expect(RenewingRegistration.count).to eq(expected_count)
+            end
+
+            it "creates a new RenewingRegistration" do
+              expect { get request_path }.to change(RenewingRegistration, :count).by(1)
             end
           end
         end
@@ -155,11 +161,21 @@ module WasteExemptionsEngine
           create(:registration, referring_registration_id: registration.id)
         end
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
+        it "responds with a 200 status", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)
+        end
+
+        it "renders the appropriate template", :vcr do
+          get request_path
+
           expect(response).to render_template("waste_exemptions_engine/renews/already_renewed")
+        end
+
+        it "returns W3C valid HTML content", :vcr do
+          get request_path
+
           expect(response.body).to have_valid_html
         end
       end
@@ -168,11 +184,21 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :complete, :past_renewal_window) }
         let(:token) { registration.renew_token }
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
+        it "responds with a 200 status", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)
+        end
+
+        it "renders the appropriate template", :vcr do
+          get request_path
+
           expect(response).to render_template("waste_exemptions_engine/renews/past_renewal_window")
+        end
+
+        it "returns W3C valid HTML content", :vcr do
+          get request_path
+
           expect(response.body).to have_valid_html
         end
       end
@@ -180,11 +206,21 @@ module WasteExemptionsEngine
       context "when a token is invalid" do
         let(:token) { "FooBarBaz" }
 
-        it "returns a 404 status, renders the correct template and returns W3C valid HTML content", :vcr do
+        it "returns a 404 status", :vcr do
           get request_path
 
           expect(response).to have_http_status(:not_found)
+        end
+
+        it "renders the correct template", :vcr do
+          get request_path
+
           expect(response).to render_template("waste_exemptions_engine/renews/invalid_magic_link")
+        end
+
+        it "returns W3C valid HTML content", :vcr do
+          get request_path
+
           expect(response.body).to have_valid_html
         end
       end
@@ -193,11 +229,21 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :with_ceased_exemptions) }
         let(:token) { registration.renew_token }
 
-        it "respond with a 200 status, renders the appropriate template and returns W3C valid HTML content", :vcr do
+        it "responds with a 200 status", :vcr do
           get request_path
 
           expect(response).to have_http_status(:ok)
+        end
+
+        it "renders the appropriate template", :vcr do
+          get request_path
+
           expect(response).to render_template("waste_exemptions_engine/renews/deregistered")
+        end
+
+        it "returns W3C valid HTML content", :vcr do
+          get request_path
+
           expect(response.body).to have_valid_html
         end
       end

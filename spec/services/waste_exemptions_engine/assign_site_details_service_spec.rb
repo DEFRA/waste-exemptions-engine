@@ -34,8 +34,10 @@ module WasteExemptionsEngine
 
             described_class.run(address: address)
 
-            expect(address.x).to eq(123.4)
-            expect(address.y).to eq(123.5)
+            aggregate_failures do
+              expect(address.x).to eq(123.4)
+              expect(address.y).to eq(123.5)
+            end
           end
         end
       end

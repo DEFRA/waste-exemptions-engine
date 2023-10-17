@@ -9,11 +9,21 @@ module WasteExemptionsEngine
     describe "GET renew_without_changes_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renew-without-changes" }
 
-      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
+      it "renders the appropriate template", :vcr do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/renew_without_changes_forms/new")
+      end
+
+      it "returns a 200 status code", :vcr do
+        get request_path
+
         expect(response).to have_http_status(:ok)
+      end
+
+      it "returns W3C valid HTML content", :vcr do
+        get request_path
+
         expect(response.body).to have_valid_html
       end
     end

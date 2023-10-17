@@ -9,10 +9,15 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
   describe "POST #{form_factory}" do
     context "when the form is not valid", unless: empty_form_is_valid do
       context "when the form is empty" do
-        it "renders the same template and returns a 200 status code" do
+        it "renders the same template" do
           post post_request_path
 
           expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
+        end
+
+        it "returns a 200 status code" do
+          post post_request_path
+
           expect(response).to have_http_status(:ok)
         end
       end
@@ -36,15 +41,21 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     end
 
     context "when the token has been modified" do
+      subject(:post_request) { post "/waste_exemptions_engine/modified-token#{path}", params: request_body }
+
       let(:request_body) { { form_factory => form_data } }
-      let(:modified_token_post_request_path) { "/waste_exemptions_engine/modified-token#{path}" }
 
       status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
 
-      it "renders the start form and returns a #{status_code} status code" do
-        post modified_token_post_request_path, params: request_body
+      it "renders the start form" do
+        post_request
 
         expect(response.location).to include("/waste_exemptions_engine/start")
+      end
+
+      it "returns a #{status_code} status code" do
+        post_request
+
         expect(response.code).to eq(status_code.to_s)
       end
     end
@@ -65,15 +76,12 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
     end
 
     context "when the registration is not in the correct state" do
+      subject(:post_request) { post post_request_path, params: { form_factory => form_data } }
+
       # Use a form which cannot be posted and so won't be using this shared example
       let(:incorrect_workflow_state) { :register_in_wales_form }
       let(:incorrect_form) { build(incorrect_workflow_state) }
       let(:transient_registration) { correct_form.transient_registration }
-      let(:bad_request_body) { { form_factory => form_data } }
-      let(:bad_request_redirection_path) do
-        workflow_path = "new_#{incorrect_form.transient_registration.workflow_state}_path".to_sym
-        send(workflow_path, token: incorrect_form.transient_registration.token)
-      end
 
       before do
         case transient_registration.class.name
@@ -89,11 +97,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
 
       it "renders the appropriate template" do
-        trans_reg_id = incorrect_form.transient_registration.id
-        expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state)
-          .to eq(incorrect_workflow_state.to_s)
-
-        post post_request_path, params: bad_request_body
+        post_request
 
         case transient_registration.class.name
         when "WasteExemptionsEngine::BackOfficeEditRegistration"
@@ -106,7 +110,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       end
 
       it "returns a 302" do
-        post post_request_path, params: bad_request_body
+        post_request
 
         expect(response.code).to eq(status_code.to_s)
       end
@@ -114,7 +118,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
       it "does not update the transient registration workflow state" do
         trans_reg_id = incorrect_form.transient_registration.id
 
-        post post_request_path, params: bad_request_body
+        post_request
 
         expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state)
           .to eq(incorrect_workflow_state.to_s)

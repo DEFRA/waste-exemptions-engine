@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
-# We believe in the case of the different states and transitions for the
-# editing journey, it's better to see them all in one place. However this
-# does mean the module length breaks Rubocop's rules, hence the exception.
-# rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
   module CanUseBackOfficeEditRegistrationWorkflow
     extend ActiveSupport::Concern
 
-    # We believe in the case of the different states and transitions for the
-    # editing journey, it's better to see them all in one place. However this
-    # does mean the block length breaks Rubocop's rules, hence the exception.
-    # rubocop:disable Metrics/BlockLength
     included do
       include AASM
 
@@ -241,7 +233,6 @@ module WasteExemptionsEngine
         end
       end
     end
-    # rubocop:enable Metrics/BlockLength
 
     private
 
@@ -250,4 +241,3 @@ module WasteExemptionsEngine
     end
   end
 end
-# rubocop:enable Metrics/ModuleLength

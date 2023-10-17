@@ -9,18 +9,20 @@ RSpec.shared_examples "a postcode transition" do |address_type:, factory:|
       next_state = "#{address_type}_address_lookup_form".to_sym
       alt_state = "#{address_type}_address_manual_form".to_sym
 
+      it "is set to not skip to manual address" do
+        expect(subject.send(:skip_to_manual_address?)).to be(false)
+      end
+
       it "can only transition to either #{next_state} or #{alt_state}" do
         permitted_states = Helpers::WorkflowStates.permitted_states(subject)
         expect(permitted_states).to contain_exactly(next_state, alt_state)
       end
 
       it "changes to #{next_state} after the 'next' event" do
-        expect(subject.send(:skip_to_manual_address?)).to be(false)
         expect(subject).to transition_from(current_state).to(next_state).on_event(:next)
       end
 
       it "changes to #{alt_state} after the 'skip_to_manual_address' event" do
-        expect(subject.send(:skip_to_manual_address?)).to be(false)
         expect(subject)
           .to transition_from(current_state)
           .to(alt_state)
@@ -33,13 +35,16 @@ RSpec.shared_examples "a postcode transition" do |address_type:, factory:|
 
       before { subject.address_finder_error = true }
 
+      it "is set to skip to manual address" do
+        expect(subject.send(:skip_to_manual_address?)).to be(true)
+      end
+
       it "can only transition to #{next_state}" do
         permitted_states = Helpers::WorkflowStates.permitted_states(subject)
         expect(permitted_states).to contain_exactly(next_state)
       end
 
       it "changes to #{next_state} after the 'next' event" do
-        expect(subject.send(:skip_to_manual_address?)).to be(true)
         expect(subject).to transition_from(current_state).to(next_state).on_event(:next)
       end
     end

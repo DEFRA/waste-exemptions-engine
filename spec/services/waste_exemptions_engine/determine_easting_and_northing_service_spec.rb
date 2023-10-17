@@ -37,9 +37,11 @@ module WasteExemptionsEngine
           let(:successful) { true }
           let(:error) { nil }
 
-          it "will notify Errbit of the error but still return a hash of x & y based on the postcode" do
-            expect(described_class.run(arguments)).to eq(easting: 358_205.03, northing: 172_708.07)
-            expect(Airbrake).to have_received(:notify)
+          it "notifies Errbit of the error but still return a hash of x & y based on the postcode" do
+            aggregate_failures do
+              expect(described_class.run(arguments)).to eq(easting: 358_205.03, northing: 172_708.07)
+              expect(Airbrake).to have_received(:notify)
+            end
           end
         end
 
@@ -48,9 +50,11 @@ module WasteExemptionsEngine
           let(:successful) { false }
           let(:error) { instance_double(StandardError, message: "Oops") }
 
-          it "will notify Errbit of the errors and returns a hash of x & y set to 0.0" do
-            expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
-            expect(Airbrake).to have_received(:notify).twice
+          it "notifies Errbit of the errors and return a hash of x & y set to 0.0" do
+            aggregate_failures do
+              expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
+              expect(Airbrake).to have_received(:notify).twice
+            end
           end
         end
       end
@@ -77,9 +81,11 @@ module WasteExemptionsEngine
         context "when it is invalid" do
           let(:arguments) { { grid_reference: invalid_grid_reference, postcode: nil } }
 
-          it "will notify Errbit of the error and returns a hash of x & y set to 0.0" do
-            expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
-            expect(Airbrake).to have_received(:notify)
+          it "notifies Errbit of the error and return a hash of x & y set to 0.0" do
+            aggregate_failures do
+              expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
+              expect(Airbrake).to have_received(:notify)
+            end
           end
         end
       end
@@ -101,9 +107,11 @@ module WasteExemptionsEngine
           let(:successful) { false }
           let(:error) { DefraRuby::Address::NoMatchError.new }
 
-          it "will notify Errbit of the error and returns a hash of x & y set to 0.0" do
-            expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
-            expect(Airbrake).to have_received(:notify)
+          it "notifies Errbit of the error and returns a hash of x & y set to 0.0" do
+            aggregate_failures do
+              expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
+              expect(Airbrake).to have_received(:notify)
+            end
           end
         end
 
@@ -112,9 +120,11 @@ module WasteExemptionsEngine
           let(:successful) { false }
           let(:error) { instance_double(StandardError, message: "Oops") }
 
-          it "will notify Errbit of the error and returns a hash of x & y set to 0.0" do
-            expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
-            expect(Airbrake).to have_received(:notify)
+          it "notifies Errbit of the error and returns a hash of x & y set to 0.0" do
+            aggregate_failures do
+              expect(described_class.run(arguments)).to eq(easting: 0.0, northing: 0.0)
+              expect(Airbrake).to have_received(:notify)
+            end
           end
         end
       end

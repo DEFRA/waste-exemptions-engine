@@ -24,9 +24,11 @@ module WasteExemptionsEngine
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to be(false)
-                expect(new_registration.send(:skip_registration_number?)).to be(false)
-                expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                aggregate_failures do
+                  expect(new_registration.send(:partnership?)).to be(false)
+                  expect(new_registration.send(:skip_registration_number?)).to be(false)
+                  expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                end
               end
             end
           end
@@ -45,9 +47,11 @@ module WasteExemptionsEngine
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to be(true)
-                expect(new_registration.send(:skip_registration_number?)).to be(true)
-                expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                aggregate_failures do
+                  expect(new_registration.send(:partnership?)).to be(true)
+                  expect(new_registration.send(:skip_registration_number?)).to be(true)
+                  expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                end
               end
             end
           end
@@ -68,9 +72,11 @@ module WasteExemptionsEngine
               end
 
               it "changes to #{next_state} after the 'next' event" do
-                expect(new_registration.send(:partnership?)).to be(false)
-                expect(new_registration.send(:skip_registration_number?)).to be(true)
-                expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                aggregate_failures do
+                  expect(new_registration.send(:partnership?)).to be(false)
+                  expect(new_registration.send(:skip_registration_number?)).to be(true)
+                  expect(new_registration).to transition_from(current_state).to(next_state).on_event(:next)
+                end
               end
             end
           end

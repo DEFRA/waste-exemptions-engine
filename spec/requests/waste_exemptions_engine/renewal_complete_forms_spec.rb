@@ -9,20 +9,40 @@ module WasteExemptionsEngine
     describe "GET renewal_complete_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-complete" }
 
-      it "renders the appropriate template, returns a 200 status code, creates a new registration, removes the renewing registration, display the correct reference number and returns W3C valid HTML content", :vcr do
+      before do
         # Execute let variable as the factory will generate a registration to renew which should be counted separately
         form
+      end
 
-        initial_count = Registration.count
-        expect(RenewingRegistration.where(token: form.token).count).to eq(1)
-
+      it "renders the appropriate template", :vcr do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/renewal_complete_forms/new")
+      end
+
+      it "returns a 200 status code", :vcr do
+        get request_path
+
         expect(response).to have_http_status(:ok)
-        expect(Registration.count).to eq(initial_count + 1)
-        expect(RenewingRegistration.where(token: form.token).count).to eq(0)
+      end
+
+      it "creates a new registration", :vcr do
+        expect { get request_path }.to change(Registration, :count).by(1)
+      end
+
+      it "removes the renewing registration", :vcr do
+        expect { get request_path }.to change { RenewingRegistration.where(token: form.token).count }.to(0)
+      end
+
+      it "displays the correct reference number", :vcr do
+        get request_path
+
         expect(response.body).to include(Registration.last.reference)
+      end
+
+      it "returns W3C valid HTML content", :vcr do
+        get request_path
+
         expect(response.body).to have_valid_html
       end
     end

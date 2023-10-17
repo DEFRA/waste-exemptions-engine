@@ -11,9 +11,10 @@ module WasteExemptionsEngine
 
     it "validates the site address using the AddressValidator class" do
       validators = build(:site_address_lookup_form)._validators
-      expect(validators.keys).to include(:site_address)
-      expect(validators[:site_address].first.class)
-        .to eq(WasteExemptionsEngine::AddressValidator)
+      aggregate_failures do
+        expect(validators[:site_address].first.class)
+          .to eq(WasteExemptionsEngine::AddressValidator)
+      end
     end
 
     describe "#submit" do
@@ -24,11 +25,13 @@ module WasteExemptionsEngine
           valid_params = { site_address: { uprn: address_uprn } }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.transient_addresses).to be_empty
-          form.submit(valid_params)
-          transient_registration.reload
-          expect(transient_registration.transient_addresses.count).to eq(1)
-          expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
+          aggregate_failures do
+            expect(transient_registration.transient_addresses).to be_empty
+            form.submit(valid_params)
+            transient_registration.reload
+            expect(transient_registration.transient_addresses.count).to eq(1)
+            expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
+          end
         end
       end
     end

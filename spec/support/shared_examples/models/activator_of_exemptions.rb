@@ -14,15 +14,18 @@ RSpec.shared_examples "an activator of exemptions" do |model_factory|
   end
 
   describe "#activate_exemption" do
-    it "updates the registration and expiration dates of exemption" do
+    it "updates the registration date of the exemption" do
       registration_date = Date.today
       expiration_date = registration_date + WasteExemptionsEngine.configuration.years_before_expiry.years - 1.day
 
-      expect(instance.registered_on).to be_nil
-      expect(instance.expires_on).to be_nil
-      instance.activate_exemption
-      expect(instance.registered_on).to eq(registration_date)
-      expect(instance.expires_on).to eq(expiration_date)
+      expect { instance.activate_exemption }.to change(instance, registered_on).from(nil).to(expiration_date)
+    end
+
+    it "updates the expiration date of the exemption" do
+      registration_date = Date.today
+      expiration_date = registration_date + WasteExemptionsEngine.configuration.years_before_expiry.years - 1.day
+
+      expect { instance.activate_exemption }.to change(instance, expires_on).from(nil).to(expiration_date)
     end
   end
 end

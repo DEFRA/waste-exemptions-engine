@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  # rubocop:disable Metrics/ClassLength
   class RegistrationDetailsPresenter < BasePresenter
     def date_registered
       # Currently you can only add exemptions when you register, so we can assume they expire at the same time
@@ -197,5 +196,4 @@ module WasteExemptionsEngine
       registration_exemptions.includes(:exemption)
     end
   end
-  # rubocop:enable Metrics/ClassLength
 end

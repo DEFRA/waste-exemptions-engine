@@ -17,21 +17,23 @@ module WasteExemptionsEngine
       it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
         get request_path
 
-        expect(response).to render_template("waste_exemptions_engine/back_office_edit_complete_forms/new")
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to have_valid_html
+        aggregate_failures do
+          expect(response).to render_template("waste_exemptions_engine/back_office_edit_complete_forms/new")
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to have_valid_html
+        end
       end
 
       context "when the host application has a current_user" do
         let(:current_user) { double }
 
-        # rubocop:disable RSpec/AnyInstance
         before do
           allow(current_user).to receive(:id).and_return(1)
           allow(WasteExemptionsEngine.configuration).to receive(:use_current_user_for_whodunnit).and_return(true)
+          # rubocop:disable RSpec/AnyInstance
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+          # rubocop:enable RSpec/AnyInstance
         end
-        # rubocop:enable RSpec/AnyInstance
 
         it "assigns the correct whodunnit to the registration version", :versioning do
           get request_path

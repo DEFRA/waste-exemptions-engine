@@ -27,7 +27,6 @@ RSpec.shared_examples "an optional email form", :vcr do |form_factory, email_att
     end
   end
 
-  # rubocop:disable RSpec/NestedGroups
   describe "#submit" do
     let(:params) do
       {
@@ -126,5 +125,4 @@ RSpec.shared_examples "an optional email form", :vcr do |form_factory, email_att
       end
     end
   end
-  # rubocop:enable RSpec/NestedGroups
 end

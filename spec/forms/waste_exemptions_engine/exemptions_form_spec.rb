@@ -16,7 +16,6 @@ module WasteExemptionsEngine
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:exemptions)
       expect(validators[:exemptions].first.class)
         .to eq(WasteExemptionsEngine::ExemptionsValidator)
     end
@@ -34,9 +33,11 @@ module WasteExemptionsEngine
           valid_params = { exemption_ids: exemption_id_strings }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.exemptions).to be_empty
-          form.submit(valid_params)
-          expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
+          aggregate_failures do
+            expect(transient_registration.exemptions).to be_empty
+            form.submit(valid_params)
+            expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
+          end
         end
       end
     end

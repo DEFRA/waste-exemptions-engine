@@ -26,10 +26,12 @@ RSpec.shared_examples "CanHaveCommunicationLog" do
 
         log_instance = WasteExemptionsEngine::CommunicationLog.first
 
-        expect(log_instance.message_type).to eq service.communications_log_params[:message_type]
-        expect(log_instance.template_id).to eq service.communications_log_params[:template_id]
-        expect(log_instance.template_label).to eq service.communications_log_params[:template_label]
-        expect(log_instance.sent_to).to eq service.communications_log_params[:sent_to]
+        aggregate_failures do
+          expect(log_instance.message_type).to eq service.communications_log_params[:message_type]
+          expect(log_instance.template_id).to eq service.communications_log_params[:template_id]
+          expect(log_instance.template_label).to eq service.communications_log_params[:template_label]
+          expect(log_instance.sent_to).to eq service.communications_log_params[:sent_to]
+        end
       end
     end
   end

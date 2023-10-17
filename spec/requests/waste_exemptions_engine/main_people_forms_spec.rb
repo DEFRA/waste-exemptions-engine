@@ -26,10 +26,15 @@ module WasteExemptionsEngine
       let(:trans_reg_id) { form.transient_registration.id }
 
       describe "submit and add another" do
-        it "re-renders the form template and returns a #{status_code} status code" do
+        it "re-renders the form template" do
           post add_person_post_request_path, params: person_one_request_body
 
           expect(response.location).to include(form_path)
+        end
+
+        it "returns a #{status_code} status code" do
+          post add_person_post_request_path, params: person_one_request_body
+
           expect(response.code).to eq(status_code.to_s)
         end
 
@@ -37,15 +42,17 @@ module WasteExemptionsEngine
           it "updates the transient registration accordingly" do
             transient_registration = form.transient_registration
 
-            expect { post add_person_post_request_path, params: person_one_request_body }
-              .to change { transient_registration.reload.people.count }
-              .from(0).to(1)
-            expect { post add_person_post_request_path, params: person_two_request_body }
-              .to change { transient_registration.reload.people.count }
-              .from(1).to(2)
+            aggregate_failures do
+              expect { post add_person_post_request_path, params: person_one_request_body }
+                .to change { transient_registration.reload.people.count }
+                .from(0).to(1)
+              expect { post add_person_post_request_path, params: person_two_request_body }
+                .to change { transient_registration.reload.people.count }
+                .from(1).to(2)
 
-            expect(transient_registration.people.map(&:first_name)).to match_array(%w[Joe Jane])
-            expect(transient_registration.people.map(&:last_name)).to match_array(%w[Bloggs Smith])
+              expect(transient_registration.people.map(&:first_name)).to match_array(%w[Joe Jane])
+              expect(transient_registration.people.map(&:last_name)).to match_array(%w[Bloggs Smith])
+            end
           end
         end
       end
@@ -56,21 +63,28 @@ module WasteExemptionsEngine
 
         before { form.transient_registration.people = [person_one, person_two] }
 
-        it "re-renders the form template and returns a #{status_code} status code" do
+        it "re-renders the form template" do
           delete delete_person_main_people_forms_path(token: form.token, id: person_one.id)
 
           expect(response.location).to include(form_path)
+        end
+
+        it "returns a #{status_code} status code" do
+          delete delete_person_main_people_forms_path(token: form.token, id: person_one.id)
+
           expect(response.code).to eq(status_code.to_s)
         end
 
         context "when deleting multiple people" do
           it "updates the transient registration accordingly" do
-            expect { delete delete_person_main_people_forms_path(token: form.token, id: person_one.id) }
-              .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
-              .from(2).to(1)
-            expect { delete delete_person_main_people_forms_path(token: form.token, id: person_two.id) }
-              .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
-              .from(1).to(0)
+            aggregate_failures do
+              expect { delete delete_person_main_people_forms_path(token: form.token, id: person_one.id) }
+                .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
+                .from(2).to(1)
+              expect { delete delete_person_main_people_forms_path(token: form.token, id: person_two.id) }
+                .to change { WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).people.count }
+                .from(1).to(0)
+            end
           end
         end
       end

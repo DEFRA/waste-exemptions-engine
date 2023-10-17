@@ -16,8 +16,10 @@ module WasteExemptionsEngine
       it "pre-fills contact name information" do
         get "/waste_exemptions_engine/#{edit_contact_name_form.token}/contact-name"
 
-        expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_first_name)
-        expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_last_name)
+        aggregate_failures do
+          expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_first_name)
+          expect(response.body).to have_html_escaped_string(edit_contact_name_form.contact_last_name)
+        end
       end
     end
 
@@ -27,8 +29,10 @@ module WasteExemptionsEngine
       it "pre-fills contact name information" do
         get "/waste_exemptions_engine/#{renew_contact_name_form.token}/contact-name"
 
-        expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_first_name)
-        expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_last_name)
+        aggregate_failures do
+          expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_first_name)
+          expect(response.body).to have_html_escaped_string(renew_contact_name_form.contact_last_name)
+        end
       end
     end
   end

@@ -8,9 +8,10 @@ module WasteExemptionsEngine
 
     it "validates the on a farm question using the YesNoValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:temp_renew_without_changes)
-      expect(validators[:temp_renew_without_changes].first.class)
-        .to eq(DefraRuby::Validators::TrueFalseValidator)
+      aggregate_failures do
+        expect(validators[:temp_renew_without_changes].first.class)
+          .to eq(DefraRuby::Validators::TrueFalseValidator)
+      end
     end
 
     it_behaves_like "a validated form", :renewal_start_form do
@@ -39,16 +40,18 @@ module WasteExemptionsEngine
       end
 
       it "resets exemptions based on the referring registration" do
-        expect(transient_registration.exemptions).to be_empty # sanity
+        aggregate_failures do
+          expect(transient_registration.exemptions).to be_empty # sanity
 
-        described_class.new(transient_registration)
+          described_class.new(transient_registration)
 
-        transient_registration.reload
+          transient_registration.reload
 
-        expect(transient_registration.exemptions).not_to be_empty
+          expect(transient_registration.exemptions).not_to be_empty
 
-        expect(transient_registration.exemptions.map(&:id).sort)
-          .to eq(transient_registration.referring_registration.exemptions.map(&:id).sort)
+          expect(transient_registration.exemptions.map(&:id).sort)
+            .to eq(transient_registration.referring_registration.exemptions.map(&:id).sort)
+        end
       end
     end
 
@@ -59,9 +62,11 @@ module WasteExemptionsEngine
           valid_params = { temp_renew_without_changes: temp_renew_without_changes }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.temp_renew_without_changes).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.temp_renew_without_changes).to eq(temp_renew_without_changes == "true")
+          aggregate_failures do
+            expect(transient_registration.temp_renew_without_changes).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.temp_renew_without_changes).to eq(temp_renew_without_changes == "true")
+          end
         end
       end
     end

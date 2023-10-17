@@ -41,11 +41,13 @@ module WasteExemptionsEngine
           valid_params = { applicant_first_name: first_name, applicant_last_name: last_name }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.applicant_first_name).to be_blank
-          expect(transient_registration.applicant_last_name).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.applicant_first_name).to eq(first_name)
-          expect(transient_registration.applicant_last_name).to eq(last_name)
+          aggregate_failures do
+            expect(transient_registration.applicant_first_name).to be_blank
+            expect(transient_registration.applicant_last_name).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.applicant_first_name).to eq(first_name)
+            expect(transient_registration.applicant_last_name).to eq(last_name)
+          end
         end
       end
     end
