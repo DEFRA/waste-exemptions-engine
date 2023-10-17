@@ -223,12 +223,5 @@ module WasteExemptionsEngine
     def reg_i18n_scope
       "waste_exemptions_engine.shared.data_overview.registration_info"
     end
-
-    def test_row
-      {
-        title: "foo",
-        value: "bar"
-      }
-    end
   end
 end
