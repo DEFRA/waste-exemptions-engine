@@ -40,15 +40,17 @@ RSpec.describe SendRegistrationEditEmailJob do
 
         current_magic_link_token = registration.reload.edit_token
 
-        expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
-          .to have_received(:run)
-          .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.contact_email)
-          .once
+        aggregate_failures do
+          expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
+            .to have_received(:run)
+            .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.contact_email)
+            .once
 
-        expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
-          .to have_received(:run)
-          .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.applicant_email)
-          .once
+          expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
+            .to have_received(:run)
+            .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.applicant_email)
+            .once
+        end
       end
     end
 

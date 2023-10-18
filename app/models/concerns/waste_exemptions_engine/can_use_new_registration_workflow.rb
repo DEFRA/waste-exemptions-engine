@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
-# We believe in the case of the different states and transitions for the
-# exemption journey, its better to see them all in one place. However this
-# does mean the module length breaks rubocops rules hence the exception.
-# rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
   module CanUseNewRegistrationWorkflow
     extend ActiveSupport::Concern
 
-    # We believe in the case of the different states and transitions for the
-    # exemption journey, its better to see them all in one place. However this
-    # does mean the block length breaks rubocops rules hence the exception.
-    # rubocop:disable Metrics/BlockLength
     included do
       include AASM
 
@@ -303,7 +295,6 @@ module WasteExemptionsEngine
         end
       end
     end
-    # rubocop:enable Metrics/BlockLength
 
     private
 
@@ -371,4 +362,3 @@ module WasteExemptionsEngine
     end
   end
 end
-# rubocop:enable Metrics/ModuleLength

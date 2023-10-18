@@ -13,7 +13,8 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.fetch(:renew_exemptions_form, {}).permit(exemption_ids: [])
+      # reverse_merge adds empty exemption_ids array if not already present
+      params.fetch(:renew_exemptions_form, {}).permit(exemption_ids: []).reverse_merge({ exemption_ids: [] })
     end
   end
 end

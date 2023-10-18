@@ -10,9 +10,13 @@ RSpec.shared_examples "an invalid record" do |validatable, property, error_messa
     expect(validatable.errors[property].count).to eq(1)
   end
 
-  it "adds an appropriate validation error" do
+  it "has a valid translation" do
     validatable.valid?
     expect(error_message).not_to include("translation missing:")
+  end
+
+  it "adds an appropriate validation error" do
+    validatable.valid?
     expect(validatable.errors[property]).to eq([error_message])
   end
 end

@@ -8,9 +8,10 @@ module WasteExemptionsEngine
 
     it "validates the on a farm question using the YesNoValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:on_a_farm)
-      expect(validators[:on_a_farm].first.class)
-        .to eq(DefraRuby::Validators::TrueFalseValidator)
+      aggregate_failures do
+        expect(validators[:on_a_farm].first.class)
+          .to eq(DefraRuby::Validators::TrueFalseValidator)
+      end
     end
 
     it_behaves_like "a validated form", :on_a_farm_form do
@@ -34,9 +35,11 @@ module WasteExemptionsEngine
           valid_params = { on_a_farm: on_a_farm }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.on_a_farm).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.reload.on_a_farm).to be_truthy
+          aggregate_failures do
+            expect(transient_registration.on_a_farm).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.reload.on_a_farm).to be_truthy
+          end
         end
       end
     end

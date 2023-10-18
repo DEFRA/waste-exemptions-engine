@@ -211,17 +211,12 @@ module WasteExemptionsEngine
 
     describe "#exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
-
-      # rubocop:disable RSpec/AnyInstance
-      before do
-        allow_any_instance_of(RegistrationExemption).to receive(:expires_on).and_return(Date.new(2099, 1, 1))
-      end
-      # rubocop:enable RSpec/AnyInstance
+      let(:expected_expiry_date) { 3.years.from_now.strftime("%d %B %Y") }
 
       it "returns an array with the correct exemptions" do
         expected_array = []
         registration.registration_exemptions.each do |re|
-          expected_array << "#{re.exemption.code}: #{re.exemption.summary} – Expires on 1 January 2099"
+          expected_array << "#{re.exemption.code}: #{re.exemption.summary} – Expires on #{expected_expiry_date}"
         end
 
         expect(presenter.exemptions_section).to eq(expected_array)
@@ -236,7 +231,7 @@ module WasteExemptionsEngine
         it "only lists active exemptions" do
           active_exemption = registration.registration_exemptions[0].exemption
           expected_array = [
-            "#{active_exemption.code}: #{active_exemption.summary} – Expires on 1 January 2099"
+            "#{active_exemption.code}: #{active_exemption.summary} – Expires on #{expected_expiry_date}"
           ]
 
           expect(presenter.exemptions_section).to eq(expected_array)
@@ -247,14 +242,10 @@ module WasteExemptionsEngine
     describe "#deregistered_exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
 
-      # rubocop:disable RSpec/AnyInstance
       before do
-        allow_any_instance_of(RegistrationExemption).to receive(:deregistered_at).and_return(Date.new(2000, 1, 1))
-
-        registration.registration_exemptions[1].update(state: "ceased")
-        registration.registration_exemptions[2].update(state: "revoked")
+        registration.registration_exemptions[1].update(deregistered_at: Date.new(2000, 1, 1), state: "ceased")
+        registration.registration_exemptions[2].update(deregistered_at: Date.new(2000, 1, 1), state: "revoked")
       end
-      # rubocop:enable RSpec/AnyInstance
 
       it "only lists inactive exemptions" do
         ceased_exemption = registration.registration_exemptions[1].exemption

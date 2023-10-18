@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 module WasteExemptionsEngine
   class DataOverviewPresenter < BasePresenter
     def initialize(transient_registration)
@@ -43,7 +42,7 @@ module WasteExemptionsEngine
     end
 
     def farm_rows
-      [on_a_farm_row, is_a_farmer_row]
+      [on_a_farm_row, farmer_row?]
     end
 
     def applicant_rows
@@ -161,15 +160,12 @@ module WasteExemptionsEngine
       }
     end
 
-    # rubocop:disable Naming/PredicateName
-    # Disabling as this is the name of the attribute
-    def is_a_farmer_row
+    def farmer_row?
       {
         title: I18n.t("#{reg_i18n_scope}.is_a_farmer.title"),
         value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}")
       }
     end
-    # rubocop:enable Naming/PredicateName
 
     def applicant_name_row
       applicant_name = "#{applicant_first_name} #{applicant_last_name}"
@@ -227,13 +223,5 @@ module WasteExemptionsEngine
     def reg_i18n_scope
       "waste_exemptions_engine.shared.data_overview.registration_info"
     end
-
-    def test_row
-      {
-        title: "foo",
-        value: "bar"
-      }
-    end
   end
 end
-# rubocop:enable Metrics/ClassLength

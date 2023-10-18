@@ -8,7 +8,6 @@ module WasteExemptionsEngine
 
     it "validates the edit confirmation question using the YesNoValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:temp_confirm_exemption_edits)
       expect(validators[:temp_confirm_exemption_edits].first.class)
         .to eq(DefraRuby::Validators::TrueFalseValidator)
     end

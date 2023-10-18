@@ -8,26 +8,20 @@ module WasteExemptionsEngine
     let(:registration) { Registration.last }
 
     describe "#complete" do
-      it "is idempotent" do
-        # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
-        # https://github.com/DEFRA/ruby-services-team/issues/54
-        initial_count = WasteExemptionsEngine::Registration.count
 
+      subject(:run_service) { described_class.run(transient_registration: new_registration) }
+
+      it "is idempotent" do
+        run_service
         run_service
 
-        expect { run_service }.to raise_error(StandardError)
-
-        expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
+        expect(WasteExemptionsEngine::Registration.count).to eq(1)
       end
 
       context "when a race condition calls the service twice" do
-        # rubocop:disable Lint/SuppressedException
-        it "generates only one record and fail to execute subsequent calls" do
-          # FIXME: Some test is leaving the db dirty. Hence we need a count and expect 1 extra.
-          # https://github.com/DEFRA/ruby-services-team/issues/54
-          initial_count = WasteExemptionsEngine::Registration.count
-          expect(ActiveRecord::Base.connection.pool.size).to be > 3
+        it { expect(ActiveRecord::Base.connection.pool.size).to be > 3 }
 
+        it "generates only one record and fails to execute subsequent calls" do
           should_wait = true
           concurrency_level = 4
 
@@ -41,6 +35,7 @@ module WasteExemptionsEngine
                 begin
                   run_service
                 rescue StandardError
+                  Rails.logger.info "Expected spec exception"
                 end
               end
             end
@@ -51,7 +46,7 @@ module WasteExemptionsEngine
           should_wait = false
           threads.each(&:join)
 
-          expect(WasteExemptionsEngine::Registration.count).to eq(initial_count + 1)
+          expect(WasteExemptionsEngine::Registration.count).to eq(1)
 
           # Clean up after the threads have executed
           WasteExemptionsEngine::Address.delete_all
@@ -59,7 +54,6 @@ module WasteExemptionsEngine
           WasteExemptionsEngine::RegistrationExemption.delete_all
           WasteExemptionsEngine::Registration.delete_all
         end
-        # rubocop:enable Lint/SuppressedException
       end
 
       context "when the registration can be completed" do
@@ -118,10 +112,12 @@ module WasteExemptionsEngine
           it "sends a confirmation email to both the applicant and the contact emails" do
             run_service
 
-            expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                         recipient: new_registration.applicant_email)
-            expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                         recipient: new_registration.contact_email)
+            aggregate_failures do
+              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                           recipient: new_registration.applicant_email)
+              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                           recipient: new_registration.contact_email)
+            end
           end
 
           it "does not send a confirmation letter" do
@@ -171,10 +167,12 @@ module WasteExemptionsEngine
             it "only emails the applicant email" do
               run_service
 
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.applicant_email).once
-              expect(ConfirmationEmailService).not_to have_received(:run).with(registration: instance_of(Registration),
-                                                                               recipient: new_registration.contact_email)
+              aggregate_failures do
+                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                             recipient: new_registration.applicant_email).once
+                expect(ConfirmationEmailService).not_to have_received(:run).with(registration: instance_of(Registration),
+                                                                                 recipient: new_registration.contact_email)
+              end
             end
           end
         end
@@ -187,8 +185,10 @@ module WasteExemptionsEngine
 
             new_registration = described_class.run(transient_registration: renewing_registration)
 
-            expect(new_registration.referring_registration).to eq(referring_registration)
-            expect(referring_registration.referred_registration).to eq(new_registration)
+            aggregate_failures do
+              expect(new_registration.referring_registration).to eq(referring_registration)
+              expect(referring_registration.referred_registration).to eq(new_registration)
+            end
           end
         end
 
@@ -239,10 +239,6 @@ module WasteExemptionsEngine
             end
           end
         end
-      end
-
-      def run_service
-        described_class.run(transient_registration: new_registration)
       end
     end
   end

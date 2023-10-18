@@ -63,27 +63,19 @@ module WasteExemptionsEngine
       end
 
       it "deletes the edit_registration" do
-        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(1)
-        expect { run_service }.to change(BackOfficeEditRegistration, :count).by(-1)
-        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(0)
+        expect { run_service }.to change { BackOfficeEditRegistration.where(reference: edit_registration.reference).count }.by(-1)
       end
 
       it "deletes the edit_registration addresses" do
         edit_registration_id = BackOfficeEditRegistration.find_by(reference: edit_registration.reference).id
-        expect(TransientAddress.where(transient_registration_id: edit_registration_id).count).to eq(3)
 
-        run_service
-
-        expect(TransientAddress.where(transient_registration_id: edit_registration_id).count).to eq(0)
+        expect { run_service }.to change { TransientAddress.where(transient_registration_id: edit_registration_id).count }.to(0)
       end
 
       it "deletes the edit_registration people" do
         edit_registration_id = BackOfficeEditRegistration.find_by(reference: edit_registration.reference).id
-        expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(3)
 
-        run_service
-
-        expect(TransientPerson.where(transient_registration_id: edit_registration_id).count).to eq(0)
+        expect { run_service }.to change { TransientPerson.where(transient_registration_id: edit_registration_id).count }.to(0)
       end
 
       describe "PaperTrail", :versioning do

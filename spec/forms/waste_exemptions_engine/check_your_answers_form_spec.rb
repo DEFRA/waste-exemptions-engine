@@ -38,29 +38,32 @@ module WasteExemptionsEngine
         validator_class = validator.to_s.camelize
 
         it "validates the #{property} using the #{validator_class} class" do
-          expect(validators.keys).to include(property)
-          expect(validators[property].first.class)
-            .to eq("#{namespace}::#{validator_class}".constantize)
+          aggregate_failures do
+            expect(validators[property].first.class)
+              .to eq("#{namespace}::#{validator_class}".constantize)
 
-          expect(validators[property].first.options).to eq(options) if options
+            expect(validators[property].first.options).to eq(options) if options
+          end
         end
       end
 
       it "validates the company_no using the CompaniesHouseNumberValidator class" do
-        expect(validators.keys).to include(:company_no)
-        expect(validators[:company_no].first.class)
-          .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
+        aggregate_failures do
+          expect(validators[:company_no].first.class)
+            .to eq(DefraRuby::Validators::CompaniesHouseNumberValidator)
 
-        expect(validators[:company_no].first.options).to eq(if: :company_no_required?)
+          expect(validators[:company_no].first.options).to eq(if: :company_no_required?)
+        end
       end
 
       %i[on_a_farm is_a_farmer].each do |property|
         it "validates the #{property} using the InclusionValidator class" do
-          expect(validators.keys).to include(property)
-          expect(validators[property].first.class)
-            .to eq(ActiveModel::Validations::InclusionValidator)
+          aggregate_failures do
+            expect(validators[property].first.class)
+              .to eq(ActiveModel::Validations::InclusionValidator)
 
-          expect(validators[property].first.options).to eq(in: [true, false])
+            expect(validators[property].first.options).to eq(in: [true, false])
+          end
         end
       end
     end

@@ -23,9 +23,11 @@ module WasteExemptionsEngine
           valid_params = { temp_operator_postcode: postcode }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.temp_operator_postcode).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.temp_operator_postcode).to eq(postcode)
+          aggregate_failures do
+            expect(transient_registration.temp_operator_postcode).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.temp_operator_postcode).to eq(postcode)
+          end
         end
       end
     end

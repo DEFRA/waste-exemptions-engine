@@ -15,9 +15,10 @@ module WasteExemptionsEngine
 
     it "validates the location using the LocationValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:location)
-      expect(validators[:location].first.class)
-        .to eq(DefraRuby::Validators::LocationValidator)
+      aggregate_failures do
+        expect(validators[:location].first.class)
+          .to eq(DefraRuby::Validators::LocationValidator)
+      end
     end
 
     it_behaves_like "a validated form", :location_form do
@@ -37,9 +38,11 @@ module WasteExemptionsEngine
           valid_params = { location: location }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.location).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.location).to eq(location)
+          aggregate_failures do
+            expect(transient_registration.location).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.location).to eq(location)
+          end
         end
       end
     end

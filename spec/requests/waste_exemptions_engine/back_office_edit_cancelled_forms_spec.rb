@@ -17,9 +17,11 @@ module WasteExemptionsEngine
       it "renders the appropriate template, returns a 200 status code and W3C valid HTML content" do
         get request_path
 
-        expect(response).to render_template("waste_exemptions_engine/back_office_edit_cancelled_forms/new")
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to have_valid_html
+        aggregate_failures do
+          expect(response).to render_template("waste_exemptions_engine/back_office_edit_cancelled_forms/new")
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to have_valid_html
+        end
       end
 
       context "when `WasteExemptionsEngine.configuration.edit_enabled` is anything other than \"true\"" do

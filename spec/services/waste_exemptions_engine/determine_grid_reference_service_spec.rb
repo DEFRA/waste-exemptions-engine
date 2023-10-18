@@ -22,8 +22,10 @@ module WasteExemptionsEngine
         it "does not notify Airbrake and Rails" do
           described_class.run(easting: easting, northing: northing)
 
-          expect(Airbrake).not_to have_received(:notify)
-          expect(Rails.logger).not_to have_received(:error)
+          aggregate_failures do
+            expect(Airbrake).not_to have_received(:notify)
+            expect(Rails.logger).not_to have_received(:error)
+          end
         end
       end
 
@@ -52,11 +54,13 @@ module WasteExemptionsEngine
           expect(described_class.run(easting: easting, northing: northing)).to be_empty
         end
 
-        it "notify Airbrake and Rails" do
+        it "notifies Airbrake and Rails" do
           described_class.run(easting: easting, northing: northing)
 
-          expect(Airbrake).to have_received(:notify)
-          expect(Rails.logger).to have_received(:error)
+          aggregate_failures do
+            expect(Airbrake).to have_received(:notify)
+            expect(Rails.logger).to have_received(:error)
+          end
         end
       end
     end

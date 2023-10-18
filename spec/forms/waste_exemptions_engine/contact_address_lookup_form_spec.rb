@@ -11,7 +11,6 @@ module WasteExemptionsEngine
 
     it "validates the contact address using the AddressValidator class" do
       validators = build(:contact_address_lookup_form)._validators
-      expect(validators.keys).to include(:contact_address)
       expect(validators[:contact_address].first.class)
         .to eq(WasteExemptionsEngine::AddressValidator)
     end
@@ -24,11 +23,13 @@ module WasteExemptionsEngine
           valid_params = { contact_address: { uprn: address_uprn } }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.transient_addresses).to be_empty
-          form.submit(ActionController::Parameters.new(valid_params).permit!)
-          transient_registration.reload
-          expect(transient_registration.transient_addresses.count).to eq(1)
-          expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
+          aggregate_failures do
+            expect(transient_registration.transient_addresses).to be_empty
+            form.submit(ActionController::Parameters.new(valid_params).permit!)
+            transient_registration.reload
+            expect(transient_registration.transient_addresses.count).to eq(1)
+            expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
+          end
         end
       end
     end

@@ -10,15 +10,17 @@ module WasteExemptionsEngine
       subject(:validators) { form._validators }
 
       it "validates the site grid reference using the GridReferenceValidator class" do
-        expect(validators.keys).to include(:grid_reference)
-        expect(validators[:grid_reference].first.class)
-          .to eq(DefraRuby::Validators::GridReferenceValidator)
+        aggregate_failures do
+          expect(validators[:grid_reference].first.class)
+            .to eq(DefraRuby::Validators::GridReferenceValidator)
+        end
       end
 
       it "validates the site description using the SiteDescriptionValidator class" do
-        expect(validators.keys).to include(:description)
-        expect(validators[:description].first.class)
-          .to eq(WasteExemptionsEngine::SiteDescriptionValidator)
+        aggregate_failures do
+          expect(validators[:description].first.class)
+            .to eq(WasteExemptionsEngine::SiteDescriptionValidator)
+        end
       end
     end
 
@@ -45,13 +47,15 @@ module WasteExemptionsEngine
           valid_params = { grid_reference: grid_reference, description: description }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.site_address).to be_blank
+          aggregate_failures do
+            expect(transient_registration.site_address).to be_blank
 
-          form.submit(valid_params)
-          transient_registration.reload
+            form.submit(valid_params)
+            transient_registration.reload
 
-          expect(transient_registration.site_address.grid_reference).to eq(grid_reference)
-          expect(transient_registration.site_address.description).to eq(description)
+            expect(transient_registration.site_address.grid_reference).to eq(grid_reference)
+            expect(transient_registration.site_address.description).to eq(description)
+          end
         end
       end
     end

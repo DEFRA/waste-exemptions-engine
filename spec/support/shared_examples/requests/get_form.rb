@@ -7,14 +7,22 @@ RSpec.shared_examples "GET form" do |form_factory, path|
     context "when the registration is in the correct state" do
       let(:good_request_path) { "/waste_exemptions_engine/#{correct_form.token}#{path}" }
 
-      it "renders the appropriate template, returns a 200 status and valid HTML content" do
+      it "renders the appropriate template" do
         get good_request_path
 
         expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
+      end
+
+      it "returns a 200 status" do
+        get good_request_path
+
         expect(response).to have_http_status(:ok)
-        # TODO: w3c_validators and GDS currently disagree over
-        # 'An “input” element with a “type” attribute whose value is “hidden” must not have an “autocomplete” attribute whose value is “on” or “off”.'
-        # expect(response.body).to have_valid_html
+      end
+
+      it "returns valid HTML content", :ignore_hidden_autocomplete do
+        get good_request_path
+
+        expect(response.body).to have_valid_html
       end
     end
 
@@ -27,15 +35,23 @@ RSpec.shared_examples "GET form" do |form_factory, path|
         let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
         let(:incorrect_form) { build(incorrect_workflow_state) }
 
-        it "renders the appropriate template, returns a 200 status and updates the transient registration to the correct workflow state" do
-          trans_reg_id = incorrect_form.transient_registration.id
-          expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(incorrect_workflow_state.to_s)
-
+        it "renders the appropriate template" do
           get bad_request_path
 
-          expect(WasteExemptionsEngine::TransientRegistration.find(trans_reg_id).workflow_state).to eq(form_factory.to_s)
           expect(response).to render_template("waste_exemptions_engine/#{form_factory}s/new")
+        end
+
+        it "returns a 200 status" do
+          get bad_request_path
+
           expect(response).to have_http_status(:ok)
+        end
+
+        it "updates the transient registration to the correct workflow state" do
+          get bad_request_path
+
+          expect(WasteExemptionsEngine::TransientRegistration.find(incorrect_form.transient_registration.id).workflow_state)
+            .to eq(form_factory.to_s)
         end
       end
 

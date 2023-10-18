@@ -19,17 +19,21 @@ module WasteExemptionsEngine
         valid_params = { exemption_ids: exemption_id_strings }
         transient_registration = form.transient_registration
 
-        expect(transient_registration.exemptions).to be_empty
-        form.submit(valid_params)
-        expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
+        aggregate_failures do
+          expect(transient_registration.exemptions).to be_empty
+          form.submit(valid_params)
+          expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
+        end
       end
 
       it "updates the transient registration with no selected exemptions" do
         transient_registration = form.transient_registration
 
-        expect(transient_registration.exemptions).to be_empty
-        form.submit({})
-        expect(transient_registration.exemptions).to be_empty
+        aggregate_failures do
+          expect(transient_registration.exemptions).to be_empty
+          form.submit({})
+          expect(transient_registration.exemptions).to be_empty
+        end
       end
     end
   end

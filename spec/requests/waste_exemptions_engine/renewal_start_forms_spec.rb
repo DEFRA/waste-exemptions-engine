@@ -9,14 +9,22 @@ module WasteExemptionsEngine
     describe "GET renewal_start_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-start" }
 
-      it "renders the appropriate template, returns a 200 status code and W3C valid HTML content", :vcr do
+      it "renders the appropriate template", :vcr do
         get request_path
 
         expect(response).to render_template("waste_exemptions_engine/renewal_start_forms/new")
+      end
+
+      it "returns a 200 status code", :vcr do
+        get request_path
+
         expect(response).to have_http_status(:ok)
-        # TODO: w3c_validators and GDS currently disagree over
-        # 'An “input” element with a “type” attribute whose value is “hidden” must not have an “autocomplete” attribute whose value is “on” or “off”.'
-        # expect(response.body).to have_valid_html
+      end
+
+      it "returns W3C valid HTML content", :vcr, :ignore_hidden_autocomplete do
+        get request_path
+
+        expect(response.body).to have_valid_html
       end
     end
 

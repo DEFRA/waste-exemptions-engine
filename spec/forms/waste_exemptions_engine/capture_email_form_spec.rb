@@ -10,7 +10,6 @@ module WasteExemptionsEngine
 
     it "validates the contact_email field using the DefraRuby::Validators::EmailValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:contact_email)
       expect(validators[:contact_email].first.class).to eq(DefraRuby::Validators::EmailValidator)
     end
 

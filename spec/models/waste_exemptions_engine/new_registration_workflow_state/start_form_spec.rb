@@ -18,8 +18,10 @@ module WasteExemptionsEngine
           end
 
           it "changes to :capture_reference_form after the 'next' event" do
-            expect(new_registration.send(:should_edit?)).to be(true)
-            expect(new_registration).to transition_from(current_state).to(:capture_reference_form).on_event(:next)
+            aggregate_failures do
+              expect(new_registration.send(:should_edit?)).to be(true)
+              expect(new_registration).to transition_from(current_state).to(:capture_reference_form).on_event(:next)
+            end
           end
         end
 
@@ -30,8 +32,10 @@ module WasteExemptionsEngine
           end
 
           it "changes to :location_form after the 'next' event" do
-            expect(new_registration.send(:should_edit?)).to be(false)
-            expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
+            aggregate_failures do
+              expect(new_registration.send(:should_edit?)).to be(false)
+              expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
+            end
           end
         end
       end

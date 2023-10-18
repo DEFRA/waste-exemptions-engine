@@ -8,7 +8,6 @@ module WasteExemptionsEngine
 
     it "validates the phone number using the PhoneNumberValidator class" do
       validators = build(:contact_phone_form)._validators
-      expect(validators.keys).to include(:contact_phone)
       expect(validators[:contact_phone].first.class)
         .to eq(DefraRuby::Validators::PhoneNumberValidator)
     end
@@ -30,9 +29,11 @@ module WasteExemptionsEngine
           valid_params = { contact_phone: contact_phone }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.contact_phone).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.contact_phone).to eq(contact_phone)
+          aggregate_failures do
+            expect(transient_registration.contact_phone).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.contact_phone).to eq(contact_phone)
+          end
         end
       end
     end

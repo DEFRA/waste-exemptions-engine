@@ -17,37 +17,52 @@ RSpec.shared_examples "an owner of registration attributes" do |model_factory, a
   end
 
   describe "#company_no_required?" do
-    it "returns a boolean indicating whether a company number is required" do
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity]
-      expect(instance.company_no_required?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company]
-      expect(instance.company_no_required?).to be(true)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]
-      expect(instance.company_no_required?).to be(true)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority]
-      expect(instance.company_no_required?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership]
-      expect(instance.company_no_required?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
-      expect(instance.company_no_required?).to be(false)
+    shared_examples "company number is required" do |business_type|
+      before { instance.business_type = business_type }
+
+      it { expect(instance.company_no_required?).to be(true) }
     end
+
+    shared_examples "company number is not required" do |business_type|
+      before { instance.business_type = business_type }
+
+      it { expect(instance.company_no_required?).to be(false) }
+    end
+
+    [
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]
+    ].each { |business_type| it_behaves_like "company number is required", business_type }
+
+    [
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
+    ].each { |business_type| it_behaves_like "company number is not required", business_type }
   end
 
   describe "#partnership?" do
-    it "returns true when the business type is a partnership else returns false" do
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity]
-      expect(instance.partnership?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company]
-      expect(instance.partnership?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership]
-      expect(instance.partnership?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority]
-      expect(instance.partnership?).to be(false)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership]
-      expect(instance.partnership?).to be(true)
-      instance.business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
-      expect(instance.partnership?).to be(false)
+    shared_examples "is a partnership" do |business_type|
+      before { instance.business_type = business_type }
 
+      it { expect(instance.partnership?).to be(true) }
     end
+
+    shared_examples "is not a partnership" do |business_type|
+      before { instance.business_type = business_type }
+
+      it { expect(instance.partnership?).to be(false) }
+    end
+
+    it_behaves_like "is a partnership", WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:partnership]
+
+    [
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:charity],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_company],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:limited_liability_partnership],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:local_authority],
+      WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES[:sole_trader]
+    ].each { |business_type| it_behaves_like "is not a partnership", business_type }
   end
 end

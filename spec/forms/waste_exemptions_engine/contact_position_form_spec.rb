@@ -8,7 +8,6 @@ module WasteExemptionsEngine
 
     it "validates the position using the ContactPositionValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:contact_position)
       expect(validators[:contact_position].first.class)
         .to eq(DefraRuby::Validators::PositionValidator)
     end
@@ -35,9 +34,11 @@ module WasteExemptionsEngine
           valid_params = { contact_position: contact_position }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.contact_position).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.reload.contact_position).to eq(contact_position)
+          aggregate_failures do
+            expect(transient_registration.contact_position).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.reload.contact_position).to eq(contact_position)
+          end
         end
       end
     end

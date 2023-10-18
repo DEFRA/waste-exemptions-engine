@@ -16,9 +16,7 @@ module WasteExemptionsEngine
       end
 
       it "deletes the edit_registration" do
-        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(1)
-        expect { service }.to change(BackOfficeEditRegistration, :count).by(-1)
-        expect(BackOfficeEditRegistration.where(reference: edit_registration.reference).count).to eq(0)
+        expect { service }.to change { BackOfficeEditRegistration.where(reference: edit_registration.reference).count }.to(0)
       end
     end
   end

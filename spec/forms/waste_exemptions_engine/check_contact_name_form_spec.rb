@@ -29,8 +29,10 @@ module WasteExemptionsEngine
         it "assigns the applicant name as the contact name" do
           submit_form
 
-          expect(form.contact_first_name).to eq(form.applicant_first_name)
-          expect(form.contact_last_name).to eq(form.applicant_last_name)
+          aggregate_failures do
+            expect(form.contact_first_name).to eq(form.applicant_first_name)
+            expect(form.contact_last_name).to eq(form.applicant_last_name)
+          end
         end
       end
 
@@ -40,8 +42,10 @@ module WasteExemptionsEngine
         it "does not assign the contact name" do
           submit_form
 
-          expect(form.transient_registration.contact_first_name).to be_blank
-          expect(form.transient_registration.contact_last_name).to be_blank
+          aggregate_failures do
+            expect(form.transient_registration.contact_first_name).to be_blank
+            expect(form.transient_registration.contact_last_name).to be_blank
+          end
         end
       end
 

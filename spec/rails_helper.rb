@@ -35,6 +35,15 @@ end
 support_files = Dir["./spec/support/**/*.rb"].reject { |file| file == "./spec/support/simplecov.rb" }
 support_files.each { |f| require f }
 
+# Allow an example exception to be cleared. See below regarding W3C / Rails conflict.
+module RSpec
+  module Core
+    class Example
+      attr_writer :exception
+    end
+  end
+end
+
 RSpec.configure do |config|
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -68,5 +77,18 @@ RSpec.configure do |config|
 
   config.after(:each, bullet: :skip) do
     Bullet.enable = true
+  end
+
+  # Work around a conflict between Rails 7 button_to HTML and the W3C HTML validator by removing these errors
+  # Applies only to specs with tag ":ignore_hidden_autocomplete"
+  # https://stackoverflow.com/questions/74256523/rails-button-to-fails-with-w3c-validator
+  config.after do |example|
+    w3c_error = "An .input. element with a .type. attribute whose value is .hidden. must " \
+                "not have an .autocomplete. attribute whose value is .on. or .off."
+    if example.exception &&
+       example.metadata[:ignore_hidden_autocomplete] &&
+       example.exception.message.match(/#{w3c_error}/)
+      example.exception = nil
+    end
   end
 end

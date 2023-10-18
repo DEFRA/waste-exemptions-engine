@@ -5,7 +5,6 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe ConfirmationEmailService do
 
-    # rubocop:disable RSpec/AnyInstance
     describe "run" do
 
       let(:registration) { create(:registration, :complete) }
@@ -25,13 +24,13 @@ module WasteExemptionsEngine
       context "when the PDF is generated" do
         it "sends an email" do
           VCR.use_cassette("confirmation_email") do
-            allow_any_instance_of(Notifications::Client).to receive(:send_email).and_call_original
-
             response = run_service
 
-            expect(response).to be_a(Notifications::Client::ResponseNotification)
-            expect(response.template["id"]).to eq("98d5dcee-ea29-415f-952e-b8e287555e10")
-            expect(response.content["subject"]).to eq("Waste exemptions registration TEST completed")
+            aggregate_failures do
+              expect(response).to be_a(Notifications::Client::ResponseNotification)
+              expect(response.template["id"]).to eq("98d5dcee-ea29-415f-952e-b8e287555e10")
+              expect(response.content["subject"]).to eq("Waste exemptions registration TEST completed")
+            end
           end
         end
       end
@@ -41,17 +40,16 @@ module WasteExemptionsEngine
 
         it "sends an email" do
           VCR.use_cassette("confirmation_email_no_certificate") do
-            allow_any_instance_of(Notifications::Client).to receive(:send_email).and_call_original
-
             response = run_service
 
-            expect(response).to be_a(Notifications::Client::ResponseNotification)
-            expect(response.template["id"]).to eq("8fcf5d04-944f-4cd1-b261-962fedd3859f")
-            expect(response.content["subject"]).to eq("Waste exemptions registration TEST completed")
+            aggregate_failures do
+              expect(response).to be_a(Notifications::Client::ResponseNotification)
+              expect(response.template["id"]).to eq("8fcf5d04-944f-4cd1-b261-962fedd3859f")
+              expect(response.content["subject"]).to eq("Waste exemptions registration TEST completed")
+            end
           end
         end
       end
     end
-    # rubocop:enable RSpec/AnyInstance
   end
 end

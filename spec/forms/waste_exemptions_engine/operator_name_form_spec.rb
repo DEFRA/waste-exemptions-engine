@@ -8,9 +8,10 @@ module WasteExemptionsEngine
 
     it "validates the operator name using the OperatorNameValidator class" do
       validators = form._validators
-      expect(validators.keys).to include(:operator_name)
-      expect(validators[:operator_name].first.class)
-        .to eq(WasteExemptionsEngine::OperatorNameValidator)
+      aggregate_failures do
+        expect(validators[:operator_name].first.class)
+          .to eq(WasteExemptionsEngine::OperatorNameValidator)
+      end
     end
 
     it_behaves_like "a validated form", :operator_name_form do
@@ -30,9 +31,11 @@ module WasteExemptionsEngine
           valid_params = { operator_name: operator_name }
           transient_registration = form.transient_registration
 
-          expect(transient_registration.operator_name).to be_blank
-          form.submit(valid_params)
-          expect(transient_registration.operator_name).to eq(operator_name)
+          aggregate_failures do
+            expect(transient_registration.operator_name).to be_blank
+            form.submit(valid_params)
+            expect(transient_registration.operator_name).to eq(operator_name)
+          end
         end
       end
     end
