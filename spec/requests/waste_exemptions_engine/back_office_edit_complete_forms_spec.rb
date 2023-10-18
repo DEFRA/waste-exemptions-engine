@@ -26,17 +26,19 @@ module WasteExemptionsEngine
 
       context "when the host application has a current_user" do
         let(:current_user) { double }
+        let(:controller_instance) { BackOfficeEditCompleteFormsController.new }
 
         before do
-          allow(current_user).to receive(:id).and_return(1)
           allow(WasteExemptionsEngine.configuration).to receive(:use_current_user_for_whodunnit).and_return(true)
-          # rubocop:disable RSpec/AnyInstance
-          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
-          # rubocop:enable RSpec/AnyInstance
+          allow(BackOfficeEditCompleteFormsController).to receive(:new).and_return(controller_instance)
+          allow(controller_instance).to receive(:current_user).and_return(current_user)
+          allow(controller_instance).to receive(:dispatch).and_call_original
+          allow(current_user).to receive(:id).and_return(1)
         end
 
         it "assigns the correct whodunnit to the registration version", :versioning do
           get request_path
+
           registration = WasteExemptionsEngine::Registration.where(reference: form.transient_registration.reference).first
           expect(registration.reload.versions.last.whodunnit).to eq(current_user.id.to_s)
         end

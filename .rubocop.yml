@@ -42,6 +42,17 @@ Metrics/ModuleLength:
 Naming/VariableNumber:
   Enabled: false
 
+# Allow "because" as a prefix:
+RSpec/ContextWording:
+  Prefixes:
+    - because
+    - when
+    - with
+    - without
+    - if
+    - unless
+    - for
+
 # Sometimes examples more than 5 lines long are easier to review
 RSpec/ExampleLength:
   Max: 15
@@ -50,7 +61,6 @@ RSpec/ExampleLength:
     - spec/services/waste_exemptions_engine/confirmation_pdf_generator_service_spec.rb
     - spec/services/waste_exemptions_engine/registration_completion_service_spec.rb
     - spec/support/shared_examples/requests/post_form.rb
-
 
 # Some examples need to have multiple expectations
 RSpec/MultipleExpectations:
@@ -70,14 +80,3 @@ RSpec/NestedGroups:
 RSpec/SortMetadata:
   Exclude:
     - "spec/**/*"
-
-# Allow "because" as a prefix:
-RSpec/ContextWording:
-  Prefixes:
-    - because
-    - when
-    - with
-    - without
-    - if
-    - unless
-    - for
