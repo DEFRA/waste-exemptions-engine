@@ -103,6 +103,7 @@
             <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
             <div class="table-wrapper">
               <table class="govuk-table">
+                <caption><%=t ".registration_details.exemptions.active_heading" %></caption>
                 <tbody class="govuk-table__body">
                   <% @presenter.sorted_active_registration_exemptions.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
@@ -120,6 +121,7 @@
             <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
             <div class="table-wrapper">
               <table class="govuk-table">
+                <caption><%=t ".registration_details.exemptions.inactive_heading" %></caption>
                 <tbody class="govuk-table__body">
                   <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
