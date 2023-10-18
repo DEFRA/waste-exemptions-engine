@@ -100,14 +100,34 @@
               </table>
             </div>
 
-            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.heading" %></h2>
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
             <div class="table-wrapper">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
-                  <% @presenter.registration_exemptions.includes([:exemption]).order_by_exemption.each do |registration_exemption| %>
+                  <% @presenter.sorted_active_registration_exemptions.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
                       <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
-                      <td class="govuk-table__cell"><%= "Expires on #{registration_exemption.expires_on.to_formatted_s(:day_month_year)}" %></td>
+                      <td class="govuk-table__cell">
+                        <%=t(".registration_details.exemptions.expires_on",
+                             expire_date: registration_exemption.expires_on.to_formatted_s(:day_month_year)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
+            <div class="table-wrapper">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
+                      <td class="govuk-table__cell">
+                        <%=t(".registration_details.exemptions.ceased_on",
+                             cease_date: registration_exemption.deregistered_at.to_formatted_s(:day_month_year)) %>
+                      </td>
                     </tr>
                   <% end %>
                 </tbody>
