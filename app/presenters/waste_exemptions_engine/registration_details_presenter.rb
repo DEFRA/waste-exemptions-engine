@@ -2,6 +2,9 @@
 
 module WasteExemptionsEngine
   class RegistrationDetailsPresenter < BasePresenter
+
+    include WasteExemptionsEngine::CanIterateExemptions
+
     def date_registered
       # Currently you can only add exemptions when you register, so we can assume they expire at the same time
       registration_exemptions.first.registered_on.to_formatted_s(:day_month_year)
@@ -152,14 +155,6 @@ module WasteExemptionsEngine
 
     # Exemptions
 
-    def sorted_active_registration_exemptions
-      registration_exemptions_with_exemptions.where(state: "active").order(:exemption_id)
-    end
-
-    def sorted_deregistered_registration_exemptions
-      registration_exemptions_with_exemptions.where("state != ?", "active").order_by_state_then_exemption_id
-    end
-
     def exemption_text(registration_exemption)
       status = registration_exemption_status(registration_exemption)
       "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary} – #{status}"
@@ -190,10 +185,6 @@ module WasteExemptionsEngine
         "notify_confirmation_letter.waste_exemptions.status.#{registration_exemption.state}",
         display_date: display_date
       )
-    end
-
-    def registration_exemptions_with_exemptions
-      registration_exemptions.includes(:exemption)
     end
   end
 end

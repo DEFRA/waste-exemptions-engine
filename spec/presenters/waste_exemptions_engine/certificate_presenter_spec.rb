@@ -17,5 +17,35 @@ module WasteExemptionsEngine
         expect(presenter.partners_names).to eq(result)
       end
     end
+
+    describe "#sorted_active_registration_exemptions" do
+      let(:registration) { build(:registration, :with_expired_and_active_exemptions) }
+      let(:exemptions) { registration.exemptions }
+      let(:active_exemptions) { registration.active_exemptions }
+      let(:inactive_exemptions) { exemptions - active_exemptions }
+
+      it "returns all active exemptions" do
+        expect(presenter.sorted_active_registration_exemptions).to eq active_exemptions.sort_by(&:code)
+      end
+
+      it "does not return inactive registrations" do
+        expect(presenter.sorted_active_registration_exemptions).not_to include(inactive_exemptions)
+      end
+    end
+
+    describe "#sorted_deregistered_registration_exemptions" do
+      let(:registration) { build(:registration, :with_expired_and_active_exemptions) }
+      let(:exemptions) { registration.exemptions }
+      let(:active_exemptions) { registration.active_exemptions }
+      let(:inactive_exemptions) { exemptions - active_exemptions }
+
+      it "returns all inactive exemptions" do
+        expect(presenter.sorted_active_registration_exemptions).to eq inactive_exemptions.sort_by(&:code)
+      end
+
+      it "does not return active registrations" do
+        expect(presenter.sorted_active_registration_exemptions).not_to include(active_exemptions)
+      end
+    end
   end
 end

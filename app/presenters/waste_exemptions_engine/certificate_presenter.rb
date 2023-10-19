@@ -3,6 +3,8 @@
 module WasteExemptionsEngine
   class CertificatePresenter < BasePresenter
 
+    include WasteExemptionsEngine::CanIterateExemptions
+
     def partners_names
       people.map do |person|
         format_name(person.first_name, person.last_name)

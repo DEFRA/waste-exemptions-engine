@@ -37,8 +37,10 @@ en:
             reference_number: Reference Number
             date_registered: Date registered
           exemptions:
-            heading: Exemptions
+            active_heading: Waste exemptions
             expires_on: Expires on %{expire_date}
+            inactive_heading: De-registered exemptions
+            ceased_on: Ceased on %{cease_date}
           contact_details:
             heading: Your contact details
             name: Your name
