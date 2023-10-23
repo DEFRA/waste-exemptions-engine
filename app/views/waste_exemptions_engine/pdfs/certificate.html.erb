@@ -103,7 +103,7 @@
             <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
             <div class="table-wrapper">
               <table class="govuk-table">
-                <caption><%=t ".registration_details.exemptions.active_heading" %></caption>
+                <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.active_heading" %></caption>
                 <tbody class="govuk-table__body">
                   <% @presenter.sorted_active_registration_exemptions.each do |registration_exemption| %>
                     <tr class="govuk-table__row">
@@ -118,23 +118,25 @@
               </table>
             </div>
 
-            <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
-            <div class="table-wrapper">
-              <table class="govuk-table">
-                <caption><%=t ".registration_details.exemptions.inactive_heading" %></caption>
-                <tbody class="govuk-table__body">
-                  <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
-                    <tr class="govuk-table__row">
-                      <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
-                      <td class="govuk-table__cell">
-                        <%=t(".registration_details.exemptions.ceased_on",
-                             cease_date: registration_exemption.deregistered_at.to_formatted_s(:day_month_year)) %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
+            <% if @presenter.sorted_deregistered_registration_exemptions.any? %>
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.inactive_heading" %></caption>
+                  <tbody class="govuk-table__body">
+                    <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
+                        <td class="govuk-table__cell">
+                          <%=t(".registration_details.exemptions.ceased_on",
+                               cease_date: registration_exemption.deregistered_at.to_formatted_s(:day_month_year)) %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
 
             <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.contact_details.heading" %></h2>
             <div class="table-wrapper">
