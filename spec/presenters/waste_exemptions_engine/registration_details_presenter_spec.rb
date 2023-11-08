@@ -211,7 +211,7 @@ module WasteExemptionsEngine
 
     describe "#exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
-      let(:expected_expiry_date) { 3.years.from_now.strftime("%d %B %Y") }
+      let(:expected_expiry_date) { 3.years.from_now.strftime("%-d %B %Y") }
 
       it "returns an array with the correct exemptions" do
         expected_array = []
