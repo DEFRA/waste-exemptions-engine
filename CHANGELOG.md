@@ -6,6 +6,9 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-2789\] Optimize cleanup task by adding index to created\_at in transient\_registrations [\#885](https://github.com/DEFRA/waste-exemptions-engine/pull/885) ([jjromeo](https://github.com/jjromeo))
+- Fix/ruby 2728 exemption status on cert [\#878](https://github.com/DEFRA/waste-exemptions-engine/pull/878) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Fix/ruby 2728 exemption status on cert [\#877](https://github.com/DEFRA/waste-exemptions-engine/pull/877) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - \[RUBY-2696\] Adding guidance section [\#866](https://github.com/DEFRA/waste-exemptions-engine/pull/866) ([brujeo](https://github.com/brujeo))
 - Update content on choose exemptions page [\#865](https://github.com/DEFRA/waste-exemptions-engine/pull/865) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Feature/edit registration [\#840](https://github.com/DEFRA/waste-exemptions-engine/pull/840) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -177,6 +180,8 @@
 
 **Fixed bugs:**
 
+- Revert "Add unhandled exception logging \(\#873\)" [\#874](https://github.com/DEFRA/waste-exemptions-engine/pull/874) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Pin activerecord version [\#871](https://github.com/DEFRA/waste-exemptions-engine/pull/871) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Return HTTP 404 instead of 422 for an expired edit\_token [\#864](https://github.com/DEFRA/waste-exemptions-engine/pull/864) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Do not remove exemptions when deregistering [\#863](https://github.com/DEFRA/waste-exemptions-engine/pull/863) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Fix/self serve edit issues [\#862](https://github.com/DEFRA/waste-exemptions-engine/pull/862) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -303,6 +308,12 @@
 
 **Merged pull requests:**
 
+- Chore/rubocop cleanup [\#876](https://github.com/DEFRA/waste-exemptions-engine/pull/876) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Bump bullet from 7.0.7 to 7.1.2 [\#875](https://github.com/DEFRA/waste-exemptions-engine/pull/875) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add unhandled exception logging [\#873](https://github.com/DEFRA/waste-exemptions-engine/pull/873) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Bump activerecord from 7.0.7.2 to 7.0.8 [\#872](https://github.com/DEFRA/waste-exemptions-engine/pull/872) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump parallel\_tests from 4.2.2 to 4.3.0 [\#870](https://github.com/DEFRA/waste-exemptions-engine/pull/870) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#868](https://github.com/DEFRA/waste-exemptions-engine/pull/868) ([brujeo](https://github.com/brujeo))
 - Bump rubocop-rspec from 2.24.0 to 2.24.1 [\#860](https://github.com/DEFRA/waste-exemptions-engine/pull/860) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump net-smtp from 0.3.3 to 0.4.0 [\#858](https://github.com/DEFRA/waste-exemptions-engine/pull/858) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump sprockets from 4.2.0 to 4.2.1 [\#853](https://github.com/DEFRA/waste-exemptions-engine/pull/853) ([dependabot[bot]](https://github.com/apps/dependabot))
