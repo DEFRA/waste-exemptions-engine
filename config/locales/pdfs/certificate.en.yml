@@ -12,7 +12,7 @@ en:
         heading: Waste exemption registration %{registration_number}
         confirmation:
           heading: Waste exemption registration %{registration_number}
-          paragraph1: We confirm that the details you have entered, as shown below, are now on the exemptions register. Your registration should show on the public register within 5 days.
+          paragraph1: We confirm that the details you have entered, as shown below, are now on the exemptions register. Your registration should show on the public register within 24 hours.
           warning: This document is not a permit. Exemptions may have ceased or been revoked.
           paragraph2: "To check whether these exemptions are still valid, check the company’s registration %{company_registration_number} on the public register of waste exemptions:"
         business_responsibilities:
