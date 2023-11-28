@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency "defra_ruby_alert"
 
   # Used to identify the EA area for a registration
-  s.add_dependency "defra_ruby_area", "~> 2.0"
+  s.add_dependency "defra_ruby_area", "~> 2.1"
 
   # Used as part of testing. When enabled adds a /last-email route from which
   # details of the last email sent by the app can be accessed
