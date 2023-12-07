@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-2775\] content change [\#890](https://github.com/DEFRA/waste-exemptions-engine/pull/890) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2789\] Optimize cleanup task by adding index to created\_at in transient\_registrations [\#885](https://github.com/DEFRA/waste-exemptions-engine/pull/885) ([jjromeo](https://github.com/jjromeo))
 - Fix/ruby 2728 exemption status on cert [\#878](https://github.com/DEFRA/waste-exemptions-engine/pull/878) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Fix/ruby 2728 exemption status on cert [\#877](https://github.com/DEFRA/waste-exemptions-engine/pull/877) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -308,6 +309,21 @@
 
 **Merged pull requests:**
 
+- Updating defra\_ruby\_area dependency [\#897](https://github.com/DEFRA/waste-exemptions-engine/pull/897) ([brujeo](https://github.com/brujeo))
+- updating defra\_ruby\_area and other dependencies [\#895](https://github.com/DEFRA/waste-exemptions-engine/pull/895) ([brujeo](https://github.com/brujeo))
+- Bump defra\_ruby\_area from 2.0.3 to 2.1.0 [\#894](https://github.com/DEFRA/waste-exemptions-engine/pull/894) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump factory\_bot\_rails from 6.2.0 to 6.4.2 [\#893](https://github.com/DEFRA/waste-exemptions-engine/pull/893) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump spring from 4.1.2 to 4.1.3 [\#892](https://github.com/DEFRA/waste-exemptions-engine/pull/892) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rspec-rails from 6.0.3 to 6.1.0 [\#891](https://github.com/DEFRA/waste-exemptions-engine/pull/891) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump bullet from 7.1.3 to 7.1.4 [\#888](https://github.com/DEFRA/waste-exemptions-engine/pull/888) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump spring from 4.1.1 to 4.1.2 [\#887](https://github.com/DEFRA/waste-exemptions-engine/pull/887) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#886](https://github.com/DEFRA/waste-exemptions-engine/pull/886) ([jjromeo](https://github.com/jjromeo))
+- Bump phonelib from 0.8.4 to 0.8.5 [\#884](https://github.com/DEFRA/waste-exemptions-engine/pull/884) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump faker from 3.2.1 to 3.2.2 [\#883](https://github.com/DEFRA/waste-exemptions-engine/pull/883) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump bullet from 7.1.2 to 7.1.3 [\#882](https://github.com/DEFRA/waste-exemptions-engine/pull/882) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump defra\_ruby\_style from 0.3.0 to 0.4.0 [\#881](https://github.com/DEFRA/waste-exemptions-engine/pull/881) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rubocop-rspec from 2.24.1 to 2.25.0 [\#880](https://github.com/DEFRA/waste-exemptions-engine/pull/880) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump paper\_trail from 15.0.0 to 15.1.0 [\#879](https://github.com/DEFRA/waste-exemptions-engine/pull/879) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Chore/rubocop cleanup [\#876](https://github.com/DEFRA/waste-exemptions-engine/pull/876) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Bump bullet from 7.0.7 to 7.1.2 [\#875](https://github.com/DEFRA/waste-exemptions-engine/pull/875) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Add unhandled exception logging [\#873](https://github.com/DEFRA/waste-exemptions-engine/pull/873) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
