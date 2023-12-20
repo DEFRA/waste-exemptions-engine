@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       def form_path
         @transient_registration.save unless @transient_registration.token.present?
 
-        send("new_#{@transient_registration.workflow_state}_path".to_sym, token: @transient_registration.token)
+        send(:"new_#{@transient_registration.workflow_state}_path", token: @transient_registration.token)
       end
     end
   end

@@ -162,7 +162,7 @@ module WasteExemptionsEngine
           let(:edit_enabled) { "true" }
           let(:next_workflow_state) { "#{edit_action}_form" }
           let(:redirection_path) do
-            send("new_#{next_workflow_state}_path".to_sym, form.transient_registration.token)
+            send(:"new_#{next_workflow_state}_path", form.transient_registration.token)
           end
 
           status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
