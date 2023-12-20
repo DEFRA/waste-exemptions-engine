@@ -81,7 +81,7 @@ module WasteExemptionsEngine
     # Temporarily exclude from coverage inspection pending resolution of SonarCloud issue
     # :nocov:
     def expires_on
-      registration_exemptions.pluck(:expires_on).presence&.sort&.first
+      registration_exemptions.pluck(:expires_on).presence&.min
     end
     # :nocov:
 

@@ -2,12 +2,12 @@
 
 RSpec.shared_examples "a postcode transition" do |address_type:, factory:|
   describe "#workflow_state" do
-    current_state = "#{address_type}_postcode_form".to_sym
+    current_state = :"#{address_type}_postcode_form"
     subject { create(factory, workflow_state: current_state) }
 
     context "when subject.skip_to_manual_address? is false" do
-      next_state = "#{address_type}_address_lookup_form".to_sym
-      alt_state = "#{address_type}_address_manual_form".to_sym
+      next_state = :"#{address_type}_address_lookup_form"
+      alt_state = :"#{address_type}_address_manual_form"
 
       it "is set to not skip to manual address" do
         expect(subject.send(:skip_to_manual_address?)).to be(false)
@@ -31,7 +31,7 @@ RSpec.shared_examples "a postcode transition" do |address_type:, factory:|
     end
 
     context "when subject.skip_to_manual_address? is true" do
-      next_state = "#{address_type}_address_manual_form".to_sym
+      next_state = :"#{address_type}_address_manual_form"
 
       before { subject.address_finder_error = true }
 
