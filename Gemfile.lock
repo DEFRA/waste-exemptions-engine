@@ -158,13 +158,14 @@ GEM
       rubocop-factory_bot
       rubocop-rake
       rubocop-rspec
-    defra_ruby_validators (2.5.2)
+    defra_ruby_validators (2.6.0)
       activemodel
       i18n
       matrix
       os_map_ref
       phonelib
       rest-client (~> 2.0)
+      uk_postcode
       validates_email_format_of
     diff-lcs (1.5.0)
     docile (1.4.0)
