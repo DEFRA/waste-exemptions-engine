@@ -1,8 +1,8 @@
 <%
   content_for :back_link do
     link_to(
-        t(".back_link"),
-        defined?(back_path) ? back_path : go_back_forms_path(token),
+        local_assigns[:back_link_label].present? ? local_assigns[:back_link_label] : t(".back_link"),
+        local_assigns[:back_path].present? ? local_assigns[:back_path] : go_back_forms_path(token),
         class: "govuk-back-link"
       )
   end
