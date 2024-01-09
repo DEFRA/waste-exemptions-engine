@@ -6,12 +6,16 @@ module Test
   PostcodeValidatable = Struct.new(:postcode) do
     include ActiveModel::Validations
 
-    validates :postcode, "waste_exemptions_engine/postcode": true
+    validates :postcode, "defra_ruby/validators/postcode": true
+    validates :postcode, "waste_exemptions_engine/address_lookup": true
+
+    # address_lookup_validator calls this helper method from base_postcode_form:
+    def address_finder_errored!; end
   end
 end
 
 module WasteExemptionsEngine
-  RSpec.describe PostcodeValidator, type: :model do
+  RSpec.describe AddressLookupValidator, type: :model do
     valid_postcode = "BS1 5AH"
     invalid_postcode = "foo"
     postcode_without_addresses = "AA1 1AA"
@@ -33,6 +37,14 @@ module WasteExemptionsEngine
         end
 
         context "when the postcode is not correctly formatted" do
+          validatable = Test::PostcodeValidatable.new(invalid_postcode)
+          error_message = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
+
+          it_behaves_like "an invalid record", validatable, :postcode, error_message
+        end
+
+        context "when the postcode string has trailing O instead of 0 in the outcode" do
+          invalid_postcode = "SSO 9SL"
           validatable = Test::PostcodeValidatable.new(invalid_postcode)
           error_message = Helpers::Translator.error_message(validatable, :postcode, :wrong_format)
 
