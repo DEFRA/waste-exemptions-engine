@@ -6,5 +6,5 @@ en:
           attributes:
             postcode:
               blank: "Enter a postcode"
-              wrong_format: "Enter a valid UK postcode"
+              wrong_format: "Enter a valid postcode - there’s a mistake in that one"
               no_results: "We cannot find any addresses for that postcode. Check the postcode or enter the address manually."
