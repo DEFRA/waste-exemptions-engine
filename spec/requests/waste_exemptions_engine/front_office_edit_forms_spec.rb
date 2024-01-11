@@ -58,6 +58,7 @@ module WasteExemptionsEngine
             expect(response.body).to include contact_name_front_office_edit_forms_path(transient_registration_token)
             expect(response.body).to include contact_phone_front_office_edit_forms_path(transient_registration_token)
             expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
+            expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
           end
         end
       end

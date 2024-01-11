@@ -47,6 +47,24 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            <%= t(".row_labels.contact_address") %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list">
+              <% displayable_address(transient_registration.contact_address).each do |line| %>
+                <li><%= line %></li>
+              <% end %>
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to contact_postcode_front_office_edit_forms_path, "aria-label": t(".edit_links.visually_hidden.contact_address") do %>
+              <%= t(".edit_links.update_link_text") %>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             <%= t(".row_labels.contact_phone") %>
           </dt>
           <dd class="govuk-summary-list__value">

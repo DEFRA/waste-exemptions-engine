@@ -6,7 +6,8 @@ module WasteExemptionsEngine
     include CanCopyDataFromRegistration
 
     def modified?
-      return true if exemptions.pluck(:id).sort != registration.exemptions.pluck(:id).sort
+      return true if exemptions_modified?
+      return true if contact_address_modified?
 
       %i[
         contact_first_name
@@ -19,6 +20,15 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def exemptions_modified?
+      exemptions.pluck(:id).sort != registration.exemptions.pluck(:id).sort
+    end
+
+    def contact_address_modified?
+      contact_address&.postcode != registration.contact_address&.postcode \
+      || contact_address&.uprn != registration.contact_address&.uprn
+    end
 
     def default_workflow_state
       "front_office_edit_form"

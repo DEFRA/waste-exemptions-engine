@@ -121,6 +121,12 @@ module WasteExemptionsEngine
 
         it { expect(edit_registration.modified?).to be true }
       end
+
+      context "when contact address has been updated" do
+        before { edit_registration.contact_address.postcode = "BS1 5AH" }
+
+        it { expect(edit_registration.modified?).to be true }
+      end
     end
   end
 end

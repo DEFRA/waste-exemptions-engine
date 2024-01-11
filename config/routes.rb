@@ -378,6 +378,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "contact_email",
                     on: :collection
 
+                get "contact_postcode",
+                    to: "front_office_edit_forms#edit_contact_postcode",
+                    as: "contact_postcode",
+                    on: :collection
+
                 get "exemptions",
                     to: "front_office_edit_forms#edit_exemptions",
                     as: "edit_exemptions",

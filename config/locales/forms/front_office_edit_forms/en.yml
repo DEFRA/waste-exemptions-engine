@@ -9,6 +9,7 @@ en:
         row_labels:
           exemptions: Exemptions
           contact_name: Contact name
+          contact_address: Contact address
           contact_phone: Contact telephone number
           contact_email: Contact email address
         edit_links:
@@ -16,6 +17,7 @@ en:
           visually_hidden:
             exemptions: Update Waste exemptions
             contact_name: Update contact name
+            contact_address: Update contact address
             contact_phone: Update contact phone number
             contact_email: Update contact email address
         next_button: Continue

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength
 module WasteExemptionsEngine
   module CanUseFrontOfficeEditRegistrationWorkflow
     extend ActiveSupport::Concern
@@ -22,6 +23,9 @@ module WasteExemptionsEngine
         state :contact_name_form
         state :contact_phone_form
         state :contact_email_form
+        state :contact_postcode_form
+        state :contact_address_lookup_form
+        state :contact_address_manual_form
 
         # End pages
         state :front_office_edit_declaration_form
@@ -50,8 +54,25 @@ module WasteExemptionsEngine
                       to: :contact_email_form
         end
 
+        event :edit_contact_postcode do
+          transitions from: :front_office_edit_form,
+                      to: :contact_postcode_form
+        end
+
         # Next transitions
         event :next do
+
+          # Addresses
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_lookup_form
+
+          transitions from: :contact_address_lookup_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
 
           # exemptions
 
@@ -107,8 +128,20 @@ module WasteExemptionsEngine
             contact_phone_form
             contact_email_form
             confirm_edit_exemptions_form
+            contact_postcode_form
+            contact_address_lookup_form
+            contact_address_manual_form
           ], to: :front_office_edit_form
         end
+
+        event :skip_to_manual_address do
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_manual_form
+
+          transitions from: :contact_address_lookup_form,
+                      to: :contact_address_manual_form
+        end
+
       end
 
       # helpers
@@ -133,5 +166,12 @@ module WasteExemptionsEngine
         exemption_edits_confirmed? && all_exemptions_deregistered?
       end
     end
+
+    private
+
+    def skip_to_manual_address?
+      address_finder_error
+    end
   end
 end
+# rubocop:enable Metrics/ModuleLength

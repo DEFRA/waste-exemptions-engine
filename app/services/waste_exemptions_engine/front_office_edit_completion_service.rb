@@ -8,6 +8,7 @@ module WasteExemptionsEngine
       ActiveRecord::Base.transaction do
         find_original_registration
         copy_attributes if non_exemption_changes?
+        copy_addresses if non_exemption_changes?
         update_exemptions if exemption_changes?
         send_confirmation_email if non_exemption_changes? && !exemption_changes?
         delete_edit_registration
@@ -23,6 +24,14 @@ module WasteExemptionsEngine
     def copy_attributes
       @registration.attributes = @edit_registration.registration_attributes
       @registration.save!
+    end
+
+    def copy_addresses
+      @registration.addresses = []
+      @edit_registration.transient_addresses.each do |transient_address|
+        new_address = Address.new(transient_address.address_attributes)
+        @registration.addresses << new_address
+      end
     end
 
     def update_exemptions
