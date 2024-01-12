@@ -26,8 +26,14 @@ module WasteExemptionsEngine
     end
 
     def contact_address_modified?
-      contact_address&.postcode != registration.contact_address&.postcode \
-      || contact_address&.uprn != registration.contact_address&.uprn
+      attributes = %w[uprn
+                      organisation
+                      premises
+                      street_address
+                      locality
+                      city
+                      postcode]
+      contact_address.attributes.slice(*attributes) != registration.contact_address.attributes.slice(*attributes)
     end
 
     def default_workflow_state
