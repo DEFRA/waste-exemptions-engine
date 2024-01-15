@@ -13,6 +13,7 @@ module WasteExemptionsEngine
         contact_name_form
         contact_phone_form
         contact_email_form
+        contact_postcode_form
       ]
 
       transitionable_states = editable_form_states + %i[front_office_edit_declaration_form]

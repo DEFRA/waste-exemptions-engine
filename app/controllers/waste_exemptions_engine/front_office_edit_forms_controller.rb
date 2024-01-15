@@ -28,6 +28,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_contact_email")
     end
 
+    def edit_contact_postcode
+      transition_to_edit("edit_contact_postcode")
+    end
+
     def validate_edit_token
       return render(:invalid_edit_link, status: 404) unless registration.present?
       # return 404 for an expired token as WAF is configured to not allow 422 responses:

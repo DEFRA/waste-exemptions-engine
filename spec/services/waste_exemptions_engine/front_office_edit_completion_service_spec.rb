@@ -13,6 +13,12 @@ module WasteExemptionsEngine
         contact_email
       ].freeze
 
+    contact_address_attributes =
+      %w[
+        uprn
+        postcode
+      ].freeze
+
     describe "run" do
 
       subject(:run_service) { described_class.run(edit_registration: edit_registration) }
@@ -20,6 +26,7 @@ module WasteExemptionsEngine
       let(:edit_registration) { create(:front_office_edit_registration) }
       let(:registration) { edit_registration.registration }
       let(:contact_changes?) { false }
+      let(:contact_address_changes?) { false }
       let(:exemption_changes?) { false }
 
       before do
@@ -31,6 +38,10 @@ module WasteExemptionsEngine
           contact_last_name: "#{edit_registration.contact_last_name}_x",
           contact_phone: "0987654321",
           contact_email: "bar@foo.nonsense"
+        )
+        contact_address_changes? && edit_registration.contact_address.update(
+          uprn: "340116",
+          postcode: "BS1 5AH"
         )
         exemption_changes? && edit_registration.exemption_ids = edit_registration.exemptions[0..-2].pluck(:id)
 
@@ -102,6 +113,10 @@ module WasteExemptionsEngine
         it { expect { run_service }.to change { registration.reload.send(modified_attribute) } }
       end
 
+      RSpec.shared_examples "updates contact address attribute" do
+        it { expect { run_service }.to change { registration.reload.addresses.first.send(modified_attribute) } }
+      end
+
       RSpec.shared_examples "does not update contact attribute" do
         it { expect { run_service }.not_to change { registration.reload.send(modified_attribute) } }
       end
@@ -109,6 +124,15 @@ module WasteExemptionsEngine
       RSpec.shared_examples "updates contact details" do
         editable_attributes.each do |attribute|
           it_behaves_like "updates contact attribute" do
+            let(:registration) { edit_registration.registration }
+            let(:modified_attribute) { attribute }
+          end
+        end
+      end
+
+      RSpec.shared_examples "updates contact address details" do
+        contact_address_attributes.each do |attribute|
+          it_behaves_like "updates contact address attribute" do
             let(:registration) { edit_registration.registration }
             let(:modified_attribute) { attribute }
           end
@@ -163,8 +187,10 @@ module WasteExemptionsEngine
 
       context "with contact detail changes but no deregistrations" do
         let(:contact_changes?) { true }
+        let(:contact_address_changes?) { true }
 
         it_behaves_like "updates contact details"
+        it_behaves_like "updates contact address details"
         it_behaves_like "does not call the exemption deregistration service"
         it_behaves_like "sends a confirmation email outside of the exemption_deregistration_service"
         it_behaves_like "creates a new paper_trail version"
@@ -174,10 +200,12 @@ module WasteExemptionsEngine
       context "with deregistrations and contact detail changes" do
         let(:exemption_changes?) { true }
         let(:contact_changes?) { true }
+        let(:contact_address_changes?) { true }
 
         it_behaves_like "calls the exemption deregistration service"
         it_behaves_like "sends a confirmation email via the exemption_deregistration_service"
         it_behaves_like "updates contact details"
+        it_behaves_like "updates contact address details"
         it_behaves_like "deletes the transient registration"
         it { expect { run_service }.to change { registration.versions.count }.by(2) }
       end
