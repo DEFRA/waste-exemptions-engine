@@ -70,7 +70,9 @@ module WasteExemptionsEngine
     end
 
     def registration_attributes
-      attributes.except(*TRANSIENT_ATTRIBUTES)
+      SafeCopyRegistrationAttributesService.run(source: self,
+                                                target_class: WasteExemptionsEngine::Registration,
+                                                exclude: TRANSIENT_ATTRIBUTES)
     end
 
     def next_state!
