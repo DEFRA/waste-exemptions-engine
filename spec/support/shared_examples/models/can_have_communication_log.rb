@@ -33,6 +33,14 @@ RSpec.shared_examples "CanHaveCommunicationLog" do
           expect(log_instance.sent_to).to eq service.communications_log_params[:sent_to]
         end
       end
+
+      it "message type and label match" do
+        run_service
+
+        log_instance = WasteExemptionsEngine::CommunicationLog.first
+
+        expect(log_instance.template_label).to end_with(log_instance.message_type)
+      end
     end
   end
 end
