@@ -23,7 +23,7 @@ module WasteExemptionsEngine
     # For CanHaveCommunicationLog
     def communications_log_params
       {
-        message_type: "email",
+        message_type: "letter",
         template_id: template,
         template_label: "Registration completion letter",
         sent_to: recipient
