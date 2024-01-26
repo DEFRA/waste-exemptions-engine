@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       {
         message_type: "email",
         template_id: template_id,
-        template_label: "Update your contact details and deregister your waste exemptions",
+        template_label: "Registration edit link email",
         sent_to: @recipient
       }
     end
