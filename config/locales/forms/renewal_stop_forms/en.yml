@@ -1,0 +1,15 @@
+en:
+  waste_exemptions_engine:
+    renewal_stop_forms:
+      new:
+        title: We will send you a reminder when it is time for you to renew
+        heading: We will send you a reminder when it is time for you to renew
+        paragraph1: You will receive a reminder 28 days before your registration expires.
+
+
+        paragraph2: If you need to find your renewal date you can search on the
+        paragraph2_end: (opens in new window).
+        paragraph3: If you need to speak to an advisor about your renewal contact the helpline on 03708 506 506.
+        wex_register_link_text: Register of Waste Exemptions
+        wex_register_link: https://environment.data.gov.uk/public-register/view/search-waste-exemptions
+

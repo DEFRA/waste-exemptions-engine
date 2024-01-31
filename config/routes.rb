@@ -252,6 +252,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "we-will-send-a-link-to-that-email-address",
               path_names: { new: "" }
 
+    resources :renewal_stop_forms,
+              only: %i[new],
+              path: "renewal-stop",
+              path_names: { new: "" }
+
     # Editing: Back office
     resources :back_office_edit_forms,
               only: %i[new create],

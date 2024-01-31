@@ -13,6 +13,9 @@ module WasteExemptionsEngine
         # Start
         state :start_form, initial: true
 
+        # Renewal stop
+        state :renewal_stop_form
+
         # Capture registration data
         state :capture_reference_form
         state :capture_email_form
@@ -76,6 +79,10 @@ module WasteExemptionsEngine
           transitions from: :start_form,
                       to: :capture_reference_form,
                       if: :should_edit?
+
+          transitions from: :start_form,
+                      to: :renewal_stop_form,
+                      if: :renewal_start_option?
 
           transitions from: :start_form,
                       to: :location_form
@@ -359,6 +366,10 @@ module WasteExemptionsEngine
 
     def companies_house_details_incorrect?
       temp_use_registered_company_details == false
+    end
+
+    def renewal_start_option?
+      start_option == "reregister"
     end
   end
 end

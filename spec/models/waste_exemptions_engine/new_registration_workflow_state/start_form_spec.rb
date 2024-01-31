@@ -9,6 +9,19 @@ module WasteExemptionsEngine
       subject(:new_registration) { create(:new_registration, workflow_state: current_state) }
 
       context "when a NewRegistration's state is #{current_state}" do
+        context "when the start option is 'reregister'" do
+          before { new_registration.start_option = "reregister" }
+
+          it "can only transition to :renewal_stop" do
+            permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
+            expect(permitted_states).to eq([:renewal_stop])
+          end
+
+          it "changes to :edit_form after the 'next' event" do
+            expect(new_registration).to transition_from(current_state).to(:renewal_stop).on_event(:next)
+          end
+        end
+
         context "when new_registration.should_edit? is true" do
           before { new_registration.start_option = "edit" }
 
