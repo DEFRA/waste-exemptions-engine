@@ -5,6 +5,5 @@ module WasteExemptionsEngine
     def new
       super(RenewalStopForm, "renewal_stop_form")
     end
-
   end
 end
