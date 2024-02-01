@@ -17,7 +17,7 @@ module WasteExemptionsEngine
             expect(permitted_states).to eq([:renewal_stop_form])
           end
 
-          it "changes to :edit_form after the 'next' event" do
+          it "changes to :renewal_stop_form after the 'next' event" do
             expect(new_registration).to transition_from(current_state).to(:renewal_stop_form).on_event(:next)
           end
         end
