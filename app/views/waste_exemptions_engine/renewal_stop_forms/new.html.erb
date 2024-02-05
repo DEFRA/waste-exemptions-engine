@@ -1,10 +1,10 @@
 <%= render("waste_exemptions_engine/shared/back", token: @transient_registration.token) %>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l"><%=t('.heading')%></h2>
+    <h1 class="govuk-heading-l"><%=t('.heading')%></h1>
 
     <p class="govuk-body"><%=t('.paragraph1')%></p>
-    <p class="govuk-body"><%=t('.paragraph2')%> <%= link_to t('.wex_register_link_text'), t('.wex_register_link') %> <%= t('.paragraph2_end') %></p>
+    <p class="govuk-body"><%=t('.paragraph2')%> <%= link_to t('.wex_register_link_text'), t('.wex_register_link'), target: "_blank" %> <%= t('.paragraph2_end') %></p>
     <p class="govuk-body"><%=t('.paragraph3')%></p>
   </div>
 </div>
