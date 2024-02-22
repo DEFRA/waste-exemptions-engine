@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_131130) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_22_145717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -40,6 +40,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_131130) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "area"
     t.index ["registration_id"], name: "index_addresses_on_registration_id"
+  end
+
+  create_table "analytics_page_views", force: :cascade do |t|
+    t.string "page"
+    t.datetime "time"
+    t.string "route"
+    t.bigint "user_journey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_journey_id"], name: "index_analytics_page_views_on_user_journey_id"
+  end
+
+  create_table "analytics_user_journeys", force: :cascade do |t|
+    t.string "journey_type"
+    t.datetime "completed_at"
+    t.string "token"
+    t.string "user"
+    t.string "started_route"
+    t.string "completed_route"
+    t.text "registration_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "communication_logs", force: :cascade do |t|
@@ -287,6 +309,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_131130) do
   end
 
   add_foreign_key "addresses", "registrations"
+  add_foreign_key "analytics_page_views", "analytics_user_journeys", column: "user_journey_id"
   add_foreign_key "people", "registrations"
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"
