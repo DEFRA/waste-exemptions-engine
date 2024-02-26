@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWasteExemptionsEngineAnalyticsUserJourneys < ActiveRecord::Migration[7.0]
   def change
     create_table :analytics_user_journeys do |t|
