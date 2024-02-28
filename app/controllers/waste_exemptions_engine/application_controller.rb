@@ -32,9 +32,15 @@ module WasteExemptionsEngine
     def record_user_journey
       return unless @transient_registration.present? && @transient_registration.token.present?
 
+      begin
+        user = current_user
+      rescue NotImplementedError
+        # do nothing
+      end
+
       WasteExemptionsEngine::Analytics::UserJourneyService.run(
         transient_registration: @transient_registration,
-        current_user: current_user
+        current_user: user
       )
     end
 
