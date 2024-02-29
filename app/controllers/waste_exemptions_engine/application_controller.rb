@@ -7,6 +7,9 @@ module WasteExemptionsEngine
     UNSUCCESSFUL_REDIRECTION_CODE = 302
     SUCCESSFUL_REDIRECTION_CODE = 303
 
+    # Collect analytics data
+    after_action :record_user_journey
+
     # Prevent CSRF attacks by raising an exception.
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
@@ -24,6 +27,27 @@ module WasteExemptionsEngine
       else
         "public user"
       end
+    end
+
+    def record_user_journey
+      return unless @transient_registration.present? && @transient_registration.token.present?
+
+      begin
+        user = current_user
+      rescue NotImplementedError
+        # do nothing
+      end
+
+      WasteExemptionsEngine::Analytics::UserJourneyService.run(
+        transient_registration: @transient_registration,
+        current_user: user
+      )
+    end
+
+    def current_user
+      return unless defined?(super)
+
+      super
     end
   end
 end

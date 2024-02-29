@@ -25,7 +25,9 @@ module WasteExemptionsEngine
       end
 
       context "when the host application has a current_user" do
-        let(:current_user) { double }
+        # rubocop:disable RSpec/VerifiedDoubleReference
+        let(:current_user) { instance_double("User", email: "user@example.com") }
+        # rubocop:enable RSpec/VerifiedDoubleReference
         let(:controller_instance) { BackOfficeEditCompleteFormsController.new }
 
         before do
