@@ -27,18 +27,18 @@ module WasteExemptionsEngine
         deregistration_complete_full_form
       ].freeze
 
-      scope :registrations, -> { where(journey_type: 'NewRegistration') }
-      scope :renewals, -> { where(journey_type: 'RenewingRegistration') }
+      scope :registrations, -> { where(journey_type: "NewRegistration") }
+      scope :renewals, -> { where(journey_type: "RenewingRegistration") }
       scope :only_types, ->(journey_types) { where(journey_type: journey_types) }
-      scope :started_digital, -> { where(started_route: 'DIGITAL') }
-      scope :started_assisted_digital, -> { where(started_route: 'ASSISTED_DIGITAL') }
+      scope :started_digital, -> { where(started_route: "DIGITAL") }
+      scope :started_assisted_digital, -> { where(started_route: "ASSISTED_DIGITAL") }
       scope :incomplete, -> { where(completed_at: nil) }
       scope :completed, -> { where.not(completed_at: nil) }
       scope :completed_digital, -> { where(completed_route: "DIGITAL") }
       scope :completed_assisted_digital, -> { where(completed_route: "ASSISTED_DIGITAL") }
 
-
-      scope :passed_start_cutoff_page, -> {
+      # rubocop:disable Metrics/BlockLength
+      scope :passed_start_cutoff_page, lambda {
         # Subquery to check for the existence of the START_CUTOFF_PAGE in any PageView for the UserJourney
         start_cutoff_page_subquery = <<-SQL
           EXISTS (
@@ -70,12 +70,17 @@ module WasteExemptionsEngine
 
         where(start_cutoff_page_subquery).where(last_page_not_cutoff_subquery)
       }
+      # rubocop:enable Metrics/BlockLength
 
-      scope :date_range, ->(start_date, end_date) {
-        where("created_at >= :start AND created_at <= :end", start: start_date.beginning_of_day, end: end_date.end_of_day)
-        .or(
-          where("completed_at IS NOT NULL AND completed_at >= :start AND completed_at <= :end AND created_at >= :start", start: start_date.beginning_of_day, end: end_date.end_of_day)
-        )
+      scope :date_range, lambda { |start_date, end_date|
+        where("created_at >= :start AND created_at <= :end",
+              start: start_date.beginning_of_day, end: end_date.end_of_day)
+          .or(
+            where(
+              "completed_at IS NOT NULL AND completed_at >= :start AND completed_at <= :end AND created_at >= :start",
+              start: start_date.beginning_of_day, end: end_date.end_of_day
+            )
+          )
       }
 
       def self.minimum_created_at
@@ -95,7 +100,7 @@ module WasteExemptionsEngine
       end
 
       def self.average_duration(user_journey_scope)
-        durations = user_journey_scope.pluck(Arel.sql('EXTRACT(EPOCH FROM (updated_at - created_at))'))
+        durations = user_journey_scope.pluck(Arel.sql("EXTRACT(EPOCH FROM (updated_at - created_at))"))
         return 0 if durations.empty?
 
         durations.sum / durations.size

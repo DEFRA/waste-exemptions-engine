@@ -65,34 +65,70 @@ module WasteExemptionsEngine
 
         let(:start_date) { 10.days.ago.midnight }
         let(:end_date) { Date.today.midnight }
-        let(:journey_started_before_range) { Timecop.freeze(start_date - 2.days) { create(:user_journey, completed_at: start_date - 1.day) } }
-        let(:journey_started_at_range_start) { Timecop.freeze(start_date) { create(:user_journey, completed_at: start_date + 1.day) } }
-        let(:journey_started_before_range_end) { Timecop.freeze(end_date - 1.day) { create(:user_journey, completed_at: end_date) } }
-        let(:journey_started_after_range) { Timecop.freeze(end_date + 1.day) { create(:user_journey) } }
-        let(:journey_completed_after_range) { Timecop.freeze(start_date - 2.days) { create(:user_journey, completed_at: end_date + 1.day) } }
-        let(:journey_started_before_and_ended_within_range) { Timecop.freeze(start_date - 1.day) { create(:user_journey, completed_at: end_date) } }
-        let(:ongoing_journey_started_in_range) { Timecop.freeze(start_date + 1.day) { create(:user_journey, completed_at: nil) } }
-        let(:ongoing_journey_started_before_range) { Timecop.freeze(start_date - 3.days) { create(:user_journey, completed_at: nil) } }
 
-        before do
-          journey_started_before_range
-          journey_started_at_range_start
-          journey_started_before_range_end
-          journey_started_after_range
-          journey_completed_after_range
-          journey_started_before_and_ended_within_range
-          ongoing_journey_started_in_range
-          ongoing_journey_started_before_range
+        context "with journeys started before the range" do
+          let!(:journey_started_before_range) { Timecop.freeze(start_date - 2.days) { create(:user_journey, completed_at: start_date - 1.day) } }
+
+          it "does not include journeys started before the range" do
+            expect(date_range_query_results).not_to include(journey_started_before_range)
+          end
         end
 
-        it { expect(date_range_query_results).not_to include(journey_started_before_range) }
-        it { expect(date_range_query_results).to include(journey_started_at_range_start) }
-        it { expect(date_range_query_results).to include(journey_started_before_range_end) }
-        it { expect(date_range_query_results).not_to include(journey_started_after_range) }
-        it { expect(date_range_query_results).not_to include(journey_completed_after_range) }
-        it { expect(date_range_query_results).not_to include(journey_started_before_and_ended_within_range) }
-        it { expect(date_range_query_results).to include(ongoing_journey_started_in_range) }
-        it { expect(date_range_query_results).not_to include(ongoing_journey_started_before_range) }
+        context "with journeys starting at the range start" do
+          let!(:journey_started_at_range_start) { Timecop.freeze(start_date) { create(:user_journey, completed_at: start_date + 1.day) } }
+
+          it "includes journeys started at the range start" do
+            expect(date_range_query_results).to include(journey_started_at_range_start)
+          end
+        end
+
+        context "with journeys starting before the range end" do
+          let!(:journey_started_before_range_end) { Timecop.freeze(end_date - 1.day) { create(:user_journey, completed_at: end_date) } }
+
+          it "includes journeys started before the range end" do
+            expect(date_range_query_results).to include(journey_started_before_range_end)
+          end
+        end
+
+        context "with journeys starting after the range" do
+          let!(:journey_started_after_range) { Timecop.freeze(end_date + 1.day) { create(:user_journey) } }
+
+          it "does not include journeys started after the range" do
+            expect(date_range_query_results).not_to include(journey_started_after_range)
+          end
+        end
+
+        context "with journeys completed after the range" do
+          let!(:journey_completed_after_range) { Timecop.freeze(start_date - 2.days) { create(:user_journey, completed_at: end_date + 1.day) } }
+
+          it "does not include journeys completed after the range" do
+            expect(date_range_query_results).not_to include(journey_completed_after_range)
+          end
+        end
+
+        context "with ongoing journeys started in the range" do
+          let!(:ongoing_journey_started_in_range) { Timecop.freeze(start_date + 1.day) { create(:user_journey, completed_at: nil) } }
+
+          it "includes ongoing journeys started in the range" do
+            expect(date_range_query_results).to include(ongoing_journey_started_in_range)
+          end
+        end
+
+        context "with ongoing journeys started before the range" do
+          let!(:ongoing_journey_started_before_range) { Timecop.freeze(start_date - 3.days) { create(:user_journey, completed_at: nil) } }
+
+          it "does not include ongoing journeys started before the range" do
+            expect(date_range_query_results).not_to include(ongoing_journey_started_before_range)
+          end
+        end
+
+        context "with journeys started before and ended within the range" do
+          let!(:journey_started_before_and_ended_within_range) { Timecop.freeze(start_date - 1.day) { create(:user_journey, completed_at: end_date) } }
+
+          it "does not include journeys started before and ended within the range" do
+            expect(date_range_query_results).not_to include(journey_started_before_and_ended_within_range)
+          end
+        end
       end
 
       describe "#complete_journey" do
@@ -100,61 +136,70 @@ module WasteExemptionsEngine
         let(:journey) { Timecop.freeze(1.hour.ago) { create(:user_journey, token: transient_registration.token) } }
         let(:completion_time) { Time.zone.now }
 
-        before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
-
-        it "updates user journey attributes on completion" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
           Timecop.freeze(completion_time) { journey.complete_journey(transient_registration) }
+        end
 
+        it "updates the completed_at attribute on completion" do
           expect(journey.completed_at).to be_within(1.second).of(completion_time)
+        end
+
+        it "sets the completed_route to 'DIGITAL' on completion" do
           expect(journey.completed_route).to eq "DIGITAL"
-          expect(journey.registration_data).to include(
-            transient_registration.attributes.slice(
-            "business_type",
-            "type"
-            )
-          )
+        end
+
+        it "updates registration data with attributes from the transient registration on completion" do
+          expected_attributes = transient_registration.attributes.slice("business_type", "type")
+          expect(journey.registration_data).to include(expected_attributes)
         end
       end
 
       describe ".average_session_duration" do
-        let(:transient_registration_a) { create(:new_registration) }
-        let(:transient_registration_b) { create(:new_registration) }
-        let(:transient_registration_c) { create(:renewing_registration) }
-
-        let(:journey_a) { Timecop.freeze(6.hours.ago) { create(:user_journey, token: transient_registration_a.token) } }
-        let(:journey_b) { Timecop.freeze(4.hours.ago) { create(:user_journey, token: transient_registration_b.token) } }
-        let(:journey_c) { Timecop.freeze(1.hour.ago) { create(:user_journey, token: transient_registration_c.token) } }
-
         let(:completion_time) { Time.zone.now }
 
-        let(:journey_a_duration) { journey_a.completed_at.to_time - journey_a.created_at.to_time }
-        let(:journey_b_duration) { journey_b.completed_at.to_time - journey_b.created_at.to_time }
-        let(:journey_c_duration) { journey_c.updated_at.to_time - journey_c.created_at.to_time }
-
         before do
+          @transient_registration_a = create(:new_registration)
+          @transient_registration_b = create(:new_registration)
+          @transient_registration_c = create(:renewing_registration)
+
+          @journey_a = Timecop.freeze(6.hours.ago) { create(:user_journey, token: @transient_registration_a.token) }
+          @journey_b = Timecop.freeze(4.hours.ago) { create(:user_journey, token: @transient_registration_b.token) }
+          @journey_c = Timecop.freeze(1.hour.ago) { create(:user_journey, token: @transient_registration_c.token) }
+
           Timecop.freeze(completion_time) do
-            journey_a.complete_journey(transient_registration_a)
-            journey_b.complete_journey(transient_registration_b)
+            @journey_a.complete_journey(@transient_registration_a)
+            @journey_b.complete_journey(@transient_registration_b)
             # simulate a non-completion update:
-            journey_c.touch
+            @journey_c.touch
           end
         end
 
         it "returns the average duration across all user journeys" do
-          total_duration = journey_a_duration + journey_b_duration + journey_c_duration
+          total_duration = [
+            @journey_a.completed_at.to_time - @journey_a.created_at.to_time,
+            @journey_b.completed_at.to_time - @journey_b.created_at.to_time,
+            @journey_c.updated_at.to_time - @journey_c.created_at.to_time
+          ].sum
 
           expect(described_class.average_duration(described_class.all)).to eq total_duration / 3
         end
 
         context "with completed registrations only" do
           it "returns the average duration across completed journeys only" do
-            expect(described_class.average_duration(described_class.completed)).to eq (journey_a_duration + journey_b_duration) / 2
+            total_duration = [
+              @journey_a.completed_at.to_time - @journey_a.created_at.to_time,
+              @journey_b.completed_at.to_time - @journey_b.created_at.to_time
+            ].sum
+
+            expect(described_class.average_duration(described_class.completed)).to eq total_duration / 2
           end
         end
 
         context "with incomplete registrations only" do
           it "returns the average duration across incomplete journeys only" do
-            expect(described_class.average_duration(described_class.incomplete)).to eq journey_c_duration
+            duration = @journey_c.updated_at.to_time - @journey_c.created_at.to_time
+            expect(described_class.average_duration(described_class.incomplete)).to eq duration
           end
         end
       end
@@ -172,4 +217,3 @@ module WasteExemptionsEngine
     end
   end
 end
-
