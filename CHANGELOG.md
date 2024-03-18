@@ -6,8 +6,13 @@
 
 **Implemented enhancements:**
 
+- RUBY 2885 wex implement analytics metrics [\#943](https://github.com/DEFRA/waste-exemptions-engine/pull/943) ([jjromeo](https://github.com/jjromeo))
+- RUBY 2974 wex collect user journey data [\#938](https://github.com/DEFRA/waste-exemptions-engine/pull/938) ([jjromeo](https://github.com/jjromeo))
+- Ruby 2820 wex renewal stop page [\#922](https://github.com/DEFRA/waste-exemptions-engine/pull/922) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-2820\] Add renewal stop page when renewal is selected [\#921](https://github.com/DEFRA/waste-exemptions-engine/pull/921) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-2785\] ability to edit contact address [\#914](https://github.com/DEFRA/waste-exemptions-engine/pull/914) ([brujeo](https://github.com/brujeo))
 - making shared back link template label configurable [\#907](https://github.com/DEFRA/waste-exemptions-engine/pull/907) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 2839 wex content certificate content change for addresses [\#902](https://github.com/DEFRA/waste-exemptions-engine/pull/902) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2775\] content change [\#890](https://github.com/DEFRA/waste-exemptions-engine/pull/890) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2789\] Optimize cleanup task by adding index to created\_at in transient\_registrations [\#885](https://github.com/DEFRA/waste-exemptions-engine/pull/885) ([jjromeo](https://github.com/jjromeo))
 - Fix/ruby 2728 exemption status on cert [\#878](https://github.com/DEFRA/waste-exemptions-engine/pull/878) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -312,8 +317,9 @@
 
 **Merged pull requests:**
 
-- Ruby 2820 wex renewal stop page [\#922](https://github.com/DEFRA/waste-exemptions-engine/pull/922) ([jjromeo](https://github.com/jjromeo))
-- \[RUBY-2820\] Add renewal stop page when renewal is selected [\#921](https://github.com/DEFRA/waste-exemptions-engine/pull/921) ([jjromeo](https://github.com/jjromeo))
+- Set initial assistance\_mode using attribute assignment in NewRegistration [\#950](https://github.com/DEFRA/waste-exemptions-engine/pull/950) ([jjromeo](https://github.com/jjromeo))
+- Bump rack from 2.2.8 to 2.2.8.1 [\#941](https://github.com/DEFRA/waste-exemptions-engine/pull/941) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#926](https://github.com/DEFRA/waste-exemptions-engine/pull/926) ([jjromeo](https://github.com/jjromeo))
 - Bump rspec-rails from 6.1.0 to 6.1.1 [\#919](https://github.com/DEFRA/waste-exemptions-engine/pull/919) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Add SafeCopyRegistrationAttributesService [\#918](https://github.com/DEFRA/waste-exemptions-engine/pull/918) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Fix/ruby 2805 postcode validation [\#913](https://github.com/DEFRA/waste-exemptions-engine/pull/913) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -325,7 +331,6 @@
 - Bump pdf-reader from 2.11.0 to 2.12.0 [\#905](https://github.com/DEFRA/waste-exemptions-engine/pull/905) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump parallel\_tests from 4.3.0 to 4.4.0 [\#904](https://github.com/DEFRA/waste-exemptions-engine/pull/904) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump defra\_ruby\_validators from 2.5.2 to 2.6.0 [\#903](https://github.com/DEFRA/waste-exemptions-engine/pull/903) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Feature/ruby 2839 wex content certificate content change for addresses [\#902](https://github.com/DEFRA/waste-exemptions-engine/pull/902) ([brujeo](https://github.com/brujeo))
 - Update CHANGELOG [\#898](https://github.com/DEFRA/waste-exemptions-engine/pull/898) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Updating defra\_ruby\_area dependency [\#897](https://github.com/DEFRA/waste-exemptions-engine/pull/897) ([brujeo](https://github.com/brujeo))
 - updating defra\_ruby\_area and other dependencies [\#895](https://github.com/DEFRA/waste-exemptions-engine/pull/895) ([brujeo](https://github.com/brujeo))
