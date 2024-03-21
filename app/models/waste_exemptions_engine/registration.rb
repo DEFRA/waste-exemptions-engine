@@ -47,6 +47,7 @@ module WasteExemptionsEngine
 
     has_secure_token :renew_token
     has_secure_token :edit_token
+    has_secure_token :unsubscribe_token
 
     def in_renewal_window?
       (expires_on - renewal_window_before_expiry_in_days.days) < Time.now &&
