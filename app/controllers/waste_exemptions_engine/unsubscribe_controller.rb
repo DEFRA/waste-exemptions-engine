@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class RegistrationsController < ::ApplicationController
+  class UnsubscribeController < ::ApplicationController
     def unsubscribe
       registration = Registration.find_by(unsubscribe_token: params[:unsubscribe_token])
       if registration
@@ -12,8 +12,12 @@ module WasteExemptionsEngine
       end
     end
 
-    def unsubscribe_successful; end
+    def unsubscribe_successful
+      # This method is empty to display the view
+    end
 
-    def unsubscribe_failed; end
+    def unsubscribe_failed
+      # This method is empty to display the view
+    end
   end
 end
