@@ -1,0 +1,4 @@
+en:
+  unsubscribe:
+    successful: Successfully unsubscribed from renewal reminders
+    unsuccessful: We couldn't process your request because the link is invalid
