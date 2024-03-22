@@ -498,7 +498,8 @@ WasteExemptionsEngine::Engine.routes.draw do
 
   mount DefraRubyEmail::Engine => "/email"
 
-  get '/registrations/unsubscribe/:unsubscribe_token', to: 'registrations#unsubscribe', as: 'unsubscribe_registration'
-  get '/registrations/unsubscribe_successful', to: 'registrations#unsubscribe_successful', as: 'unsubscribe_successful_registration'
-  get '/registrations/unsubscribe_failed', to: 'registrations#unsubscribe_failed', as: 'unsubscribe_failed_registration'
+  get "/registrations/unsubscribe/:unsubscribe_token", to: "registrations#unsubscribe", as: "unsubscribe_registration"
+  get "/registrations/unsubscribe_successful", to: "registrations#unsubscribe_successful",
+                                               as: "unsubscribe_registration_successful"
+  get "/registrations/unsubscribe_failed", to: "registrations#unsubscribe_failed", as: "unsubscribe_registration_failed"
 end
