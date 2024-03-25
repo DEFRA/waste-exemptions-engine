@@ -8,12 +8,7 @@ module WasteExemptionsEngine
 
     describe "run" do
       before do
-        @old_token = registration.unsubscribe_token
         @unsubscribe_link = service.run(registration: registration)
-      end
-
-      it "generates a new unsubscribe token" do
-        expect(registration.unsubscribe_token).not_to eq(@old_token)
       end
 
       it "returns a link to the front office" do
@@ -22,6 +17,10 @@ module WasteExemptionsEngine
 
       it "returns a link to the unsubscribe path" do
         expect(@unsubscribe_link).to include("registrations/unsubscribe")
+      end
+
+      it "returns a link with the correct token" do
+        expect(@unsubscribe_link).to include(registration.unsubscribe_token)
       end
     end
   end

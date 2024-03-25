@@ -1,4 +1,5 @@
 en:
   unsubscribe:
-    successful: Successfully unsubscribed from renewal reminders
-    unsuccessful: We couldn't process your request because the link is invalid
+    successful: You have successfully unsubscribed from renewal reminder emails.
+    unsuccessful: You could not be unsubscribed
+    close_window: You can close this window.

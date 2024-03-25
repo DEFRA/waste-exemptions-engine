@@ -3,8 +3,6 @@
 module WasteExemptionsEngine
   class UnsubscribeLinkService < BaseService
     def run(registration:)
-      registration.regenerate_unsubscribe_token
-
       Rails.configuration.front_office_url +
         WasteExemptionsEngine::Engine
         .routes.url_helpers
