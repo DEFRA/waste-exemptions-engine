@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_22_145717) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -151,10 +151,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_145717) do
     t.datetime "deregistration_email_sent_at", precision: nil
     t.string "edit_token"
     t.datetime "edit_token_created_at"
+    t.boolean "reminder_opt_in"
+    t.string "unsubscribe_token"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
+    t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
   end
 
   create_table "reports_generated_reports", id: :serial, force: :cascade do |t|
