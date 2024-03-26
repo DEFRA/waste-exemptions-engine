@@ -99,7 +99,7 @@ module WasteExemptionsEngine
     end
 
     def unsubscribe_token
-      super || regenerate_unsubscribe_token
+      super || regenerate_unsubscribe_token unless new_record?
     end
 
     private
