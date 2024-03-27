@@ -98,6 +98,10 @@ module WasteExemptionsEngine
       update(edit_token_created_at: Time.zone.now)
     end
 
+    def unsubscribe_token
+      super || regenerate_unsubscribe_token unless new_record?
+    end
+
     private
 
     def apply_reference
