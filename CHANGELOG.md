@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- RUBY 2885 wex implement analytics metrics [\#943](https://github.com/DEFRA/waste-exemptions-engine/pull/943) ([jjromeo](https://github.com/jjromeo))
 - RUBY 2974 wex collect user journey data [\#938](https://github.com/DEFRA/waste-exemptions-engine/pull/938) ([jjromeo](https://github.com/jjromeo))
 - Ruby 2820 wex renewal stop page [\#922](https://github.com/DEFRA/waste-exemptions-engine/pull/922) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-2820\] Add renewal stop page when renewal is selected [\#921](https://github.com/DEFRA/waste-exemptions-engine/pull/921) ([jjromeo](https://github.com/jjromeo))
@@ -316,6 +317,7 @@
 
 **Merged pull requests:**
 
+- Set initial assistance\_mode using attribute assignment in NewRegistration [\#950](https://github.com/DEFRA/waste-exemptions-engine/pull/950) ([jjromeo](https://github.com/jjromeo))
 - Bump rack from 2.2.8 to 2.2.8.1 [\#941](https://github.com/DEFRA/waste-exemptions-engine/pull/941) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update CHANGELOG [\#926](https://github.com/DEFRA/waste-exemptions-engine/pull/926) ([jjromeo](https://github.com/jjromeo))
 - Bump rspec-rails from 6.1.0 to 6.1.1 [\#919](https://github.com/DEFRA/waste-exemptions-engine/pull/919) ([dependabot[bot]](https://github.com/apps/dependabot))

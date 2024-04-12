@@ -24,6 +24,8 @@ module WasteExemptionsEngine
         "id",
         "referring_registration_id",
         "renew_token",
+        "unsubscribe_token",
+        "reminder_opt_in",
         "submitted_at",
         "updated_at"
       )
