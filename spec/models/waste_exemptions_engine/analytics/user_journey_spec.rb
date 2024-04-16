@@ -38,13 +38,45 @@ module WasteExemptionsEngine
       end
 
       describe "passed_start_cutoff_page" do
-        let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[start_form]) }
-        let!(:journey_to_location_page) { create(:user_journey, visited_pages: %w[start_form location_form]) }
-        let!(:journey_past_location_page) { create(:user_journey, visited_pages: %w[start_form location_form business_type_form]) }
+        describe "with location_form being a cutoff page" do
+          let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[start_form]) }
+          let!(:journey_to_location_page) { create(:user_journey, visited_pages: %w[start_form location_form]) }
+          let!(:journey_past_location_page) { create(:user_journey, visited_pages: %w[start_form location_form business_type_form]) }
 
-        it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
-        it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_location_page) }
-        it { expect(described_class.passed_start_cutoff_page).to include(journey_past_location_page) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_location_page) }
+          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_location_page) }
+        end
+
+        describe "with edit_exemptions_form being a cutoff page" do
+          let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[renewal_start_form]) }
+          let!(:journey_to_edit_exemptions_page) { create(:user_journey, visited_pages: %w[renewal_start_form edit_exemptions_form]) }
+          let!(:journey_past_edit_exemptions_page) { create(:user_journey, visited_pages: %w[renewal_start_form edit_exemptions_form deregistration_complete_no_change_form]) }
+
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_edit_exemptions_page) }
+          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_edit_exemptions_page) }
+        end
+
+        describe "with front_office_edit_form being a cutoff page" do
+          let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[start_form]) }
+          let!(:journey_to_front_office_edit_page) { create(:user_journey, visited_pages: %w[start_form front_office_edit_form]) }
+          let!(:journey_past_front_office_edit_page) { create(:user_journey, visited_pages: %w[start_form front_office_edit_form contact_name_form]) }
+
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_front_office_edit_page) }
+          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_front_office_edit_page) }
+        end
+
+        describe "with renew_without_changes_form being a cutoff page" do
+          let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[renewal_start_form]) }
+          let!(:journey_to_renew_without_changes_page) { create(:user_journey, visited_pages: %w[renewal_start_form renew_without_changes_form]) }
+          let!(:journey_past_renew_without_changes_page) { create(:user_journey, visited_pages: %w[renewal_start_form renew_without_changes_form declaration_form]) }
+
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_renew_without_changes_page) }
+          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_renew_without_changes_page) }
+        end
       end
 
       describe "completion scopes" do
