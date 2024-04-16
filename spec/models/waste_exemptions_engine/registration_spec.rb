@@ -277,6 +277,31 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#unsubscribe_token" do
+      context "when the unsubscribe token is already set" do
+        it "returns the existing unsubscribe token" do
+          registration = create(:registration)
+          registration.update(unsubscribe_token: "existingtoken123")
+          expect(registration.reload.unsubscribe_token).to eq("existingtoken123")
+        end
+      end
+
+      context "when the unsubscribe token is not set and the record is not new" do
+        it "regenerates and returns a new unsubscribe token" do
+          registration = create(:registration)
+          registration.update_column(:unsubscribe_token, nil)
+          expect(registration.unsubscribe_token).to be_a(String)
+        end
+      end
+
+      context "when the record is new" do
+        it "does not generate an unsubscribe token" do
+          registration = build(:registration)
+          expect(registration.unsubscribe_token).to be_nil
+        end
+      end
+    end
+
     describe "PaperTrail", :versioning do
       subject(:registration) { create(:registration, :complete) }
 
