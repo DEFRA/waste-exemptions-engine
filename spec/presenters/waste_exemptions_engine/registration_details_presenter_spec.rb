@@ -214,9 +214,8 @@ module WasteExemptionsEngine
       let(:expected_expiry_date) { 3.years.from_now.strftime("%-d %B %Y") }
 
       it "returns an array with the correct exemptions" do
-        expected_array = []
-        registration.registration_exemptions.each do |re|
-          expected_array << "#{re.exemption.code}: #{re.exemption.summary} – Expires on #{expected_expiry_date}"
+        expected_array = registration.registration_exemptions.map do |re|
+          "#{re.exemption.code}: #{re.exemption.summary} – Expires on #{expected_expiry_date}"
         end
 
         expect(presenter.exemptions_section).to eq(expected_array)

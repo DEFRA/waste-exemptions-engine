@@ -66,23 +66,15 @@ module WasteExemptionsEngine
     end
 
     def exemptions_section
-      items = []
-
-      sorted_active_registration_exemptions.each do |registration_exemption|
-        items << exemption_text(registration_exemption)
+      sorted_active_registration_exemptions.map do |registration_exemption|
+        exemption_text(registration_exemption)
       end
-
-      items
     end
 
     def deregistered_exemptions_section
-      items = []
-
-      sorted_deregistered_registration_exemptions.each do |registration_exemption|
-        items << exemption_text(registration_exemption)
+      sorted_deregistered_registration_exemptions.map do |registration_exemption|
+        exemption_text(registration_exemption)
       end
-
-      items
     end
 
     private
