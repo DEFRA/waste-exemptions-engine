@@ -30,9 +30,18 @@ module WasteExemptionsEngine
     has_many :transient_registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :transient_registration_exemptions
 
-    alias_attribute :addresses, :transient_addresses
-    alias_attribute :people, :transient_people
-    alias_attribute :registration_exemptions, :transient_registration_exemptions
+    alias addresses transient_addresses
+    def addresses=(address_array)
+      update(transient_addresses: address_array)
+    end
+    alias people transient_people
+    def people=(people_array)
+      update(transient_people: people_array)
+    end
+    alias registration_exemptions transient_registration_exemptions
+    def registration_exemptions=(registration_exemptions_array)
+      update(transient_registration_exemptions: registration_exemptions_array)
+    end
 
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
                               companies_house_updated_at
