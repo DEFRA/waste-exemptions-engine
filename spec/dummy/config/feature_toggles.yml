@@ -8,6 +8,6 @@ broken_test_feature:
 broken_test_feature_2:
   activated: true
 env_variable_test_feature:
-  active: <%= ENV["ENV_VARIABLE_TEST_FEATURE"] %>
+  active: <%= ENV.fetch("ENV_VARIABLE_TEST_FEATURE", nil) %>
 string_true_test_feature:
   active: "true"

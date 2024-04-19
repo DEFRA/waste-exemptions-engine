@@ -18,7 +18,7 @@ require "waste_exemptions_engine"
 
 module Dummy
   class Application < Rails::Application
-    config.load_defaults 6.1
+    config.load_defaults 7.0
     config.autoloader = :zeitwerk
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -57,8 +57,5 @@ module Dummy
     config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
     config.first_renewal_email_reminder_days = ENV.fetch("FIRST_RENEWAL_EMAIL_REMINDER_DAYS", nil)
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
-
-    # For Rails 7: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
-    config.active_record.legacy_connection_handling = false
   end
 end

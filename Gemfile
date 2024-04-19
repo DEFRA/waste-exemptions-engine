@@ -30,6 +30,7 @@ group :development, :test do
   gem "bullet"
   gem "defra_ruby_style"
   gem "dotenv-rails"
+  gem "faraday-retry"
   gem "pdf-reader"
   gem "pry-byebug"
   gem "rails-controller-testing"

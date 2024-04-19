@@ -68,7 +68,6 @@ jobs:
 
       - name: Run unit tests
         run: |
-          bundle exec rails test
           bundle exec rspec
 
       # This includes an extra run step. The sonarcloud analysis will be run in a docker container with the current

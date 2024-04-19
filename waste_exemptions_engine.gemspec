@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aasm", "~> 5.5"
 
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 7.0"
+  s.add_dependency "rails", "~> 7.1"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
@@ -58,18 +58,19 @@ Gem::Specification.new do |s|
   # Used for auditing and version control
   s.add_dependency "paper_trail"
 
-  # paper_trail does not currently support activerecord v7.1
-  s.add_dependency "activerecord", "< 7.1"
-
   # Validations
   # A defra created gem of shared validators
   s.add_dependency "defra_ruby_validators"
+
   # Use to ensure phone numbers are in a valid and recognised format
   s.add_dependency "phonelib"
+
   # UK postcode parsing and validation for Ruby
   s.add_dependency "uk_postcode"
+
   # Use to validate e-mail addresses against RFC 2822 and RFC 3696
   s.add_dependency "validates_email_format_of"
+
   # Used to generate a PDF from HTML
   s.add_dependency "wicked_pdf"
 end

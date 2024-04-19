@@ -51,11 +51,6 @@ module WasteExemptionsEngine
        address.postcode].reject(&:blank?)
     end
 
-    # WickedPdf does come with helpers that you can use
-    def wicked_pdf_image_tag(img, options = {})
-      image_tag "file:///#{WasteExemptionsEngine::Engine.root.join('app', 'assets', 'images', img)}", options
-    end
-
     # Return a string suitable for use as a HTML id
     def html_id_for(prefix, text)
       "#{prefix}_#{text}".downcase.parameterize(separator: "_")
