@@ -14,17 +14,24 @@ module WasteExemptionsEngine
 
       serialize :registration_data, type: Hash, coder: JSON
 
-      START_CUTOFF_PAGE = "location_form"
+      START_CUTOFF_PAGES = %w[
+        location_form
+        edit_exemptions_form
+        front_office_edit_form
+        renew_without_changes_form
+      ].freeze
 
       COMPLETION_PAGES = %w[
         register_in_wales_form
         register_in_scotland_form
         register_in_northern_ireland_form
         front_office_edit_complete_form
+        front_office_edit_complete_no_changes_form
         back_office_edit_complete_form
         registration_complete_form
         renewal_complete_form
         deregistration_complete_full_form
+        deregistration_complete_no_change_form
       ].freeze
 
       scope :registrations, -> { where(journey_type: "NewRegistration") }
@@ -39,14 +46,14 @@ module WasteExemptionsEngine
 
       # rubocop:disable Metrics/BlockLength
       scope :passed_start_cutoff_page, lambda {
-        # Subquery to check for the existence of the START_CUTOFF_PAGE in any PageView for the UserJourney
+        # Subquery to check for the existence of the START_CUTOFF_PAGES in any PageView for the UserJourney
         start_cutoff_page_subquery = <<-SQL
           EXISTS (
             SELECT 1
             FROM analytics_page_views
             WHERE
               analytics_page_views.user_journey_id = analytics_user_journeys.id
-              AND analytics_page_views.page = '#{START_CUTOFF_PAGE}'
+              AND analytics_page_views.page IN ('#{START_CUTOFF_PAGES.join("', '")}')
           )
         SQL
 
@@ -64,7 +71,7 @@ module WasteExemptionsEngine
                 ORDER BY created_at DESC
                 LIMIT 1
               )
-              AND last_pages.page = '#{START_CUTOFF_PAGE}'
+              AND last_pages.page IN ('#{START_CUTOFF_PAGES.join("', '")}')
           )
         SQL
 
