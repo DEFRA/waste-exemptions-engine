@@ -12,7 +12,7 @@ module WasteExemptionsEngine
       validates :started_route, inclusion: { in: %w[DIGITAL ASSISTED_DIGITAL] }
       validates :token, presence: true
 
-      serialize :registration_data, type: Hash
+      serialize :registration_data, type: Hash, coder: JSON
 
       START_CUTOFF_PAGE = "location_form"
 
