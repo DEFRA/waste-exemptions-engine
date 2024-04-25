@@ -32,14 +32,6 @@ module WasteExemptionsEngine
       through: :registration_exemptions,
       source: :exemption
     )
-
-    has_many(
-      :deregistered_exemptions,
-      -> { WasteExemptionsEngine::RegistrationExemption.where(state: %i[ceased revoked]) },
-      through: :registration_exemptions,
-      source: :exemption
-    )
-
     belongs_to :referring_registration, class_name: "Registration"
     has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
