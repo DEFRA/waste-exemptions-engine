@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_25_210031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -64,6 +64,32 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bands", force: :cascade do |t|
+    t.string "name"
+    t.integer "sequence"
+    t.integer "registration_fee"
+    t.integer "initial_compliance_charge"
+    t.integer "additional_compliance_charge"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bucket_exemptions", force: :cascade do |t|
+    t.bigint "bucket_id"
+    t.bigint "exemption_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bucket_id"], name: "index_bucket_exemptions_on_bucket_id"
+    t.index ["exemption_id"], name: "index_bucket_exemptions_on_exemption_id"
+  end
+
+  create_table "buckets", force: :cascade do |t|
+    t.string "name"
+    t.integer "charge_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "communication_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -81,6 +107,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
     t.text "description"
     t.text "guidance"
     t.boolean "hidden", default: false
+    t.bigint "band_id"
+    t.index ["band_id"], name: "index_exemptions_on_band_id"
   end
 
   create_table "feature_toggles", force: :cascade do |t|
@@ -151,7 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
     t.datetime "deregistration_email_sent_at", precision: nil
     t.string "edit_token"
     t.datetime "edit_token_created_at"
-    t.boolean "reminder_opt_in"
+    t.boolean "reminder_opt_in", default: true
     t.string "unsubscribe_token"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
@@ -313,6 +341,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_20_151621) do
 
   add_foreign_key "addresses", "registrations"
   add_foreign_key "analytics_page_views", "analytics_user_journeys", column: "user_journey_id"
+  add_foreign_key "bucket_exemptions", "buckets"
+  add_foreign_key "bucket_exemptions", "exemptions"
+  add_foreign_key "exemptions", "bands"
   add_foreign_key "people", "registrations"
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"

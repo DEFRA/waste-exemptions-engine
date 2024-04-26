@@ -90,5 +90,13 @@ module Helpers
       temp_renew_without_changes
       address_finder_error
     ]).freeze
+
+    BAND = %i[
+      name
+      sequence
+      registration_fee
+      initial_compliance_charge
+      additional_compliance_charge
+    ].freeze
   end
 end
