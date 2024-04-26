@@ -98,5 +98,10 @@ module Helpers
       initial_compliance_charge
       additional_compliance_charge
     ].freeze
+
+    BUCKET = %i[
+      name
+      charge_amount
+    ].freeze
   end
 end
