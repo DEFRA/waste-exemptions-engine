@@ -39,6 +39,7 @@ module Helpers
       summary
       description
       guidance
+      band
     ].freeze
 
     PERSON = %i[
