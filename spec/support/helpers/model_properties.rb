@@ -95,7 +95,7 @@ module Helpers
     BAND = %i[
       name
       sequence
-      registration_fee
+      registration_charge
       initial_compliance_charge
       additional_compliance_charge
     ].freeze
