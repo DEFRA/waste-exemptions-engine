@@ -5,7 +5,7 @@ class CreateWasteExemptionsEngineBands < ActiveRecord::Migration[7.1]
     create_table :bands do |t|
       t.string :name
       t.integer :sequence
-      t.integer :registration_fee
+      t.integer :registration_charge
       t.integer :initial_compliance_charge
       t.integer :additional_compliance_charge
 

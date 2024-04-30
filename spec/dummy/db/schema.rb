@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_210031) do
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.integer "sequence"
-    t.integer "registration_fee"
+    t.integer "registration_charge"
     t.integer "initial_compliance_charge"
     t.integer "additional_compliance_charge"
     t.datetime "created_at", null: false
