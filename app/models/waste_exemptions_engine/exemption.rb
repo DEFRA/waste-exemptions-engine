@@ -5,6 +5,8 @@ module WasteExemptionsEngine
 
     self.table_name = "exemptions"
 
+    belongs_to :band
+
     has_many :registration_exemptions
     has_many :registrations, through: :registration_exemptions
 
