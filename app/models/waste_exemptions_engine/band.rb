@@ -8,10 +8,10 @@ module WasteExemptionsEngine
 
     has_many :exemptions
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :sequence, uniqueness: true, numericality: { only_integer: true }, allow_nil: true
-    validates :registration_fee, numericality: { only_integer: true }, allow_nil: true
-    validates :initial_compliance_charge, numericality: { only_integer: true }, allow_nil: true
-    validates :additional_compliance_charge, numericality: { only_integer: true }, allow_nil: true
+    validates :registration_fee, numericality: { only_integer: true }, allow_nil: false
+    validates :initial_compliance_charge, numericality: { only_integer: true }, allow_nil: false
+    validates :additional_compliance_charge, numericality: { only_integer: true }, allow_nil: false
   end
 end

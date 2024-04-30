@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     has_many :exemptions, through: :bucket_exemptions
 
-    validates :name, presence: true
-    validates :charge_amount, numericality: { only_integer: true }, allow_nil: true
+    validates :name, presence: true, uniqueness: true
+    validates :charge_amount, numericality: { only_integer: true }, allow_nil: false
   end
 end
