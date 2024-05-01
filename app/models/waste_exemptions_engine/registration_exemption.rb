@@ -13,5 +13,6 @@ module WasteExemptionsEngine
     scope :expired, -> { where(state: :expired) }
     scope :ceased, -> { where(state: :ceased) }
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
+    scope :deregistered, -> { where(state: %i[ceased revoked]) }
   end
 end
