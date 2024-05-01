@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-3041\] extending list of cutoff and completion pages for user journey analytics [\#962](https://github.com/DEFRA/waste-exemptions-engine/pull/962) ([brujeo](https://github.com/brujeo))
+- RUBY 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#955](https://github.com/DEFRA/waste-exemptions-engine/pull/955) ([jjromeo](https://github.com/jjromeo))
 - RUBY 2885 wex implement analytics metrics [\#943](https://github.com/DEFRA/waste-exemptions-engine/pull/943) ([jjromeo](https://github.com/jjromeo))
 - RUBY 2974 wex collect user journey data [\#938](https://github.com/DEFRA/waste-exemptions-engine/pull/938) ([jjromeo](https://github.com/jjromeo))
 - Ruby 2820 wex renewal stop page [\#922](https://github.com/DEFRA/waste-exemptions-engine/pull/922) ([jjromeo](https://github.com/jjromeo))
@@ -188,6 +190,9 @@
 
 **Fixed bugs:**
 
+- \[RUBY-2976\] Add communication log entry and page titles for unsubscri… [\#964](https://github.com/DEFRA/waste-exemptions-engine/pull/964) ([jjromeo](https://github.com/jjromeo))
+- Ruby 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#958](https://github.com/DEFRA/waste-exemptions-engine/pull/958) ([jjromeo](https://github.com/jjromeo))
+- Set initial assistance\_mode using attribute assignment in NewRegistration [\#950](https://github.com/DEFRA/waste-exemptions-engine/pull/950) ([jjromeo](https://github.com/jjromeo))
 - Fix/ruby 2852 comms record type [\#920](https://github.com/DEFRA/waste-exemptions-engine/pull/920) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Revert "Add unhandled exception logging \(\#873\)" [\#874](https://github.com/DEFRA/waste-exemptions-engine/pull/874) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Pin activerecord version [\#871](https://github.com/DEFRA/waste-exemptions-engine/pull/871) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
@@ -317,7 +322,10 @@
 
 **Merged pull requests:**
 
-- Set initial assistance\_mode using attribute assignment in NewRegistration [\#950](https://github.com/DEFRA/waste-exemptions-engine/pull/950) ([jjromeo](https://github.com/jjromeo))
+- Chore/rails 7 1 [\#966](https://github.com/DEFRA/waste-exemptions-engine/pull/966) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Chore/rails 7 1 [\#965](https://github.com/DEFRA/waste-exemptions-engine/pull/965) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- RUBY 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#953](https://github.com/DEFRA/waste-exemptions-engine/pull/953) ([jjromeo](https://github.com/jjromeo))
+- Update CHANGELOG [\#951](https://github.com/DEFRA/waste-exemptions-engine/pull/951) ([jjromeo](https://github.com/jjromeo))
 - Bump rack from 2.2.8 to 2.2.8.1 [\#941](https://github.com/DEFRA/waste-exemptions-engine/pull/941) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update CHANGELOG [\#926](https://github.com/DEFRA/waste-exemptions-engine/pull/926) ([jjromeo](https://github.com/jjromeo))
 - Bump rspec-rails from 6.1.0 to 6.1.1 [\#919](https://github.com/DEFRA/waste-exemptions-engine/pull/919) ([dependabot[bot]](https://github.com/apps/dependabot))

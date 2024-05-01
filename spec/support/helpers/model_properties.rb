@@ -39,6 +39,7 @@ module Helpers
       summary
       description
       guidance
+      band
     ].freeze
 
     PERSON = %i[
@@ -90,5 +91,23 @@ module Helpers
       temp_renew_without_changes
       address_finder_error
     ]).freeze
+
+    BAND = %i[
+      name
+      sequence
+      registration_charge
+      initial_compliance_charge
+      additional_compliance_charge
+    ].freeze
+
+    BUCKET = %i[
+      name
+      charge_amount
+    ].freeze
+
+    BUCKET_EXEMPTION = %i[
+      bucket
+      exemption
+    ].freeze
   end
 end
