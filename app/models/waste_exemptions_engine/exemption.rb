@@ -9,6 +9,8 @@ module WasteExemptionsEngine
 
     has_many :registration_exemptions
     has_many :registrations, through: :registration_exemptions
+    has_many :bucket_exemptions
+    has_many :buckets, through: :bucket_exemptions
 
     scope :visible, -> { where(hidden: false) }
 
