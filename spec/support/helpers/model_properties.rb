@@ -109,5 +109,11 @@ module Helpers
       bucket
       exemption
     ].freeze
+
+    CHARGE = %i[
+      name
+      charge_type
+      charge_amount
+    ].freeze
   end
 end
