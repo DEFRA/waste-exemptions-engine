@@ -39,7 +39,8 @@ module WasteExemptionsEngine
           end
 
           define_method("validate_#{field}_in_pounds") do
-            return if send("#{field}_temp").present? && send("#{field}_temp").match?(/^\d+(\.\d{0,2})?$/)
+            return if send("#{field}_temp").blank?
+            return if send("#{field}_temp").match?(/^\d+(\.\d{0,2})?$/)
 
             errors.add("#{field}_in_pounds", "is not a valid price")
           end

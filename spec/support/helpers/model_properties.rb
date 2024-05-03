@@ -95,14 +95,13 @@ module Helpers
     BAND = %i[
       name
       sequence
-      registration_charge
       initial_compliance_charge
       additional_compliance_charge
     ].freeze
 
     BUCKET = %i[
       name
-      charge_amount
+      initial_compliance_charge
     ].freeze
 
     BUCKET_EXEMPTION = %i[

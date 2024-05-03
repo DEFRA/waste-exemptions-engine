@@ -65,11 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_133855) do
   end
 
   create_table "bands", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "sequence"
-    t.integer "registration_charge"
-    t.integer "initial_compliance_charge"
-    t.integer "additional_compliance_charge"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,7 +82,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_133855) do
 
   create_table "buckets", force: :cascade do |t|
     t.string "name"
-    t.integer "charge_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,9 +90,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_133855) do
     t.string "name", null: false
     t.string "charge_type", null: false
     t.integer "charge_amount", null: false
+    t.string "chargeable_type"
+    t.bigint "chargeable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["charge_type"], name: "index_charges_on_charge_type"
+    t.index ["chargeable_type", "chargeable_id"], name: "index_charges_on_chargeable"
   end
 
   create_table "communication_logs", force: :cascade do |t|
