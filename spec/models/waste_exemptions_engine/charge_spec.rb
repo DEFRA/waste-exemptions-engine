@@ -1,8 +1,10 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 require "./spec/models/waste_exemptions_engine/concerns/can_convert_pence_to_pounds_spec"
 
 module WasteExemptionsEngine
-  RSpec.describe Charge, type: :model do
+  RSpec.describe Charge do
     describe "public interface" do
       subject(:charge) { build(:charge) }
 

@@ -8,7 +8,9 @@ module WasteExemptionsEngine
 
     has_many :exemptions, through: :bucket_exemptions
 
-    has_one :initial_compliance_charge, -> { where(charge_type: :initial_compliance_charge) }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
+    has_one :initial_compliance_charge, lambda {
+                                          where(charge_type: :initial_compliance_charge)
+                                        }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
 
     validates :name, presence: true, uniqueness: true
 

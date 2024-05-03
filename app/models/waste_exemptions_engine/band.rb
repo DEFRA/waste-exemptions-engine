@@ -8,8 +8,12 @@ module WasteExemptionsEngine
 
     has_many :exemptions
 
-    has_one :initial_compliance_charge, -> { where(charge_type: :initial_compliance_charge) }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
-    has_one :additional_compliance_charge, -> { where(charge_type: :additional_compliance_charge) }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
+    has_one :initial_compliance_charge, lambda {
+                                          where(charge_type: :initial_compliance_charge)
+                                        }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
+    has_one :additional_compliance_charge, lambda {
+                                             where(charge_type: :additional_compliance_charge)
+                                           }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
 
     validates :name, presence: true, uniqueness: true
     validates :sequence, uniqueness: true, numericality: { only_integer: true }, allow_nil: true
