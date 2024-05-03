@@ -2,6 +2,10 @@
 
 module WasteExemptionsEngine
   class Band < ApplicationRecord
+
+    include CanConvertPenceToPounds
+    pence_to_pounds_fields only: %i[initial_compliance_charge additional_compliance_charge]
+
     self.table_name = "bands"
 
     has_paper_trail
