@@ -7,5 +7,10 @@ FactoryBot.define do
 
     initial_compliance_charge { association :charge, :initial_compliance_charge }
     additional_compliance_charge { association :charge, :additional_compliance_charge }
+
+    trait :no_charges do
+      initial_compliance_charge { nil }
+      additional_compliance_charge { nil }
+    end
   end
 end

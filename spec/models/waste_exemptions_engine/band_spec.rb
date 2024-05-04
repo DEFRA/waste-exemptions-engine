@@ -14,36 +14,42 @@ module WasteExemptionsEngine
       end
 
       context "when initial_compliance_charge set" do
-        let(:charge) { build(:charge, :initial_compliance_charge, charge_amount: 100) }
-        let(:band) { build(:band, initial_compliance_charge: charge) }
+        let(:band) { create(:band, :no_charges) }
+        let(:charge) { create(:charge, :initial_compliance_charge, charge_amount: 100, chargeable: band) }
 
         it "responds to initial_compliance_charge" do
-          expect(band.initial_compliance_charge).to be_present
+          charge
+          expect(band.reload.initial_compliance_charge).to be_present
         end
 
         it "has charge_type set to initial_compliance_charge" do
-          expect(band.initial_compliance_charge.charge_type).to eq("initial_compliance_charge")
+          charge
+          expect(band.reload.initial_compliance_charge.charge_type).to eq("initial_compliance_charge")
         end
 
         it "has charge_amount set to 100" do
-          expect(band.initial_compliance_charge.charge_amount).to eq(100)
+          charge
+          expect(band.reload.initial_compliance_charge.charge_amount).to eq(100)
         end
       end
 
       context "when additional_compliance_charge set" do
-        let(:charge) { build(:charge, :additional_compliance_charge, charge_amount: 100) }
-        let(:band) { build(:band, additional_compliance_charge: charge) }
+        let(:band) { create(:band, :no_charges) }
+        let(:charge) { create(:charge, :additional_compliance_charge, charge_amount: 100, chargeable: band) }
 
         it "responds to additional_compliance_charge" do
-          expect(band.additional_compliance_charge).to be_present
+          charge
+          expect(band.reload.additional_compliance_charge).to be_present
         end
 
         it "has charge_type set to additional_compliance_charge" do
-          expect(band.additional_compliance_charge.charge_type).to eq("additional_compliance_charge")
+          charge
+          expect(band.reload.additional_compliance_charge.charge_type).to eq("additional_compliance_charge")
         end
 
         it "has charge_amount set to 100" do
-          expect(band.additional_compliance_charge.charge_amount).to eq(100)
+          charge
+          expect(band.reload.additional_compliance_charge.charge_amount).to eq(100)
         end
       end
     end
