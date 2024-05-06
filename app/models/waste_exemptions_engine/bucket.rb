@@ -6,7 +6,7 @@ module WasteExemptionsEngine
 
     has_paper_trail
 
-    has_many :bucket_exemptions
+    has_many :bucket_exemptions, dependent: :destroy
     has_many :exemptions, through: :bucket_exemptions
 
     validates :name, presence: true, uniqueness: true
