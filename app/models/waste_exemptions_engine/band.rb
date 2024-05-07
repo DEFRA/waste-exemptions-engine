@@ -2,20 +2,26 @@
 
 module WasteExemptionsEngine
   class Band < ApplicationRecord
-
-    include CanConvertPenceToPounds
-    pence_to_pounds_fields only: %i[initial_compliance_charge additional_compliance_charge]
-
     self.table_name = "bands"
 
     has_paper_trail
 
     has_many :exemptions
 
+    has_one :initial_compliance_charge, lambda {
+                                          where(charge_type: :initial_compliance_charge)
+                                        }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
+    has_one :additional_compliance_charge, lambda {
+                                             where(charge_type: :additional_compliance_charge)
+                                           }, class_name: "WasteExemptionsEngine::Charge", as: :chargeable
+
     validates :name, presence: true, uniqueness: true
     validates :sequence, uniqueness: true, numericality: { only_integer: true }, allow_nil: true
-    validates :registration_charge, numericality: { only_integer: true }, allow_nil: false
-    validates :initial_compliance_charge, numericality: { only_integer: true }, allow_nil: false
-    validates :additional_compliance_charge, numericality: { only_integer: true }, allow_nil: false
+
+    accepts_nested_attributes_for :initial_compliance_charge
+    accepts_nested_attributes_for :additional_compliance_charge
+
+    validates_associated :initial_compliance_charge, numericality: { only_integer: true }
+    validates_associated :additional_compliance_charge, numericality: { only_integer: true }
   end
 end
