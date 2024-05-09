@@ -3,9 +3,14 @@
 FactoryBot.define do
   factory :band, class: "WasteExemptionsEngine::Band" do
     name { "Band #{Faker::Lorem.unique.word}" }
-    sequence(:sequence) { Faker::Number.unique.between(from: 1, to: 10) } # reserved word
-    registration_charge { Faker::Number.between(from: 1000, to: 9900) }
-    initial_compliance_charge { Faker::Number.between(from: 10_000, to: 99_900) }
-    additional_compliance_charge { Faker::Number.between(from: 10_000, to: 99_900) }
+    sequence(:sequence) { Faker::Number.unique.between(from: 1, to: 99) } # reserved word
+
+    initial_compliance_charge { association :charge, :initial_compliance_charge }
+    additional_compliance_charge { association :charge, :additional_compliance_charge }
+
+    trait :no_charges do
+      initial_compliance_charge { nil }
+      additional_compliance_charge { nil }
+    end
   end
 end
