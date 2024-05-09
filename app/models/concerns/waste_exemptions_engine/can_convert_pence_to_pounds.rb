@@ -40,7 +40,7 @@ module WasteExemptionsEngine
         define_method("#{field}_in_pounds=") do |value|
           send("#{field}_temp=", value)
           value = value.gsub(/[^0-9.]/, "")
-          send("#{field}=", (value.to_f * 100).to_i)
+          send("#{field}=", (value.to_f * 100).round)
         end
 
         define_method("validate_#{field}_in_pounds") do
