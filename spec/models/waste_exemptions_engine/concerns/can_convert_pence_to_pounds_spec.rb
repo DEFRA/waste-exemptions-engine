@@ -18,6 +18,12 @@ RSpec.shared_examples_for "can_convert_pence_to_pounds" do |factory_name, field|
     expect(object.send(field)).to eq(123)
   end
 
+  # this is to test weird ruby behaviour for value of 74.99 | "74.99".to_f * 100 = 7498.999999999999
+  it "can set {field}_in_pounds correctly when value is 74.99" do
+    object.send(:"#{field}_in_pounds=", "74.99")
+    expect(object.send(field)).to eq(7499)
+  end
+
   it "validates {field}_in_pounds when price is invalid" do
     object.send(:"#{field}_in_pounds=", "1.23aa")
     object.send(:"validate_#{field}_in_pounds")
