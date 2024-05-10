@@ -6,6 +6,7 @@ module WasteExemptionsEngine
 
     has_paper_trail
 
+    has_many :bucket_exemptions, dependent: :destroy
     has_many :exemptions, through: :bucket_exemptions
 
     has_one :initial_compliance_charge, lambda {
