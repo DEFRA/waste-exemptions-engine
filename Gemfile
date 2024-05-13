@@ -34,8 +34,7 @@ group :development, :test do
   gem "pdf-reader"
   gem "pry-byebug"
   gem "rails-controller-testing"
-  gem "simplecov", "0.17.1"
-  gem "simplecov-json", require: false
+  gem "simplecov", "~> 0.22.0", require: false
   gem "w3c_validators"
 end
 
