@@ -23,5 +23,20 @@ module WasteExemptionsEngine
 
     validates_associated :initial_compliance_charge, numericality: { only_integer: true }
     validates_associated :additional_compliance_charge, numericality: { only_integer: true }
+
+    before_destroy :check_for_exemptions
+
+    def can_be_destroyed?
+      exemptions.empty?
+    end
+
+    private
+
+    def check_for_exemptions
+      return if can_be_destroyed?
+
+      errors.add(:base, "Cannot delete band while it has exemptions associated")
+      throw :abort
+    end
   end
 end
