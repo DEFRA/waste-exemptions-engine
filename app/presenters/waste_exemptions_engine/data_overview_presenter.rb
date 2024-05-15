@@ -200,7 +200,8 @@ module WasteExemptionsEngine
     def grid_reference_row
       {
         title: I18n.t("#{reg_i18n_scope}.grid_reference.title"),
-        value: site_address&.grid_reference
+        value: site_address&.grid_reference,
+        no_border: true
       }
     end
 
