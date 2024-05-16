@@ -1,0 +1,18 @@
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    <%= row[:title] %>
+  </dt>
+  <dd id="<%= html_id_for("registration", row[:title]) %>" class="govuk-summary-list__value">
+    <%= row[:value] %>
+  </dd>
+  <dd class="govuk-summary-list__actions">
+    <% if row[:change_url].present? %>
+      <%= link_to(row[:change_url]) do %>
+        <%= t(".change_link")%>
+        <span class="govuk-visually-hidden">
+          <%= row[:change_link_suffix] %>
+        </span>
+      <% end %>
+    <% end %>
+  </dd>
+</div>

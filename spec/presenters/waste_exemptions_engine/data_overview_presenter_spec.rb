@@ -141,7 +141,7 @@ module WasteExemptionsEngine
           {
             title: "Grid reference",
             value: new_registration.site_address.grid_reference,
-            no_border: true
+            merged_with: :site_description
           },
           {
             title: "Site description",
