@@ -9,6 +9,6 @@
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 <% form.registration_rows.each do |row| %>
   <% template = row[:merged_with] ? "registration_info_line_merged": "registration_info_line" %>
-  <%= render("waste_exemptions_engine/shared/data_overview/#{template}", row: row) %>
+  <%= render partial: "waste_exemptions_engine/shared/data_overview/#{template}", locals: {row: row} %>
 <% end %>
 </dl>
