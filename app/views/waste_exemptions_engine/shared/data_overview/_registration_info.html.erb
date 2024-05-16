@@ -8,18 +8,16 @@
 
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 <% form.registration_rows.each do |row| %>
-  <% 
-    additional_row_css = row[:merged_with] ? "govuk-summary-list__row--no-border" : "" 
-    additional_column_css = row[:merged_with] ? "govuk-!-padding-bottom-0" : "" 
-  %>
-  <div class="govuk-summary-list__row <%= additional_row_css %>">
-    <dt class="govuk-summary-list__key <%= additional_column_css %>">
+  <% row_css = row[:merged_with] ? "govuk-summary-list__row--no-border" : "" %>
+  <% column_css = row[:merged_with] ? "govuk-!-padding-bottom-0" : "" %>
+  <div class="govuk-summary-list__row <%= row_css %>">
+    <dt class="govuk-summary-list__key <%= column_css %>">
       <%= row[:title] %>
     </dt>
-    <dd id="<%= html_id_for("registration", row[:title]) %>" class="govuk-summary-list__value <%= additional_column_css %>">
+    <dd id="<%= html_id_for("registration", row[:title]) %>" class="govuk-summary-list__value <%= column_css %>">
       <%= row[:value] %>
     </dd>
-    <dd class="govuk-summary-list__actions <%= additional_column_css %>">
+    <dd class="govuk-summary-list__actions <%= column_css %>">
       <% if row[:change_url].present? %>
         <%= link_to(row[:change_url]) do %>
           <%= t(".change_link")%>
