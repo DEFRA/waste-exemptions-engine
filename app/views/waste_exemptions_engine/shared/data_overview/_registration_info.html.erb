@@ -6,7 +6,7 @@
   <%= t(".table_summary") %>
 </span>
 
-<dl class="govuk-!-margin-bottom-9 govuk-summary-list">
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
 <% form.registration_rows.each do |row| %>
   <% template = row[:merged_with] ? "registration_info_line_merged": "registration_info_line" %>
   <%= render partial: "waste_exemptions_engine/shared/data_overview/#{template}", locals: {row: row} %>
