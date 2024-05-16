@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "./spec/models/waste_exemptions_engine/concerns/can_convert_pence_to_pounds_spec"
+require "./spec/models/waste_exemptions_engine/concerns/can_convert_pence_to_pounds"
 
 module WasteExemptionsEngine
   RSpec.describe Charge do
