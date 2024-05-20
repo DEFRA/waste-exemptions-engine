@@ -38,3 +38,5 @@ en:
             title: Contact address
           contact_details:
             title: Contact details
+          change_link: Change
+          contact_name_change_link_suffix: "contact name"
