@@ -225,7 +225,13 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :check_your_answers_forms,
               only: %i[new create],
               path: "check-your-answers",
-              path_names: { new: "" }
+              # path_names: { new: "" }
+              path_names: { new: "" } do
+                get "contact-name",
+                    to: "check_your_answers_forms#edit_contact_name",
+                    as: "contact-name",
+                    on: :collection
+              end
 
     resources :declaration_forms,
               only: %i[new create],

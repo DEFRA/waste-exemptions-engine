@@ -117,7 +117,9 @@ module WasteExemptionsEngine
 
       {
         title: I18n.t("#{company_i18n_scope}.contact_name.title"),
-        value: contact_name
+        value: contact_name,
+        change_url: "check-your-answers/contact-name",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name_change_link_suffix")
       }
     end
 

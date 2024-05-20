@@ -12,11 +12,40 @@ module WasteExemptionsEngine
 
     after { VCR.eject_cassette }
 
-    empty_form_is_valid = true
-    include_examples "GET form", :check_your_answers_form, "/check-your-answers"
-    include_examples "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
-      let(:form_data) { {} }
-      let(:invalid_form_data) { [] }
+    describe "GET check_your_answers_form" do
+      include_examples "GET form", :check_your_answers_form, "/check-your-answers"
+    end
+
+    describe "POST check_your_answers_form" do
+      empty_form_is_valid = true
+      include_examples "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
+        let(:form_data) { {} }
+        let(:invalid_form_data) { [] }
+      end
+    end
+
+    context "when editing data on Check Your Answers" do
+      describe "GET /check-your-answers/contact-name" do
+        let(:form) { build(:check_your_answers_form) }
+
+        it "redirects to contact_name_form" do
+          get contact_name_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_contact_name_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get contact_name_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "ads check_your_answers_form into the worflow history" do
+          get contact_name_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
+      end
     end
   end
 end

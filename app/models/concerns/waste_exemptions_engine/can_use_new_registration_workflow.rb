@@ -185,7 +185,8 @@ module WasteExemptionsEngine
                       to: :contact_position_form
 
           transitions from: :contact_name_form,
-                      to: :contact_position_form
+                      to: :contact_position_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_position_form,
                       to: :check_contact_phone_form
@@ -280,6 +281,10 @@ module WasteExemptionsEngine
 
           transitions from: :declaration_form,
                       to: :registration_complete_form
+
+          # Check your answers
+          transitions from: :contact_name_form,
+                      to: :check_your_answers_form
         end
 
         event :skip_to_manual_address do
@@ -299,6 +304,12 @@ module WasteExemptionsEngine
         event :skip_to_address do
           transitions from: :site_grid_reference_form,
                       to: :check_site_address_form
+        end
+
+        event :edit_contact_name do
+          transitions from: :check_your_answers_form,
+                      to: :contact_name_form,
+                      if: :check_your_answers_flow?
         end
       end
     end
@@ -370,6 +381,10 @@ module WasteExemptionsEngine
 
     def renewal_start_option?
       start_option == "reregister"
+    end
+
+    def check_your_answers_flow?
+      temp_check_your_answers_flow == true
     end
   end
 end
