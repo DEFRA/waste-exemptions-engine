@@ -43,7 +43,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Contact name",
-            value: "#{new_registration.contact_first_name} #{new_registration.contact_last_name}"
+            value: "#{new_registration.contact_first_name} #{new_registration.contact_last_name}",
+            change_link_suffix: "contact name",
+            change_url: "check-your-answers/contact-name"
           },
           {
             title: "Contact position",
