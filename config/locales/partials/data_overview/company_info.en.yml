@@ -15,7 +15,9 @@ en:
               local_authority: Local authority or public body
               charity: Charity or trust
           business_name:
-            operator_name: Operator name
+            operator_name:
+              title: Operator name
+              change_link_suffix: "operator name"
             registered_name: Registered name
           company_no:
             title: Companies House number
@@ -32,6 +34,7 @@ en:
             title: Address
           contact_name:
             title: Contact name
+            change_link_suffix: "contact name"
           contact_position:
             title: Contact position
           contact_address:
@@ -39,4 +42,3 @@ en:
           contact_details:
             title: Contact details
           change_link: Change
-          contact_name_change_link_suffix: "contact name"
