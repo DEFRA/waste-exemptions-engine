@@ -79,7 +79,8 @@ module WasteExemptionsEngine
           expected_data[0][:value] = "Charity or trust"
           expected_data[1][:title] = "Operator name"
           expected_data.slice!(2)
-          # expected_data.delete_at(expected_data.index 2)
+          expected_data[1][:change_url] = "check-your-answers/operator-name"
+          expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
         end
 
         it "returns the properly-formatted data" do
@@ -103,6 +104,9 @@ module WasteExemptionsEngine
 
           expected_data[0][:value] = "Partnership"
           expected_data[1][:title] = "Operator name"
+
+          expected_data[1][:change_url] = "check-your-answers/operator-name"
+          expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
           # Replace the Companies House info with partners instead
           expected_data[2] = { title: "Partners", value: partner_text }
         end

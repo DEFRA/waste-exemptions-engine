@@ -231,6 +231,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_contact_name",
                     as: "contact-name",
                     on: :collection
+
+                get "operator-name",
+                    to: "check_your_answers_forms#edit_operator_name",
+                    as: "operator-name",
+                    on: :collection
               end
 
     resources :declaration_forms,

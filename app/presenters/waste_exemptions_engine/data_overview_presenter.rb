@@ -74,8 +74,10 @@ module WasteExemptionsEngine
         }
       else
         {
-          title: I18n.t("#{company_i18n_scope}.business_name.operator_name"),
-          value: operator_name
+          title: I18n.t("#{company_i18n_scope}.business_name.operator_name.title"),
+          value: operator_name,
+          change_url: "check-your-answers/operator-name",
+          change_link_suffix: I18n.t("#{company_i18n_scope}.business_name.operator_name.change_link_suffix")
         }
       end
     end
@@ -119,7 +121,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{company_i18n_scope}.contact_name.title"),
         value: contact_name,
         change_url: "check-your-answers/contact-name",
-        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name_change_link_suffix")
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name.change_link_suffix")
       }
     end
 
