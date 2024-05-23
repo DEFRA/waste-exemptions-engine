@@ -40,7 +40,7 @@ module WasteExemptionsEngine
           expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
         end
 
-        it "ads check_your_answers_form into the worflow history" do
+        it "adds check_your_answers_form into the workflow history" do
           get contact_name_check_your_answers_forms_path(token: form.token)
 
           expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
@@ -62,7 +62,7 @@ module WasteExemptionsEngine
           expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
         end
 
-        it "ads check_your_answers_form into the worflow history" do
+        it "adds check_your_answers_form into the workflow history" do
           get contact_position_check_your_answers_forms_path(token: form.token)
 
           expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
@@ -84,7 +84,7 @@ module WasteExemptionsEngine
           expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
         end
 
-        it "ads check_your_answers_form into the worflow history" do
+        it "adds check_your_answers_form into the workflow history" do
           get operator_name_check_your_answers_forms_path(token: form.token)
 
           expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
