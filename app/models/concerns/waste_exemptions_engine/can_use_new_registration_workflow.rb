@@ -190,7 +190,8 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           transitions from: :contact_position_form,
-                      to: :check_contact_phone_form
+                      to: :check_contact_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_phone_form,
                       to: :contact_phone_form,
@@ -287,6 +288,9 @@ module WasteExemptionsEngine
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
 
+          transitions from: :contact_position_form,
+                      to: :check_your_answers_form
+
           transitions from: :operator_name_form,
                       to: :check_your_answers_form
         end
@@ -313,6 +317,12 @@ module WasteExemptionsEngine
         event :edit_contact_name do
           transitions from: :check_your_answers_form,
                       to: :contact_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_position do
+          transitions from: :check_your_answers_form,
+                      to: :contact_position_form,
                       if: :check_your_answers_flow?
         end
 

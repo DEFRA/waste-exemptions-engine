@@ -232,6 +232,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "contact-name",
                     on: :collection
 
+                get "contact-position",
+                    to: "check_your_answers_forms#edit_contact_position",
+                    as: "contact-position",
+                    on: :collection
+
                 get "operator-name",
                     to: "check_your_answers_forms#edit_operator_name",
                     as: "operator-name",
