@@ -65,8 +65,12 @@ module WasteExemptionsEngine
             ].join("<br>").html_safe
           },
           {
-            title: "Contact details",
-            value: "#{new_registration.contact_phone}<br>#{new_registration.contact_email}".html_safe
+            title: "Contact telephone number",
+            value: new_registration.contact_phone
+          },
+          {
+            title: "Contact email address",
+            value: new_registration.contact_email
           }
         ]
       end

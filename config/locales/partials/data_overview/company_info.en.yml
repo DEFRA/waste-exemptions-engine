@@ -42,4 +42,8 @@ en:
             title: Contact address
           contact_details:
             title: Contact details
+          contact_phone:
+            title: Contact telephone number
+          contact_email:
+            title: Contact email address
           change_link: Change

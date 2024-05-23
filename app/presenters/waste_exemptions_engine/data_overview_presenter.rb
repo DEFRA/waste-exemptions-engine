@@ -36,7 +36,7 @@ module WasteExemptionsEngine
     def contact_rows
       rows = [contact_name_row]
       rows << contact_position_row if contact_position.present?
-      rows += [contact_address_row, contact_details_row]
+      rows += [contact_address_row, contact_phone_row, contact_email_row]
 
       rows
     end
@@ -141,12 +141,17 @@ module WasteExemptionsEngine
       }
     end
 
-    def contact_details_row
-      contact_details_value = [contact_phone, contact_email].join("<br>").html_safe
-
+    def contact_phone_row
       {
-        title: I18n.t("#{company_i18n_scope}.contact_details.title"),
-        value: contact_details_value
+        title: I18n.t("#{company_i18n_scope}.contact_phone.title"),
+        value: contact_phone
+      }
+    end
+
+    def contact_email_row
+      {
+        title: I18n.t("#{company_i18n_scope}.contact_email.title"),
+        value: contact_email
       }
     end
 
