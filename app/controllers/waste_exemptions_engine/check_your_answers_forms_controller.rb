@@ -15,6 +15,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_contact_name")
     end
 
+    def edit_contact_position
+      transition_to_edit("edit_contact_position")
+    end
+
     def edit_operator_name
       transition_to_edit("edit_operator_name")
     end

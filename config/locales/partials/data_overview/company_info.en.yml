@@ -37,6 +37,7 @@ en:
             change_link_suffix: "contact name"
           contact_position:
             title: Contact position
+            change_link_suffix: "contact position"
           contact_address:
             title: Contact address
           contact_details:
