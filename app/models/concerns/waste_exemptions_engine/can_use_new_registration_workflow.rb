@@ -206,10 +206,11 @@ module WasteExemptionsEngine
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form,
-                      unless: :applicant_email
+                      unless: [:applicant_email, :check_your_answers_flow?]
 
           transitions from: :contact_phone_form,
-                      to: :check_contact_email_form
+                      to: :check_contact_email_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_email_form,
                       to: :contact_email_form,
@@ -220,7 +221,8 @@ module WasteExemptionsEngine
                       if: :temp_reuse_applicant_email?
 
           transitions from: :contact_email_form,
-                      to: :check_contact_address_form
+                      to: :check_contact_address_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_address_form,
                       to: :contact_postcode_form,
@@ -291,6 +293,12 @@ module WasteExemptionsEngine
           transitions from: :contact_position_form,
                       to: :check_your_answers_form
 
+          transitions from: :contact_phone_form,
+                      to: :check_your_answers_form
+
+          transitions from: :contact_email_form,
+                      to: :check_your_answers_form
+
           transitions from: :operator_name_form,
                       to: :check_your_answers_form
         end
@@ -323,6 +331,18 @@ module WasteExemptionsEngine
         event :edit_contact_position do
           transitions from: :check_your_answers_form,
                       to: :contact_position_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_phone do
+          transitions from: :check_your_answers_form,
+                      to: :contact_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_email do
+          transitions from: :check_your_answers_form,
+                      to: :contact_email_form,
                       if: :check_your_answers_flow?
         end
 

@@ -16,6 +16,23 @@ module WasteExemptionsEngine
       end
     end
 
+    context "when editing contact email on Check Your Answers page - new registration" do
+      let(:contact_email_form) { build(:check_your_answers_edit_contact_email_form) }
+
+      it "pre-fills contact email information" do
+        get "/waste_exemptions_engine/#{contact_email_form.token}/contact-email"
+
+        expect(response.body).to have_html_escaped_string(contact_email_form.contact_email)
+      end
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{contact_email_form.token}/contact-email",
+             params: { contact_email_form: { contact_email: "test@example.com", confirmed_email: "test@example.com" } }
+
+        expect(response).to redirect_to(check_your_answers_forms_path(contact_email_form.token))
+      end
+    end
+
     context "when editing an existing registration" do
       let(:edit_contact_email_form) { build(:edit_contact_email_form) }
 

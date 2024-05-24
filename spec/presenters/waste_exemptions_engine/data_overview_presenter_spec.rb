@@ -66,11 +66,15 @@ module WasteExemptionsEngine
           },
           {
             title: "Contact telephone number",
-            value: new_registration.contact_phone
+            value: new_registration.contact_phone,
+            change_link_suffix: "contact telephone number",
+            change_url: "check-your-answers/contact-phone"
           },
           {
             title: "Contact email address",
-            value: new_registration.contact_email
+            value: new_registration.contact_email,
+            change_link_suffix: "contact email address",
+            change_url: "check-your-answers/contact-email"
           }
         ]
       end

@@ -144,14 +144,18 @@ module WasteExemptionsEngine
     def contact_phone_row
       {
         title: I18n.t("#{company_i18n_scope}.contact_phone.title"),
-        value: contact_phone
+        value: contact_phone,
+        change_url: "check-your-answers/contact-phone",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_phone.change_link_suffix")
       }
     end
 
     def contact_email_row
       {
         title: I18n.t("#{company_i18n_scope}.contact_email.title"),
-        value: contact_email
+        value: contact_email,
+        change_url: "check-your-answers/contact-email",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_email.change_link_suffix")
       }
     end
 

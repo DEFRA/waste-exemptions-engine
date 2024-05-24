@@ -69,6 +69,50 @@ module WasteExemptionsEngine
         end
       end
 
+      describe "GET /check-your-answers/contact-phone" do
+        let(:form) { build(:check_your_answers_form) }
+
+        it "redirects to contact_phone_form" do
+          get contact_phone_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_contact_phone_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get contact_phone_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "adds check_your_answers_form into the workflow history" do
+          get contact_phone_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
+      end
+
+      describe "GET /check-your-answers/contact-email" do
+        let(:form) { build(:check_your_answers_form) }
+
+        it "redirects to contact_email_form" do
+          get contact_email_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_contact_email_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get contact_email_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "adds check_your_answers_form into the workflow history" do
+          get contact_email_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
+      end
+
       describe "GET /check-your-answers/operator-name" do
         let(:form) { build(:check_your_answers_form) }
 
