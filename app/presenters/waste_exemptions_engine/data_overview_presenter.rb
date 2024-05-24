@@ -137,7 +137,9 @@ module WasteExemptionsEngine
     def contact_address_row
       {
         title: I18n.t("#{company_i18n_scope}.contact_address.title"),
-        value: displayable_address(contact_address)
+        value: displayable_address(contact_address),
+        change_url: "check-your-answers/contact-address",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_address.change_link_suffix")
       }
     end
 

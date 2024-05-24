@@ -62,7 +62,9 @@ module WasteExemptionsEngine
               new_registration.contact_address.locality,
               new_registration.contact_address.city,
               new_registration.contact_address.postcode
-            ].join("<br>").html_safe
+            ].join("<br>").html_safe,
+            change_link_suffix: "contact address",
+            change_url: "check-your-answers/contact-address"
           },
           {
             title: "Contact telephone number",

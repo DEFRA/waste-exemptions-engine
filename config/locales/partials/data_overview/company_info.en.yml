@@ -40,6 +40,7 @@ en:
             change_link_suffix: "contact position"
           contact_address:
             title: Contact address
+            change_link_suffix: "contact address"
           contact_details:
             title: Contact details
           contact_phone:
