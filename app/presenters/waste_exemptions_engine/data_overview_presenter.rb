@@ -34,11 +34,13 @@ module WasteExemptionsEngine
     end
 
     def contact_rows
-      rows = [contact_name_row]
-      rows << contact_position_row if contact_position.present?
-      rows += [contact_address_row, contact_phone_row, contact_email_row]
-
-      rows
+      [
+        contact_name_row,
+        contact_position_row,
+        contact_address_row,
+        contact_phone_row,
+        contact_email_row
+      ]
     end
 
     def farm_rows
