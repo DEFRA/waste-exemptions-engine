@@ -24,93 +24,51 @@ module WasteExemptionsEngine
       end
     end
 
+    RSpec.shared_examples "a valid transition" do |request_path, redirects_to|
+      let(:form) { build(:check_your_answers_form) }
+
+      it "redirects to contact_name_form" do
+        get send(request_path, token: form.token)
+
+        expect(response).to redirect_to send(redirects_to, token: form.token)
+      end
+
+      it "sets temp_check_your_answers_flow variable to true" do
+        get send(request_path, token: form.token)
+
+        expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+      end
+
+      it "adds check_your_answers_form into the workflow history" do
+        get send(request_path, token: form.token)
+
+        expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+      end
+    end
+
     context "when editing data on Check Your Answers" do
       describe "GET /check-your-answers/contact-name" do
-        let(:form) { build(:check_your_answers_form) }
-
-        it "redirects to contact_name_form" do
-          get contact_name_check_your_answers_forms_path(token: form.token)
-
-          expect(response).to redirect_to new_contact_name_form_path(form.token)
-        end
-
-        it "sets temp_check_your_answers_flow variable to true" do
-          get contact_name_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
-        end
-
-        it "adds check_your_answers_form into the workflow history" do
-          get contact_name_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
-        end
+        it_behaves_like "a valid transition", :contact_name_check_your_answers_forms_path, :new_contact_name_form_path
       end
 
       describe "GET /check-your-answers/contact-position" do
-        let(:form) { build(:check_your_answers_form) }
+        it_behaves_like "a valid transition", :contact_position_check_your_answers_forms_path, :new_contact_position_form_path
+      end
 
-        it "redirects to contact_position_form" do
-          get contact_position_check_your_answers_forms_path(token: form.token)
+      describe "GET /check-your-answers/contact-phone" do
+        it_behaves_like "a valid transition", :contact_phone_check_your_answers_forms_path, :new_contact_phone_form_path
+      end
 
-          expect(response).to redirect_to new_contact_position_form_path(form.token)
-        end
-
-        it "sets temp_check_your_answers_flow variable to true" do
-          get contact_position_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
-        end
-
-        it "adds check_your_answers_form into the workflow history" do
-          get contact_position_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
-        end
+      describe "GET /check-your-answers/contact-email" do
+        it_behaves_like "a valid transition", :contact_email_check_your_answers_forms_path, :new_contact_email_form_path
       end
 
       describe "GET /check-your-answers/contact-address" do
-        let(:form) { build(:check_your_answers_form) }
-
-        it "redirects to contact_address_form" do
-          get contact_address_check_your_answers_forms_path(token: form.token)
-
-          expect(response).to redirect_to new_contact_postcode_form_path(form.token)
-        end
-
-        it "sets temp_check_your_answers_flow variable to true" do
-          get contact_address_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
-        end
-
-        it "adds check_your_answers_form into the workflow history" do
-          get contact_address_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
-        end
+        it_behaves_like "a valid transition", :contact_address_check_your_answers_forms_path, :new_contact_postcode_form_path
       end
 
       describe "GET /check-your-answers/operator-name" do
-        let(:form) { build(:check_your_answers_form) }
-
-        it "redirects to operator_name_form" do
-          get operator_name_check_your_answers_forms_path(token: form.token)
-
-          expect(response).to redirect_to new_operator_name_form_path(form.token)
-        end
-
-        it "sets temp_check_your_answers_flow variable to true" do
-          get operator_name_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
-        end
-
-        it "adds check_your_answers_form into the workflow history" do
-          get operator_name_check_your_answers_forms_path(token: form.token)
-
-          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
-        end
+        it_behaves_like "a valid transition", :operator_name_check_your_answers_forms_path, :new_operator_name_form_path
       end
     end
   end

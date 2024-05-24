@@ -43,4 +43,11 @@ en:
             change_link_suffix: "contact address"
           contact_details:
             title: Contact details
+          contact_phone:
+            title: Contact telephone number
+            change_link_suffix: "contact telephone number"
+          contact_email:
+            title: Contact email address
+            change_link_suffix: "contact email address"
           change_link: Change
+          add_link: Add

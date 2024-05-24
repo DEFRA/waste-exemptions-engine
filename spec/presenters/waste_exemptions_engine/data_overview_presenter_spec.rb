@@ -67,8 +67,16 @@ module WasteExemptionsEngine
             change_url: "check-your-answers/contact-address"
           },
           {
-            title: "Contact details",
-            value: "#{new_registration.contact_phone}<br>#{new_registration.contact_email}".html_safe
+            title: "Contact telephone number",
+            value: new_registration.contact_phone,
+            change_link_suffix: "contact telephone number",
+            change_url: "check-your-answers/contact-phone"
+          },
+          {
+            title: "Contact email address",
+            value: new_registration.contact_email,
+            change_link_suffix: "contact email address",
+            change_url: "check-your-answers/contact-email"
           }
         ]
       end
