@@ -26,7 +26,7 @@ module WasteExemptionsEngine
     def edit_contact_email
       transition_to_edit("edit_contact_email")
     end
-    
+
     def edit_contact_address
       transition_to_edit("edit_contact_address")
     end

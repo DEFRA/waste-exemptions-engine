@@ -206,7 +206,7 @@ module WasteExemptionsEngine
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form,
-                      unless: [:applicant_email, :check_your_answers_flow?]
+                      unless: %i[applicant_email check_your_answers_flow?]
 
           transitions from: :contact_phone_form,
                       to: :check_contact_email_form,
