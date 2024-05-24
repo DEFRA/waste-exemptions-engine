@@ -18,7 +18,7 @@
     <dd class="govuk-summary-list__actions">
       <% if row[:change_url].present? %>
         <%= link_to(row[:change_url]) do %>
-          <%= t(".change_link")%>
+          <%= row[:value].present? ? t(".change_link") : t(".add_link")%>
           <span class="govuk-visually-hidden">
             <%= row[:change_link_suffix] %>
           </span>
