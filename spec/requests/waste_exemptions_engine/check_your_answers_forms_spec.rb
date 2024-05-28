@@ -64,7 +64,27 @@ module WasteExemptionsEngine
       end
 
       describe "GET /check-your-answers/contact-address" do
+        let(:form) { build(:check_your_answers_form) }
+
         it_behaves_like "a valid transition", :contact_address_check_your_answers_forms_path, :new_contact_postcode_form_path
+
+        it "redirects to contact_address_form" do
+          get contact_address_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_contact_postcode_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get contact_address_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "adds check_your_answers_form into the workflow history" do
+          get contact_address_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
       end
 
       describe "GET /check-your-answers/operator-name" do
