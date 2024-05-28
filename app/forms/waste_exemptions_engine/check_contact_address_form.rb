@@ -14,7 +14,9 @@ module WasteExemptionsEngine
             .except("id", "created_at", "updated_at", "address_type")
             .merge(address_type: "contact")
         )
+        params = params.merge(temp_contact_postcode: operator_address.postcode)
       end
+
 
       super(params)
     end

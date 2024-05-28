@@ -39,6 +39,12 @@ module WasteExemptionsEngine
             expect(form.contact_address.send(attr)).to eq(form.operator_address.send(attr))
           end
         end
+
+        it "copies the operator_address postcode to the temp_contact_postcode" do
+          submit_form
+
+          expect(form.transient_registration.temp_contact_postcode).to eq(form.operator_address.postcode)
+        end
       end
 
       context "when temp_reuse_operator_address is false" do
