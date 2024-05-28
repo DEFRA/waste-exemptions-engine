@@ -64,11 +64,9 @@ module WasteExemptionsEngine
       end
 
       describe "GET /check-your-answers/contact-address" do
-        it_behaves_like "a valid transition", :contact_address_check_your_answers_forms_path, :new_contact_postcode_form_path
-      end
-
-      describe "GET /check-your-answers/contact-address" do
         let(:form) { build(:check_your_answers_form) }
+
+        it_behaves_like "a valid transition", :contact_address_check_your_answers_forms_path, :new_contact_postcode_form_path
 
         it "redirects to contact_address_form" do
           get contact_address_check_your_answers_forms_path(token: form.token)

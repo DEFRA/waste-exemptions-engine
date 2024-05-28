@@ -17,7 +17,6 @@ module WasteExemptionsEngine
         params = params.merge(temp_contact_postcode: operator_address.postcode)
       end
 
-
       super(params)
     end
   end
