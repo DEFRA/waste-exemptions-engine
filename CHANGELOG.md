@@ -6,8 +6,22 @@
 
 **Implemented enhancements:**
 
+- RUBY 3117 wex charging check your answers page change contact address [\#997](https://github.com/DEFRA/waste-exemptions-engine/pull/997) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3118 & RUBY-3119\] ability to edit contact telephone number and contact email on check your answers page [\#995](https://github.com/DEFRA/waste-exemptions-engine/pull/995) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3117\] Add edit contact address feature to check your answers page and update workflow transitions [\#994](https://github.com/DEFRA/waste-exemptions-engine/pull/994) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3116\] Edit contact position functionality for Check Your Answers form [\#993](https://github.com/DEFRA/waste-exemptions-engine/pull/993) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3105\] WEX Charging: Check Your Answers Page - Change Operator name [\#992](https://github.com/DEFRA/waste-exemptions-engine/pull/992) ([jjromeo](https://github.com/jjromeo))
+- RUBY-3115:  contact name edit on check your answers page [\#989](https://github.com/DEFRA/waste-exemptions-engine/pull/989) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3154\] layout adjustments for Check Your Answers page [\#987](https://github.com/DEFRA/waste-exemptions-engine/pull/987) ([brujeo](https://github.com/brujeo))
+- RUBY 3065 wex charging bo band charges deletion [\#985](https://github.com/DEFRA/waste-exemptions-engine/pull/985) ([jjromeo](https://github.com/jjromeo))
+- RUBY 3066 wex charging bo charging catalogue management [\#980](https://github.com/DEFRA/waste-exemptions-engine/pull/980) ([jjromeo](https://github.com/jjromeo))
+- Feature/nano 3050 wex moving charges to dedicated table [\#978](https://github.com/DEFRA/waste-exemptions-engine/pull/978) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3113\] Rails concern with ability to manage prices in pence as pounds [\#976](https://github.com/DEFRA/waste-exemptions-engine/pull/976) ([brujeo](https://github.com/brujeo))
+- Ruby 2749 wex bo add deregistration details to a registration [\#974](https://github.com/DEFRA/waste-exemptions-engine/pull/974) ([jjromeo](https://github.com/jjromeo))
+- RUBY-3050: WEX Charging: BO - Band and charge management [\#972](https://github.com/DEFRA/waste-exemptions-engine/pull/972) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3041\] extending list of cutoff and completion pages for user journey analytics [\#962](https://github.com/DEFRA/waste-exemptions-engine/pull/962) ([brujeo](https://github.com/brujeo))
 - RUBY 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#955](https://github.com/DEFRA/waste-exemptions-engine/pull/955) ([jjromeo](https://github.com/jjromeo))
+- RUBY 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#953](https://github.com/DEFRA/waste-exemptions-engine/pull/953) ([jjromeo](https://github.com/jjromeo))
 - RUBY 2885 wex implement analytics metrics [\#943](https://github.com/DEFRA/waste-exemptions-engine/pull/943) ([jjromeo](https://github.com/jjromeo))
 - RUBY 2974 wex collect user journey data [\#938](https://github.com/DEFRA/waste-exemptions-engine/pull/938) ([jjromeo](https://github.com/jjromeo))
 - Ruby 2820 wex renewal stop page [\#922](https://github.com/DEFRA/waste-exemptions-engine/pull/922) ([jjromeo](https://github.com/jjromeo))
@@ -190,6 +204,7 @@
 
 **Fixed bugs:**
 
+- fixing rounding issue when working with floating numbers in ruby [\#982](https://github.com/DEFRA/waste-exemptions-engine/pull/982) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2976\] Add communication log entry and page titles for unsubscri… [\#964](https://github.com/DEFRA/waste-exemptions-engine/pull/964) ([jjromeo](https://github.com/jjromeo))
 - Ruby 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#958](https://github.com/DEFRA/waste-exemptions-engine/pull/958) ([jjromeo](https://github.com/jjromeo))
 - Set initial assistance\_mode using attribute assignment in NewRegistration [\#950](https://github.com/DEFRA/waste-exemptions-engine/pull/950) ([jjromeo](https://github.com/jjromeo))
@@ -322,9 +337,10 @@
 
 **Merged pull requests:**
 
+- Ruby 3147 all tech debt simplecov upgrade [\#984](https://github.com/DEFRA/waste-exemptions-engine/pull/984) ([brujeo](https://github.com/brujeo))
+- Update CHANGELOG [\#971](https://github.com/DEFRA/waste-exemptions-engine/pull/971) ([jjromeo](https://github.com/jjromeo))
 - Chore/rails 7 1 [\#966](https://github.com/DEFRA/waste-exemptions-engine/pull/966) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - Chore/rails 7 1 [\#965](https://github.com/DEFRA/waste-exemptions-engine/pull/965) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
-- RUBY 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#953](https://github.com/DEFRA/waste-exemptions-engine/pull/953) ([jjromeo](https://github.com/jjromeo))
 - Update CHANGELOG [\#951](https://github.com/DEFRA/waste-exemptions-engine/pull/951) ([jjromeo](https://github.com/jjromeo))
 - Bump rack from 2.2.8 to 2.2.8.1 [\#941](https://github.com/DEFRA/waste-exemptions-engine/pull/941) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update CHANGELOG [\#926](https://github.com/DEFRA/waste-exemptions-engine/pull/926) ([jjromeo](https://github.com/jjromeo))
