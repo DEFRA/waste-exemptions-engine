@@ -16,7 +16,7 @@
       <%= row[:value] %>
     </dd>
     <dd class="govuk-summary-list__actions">
-      <% if row[:change_url].present? %>
+      <% if !form&.transient_registration&.renewal? && row[:change_url].present? %>
         <%= link_to(row[:change_url]) do %>
           <%= row[:value].present? ? t(".change_link") : t(".add_link")%>
           <span class="govuk-visually-hidden">
