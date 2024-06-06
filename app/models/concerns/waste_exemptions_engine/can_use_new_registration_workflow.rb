@@ -157,7 +157,8 @@ module WasteExemptionsEngine
                       to: :registration_number_form
 
           transitions from: :operator_name_form,
-                      to: :operator_postcode_form
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :operator_postcode_form,
                       to: :operator_address_manual_form,
@@ -189,7 +190,8 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           transitions from: :contact_position_form,
-                      to: :check_contact_phone_form
+                      to: :check_contact_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_phone_form,
                       to: :contact_phone_form,
@@ -204,10 +206,11 @@ module WasteExemptionsEngine
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form,
-                      unless: :applicant_email
+                      unless: %i[applicant_email check_your_answers_flow?]
 
           transitions from: :contact_phone_form,
-                      to: :check_contact_email_form
+                      to: :check_contact_email_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_email_form,
                       to: :contact_email_form,
@@ -218,7 +221,8 @@ module WasteExemptionsEngine
                       if: :temp_reuse_applicant_email?
 
           transitions from: :contact_email_form,
-                      to: :check_contact_address_form
+                      to: :check_contact_address_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :check_contact_address_form,
                       to: :contact_postcode_form,
@@ -240,10 +244,12 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :contact_address_lookup_form,
-                      to: :on_a_farm_form
+                      to: :on_a_farm_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_address_manual_form,
-                      to: :on_a_farm_form
+                      to: :on_a_farm_form,
+                      unless: :check_your_answers_flow?
 
           # Farm questions
           transitions from: :on_a_farm_form,
@@ -285,6 +291,24 @@ module WasteExemptionsEngine
           # Check your answers
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
+
+          transitions from: :contact_position_form,
+                      to: :check_your_answers_form
+
+          transitions from: :contact_phone_form,
+                      to: :check_your_answers_form
+
+          transitions from: :contact_email_form,
+                      to: :check_your_answers_form
+
+          transitions from: :operator_name_form,
+                      to: :check_your_answers_form
+
+          transitions from: :contact_address_lookup_form,
+                      to: :check_your_answers_form
+
+          transitions from: :contact_address_manual_form,
+                      to: :check_your_answers_form
         end
 
         event :skip_to_manual_address do
@@ -309,6 +333,36 @@ module WasteExemptionsEngine
         event :edit_contact_name do
           transitions from: :check_your_answers_form,
                       to: :contact_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_position do
+          transitions from: :check_your_answers_form,
+                      to: :contact_position_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_phone do
+          transitions from: :check_your_answers_form,
+                      to: :contact_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_email do
+          transitions from: :check_your_answers_form,
+                      to: :contact_email_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_operator_name do
+          transitions from: :check_your_answers_form,
+                      to: :operator_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_address do
+          transitions from: :check_your_answers_form,
+                      to: :contact_postcode_form,
                       if: :check_your_answers_flow?
         end
       end

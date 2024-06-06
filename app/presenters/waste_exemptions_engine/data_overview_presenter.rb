@@ -34,11 +34,13 @@ module WasteExemptionsEngine
     end
 
     def contact_rows
-      rows = [contact_name_row]
-      rows << contact_position_row if contact_position.present?
-      rows += [contact_address_row, contact_details_row]
-
-      rows
+      [
+        contact_name_row,
+        contact_position_row,
+        contact_address_row,
+        contact_phone_row,
+        contact_email_row
+      ]
     end
 
     def farm_rows
@@ -74,8 +76,10 @@ module WasteExemptionsEngine
         }
       else
         {
-          title: I18n.t("#{company_i18n_scope}.business_name.operator_name"),
-          value: operator_name
+          title: I18n.t("#{company_i18n_scope}.business_name.operator_name.title"),
+          value: operator_name,
+          change_url: "check-your-answers/operator-name",
+          change_link_suffix: I18n.t("#{company_i18n_scope}.business_name.operator_name.change_link_suffix")
         }
       end
     end
@@ -119,30 +123,43 @@ module WasteExemptionsEngine
         title: I18n.t("#{company_i18n_scope}.contact_name.title"),
         value: contact_name,
         change_url: "check-your-answers/contact-name",
-        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name_change_link_suffix")
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name.change_link_suffix")
       }
     end
 
     def contact_position_row
       {
         title: I18n.t("#{company_i18n_scope}.contact_position.title"),
-        value: contact_position
+        value: contact_position,
+        change_url: "check-your-answers/contact-position",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_position.change_link_suffix")
       }
     end
 
     def contact_address_row
       {
         title: I18n.t("#{company_i18n_scope}.contact_address.title"),
-        value: displayable_address(contact_address)
+        value: displayable_address(contact_address),
+        change_url: "check-your-answers/contact-address",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_address.change_link_suffix")
       }
     end
 
-    def contact_details_row
-      contact_details_value = [contact_phone, contact_email].join("<br>").html_safe
-
+    def contact_phone_row
       {
-        title: I18n.t("#{company_i18n_scope}.contact_details.title"),
-        value: contact_details_value
+        title: I18n.t("#{company_i18n_scope}.contact_phone.title"),
+        value: contact_phone,
+        change_url: "check-your-answers/contact-phone",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_phone.change_link_suffix")
+      }
+    end
+
+    def contact_email_row
+      {
+        title: I18n.t("#{company_i18n_scope}.contact_email.title"),
+        value: contact_email,
+        change_url: "check-your-answers/contact-email",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.contact_email.change_link_suffix")
       }
     end
 

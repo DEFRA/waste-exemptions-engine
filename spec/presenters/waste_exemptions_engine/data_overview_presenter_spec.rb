@@ -49,7 +49,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Contact position",
-            value: new_registration.contact_position
+            value: new_registration.contact_position,
+            change_link_suffix: "contact position",
+            change_url: "check-your-answers/contact-position"
           },
           {
             title: "Contact address",
@@ -60,11 +62,21 @@ module WasteExemptionsEngine
               new_registration.contact_address.locality,
               new_registration.contact_address.city,
               new_registration.contact_address.postcode
-            ].join("<br>").html_safe
+            ].join("<br>").html_safe,
+            change_link_suffix: "contact address",
+            change_url: "check-your-answers/contact-address"
           },
           {
-            title: "Contact details",
-            value: "#{new_registration.contact_phone}<br>#{new_registration.contact_email}".html_safe
+            title: "Contact telephone number",
+            value: new_registration.contact_phone,
+            change_link_suffix: "contact telephone number",
+            change_url: "check-your-answers/contact-phone"
+          },
+          {
+            title: "Contact email address",
+            value: new_registration.contact_email,
+            change_link_suffix: "contact email address",
+            change_url: "check-your-answers/contact-email"
           }
         ]
       end
@@ -79,7 +91,8 @@ module WasteExemptionsEngine
           expected_data[0][:value] = "Charity or trust"
           expected_data[1][:title] = "Operator name"
           expected_data.slice!(2)
-          # expected_data.delete_at(expected_data.index 2)
+          expected_data[1][:change_url] = "check-your-answers/operator-name"
+          expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
         end
 
         it "returns the properly-formatted data" do
@@ -103,6 +116,9 @@ module WasteExemptionsEngine
 
           expected_data[0][:value] = "Partnership"
           expected_data[1][:title] = "Operator name"
+
+          expected_data[1][:change_url] = "check-your-answers/operator-name"
+          expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
           # Replace the Companies House info with partners instead
           expected_data[2] = { title: "Partners", value: partner_text }
         end
