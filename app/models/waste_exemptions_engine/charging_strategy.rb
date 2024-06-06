@@ -54,15 +54,25 @@ module WasteExemptionsEngine
       end
     end
 
-    # SonarCloud complains about unused parameters on virtual methods
-    # :nocov:
-    def initial_compliance_charge(_band)
+    def initial_compliance_charge(band)
+      # SonarCloud complains about unused parameters but we need thenm for inheritance
+      # But if we use them to placate SonaCloud, Rubocop complains about void contexts
+      # rubocop:disable Lint/Void
+      band
+      # rubocop:enable Lint/Void
+
       raise NotImplementedError
     end
 
-    def additional_compliance_charge(_band, _initial_compliance_charge_applied)
+    def additional_compliance_charge(band, initial_compliance_charge_applied)
+      # SonarCloud complains about unused parameters but we need thenm for inheritance
+      # But if we use them to placate SonaCloud, Rubocop complains about void contexts
+      # rubocop:disable Lint/Void
+      band
+      initial_compliance_charge_applied
+      # rubocop:enable Lint/Void
+
       raise NotImplementedError
     end
-    # :nocov:
   end
 end
