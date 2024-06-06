@@ -54,6 +54,8 @@ module WasteExemptionsEngine
       end
     end
 
+    # SonarCloud complains about unused parameters on virtual methods
+    # :nocov:
     def initial_compliance_charge(_band)
       raise NotImplementedError
     end
@@ -61,5 +63,6 @@ module WasteExemptionsEngine
     def additional_compliance_charge(_band, _initial_compliance_charge_applied)
       raise NotImplementedError
     end
+    # :nocov:
   end
 end
