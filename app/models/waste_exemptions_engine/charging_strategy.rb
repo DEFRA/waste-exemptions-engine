@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     end
 
     def charge_details
-      ChargeDetail.new(
+      @charge_details = ChargeDetail.new(
         registration_charge_amount:,
         band_charge_details:
       )
