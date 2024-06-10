@@ -204,6 +204,7 @@
 
 **Fixed bugs:**
 
+- \[RUBY-3195\] Hiding change links on CYA page for renewals [\#1004](https://github.com/DEFRA/waste-exemptions-engine/pull/1004) ([brujeo](https://github.com/brujeo))
 - fixing rounding issue when working with floating numbers in ruby [\#982](https://github.com/DEFRA/waste-exemptions-engine/pull/982) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2976\] Add communication log entry and page titles for unsubscri… [\#964](https://github.com/DEFRA/waste-exemptions-engine/pull/964) ([jjromeo](https://github.com/jjromeo))
 - Ruby 2976 wex add unsubscribe functionality to the renewal reminder emails in wex [\#958](https://github.com/DEFRA/waste-exemptions-engine/pull/958) ([jjromeo](https://github.com/jjromeo))
@@ -337,6 +338,7 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG [\#998](https://github.com/DEFRA/waste-exemptions-engine/pull/998) ([jjromeo](https://github.com/jjromeo))
 - Ruby 3147 all tech debt simplecov upgrade [\#984](https://github.com/DEFRA/waste-exemptions-engine/pull/984) ([brujeo](https://github.com/brujeo))
 - Update CHANGELOG [\#971](https://github.com/DEFRA/waste-exemptions-engine/pull/971) ([jjromeo](https://github.com/jjromeo))
 - Chore/rails 7 1 [\#966](https://github.com/DEFRA/waste-exemptions-engine/pull/966) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
