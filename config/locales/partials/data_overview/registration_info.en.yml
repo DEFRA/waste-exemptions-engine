@@ -4,7 +4,7 @@ en:
       data_overview:
         registration_info:
           subheading: Registration details
-          table_summary: "The information you've given us about the registration"
+          table_summary: The information you've given us about the registration
           exemptions:
             title: Exemptions
           on_a_farm:
@@ -12,6 +12,7 @@ en:
             value:
               "true": "Yes"
               "false": "No"
+            change_link_suffix: Will this operation be carried out on a farm?
           is_a_farmer:
             title: Are the waste exemptions used by a farmer or farming business?
             value:
@@ -29,3 +30,5 @@ en:
             title: Grid reference
           site_description:
             title: Site description
+          change_link: Change
+
