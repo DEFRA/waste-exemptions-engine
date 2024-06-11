@@ -34,6 +34,7 @@ group :development, :test do
   gem "pdf-reader"
   gem "pry-byebug"
   gem "rails-controller-testing"
+  gem "rspec-html-matchers"
   gem "simplecov", "~> 0.22.0", require: false
   gem "w3c_validators"
 end

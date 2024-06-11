@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     include CanUseNewRegistrationWorkflow
 
     def initialize(params)
-      super(params)
+      super
 
       # Set the initial assistance_mode value to the application's default_assistance_mode
       self.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode

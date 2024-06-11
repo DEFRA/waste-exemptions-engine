@@ -253,7 +253,8 @@ module WasteExemptionsEngine
 
           # Farm questions
           transitions from: :on_a_farm_form,
-                      to: :is_a_farmer_form
+                      to: :is_a_farmer_form,
+                      unless: :check_your_answers_flow?
 
           # Site questions
           transitions from: :is_a_farmer_form,
@@ -309,6 +310,9 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :contact_address_manual_form,
+                      to: :check_your_answers_form
+
+          transitions from: :on_a_farm_form,
                       to: :check_your_answers_form
 
           transitions from: :is_a_farmer_form,
@@ -367,6 +371,12 @@ module WasteExemptionsEngine
         event :edit_contact_address do
           transitions from: :check_your_answers_form,
                       to: :contact_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_on_a_farm do
+          transitions from: :check_your_answers_form,
+                      to: :on_a_farm_form,
                       if: :check_your_answers_flow?
         end
 
