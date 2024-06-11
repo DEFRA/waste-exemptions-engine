@@ -138,7 +138,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Will this waste operation take place on a farm?",
-            value: "Yes"
+            value: "Yes",
+            change_link_suffix: "on a farm",
+            change_url: "check-your-answers/on-a-farm"
           },
           {
             title: "Are the waste exemptions used by a farmer or farming business?",

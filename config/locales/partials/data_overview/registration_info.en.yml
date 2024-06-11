@@ -12,6 +12,7 @@ en:
             value:
               "true": "Yes"
               "false": "No"
+            change_link_suffix: "on a farm"
           is_a_farmer:
             title: Are the waste exemptions used by a farmer or farming business?
             value:
