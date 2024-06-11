@@ -13,7 +13,7 @@ module Test
     validates :transient_address, "waste_exemptions_engine/manual_address": true
 
     def initialize(*attrs)
-      super(*attrs)
+      super
 
       self.transient_address = MockTransientAddress.new(premises, street_address, locality, city, postcode)
     end

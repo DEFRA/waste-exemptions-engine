@@ -26,7 +26,7 @@ module WasteExemptionsEngine
         )
       end
 
-      super(params)
+      super
     end
   end
 end

@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
     def submit(params)
       params[:contact_phone] = applicant_phone if params[:temp_reuse_applicant_phone] == "true"
-      super(params)
+      super
     end
   end
 end

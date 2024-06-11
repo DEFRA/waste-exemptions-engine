@@ -175,7 +175,9 @@ module WasteExemptionsEngine
     def on_a_farm_row
       {
         title: I18n.t("#{reg_i18n_scope}.on_a_farm.title"),
-        value: I18n.t("#{reg_i18n_scope}.on_a_farm.value.#{on_a_farm}")
+        value: I18n.t("#{reg_i18n_scope}.on_a_farm.value.#{on_a_farm}"),
+        change_url: "check-your-answers/on-a-farm",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.on_a_farm.change_link_suffix")
       }
     end
 
