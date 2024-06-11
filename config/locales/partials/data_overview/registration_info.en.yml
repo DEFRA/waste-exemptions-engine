@@ -17,7 +17,7 @@ en:
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: "Are these exemptions used by a farmer or farming business"
+            change_link_suffix: "Are these exemptions used by a farmer or farming business?"
           applicant_name:
             title: Form completed by
           applicant_phone:
