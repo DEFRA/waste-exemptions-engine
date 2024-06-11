@@ -4,8 +4,7 @@ module WasteExemptionsEngine
   class ChargeDetail < ApplicationRecord
     self.table_name = "charge_details"
 
-    has_many :charge_detail_band_charge_details, dependent: :destroy
-    has_many :band_charge_details, through: :charge_detail_band_charge_details
+    has_many :band_charge_details, dependent: :destroy
 
     def total_compliance_charge_amount
       non_bucket_compliance_charge_amount = band_charge_details.sum do |bc|
