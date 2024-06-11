@@ -10,14 +10,14 @@ en:
           on_a_farm:
             title: Will this waste operation take place on a farm?
             value:
-              "true": Yes
-              "false": No
+              "true": "Yes"
+              "false": "No"
             change_link_suffix: Will this operation be carried out on a farm?
           is_a_farmer:
             title: Are the waste exemptions used by a farmer or farming business?
             value:
-              "true": Yes
-              "false": No
+              "true": "Yes"
+              "false": "No"
           applicant_name:
             title: Form completed by
           applicant_phone:

@@ -139,7 +139,7 @@ module WasteExemptionsEngine
           {
             title: "Will this waste operation take place on a farm?",
             value: "Yes",
-            change_link_suffix: "on a farm",
+            change_link_suffix: "Will this operation be carried out on a farm?",
             change_url: "check-your-answers/on-a-farm"
           },
           {
