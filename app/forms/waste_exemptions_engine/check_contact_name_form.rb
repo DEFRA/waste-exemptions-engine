@@ -16,7 +16,7 @@ module WasteExemptionsEngine
         params[:contact_last_name] = applicant_last_name
       end
 
-      super(params)
+      super
     end
   end
 end

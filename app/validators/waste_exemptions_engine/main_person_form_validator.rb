@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       # Allow blank form submission if sufficient people already added
       return true if !fields_have_content?(record) && enough_main_people?(record)
 
-      super(record)
+      super
     end
 
     private

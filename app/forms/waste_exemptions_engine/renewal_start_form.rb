@@ -23,7 +23,7 @@ module WasteExemptionsEngine
       transient_registration.exemptions =
         transient_registration.registration_exemptions_to_copy
 
-      super(transient_registration)
+      super
     end
 
     private
