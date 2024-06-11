@@ -256,6 +256,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_operator_name",
                     as: "operator-name",
                     on: :collection
+
+                get "is-a-farmer",
+                    to: "check_your_answers_forms#edit_is_a_farmer",
+                    as: "is-a-farmer",
+                    on: :collection
               end
 
     resources :declaration_forms,

@@ -182,7 +182,9 @@ module WasteExemptionsEngine
     def farmer_row?
       {
         title: I18n.t("#{reg_i18n_scope}.is_a_farmer.title"),
-        value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}")
+        value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}"),
+        change_url: "check-your-answers/is-a-farmer",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.is_a_farmer.change_link_suffix")
       }
     end
 
