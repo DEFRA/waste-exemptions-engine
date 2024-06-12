@@ -96,7 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_104155) do
 
   create_table "charge_details", force: :cascade do |t|
     t.integer "registration_charge_amount"
-    t.integer "bucket_charge_amount", default: 0
+    t.integer "bucket_charge_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
