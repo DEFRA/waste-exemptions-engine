@@ -47,6 +47,10 @@ module WasteExemptionsEngine
     end
 
     context "when editing data on Check Your Answers" do
+      describe "GET /check-your-answers/exemptions" do
+        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_exemptions_form_path
+      end
+
       describe "GET /check-your-answers/contact-name" do
         it_behaves_like "a valid transition", :contact_name_check_your_answers_forms_path, :new_contact_name_form_path
       end

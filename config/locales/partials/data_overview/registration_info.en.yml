@@ -7,6 +7,7 @@ en:
           table_summary: The information you've given us about the registration
           exemptions:
             title: Exemptions
+            change_link_suffix: "Exemptions selected"
           on_a_farm:
             title: Will this waste operation take place on a farm?
             value:
