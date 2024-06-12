@@ -27,7 +27,7 @@ module WasteExemptionsEngine
     RSpec.shared_examples "a valid transition" do |request_path, redirects_to|
       let(:form) { build(:check_your_answers_form) }
 
-      it "redirects to contact_name_form" do
+      it "redirects to valid form page" do
         get send(request_path, token: form.token)
 
         expect(response).to redirect_to send(redirects_to, token: form.token)
@@ -93,6 +93,10 @@ module WasteExemptionsEngine
 
       describe "GET /check-your-answers/on-a-farm" do
         it_behaves_like "a valid transition", :on_a_farm_check_your_answers_forms_path, :new_on_a_farm_form_path
+      end
+
+      describe "GET /check-your-answers/is-a-farmer" do
+        it_behaves_like "a valid transition", :is_a_farmer_check_your_answers_forms_path, :new_is_a_farmer_form_path
       end
     end
   end

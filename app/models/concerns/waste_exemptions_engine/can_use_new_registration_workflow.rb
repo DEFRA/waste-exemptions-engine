@@ -258,7 +258,8 @@ module WasteExemptionsEngine
 
           # Site questions
           transitions from: :is_a_farmer_form,
-                      to: :site_grid_reference_form
+                      to: :site_grid_reference_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :site_grid_reference_form,
                       to: :check_site_address_form,
@@ -312,6 +313,9 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :on_a_farm_form,
+                      to: :check_your_answers_form
+
+          transitions from: :is_a_farmer_form,
                       to: :check_your_answers_form
         end
 
@@ -373,6 +377,12 @@ module WasteExemptionsEngine
         event :edit_on_a_farm do
           transitions from: :check_your_answers_form,
                       to: :on_a_farm_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_is_a_farmer do
+          transitions from: :check_your_answers_form,
+                      to: :is_a_farmer_form,
                       if: :check_your_answers_flow?
         end
       end

@@ -144,7 +144,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Are the waste exemptions used by a farmer or farming business?",
-            value: "Yes"
+            value: "Yes",
+            change_link_suffix: "Are these exemptions used by a farmer or farming business?",
+            change_url: "check-your-answers/is-a-farmer"
           },
           {
             title: "Form completed by",
