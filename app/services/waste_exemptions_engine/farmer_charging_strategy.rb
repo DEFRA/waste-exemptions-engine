@@ -27,11 +27,11 @@ module WasteExemptionsEngine
     end
 
     def order_exemptions_in_bucket
-      @order_exemptions_in_bucket = order.exemptions.select { |ex| bucket.exemptions.include?(ex) }
+      order.exemptions.select { |ex| bucket.exemptions.include?(ex) }
     end
 
     def any_qualifying_bucket_exemptions
-      @any_qualifying_bucket_exemptions = bucket.present? && !order_exemptions_in_bucket.empty?
+      bucket.present? && !order_exemptions_in_bucket.empty?
     end
 
     def initial_compliance_charge(band)

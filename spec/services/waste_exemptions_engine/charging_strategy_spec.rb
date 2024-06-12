@@ -16,27 +16,17 @@ module WasteExemptionsEngine
         def initialize(order)
           @band_1, @band_2, @band_3 = Band.all.limit(3).sort_by(&:sequence).to_a
 
-          super(order)
+          super
         end
 
         def initial_compliance_charge(band)
-          case band
-          when band_1, band_2
-            0
-          else
-            10
-          end
+          band == highest_band ? band.initial_compliance_charge.charge_amount : 0
         end
 
         def additional_compliance_charge(band, _initial_compliance_charge_applied)
-          case band
-          when band_1
-            4
-          when band_2
-            5
-          else
-            7
-          end
+          band_exemptions = order.exemptions.select { |ex| ex.band == band }
+          chargeable_count = band_exemptions.count - (band == highest_band ? 1 : 0)
+          chargeable_count * band.additional_compliance_charge.charge_amount
         end
       end
     end
@@ -74,14 +64,32 @@ module WasteExemptionsEngine
     end
 
     describe "#charge_details" do
-      subject(:charge_details) { strategy_test_class.new(order).charge_details }
+      subject(:strategy) { strategy_test_class.new(order) }
 
       let(:exemptions) { multiple_bands_multiple_exemptions }
 
-      it { expect(charge_details).to be_a(ChargeDetail) }
-      it { expect(charge_details.registration_charge_amount).to eq registration_charge_amount }
-      it { expect(charge_details.band_charge_details.length).to eq 3 }
-      it { expect(charge_details.bucket_charge_amount).to be_zero }
+      it { expect(strategy.charge_details).to be_a(ChargeDetail) }
+      it { expect(strategy.charge_details.registration_charge_amount).to eq registration_charge_amount }
+      it { expect(strategy.charge_details.band_charge_details.length).to eq 3 }
+      it { expect(strategy.charge_details.bucket_charge_amount).to be_nil }
+
+      it "does not persist the charge_detail" do
+        expect { strategy.charge_details }.not_to change(ChargeDetail, :count)
+      end
+
+      it "does not persist the band_charge_details" do
+        expect { strategy.charge_details }.not_to change(BandChargeDetail, :count)
+      end
+
+      context "when order details are changed" do
+        let(:new_exemption) { build(:exemption, band: Band.last) }
+
+        it "returns a different result" do
+          expect { order.exemptions << new_exemption }
+            .to change { strategy.charge_details.total_compliance_charge_amount }
+            .by(new_exemption.band.additional_compliance_charge.charge_amount)
+        end
+      end
     end
 
     describe "#total_charge_amount" do
