@@ -261,6 +261,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_on_a_farm",
                     as: "on-a-farm",
                     on: :collection
+
+                get "is-a-farmer",
+                    to: "check_your_answers_forms#edit_is_a_farmer",
+                    as: "is-a-farmer",
+                    on: :collection
               end
 
     resources :declaration_forms,
