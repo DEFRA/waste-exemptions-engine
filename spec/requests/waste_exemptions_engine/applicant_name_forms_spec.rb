@@ -17,8 +17,8 @@ module WasteExemptionsEngine
         get "/waste_exemptions_engine/#{applicant_name_form.token}/applicant-name"
 
         aggregate_failures do
-          expect(response.body).to have_html_escaped_string(contact_name_form.applicant_first_name)
-          expect(response.body).to have_html_escaped_string(contact_name_form.applicant_last_name)
+          expect(response.body).to have_html_escaped_string(applicant_name_form.applicant_first_name)
+          expect(response.body).to have_html_escaped_string(applicant_name_form.applicant_last_name)
         end
       end
 

@@ -199,7 +199,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_name.title"),
         value: applicant_name,
         change_url: "check-your-answers/applicant-name",
-        change_link_suffix: I18n.t("#{company_i18n_scope}.applicant_name.change_link_suffix")
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_name.change_link_suffix")
       }
     end
 
@@ -208,7 +208,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_phone.title"),
         value: applicant_phone,
         change_url: "check-your-answers/applicant-phone",
-        change_link_suffix: I18n.t("#{company_i18n_scope}.applicant_phone.change_link_suffix")
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_phone.change_link_suffix")
       }
     end
 
@@ -217,7 +217,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_email.title"),
         value: applicant_email,
         change_url: "check-your-answers/applicant-email",
-        change_link_suffix: I18n.t("#{company_i18n_scope}.applicant_email.change_link_suffix")
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_email.change_link_suffix")
       }
     end
 
