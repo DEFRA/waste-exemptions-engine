@@ -134,7 +134,9 @@ module WasteExemptionsEngine
         [
           {
             title: "Exemptions",
-            value: new_registration.exemptions.map(&:code).join(", ")
+            value: new_registration.exemptions.map(&:code).join(", "),
+            change_link_suffix: "Exemptions selected",
+            change_url: "check-your-answers/exemptions"
           },
           {
             title: "Will this waste operation take place on a farm?",
