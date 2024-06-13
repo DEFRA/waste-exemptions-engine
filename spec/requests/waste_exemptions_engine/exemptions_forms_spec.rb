@@ -26,6 +26,16 @@ module WasteExemptionsEngine
         end
       end
 
+      it "raises an error when no exemptions selected" do
+        post "/waste_exemptions_engine/#{exemptions_form.token}/exemptions",
+             params: { exemptions_form: { exemption_ids: [] } }
+
+        aggregate_failures "error messages" do
+          expect(response).not_to redirect_to(check_your_answers_forms_path(exemptions_form.token))
+          expect(response.body).to include("There is a problem")
+        end
+      end
+
       it "redirects back to check-your-answers when submitted" do
         post "/waste_exemptions_engine/#{exemptions_form.token}/exemptions",
              params: { exemptions_form: { exemption_ids: WasteExemptionsEngine::Exemption.limit(5).pluck(:id) } }
