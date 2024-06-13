@@ -43,6 +43,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_is_a_farmer")
     end
 
+    def edit_exemptions
+      transition_to_edit("edit_exemptions")
+    end
+
     private
 
     def transition_to_edit(transition)

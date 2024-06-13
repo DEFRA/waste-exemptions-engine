@@ -116,7 +116,8 @@ module WasteExemptionsEngine
 
           # Exemptions
           transitions from: :exemptions_form,
-                      to: :applicant_name_form
+                      to: :applicant_name_form,
+                      unless: :check_your_answers_flow?
 
           # Applicant details
           transitions from: :applicant_name_form,
@@ -256,11 +257,11 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form,
                       unless: :check_your_answers_flow?
 
-          # Site questions
           transitions from: :is_a_farmer_form,
                       to: :site_grid_reference_form,
                       unless: :check_your_answers_flow?
 
+          # Site questions
           transitions from: :site_grid_reference_form,
                       to: :check_site_address_form,
                       if: :skip_to_manual_address?
@@ -291,6 +292,9 @@ module WasteExemptionsEngine
                       to: :registration_complete_form
 
           # Check your answers
+          transitions from: :exemptions_form,
+                      to: :check_your_answers_form
+
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
 
@@ -337,6 +341,12 @@ module WasteExemptionsEngine
         event :skip_to_address do
           transitions from: :site_grid_reference_form,
                       to: :check_site_address_form
+        end
+
+        event :edit_exemptions do
+          transitions from: :check_your_answers_form,
+                      to: :exemptions_form,
+                      if: :check_your_answers_flow?
         end
 
         event :edit_contact_name do
