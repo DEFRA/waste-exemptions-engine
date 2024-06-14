@@ -13,6 +13,13 @@ FactoryBot.define do
     end
   end
 
+  factory :check_your_answers_edit_applicant_email_form, class: "WasteExemptionsEngine::ApplicantEmailForm" do
+    initialize_with do
+      new(create(:new_registration, workflow_state: "applicant_email_form", applicant_email: "test@test.com",
+                                    temp_check_your_answers_flow: true))
+    end
+  end
+
   factory :renew_applicant_email_form, class: "WasteExemptionsEngine::ApplicantEmailForm" do
     initialize_with do
       new(create(:renewing_registration, workflow_state: "applicant_email_form"))

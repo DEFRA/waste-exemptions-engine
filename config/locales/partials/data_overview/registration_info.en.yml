@@ -22,10 +22,13 @@ en:
             change_link_suffix: "Are these exemptions used by a farmer or farming business?"
           applicant_name:
             title: Form completed by
+            change_link_suffix: "Form completed by"
           applicant_phone:
             title: Telephone number
+            change_link_suffix: "Telephone number of the person filling in this form"
           applicant_email:
             title: Email address
+            change_link_suffix: "Email address of the person filling in this form"
           site_address:
             title: Site address
           grid_reference:
