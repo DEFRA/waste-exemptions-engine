@@ -47,7 +47,7 @@ http_interactions:
         class=\"govuk-visually-hidden\">\n            contact name\n          </span>\n</a>
         \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
         \     Contact position\n    </dt>\n    <dd id=\"company_contact_position\"
-        class=\"govuk-summary-list__value\">\n      fisherman\n    </dd>\n    <dd
+        class=\"govuk-summary-list__value\">\n      interpreter\n    </dd>\n    <dd
         class=\"govuk-summary-list__actions\">\n        <a href=\"check-your-answers/contact-position\">\n
         \         Change\n          <span class=\"govuk-visually-hidden\">\n            contact
         position\n          </span>\n</a>    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
