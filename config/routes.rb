@@ -227,6 +227,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "check-your-answers",
               # path_names: { new: "" }
               path_names: { new: "" } do
+                get "applicant-name",
+                    to: "check_your_answers_forms#edit_applicant_name",
+                    as: "applicant-name",
+                    on: :collection
+
+                get "applicant-phone",
+                    to: "check_your_answers_forms#edit_applicant_phone",
+                    as: "applicant-phone",
+                    on: :collection
+
+                get "applicant-email",
+                    to: "check_your_answers_forms#edit_applicant_email",
+                    as: "applicant-email",
+                    on: :collection
+
                 get "exemptions",
                     to: "check_your_answers_forms#edit_exemptions",
                     as: "exemptions",

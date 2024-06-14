@@ -121,13 +121,16 @@ module WasteExemptionsEngine
 
           # Applicant details
           transitions from: :applicant_name_form,
-                      to: :applicant_phone_form
+                      to: :applicant_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_phone_form,
-                      to: :applicant_email_form
+                      to: :applicant_email_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_email_form,
-                      to: :business_type_form
+                      to: :business_type_form,
+                      unless: :check_your_answers_flow?
 
           # Operator details
           transitions from: :business_type_form,
@@ -292,6 +295,15 @@ module WasteExemptionsEngine
                       to: :registration_complete_form
 
           # Check your answers
+          transitions from: :applicant_name_form,
+                      to: :check_your_answers_form
+
+          transitions from: :applicant_phone_form,
+                      to: :check_your_answers_form
+
+          transitions from: :applicant_email_form,
+                      to: :check_your_answers_form
+
           transitions from: :exemptions_form,
                       to: :check_your_answers_form
 
@@ -346,6 +358,24 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
                       to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_name do
+          transitions from: :check_your_answers_form,
+                      to: :applicant_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_phone do
+          transitions from: :check_your_answers_form,
+                      to: :applicant_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_email do
+          transitions from: :check_your_answers_form,
+                      to: :applicant_email_form,
                       if: :check_your_answers_flow?
         end
 

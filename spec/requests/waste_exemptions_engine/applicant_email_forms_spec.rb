@@ -16,6 +16,23 @@ module WasteExemptionsEngine
       end
     end
 
+    context "when editing applicant email on Check Your Answers page - new registration" do
+      let(:applicant_email_form) { build(:check_your_answers_edit_applicant_email_form) }
+
+      it "pre-fills applicant email information" do
+        get "/waste_exemptions_engine/#{applicant_email_form.token}/applicant-email"
+
+        expect(response.body).to have_html_escaped_string(applicant_email_form.applicant_email)
+      end
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{applicant_email_form.token}/applicant-email",
+             params: { applicant_email_form: { applicant_email: "test@example.com", confirmed_email: "test@example.com" } }
+
+        expect(response).to redirect_to(check_your_answers_forms_path(applicant_email_form.token))
+      end
+    end
+
     context "when editing an existing registration" do
       let(:edit_applicant_email_form) { build(:edit_applicant_email_form) }
 
