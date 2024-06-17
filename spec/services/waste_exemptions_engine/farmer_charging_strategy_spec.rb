@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     end
 
     describe "#charge_details" do
-      subject(:charge_details) { described_class.new(order).charge_details }
+      subject(:charge_details) { described_class.new(order).charge_detail }
       let(:band_charges) { charge_details.band_charge_details }
       let(:total_compliance_charge_amount) do
         band_charges.sum { |bc| bc.initial_compliance_charge_amount + bc.additional_compliance_charge_amount }

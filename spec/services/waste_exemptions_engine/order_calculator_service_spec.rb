@@ -16,25 +16,25 @@ module WasteExemptionsEngine
     # The numbers here are just to suport stubbing the calculator methods - they are not internally consistent.
     # Validation of charge value consistency is covered in the OrderCalculator specs.
     let(:expected_registration_charge) { 5 }
-    let(:expected_compliance_charges) do
+    let(:expected_band_charges) do
       [
         build(:band_charge_detail, initial_compliance_charge_amount: 10, additional_compliance_charge_amount: 5),
         build(:band_charge_detail, initial_compliance_charge_amount: 15, additional_compliance_charge_amount: 12)
       ]
     end
     let(:expected_total_compliance_charge) do
-      expected_compliance_charges.sum { |b| b.initial_compliance_charge_amount + b.additional_compliance_charge_amount }
+      expected_band_charges.sum { |b| b.initial_compliance_charge_amount + b.additional_compliance_charge_amount }
     end
     let(:expected_total_charge) { expected_registration_charge + expected_total_compliance_charge }
     let(:charge_detail) { build(:charge_detail) }
 
     let(:calculator) do
       instance_double(OrderCalculator,
-                      calculate_registration_charge: expected_registration_charge,
-                      calculate_compliance_charges: expected_compliance_charges,
-                      calculate_total_compliance_charge: expected_total_compliance_charge,
-                      calculate_total_charge: expected_total_charge,
-                      charge_details: charge_detail)
+                      registration_charge_amount: expected_registration_charge,
+                      band_charge_details: expected_band_charges,
+                      total_compliance_charge_amount: expected_total_compliance_charge,
+                      total_charge_amount: expected_total_charge,
+                      charge_detail: charge_detail)
     end
 
     before { allow(OrderCalculator).to receive(:new).and_return(calculator) }
@@ -65,24 +65,24 @@ module WasteExemptionsEngine
 
     # These methods should all pass through to the calculator:
 
-    describe "#calculate_registration_charge" do
-      it { expect(service.calculate_registration_charge).to eq calculator.calculate_registration_charge }
+    describe "#registration_charge_amount" do
+      it { expect(service.registration_charge_amount).to eq calculator.registration_charge_amount }
     end
 
-    describe "#calculate_compliance_charges" do
-      it { expect(service.calculate_compliance_charges).to eq calculator.calculate_compliance_charges }
+    describe "#band_charge_details" do
+      it { expect(service.band_charge_details).to eq calculator.band_charge_details }
     end
 
-    describe "#calculate_total_compliance_charge" do
-      it { expect(service.calculate_total_compliance_charge).to eq calculator.calculate_total_compliance_charge }
+    describe "#total_compliance_charge_amount" do
+      it { expect(service.total_compliance_charge_amount).to eq calculator.total_compliance_charge_amount }
     end
 
-    describe "#calculate_total_charge" do
-      it { expect(service.calculate_total_charge).to eq calculator.calculate_total_charge }
+    describe "#total_charge_amount" do
+      it { expect(service.total_charge_amount).to eq calculator.total_charge_amount }
     end
 
-    describe "#charge_details" do
-      it { expect(service.charge_details).to eq charge_detail }
+    describe "#charge_detail" do
+      it { expect(service.charge_detail).to eq charge_detail }
     end
   end
 end

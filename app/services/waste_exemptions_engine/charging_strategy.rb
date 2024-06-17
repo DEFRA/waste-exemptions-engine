@@ -2,18 +2,19 @@
 
 module WasteExemptionsEngine
   class ChargingStrategy
-    attr_reader :order, :highest_band
+    attr_reader :order
+
+    delegate :highest_band, to: :order
 
     def initialize(order)
       @order = order
-      @highest_band = order.highest_band
     end
 
     def registration_charge_amount
       order.exemptions.empty? ? 0 : Charge.find_by(charge_type: "registration_charge").charge_amount
     end
 
-    def charge_details
+    def charge_detail
       ChargeDetail.new(
         registration_charge_amount:,
         band_charge_details:
@@ -21,18 +22,18 @@ module WasteExemptionsEngine
     end
 
     def total_compliance_charge_amount
-      charge_details.total_compliance_charge_amount
+      charge_detail.total_compliance_charge_amount
     end
 
     def total_charge_amount
-      charge_details.total_charge_amount
+      charge_detail.total_charge_amount
     end
 
     def band_charge_details
       bands = Band.where(id: order.exemptions.map(&:band_id).uniq)
       bands.map do |band|
-        initial_compliance_charge_amount = initial_compliance_charge(band)
-        additional_compliance_charge_amount = additional_compliance_charge(
+        initial_compliance_charge_amount = initial_compliance_charge_amount(band)
+        additional_compliance_charge_amount = additional_compliance_charge_amount(
           band,
           initial_compliance_charge_amount.positive?
         )
@@ -46,7 +47,7 @@ module WasteExemptionsEngine
 
     private
 
-    def initial_compliance_charge(band)
+    def initial_compliance_charge_amount(band)
       # SonarCloud complains about unused parameters but we need thenm for inheritance
       # But if we use them to placate SonaCloud, Rubocop complains about void contexts
       # rubocop:disable Lint/Void
@@ -56,7 +57,7 @@ module WasteExemptionsEngine
       raise NotImplementedError
     end
 
-    def additional_compliance_charge(band, initial_compliance_charge_applied)
+    def additional_compliance_charge_amount(band, initial_compliance_charge_applied)
       # SonarCloud complains about unused parameters but we need thenm for inheritance
       # But if we use them to placate SonaCloud, Rubocop complains about void contexts
       # rubocop:disable Lint/Void

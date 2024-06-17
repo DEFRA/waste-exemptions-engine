@@ -5,11 +5,11 @@ module WasteExemptionsEngine
 
     private
 
-    def initial_compliance_charge(band)
+    def initial_compliance_charge_amount(band)
       band == highest_band ? band.initial_compliance_charge.charge_amount : 0
     end
 
-    def additional_compliance_charge(band, initial_compliance_charge_applied)
+    def additional_compliance_charge_amount(band, initial_compliance_charge_applied)
       # SonarCloud complains about unused parameters but we need them for inheritance
       # But if we use them to placate SonarCloud, Rubocop complains about void contexts
       # rubocop:disable Lint/Void

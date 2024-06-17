@@ -19,11 +19,11 @@ module WasteExemptionsEngine
           super
         end
 
-        def initial_compliance_charge(band)
+        def initial_compliance_charge_amount(band)
           band == highest_band ? band.initial_compliance_charge.charge_amount : 0
         end
 
-        def additional_compliance_charge(band, _initial_compliance_charge_applied)
+        def additional_compliance_charge_amount(band, _initial_compliance_charge_applied)
           band_exemptions = order.exemptions.select { |ex| ex.band == band }
           chargeable_count = band_exemptions.count - (band == highest_band ? 1 : 0)
           chargeable_count * band.additional_compliance_charge.charge_amount
@@ -63,22 +63,22 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "#charge_details" do
+    describe "#charge_detail" do
       subject(:strategy) { strategy_test_class.new(order) }
 
       let(:exemptions) { multiple_bands_multiple_exemptions }
 
-      it { expect(strategy.charge_details).to be_a(ChargeDetail) }
-      it { expect(strategy.charge_details.registration_charge_amount).to eq registration_charge_amount }
-      it { expect(strategy.charge_details.band_charge_details.length).to eq 3 }
-      it { expect(strategy.charge_details.bucket_charge_amount).to be_nil }
+      it { expect(strategy.charge_detail).to be_a(ChargeDetail) }
+      it { expect(strategy.charge_detail.registration_charge_amount).to eq registration_charge_amount }
+      it { expect(strategy.charge_detail.band_charge_details.length).to eq 3 }
+      it { expect(strategy.charge_detail.bucket_charge_amount).to be_nil }
 
       it "does not persist the charge_detail" do
-        expect { strategy.charge_details }.not_to change(ChargeDetail, :count)
+        expect { strategy.charge_detail }.not_to change(ChargeDetail, :count)
       end
 
       it "does not persist the band_charge_details" do
-        expect { strategy.charge_details }.not_to change(BandChargeDetail, :count)
+        expect { strategy.charge_detail }.not_to change(BandChargeDetail, :count)
       end
 
       context "when order details are changed" do
@@ -86,7 +86,7 @@ module WasteExemptionsEngine
 
         it "returns a different result" do
           expect { order.exemptions << new_exemption }
-            .to change { strategy.charge_details.total_compliance_charge_amount }
+            .to change { strategy.charge_detail.total_compliance_charge_amount }
             .by(new_exemption.band.additional_compliance_charge.charge_amount)
         end
       end
@@ -100,7 +100,7 @@ module WasteExemptionsEngine
       it do
         expect(strategy.total_charge_amount).to eq(
           strategy.registration_charge_amount +
-          strategy.charge_details.band_charge_details.sum do |bc|
+          strategy.charge_detail.band_charge_details.sum do |bc|
             bc.initial_compliance_charge_amount + bc.additional_compliance_charge_amount
           end
         )

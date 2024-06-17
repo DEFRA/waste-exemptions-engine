@@ -5,11 +5,11 @@ module WasteExemptionsEngine
 
     attr_reader :order, :strategy, :calculator
 
-    delegate :calculate_registration_charge,
-             :calculate_compliance_charges,
-             :calculate_total_compliance_charge,
-             :calculate_total_charge,
-             :charge_details,
+    delegate :band_charge_details,
+             :charge_detail,
+             :registration_charge_amount,
+             :total_charge_amount,
+             :total_compliance_charge_amount,
              to: :calculator
 
     def initialize(order)

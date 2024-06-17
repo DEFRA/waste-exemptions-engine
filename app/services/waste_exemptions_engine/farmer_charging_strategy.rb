@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       super
     end
 
-    def charge_details
+    def charge_detail
       ChargeDetail.new(
         registration_charge_amount:,
         band_charge_details:,
@@ -34,13 +34,13 @@ module WasteExemptionsEngine
       bucket.present? && !order_exemptions_in_bucket.empty?
     end
 
-    def initial_compliance_charge(band)
+    def initial_compliance_charge_amount(band)
       return 0 if any_qualifying_bucket_exemptions
 
       band == highest_band ? band.initial_compliance_charge.charge_amount : 0
     end
 
-    def additional_compliance_charge(band, initial_compliance_charge_applied)
+    def additional_compliance_charge_amount(band, initial_compliance_charge_applied)
       additional_exemptions_count(band,
                                   initial_compliance_charge_applied) * band.additional_compliance_charge.charge_amount
     end
