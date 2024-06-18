@@ -34,5 +34,16 @@ module WasteExemptionsEngine
         ]
       end
     end
+
+    context "when editing operator address on Check Your Answers page - new registration" do
+      let(:operator_address_manual_form) { build(:check_your_answers_operator_address_manual_form) }
+      let(:transient_registration) { create(:new_registration, workflow_state: "operator_address_manual_form") }
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{operator_address_manual_form.token}/operator-address-manual",
+             params: { operator_address_manual_form: form_data }
+        expect(response).to redirect_to(check_your_answers_forms_path(operator_address_manual_form.token))
+      end
+    end
   end
 end

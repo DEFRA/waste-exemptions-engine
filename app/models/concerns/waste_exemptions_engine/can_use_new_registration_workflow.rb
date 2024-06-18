@@ -176,10 +176,12 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :operator_address_lookup_form,
-                      to: :check_contact_name_form
+                      to: :check_contact_name_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :operator_address_manual_form,
-                      to: :check_contact_name_form
+                      to: :check_contact_name_form,
+                      unless: :check_your_answers_flow?
 
           # Contact details
           transitions from: :check_contact_name_form,
@@ -322,6 +324,12 @@ module WasteExemptionsEngine
           transitions from: :operator_name_form,
                       to: :check_your_answers_form
 
+          transitions from: :operator_address_lookup_form,
+                      to: :check_your_answers_form
+
+          transitions from: :operator_address_manual_form,
+                      to: :check_your_answers_form
+
           transitions from: :contact_address_lookup_form,
                       to: :check_your_answers_form
 
@@ -405,6 +413,12 @@ module WasteExemptionsEngine
         event :edit_operator_name do
           transitions from: :check_your_answers_form,
                       to: :operator_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_operator_address do
+          transitions from: :check_your_answers_form,
+                      to: :operator_postcode_form,
                       if: :check_your_answers_flow?
         end
 
