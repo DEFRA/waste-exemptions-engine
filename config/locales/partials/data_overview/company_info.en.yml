@@ -32,6 +32,13 @@ en:
               northern_ireland: Northern Ireland
           operator_address:
             title: Address
+            change_link_suffix:
+              sole_trader: The address of the business
+              limited_company: The address of the company
+              partnership: The address of the partnership
+              limited_liability_partnership: The address of the limited liability partnership
+              local_authority: The address of the local authority or public body
+              charity: The address of the charity or trust
           contact_name:
             title: Contact name
             change_link_suffix: "contact name"

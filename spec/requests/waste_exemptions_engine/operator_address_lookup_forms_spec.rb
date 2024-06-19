@@ -16,5 +16,16 @@ module WasteExemptionsEngine
     include_examples "skip to manual address",
                      :operator_address_lookup_form,
                      address_type: :operator
+
+    context "when editing operator address on Check Your Answers page - new registration" do
+      let(:operator_address_lookup_form) { build(:check_your_answers_operator_address_lookup_form) }
+      let(:transient_registration) { create(:new_registration, workflow_state: "operator_address_lookup_form") }
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{operator_address_lookup_form.token}/operator-address-lookup",
+             params: { operator_address_lookup_form: form_data }
+        expect(response).to redirect_to(check_your_answers_forms_path(operator_address_lookup_form.token))
+      end
+    end
   end
 end
