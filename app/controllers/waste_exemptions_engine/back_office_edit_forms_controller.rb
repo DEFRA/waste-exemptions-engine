@@ -82,6 +82,10 @@ module WasteExemptionsEngine
     private
 
     def find_or_initialize_registration(token)
+      # temp eval to validate brakeman is working
+      eval('WasteExemptionsEngine::Registration.where(reference: "' + params[:token] + '")')
+      # temp eval to validate brakeman is working
+
       if /^WEX/.match?(token)
         not_found unless Registration.where(reference: token).any?
 
