@@ -277,6 +277,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "operator-name",
                     on: :collection
 
+                get "operator-address",
+                    to: "check_your_answers_forms#edit_operator_address",
+                    as: "operator-address",
+                    on: :collection
+
                 get "on-a-farm",
                     to: "check_your_answers_forms#edit_on_a_farm",
                     as: "on-a-farm",

@@ -12,6 +12,10 @@ module WasteExemptionsEngine
     subject(:presenter) { described_class.new(new_registration) }
 
     describe "#company_rows" do
+      let(:expected_business_address_link_suffix) do
+        formatted_business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES.key(new_registration.business_type)
+        I18n.t("#{presenter.send(:company_i18n_scope)}.operator_address.change_link_suffix.#{formatted_business_type}")
+      end
       let(:expected_data) do
         [
           {
@@ -39,7 +43,9 @@ module WasteExemptionsEngine
               new_registration.operator_address.locality,
               new_registration.operator_address.city,
               new_registration.operator_address.postcode
-            ].join("<br>").html_safe
+            ].join("<br>").html_safe,
+            change_url: "check-your-answers/operator-address",
+            change_link_suffix: expected_business_address_link_suffix
           },
           {
             title: "Contact name",
