@@ -1,0 +1,16 @@
+en:
+  waste_exemptions_engine:
+    payment_summary_forms:
+      new:
+        title: Payment summary
+        heading: Payment summary
+        charges:
+          registration_charge: Registration charge
+          total_charge: Total charge
+        payment_options:
+          card: Pay by credit or debit card
+          bank: Pay by bank transfer and then email us to confirm payment
+        payment_type_legend: Make a payment
+        payment_submit_button_label: Proceed to payment
+
+

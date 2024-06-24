@@ -1,12 +1,12 @@
 <%= form_for @payment_summary_form do |f| %>
   <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-  <h1 class="govuk-heading-l">Payment summary</h1>
+  <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
-        Registration charge
+        <%= t(".charges.registration_charge") %>
       </dt>
       <dd class="govuk-summary-list__actions">
         £10.00
@@ -14,7 +14,7 @@
     </div>
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
-        Total charge
+        <%= t(".charges.total_charge") %>
       </dt>
       <dd class="govuk-summary-list__actions">
         £72.00
@@ -26,16 +26,16 @@
           [
             OpenStruct.new(
               id: "card",
-              name: "Pay by credit or debit card"
+              name: t(".payment_options.card")
             ),
             OpenStruct.new(
               id: "bank_transfer",
-              name: "Pay by bank transfer and then email us to confirm payment"
+              name: t(".payment_options.bank")
             )
           ],
           :id,
           :name,
-          legend: { text: 'Make a payment', tag: "h2", size: "m" } %>
+          legend: { text: t(".payment_type_legend"), tag: "h2", size: "m" } %>
 
-  <%= f.govuk_submit 'Proceed to payment' %>
+  <%= f.govuk_submit t(".payment_submit_button_label") %>
 <% end %>

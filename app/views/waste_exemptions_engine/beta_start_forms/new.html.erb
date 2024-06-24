@@ -1,13 +1,11 @@
 <%= form_for @beta_start_form do |f| %>
   <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
-  <h1 class="govuk-heading-l">Welcome to Private Beta</h1>
+  <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
   <p class="govuk-body">
-    We are testing a new service and would like your feedback. 
-    You can use this service to register a waste exemption(s). 
-    Your feedback will help us improve the service for everyone.
+    <%= t(".welcome_text") %>
   </p>
 
-  <%= f.govuk_submit 'Start a new registration' %>
+  <%= f.govuk_submit t(".start_registration_button_label") %>
 <% end %>

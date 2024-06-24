@@ -2,6 +2,6 @@
 
 module WasteExemptionsEngine
   class PaymentSummaryForm < BaseForm
-    attr_accessor :payment_type
+    delegate :payment_type, to: :transient_registration
   end
 end
