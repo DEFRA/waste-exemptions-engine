@@ -1,0 +1,41 @@
+<%= form_for @payment_summary_form do |f| %>
+  <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+  <h1 class="govuk-heading-l">Payment summary</h1>
+
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Registration charge
+      </dt>
+      <dd class="govuk-summary-list__actions">
+        £10.00
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Total charge
+      </dt>
+      <dd class="govuk-summary-list__actions">
+        £72.00
+      </dd>
+    </div>
+  </dl>
+   
+   <%= f.govuk_collection_radio_buttons :payment_type,
+          [
+            OpenStruct.new(
+              id: "card",
+              name: "Pay by credit or debit card"
+            ),
+            OpenStruct.new(
+              id: "bank_transfer",
+              name: "Pay by bank transfer and then email us to confirm payment"
+            )
+          ],
+          :id,
+          :name,
+          legend: { text: 'Make a payment', tag: "h2", size: "m" } %>
+
+  <%= f.govuk_submit 'Proceed to payment' %>
+<% end %>

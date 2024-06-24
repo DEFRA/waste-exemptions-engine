@@ -23,6 +23,7 @@ Metrics/BlockLength:
     - app/models/concerns/waste_exemptions_engine/can_use_front_office_edit_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_new_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_renewing_registration_workflow.rb
+    - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
     - config/routes.rb
 
 # Some methods need to be lengthy
@@ -37,6 +38,7 @@ Metrics/ModuleLength:
     - app/models/concerns/waste_exemptions_engine/can_use_back_office_edit_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_new_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_renewing_registration_workflow.rb
+    - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
     - spec/**/*
 
 # Notify uses address_line_1 etc naming convention and we want to align with it

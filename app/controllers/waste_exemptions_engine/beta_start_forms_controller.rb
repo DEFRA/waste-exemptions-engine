@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class LocationForm < BaseForm
-    delegate :location, to: :transient_registration
+  class BetaStartFormsController < FormsController
+    def new
+      super(BetaStartForm, "beta_start_form")
+    end
 
-    validates :location, "defra_ruby/validators/location": true
-
-    def submit(params)
-      attributes = { location: params[:location] }
-
-      super(attributes)
+    def create
+      super(BetaStartForm, "beta_start_form")
     end
 
     private
