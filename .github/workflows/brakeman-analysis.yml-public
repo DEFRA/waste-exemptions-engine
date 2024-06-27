@@ -30,16 +30,22 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2'
+        ruby-version: '3.1'
 
     - name: Setup Brakeman
       env:
-        BRAKEMAN_VERSION: '6.1.2' # SARIF support is provided in Brakeman version 4.10+
+        BRAKEMAN_VERSION: '5.2.0' # SARIF support is provided in Brakeman version 4.10+
       run: |
         gem install brakeman --version $BRAKEMAN_VERSION
 
     # Execute Brakeman CLI and generate a SARIF output with the security issues identified during the analysis
     - name: Scan
-      continue-on-error: false
+      continue-on-error: true
       run: |
-        brakeman -q -w2 .
+        brakeman -f sarif -o output.sarif.json .
+
+    # Upload the SARIF file generated in the previous step
+    - name: Upload SARIF
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: output.sarif.json
