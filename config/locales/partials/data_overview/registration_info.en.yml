@@ -31,6 +31,7 @@ en:
             change_link_suffix: "Email address of the person filling in this form"
           site_address:
             title: Site address
+            change_link_suffix: "Site address"
           grid_reference:
             title: Grid reference
           site_description:
