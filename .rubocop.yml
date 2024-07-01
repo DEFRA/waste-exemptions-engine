@@ -16,6 +16,11 @@ AllCops:
     # Avoid pulling in gems for GitHub setup-ruby@v1 action:
     - vendor/bundle/**/*
 
+# Some methods need to be lengthy
+Metrics/MethodLength:
+  Exclude:
+    - app/models/concerns/waste_exemptions_engine/can_copy_data_from_registration.rb
+
 # Some files need long blocks for clarity
 Metrics/BlockLength:
   Exclude:
