@@ -107,6 +107,10 @@ module WasteExemptionsEngine
         it_behaves_like "a valid transition", :operator_name_check_your_answers_forms_path, :new_operator_name_form_path
       end
 
+      describe "GET /check-your-answers/operator-address" do
+        it_behaves_like "a valid transition", :operator_address_check_your_answers_forms_path, :new_operator_postcode_form_path
+      end
+
       describe "GET /check-your-answers/on-a-farm" do
         it_behaves_like "a valid transition", :on_a_farm_check_your_answers_forms_path, :new_on_a_farm_form_path
       end

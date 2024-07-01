@@ -110,9 +110,14 @@ module WasteExemptionsEngine
     end
 
     def operator_address_row
+      formatted_business_type = WasteExemptionsEngine::TransientRegistration::BUSINESS_TYPES.key(business_type)
+
       {
         title: I18n.t("#{company_i18n_scope}.operator_address.title"),
-        value: displayable_address(operator_address)
+        value: displayable_address(operator_address),
+        change_url: "check-your-answers/operator-address",
+        change_link_suffix:
+          I18n.t("#{company_i18n_scope}.operator_address.change_link_suffix.#{formatted_business_type}")
       }
     end
 
