@@ -14,5 +14,9 @@ module WasteExemptionsEngine
       # Set the initial assistance_mode value to the application's default_assistance_mode
       self.assistance_mode = WasteExemptionsEngine.configuration.default_assistance_mode
     end
+
+    def charged?
+      true
+    end
   end
 end

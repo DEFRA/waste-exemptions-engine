@@ -16,6 +16,7 @@ module WasteExemptionsEngine
         copy_addresses
         copy_exemptions
         copy_people
+        copy_charging_attribytes
 
         add_metadata
 
@@ -46,6 +47,10 @@ module WasteExemptionsEngine
       else
         @transient_registration.registration_attributes.except("company_no")
       end
+    end
+
+    def copy_charging_attribytes
+      @registration.charged = @transient_registration.charged?
     end
 
     def copy_addresses

@@ -129,5 +129,19 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#charged?" do
+      context "when registration is not charged" do
+        let(:new_registration) { build(:new_registration) }
+
+        it { expect(new_registration).not_to be_charged }
+      end
+
+      context "when registration is charged" do
+        let(:new_registration) { build(:new_charged_registration) }
+
+        it { expect(new_registration).to be_charged }
+      end
+    end
   end
 end

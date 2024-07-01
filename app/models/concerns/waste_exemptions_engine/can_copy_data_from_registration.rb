@@ -27,7 +27,8 @@ module WasteExemptionsEngine
         "unsubscribe_token",
         "reminder_opt_in",
         "submitted_at",
-        "updated_at"
+        "updated_at",
+        "charged"
       )
 
       assign_attributes(attributes)
