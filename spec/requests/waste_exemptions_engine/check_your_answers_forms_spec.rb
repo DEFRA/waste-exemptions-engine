@@ -118,6 +118,10 @@ module WasteExemptionsEngine
       describe "GET /check-your-answers/is-a-farmer" do
         it_behaves_like "a valid transition", :is_a_farmer_check_your_answers_forms_path, :new_is_a_farmer_form_path
       end
+
+      describe "GET /check-your-answers/check-site-address" do
+        it_behaves_like "a valid transition", :check_site_address_check_your_answers_forms_path, :new_check_site_address_form_path
+      end
     end
   end
 end

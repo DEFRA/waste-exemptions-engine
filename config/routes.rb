@@ -291,6 +291,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_is_a_farmer",
                     as: "is-a-farmer",
                     on: :collection
+
+                get "check-site-address",
+                    to: "check_your_answers_forms#edit_site_address",
+                    as: "check-site-address",
+                    on: :collection
               end
 
     resources :declaration_forms,

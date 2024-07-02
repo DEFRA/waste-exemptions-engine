@@ -229,7 +229,9 @@ module WasteExemptionsEngine
     def site_address_row
       {
         title: I18n.t("#{reg_i18n_scope}.site_address.title"),
-        value: displayable_address(site_address)
+        value: displayable_address(site_address),
+        change_url: "check-your-answers/check-site-address",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.site_address.change_link_suffix")
       }
     end
 
