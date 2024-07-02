@@ -66,6 +66,10 @@ module WasteExemptionsEngine
     def edit_registration_number
       transition_to_edit("edit_registration_number")
     end
+    
+    def edit_site_address
+      transition_to_edit("edit_site_address")
+    end
 
     private
 

@@ -18,6 +18,7 @@
       <%= row[:value] %>
     </dd>
     <dd class="govuk-summary-list__actions <%= column_css %>">
+
       <% if !form&.transient_registration&.renewal? && row[:change_url].present? %>
         <%= link_to(row[:change_url]) do %>
           <%= t(".change_link")%>

@@ -206,7 +206,9 @@ module WasteExemptionsEngine
               new_registration.site_address.locality,
               new_registration.site_address.city,
               new_registration.site_address.postcode
-            ].join("<br>").html_safe
+            ].join("<br>").html_safe,
+            change_link_suffix: "Site address",
+            change_url: "check-your-answers/check-site-address"
           }
           expected_data.delete_at(7)
         end

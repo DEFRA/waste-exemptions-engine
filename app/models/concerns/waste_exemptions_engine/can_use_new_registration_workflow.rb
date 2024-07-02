@@ -449,6 +449,12 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form,
                       if: :check_your_answers_flow?
         end
+
+        event :edit_site_address do
+          transitions from: :check_your_answers_form,
+                      to: :check_site_address_form,
+                      if: :check_your_answers_flow?
+        end
       end
     end
 
