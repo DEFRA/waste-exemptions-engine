@@ -63,6 +63,30 @@ module WasteExemptionsEngine
         it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_exemptions_form_path
       end
 
+      describe "GET /check-your-answers/registration-number" do
+        let(:form) { build(:check_your_answers_form) }
+
+        it_behaves_like "a valid transition", :registration_number_check_your_answers_forms_path, :new_registration_number_form_path
+
+        it "redirects to registration_number_form" do
+          get registration_number_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_registration_number_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get registration_number_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "adds check_your_answers_form into the workflow history" do
+          get registration_number_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
+      end
+
       describe "GET /check-your-answers/contact-name" do
         it_behaves_like "a valid transition", :contact_name_check_your_answers_forms_path, :new_contact_name_form_path
       end

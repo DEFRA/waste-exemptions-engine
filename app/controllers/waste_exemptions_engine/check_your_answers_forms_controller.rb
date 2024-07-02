@@ -63,6 +63,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_exemptions")
     end
 
+    def edit_registration_number
+      transition_to_edit("edit_registration_number")
+    end
+
     private
 
     def transition_to_edit(transition)

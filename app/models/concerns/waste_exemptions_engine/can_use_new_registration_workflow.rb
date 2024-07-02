@@ -155,7 +155,8 @@ module WasteExemptionsEngine
                       if: :companies_house_details_incorrect?
 
           transitions from: :check_registered_name_and_address_form,
-                      to: :operator_postcode_form
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :incorrect_company_form,
                       to: :registration_number_form
@@ -309,6 +310,9 @@ module WasteExemptionsEngine
           transitions from: :exemptions_form,
                       to: :check_your_answers_form
 
+          transitions from: :check_registered_name_and_address_form,
+                      to: :check_your_answers_form
+
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
 
@@ -365,6 +369,12 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
                       to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_registration_number do
+          transitions from: :check_your_answers_form,
+                      to: :registration_number_form,
                       if: :check_your_answers_flow?
         end
 
