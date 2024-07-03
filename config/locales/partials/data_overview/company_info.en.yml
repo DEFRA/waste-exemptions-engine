@@ -21,6 +21,7 @@ en:
             registered_name: Registered name
           company_no:
             title: Companies House number
+            change_link_suffix: "Business name"
           partners:
             title: Partners
           location:

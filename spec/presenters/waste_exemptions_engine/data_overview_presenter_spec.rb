@@ -28,7 +28,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Companies House number",
-            value: new_registration.company_no
+            value: new_registration.company_no,
+            change_link_suffix: "Business name",
+            change_url: "check-your-answers/registration-number"
           },
           {
             title: "Place of business",
