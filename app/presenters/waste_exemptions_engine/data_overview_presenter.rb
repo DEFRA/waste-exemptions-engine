@@ -87,7 +87,9 @@ module WasteExemptionsEngine
     def company_no_row
       {
         title: I18n.t("#{company_i18n_scope}.company_no.title"),
-        value: company_no
+        value: company_no,
+        change_url: "check-your-answers/registration-number",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.company_no.change_link_suffix")
       }
     end
 
