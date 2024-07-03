@@ -34,6 +34,8 @@ en:
             change_link_suffix: "Site address"
           grid_reference:
             title: Grid reference
+            change_link_suffix: "Grid reference"
           site_description:
             title: Site description
+            change_link_suffix: "Site description"
           change_link: Change

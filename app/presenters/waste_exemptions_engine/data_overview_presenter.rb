@@ -239,6 +239,8 @@ module WasteExemptionsEngine
       {
         title: I18n.t("#{reg_i18n_scope}.grid_reference.title"),
         value: site_address&.grid_reference,
+        change_url: "check-your-answers/site-grid-reference",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.grid_reference.change_link_suffix"),
         merged_with: :site_description
       }
     end
@@ -246,7 +248,9 @@ module WasteExemptionsEngine
     def site_description_row
       {
         title: I18n.t("#{reg_i18n_scope}.site_description.title"),
-        value: site_address&.description
+        value: site_address&.description,
+        change_url: "check-your-answers/site-grid-reference",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.site_description.change_link_suffix")
       }
     end
 
