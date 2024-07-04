@@ -70,7 +70,7 @@ module WasteExemptionsEngine
     end
 
     describe "#total_charge_amount" do
-      subject(:strategy) { strategy_test_class.new(order) }
+      subject(:strategy) { described_class.new(order) }
 
       let(:exemptions) { multiple_bands_multiple_exemptions }
 
