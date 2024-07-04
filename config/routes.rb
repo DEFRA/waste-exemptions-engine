@@ -242,6 +242,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "applicant-email",
                     on: :collection
 
+                get "registration-number",
+                    to: "check_your_answers_forms#edit_registration_number",
+                    as: "registration-number",
+                    on: :collection
+
                 get "exemptions",
                     to: "check_your_answers_forms#edit_exemptions",
                     as: "exemptions",

@@ -46,6 +46,17 @@ module WasteExemptionsEngine
       end
     end
 
+    context "when checking registered name and address on Check Your Answers page - new registration" do
+      let(:check_registered_name_and_address_form) { build(:check_your_answers_check_registered_name_and_address_form) }
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address",
+             params: { check_registered_name_and_address_form: { temp_use_registered_company_details: "true" } }
+
+        expect(response).to redirect_to(check_your_answers_forms_path(check_registered_name_and_address_form.token))
+      end
+    end
+
     context "with a renewal" do
       let(:renew_check_registered_name_and_address_form) { build(:renew_check_registered_name_and_address_form) }
       let(:renewing_registration) { renew_check_registered_name_and_address_form.transient_registration }
