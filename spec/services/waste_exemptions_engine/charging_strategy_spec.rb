@@ -8,31 +8,8 @@ module WasteExemptionsEngine
     include_context "with bands and charges"
     include_context "with an order with exemptions"
 
-    # A subclass of described_class with the virtual methods implemented for test purposes:
-    let(:strategy_test_class) do
-      Class.new(described_class) do
-        attr_reader :band_1, :band_2, :band_3
-
-        def initialize(order)
-          @band_1, @band_2, @band_3 = Band.all.limit(3).sort_by(&:sequence).to_a
-
-          super
-        end
-
-        def initial_compliance_charge_amount(band)
-          band == highest_band ? band.initial_compliance_charge.charge_amount : 0
-        end
-
-        def additional_compliance_charge_amount(band, _initial_compliance_charge_applied)
-          band_exemptions = order.exemptions.select { |ex| ex.band == band }
-          chargeable_count = band_exemptions.count - (band == highest_band ? 1 : 0)
-          chargeable_count * band.additional_compliance_charge.charge_amount
-        end
-      end
-    end
-
     describe "#registration_charge" do
-      subject(:strategy_registration_charge_amount) { strategy_test_class.new(order).registration_charge_amount }
+      subject(:strategy_registration_charge_amount) { described_class.new(order).registration_charge_amount }
 
       shared_examples "constant registration charge" do
         it { expect(strategy_registration_charge_amount).to eq registration_charge_amount }
@@ -64,14 +41,14 @@ module WasteExemptionsEngine
     end
 
     describe "#charge_detail" do
-      subject(:strategy) { strategy_test_class.new(order) }
+      subject(:strategy) { described_class.new(order) }
 
       let(:exemptions) { multiple_bands_multiple_exemptions }
 
       it { expect(strategy.charge_detail).to be_a(ChargeDetail) }
       it { expect(strategy.charge_detail.registration_charge_amount).to eq registration_charge_amount }
       it { expect(strategy.charge_detail.band_charge_details.length).to eq 3 }
-      it { expect(strategy.charge_detail.bucket_charge_amount).to be_nil }
+      it { expect(strategy.charge_detail.bucket_charge_amount).to be_zero }
 
       it "does not persist the charge_detail" do
         expect { strategy.charge_detail }.not_to change(ChargeDetail, :count)

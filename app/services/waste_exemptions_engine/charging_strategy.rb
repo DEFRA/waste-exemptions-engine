@@ -32,11 +32,10 @@ module WasteExemptionsEngine
     def band_charge_details
       bands = Band.where(id: order.exemptions.map(&:band_id).uniq)
       bands.map do |band|
+
         initial_compliance_charge_amount = initial_compliance_charge_amount(band)
-        additional_compliance_charge_amount = additional_compliance_charge_amount(
-          band,
-          initial_compliance_charge_amount.positive?
-        )
+        additional_compliance_charge_amount = additional_compliance_charge_amount(band)
+
         BandChargeDetail.new(
           band_id: band.id,
           initial_compliance_charge_amount:,
@@ -47,25 +46,23 @@ module WasteExemptionsEngine
 
     private
 
-    def initial_compliance_charge_amount(band)
-      # SonarCloud complains about unused parameters but we need thenm for inheritance
-      # But if we use them to placate SonaCloud, Rubocop complains about void contexts
-      # rubocop:disable Lint/Void
-      band
-      # rubocop:enable Lint/Void
-
-      raise NotImplementedError
+    # Override this in subclasses to exclude exemptions from charging
+    def chargeable_exemptions(band)
+      order.exemptions.select { |ex| ex.band == band }
     end
 
-    def additional_compliance_charge_amount(band, initial_compliance_charge_applied)
-      # SonarCloud complains about unused parameters but we need thenm for inheritance
-      # But if we use them to placate SonaCloud, Rubocop complains about void contexts
-      # rubocop:disable Lint/Void
-      band
-      initial_compliance_charge_applied
-      # rubocop:enable Lint/Void
+    def initial_compliance_charge_amount(band)
+      return 0 if band != highest_band || chargeable_exemptions(band).count.zero?
 
-      raise NotImplementedError
+      band.initial_compliance_charge.charge_amount
+    end
+
+    def additional_compliance_charge_amount(band)
+      total_chargeable_count = chargeable_exemptions(band).count
+      additional_chargeable_count = total_chargeable_count - (band == highest_band ? 1 : 0)
+      return 0 if additional_chargeable_count < 1
+
+      additional_chargeable_count * band.additional_compliance_charge.charge_amount
     end
   end
 end
