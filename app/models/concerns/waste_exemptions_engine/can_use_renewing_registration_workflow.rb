@@ -329,6 +329,12 @@ module WasteExemptionsEngine
       site_address.lookup?
     end
 
+    def reuse_address_for_site_location?
+      return true if %w[operator_address_option contact_address_option].include? temp_reuse_address_for_site_location
+
+      false
+    end
+
     def should_renew_without_changes?
       temp_renew_without_changes
     end
