@@ -455,6 +455,12 @@ module WasteExemptionsEngine
                       to: :check_site_address_form,
                       if: :check_your_answers_flow?
         end
+
+        event :edit_site_grid_reference do
+          transitions from: :check_your_answers_form,
+                      to: :site_grid_reference_form,
+                      if: :check_your_answers_flow?
+        end
       end
     end
 

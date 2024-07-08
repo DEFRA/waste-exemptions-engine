@@ -301,6 +301,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_site_address",
                     as: "check-site-address",
                     on: :collection
+
+                get "site-grid-reference",
+                    to: "check_your_answers_forms#edit_site_grid_reference",
+                    as: "site-grid-reference",
+                    on: :collection
               end
 
     resources :declaration_forms,
