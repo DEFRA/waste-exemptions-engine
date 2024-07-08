@@ -64,12 +64,12 @@ module WasteExemptionsEngine
           aggregate_failures do
             expect(band_1_details.initial_compliance_charge_amount).to be_zero
             expect(band_1_details.additional_compliance_charge_amount).to eq(
-              3 * band_1.additional_compliance_charge.charge_amount
+              band_1.exemptions.count * band_1.additional_compliance_charge.charge_amount
             )
 
             expect(band_2_details.initial_compliance_charge_amount).to be_zero
             expect(band_2_details.additional_compliance_charge_amount).to eq(
-              2 * band_2.additional_compliance_charge.charge_amount
+              band_2.exemptions.count * band_2.additional_compliance_charge.charge_amount
             )
 
             expect(band_3_details.initial_compliance_charge_amount).to eq(
