@@ -71,6 +71,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_site_address")
     end
 
+    def edit_site_grid_reference
+      transition_to_edit("edit_site_grid_reference")
+    end
+
     private
 
     def transition_to_edit(transition)

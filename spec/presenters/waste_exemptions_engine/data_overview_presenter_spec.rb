@@ -179,11 +179,15 @@ module WasteExemptionsEngine
           {
             title: "Grid reference",
             value: new_registration.site_address.grid_reference,
+            change_url: "check-your-answers/site-grid-reference",
+            change_link_suffix: "Grid reference",
             merged_with: :site_description
           },
           {
             title: "Site description",
-            value: new_registration.site_address.description
+            value: new_registration.site_address.description,
+            change_url: "check-your-answers/site-grid-reference",
+            change_link_suffix: "Site description"
           }
         ]
       end
