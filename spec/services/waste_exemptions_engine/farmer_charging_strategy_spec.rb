@@ -88,6 +88,7 @@ module WasteExemptionsEngine
 
       # Ref RUBY-3049
       context "with specific charging scenarios" do
+        # The "for charging scenarios" shared context defines bands with names such as "band_upper", "band_u1" etc.
         include_context "for charging scenarios"
 
         let(:bucket_exemptions) { [exemption_U1, exemption_U4, exemption_U8, exemption_U10] }

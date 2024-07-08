@@ -22,7 +22,7 @@ RSpec.shared_context "for charging scenarios" do
 
   before { create(:charge, :registration_charge, charge_amount: registration_charge_amount) }
 
-  # bands
+  # Create bands with convenience names such as band_upper, band_u1 etc.
   band_costs_pounds.each do |level, costs|
     let("band_#{level}") do
       create(:band,
