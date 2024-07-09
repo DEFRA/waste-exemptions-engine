@@ -345,6 +345,7 @@ module WasteExemptionsEngine
 
           transitions from: :is_a_farmer_form,
                       to: :check_your_answers_form
+
         end
 
         event :skip_to_manual_address do

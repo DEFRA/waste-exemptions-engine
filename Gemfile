@@ -22,6 +22,7 @@ gem "sucker_punch", "~> 3.1"
 group :development do
   gem "github_changelog_generator"
   gem "rubocop-rspec"
+  gem "rubocop-rspec_rails"
   gem "spring"
   gem "spring-commands-rspec"
 end
