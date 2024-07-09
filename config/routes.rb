@@ -313,6 +313,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "declaration",
               path_names: { new: "" }
 
+    resources :exemptions_summary_forms,
+              only: %i[new create],
+              path: "exemptions-summary",
+              path_names: { new: "" }
+
     resources :registration_complete_forms,
               only: %i[new create],
               path: "registration-complete",

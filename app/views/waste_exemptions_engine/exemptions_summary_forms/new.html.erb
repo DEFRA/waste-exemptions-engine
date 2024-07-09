@@ -1,0 +1,48 @@
+<%= render("waste_exemptions_engine/shared/back", token: @exemptions_summary_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+
+    <% @order.bands.each do |band| %>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title"><%= t(".band_heading", band: band.name) %></h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <p class="govuk-body"><%= t(".band_description", band: band.name) %></p>
+          <ul class="govuk-list govuk-list--bullet">
+            <% band.exemptions.each do |exemption| %>
+              <li><%= exemption.code %> - <%= exemption.summary %></li>
+            <% end %>
+          </ul>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key"><%= t(".compliance_charge") %></dt>
+              <dd class="govuk-summary-list__value"><%= number_to_currency(band.compliance_charge, unit: "£") %></dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key"><%= t(".total") %></dt>
+              <dd class="govuk-summary-list__value"><%= number_to_currency(band.total_charge, unit: "£") %></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key"><%= t(".registration_charge") %></dt>
+        <dd class="govuk-summary-list__value"><%= number_to_currency(@order.registration_charge, unit: "£") %></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key"><%= t(".total_charge") %></dt>
+        <dd class="govuk-summary-list__value"><%= number_to_currency(@order.total_charge, unit: "£") %></dd>
+      </div>
+    </div>
+
+    <%= form_for @exemptions_summary_form do |f| %>
+      <%= f.govuk_submit t(".continue") %>
+    <% end %>
+  </div>
+</div>
