@@ -89,5 +89,25 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    context "when editing main_people on Check Your Answers page - new registration" do
+      let(:main_people_form) { build(:check_your_answers_edit_main_people_form) }
+
+      it "pre-fills partners information" do
+        get "/waste_exemptions_engine/#{main_people_form.token}/main-people"
+
+        aggregate_failures do
+          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.first.first_name)
+          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.first.last_name)
+        end
+      end
+
+      it "redirects back to check-your-answers when submitted" do
+        post "/waste_exemptions_engine/#{main_people_form.token}/main-people",
+             params: { main_people_form: { first_name: "Joe", last_name: "Bloggs" } }
+
+        expect(response).to redirect_to(check_your_answers_forms_path(main_people_form.token))
+      end
+    end
   end
 end
