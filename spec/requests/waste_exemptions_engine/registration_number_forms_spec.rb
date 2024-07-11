@@ -9,8 +9,8 @@ module WasteExemptionsEngine
 
     include_examples "GET form", :registration_number_form, "/registration-number"
     include_examples "POST form", :registration_number_form, "/registration-number" do
-      let(:form_data) { { company_no: "09360070" } }
-      let(:invalid_form_data) { [{ company_no: nil }] }
+      let(:form_data) { { temp_company_no: "09360070" } }
+      let(:invalid_form_data) { [{ temp_company_no: nil }] }
     end
 
     context "when editing registration number on Check Your Answers page - new registration" do
@@ -19,12 +19,12 @@ module WasteExemptionsEngine
       it "pre-fills registration number information" do
         get "/waste_exemptions_engine/#{registration_number_form.token}/registration-number"
 
-        expect(response.body).to have_html_escaped_string(registration_number_form.company_no)
+        expect(response.body).to have_html_escaped_string(registration_number_form.temp_company_no)
       end
 
       it "redirects to check-registered-name-and-address when submitted" do
         post "/waste_exemptions_engine/#{registration_number_form.token}/registration-number",
-             params: { registration_number_form: { company_no: "09360070" } }
+             params: { registration_number_form: { temp_company_no: "09360070" } }
 
         expect(response).to redirect_to(check_registered_name_and_address_forms_path(registration_number_form.token))
       end

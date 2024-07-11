@@ -66,6 +66,7 @@ module WasteExemptionsEngine
                               temp_site_postcode
                               temp_use_registered_company_details
                               temp_check_your_answers_flow
+                              temp_company_no
                               token
                               transient_addresses
                               transient_people
