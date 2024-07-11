@@ -145,7 +145,8 @@ module WasteExemptionsEngine
                       to: :registration_number_form
 
           transitions from: :main_people_form,
-                      to: :operator_name_form
+                      to: :operator_name_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :registration_number_form,
                       to: :check_registered_name_and_address_form
@@ -325,6 +326,9 @@ module WasteExemptionsEngine
           transitions from: :contact_email_form,
                       to: :check_your_answers_form
 
+          transitions from: :main_people_form,
+                      to: :check_your_answers_form
+
           transitions from: :operator_name_form,
                       to: :check_your_answers_form
 
@@ -370,6 +374,12 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
                       to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_main_people do
+          transitions from: :check_your_answers_form,
+                      to: :main_people_form,
                       if: :check_your_answers_flow?
         end
 

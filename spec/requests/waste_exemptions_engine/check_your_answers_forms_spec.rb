@@ -63,6 +63,10 @@ module WasteExemptionsEngine
         it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_exemptions_form_path
       end
 
+      describe "GET /check-your-answers/main-people" do
+        it_behaves_like "a valid transition", :main_people_check_your_answers_forms_path, :new_main_people_form_path
+      end
+
       describe "GET /check-your-answers/registration-number" do
         let(:form) { build(:check_your_answers_form) }
 
