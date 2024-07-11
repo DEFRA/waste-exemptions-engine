@@ -91,8 +91,9 @@ module WasteExemptionsEngine
       workflow_history << previous_state unless previous_state.nil?
       save!
     rescue AASM::UndefinedState, AASM::InvalidTransition => e
-      Airbrake.notify(e, reference) if defined?(Airbrake)
-      Rails.logger.warn "Failed to transition to next workflow state, registration #{reference}: #{e}"
+      error_message = "Failed to transition from #{workflow_state} to next state: #{e.message}"
+      Airbrake.notify(e, error_message: error_message, reference: reference) if defined?(Airbrake)
+      Rails.logger.warn error_message
     end
 
     def previous_valid_state!
