@@ -3,7 +3,7 @@
 module WasteExemptionsEngine
   class CheckRegisteredNameAndAddressForm < BaseForm
     delegate :temp_use_registered_company_details, to: :transient_registration
-    delegate :company_no, to: :transient_registration
+    delegate :temp_company_no, :company_no, to: :transient_registration
     delegate :registered_company_name, to: :transient_registration
     delegate :operator_name, to: :transient_registration
 
@@ -18,14 +18,17 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      params[:operator_name] = registered_company_name if params[:temp_use_registered_company_details] == "true"
+      if params[:temp_use_registered_company_details] == "true"
+        params[:operator_name] = registered_company_name
+        params[:company_no] = temp_company_no
+      end
       super
     end
 
     private
 
     def companies_house_service
-      @_companies_house_service ||= DefraRubyCompaniesHouse.new(company_no)
+      @_companies_house_service ||= DefraRubyCompaniesHouse.new(temp_company_no)
     end
   end
 end
