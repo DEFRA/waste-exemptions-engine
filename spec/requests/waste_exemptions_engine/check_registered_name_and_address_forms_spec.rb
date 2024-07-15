@@ -78,7 +78,7 @@ module WasteExemptionsEngine
 
       context "when the company number is invalid" do
         before do
-          renewing_registration.company_no = "1"
+          renewing_registration.temp_company_no = "1"
           renewing_registration.save!
         end
 
