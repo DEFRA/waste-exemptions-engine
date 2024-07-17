@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     describe "#workflow_state" do
       it_behaves_like "a simple progressing transition",
                       current_state: :declaration_form,
-                      next_state: :registration_complete_form,
+                      next_state: :exemptions_summary_form,
                       factory: :new_registration
     end
   end
