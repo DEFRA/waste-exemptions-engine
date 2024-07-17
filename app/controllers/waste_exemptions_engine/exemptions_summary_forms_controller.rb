@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ExemptionsSummaryFormsController < FormsController
+    helper FinanceDetailsHelper
     def new
       super(ExemptionsSummaryForm, "exemptions_summary_form")
     end
@@ -17,4 +18,3 @@ module WasteExemptionsEngine
     end
   end
 end
-

@@ -4,40 +4,64 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
 
-    <% @order.bands.each do |band| %>
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title"><%= t(".band_heading", band: band.name) %></h2>
-        </div>
-        <div class="govuk-summary-card__content">
-          <p class="govuk-body"><%= t(".band_description", band: band.name) %></p>
-          <ul class="govuk-list govuk-list--bullet">
-            <% band.exemptions.each do |exemption| %>
-              <li><%= exemption.code %> - <%= exemption.summary %></li>
-            <% end %>
-          </ul>
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key"><%= t(".compliance_charge") %></dt>
-              <dd class="govuk-summary-list__value"><%= number_to_currency(band.compliance_charge, unit: "£") %></dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key"><%= t(".total") %></dt>
-              <dd class="govuk-summary-list__value"><%= number_to_currency(band.total_charge, unit: "£") %></dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    <% end %>
+    <h2 class="govuk-heading-m"><%= t(".how_charges_calculated") %></h2>
+    <p class="govuk-body"><%= t(".charge_explanation") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".full_compliance_charge") %></li>
+      <li><%= t(".discounted_charge") %></li>
+      <li><%= t(".registration_fee") %></li>
+    </ul>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t(".exemption") %></th>
+          <th scope="col" class="govuk-table__header"><%= t(".band") %></th>
+          <th scope="col" class="govuk-table__header"><%= t(".compliance_charge") %></th>
+          <th scope="col" class="govuk-table__header"><%= t(".full_or_discounted") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% highest_band_exemption = @exemptions_summary_form.order.exemptions.max_by { |e| e.band.sequence } %>
+        <% @exemptions_summary_form.order.exemptions.sort_by { |e| e.band.sequence }.each do |exemption| %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><%= exemption.code %> - <%= exemption.summary %></td>
+            <td class="govuk-table__cell"><%= exemption.band.sequence %></td>
+            <td class="govuk-table__cell">
+              <% if exemption == highest_band_exemption %>
+                £<%= display_pence_as_pounds_and_cents(exemption.band.initial_compliance_charge.charge_amount) %>
+              <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
+                £<%= display_pence_as_pounds_and_cents(exemption.band.additional_compliance_charge.charge_amount) %>
+              <% else %>
+                £0.00
+              <% end %>
+            </td>
+            <td class="govuk-table__cell">
+              <% if exemption == highest_band_exemption %>
+                Full
+              <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
+                Discounted
+              <% else %>
+                NA
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
     <div class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".registration_charge") %></dt>
-        <dd class="govuk-summary-list__value"><%= number_to_currency(@order.registration_charge, unit: "£") %></dd>
+        <dd class="govuk-summary-list__value">
+          £<%= display_pence_as_pounds_and_cents(@exemptions_summary_form.order_calculator.registration_charge_amount) %>
+        </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".total_charge") %></dt>
-        <dd class="govuk-summary-list__value"><%= number_to_currency(@order.total_charge, unit: "£") %></dd>
+        <dd class="govuk-summary-list__value">
+          £<%= display_pence_as_pounds_and_cents(@exemptions_summary_form.order_calculator.total_charge_amount) %>
+        </dd>
       </div>
     </div>
 

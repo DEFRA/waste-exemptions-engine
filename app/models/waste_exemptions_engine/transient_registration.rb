@@ -29,6 +29,7 @@ module WasteExemptionsEngine
     has_many :transient_people, dependent: :destroy
     has_many :transient_registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :transient_registration_exemptions
+    has_one :order, as: :orderable
 
     alias addresses transient_addresses
     def addresses=(address_array)

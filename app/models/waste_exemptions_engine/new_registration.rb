@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class NewRegistration < TransientRegistration
     include CanUseNewRegistrationWorkflow
 
+    has_one :order, as: :orderable
+
     def initialize(params)
       super
 

@@ -14,12 +14,12 @@ module WasteExemptionsEngine
 
     def initialize(order)
       @order = order
-      @strategy = strategy_type.new(order)
-      @calculator = OrderCalculator.new(order: order, strategy: strategy)
+      @calculator = OrderCalculator.new(order:, strategy_type:)
     end
 
     def strategy_type
-      @strategy_type ||= if order.bucket? && order.bucket.name == I18n.t("waste_exemptions_engine.farmer_bucket")
+      @strategy_type ||= if order.bucket? && order.bucket.name == I18n.t("waste_exemptions_engine.farmer_bucket",
+                                                                         locale: :en)
                            FarmerChargingStrategy
                          else
                            RegularChargingStrategy
