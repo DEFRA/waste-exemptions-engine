@@ -28,6 +28,7 @@ module WasteExemptionsEngine
     describe "POST exemptions_summary_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/exemptions-summary" }
       let(:request_body) { { exemptions_summary_form: { token: form.token } } }
+
       status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
       it "responds to the POST request with a #{status_code} status code" do

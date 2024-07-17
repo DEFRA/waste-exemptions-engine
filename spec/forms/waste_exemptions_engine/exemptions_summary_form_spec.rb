@@ -33,6 +33,10 @@ module WasteExemptionsEngine
 
         it "creates a new order" do
           expect(form.order).to eq(new_order)
+        end
+
+        it "calls OrderCreationService with the correct parameters" do
+          form.order
           expect(WasteExemptionsEngine::OrderCreationService).to have_received(:run).with(transient_registration: form.transient_registration)
         end
       end

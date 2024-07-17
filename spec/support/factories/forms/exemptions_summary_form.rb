@@ -5,4 +5,3 @@ FactoryBot.define do
     initialize_with { new(create(:new_registration, workflow_state: "exemptions_summary_form")) }
   end
 end
-
