@@ -30,11 +30,11 @@
             <td class="govuk-table__cell">
               <% if exemption == highest_band_exemption %>
                 £<%= display_pence_as_pounds_and_cents(exemption.band.initial_compliance_charge.charge_amount) %>
-              <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
-                £<%= display_pence_as_pounds_and_cents(exemption.band.additional_compliance_charge.charge_amount) %>
-              <% else %>
-                £0.00
-              <% end %>
+            <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
+              £<%= display_pence_as_pounds_and_cents(exemption.band.additional_compliance_charge.charge_amount) %>
+          <% else %>
+            £0.00
+          <% end %>
             </td>
             <td class="govuk-table__cell">
               <% if exemption == highest_band_exemption %>
@@ -50,7 +50,7 @@
       </tbody>
     </table>
 
-    <div class="govuk-summary-list">
+    <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".registration_charge") %></dt>
         <dd class="govuk-summary-list__value">
@@ -63,10 +63,9 @@
           £<%= display_pence_as_pounds_and_cents(@exemptions_summary_form.order_calculator.total_charge_amount) %>
         </dd>
       </div>
-    </div>
-
-    <%= form_for @exemptions_summary_form do |f| %>
-      <%= f.govuk_submit t(".continue") %>
-    <% end %>
+    </dl>
   </div>
+  <%= form_for @exemptions_summary_form do |f| %>
+    <%= f.govuk_submit t(".continue") %>
+  <% end %>
 </div>
