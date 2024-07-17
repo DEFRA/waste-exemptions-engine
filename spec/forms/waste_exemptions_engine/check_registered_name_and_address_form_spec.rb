@@ -29,7 +29,11 @@ module WasteExemptionsEngine
     end
 
     describe "#submit" do
-      let(:form) { build(:check_registered_name_and_address_form) }
+      let(:form) do
+        form = build(:check_registered_name_and_address_form)
+        form.transient_registration.temp_company_no = "12345678"
+        form
+      end
 
       subject(:submit_form) { form.submit(temp_use_registered_company_details: temp_use_registered_company_details) }
 
@@ -41,6 +45,12 @@ module WasteExemptionsEngine
 
           expect(form.registered_company_name).to eq(form.operator_name)
         end
+
+        it "assigns the temp_company_no as the company_no" do
+          submit_form
+
+          expect(form.temp_company_no).to eq(form.company_no)
+        end
       end
 
       context "when temp_use_registered_company_details is false" do
@@ -50,6 +60,12 @@ module WasteExemptionsEngine
           submit_form
 
           expect(form.transient_registration.operator_name).to be_blank
+        end
+
+        it "does not assign the temp_company_no as the company_no" do
+          submit_form
+
+          expect(form.temp_company_no).not_to eq(form.company_no)
         end
       end
     end

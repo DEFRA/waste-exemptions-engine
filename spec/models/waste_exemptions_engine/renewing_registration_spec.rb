@@ -121,6 +121,10 @@ module WasteExemptionsEngine
             expect(renewing_registration.exemptions).not_to include(exemption)
           end
         end
+
+        it "sets temp_company_no when company_no is present" do
+          expect(renewing_registration.temp_company_no).to eq(registration.company_no)
+        end
       end
     end
   end

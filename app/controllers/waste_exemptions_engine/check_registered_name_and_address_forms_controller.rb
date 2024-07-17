@@ -30,11 +30,11 @@ module WasteExemptionsEngine
     end
 
     def validate_company_status
-      DefraRubyCompaniesHouse.new(@transient_registration.company_no).status == :active
+      DefraRubyCompaniesHouse.new(@transient_registration.temp_company_no).status == :active
     end
 
     def validate_company_number
-      @transient_registration.company_no&.match?(VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX)
+      @transient_registration.temp_company_no&.match?(VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX)
     end
 
     def transient_registration_attributes

@@ -128,7 +128,12 @@ module WasteExemptionsEngine
           expected_data[1][:change_url] = "check-your-answers/operator-name"
           expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
           # Replace the Companies House info with partners instead
-          expected_data[2] = { title: "Partners", value: partner_text }
+          expected_data[2] = {
+            title: "Partners",
+            value: partner_text,
+            change_url: "check-your-answers/main-people",
+            change_link_suffix: I18n.t("#{presenter.send(:company_i18n_scope)}.partners.change_link_suffix")
+          }
         end
 
         it "returns the properly-formatted data" do

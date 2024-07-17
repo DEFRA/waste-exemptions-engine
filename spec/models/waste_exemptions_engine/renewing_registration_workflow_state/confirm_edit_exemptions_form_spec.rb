@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     describe "#workflow_state" do
       # temp_confirm_exemption_edits defaults to nil, so this should
       # go back to the edit page and not to the declaration page
-      it_behaves_like "a simple bidirectional transition",
+      it_behaves_like "a simple progressing transition",
                       current_state: :confirm_edit_exemptions_form,
                       next_state: :edit_exemptions_form,
                       factory: :renewing_registration
