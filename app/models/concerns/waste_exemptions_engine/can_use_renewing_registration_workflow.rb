@@ -27,6 +27,7 @@ module WasteExemptionsEngine
         state :renew_without_changes_form
 
         # Exemptions
+        state :exemptions_form
         state :edit_exemptions_form
         state :confirm_edit_exemptions_form
         state :renew_exemptions_form
@@ -155,6 +156,9 @@ module WasteExemptionsEngine
 
           transitions from: :edit_exemptions_declaration_form,
                       to: :deregistration_complete_partial_form
+
+          transitions from: :exemptions_form,
+                      to: :renewal_start_form
 
           # Applicant details
           transitions from: :applicant_name_form,
@@ -297,6 +301,12 @@ module WasteExemptionsEngine
           transitions from: :site_grid_reference_form,
                       to: :check_site_address_form
         end
+
+        event :edit_exemptions do
+          transitions from: :renewal_start_form,
+                      to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
       end
     end
 
@@ -383,6 +393,10 @@ module WasteExemptionsEngine
 
     def no_exemptions_deregistered?
       excluded_exemptions.empty?
+    end
+
+    def check_your_answers_flow?
+      temp_check_your_answers_flow == true
     end
   end
 end
