@@ -64,8 +64,8 @@
         </dd>
       </div>
     </dl>
+    <%= form_for @exemptions_summary_form do |f| %>
+      <%= f.govuk_submit t(".continue") %>
+    <% end %>
   </div>
-  <%= form_for @exemptions_summary_form do |f| %>
-    <%= f.govuk_submit t(".continue") %>
-  <% end %>
 </div>
