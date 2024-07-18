@@ -2,6 +2,7 @@ en:
   waste_exemptions_engine:
     exemptions_summary_forms:
       new:
+        title: "You have selected the following exemptions"
         heading: "You have selected the following exemptions"
         how_charges_calculated: "How are exemption charges calculated"
         charge_explanation: "You'll pay a:"
