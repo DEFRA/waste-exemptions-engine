@@ -67,6 +67,18 @@ module WasteExemptionsEngine
       describe "GET /renewal-start/exemptions" do
         it_behaves_like "a valid transition", :exemptions_renewal_start_forms_path, :new_exemptions_form_path
       end
+
+      describe "GET /renewal-start/applicant-name" do
+        it_behaves_like "a valid transition", :applicant_name_renewal_start_forms_path, :new_applicant_name_form_path
+      end
+
+      describe "GET /renewal-start/applicant-phone" do
+        it_behaves_like "a valid transition", :applicant_phone_renewal_start_forms_path, :new_applicant_phone_form_path
+      end
+
+      describe "GET /renewal-start/applicant-email" do
+        it_behaves_like "a valid transition", :applicant_email_renewal_start_forms_path, :new_applicant_email_form_path
+      end
     end
   end
 end

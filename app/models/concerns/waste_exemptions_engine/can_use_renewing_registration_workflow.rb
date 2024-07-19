@@ -157,18 +157,18 @@ module WasteExemptionsEngine
           transitions from: :edit_exemptions_declaration_form,
                       to: :deregistration_complete_partial_form
 
-          transitions from: :exemptions_form,
-                      to: :renewal_start_form
-
           # Applicant details
           transitions from: :applicant_name_form,
-                      to: :applicant_phone_form
+                      to: :applicant_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_phone_form,
-                      to: :applicant_email_form
+                      to: :applicant_email_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_email_form,
-                      to: :business_type_form
+                      to: :business_type_form,
+                      unless: :check_your_answers_flow?
 
           # Operator details
           transitions from: :business_type_form,
@@ -281,6 +281,23 @@ module WasteExemptionsEngine
           # Renew without changes jumps to declaration form
           transitions from: :renew_without_changes_form,
                       to: :declaration_form
+
+          # Check Your Answers
+          transitions from: :exemptions_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_name_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_phone_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_email_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
         end
 
         event :skip_to_manual_address do
@@ -305,6 +322,24 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :renewal_start_form,
                       to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_name do
+          transitions from: :renewal_start_form,
+                      to: :applicant_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_phone do
+          transitions from: :renewal_start_form,
+                      to: :applicant_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_email do
+          transitions from: :renewal_start_form,
+                      to: :applicant_email_form,
                       if: :check_your_answers_flow?
         end
       end
