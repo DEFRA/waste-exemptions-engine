@@ -29,9 +29,9 @@
             <td class="govuk-table__cell"><%= exemption.band.sequence %></td>
             <td class="govuk-table__cell">
               <% if exemption == highest_band_exemption %>
-                £<%= display_pence_as_pounds_and_cents(exemption.band.initial_compliance_charge.charge_amount) %>
+                £<%= exemption.band.initial_compliance_charge.charge_amount_in_pounds %>
             <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
-              £<%= display_pence_as_pounds_and_cents(exemption.band.additional_compliance_charge.charge_amount) %>
+              £<%= exemption.band.additional_compliance_charge.charge_amount_in_pounds %>
           <% else %>
             £0.00
           <% end %>

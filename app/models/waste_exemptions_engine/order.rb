@@ -21,9 +21,5 @@ module WasteExemptionsEngine
     def bucket?
       bucket.present?
     end
-
-    def bands
-      exemptions.map(&:band).uniq
-    end
   end
 end
