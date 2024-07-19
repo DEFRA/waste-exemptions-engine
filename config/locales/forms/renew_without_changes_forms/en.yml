@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     renew_without_changes_forms:
       new:
-        title: "You are about to renew for 3 years with the current details"
-        heading: "You are about to renew for 3 years with the current details"
+        title: "You are about to renew for 3 years"
+        heading: "You are about to renew for 3 years"
         paragraph_1: "You'll get a new registration number."
         next_button: "Continue"
