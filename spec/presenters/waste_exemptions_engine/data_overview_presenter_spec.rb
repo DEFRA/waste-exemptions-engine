@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "./spec/models/waste_exemptions_engine/concerns/can_sort_exemption_codes"
 
 module WasteExemptionsEngine
   RSpec.describe DataOverviewPresenter, type: :presenter do
@@ -149,7 +150,8 @@ module WasteExemptionsEngine
             title: "Exemptions",
             value: new_registration.exemptions.map(&:code).join(", "),
             change_link_suffix: "Exemptions selected",
-            change_url: "check-your-answers/exemptions"
+            change_url: "check-your-answers/exemptions",
+            renewal_change_url: "renewal-start/exemptions"
           },
           {
             title: "Will this waste operation take place on a farm?",
@@ -226,6 +228,10 @@ module WasteExemptionsEngine
           expect(presenter.registration_rows).to eq(expected_data)
         end
       end
+    end
+
+    context "when presenter has CanSortExemptionCodes concern included" do
+      it_behaves_like "can_sort_exemption_codes", described_class
     end
   end
 end

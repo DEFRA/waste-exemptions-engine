@@ -6,6 +6,19 @@
 
 **Implemented enhancements:**
 
+- Feature/ruby 3155 do not persist company no till company name confirmed [\#1031](https://github.com/DEFRA/waste-exemptions-engine/pull/1031) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3156\] feat: Add ability to edit partner names on Check Your Answers page [\#1030](https://github.com/DEFRA/waste-exemptions-engine/pull/1030) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3049 charge calculation [\#1028](https://github.com/DEFRA/waste-exemptions-engine/pull/1028) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Feature/ruby 3049 charge calculation [\#1027](https://github.com/DEFRA/waste-exemptions-engine/pull/1027) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- \[RUBY-3126\] Add site grid reference edit functionality to Check Your Answers page [\#1025](https://github.com/DEFRA/waste-exemptions-engine/pull/1025) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3155\] chore: Add ability to edit registration number on check your answers page [\#1023](https://github.com/DEFRA/waste-exemptions-engine/pull/1023) ([brujeo](https://github.com/brujeo))
+- [RUBY-3189] ``` Add functionality to edit site address from Check Your Answers page [\#1022](https://github.com/DEFRA/waste-exemptions-engine/pull/1022) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3114\] feat: Add ability to edit operator address on check your answers page [\#1018](https://github.com/DEFRA/waste-exemptions-engine/pull/1018) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3123\] feat: Add ability to edit applicant name, phone, and email on check your answers page [\#1016](https://github.com/DEFRA/waste-exemptions-engine/pull/1016) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3120\] chore: Add ability to edit exemptions on check your answers page [\#1014](https://github.com/DEFRA/waste-exemptions-engine/pull/1014) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3122 wex charging check your answers page change are these exemptions used for a farmer or a farming business [\#1013](https://github.com/DEFRA/waste-exemptions-engine/pull/1013) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3121 cya on farm [\#1011](https://github.com/DEFRA/waste-exemptions-engine/pull/1011) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Feature/ruby 3049 charge calculation [\#1007](https://github.com/DEFRA/waste-exemptions-engine/pull/1007) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - RUBY 3117 wex charging check your answers page change contact address [\#997](https://github.com/DEFRA/waste-exemptions-engine/pull/997) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3118 & RUBY-3119\] ability to edit contact telephone number and contact email on check your answers page [\#995](https://github.com/DEFRA/waste-exemptions-engine/pull/995) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3117\] Add edit contact address feature to check your answers page and update workflow transitions [\#994](https://github.com/DEFRA/waste-exemptions-engine/pull/994) ([jjromeo](https://github.com/jjromeo))
@@ -204,6 +217,10 @@
 
 **Fixed bugs:**
 
+- \[RUBY-3155\] refactor: Copy temp\_company\_no to company\_no for RenewingRegistration [\#1034](https://github.com/DEFRA/waste-exemptions-engine/pull/1034) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3218\] Fix bug with removed workflow transition, add spec for expected transitions, and rename shared example for clarity [\#1029](https://github.com/DEFRA/waste-exemptions-engine/pull/1029) ([jjromeo](https://github.com/jjromeo))
+- [RUBY-3218] Fix undefined method `skip\_to\_address' in renewing registration workflow [\#1026](https://github.com/DEFRA/waste-exemptions-engine/pull/1026) ([jjromeo](https://github.com/jjromeo))
+- raise an error when no exemptions selected ON CYA change exemptions flow [\#1015](https://github.com/DEFRA/waste-exemptions-engine/pull/1015) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3195\] Hiding change links on CYA page for renewals [\#1004](https://github.com/DEFRA/waste-exemptions-engine/pull/1004) ([brujeo](https://github.com/brujeo))
 - fixing rounding issue when working with floating numbers in ruby [\#982](https://github.com/DEFRA/waste-exemptions-engine/pull/982) ([brujeo](https://github.com/brujeo))
 - \[RUBY-2976\] Add communication log entry and page titles for unsubscri… [\#964](https://github.com/DEFRA/waste-exemptions-engine/pull/964) ([jjromeo](https://github.com/jjromeo))
@@ -338,6 +355,10 @@
 
 **Merged pull requests:**
 
+- brakeman config for private repo [\#1021](https://github.com/DEFRA/waste-exemptions-engine/pull/1021) ([brujeo](https://github.com/brujeo))
+- Bump timecop from 0.9.9 to 0.9.10 [\#1017](https://github.com/DEFRA/waste-exemptions-engine/pull/1017) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#1009](https://github.com/DEFRA/waste-exemptions-engine/pull/1009) ([brujeo](https://github.com/brujeo))
+- Bump actionpack from 7.1.3.2 to 7.1.3.4 [\#1006](https://github.com/DEFRA/waste-exemptions-engine/pull/1006) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update CHANGELOG [\#998](https://github.com/DEFRA/waste-exemptions-engine/pull/998) ([jjromeo](https://github.com/jjromeo))
 - Ruby 3147 all tech debt simplecov upgrade [\#984](https://github.com/DEFRA/waste-exemptions-engine/pull/984) ([brujeo](https://github.com/brujeo))
 - Update CHANGELOG [\#971](https://github.com/DEFRA/waste-exemptions-engine/pull/971) ([jjromeo](https://github.com/jjromeo))
