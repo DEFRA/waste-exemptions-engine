@@ -169,19 +169,22 @@ module WasteExemptionsEngine
             title: "Form completed by",
             value: "#{new_registration.applicant_first_name} #{new_registration.applicant_last_name}",
             change_link_suffix: "Form completed by",
-            change_url: "check-your-answers/applicant-name"
+            change_url: "check-your-answers/applicant-name",
+            renewal_change_url: "renewal-start/applicant-name"
           },
           {
             title: "Telephone number",
             value: new_registration.applicant_phone,
             change_link_suffix: "Telephone number of the person filling in this form",
-            change_url: "check-your-answers/applicant-phone"
+            change_url: "check-your-answers/applicant-phone",
+            renewal_change_url: "renewal-start/applicant-phone"
           },
           {
             title: "Email address",
             value: new_registration.applicant_email,
             change_link_suffix: "Email address of the person filling in this form",
-            change_url: "check-your-answers/applicant-email"
+            change_url: "check-your-answers/applicant-email",
+            renewal_change_url: "renewal-start/applicant-email"
           },
           {
             title: "Grid reference",
