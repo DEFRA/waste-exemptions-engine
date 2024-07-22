@@ -26,6 +26,14 @@ module WasteExemptionsEngine
       transition_to_edit("edit_applicant_email")
     end
 
+    def edit_on_a_farm
+      transition_to_edit("edit_on_a_farm")
+    end
+
+    def edit_is_a_farmer
+      transition_to_edit("edit_is_a_farmer")
+    end
+
     private
 
     def transient_registration_attributes
