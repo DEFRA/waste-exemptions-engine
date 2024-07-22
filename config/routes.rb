@@ -504,6 +504,21 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "renewal_start_forms#edit_exemptions",
                     as: "exemptions",
                     on: :collection
+
+                get "applicant-name",
+                    to: "renewal_start_forms#edit_applicant_name",
+                    as: "applicant-name",
+                    on: :collection
+
+                get "applicant-phone",
+                    to: "renewal_start_forms#edit_applicant_phone",
+                    as: "applicant-phone",
+                    on: :collection
+
+                get "applicant-email",
+                    to: "renewal_start_forms#edit_applicant_email",
+                    as: "applicant-email",
+                    on: :collection
               end
 
     resources :cannot_renew_type_change_forms,
