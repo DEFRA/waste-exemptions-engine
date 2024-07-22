@@ -20,6 +20,13 @@ FactoryBot.define do
     end
   end
 
+  factory :renewal_start_edit_applicant_phone_form, class: "WasteExemptionsEngine::ApplicantPhoneForm" do
+    initialize_with do
+      new(create(:renewing_registration, workflow_state: "applicant_phone_form", applicant_phone: "0123456789",
+                                         temp_check_your_answers_flow: true))
+    end
+  end
+
   factory :renew_applicant_phone_form, class: "WasteExemptionsEngine::ApplicantPhoneForm" do
     initialize_with do
       new(create(:renewing_registration, workflow_state: "applicant_phone_form"))

@@ -14,6 +14,18 @@ module WasteExemptionsEngine
       transition_to_edit("edit_exemptions")
     end
 
+    def edit_applicant_name
+      transition_to_edit("edit_applicant_name")
+    end
+
+    def edit_applicant_phone
+      transition_to_edit("edit_applicant_phone")
+    end
+
+    def edit_applicant_email
+      transition_to_edit("edit_applicant_email")
+    end
+
     private
 
     def transient_registration_attributes
