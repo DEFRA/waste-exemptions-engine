@@ -499,7 +499,12 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :renewal_start_forms,
               only: %i[new create],
               path: "renewal-start",
-              path_names: { new: "" }
+              path_names: { new: "" } do
+                get "exemptions",
+                    to: "renewal_start_forms#edit_exemptions",
+                    as: "exemptions",
+                    on: :collection
+              end
 
     resources :cannot_renew_type_change_forms,
               only: %i[new create],

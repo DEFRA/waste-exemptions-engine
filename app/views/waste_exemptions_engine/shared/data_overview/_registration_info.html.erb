@@ -18,14 +18,12 @@
       <%= row[:value] %>
     </dd>
     <dd class="govuk-summary-list__actions <%= column_css %>">
-
       <% if !form&.transient_registration&.renewal? && row[:change_url].present? %>
-        <%= link_to(row[:change_url]) do %>
-          <%= t(".change_link")%>
-          <span class="govuk-visually-hidden">
-            <%= row[:change_link_suffix] %>
-          </span>
-        <% end %>
+        <!-- NEW REGISTRATIONS -->
+        <%= render("waste_exemptions_engine/shared/change_link", change_url: row[:change_url], change_link_suffix: row[:change_link_suffix]) %>
+      <% elsif form&.transient_registration&.renewal? && row[:renewal_change_url].present? %>
+        <!-- RENEWALS -->
+        <%= render("waste_exemptions_engine/shared/change_link", change_url: row[:renewal_change_url], change_link_suffix: row[:change_link_suffix]) %>
       <% end %>
     </dd>
   </div>

@@ -53,6 +53,21 @@ module WasteExemptionsEngine
             .to eq(transient_registration.referring_registration.exemptions.map(&:id).sort)
         end
       end
+
+      it "does not reset exemptions when check_your_answers_flow flag is set" do
+        transient_registration.exemptions = [WasteExemptionsEngine::Exemption.find_or_create_by(id: 1), WasteExemptionsEngine::Exemption.find_or_create_by(id: 2)]
+        transient_registration.temp_check_your_answers_flow = true
+
+        aggregate_failures do
+          expect(transient_registration.exemptions.map(&:id).sort).to eq([1, 2])
+
+          described_class.new(transient_registration)
+
+          transient_registration.reload
+
+          expect(transient_registration.exemptions.map(&:id).sort).to eq([1, 2])
+        end
+      end
     end
 
     describe "#submit" do

@@ -12,4 +12,12 @@ FactoryBot.define do
                                     temp_check_your_answers_flow: true))
     end
   end
+
+  factory :renewal_start_edit_exemptions_form, class: "WasteExemptionsEngine::ExemptionsForm" do
+    initialize_with do
+      new(create(:renewing_registration, workflow_state: "exemptions_form",
+                                         exemption_ids: WasteExemptionsEngine::Exemption.limit(5).pluck(:id),
+                                         temp_check_your_answers_flow: true))
+    end
+  end
 end

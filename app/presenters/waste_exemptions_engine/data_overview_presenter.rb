@@ -2,6 +2,9 @@
 
 module WasteExemptionsEngine
   class DataOverviewPresenter < BasePresenter
+
+    include WasteExemptionsEngine::CanSortExemptionCodes
+
     def initialize(transient_registration)
       super(transient_registration, nil)
     end
@@ -173,12 +176,13 @@ module WasteExemptionsEngine
     end
 
     def exemptions_row
-      exemptions_value = exemptions.map(&:code).join(", ")
+      exemptions_value = sorted_exemption_codes.join(", ")
 
       {
         title: I18n.t("#{reg_i18n_scope}.exemptions.title"),
         value: exemptions_value,
         change_url: "check-your-answers/exemptions",
+        renewal_change_url: "renewal-start/exemptions",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.exemptions.change_link_suffix")
       }
     end

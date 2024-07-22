@@ -20,8 +20,10 @@ module WasteExemptionsEngine
       # changes we run into an edge case where exemptions do not match the
       # referring registration.  We re-assign these exemptions here to
       # correctly reset the transient registration with the correct exemptions.
-      transient_registration.exemptions =
-        transient_registration.registration_exemptions_to_copy
+      unless transient_registration.temp_check_your_answers_flow?
+        transient_registration.exemptions =
+          transient_registration.registration_exemptions_to_copy
+      end
 
       super
     end
