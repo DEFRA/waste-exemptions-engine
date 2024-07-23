@@ -251,7 +251,7 @@ module WasteExemptionsEngine
 
           transitions from: :is_a_farmer_form,
                       to: :site_postcode_form,
-                      unless: :located_by_grid_reference?
+                      unless: [:located_by_grid_reference?, :check_your_answers_flow?]
 
           # Site questions
           transitions from: :site_grid_reference_form,

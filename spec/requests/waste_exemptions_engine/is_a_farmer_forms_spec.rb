@@ -36,7 +36,17 @@ module WasteExemptionsEngine
         expect(response.body).to have_tag("input", with: { type: "radio", name: "is_a_farmer_form[is_a_farmer]", checked: "checked", value: "true" })
       end
 
-      it "redirects back to check-your-answers when submitted" do
+      it "redirects back to renewal-start when submitted" do
+        post "/waste_exemptions_engine/#{is_a_farmer_form.token}/is-a-farmer",
+             params: { is_a_farmer_form: { is_a_farmer: true } }
+
+        expect(response).to redirect_to(renewal_start_forms_path(is_a_farmer_form.token))
+      end
+
+      it "redirects back to renewal-start when site address is located by the grid reference" do
+        site_address = build(:transient_address, mode: :manual, address_type: :site)
+        is_a_farmer_form.transient_registration.site_address = site_address
+
         post "/waste_exemptions_engine/#{is_a_farmer_form.token}/is-a-farmer",
              params: { is_a_farmer_form: { is_a_farmer: true } }
 
