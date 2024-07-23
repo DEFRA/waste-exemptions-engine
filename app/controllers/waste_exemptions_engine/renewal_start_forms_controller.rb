@@ -29,6 +29,14 @@ module WasteExemptionsEngine
     def edit_contact_address
       transition_to_edit("edit_contact_address")
     end
+    
+    def edit_on_a_farm
+      transition_to_edit("edit_on_a_farm")
+    end
+
+    def edit_is_a_farmer
+      transition_to_edit("edit_is_a_farmer")
+    end
 
     private
 

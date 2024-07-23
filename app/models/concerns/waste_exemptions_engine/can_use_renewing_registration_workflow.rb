@@ -243,15 +243,17 @@ module WasteExemptionsEngine
 
           # Farm questions
           transitions from: :on_a_farm_form,
-                      to: :is_a_farmer_form
+                      to: :is_a_farmer_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :is_a_farmer_form,
                       to: :site_grid_reference_form,
-                      if: :located_by_grid_reference?
+                      if: :located_by_grid_reference?,
+                      unless: :check_your_answers_flow?
 
           transitions from: :is_a_farmer_form,
                       to: :site_postcode_form,
-                      unless: :located_by_grid_reference?
+                      unless: %i[located_by_grid_reference? check_your_answers_flow?]
 
           # Site questions
           transitions from: :site_grid_reference_form,
@@ -308,6 +310,14 @@ module WasteExemptionsEngine
           transitions from: :contact_address_manual_form,
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
+          
+          transitions from: :on_a_farm_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :is_a_farmer_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
         end
 
         event :skip_to_manual_address do
@@ -356,6 +366,17 @@ module WasteExemptionsEngine
         event :edit_contact_address do
           transitions from: :renewal_start_form,
                       to: :contact_address_lookup_form,
+        end
+        
+        event :edit_on_a_farm do
+          transitions from: :renewal_start_form,
+                      to: :on_a_farm_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_is_a_farmer do
+          transitions from: :renewal_start_form,
+                      to: :is_a_farmer_form,
                       if: :check_your_answers_flow?
         end
       end

@@ -193,6 +193,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.on_a_farm.title"),
         value: I18n.t("#{reg_i18n_scope}.on_a_farm.value.#{on_a_farm}"),
         change_url: "check-your-answers/on-a-farm",
+        renewal_change_url: "renewal-start/on-a-farm",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.on_a_farm.change_link_suffix")
       }
     end
@@ -202,6 +203,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.is_a_farmer.title"),
         value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}"),
         change_url: "check-your-answers/is-a-farmer",
+        renewal_change_url: "renewal-start/is-a-farmer",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.is_a_farmer.change_link_suffix")
       }
     end

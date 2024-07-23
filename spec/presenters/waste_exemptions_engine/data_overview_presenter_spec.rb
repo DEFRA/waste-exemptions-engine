@@ -158,13 +158,15 @@ module WasteExemptionsEngine
             title: "Will this waste operation take place on a farm?",
             value: "Yes",
             change_link_suffix: "Will this operation be carried out on a farm?",
-            change_url: "check-your-answers/on-a-farm"
+            change_url: "check-your-answers/on-a-farm",
+            renewal_change_url: "renewal-start/on-a-farm"
           },
           {
             title: "Are the waste exemptions used by a farmer or farming business?",
             value: "Yes",
             change_link_suffix: "Are these exemptions used by a farmer or farming business?",
-            change_url: "check-your-answers/is-a-farmer"
+            change_url: "check-your-answers/is-a-farmer",
+            renewal_change_url: "renewal-start/is-a-farmer"
           },
           {
             title: "Form completed by",

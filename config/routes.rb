@@ -524,6 +524,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "renewal_start_forms#edit_contact_address",
                     as: "contact-address",
                     on: :collection
+                
+                get "on-a-farm",
+                    to: "renewal_start_forms#edit_on_a_farm",
+                    as: "on-a-farm",
+                    on: :collection
+
+                get "is-a-farmer",
+                    to: "renewal_start_forms#edit_is_a_farmer",
+                    as: "is-a-farmer",
+                    on: :collection
               end
 
     resources :cannot_renew_type_change_forms,
