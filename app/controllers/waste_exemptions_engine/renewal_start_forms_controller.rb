@@ -26,6 +26,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_applicant_email")
     end
 
+    def edit_contact_address
+      transition_to_edit("edit_contact_address")
+    end
+
     private
 
     def transient_registration_attributes
