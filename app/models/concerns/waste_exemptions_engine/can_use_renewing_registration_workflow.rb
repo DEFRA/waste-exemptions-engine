@@ -241,11 +241,13 @@ module WasteExemptionsEngine
 
           # Farm questions
           transitions from: :on_a_farm_form,
-                      to: :is_a_farmer_form
+                      to: :is_a_farmer_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :is_a_farmer_form,
                       to: :site_grid_reference_form,
-                      if: :located_by_grid_reference?
+                      if: :located_by_grid_reference?,
+                      unless: :check_your_answers_flow?
 
           transitions from: :is_a_farmer_form,
                       to: :site_postcode_form,
@@ -298,6 +300,14 @@ module WasteExemptionsEngine
           transitions from: :applicant_email_form,
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
+
+          transitions from: :on_a_farm_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :is_a_farmer_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
         end
 
         event :skip_to_manual_address do
@@ -340,6 +350,18 @@ module WasteExemptionsEngine
         event :edit_applicant_email do
           transitions from: :renewal_start_form,
                       to: :applicant_email_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_on_a_farm do
+          transitions from: :renewal_start_form,
+                      to: :on_a_farm_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_is_a_farmer do
+          transitions from: :renewal_start_form,
+                      to: :is_a_farmer_form,
                       if: :check_your_answers_flow?
         end
       end
