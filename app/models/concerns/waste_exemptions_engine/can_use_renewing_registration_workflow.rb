@@ -310,7 +310,7 @@ module WasteExemptionsEngine
           transitions from: :contact_address_manual_form,
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
-          
+
           transitions from: :on_a_farm_form,
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
@@ -366,8 +366,9 @@ module WasteExemptionsEngine
         event :edit_contact_address do
           transitions from: :renewal_start_form,
                       to: :contact_address_lookup_form,
+                      if: :check_your_answers_flow?
         end
-        
+
         event :edit_on_a_farm do
           transitions from: :renewal_start_form,
                       to: :on_a_farm_form,

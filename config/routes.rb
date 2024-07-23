@@ -524,7 +524,7 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "renewal_start_forms#edit_contact_address",
                     as: "contact-address",
                     on: :collection
-                
+
                 get "on-a-farm",
                     to: "renewal_start_forms#edit_on_a_farm",
                     as: "on-a-farm",
