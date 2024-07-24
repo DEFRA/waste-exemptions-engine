@@ -3,6 +3,8 @@
 module WasteExemptionsEngine
   class BetaStartFormsController < FormsController
     def new
+      return render(:unavailable, status: 503) unless WasteExemptionsEngine::FeatureToggle.active?(:private_beta)
+
       super(BetaStartForm, "beta_start_form")
     end
 

@@ -6,3 +6,15 @@ en:
         heading: Welcome to Private Beta
         welcome_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         start_registration_button_label: Start a new registration
+      unavailable:
+        title: The private beta testing is unavailable
+        heading: The private beta testing is unavailable
+        paragraph_1_start: The testing service is no longer available for research. We're currently making improvements. The updated service will be available on 
+        paragraph_1_link: https://www.gov.uk/
+        paragraph_1_link_text: GOV.UK
+        paragraph_1_end: . 
+        paragraph_2_start: If you still need to register or renew your waste carriers registration, you can do so here
+        paragraph_2_link: https://wastecarriersregistration.service.gov.uk/
+        paragraph_2_link_text: Is this a new registration? - Register as a waste carrier - GOV.UK (wastecarriersregistration.service.gov.uk)
+        paragraph_2_end: or contact 03708 506 506 to speak to an advisor.
+      
