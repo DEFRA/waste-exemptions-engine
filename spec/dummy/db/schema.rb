@@ -164,9 +164,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_144820) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "orderable_type"
-    t.bigint "orderable_id"
-    t.index ["orderable_type", "orderable_id"], name: "index_orders_on_orderable"
+    t.string "order_owner_type"
+    t.bigint "order_owner_id"
+    t.index ["order_owner_type", "order_owner_id"], name: "index_orders_on_order_owner"
   end
 
   create_table "people", id: :serial, force: :cascade do |t|
