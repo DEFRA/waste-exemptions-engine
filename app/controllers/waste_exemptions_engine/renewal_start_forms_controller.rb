@@ -26,6 +26,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_applicant_email")
     end
 
+    def edit_contact_address
+      transition_to_edit("edit_contact_address")
+    end
+
     def edit_on_a_farm
       transition_to_edit("edit_on_a_farm")
     end
