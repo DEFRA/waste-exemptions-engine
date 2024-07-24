@@ -60,7 +60,8 @@ module WasteExemptionsEngine
             title: "Contact position",
             value: new_registration.contact_position,
             change_link_suffix: "contact position",
-            change_url: "check-your-answers/contact-position"
+            change_url: "check-your-answers/contact-position",
+            renewal_change_url: "renewal-start/contact-position"
           },
           {
             title: "Contact address",

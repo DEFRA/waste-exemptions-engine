@@ -214,7 +214,8 @@ module WasteExemptionsEngine
                       to: :contact_position_form
 
           transitions from: :contact_position_form,
-                      to: :contact_phone_form
+                      to: :contact_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_phone_form,
                       to: :contact_email_form
@@ -307,6 +308,10 @@ module WasteExemptionsEngine
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
 
+          transitions from: :contact_position_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
           transitions from: :contact_address_manual_form,
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
@@ -366,6 +371,12 @@ module WasteExemptionsEngine
         event :edit_contact_address do
           transitions from: :renewal_start_form,
                       to: :contact_address_lookup_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_position do
+          transitions from: :renewal_start_form,
+                      to: :contact_position_form,
                       if: :check_your_answers_flow?
         end
 
