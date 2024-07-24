@@ -117,6 +117,9 @@ module WasteExemptionsEngine
 
           # Exemptions
           transitions from: :exemptions_form,
+                      to: :exemptions_summary_form
+
+          transitions from: :exemptions_summary_form,
                       to: :applicant_name_form,
                       unless: :check_your_answers_flow?
 
@@ -297,12 +300,6 @@ module WasteExemptionsEngine
                       to: :declaration_form
 
           transitions from: :declaration_form,
-                      to: :exemptions_summary_form
-
-          transitions from: :exemptions_summary_form,
-                      to: :payment_summary_form
-
-          transitions from: :payment_summary_form,
                       to: :registration_complete_form
 
           # Check your answers
