@@ -60,6 +60,47 @@ http_interactions:
       encoding: UTF-8
       string: '{"type":"ltd","company_name":"0800 WASTE LTD.","has_insolvency_history":false,"accounts":{"next_made_up_to":"2019-12-31","next_due":"2020-09-30","last_accounts":{"made_up_to":"2018-12-31","period_start_on":"2018-01-01","period_end_on":"2018-12-31"},"next_accounts":{"due_on":"2020-09-30","period_start_on":"2019-01-01","period_end_on":"2019-12-31","overdue":false},"overdue":false,"accounting_reference_date":{"month":"12","day":"31"}},"undeliverable_registered_office_address":false,"etag":"73621f5f3d59c8eb519bcbaac46f850c92018216","company_number":"09360070","registered_office_address":{"postal_code":"SM3
         9ND","locality":"Sutton","address_line_1":"21 Haslam Avenue","region":"Surrey"},"jurisdiction":"england-wales","date_of_creation":"2014-12-18","company_status":"active","has_charges":false,"sic_codes":["38110"],"last_full_members_list_date":"2015-12-18","confirmation_statement":{"next_due":"2021-02-03","next_made_up_to":"2021-01-20","overdue":false,"last_made_up_to":"2020-01-20"},"links":{"self":"/company/09360070","filing_history":"/company/09360070/filing-history","officers":"/company/09360070/officers","persons_with_significant_control":"/company/09360070/persons-with-significant-control"},"registered_office_is_in_dispute":false,"can_file":true}'
-    http_version: null
   recorded_at: Mon, 20 Apr 2020 10:55:14 GMT
-recorded_with: VCR 5.1.0
+- request:
+    method: get
+    uri: https://environment.data.gov.uk/spatialdata/administrative-boundaries-environment-agency-and-natural-england-public-face-areas/wfs?REQUEST=GetFeature&SERVICE=WFS&SRSName=EPSG:27700&VERSION=2.0.0&cql_filter=bbox(shape,358337.0,172855.0,358337.0,172855.0)&outputformat=json&propertyName=identifier,long_name,code,short_name&typeNames=ms:Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.2.2p53
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - environment.data.gov.uk
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.21.4.1
+      Date:
+      - Tue, 23 Jul 2024 14:58:10 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      Request-Context:
+      - appId=cid-v1:85ae5439-564e-468c-9f34-2d1e0149dc24
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '{"type":"FeatureCollection","features":[{"type":"Feature","id":"Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.1","geometry":null,"properties":{"identifier":28,"long_name":"Wessex","short_name":"Wessex","code":"WSX"},"bbox":[280034.5456,45980.9664,421821.4,182101.3994]},{"type":"Feature","id":"Administrative_Boundaries_Environment_Agency_and_Natural_England_Public_Face_Areas.15","geometry":null,"properties":{"identifier":28,"long_name":"Wessex","short_name":"Wessex","code":"WSX"},"bbox":[271490.1,68218.9,435913.5,200505.6]}],"totalFeatures":2,"numberMatched":2,"numberReturned":2,"timeStamp":"2024-07-23T14:58:10.163Z","crs":null}'
+  recorded_at: Tue, 23 Jul 2024 14:57:29 GMT
+recorded_with: VCR 6.2.0

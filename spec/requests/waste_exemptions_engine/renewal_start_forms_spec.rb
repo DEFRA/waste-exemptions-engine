@@ -87,6 +87,10 @@ module WasteExemptionsEngine
       describe "GET /renewal-start/is-a-farmer" do
         it_behaves_like "a valid transition", :is_a_farmer_renewal_start_forms_path, :new_is_a_farmer_form_path
       end
+
+      describe "GET /renewal-start/contact-address" do
+        it_behaves_like "a valid transition", :contact_address_renewal_start_forms_path, :new_contact_address_lookup_form_path
+      end
     end
   end
 end
