@@ -365,7 +365,7 @@ module WasteExemptionsEngine
 
         event :edit_contact_address do
           transitions from: :renewal_start_form,
-                      to: :contact_address_lookup_form,
+                      to: :contact_postcode_form,
                       if: :check_your_answers_flow?
         end
 
