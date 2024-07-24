@@ -40,5 +40,57 @@ module WasteExemptionsEngine
       let(:form_data) { { temp_renew_without_changes: "true" } }
       let(:invalid_form_data) { [] }
     end
+
+    RSpec.shared_examples "a valid transition" do |request_path, redirects_to|
+      let(:form) { build(:renewal_start_form) }
+
+      it "redirects to valid form page" do
+        get send(request_path, token: form.token)
+
+        expect(response).to redirect_to send(redirects_to, token: form.token)
+      end
+
+      it "sets temp_check_your_answers_flow variable to true" do
+        get send(request_path, token: form.token)
+
+        expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+      end
+
+      it "adds renewal_start_form into the workflow history" do
+        get send(request_path, token: form.token)
+
+        expect(form.transient_registration.reload.workflow_history.last).to eq("renewal_start_form")
+      end
+    end
+
+    context "when editing data on Check Your Answers" do
+      describe "GET /renewal-start/exemptions" do
+        it_behaves_like "a valid transition", :exemptions_renewal_start_forms_path, :new_exemptions_form_path
+      end
+
+      describe "GET /renewal-start/applicant-name" do
+        it_behaves_like "a valid transition", :applicant_name_renewal_start_forms_path, :new_applicant_name_form_path
+      end
+
+      describe "GET /renewal-start/applicant-phone" do
+        it_behaves_like "a valid transition", :applicant_phone_renewal_start_forms_path, :new_applicant_phone_form_path
+      end
+
+      describe "GET /renewal-start/applicant-email" do
+        it_behaves_like "a valid transition", :applicant_email_renewal_start_forms_path, :new_applicant_email_form_path
+      end
+
+      describe "GET /renewal-start/on-a-farm" do
+        it_behaves_like "a valid transition", :on_a_farm_renewal_start_forms_path, :new_on_a_farm_form_path
+      end
+
+      describe "GET /renewal-start/is-a-farmer" do
+        it_behaves_like "a valid transition", :is_a_farmer_renewal_start_forms_path, :new_is_a_farmer_form_path
+      end
+
+      describe "GET /renewal-start/contact-address" do
+        it_behaves_like "a valid transition", :contact_address_renewal_start_forms_path, :new_contact_address_lookup_form_path
+      end
+    end
   end
 end

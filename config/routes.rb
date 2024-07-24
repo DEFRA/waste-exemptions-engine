@@ -248,6 +248,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "applicant-email",
                     on: :collection
 
+                get "main-people",
+                    to: "check_your_answers_forms#edit_main_people",
+                    as: "main-people",
+                    on: :collection
+
+                get "registration-number",
+                    to: "check_your_answers_forms#edit_registration_number",
+                    as: "registration-number",
+                    on: :collection
+
                 get "exemptions",
                     to: "check_your_answers_forms#edit_exemptions",
                     as: "exemptions",
@@ -296,6 +306,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                 get "is-a-farmer",
                     to: "check_your_answers_forms#edit_is_a_farmer",
                     as: "is-a-farmer",
+                    on: :collection
+
+                get "check-site-address",
+                    to: "check_your_answers_forms#edit_site_address",
+                    as: "check-site-address",
+                    on: :collection
+
+                get "site-grid-reference",
+                    to: "check_your_answers_forms#edit_site_grid_reference",
+                    as: "site-grid-reference",
                     on: :collection
               end
 
@@ -485,7 +505,42 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :renewal_start_forms,
               only: %i[new create],
               path: "renewal-start",
-              path_names: { new: "" }
+              path_names: { new: "" } do
+                get "exemptions",
+                    to: "renewal_start_forms#edit_exemptions",
+                    as: "exemptions",
+                    on: :collection
+
+                get "applicant-name",
+                    to: "renewal_start_forms#edit_applicant_name",
+                    as: "applicant-name",
+                    on: :collection
+
+                get "applicant-phone",
+                    to: "renewal_start_forms#edit_applicant_phone",
+                    as: "applicant-phone",
+                    on: :collection
+
+                get "applicant-email",
+                    to: "renewal_start_forms#edit_applicant_email",
+                    as: "applicant-email",
+                    on: :collection
+
+                get "contact-address",
+                    to: "renewal_start_forms#edit_contact_address",
+                    as: "contact-address",
+                    on: :collection
+
+                get "on-a-farm",
+                    to: "renewal_start_forms#edit_on_a_farm",
+                    as: "on-a-farm",
+                    on: :collection
+
+                get "is-a-farmer",
+                    to: "renewal_start_forms#edit_is_a_farmer",
+                    as: "is-a-farmer",
+                    on: :collection
+              end
 
     resources :cannot_renew_type_change_forms,
               only: %i[new create],

@@ -7,6 +7,14 @@ FactoryBot.define do
     end
   end
 
+  factory :check_your_answers_check_registered_name_and_address_form,
+          class: "WasteExemptionsEngine::CheckRegisteredNameAndAddressForm" do
+    initialize_with do
+      new(create(:new_registration, workflow_state: "check_registered_name_and_address_form",
+                                    temp_check_your_answers_flow: true))
+    end
+  end
+
   factory :renew_check_registered_name_and_address_form,
           class: "WasteExemptionsEngine::CheckRegisteredNameAndAddressForm" do
     initialize_with do

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "./spec/models/waste_exemptions_engine/concerns/can_sort_exemption_codes"
 
 module WasteExemptionsEngine
   RSpec.describe DataOverviewPresenter, type: :presenter do
@@ -28,7 +29,9 @@ module WasteExemptionsEngine
           },
           {
             title: "Companies House number",
-            value: new_registration.company_no
+            value: new_registration.company_no,
+            change_link_suffix: "Business name",
+            change_url: "check-your-answers/registration-number"
           },
           {
             title: "Place of business",
@@ -70,7 +73,8 @@ module WasteExemptionsEngine
               new_registration.contact_address.postcode
             ].join("<br>").html_safe,
             change_link_suffix: "contact address",
-            change_url: "check-your-answers/contact-address"
+            change_url: "check-your-answers/contact-address",
+            renewal_change_url: "renewal-start/contact-address"
           },
           {
             title: "Contact telephone number",
@@ -126,7 +130,12 @@ module WasteExemptionsEngine
           expected_data[1][:change_url] = "check-your-answers/operator-name"
           expected_data[1][:change_link_suffix] = I18n.t("#{presenter.send(:company_i18n_scope)}.business_name.operator_name.change_link_suffix")
           # Replace the Companies House info with partners instead
-          expected_data[2] = { title: "Partners", value: partner_text }
+          expected_data[2] = {
+            title: "Partners",
+            value: partner_text,
+            change_url: "check-your-answers/main-people",
+            change_link_suffix: I18n.t("#{presenter.send(:company_i18n_scope)}.partners.change_link_suffix")
+          }
         end
 
         it "returns the properly-formatted data" do
@@ -142,46 +151,56 @@ module WasteExemptionsEngine
             title: "Exemptions",
             value: new_registration.exemptions.map(&:code).join(", "),
             change_link_suffix: "Exemptions selected",
-            change_url: "check-your-answers/exemptions"
+            change_url: "check-your-answers/exemptions",
+            renewal_change_url: "renewal-start/exemptions"
           },
           {
             title: "Will this waste operation take place on a farm?",
             value: "Yes",
             change_link_suffix: "Will this operation be carried out on a farm?",
-            change_url: "check-your-answers/on-a-farm"
+            change_url: "check-your-answers/on-a-farm",
+            renewal_change_url: "renewal-start/on-a-farm"
           },
           {
             title: "Are the waste exemptions used by a farmer or farming business?",
             value: "Yes",
             change_link_suffix: "Are these exemptions used by a farmer or farming business?",
-            change_url: "check-your-answers/is-a-farmer"
+            change_url: "check-your-answers/is-a-farmer",
+            renewal_change_url: "renewal-start/is-a-farmer"
           },
           {
             title: "Form completed by",
             value: "#{new_registration.applicant_first_name} #{new_registration.applicant_last_name}",
             change_link_suffix: "Form completed by",
-            change_url: "check-your-answers/applicant-name"
+            change_url: "check-your-answers/applicant-name",
+            renewal_change_url: "renewal-start/applicant-name"
           },
           {
             title: "Telephone number",
             value: new_registration.applicant_phone,
             change_link_suffix: "Telephone number of the person filling in this form",
-            change_url: "check-your-answers/applicant-phone"
+            change_url: "check-your-answers/applicant-phone",
+            renewal_change_url: "renewal-start/applicant-phone"
           },
           {
             title: "Email address",
             value: new_registration.applicant_email,
             change_link_suffix: "Email address of the person filling in this form",
-            change_url: "check-your-answers/applicant-email"
+            change_url: "check-your-answers/applicant-email",
+            renewal_change_url: "renewal-start/applicant-email"
           },
           {
             title: "Grid reference",
             value: new_registration.site_address.grid_reference,
+            change_url: "check-your-answers/site-grid-reference",
+            change_link_suffix: "Grid reference",
             merged_with: :site_description
           },
           {
             title: "Site description",
-            value: new_registration.site_address.description
+            value: new_registration.site_address.description,
+            change_url: "check-your-answers/site-grid-reference",
+            change_link_suffix: "Site description"
           }
         ]
       end
@@ -204,7 +223,9 @@ module WasteExemptionsEngine
               new_registration.site_address.locality,
               new_registration.site_address.city,
               new_registration.site_address.postcode
-            ].join("<br>").html_safe
+            ].join("<br>").html_safe,
+            change_link_suffix: "Site address",
+            change_url: "check-your-answers/check-site-address"
           }
           expected_data.delete_at(7)
         end
@@ -213,6 +234,10 @@ module WasteExemptionsEngine
           expect(presenter.registration_rows).to eq(expected_data)
         end
       end
+    end
+
+    context "when presenter has CanSortExemptionCodes concern included" do
+      it_behaves_like "can_sort_exemption_codes", described_class
     end
   end
 end

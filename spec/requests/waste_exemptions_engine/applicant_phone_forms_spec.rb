@@ -27,6 +27,23 @@ module WasteExemptionsEngine
       end
     end
 
+    context "when editing applicant phone on Renewal Start page - renew registration" do
+      let(:applicant_phone_form) { build(:renewal_start_edit_applicant_phone_form) }
+
+      it "pre-fills applicant phone information" do
+        get "/waste_exemptions_engine/#{applicant_phone_form.token}/applicant-phone"
+
+        expect(response.body).to have_html_escaped_string(applicant_phone_form.applicant_phone)
+      end
+
+      it "redirects back to Renewal Start when submitted" do
+        post "/waste_exemptions_engine/#{applicant_phone_form.token}/applicant-phone",
+             params: { applicant_phone_form: { applicant_phone: "01234567890" } }
+
+        expect(response).to redirect_to(renewal_start_forms_path(applicant_phone_form.token))
+      end
+    end
+
     context "when editing an existing registration" do
       let(:edit_applicant_phone_form) { build(:edit_applicant_phone_form) }
 

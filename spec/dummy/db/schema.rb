@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_11_144820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -64,6 +64,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "band_charge_details", force: :cascade do |t|
+    t.bigint "band_id"
+    t.integer "initial_compliance_charge_amount", default: 0
+    t.integer "additional_compliance_charge_amount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "bands", force: :cascade do |t|
     t.string "name", null: false
     t.integer "sequence"
@@ -82,6 +90,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
 
   create_table "buckets", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "charge_details", force: :cascade do |t|
+    t.integer "registration_charge_amount"
+    t.integer "bucket_charge_amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -122,6 +137,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
   create_table "feature_toggles", force: :cascade do |t|
     t.string "key"
     t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_buckets", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "bucket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bucket_id"], name: "index_order_buckets_on_bucket_id"
+    t.index ["order_id"], name: "index_order_buckets_on_order_id"
+  end
+
+  create_table "order_exemptions", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "exemption_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exemption_id"], name: "index_order_exemptions_on_exemption_id"
+    t.index ["order_id"], name: "index_order_exemptions_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -298,6 +336,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
     t.boolean "temp_confirm_exemption_edits"
     t.boolean "temp_confirm_no_exemption_changes"
     t.boolean "temp_check_your_answers_flow"
+    t.string "temp_company_no"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
@@ -354,6 +393,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_094710) do
   add_foreign_key "bucket_exemptions", "buckets"
   add_foreign_key "bucket_exemptions", "exemptions"
   add_foreign_key "exemptions", "bands"
+  add_foreign_key "order_buckets", "buckets"
+  add_foreign_key "order_buckets", "orders"
+  add_foreign_key "order_exemptions", "exemptions"
+  add_foreign_key "order_exemptions", "orders"
   add_foreign_key "people", "registrations"
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"

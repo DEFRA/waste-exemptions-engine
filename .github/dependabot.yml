@@ -1,7 +1,14 @@
 version: 2
+registries:
+  wex-github:
+    type: rubygems-server
+    url: https://rubygems.org
+    token: ${{secrets.WEX_GITHUB_TOKEN}}
 updates:
 - package-ecosystem: bundler
   directory: "/"
+  registries:
+  - wex-github
   schedule:
     interval: daily
   open-pull-requests-limit: 10

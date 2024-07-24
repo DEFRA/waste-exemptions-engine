@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     describe "#workflow_state" do
       let(:site_address) { build(:transient_address, :site_address) }
 
-      it_behaves_like "a simple bidirectional transition",
+      it_behaves_like "a simple progressing transition",
                       current_state: :check_your_answers_form,
                       next_state: :declaration_form,
                       factory: :renewing_registration

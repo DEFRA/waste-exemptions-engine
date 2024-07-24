@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "a simple monodirectional transition" do |previous_and_next_state:, current_state:, factory:|
+RSpec.shared_examples "a simple returning transition" do |previous_and_next_state:, current_state:, factory:|
   context "when a subject's state is #{current_state}" do
     subject { create(factory, workflow_state: current_state) }
 

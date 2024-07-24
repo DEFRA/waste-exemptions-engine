@@ -145,7 +145,8 @@ module WasteExemptionsEngine
                       to: :registration_number_form
 
           transitions from: :main_people_form,
-                      to: :operator_name_form
+                      to: :operator_name_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :registration_number_form,
                       to: :check_registered_name_and_address_form
@@ -155,7 +156,8 @@ module WasteExemptionsEngine
                       if: :companies_house_details_incorrect?
 
           transitions from: :check_registered_name_and_address_form,
-                      to: :operator_postcode_form
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :incorrect_company_form,
                       to: :registration_number_form
@@ -309,6 +311,9 @@ module WasteExemptionsEngine
           transitions from: :exemptions_form,
                       to: :check_your_answers_form
 
+          transitions from: :check_registered_name_and_address_form,
+                      to: :check_your_answers_form
+
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
 
@@ -319,6 +324,9 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :contact_email_form,
+                      to: :check_your_answers_form
+
+          transitions from: :main_people_form,
                       to: :check_your_answers_form
 
           transitions from: :operator_name_form,
@@ -341,6 +349,7 @@ module WasteExemptionsEngine
 
           transitions from: :is_a_farmer_form,
                       to: :check_your_answers_form
+
         end
 
         event :skip_to_manual_address do
@@ -365,6 +374,18 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
                       to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_main_people do
+          transitions from: :check_your_answers_form,
+                      to: :main_people_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_registration_number do
+          transitions from: :check_your_answers_form,
+                      to: :registration_number_form,
                       if: :check_your_answers_flow?
         end
 
@@ -437,6 +458,18 @@ module WasteExemptionsEngine
         event :edit_is_a_farmer do
           transitions from: :check_your_answers_form,
                       to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_address do
+          transitions from: :check_your_answers_form,
+                      to: :check_site_address_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_grid_reference do
+          transitions from: :check_your_answers_form,
+                      to: :site_grid_reference_form,
                       if: :check_your_answers_flow?
         end
       end

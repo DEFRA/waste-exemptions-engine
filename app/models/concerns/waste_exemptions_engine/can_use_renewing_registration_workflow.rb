@@ -27,6 +27,7 @@ module WasteExemptionsEngine
         state :renew_without_changes_form
 
         # Exemptions
+        state :exemptions_form
         state :edit_exemptions_form
         state :confirm_edit_exemptions_form
         state :renew_exemptions_form
@@ -67,6 +68,7 @@ module WasteExemptionsEngine
 
         # Site questions
         state :site_grid_reference_form
+        state :check_site_address_form
         state :site_postcode_form
         state :site_address_lookup_form
 
@@ -157,13 +159,16 @@ module WasteExemptionsEngine
 
           # Applicant details
           transitions from: :applicant_name_form,
-                      to: :applicant_phone_form
+                      to: :applicant_phone_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_phone_form,
-                      to: :applicant_email_form
+                      to: :applicant_email_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :applicant_email_form,
-                      to: :business_type_form
+                      to: :business_type_form,
+                      unless: :check_your_answers_flow?
 
           # Operator details
           transitions from: :business_type_form,
@@ -229,29 +234,40 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :contact_address_lookup_form,
-                      to: :on_a_farm_form
+                      to: :on_a_farm_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_address_manual_form,
-                      to: :on_a_farm_form
+                      to: :on_a_farm_form,
+                      unless: :check_your_answers_flow?
 
           # Farm questions
           transitions from: :on_a_farm_form,
-                      to: :is_a_farmer_form
+                      to: :is_a_farmer_form,
+                      unless: :check_your_answers_flow?
 
-          # Site questions
           transitions from: :is_a_farmer_form,
                       to: :site_grid_reference_form,
-                      if: :located_by_grid_reference?
+                      if: :located_by_grid_reference?,
+                      unless: :check_your_answers_flow?
 
           transitions from: :is_a_farmer_form,
                       to: :site_postcode_form,
-                      unless: :located_by_grid_reference?
+                      unless: %i[located_by_grid_reference? check_your_answers_flow?]
 
+          # Site questions
           transitions from: :site_grid_reference_form,
-                      to: :site_postcode_form,
+                      to: :check_site_address_form,
                       if: :skip_to_manual_address?
 
           transitions from: :site_grid_reference_form,
+                      to: :check_your_answers_form
+
+          transitions from: :check_site_address_form,
+                      to: :site_postcode_form,
+                      unless: :reuse_address_for_site_location?
+
+          transitions from: :check_site_address_form,
                       to: :check_your_answers_form
 
           transitions from: :site_postcode_form,
@@ -269,6 +285,39 @@ module WasteExemptionsEngine
           # Renew without changes jumps to declaration form
           transitions from: :renew_without_changes_form,
                       to: :declaration_form
+
+          # Check Your Answers
+          transitions from: :exemptions_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_name_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_phone_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :applicant_email_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :contact_address_lookup_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :contact_address_manual_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :on_a_farm_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
+
+          transitions from: :is_a_farmer_form,
+                      to: :renewal_start_form,
+                      if: :check_your_answers_flow?
         end
 
         event :skip_to_manual_address do
@@ -283,6 +332,53 @@ module WasteExemptionsEngine
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_address_manual_form
+        end
+
+        event :skip_to_address do
+          transitions from: :site_grid_reference_form,
+                      to: :check_site_address_form
+        end
+
+        event :edit_exemptions do
+          transitions from: :renewal_start_form,
+                      to: :exemptions_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_name do
+          transitions from: :renewal_start_form,
+                      to: :applicant_name_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_phone do
+          transitions from: :renewal_start_form,
+                      to: :applicant_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_applicant_email do
+          transitions from: :renewal_start_form,
+                      to: :applicant_email_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_address do
+          transitions from: :renewal_start_form,
+                      to: :contact_address_lookup_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_on_a_farm do
+          transitions from: :renewal_start_form,
+                      to: :on_a_farm_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_is_a_farmer do
+          transitions from: :renewal_start_form,
+                      to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
         end
       end
     end
@@ -318,6 +414,12 @@ module WasteExemptionsEngine
       return false unless site_address
 
       site_address.lookup?
+    end
+
+    def reuse_address_for_site_location?
+      return true if %w[operator_address_option contact_address_option].include? temp_reuse_address_for_site_location
+
+      false
     end
 
     def should_renew_without_changes?
@@ -364,6 +466,10 @@ module WasteExemptionsEngine
 
     def no_exemptions_deregistered?
       excluded_exemptions.empty?
+    end
+
+    def check_your_answers_flow?
+      temp_check_your_answers_flow == true
     end
   end
 end

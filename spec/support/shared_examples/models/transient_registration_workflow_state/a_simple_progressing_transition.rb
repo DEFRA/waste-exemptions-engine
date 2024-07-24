@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "a simple bidirectional transition" do |current_state:, next_state:, factory:|
+RSpec.shared_examples "a simple progressing transition" do |current_state:, next_state:, factory:|
   context "when a subject's state is #{current_state}" do
     subject { create(factory, workflow_state: current_state) }
 

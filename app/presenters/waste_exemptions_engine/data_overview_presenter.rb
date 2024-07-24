@@ -2,6 +2,9 @@
 
 module WasteExemptionsEngine
   class DataOverviewPresenter < BasePresenter
+
+    include WasteExemptionsEngine::CanSortExemptionCodes
+
     def initialize(transient_registration)
       super(transient_registration, nil)
     end
@@ -87,7 +90,9 @@ module WasteExemptionsEngine
     def company_no_row
       {
         title: I18n.t("#{company_i18n_scope}.company_no.title"),
-        value: company_no
+        value: company_no,
+        change_url: "check-your-answers/registration-number",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.company_no.change_link_suffix")
       }
     end
 
@@ -98,7 +103,9 @@ module WasteExemptionsEngine
 
       {
         title: I18n.t("#{company_i18n_scope}.partners.title"),
-        value: partners_value
+        value: partners_value,
+        change_url: "check-your-answers/main-people",
+        change_link_suffix: I18n.t("#{company_i18n_scope}.partners.change_link_suffix")
       }
     end
 
@@ -146,6 +153,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{company_i18n_scope}.contact_address.title"),
         value: displayable_address(contact_address),
         change_url: "check-your-answers/contact-address",
+        renewal_change_url: "renewal-start/contact-address",
         change_link_suffix: I18n.t("#{company_i18n_scope}.contact_address.change_link_suffix")
       }
     end
@@ -169,12 +177,13 @@ module WasteExemptionsEngine
     end
 
     def exemptions_row
-      exemptions_value = exemptions.map(&:code).join(", ")
+      exemptions_value = sorted_exemption_codes.join(", ")
 
       {
         title: I18n.t("#{reg_i18n_scope}.exemptions.title"),
         value: exemptions_value,
         change_url: "check-your-answers/exemptions",
+        renewal_change_url: "renewal-start/exemptions",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.exemptions.change_link_suffix")
       }
     end
@@ -184,6 +193,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.on_a_farm.title"),
         value: I18n.t("#{reg_i18n_scope}.on_a_farm.value.#{on_a_farm}"),
         change_url: "check-your-answers/on-a-farm",
+        renewal_change_url: "renewal-start/on-a-farm",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.on_a_farm.change_link_suffix")
       }
     end
@@ -193,6 +203,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.is_a_farmer.title"),
         value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}"),
         change_url: "check-your-answers/is-a-farmer",
+        renewal_change_url: "renewal-start/is-a-farmer",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.is_a_farmer.change_link_suffix")
       }
     end
@@ -204,6 +215,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_name.title"),
         value: applicant_name,
         change_url: "check-your-answers/applicant-name",
+        renewal_change_url: "renewal-start/applicant-name",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_name.change_link_suffix")
       }
     end
@@ -213,6 +225,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_phone.title"),
         value: applicant_phone,
         change_url: "check-your-answers/applicant-phone",
+        renewal_change_url: "renewal-start/applicant-phone",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_phone.change_link_suffix")
       }
     end
@@ -222,6 +235,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{reg_i18n_scope}.applicant_email.title"),
         value: applicant_email,
         change_url: "check-your-answers/applicant-email",
+        renewal_change_url: "renewal-start/applicant-email",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.applicant_email.change_link_suffix")
       }
     end
@@ -229,7 +243,9 @@ module WasteExemptionsEngine
     def site_address_row
       {
         title: I18n.t("#{reg_i18n_scope}.site_address.title"),
-        value: displayable_address(site_address)
+        value: displayable_address(site_address),
+        change_url: "check-your-answers/check-site-address",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.site_address.change_link_suffix")
       }
     end
 
@@ -237,6 +253,8 @@ module WasteExemptionsEngine
       {
         title: I18n.t("#{reg_i18n_scope}.grid_reference.title"),
         value: site_address&.grid_reference,
+        change_url: "check-your-answers/site-grid-reference",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.grid_reference.change_link_suffix"),
         merged_with: :site_description
       }
     end
@@ -244,7 +262,9 @@ module WasteExemptionsEngine
     def site_description_row
       {
         title: I18n.t("#{reg_i18n_scope}.site_description.title"),
-        value: site_address&.description
+        value: site_address&.description,
+        change_url: "check-your-answers/site-grid-reference",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.site_description.change_link_suffix")
       }
     end
 

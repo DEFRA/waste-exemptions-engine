@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :charge, class: "WasteExemptionsEngine::Charge" do
-    name { "#{Faker::Lorem.unique.word} charge" }
+    sequence(:name) { |n| "#{Faker::Lorem.word}_#{n} charge" }
     charge_type { %w[registration_charge initial_compliance_charge additional_compliance_charge].sample }
     charge_amount { Faker::Number.between(from: 10_000, to: 99_900) }
 
