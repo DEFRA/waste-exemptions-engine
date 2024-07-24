@@ -1,11 +1,9 @@
 <h2 class="govuk-heading-m">
   <%= t(".subheading") %>
 </h2>
-
 <span class="govuk-visually-hidden">
   <%= t(".table_summary") %>
 </span>
-
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 <% form.company_rows.each do |row| %>
   <div class="govuk-summary-list__row">
@@ -17,7 +15,16 @@
     </dd>
     <dd class="govuk-summary-list__actions">
       <% if !form&.transient_registration&.renewal? && row[:change_url].present? %>
+        <!-- NEW REGISTRATIONS -->
         <%= link_to(row[:change_url]) do %>
+          <%= row[:value].present? ? t(".change_link") : t(".add_link")%>
+          <span class="govuk-visually-hidden">
+            <%= row[:change_link_suffix] %>
+          </span>
+        <% end %>
+      <% elsif form&.transient_registration&.renewal? && row[:renewal_change_url].present? %>
+        <!-- RENEWALS -->
+        <%= link_to(row[:renewal_change_url]) do %>
           <%= row[:value].present? ? t(".change_link") : t(".add_link")%>
           <span class="govuk-visually-hidden">
             <%= row[:change_link_suffix] %>

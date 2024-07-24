@@ -46,5 +46,20 @@ module WasteExemptionsEngine
         expect(response).to redirect_to(check_your_answers_forms_path(contact_address_manual_form.token))
       end
     end
+
+    context "when editing contact address on Renewal Start page - renew registrations" do
+      let(:renewal_start_contact_address_manual_form) { build(:renewal_start_contact_address_manual_form) }
+
+      it "pre-fills the form with the contact address" do
+        get "/waste_exemptions_engine/#{renewal_start_contact_address_manual_form.token}/contact-address-manual"
+        expect(response.body).to include(renewal_start_contact_address_manual_form.postcode)
+      end
+
+      it "redirects back to renewal start form when submitted" do
+        post "/waste_exemptions_engine/#{renewal_start_contact_address_manual_form.token}/contact-address-manual",
+             params: { contact_address_manual_form: form_data }
+        expect(response).to redirect_to(new_renewal_start_form_path(token: renewal_start_contact_address_manual_form.token))
+      end
+    end
   end
 end
