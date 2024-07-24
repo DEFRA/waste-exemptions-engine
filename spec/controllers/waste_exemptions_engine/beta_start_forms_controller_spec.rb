@@ -12,14 +12,33 @@ module WasteExemptionsEngine
     end
 
     describe "#new" do
-      it "renders the correct template" do
-        get request_path
 
-        aggregate_failures do
-          expect(response).to have_http_status(:ok)
-          expect(response).to render_template("waste_exemptions_engine/beta_start_forms/new")
+      context "when the feature toggle is not set or inactive" do
+        it "renders the correct template" do
+          get request_path
+
+          aggregate_failures do
+            expect(response).to have_http_status(:service_unavailable)
+            expect(response).to render_template("waste_exemptions_engine/beta_start_forms/unavailable")
+          end
         end
       end
+
+      context "when the feature toggle is active" do
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:private_beta).and_return(true)
+        end
+
+        it "renders the correct template" do
+          get request_path
+
+          aggregate_failures do
+            expect(response).to have_http_status(:ok)
+            expect(response).to render_template("waste_exemptions_engine/beta_start_forms/new")
+          end
+        end
+      end
+
     end
 
     describe "#create" do
