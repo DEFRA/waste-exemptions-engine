@@ -36,5 +36,16 @@ module WasteExemptionsEngine
         expect(response.code).to eq(status_code.to_s)
       end
     end
+
+    context "when on Exemptions Summary page during Check Your Answers flow - new registration" do
+      let(:exemptions_summary_form) { build(:check_your_answers_exemptions_summary_form) }
+
+      it "directs to check your answers when submitted" do
+        post "/waste_exemptions_engine/#{exemptions_summary_form.token}/exemptions-summary",
+             params: { exemptions_summary_form: { token: exemptions_summary_form.token } }
+
+        expect(response).to redirect_to(exemptions_summary_forms_path(exemptions_summary_form.token))
+      end
+    end
   end
 end

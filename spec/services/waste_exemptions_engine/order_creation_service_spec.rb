@@ -53,7 +53,7 @@ module WasteExemptionsEngine
     end
 
     describe "#assign_bucket" do
-      let(:farmer_bucket) { create(:bucket, name: "Farmer Bucket") }
+      let(:farmer_bucket) { create(:bucket) }
 
       before do
         service.instance_variable_set(:@transient_registration, transient_registration)
@@ -100,17 +100,16 @@ module WasteExemptionsEngine
     end
 
     describe "#farmer_bucket" do
-      let(:bucket_name) { "Farmer Bucket" }
+      let(:bucket_type) { "farmer" }
       let(:farmer_bucket) { build(:bucket) }
 
       before do
-        allow(I18n).to receive(:t).with("waste_exemptions_engine.farmer_bucket", locale: :en).and_return(bucket_name)
         allow(WasteExemptionsEngine::Bucket).to receive(:find_by).and_return(farmer_bucket)
       end
 
-      it "finds the farmer bucket by name" do
+      it "finds the farmer bucket by bucket_type" do
         service.farmer_bucket
-        expect(WasteExemptionsEngine::Bucket).to have_received(:find_by).with(name: bucket_name)
+        expect(WasteExemptionsEngine::Bucket).to have_received(:find_by).with(bucket_type: bucket_type)
       end
 
       it "memoizes the result" do

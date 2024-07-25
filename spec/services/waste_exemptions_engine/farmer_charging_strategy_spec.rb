@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     describe "#charge_details" do
       subject(:charge_details) { described_class.new(order).charge_detail }
 
-      let(:bucket) { create(:bucket, :farmer_exemptions) }
+      let(:bucket) { create(:bucket) }
       let(:bucket_charge_amount) { bucket.initial_compliance_charge.charge_amount }
 
       before do
