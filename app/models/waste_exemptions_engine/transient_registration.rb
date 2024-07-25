@@ -111,6 +111,10 @@ module WasteExemptionsEngine
       save!
     end
 
+    def charged?
+      false
+    end
+
     private
 
     def default_workflow_state

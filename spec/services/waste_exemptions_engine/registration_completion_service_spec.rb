@@ -239,6 +239,18 @@ module WasteExemptionsEngine
             end
           end
         end
+
+        context "when the transient_registration is charged" do
+          let(:new_charged_registration) { create(:new_charged_registration) }
+
+          it "copies over charging attributes" do
+            new_registration = described_class.run(transient_registration: new_charged_registration)
+
+            aggregate_failures do
+              expect(new_registration.charged).to be_truthy
+            end
+          end
+        end
       end
     end
   end

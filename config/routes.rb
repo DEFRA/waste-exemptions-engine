@@ -6,6 +6,12 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "start",
             path_names: { new: "" }
 
+  # Private Beta
+  resources :beta_start_forms,
+            only: %i[new create],
+            path: "beta-start",
+            path_names: { new: "" }
+
   scope "/:token" do
     resources :contact_agency_forms,
               only: %i[new create],
@@ -554,6 +560,12 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :renewal_complete_forms,
               only: %i[new create],
               path: "renewal-complete",
+              path_names: { new: "" }
+
+    # Charging
+    resources :payment_summary_forms,
+              only: %i[new create],
+              path: "payment-summary",
               path_names: { new: "" }
 
     get "/back", to: "forms#go_back", as: "go_back_forms"
