@@ -50,7 +50,7 @@ module WasteExemptionsEngine
     context "when editing contact phone on Renewals Start page - renew registration" do
       let(:contact_phone_form) { build(:renewal_start_edit_contact_phone_form) }
 
-      it "pre-fills contact position information" do
+      it "pre-fills contact phone information" do
         get "/waste_exemptions_engine/#{contact_phone_form.token}/contact-phone"
 
         expect(response.body).to have_html_escaped_string(contact_phone_form.contact_phone)
@@ -58,7 +58,7 @@ module WasteExemptionsEngine
 
       it "redirects back to check-your-answers when submitted" do
         post "/waste_exemptions_engine/#{contact_phone_form.token}/contact-phone",
-             params: { contact_phone: { contact_phone: "0123456789" } }
+             params: { contact_phone: { contact_phone: "01234567890" } }
 
         expect(response).to redirect_to(renewal_start_forms_path(contact_phone_form.token))
       end
