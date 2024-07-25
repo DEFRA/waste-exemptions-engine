@@ -41,29 +41,9 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [] }
     end
 
-    RSpec.shared_examples "a valid transition" do |request_path, redirects_to|
-      let(:form) { build(:renewal_start_form) }
-
-      it "redirects to valid form page" do
-        get send(request_path, token: form.token)
-
-        expect(response).to redirect_to send(redirects_to, token: form.token)
-      end
-
-      it "sets temp_check_your_answers_flow variable to true" do
-        get send(request_path, token: form.token)
-
-        expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
-      end
-
-      it "adds renewal_start_form into the workflow history" do
-        get send(request_path, token: form.token)
-
-        expect(form.transient_registration.reload.workflow_history.last).to eq("renewal_start_form")
-      end
-    end
-
     context "when editing data on Check Your Answers" do
+      let(:form_name) { "renewal_start_form" }
+
       describe "GET /renewal-start/exemptions" do
         it_behaves_like "a valid transition", :exemptions_renewal_start_forms_path, :new_exemptions_form_path
       end
@@ -89,7 +69,11 @@ module WasteExemptionsEngine
       end
 
       describe "GET /renewal-start/contact-address" do
-        it_behaves_like "a valid transition", :contact_address_renewal_start_forms_path, :new_contact_address_lookup_form_path
+        it_behaves_like "a valid transition", :contact_address_renewal_start_forms_path, :new_contact_postcode_form_path
+      end
+
+      describe "GET /renewal-start/contact-position" do
+        it_behaves_like "a valid transition", :contact_position_renewal_start_forms_path, :new_contact_position_form_path
       end
     end
   end
