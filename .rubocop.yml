@@ -16,6 +16,11 @@ AllCops:
     # Avoid pulling in gems for GitHub setup-ruby@v1 action:
     - vendor/bundle/**/*
 
+# Some methods need to be lengthy
+Metrics/MethodLength:
+  Exclude:
+    - app/models/concerns/waste_exemptions_engine/can_copy_data_from_registration.rb
+
 # Some files need long blocks for clarity
 Metrics/BlockLength:
   Exclude:
@@ -23,6 +28,7 @@ Metrics/BlockLength:
     - app/models/concerns/waste_exemptions_engine/can_use_front_office_edit_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_new_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_renewing_registration_workflow.rb
+    - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
     - config/routes.rb
 
 # Some methods need to be lengthy
@@ -30,6 +36,7 @@ Metrics/ClassLength:
   Exclude:
     - app/presenters/waste_exemptions_engine/data_overview_presenter.rb
     - app/presenters/waste_exemptions_engine/registration_details_presenter.rb
+    - app/models/waste_exemptions_engine/transient_registration.rb
 
 # Some modules need to be lengthy, especially specs
 Metrics/ModuleLength:
@@ -37,6 +44,7 @@ Metrics/ModuleLength:
     - app/models/concerns/waste_exemptions_engine/can_use_back_office_edit_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_new_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_renewing_registration_workflow.rb
+    - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
     - spec/**/*
 
 # Notify uses address_line_1 etc naming convention and we want to align with it
