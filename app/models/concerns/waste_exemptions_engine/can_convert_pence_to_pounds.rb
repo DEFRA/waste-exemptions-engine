@@ -14,6 +14,7 @@ module WasteExemptionsEngine
     extend ActiveSupport::Concern
     include WasteExemptionsEngine::CanConvertCurrency
 
+    # rubocop:disable Metrics/BlockLength: # Splitting this method up would force block limits to be exceeded
     class_methods do
       def pence_to_pounds_fields(opts = {})
         pence_to_pounds_fields = opts[:only]
@@ -45,11 +46,13 @@ module WasteExemptionsEngine
         define_method("validate_#{field}_in_pounds") do
           return if send("#{field}_temp").blank?
           return if send("#{field}_temp").match?(/^\d+(\.\d{0,2})?$/)
+
           errors.add("#{field}_in_pounds", "is not a valid price")
         end
 
         validate :"validate_#{field}_in_pounds"
       end
     end
+    # rubocop:enable Metrics/BlockLength
   end
 end

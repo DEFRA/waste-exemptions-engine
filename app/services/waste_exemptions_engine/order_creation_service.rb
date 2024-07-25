@@ -24,8 +24,7 @@ module WasteExemptionsEngine
     end
 
     def farmer_bucket
-      @farmer_bucket ||= WasteExemptionsEngine::Bucket.find_by(name: I18n.t("waste_exemptions_engine.farmer_bucket",
-                                                                            locale: :en))
+      @farmer_bucket ||= WasteExemptionsEngine::Bucket.farmer_bucket
     end
   end
 end

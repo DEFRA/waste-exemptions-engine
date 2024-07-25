@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/models/concerns/waste_exemptions_engine/can_convert_currency.rb
 
 module WasteExemptionsEngine

@@ -7,6 +7,7 @@ FactoryBot.define do
 
     trait :farmer_exemptions do
       name { "Farmer exemptions" }
+      bucket_type { "farmer" }
     end
   end
 end

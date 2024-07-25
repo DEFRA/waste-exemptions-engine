@@ -18,8 +18,7 @@ module WasteExemptionsEngine
     end
 
     def strategy_type
-      @strategy_type ||= if order.bucket? && order.bucket.name == I18n.t("waste_exemptions_engine.farmer_bucket",
-                                                                         locale: :en)
+      @strategy_type ||= if order.bucket? && order.bucket == Bucket.farmer_bucket
                            FarmerChargingStrategy
                          else
                            RegularChargingStrategy

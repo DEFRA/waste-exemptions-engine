@@ -13,6 +13,16 @@ module WasteExemptionsEngine
         end
       end
 
+      describe ".farm_bucket" do
+        before do
+          create(:bucket, :farmer_exemptions)
+        end
+
+        it "returns a bucket with the name 'Farmers'" do
+          expect(described_class.farmer_bucket.bucket_type).to eq("farmer")
+        end
+      end
+
       context "when initial_compliance_charge set" do
         let(:charge) { build(:charge, :initial_compliance_charge, charge_amount: 100) }
         let(:bucket) { build(:bucket, initial_compliance_charge: charge) }
