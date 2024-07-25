@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
       describe ".farm_bucket" do
         before do
-          create(:bucket, :farmer_exemptions)
+          create(:bucket)
         end
 
         it "returns a bucket with the name 'Farmers'" do

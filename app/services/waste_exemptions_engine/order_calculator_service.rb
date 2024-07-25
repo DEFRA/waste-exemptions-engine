@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class OrderCalculatorService
-
     attr_reader :order, :strategy, :calculator
 
     delegate :band_charge_details,
@@ -18,7 +17,7 @@ module WasteExemptionsEngine
     end
 
     def strategy_type
-      @strategy_type ||= if order.bucket? && order.bucket == Bucket.farmer_bucket
+      @strategy_type ||= if order.bucket&.farmer?
                            FarmerChargingStrategy
                          else
                            RegularChargingStrategy
