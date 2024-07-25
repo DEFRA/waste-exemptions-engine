@@ -30,6 +30,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_contact_address")
     end
 
+    def edit_contact_phone
+      transition_to_edit("edit_contact_phone")
+    end
+
     def edit_contact_position
       transition_to_edit("edit_contact_position")
     end
