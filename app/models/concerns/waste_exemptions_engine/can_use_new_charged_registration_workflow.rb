@@ -59,6 +59,7 @@ module WasteExemptionsEngine
         state :site_address_lookup_form
 
         state :exemptions_form
+        state :exemptions_summary_form
 
         # End pages
         state :check_your_answers_form
@@ -90,6 +91,9 @@ module WasteExemptionsEngine
 
           # Exemptions
           transitions from: :exemptions_form,
+                      to: :exemptions_summary_form
+
+          transitions from: :exemptions_summary_form,
                       to: :applicant_name_form,
                       unless: :check_your_answers_flow?
 

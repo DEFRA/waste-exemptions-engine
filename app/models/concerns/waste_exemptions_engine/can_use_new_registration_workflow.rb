@@ -71,7 +71,6 @@ module WasteExemptionsEngine
         # End pages
         state :check_your_answers_form
         state :declaration_form
-        state :exemptions_summary_form
         state :registration_complete_form
 
         # Transitions
@@ -117,9 +116,6 @@ module WasteExemptionsEngine
 
           # Exemptions
           transitions from: :exemptions_form,
-                      to: :exemptions_summary_form
-
-          transitions from: :exemptions_summary_form,
                       to: :applicant_name_form,
                       unless: :check_your_answers_flow?
 

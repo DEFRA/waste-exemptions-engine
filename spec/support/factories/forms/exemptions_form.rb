@@ -20,4 +20,10 @@ FactoryBot.define do
                                          temp_check_your_answers_flow: true))
     end
   end
+
+  factory :new_charged_registration_flow_exemptions_form, class: "WasteExemptionsEngine::ExemptionsForm" do
+    initialize_with do
+      new(create(:new_charged_registration, workflow_state: "exemptions_form"))
+    end
+  end
 end
