@@ -211,7 +211,8 @@ module WasteExemptionsEngine
 
           # Contact details
           transitions from: :contact_name_form,
-                      to: :contact_position_form
+                      to: :contact_position_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_position_form,
                       to: :contact_phone_form,
@@ -222,7 +223,8 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           transitions from: :contact_email_form,
-                      to: :contact_postcode_form
+                      to: :contact_postcode_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :contact_postcode_form,
                       to: :contact_address_manual_form,
@@ -296,7 +298,9 @@ module WasteExemptionsEngine
                         applicant_email_form
                         contact_address_lookup_form
                         contact_address_manual_form
+                        contact_name_form
                         contact_phone_form
+                        contact_email_form
                         contact_position_form
                         on_a_farm_form
                         is_a_farmer_form
@@ -354,9 +358,21 @@ module WasteExemptionsEngine
                       if: :check_your_answers_flow?
         end
 
+        event :edit_contact_name do
+          transitions from: :renewal_start_form,
+                      to: :contact_name_form,
+                      if: :check_your_answers_flow?
+        end
+
         event :edit_contact_phone do
           transitions from: :renewal_start_form,
                       to: :contact_phone_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_contact_email do
+          transitions from: :renewal_start_form,
+                      to: :contact_email_form,
                       if: :check_your_answers_flow?
         end
 
