@@ -381,6 +381,12 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form,
                       if: :check_your_answers_flow?
         end
+
+        event :edit_operator_address do
+          transitions from: :renewal_start_form,
+                      to: :operator_postcode_form,
+                      if: :check_your_answers_flow?
+        end
       end
     end
 
