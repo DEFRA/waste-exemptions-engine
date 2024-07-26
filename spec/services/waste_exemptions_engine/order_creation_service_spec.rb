@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe OrderCreationService do
     subject(:service) { described_class.new }
 
-    let(:transient_registration) { create(:new_registration) }
+    let(:transient_registration) { create(:new_charged_registration) }
     let(:order) { create(:order) }
     let(:exemption) { create(:exemption) }
     let(:transient_registration_exemption) { create(:transient_registration_exemption, exemption: exemption) }
