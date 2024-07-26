@@ -75,6 +75,10 @@ module WasteExemptionsEngine
       describe "GET /renewal-start/contact-position" do
         it_behaves_like "a valid transition", :contact_position_renewal_start_forms_path, :new_contact_position_form_path
       end
+
+      describe "GET /renewal-start/contact-phone" do
+        it_behaves_like "a valid transition", :contact_phone_renewal_start_forms_path, :new_contact_phone_form_path
+      end
     end
   end
 end

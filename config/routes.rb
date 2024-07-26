@@ -536,6 +536,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "contact-address",
                     on: :collection
 
+                get "contact-phone",
+                    to: "renewal_start_forms#edit_contact_phone",
+                    as: "contact-phone",
+                    on: :collection
+
                 get "contact-position",
                     to: "renewal_start_forms#edit_contact_position",
                     as: "contact-position",
