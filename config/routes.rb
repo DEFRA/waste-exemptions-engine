@@ -550,6 +550,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "renewal_start_forms#edit_is_a_farmer",
                     as: "is-a-farmer",
                     on: :collection
+
+                get "operator-address",
+                    to: "renewal_start_forms#edit_operator_address",
+                    as: "operator-address",
+                    on: :collection
               end
 
     resources :cannot_renew_type_change_forms,

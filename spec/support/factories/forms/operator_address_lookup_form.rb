@@ -21,4 +21,15 @@ FactoryBot.define do
       )
     end
   end
+
+  factory :renewal_start_operator_address_lookup_form, class: "WasteExemptionsEngine::OperatorAddressLookupForm" do
+    initialize_with do
+      new(
+        create(:renewing_registration,
+               workflow_state: "operator_address_lookup_form",
+               temp_check_your_answers_flow: true,
+               temp_operator_postcode: "BS1 5AH")
+      )
+    end
+  end
 end

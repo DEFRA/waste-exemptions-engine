@@ -48,7 +48,8 @@ module WasteExemptionsEngine
               new_registration.operator_address.postcode
             ].join("<br>").html_safe,
             change_url: "check-your-answers/operator-address",
-            change_link_suffix: expected_business_address_link_suffix
+            change_link_suffix: expected_business_address_link_suffix,
+            renewal_change_url: "renewal-start/operator-address"
           },
           {
             title: "Contact name",
