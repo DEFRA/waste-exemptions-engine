@@ -38,11 +38,11 @@
             </td>
             <td class="govuk-table__cell">
               <% if exemption == highest_band_exemption %>
-                Full
+                <%= t(".full") %>
               <% elsif exemption.band.additional_compliance_charge.charge_amount > 0 %>
-                Discounted
+                <%= t(".discounted") %>
               <% else %>
-                NA
+                <%= t(".n_a") %>
               <% end %>
             </td>
           </tr>
