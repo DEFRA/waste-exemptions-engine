@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_11_144820) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_24_150832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -92,6 +92,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_144820) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bucket_type"
+    t.index ["bucket_type"], name: "index_buckets_on_bucket_type", unique: true
+    t.index ["name"], name: "index_buckets_on_name", unique: true
   end
 
   create_table "charge_details", force: :cascade do |t|
@@ -162,6 +165,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_144820) do
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order_owner_type"
+    t.bigint "order_owner_id"
+    t.index ["order_owner_type", "order_owner_id"], name: "index_orders_on_order_owner"
   end
 
   create_table "people", id: :serial, force: :cascade do |t|
