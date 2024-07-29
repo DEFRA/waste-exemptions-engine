@@ -28,16 +28,16 @@ module WasteExemptionsEngine
 
         before do
           allow(form.transient_registration).to receive(:order).and_return(nil)
-          allow(WasteExemptionsEngine::OrderCreationService).to receive(:run).and_return(new_order)
+          allow(WasteExemptionsEngine::CreateOrUpdateOrderService).to receive(:run).and_return(new_order)
         end
 
         it "creates a new order" do
           expect(form.order).to eq(new_order)
         end
 
-        it "calls OrderCreationService with the correct parameters" do
+        it "calls CreateOrUpdateOrderService with the correct parameters" do
           form.order
-          expect(WasteExemptionsEngine::OrderCreationService).to have_received(:run).with(transient_registration: form.transient_registration)
+          expect(WasteExemptionsEngine::CreateOrUpdateOrderService).to have_received(:run).with(transient_registration: form.transient_registration)
         end
       end
     end
