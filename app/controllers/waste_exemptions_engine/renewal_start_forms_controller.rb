@@ -54,6 +54,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_is_a_farmer")
     end
 
+    def edit_operator_address
+      transition_to_edit("edit_operator_address")
+    end
+
     private
 
     def transient_registration_attributes
