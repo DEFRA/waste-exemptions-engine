@@ -4,6 +4,8 @@ module WasteExemptionsEngine
   class NewChargedRegistration < TransientRegistration
     include CanUseNewChargedRegistrationWorkflow
 
+    has_one :order, as: :order_owner
+
     # temp attribute to temporarily keep selected payment type.
     # It needs to be removed once the payment type is stored
     attr_accessor :payment_type

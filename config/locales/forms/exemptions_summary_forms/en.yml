@@ -1,0 +1,21 @@
+en:
+  waste_exemptions_engine:
+    exemptions_summary_forms:
+      new:
+        title: "You have selected the following exemptions"
+        heading: "You have selected the following exemptions"
+        how_charges_calculated: "How are exemption charges calculated"
+        charge_explanation: "You'll pay a:"
+        full_compliance_charge: "full compliance charge for one exemption from the highest exemption band you select"
+        discounted_charge: "discounted charge for all other exemptions"
+        registration_fee: "a single registration fee of £41"
+        exemption: "Exemption"
+        band: "Band"
+        compliance_charge: "Compliance charge"
+        full: "Full"
+        discounted: "Discounted"
+        n_a: "N/A"
+        full_or_discounted: "Full or discounted charge"
+        registration_charge: "Registration charge"
+        total_charge: "Total charge"
+        continue: "Continue"

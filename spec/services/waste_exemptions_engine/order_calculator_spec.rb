@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     include_context "with bands and charges"
     include_context "with an order with exemptions"
 
-    subject(:calculator) { described_class.new(strategy: RegularChargingStrategy, order:) }
+    subject(:calculator) { described_class.new(strategy_type: RegularChargingStrategy, order:) }
     let(:order) { build(:order, exemptions:) }
 
     let(:exemptions) { multiple_bands_multiple_exemptions }

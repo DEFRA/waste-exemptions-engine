@@ -22,5 +22,9 @@ module WasteExemptionsEngine
     def partnership?
       BUSINESS_TYPES[:partnership] == business_type
     end
+
+    def farm_affiliated?
+      is_a_farmer? || on_a_farm?
+    end
   end
 end
