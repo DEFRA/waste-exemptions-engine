@@ -55,7 +55,8 @@ module WasteExemptionsEngine
             title: "Contact name",
             value: "#{new_registration.contact_first_name} #{new_registration.contact_last_name}",
             change_link_suffix: "contact name",
-            change_url: "check-your-answers/contact-name"
+            change_url: "check-your-answers/contact-name",
+            renewal_change_url: "renewal-start/contact-name"
           },
           {
             title: "Contact position",
@@ -89,7 +90,8 @@ module WasteExemptionsEngine
             title: "Contact email address",
             value: new_registration.contact_email,
             change_link_suffix: "contact email address",
-            change_url: "check-your-answers/contact-email"
+            change_url: "check-your-answers/contact-email",
+            renewal_change_url: "renewal-start/contact-email"
           }
         ]
       end

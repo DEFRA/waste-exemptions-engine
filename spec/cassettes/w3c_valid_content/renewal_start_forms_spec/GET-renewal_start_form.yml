@@ -10,7 +10,7 @@ http_interactions:
         media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-e7473747669b589218de86035464048c90a00729227c3a03fb2b03b020fd274f.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n<div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    <form class=\"new_renewal_start_form\"
-        id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/icCLqtMQvJF9BY3kHRmuuPHn/renewal-start\"
+        id=\"new_renewal_start_form\" action=\"/waste_exemptions_engine/GVcQvYL5ouCK3DbqHpxgNEyS/renewal-start\"
         accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
         \     <h1 class=\"govuk-heading-l\">Do you want to renew with these details?</h1>\n\n
@@ -27,7 +27,7 @@ http_interactions:
         company\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n    </dd>\n
         \ </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
         \     Registered name\n    </dt>\n    <dd id=\"company_registered_name\" class=\"govuk-summary-list__value\">\n
-        \     Konopelski Inc\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \     Stroman LLC\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
         \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
         \     Companies House number\n    </dt>\n    <dd id=\"company_companies_house_number\"
         class=\"govuk-summary-list__value\">\n      09360070\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
@@ -36,20 +36,23 @@ http_interactions:
         class=\"govuk-summary-list__value\">\n      England\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
         \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
         \     Address\n    </dt>\n    <dd id=\"company_address\" class=\"govuk-summary-list__value\">\n
-        \     Royal Gardens<br>80753 Le Mount<br>Anguilla<br>Charleenview<br>BS1234AA\n
+        \     Park Oaks<br>38466 Lynch Ramp<br>Venezuela<br>Bednarmouth<br>BS17AA\n
         \   </dd>\n    <dd class=\"govuk-summary-list__actions\">\n    </dd>\n  </div>\n
         \ <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
         \     Contact name\n    </dt>\n    <dd id=\"company_contact_name\" class=\"govuk-summary-list__value\">\n
-        \     Ronny O&#39;Connell\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
-        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
-        \     Contact position\n    </dt>\n    <dd id=\"company_contact_position\"
-        class=\"govuk-summary-list__value\">\n      newsreader\n    </dd>\n    <dd
-        class=\"govuk-summary-list__actions\">\n        <!-- RENEWALS -->\n        <a
-        href=\"renewal-start/contact-position\">\n          Change\n          <span
-        class=\"govuk-visually-hidden\">\n            contact position\n          </span>\n</a>
-        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n    <dt class=\"govuk-summary-list__key\">\n
-        \     Contact address\n    </dt>\n    <dd id=\"company_contact_address\" class=\"govuk-summary-list__value\">\n
-        \     Eagle Pointe<br>589 Clifton Islands<br>North Macedonia<br>Port Mirnaland<br>BS1235AA\n
+        \     Shellie Miller\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \       <!-- RENEWALS -->\n        <a href=\"renewal-start/contact-name\">\n
+        \         Change\n          <span class=\"govuk-visually-hidden\">\n            contact
+        name\n          </span>\n</a>    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Contact position\n    </dt>\n
+        \   <dd id=\"company_contact_position\" class=\"govuk-summary-list__value\">\n
+        \     advocate\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \       <!-- RENEWALS -->\n        <a href=\"renewal-start/contact-position\">\n
+        \         Change\n          <span class=\"govuk-visually-hidden\">\n            contact
+        position\n          </span>\n</a>    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
+        \   <dt class=\"govuk-summary-list__key\">\n      Contact address\n    </dt>\n
+        \   <dd id=\"company_contact_address\" class=\"govuk-summary-list__value\">\n
+        \     Autumn Place<br>640 Benjamin Junctions<br>Senegal<br>Lake Dorotheafurt<br>BS18AA\n
         \   </dd>\n    <dd class=\"govuk-summary-list__actions\">\n        <!-- RENEWALS
         -->\n        <a href=\"renewal-start/contact-address\">\n          Change\n
         \         <span class=\"govuk-visually-hidden\">\n            contact address\n
@@ -62,16 +65,18 @@ http_interactions:
         telephone number\n          </span>\n</a>    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row\">\n
         \   <dt class=\"govuk-summary-list__key\">\n      Contact email address\n
         \   </dt>\n    <dd id=\"company_contact_email_address\" class=\"govuk-summary-list__value\">\n
-        \     gilbert@blanda.example\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
-        \   </dd>\n  </div>\n</dl>\n\n      <h2 class=\"govuk-heading-m\">\n  Registration
-        details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n  The information
-        you&#39;ve given us about the registration\n</span>\n\n<dl class=\"govuk-summary-list
-        govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row \">\n    <dt
-        class=\"govuk-summary-list__key \">\n      Exemptions\n    </dt>\n    <dd
-        id=\"registration_exemptions\" class=\"govuk-summary-list__value \">\n      U6436,
-        U6437, U6438, U6439, U6440, U6441, U6442, U6443, U6444, U6445\n    </dd>\n
-        \   <dd class=\"govuk-summary-list__actions \">\n        <!-- RENEWALS -->\n
-        \       <a href=\"renewal-start/exemptions\">\n  Change\n  <span class=\"govuk-visually-hidden\">\n
+        \     edmond.feest@miller.test\n    </dd>\n    <dd class=\"govuk-summary-list__actions\">\n
+        \       <!-- RENEWALS -->\n        <a href=\"renewal-start/contact-email\">\n
+        \         Change\n          <span class=\"govuk-visually-hidden\">\n            contact
+        email address\n          </span>\n</a>    </dd>\n  </div>\n</dl>\n\n      <h2
+        class=\"govuk-heading-m\">\n  Registration details\n</h2>\n\n<span class=\"govuk-visually-hidden\">\n
+        \ The information you&#39;ve given us about the registration\n</span>\n\n<dl
+        class=\"govuk-summary-list govuk-!-margin-bottom-9\">\n  <div class=\"govuk-summary-list__row
+        \">\n    <dt class=\"govuk-summary-list__key \">\n      Exemptions\n    </dt>\n
+        \   <dd id=\"registration_exemptions\" class=\"govuk-summary-list__value \">\n
+        \     U81, U82, U83, U84, U85, U86, U87, U88, U89, U90\n    </dd>\n    <dd
+        class=\"govuk-summary-list__actions \">\n        <!-- RENEWALS -->\n        <a
+        href=\"renewal-start/exemptions\">\n  Change\n  <span class=\"govuk-visually-hidden\">\n
         \   Exemptions selected\n  </span>\n</a>\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row
         \">\n    <dt class=\"govuk-summary-list__key \">\n      Will this waste operation
         take place on a farm?\n    </dt>\n    <dd id=\"registration_will_this_waste_operation_take_place_on_a_farm\"
@@ -87,7 +92,7 @@ http_interactions:
         used by a farmer or farming business?\n  </span>\n</a>\n    </dd>\n  </div>\n
         \ <div class=\"govuk-summary-list__row \">\n    <dt class=\"govuk-summary-list__key
         \">\n      Form completed by\n    </dt>\n    <dd id=\"registration_form_completed_by\"
-        class=\"govuk-summary-list__value \">\n      Gerard Kiehn\n    </dd>\n    <dd
+        class=\"govuk-summary-list__value \">\n      Hai Kovacek\n    </dd>\n    <dd
         class=\"govuk-summary-list__actions \">\n        <!-- RENEWALS -->\n        <a
         href=\"renewal-start/applicant-name\">\n  Change\n  <span class=\"govuk-visually-hidden\">\n
         \   Form completed by\n  </span>\n</a>\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row
@@ -99,26 +104,26 @@ http_interactions:
         the person filling in this form\n  </span>\n</a>\n    </dd>\n  </div>\n  <div
         class=\"govuk-summary-list__row \">\n    <dt class=\"govuk-summary-list__key
         \">\n      Email address\n    </dt>\n    <dd id=\"registration_email_address\"
-        class=\"govuk-summary-list__value \">\n      hien@koepp-gleason.test\n    </dd>\n
-        \   <dd class=\"govuk-summary-list__actions \">\n        <!-- RENEWALS -->\n
-        \       <a href=\"renewal-start/applicant-email\">\n  Change\n  <span class=\"govuk-visually-hidden\">\n
-        \   Email address of the person filling in this form\n  </span>\n</a>\n    </dd>\n
-        \ </div>\n  <div class=\"govuk-summary-list__row govuk-summary-list__row--no-border\">\n
-        \   <dt class=\"govuk-summary-list__key govuk-!-padding-bottom-0\">\n      Grid
-        reference\n    </dt>\n    <dd id=\"registration_grid_reference\" class=\"govuk-summary-list__value
-        govuk-!-padding-bottom-0\">\n      ST 58337 72855\n    </dd>\n    <dd class=\"govuk-summary-list__actions
-        govuk-!-padding-bottom-0\">\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row
-        \">\n    <dt class=\"govuk-summary-list__key \">\n      Site description\n
-        \   </dt>\n    <dd id=\"registration_site_description\" class=\"govuk-summary-list__value
-        \">\n      Libero itaque explicabo ea.\n    </dd>\n    <dd class=\"govuk-summary-list__actions
-        \">\n    </dd>\n  </div>\n</dl>\n\n\n      <div class=\"govuk-form-group\"><fieldset
-        class=\"govuk-fieldset\"><legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m
-        govuk-visually-hidden\">Do you want to renew with these details?</legend><input
-        value=\"\" autocomplete=\"off\" type=\"hidden\" name=\"renewal_start_form[temp_renew_without_changes]\"
-        id=\"renewal_start_form_temp_renew_without_changes\" /><div class=\"govuk-radios
-        govuk-radios--small\" data-module=\"govuk-radios\"><div class=\"govuk-radios__item\"><input
-        id=\"renewal-start-form-temp-renew-without-changes-true-field\" class=\"govuk-radios__input\"
-        type=\"radio\" value=\"true\" name=\"renewal_start_form[temp_renew_without_changes]\"
+        class=\"govuk-summary-list__value \">\n      annalee@jacobi-bradtke.example\n
+        \   </dd>\n    <dd class=\"govuk-summary-list__actions \">\n        <!-- RENEWALS
+        -->\n        <a href=\"renewal-start/applicant-email\">\n  Change\n  <span
+        class=\"govuk-visually-hidden\">\n    Email address of the person filling
+        in this form\n  </span>\n</a>\n    </dd>\n  </div>\n  <div class=\"govuk-summary-list__row
+        govuk-summary-list__row--no-border\">\n    <dt class=\"govuk-summary-list__key
+        govuk-!-padding-bottom-0\">\n      Grid reference\n    </dt>\n    <dd id=\"registration_grid_reference\"
+        class=\"govuk-summary-list__value govuk-!-padding-bottom-0\">\n      ST 58337
+        72855\n    </dd>\n    <dd class=\"govuk-summary-list__actions govuk-!-padding-bottom-0\">\n
+        \   </dd>\n  </div>\n  <div class=\"govuk-summary-list__row \">\n    <dt class=\"govuk-summary-list__key
+        \">\n      Site description\n    </dt>\n    <dd id=\"registration_site_description\"
+        class=\"govuk-summary-list__value \">\n      Quo illum accusantium sed.\n
+        \   </dd>\n    <dd class=\"govuk-summary-list__actions \">\n    </dd>\n  </div>\n</dl>\n\n\n
+        \     <div class=\"govuk-form-group\"><fieldset class=\"govuk-fieldset\"><legend
+        class=\"govuk-fieldset__legend govuk-fieldset__legend--m govuk-visually-hidden\">Do
+        you want to renew with these details?</legend><input value=\"\" autocomplete=\"off\"
+        type=\"hidden\" name=\"renewal_start_form[temp_renew_without_changes]\" id=\"renewal_start_form_temp_renew_without_changes\"
+        /><div class=\"govuk-radios govuk-radios--small\" data-module=\"govuk-radios\"><div
+        class=\"govuk-radios__item\"><input id=\"renewal-start-form-temp-renew-without-changes-true-field\"
+        class=\"govuk-radios__input\" type=\"radio\" value=\"true\" name=\"renewal_start_form[temp_renew_without_changes]\"
         /><label for=\"renewal-start-form-temp-renew-without-changes-true-field\"
         class=\"govuk-label govuk-radios__label\">Renew with these details</label></div><div
         class=\"govuk-radios__item\"><input id=\"renewal-start-form-temp-renew-without-changes-field\"
@@ -143,7 +148,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 25 Jul 2024 13:14:03 GMT
+      - Fri, 26 Jul 2024 11:20:07 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -174,17 +179,17 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 8a8c6927bbe59463
+      - 8a93ffa33e6c527a
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=hu.yfUrxPYdq0WtDkLN7MAEwpE1o.p0IhMDgHTWjgP8-1721913243-1.0.1.1-BWKIc4wiI0F2ViRcHf1r3BWEIio5oWK5dV3gO_YW8tli.xUjyOtWKg6zNsbkVmxtTkxx2adM8mCTV4q0oCvXrg;
-        path=/; expires=Thu, 25-Jul-24 13:44:03 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=L6vpw6PT2arwsnUgnja.APeIbUuWi8oGgA_mYvEK4rg-1721992807-1.0.1.1-uIegdc_6cpDLrxx..R1OT6dSPgaU5n6qQm8oKx6hnGEaKgLnuk4g4NXhFfVSQ02Esb.7WCr1Izx3r3ZO.cDL4w;
+        path=/; expires=Fri, 26-Jul-24 11:50:07 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 8a8c6927bbe59463-LHR
+      - 8a93ffa33e6c527a-LHR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:

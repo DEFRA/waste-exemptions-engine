@@ -136,6 +136,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{company_i18n_scope}.contact_name.title"),
         value: contact_name,
         change_url: "check-your-answers/contact-name",
+        renewal_change_url: "renewal-start/contact-name",
         change_link_suffix: I18n.t("#{company_i18n_scope}.contact_name.change_link_suffix")
       }
     end
@@ -175,6 +176,7 @@ module WasteExemptionsEngine
         title: I18n.t("#{company_i18n_scope}.contact_email.title"),
         value: contact_email,
         change_url: "check-your-answers/contact-email",
+        renewal_change_url: "renewal-start/contact-email",
         change_link_suffix: I18n.t("#{company_i18n_scope}.contact_email.change_link_suffix")
       }
     end
