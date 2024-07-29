@@ -47,7 +47,7 @@ module WasteExemptionsEngine
       end
 
       context "with an order with a non-farmer bucket" do
-        let(:bucket) { build(:bucket, name: "foo") }
+        let(:bucket) { build(:bucket, name: "foo", bucket_type: "charity") }
 
         it "returns the regular charging strategy type" do
           expect(service.strategy_type).to eq(RegularChargingStrategy)

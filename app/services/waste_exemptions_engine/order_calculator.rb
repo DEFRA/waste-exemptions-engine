@@ -12,9 +12,9 @@ module WasteExemptionsEngine
              :total_compliance_charge_amount,
              to: :strategy
 
-    def initialize(order:, strategy:)
+    def initialize(order:, strategy_type:)
       @order = order
-      @strategy = strategy.new(order)
+      @strategy = strategy_type.new(order)
     end
   end
 end

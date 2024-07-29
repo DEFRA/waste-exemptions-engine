@@ -5,6 +5,7 @@ module WasteExemptionsEngine
 
     self.table_name = "orders"
 
+    belongs_to :order_owner, polymorphic: true
     has_many :order_exemptions, dependent: :destroy
     has_many :exemptions, through: :order_exemptions
 

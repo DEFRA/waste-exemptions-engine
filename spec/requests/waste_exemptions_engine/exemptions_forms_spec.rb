@@ -15,6 +15,17 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ exemption_ids: [] }] }
     end
 
+    context "when adding exemptions in the new charged registration flow" do
+      let(:exemptions_form) { build(:new_charged_registration_flow_exemptions_form) }
+
+      it "directs to exemptions summary form when submitted" do
+        post "/waste_exemptions_engine/#{exemptions_form.token}/exemptions",
+             params: { exemptions_form: { exemption_ids: WasteExemptionsEngine::Exemption.limit(5).pluck(:id) } }
+
+        expect(response).to redirect_to(exemptions_summary_forms_path(exemptions_form.token))
+      end
+    end
+
     context "when editing Exemptions on Check Your Answers page - new registration" do
       let(:exemptions_form) { build(:check_your_answers_edit_exemptions_form) }
 
