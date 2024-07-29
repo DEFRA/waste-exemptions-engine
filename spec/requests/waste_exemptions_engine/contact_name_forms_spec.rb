@@ -55,5 +55,25 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    context "when editing contact name on Renewals Start page - renew registration" do
+      let(:contact_name_form) { build(:renewal_start_edit_contact_name_form) }
+
+      it "pre-fills contact name information" do
+        get "/waste_exemptions_engine/#{contact_name_form.token}/contact-name"
+
+        aggregate_failures do
+          expect(response.body).to have_html_escaped_string(contact_name_form.contact_first_name)
+          expect(response.body).to have_html_escaped_string(contact_name_form.contact_last_name)
+        end
+      end
+
+      it "redirects back to renewals-start when submitted" do
+        post "/waste_exemptions_engine/#{contact_name_form.token}/contact-name",
+             params: { contact_name_form: { contact_first_name: "Joe", contact_last_name: "Bloggs" } }
+
+        expect(response).to redirect_to(renewal_start_forms_path(contact_name_form.token))
+      end
+    end
   end
 end
