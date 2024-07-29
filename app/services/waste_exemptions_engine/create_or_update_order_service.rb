@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class OrderCreationService < BaseService
+  class CreateOrUpdateOrderService < BaseService
     def run(transient_registration:)
       @transient_registration = transient_registration
-      @order = transient_registration.create_order
+      @order = transient_registration.order || transient_registration.create_order
       assign_exemptions
       assign_bucket
-
       @order
     end
 
+    private
+
     def assign_exemptions
-      @transient_registration.transient_registration_exemptions.each do |transient_registration_exemption|
-        @order.order_exemptions.create!(exemption_id: transient_registration_exemption.exemption_id)
+      @order.order_exemptions.destroy_all
+      @transient_registration.exemptions.each do |exemption|
+        @order.order_exemptions.create!(exemption: exemption)
       end
     end
 

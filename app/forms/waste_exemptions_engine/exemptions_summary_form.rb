@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     delegate :exemptions, to: :transient_registration
 
     def order
-      @order ||= transient_registration.order || create_order
+      @order ||= create_or_update_order
     end
 
     def order_calculator
@@ -14,8 +14,8 @@ module WasteExemptionsEngine
 
     private
 
-    def create_order
-      WasteExemptionsEngine::OrderCreationService.run(transient_registration: @transient_registration)
+    def create_or_update_order
+      WasteExemptionsEngine::CreateOrUpdateOrderService.run(transient_registration: @transient_registration)
     end
   end
 end
