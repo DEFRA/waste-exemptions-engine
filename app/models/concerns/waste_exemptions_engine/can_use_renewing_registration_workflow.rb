@@ -204,10 +204,12 @@ module WasteExemptionsEngine
                       if: :skip_to_manual_address?
 
           transitions from: :operator_address_lookup_form,
-                      to: :contact_name_form
+                      to: :contact_name_form,
+                      unless: :check_your_answers_flow?
 
           transitions from: :operator_address_manual_form,
-                      to: :contact_name_form
+                      to: :contact_name_form,
+                      unless: :check_your_answers_flow?
 
           # Contact details
           transitions from: :contact_name_form,
@@ -304,6 +306,8 @@ module WasteExemptionsEngine
                         contact_position_form
                         on_a_farm_form
                         is_a_farmer_form
+                        operator_address_lookup_form
+                        operator_address_manual_form
                       ],
                       to: :renewal_start_form,
                       if: :check_your_answers_flow?
@@ -391,6 +395,12 @@ module WasteExemptionsEngine
         event :edit_is_a_farmer do
           transitions from: :renewal_start_form,
                       to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_operator_address do
+          transitions from: :renewal_start_form,
+                      to: :operator_postcode_form,
                       if: :check_your_answers_flow?
         end
       end

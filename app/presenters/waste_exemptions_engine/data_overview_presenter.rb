@@ -124,7 +124,8 @@ module WasteExemptionsEngine
         value: displayable_address(operator_address),
         change_url: "check-your-answers/operator-address",
         change_link_suffix:
-          I18n.t("#{company_i18n_scope}.operator_address.change_link_suffix.#{formatted_business_type}")
+          I18n.t("#{company_i18n_scope}.operator_address.change_link_suffix.#{formatted_business_type}"),
+        renewal_change_url: "renewal-start/operator-address"
       }
     end
 
