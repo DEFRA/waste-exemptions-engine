@@ -23,7 +23,6 @@ module WasteExemptionsEngine
 
         state :check_registered_name_and_address_form
         state :incorrect_company_form
-        state :renew_with_changes_form
         state :renew_without_changes_form
 
         # Exemptions
@@ -66,23 +65,9 @@ module WasteExemptionsEngine
         state :on_a_farm_form
         state :is_a_farmer_form
 
-        # Site questions
-        state :site_grid_reference_form
-        state :check_site_address_form
-        state :site_postcode_form
-        state :site_address_lookup_form
-
-        # deregistration
-        state :edit_exemptions_declaration_form
-        state :confirm_no_exemption_changes_form
-
         # End pages
-        state :check_your_answers_form
         state :declaration_form
         state :renewal_complete_form
-        state :deregistration_complete_full_form
-        state :deregistration_complete_partial_form
-        state :deregistration_complete_no_change_form
 
         # Transitions
         event :next do
@@ -94,140 +79,16 @@ module WasteExemptionsEngine
                       to: :incorrect_company_form
 
           transitions from: :renewal_start_form,
-                      to: :renew_with_changes_form,
-                      unless: :should_renew_without_changes?
+                      to: :renew_without_changes_form
 
-          transitions from: :renewal_start_form,
-                      to: :renew_without_changes_form,
-                      if: :should_renew_without_changes?
+          # Renew without changes jumps to declaration form
+          transitions from: :renew_without_changes_form,
+                      to: :declaration_form
 
-          transitions from: :renew_with_changes_form,
-                      to: :location_form
+          transitions from: :declaration_form,
+                      to: :renewal_complete_form
 
-          # Location
-          transitions from: :location_form,
-                      to: :register_in_northern_ireland_form,
-                      if: :should_register_in_northern_ireland?
-
-          transitions from: :location_form,
-                      to: :register_in_scotland_form,
-                      if: :should_register_in_scotland?
-
-          transitions from: :location_form,
-                      to: :register_in_wales_form,
-                      if: :should_register_in_wales?
-
-          transitions from: :location_form,
-                      to: :renew_exemptions_form
-
-          # Exemptions
-          transitions from: :renew_exemptions_form,
-                      to: :applicant_name_form,
-                      if: :any_exemptions_selected?
-
-          transitions from: :renew_exemptions_form,
-                      to: :renew_no_exemptions_form,
-                      unless: :any_exemptions_selected?
-
-          transitions from: :edit_exemptions_form,
-                      to: :confirm_no_exemption_changes_form,
-                      if: :no_exemptions_deregistered?
-
-          transitions from: :edit_exemptions_form,
-                      to: :confirm_edit_exemptions_form
-
-          transitions from: :confirm_edit_exemptions_form,
-                      to: :edit_exemptions_declaration_form,
-                      if: :exemption_edits_confirmed?
-
-          transitions from: :confirm_edit_exemptions_form,
-                      to: :edit_exemptions_form
-
-          transitions from: :edit_exemptions_declaration_form,
-                      to: :deregistration_complete_no_change_form,
-                      if: :no_exemptions_deregistered?
-
-          transitions from: :confirm_no_exemption_changes_form,
-                      to: :edit_exemptions_form
-
-          transitions from: :edit_exemptions_declaration_form,
-                      to: :deregistration_complete_full_form,
-                      if: :all_exemptions_deregistered?
-
-          transitions from: :edit_exemptions_declaration_form,
-                      to: :deregistration_complete_partial_form
-
-          # Applicant details
-          transitions from: :applicant_name_form,
-                      to: :applicant_phone_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :applicant_phone_form,
-                      to: :applicant_email_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :applicant_email_form,
-                      to: :business_type_form,
-                      unless: :check_your_answers_flow?
-
-          # Operator details
-          transitions from: :business_type_form,
-                      to: :cannot_renew_type_change_form,
-                      if: :changing_business_type?
-
-          transitions from: :business_type_form,
-                      to: :main_people_form,
-                      if: :partnership?
-
-          transitions from: :business_type_form,
-                      to: :operator_name_form,
-                      if: :skip_registration_number?
-
-          transitions from: :business_type_form,
-                      to: :operator_postcode_form
-
-          transitions from: :main_people_form,
-                      to: :operator_name_form
-
-          transitions from: :operator_name_form,
-                      to: :operator_postcode_form
-
-          transitions from: :operator_postcode_form,
-                      to: :operator_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :operator_postcode_form,
-                      to: :operator_address_lookup_form
-
-          transitions from: :operator_address_lookup_form,
-                      to: :operator_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :operator_address_lookup_form,
-                      to: :contact_name_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :operator_address_manual_form,
-                      to: :contact_name_form,
-                      unless: :check_your_answers_flow?
-
-          # Contact details
-          transitions from: :contact_name_form,
-                      to: :contact_position_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_position_form,
-                      to: :contact_phone_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_phone_form,
-                      to: :contact_email_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_email_form,
-                      to: :contact_postcode_form,
-                      unless: :check_your_answers_flow?
-
+          # Contact address
           transitions from: :contact_postcode_form,
                       to: :contact_address_manual_form,
                       if: :skip_to_manual_address?
@@ -239,58 +100,17 @@ module WasteExemptionsEngine
                       to: :contact_address_manual_form,
                       if: :skip_to_manual_address?
 
-          transitions from: :contact_address_lookup_form,
-                      to: :on_a_farm_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_address_manual_form,
-                      to: :on_a_farm_form,
-                      unless: :check_your_answers_flow?
-
-          # Farm questions
-          transitions from: :on_a_farm_form,
-                      to: :is_a_farmer_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :is_a_farmer_form,
-                      to: :site_grid_reference_form,
-                      if: :located_by_grid_reference?,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :is_a_farmer_form,
-                      to: :site_postcode_form,
-                      unless: %i[located_by_grid_reference? check_your_answers_flow?]
-
-          # Site questions
-          transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form,
+          # Operator address
+          transitions from: :operator_postcode_form,
+                      to: :operator_address_manual_form,
                       if: :skip_to_manual_address?
 
-          transitions from: :site_grid_reference_form,
-                      to: :check_your_answers_form
+          transitions from: :operator_postcode_form,
+                      to: :operator_address_lookup_form
 
-          transitions from: :check_site_address_form,
-                      to: :site_postcode_form,
-                      unless: :reuse_address_for_site_location?
-
-          transitions from: :check_site_address_form,
-                      to: :check_your_answers_form
-
-          transitions from: :site_postcode_form,
-                      to: :site_address_lookup_form
-
-          transitions from: :site_address_lookup_form,
-                      to: :check_your_answers_form
-
-          transitions from: :check_your_answers_form,
-                      to: :declaration_form
-
-          transitions from: :declaration_form,
-                      to: :renewal_complete_form
-
-          # Renew without changes jumps to declaration form
-          transitions from: :renew_without_changes_form,
-                      to: :declaration_form
+          transitions from: :operator_address_lookup_form,
+                      to: :operator_address_manual_form,
+                      if: :skip_to_manual_address?
 
           # Check Your Answers
           transitions from: %i[
@@ -325,11 +145,6 @@ module WasteExemptionsEngine
 
           transitions from: :contact_address_lookup_form,
                       to: :contact_address_manual_form
-        end
-
-        event :skip_to_address do
-          transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form
         end
 
         event :edit_exemptions do
@@ -408,10 +223,6 @@ module WasteExemptionsEngine
 
     private
 
-    def any_exemptions_selected?
-      exemptions.any?
-    end
-
     def operator_address_was_manually_entered?
       return false unless operator_address
 
@@ -443,10 +254,6 @@ module WasteExemptionsEngine
       return true if %w[operator_address_option contact_address_option].include? temp_reuse_address_for_site_location
 
       false
-    end
-
-    def should_renew_without_changes?
-      temp_renew_without_changes
     end
 
     def should_register_in_northern_ireland?

@@ -50,6 +50,8 @@ module WasteExemptionsEngine
     end
 
     def copy_charging_attribytes
+      return unless @transient_registration.respond_to?(:charged)
+
       @registration.charged = @transient_registration.charged?
     end
 
