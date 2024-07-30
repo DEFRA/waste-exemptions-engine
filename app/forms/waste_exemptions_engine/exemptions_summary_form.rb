@@ -2,14 +2,15 @@
 
 module WasteExemptionsEngine
   class ExemptionsSummaryForm < BaseForm
-    delegate :exemptions, to: :transient_registration
+    delegate :exemptions, :compliance_charge, :charge_type, :registration_charge, :total_charge,
+             to: :exemption_costs_presenter
 
     def order
       @order ||= create_or_update_order
     end
 
-    def order_calculator
-      @order_calculator ||= WasteExemptionsEngine::OrderCalculatorService.new(order)
+    def exemption_costs_presenter
+      @exemption_costs_presenter ||= WasteExemptionsEngine::ExemptionCostsPresenter.new(order: order)
     end
 
     private
