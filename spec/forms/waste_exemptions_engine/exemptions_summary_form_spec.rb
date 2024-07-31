@@ -42,23 +42,23 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "#order_calculator" do
+    describe "#exemption_costs_presenter" do
       let(:order) { build(:order) }
-      let(:calculator) { instance_double(WasteExemptionsEngine::OrderCalculatorService) }
+      let(:presenter) { instance_double(WasteExemptionsEngine::ExemptionCostsPresenter) }
 
       before do
         allow(form).to receive(:order).and_return(order)
-        allow(WasteExemptionsEngine::OrderCalculatorService).to receive(:new).with(order).and_return(calculator)
+        allow(WasteExemptionsEngine::ExemptionCostsPresenter).to receive(:new).with(order:).and_return(presenter)
       end
 
-      it "returns an OrderCalculatorService instance" do
-        expect(form.order_calculator).to eq(calculator)
+      it "returns an ExemptionCostsPresenter instance" do
+        expect(form.exemption_costs_presenter).to eq(presenter)
       end
 
-      it "memoizes the calculator" do
-        form.order_calculator
-        form.order_calculator
-        expect(WasteExemptionsEngine::OrderCalculatorService).to have_received(:new).once
+      it "memoizes the presenter" do
+        form.exemption_costs_presenter
+        form.exemption_costs_presenter
+        expect(WasteExemptionsEngine::ExemptionCostsPresenter).to have_received(:new).once
       end
     end
   end

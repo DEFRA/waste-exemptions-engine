@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     end
 
     def exemption_costs_presenter
-      @exemption_costs_presenter ||= WasteExemptionsEngine::ExemptionCostsPresenter.new(order: order)
+      @exemption_costs_presenter ||= WasteExemptionsEngine::ExemptionCostsPresenter.new(order:)
     end
 
     private
