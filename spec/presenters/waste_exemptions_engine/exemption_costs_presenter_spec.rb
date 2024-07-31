@@ -114,23 +114,5 @@ module WasteExemptionsEngine
         end
       end
     end
-
-    describe "#highest_band" do
-      context "with an empty order" do
-        let(:exemptions) { [] }
-
-        it "returns nil" do
-          expect(presenter.highest_band).to be_nil
-        end
-      end
-
-      context "with an order with multiple exemptions" do
-        let(:exemptions) { multiple_bands_multiple_exemptions }
-
-        it "returns the highest band" do
-          expect(presenter.highest_band).to eq(band_3)
-        end
-      end
-    end
   end
 end

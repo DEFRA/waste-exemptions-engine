@@ -11,10 +11,6 @@ module WasteExemptionsEngine
       @order.exemptions.sort_by { |e| e.band.sequence }
     end
 
-    def highest_band
-      @order.highest_band
-    end
-
     def compliance_charge(exemption)
       if exemption.band == highest_band
         format_currency(exemption.band.initial_compliance_charge.charge_amount_in_pounds)
@@ -50,6 +46,10 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def highest_band
+      @order.highest_band
+    end
 
     def format_currency(amount)
       helpers.number_to_currency(amount, unit: "£")
