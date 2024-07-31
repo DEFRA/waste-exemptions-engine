@@ -23,7 +23,8 @@ module WasteExemptionsEngine
         let(:exemptions) { multiple_bands_multiple_exemptions }
 
         it "returns exemptions sorted by band sequence" do
-          expect(presenter.exemptions.map(&:code)).to match_array(exemptions.map(&:code))
+          sorted_exemptions = exemptions.sort_by { |exemption| exemption.band.sequence }
+          expect(presenter.exemptions.map(&:code)).to match_array(sorted_exemptions.map(&:code))
         end
       end
     end
