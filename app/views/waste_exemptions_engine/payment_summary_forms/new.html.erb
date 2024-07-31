@@ -6,10 +6,18 @@
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
+        <%= t(".charges.compliance_charge") %>
+      </dt>
+      <dd class="govuk-summary-list__actions">
+        <%= @payment_summary_form.total_compliance_charge %>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
         <%= t(".charges.registration_charge") %>
       </dt>
       <dd class="govuk-summary-list__actions">
-        £10.00
+        <%= @payment_summary_form.registration_charge %>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -17,11 +25,11 @@
         <%= t(".charges.total_charge") %>
       </dt>
       <dd class="govuk-summary-list__actions">
-        £72.00
+        <%= @payment_summary_form.total_charge %>
       </dd>
     </div>
   </dl>
-   
+
    <%= f.govuk_collection_radio_buttons :payment_type,
           [
             OpenStruct.new(

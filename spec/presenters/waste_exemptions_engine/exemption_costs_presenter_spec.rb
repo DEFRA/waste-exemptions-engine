@@ -98,6 +98,14 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#total_compliance_charge" do
+      let(:exemptions) { multiple_bands_multiple_exemptions }
+
+      it "returns the formatted total compliance charge" do
+        expect(presenter.total_compliance_charge).to eq("£#{format('%.2f', order_calculator.total_compliance_charge_amount / 100.0)}")
+      end
+    end
+
     describe "#total_charge" do
       context "with an empty order" do
         let(:exemptions) { [] }

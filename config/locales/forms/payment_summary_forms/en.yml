@@ -5,6 +5,7 @@ en:
         title: Payment summary
         heading: Payment summary
         charges:
+          compliance_charge: Compliance charge
           registration_charge: Registration charge
           total_charge: Total charge
         payment_options:

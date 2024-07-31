@@ -38,6 +38,13 @@ module WasteExemptionsEngine
       )
     end
 
+    def total_compliance_charge
+      format_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(@order_calculator.total_compliance_charge_amount)
+      )
+    end
+
     def total_charge
       format_currency(
         WasteExemptionsEngine::CurrencyConversionService

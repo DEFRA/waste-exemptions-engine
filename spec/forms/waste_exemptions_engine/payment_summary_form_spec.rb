@@ -17,5 +17,11 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#exemption_costs_presenter" do
+      it "returns an ExemptionCostsPresenter" do
+        expect(form.exemption_costs_presenter).to be_a(ExemptionCostsPresenter)
+      end
+    end
   end
 end
