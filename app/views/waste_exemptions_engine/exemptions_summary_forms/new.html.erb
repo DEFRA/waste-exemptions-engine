@@ -12,10 +12,10 @@
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header"><%= t(".exemption") %></th>
-          <th scope="col" class="govuk-table__header"><%= t(".band") %></th>
-          <th scope="col" class="govuk-table__header"><%= t(".compliance_charge") %></th>
-          <th scope="col" class="govuk-table__header"><%= t(".full_or_discounted") %></th>
+          <th scope="col" class="govuk-table__header" id="exemption-header"><%= t(".exemption") %></th>
+          <th scope="col" class="govuk-table__header" id="band-header"><%= t(".band") %></th>
+          <th scope="col" class="govuk-table__header" id="compliance-charge-header"><%= t(".compliance_charge") %></th>
+          <th scope="col" class="govuk-table__header" id="charge-type-header"><%= t(".full_or_discounted") %></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -32,11 +32,11 @@
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".registration_charge") %></dt>
-        <dd class="govuk-summary-list__value"><%= @exemptions_summary_form.registration_charge %></dd>
+        <dd class="govuk-summary-list__value" id="registration-charge"><%= @exemptions_summary_form.registration_charge %></dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".total_charge") %></dt>
-        <dd class="govuk-summary-list__value"><%= @exemptions_summary_form.total_charge %></dd>
+        <dd class="govuk-summary-list__value" id="total-charge"><%= @exemptions_summary_form.total_charge %></dd>
       </div>
     </dl>
     <%= form_for @exemptions_summary_form do |f| %>
