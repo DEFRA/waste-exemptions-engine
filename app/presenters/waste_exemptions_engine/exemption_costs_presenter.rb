@@ -8,11 +8,11 @@ module WasteExemptionsEngine
     end
 
     def exemptions
-      @order.exemptions.sort_by { |e| e.band.sequence }
+      @exemptions ||= @order.exemptions.sort_by { |e| -e.band.initial_compliance_charge.charge_amount }
     end
 
     def compliance_charge(exemption)
-      if exemption.band == highest_band
+      if first_exemption_in_highest_band?(exemption)
         format_currency(exemption.band.initial_compliance_charge.charge_amount_in_pounds)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
         format_currency(exemption.band.additional_compliance_charge.charge_amount_in_pounds)
@@ -22,12 +22,12 @@ module WasteExemptionsEngine
     end
 
     def charge_type(exemption)
-      if exemption.band == highest_band
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.full")
-      elsif exemption.band.additional_compliance_charge.charge_amount.positive?
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.discounted")
-      else
+      if exemption.band.additional_compliance_charge.charge_amount.zero?
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+      elsif first_exemption_in_highest_band?(exemption)
+        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.full")
+      else
+        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.discounted")
       end
     end
 
@@ -48,7 +48,7 @@ module WasteExemptionsEngine
     private
 
     def highest_band
-      @order.highest_band
+      @highest_band ||= @order.highest_band
     end
 
     def format_currency(amount)
@@ -57,6 +57,10 @@ module WasteExemptionsEngine
 
     def helpers
       ActionController::Base.helpers
+    end
+
+    def first_exemption_in_highest_band?(exemption)
+      exemption.band == highest_band && exemption == exemptions.first
     end
   end
 end
