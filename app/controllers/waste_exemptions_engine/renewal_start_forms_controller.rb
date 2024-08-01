@@ -60,10 +60,6 @@ module WasteExemptionsEngine
 
     private
 
-    def transient_registration_attributes
-      params.fetch(:renewal_start_form, {}).permit(:temp_renew_without_changes)
-    end
-
     def transition_to_edit(transition)
       find_or_initialize_registration(params[:token])
 

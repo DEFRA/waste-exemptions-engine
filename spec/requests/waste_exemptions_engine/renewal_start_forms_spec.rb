@@ -36,8 +36,9 @@ module WasteExemptionsEngine
       end
     end
 
-    include_examples "POST form", :renewal_start_form, "/renewal-start" do
-      let(:form_data) { { temp_renew_without_changes: "true" } }
+    empty_form_is_valid = true
+    include_examples "POST form", :renewal_start_form, "/renewal-start", empty_form_is_valid do
+      let(:form_data) { {} }
       let(:invalid_form_data) { [] }
     end
 

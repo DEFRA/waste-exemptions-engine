@@ -25,10 +25,6 @@ FactoryBot.define do
       end
     end
 
-    factory :renewing_registration_without_changes do
-      temp_renew_without_changes { true }
-    end
-
     factory :renewing_registration_with_manual_site_address do
       initialize_with do
         registration = create(:registration, :complete, :with_manual_site_address)
