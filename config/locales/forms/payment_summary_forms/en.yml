@@ -2,16 +2,29 @@ en:
   waste_exemptions_engine:
     payment_summary_forms:
       new:
-        title: Payment summary
         heading: Payment summary
+        payment_summary: Payment summary
         charges:
           compliance_charge: Compliance charge
           registration_charge: Registration charge
-          total_charge: Total charge
+          total_charge: Total amount due
+        vat_note: All charges are outside the scope of VAT.
+        make_payment: Make a payment
+        payment_type_legend: Select a payment method
         payment_options:
-          card: Pay by credit or debit card
+          card: Pay by credit, debit card, Google or Apple Pay
+          card_hint: You will be transferred to our secure GovPay site. We accept MasterCard, Maestro and Visa.
           bank: Pay by bank transfer and then email us to confirm payment
-        payment_type_legend: Make a payment
+          bank_hint: We cannot send you a confirmation email until your payment clears.
+        receipt_email_label: Email address (for payment receipt)
         payment_submit_button_label: Proceed to payment
-
-
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/payment_summary_form:
+          attributes:
+            payment_type:
+              inclusion: "Select a payment method"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"
