@@ -23,7 +23,6 @@ module WasteExemptionsEngine
 
         state :check_registered_name_and_address_form
         state :incorrect_company_form
-        state :renew_with_changes_form
         state :renew_without_changes_form
 
         # Exemptions
@@ -94,15 +93,7 @@ module WasteExemptionsEngine
                       to: :incorrect_company_form
 
           transitions from: :renewal_start_form,
-                      to: :renew_with_changes_form,
-                      unless: :should_renew_without_changes?
-
-          transitions from: :renewal_start_form,
-                      to: :renew_without_changes_form,
-                      if: :should_renew_without_changes?
-
-          transitions from: :renew_with_changes_form,
-                      to: :location_form
+                      to: :renew_without_changes_form
 
           # Location
           transitions from: :location_form,
@@ -443,10 +434,6 @@ module WasteExemptionsEngine
       return true if %w[operator_address_option contact_address_option].include? temp_reuse_address_for_site_location
 
       false
-    end
-
-    def should_renew_without_changes?
-      temp_renew_without_changes
     end
 
     def should_register_in_northern_ireland?

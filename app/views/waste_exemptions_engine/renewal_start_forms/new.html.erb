@@ -16,25 +16,6 @@
       <%= render("waste_exemptions_engine/shared/data_overview/company_info", form: @renewal_start_form) %>
       <%= render("waste_exemptions_engine/shared/data_overview/registration_info", form: @renewal_start_form) %>
 
-      <%= f.govuk_collection_radio_buttons :temp_renew_without_changes,
-        [
-          OpenStruct.new(
-            id: true,
-            name: t(".options.yes")
-          ),
-          OpenStruct.new(
-            id: false,
-            name: t(".options.no")
-          )
-        ],
-        :id,
-        :name,
-        legend: {
-          text: t(".heading"),
-          hidden: true
-        },
-        small: true %>
-
       <%= f.govuk_submit t(".next_button") %>
     <% end %>
   </div>
