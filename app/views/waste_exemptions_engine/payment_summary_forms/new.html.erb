@@ -22,19 +22,23 @@
 
     <p class="govuk-body" id="vat-note"><%= t(".vat_note") %></p>
     <%= form_for @payment_summary_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
       <h2 class="govuk-heading-m"><%= t(".make_payment") %></h2>
       <%= f.govuk_radio_buttons_fieldset :payment_type,
         legend: { text: t(".payment_type_legend"), size: "m" } do %>
-        <%= f.govuk_radio_button :payment_type, "card", label: { text: t(".payment_options.card") }, hint: { text: t(".payment_options.card_hint") }, id: "payment-type-card"  do %>
-          <%= f.govuk_text_field :receipt_email,
-            label: { text: t(".receipt_email_label") },
-            width: 'two-thirds',
-            id: "receipt-email" %>
-        <% end %>
-        <%= f.govuk_radio_button :payment_type, "bank_transfer", label: { text: t(".payment_options.bank") }, hint: { text: t(".payment_options.bank_hint") }, id: "payment-type-bank"  do %>
-        <% end %>
-      <% end %>
-      <%= f.govuk_submit t(".payment_submit_button_label"), id: "submit-payment" %>
+        <%= f.govuk_radio_button :payment_type, "card",
+        label: { text: t(".payment_options.card") },
+        hint: { text: t(".payment_options.card_hint") },
+        link_errors: true do %>
+        <%= f.govuk_text_field :receipt_email,
+        label: { text: t(".receipt_email_label") },
+        width: 'two-thirds' %>
     <% end %>
+    <%= f.govuk_radio_button :payment_type, "bank_transfer",
+      label: { text: t(".payment_options.bank") },
+      hint: { text: t(".payment_options.bank_hint") } %>
+  <% end %>
+  <%= f.govuk_submit t(".payment_submit_button_label") %>
+<% end %>
   </div>
 </div>
