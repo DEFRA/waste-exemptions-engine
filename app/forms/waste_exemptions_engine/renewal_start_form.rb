@@ -4,16 +4,6 @@ module WasteExemptionsEngine
   class RenewalStartForm < BaseForm
     delegate :company_rows, :registration_rows, to: :data_overview_presenter
 
-    delegate :temp_renew_without_changes, to: :transient_registration
-
-    validates :temp_renew_without_changes,
-              "defra_ruby/validators/true_false": {
-                messages: {
-                  inclusion: I18n.t("activemodel.errors.models.waste_exemptions_engine/renewal_start_form" \
-                                    ".attributes.temp_renew_without_changes.inclusion")
-                }
-              }
-
     def initialize(transient_registration)
       # When a user first renews with changes and deselects some or all
       # exemptions to renew and subsequently navigates back to renew without

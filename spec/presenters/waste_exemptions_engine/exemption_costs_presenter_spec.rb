@@ -37,6 +37,26 @@ module WasteExemptionsEngine
           exemption = exemptions.first
           expect(presenter.compliance_charge(exemption)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
         end
+
+        context "with multiple exemptions including same highest band" do
+          include_context "with multiple exemptions including same highest band"
+
+          it "returns the correct charge for the highest band exemption" do
+            expect(presenter.compliance_charge(exemptions[0])).to eq("£409.00")
+          end
+
+          it "returns the correct charge for the second exemption in the highest band" do
+            expect(presenter.compliance_charge(exemptions[1])).to eq("£74.00")
+          end
+
+          it "returns the correct charge for the exemption in the middle band" do
+            expect(presenter.compliance_charge(exemptions[2])).to eq("£74.00")
+          end
+
+          it "returns the correct charge for the exemption in the lowest band" do
+            expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
+          end
+        end
       end
 
       context "with an exemption in a lower band" do
@@ -75,6 +95,26 @@ module WasteExemptionsEngine
         it "returns 'Discounted'" do
           exemption = exemptions.first
           expect(presenter.charge_type(exemption)).to eq("Discounted")
+        end
+
+        context "with multiple exemptions including same highest band" do
+          include_context "with multiple exemptions including same highest band"
+
+          it "returns 'Full' for the first exemption in the highest band" do
+            expect(presenter.charge_type(exemptions[0])).to eq("Full")
+          end
+
+          it "returns 'Discounted' for the second exemption in the highest band" do
+            expect(presenter.charge_type(exemptions[1])).to eq("Discounted")
+          end
+
+          it "returns 'Discounted' for the exemption in the middle band" do
+            expect(presenter.charge_type(exemptions[2])).to eq("Discounted")
+          end
+
+          it "returns 'Discounted' for the exemption in the lowest band" do
+            expect(presenter.charge_type(exemptions[3])).to eq("Discounted")
+          end
         end
       end
 

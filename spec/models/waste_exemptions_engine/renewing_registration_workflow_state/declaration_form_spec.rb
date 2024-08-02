@@ -8,11 +8,6 @@ module WasteExemptionsEngine
       it_behaves_like "a simple progressing transition",
                       current_state: :declaration_form,
                       next_state: :renewal_complete_form,
-                      factory: :renewing_registration_without_changes
-
-      it_behaves_like "a simple progressing transition",
-                      current_state: :declaration_form,
-                      next_state: :renewal_complete_form,
                       factory: :renewing_registration
     end
   end

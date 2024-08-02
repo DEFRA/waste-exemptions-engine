@@ -7,17 +7,12 @@ en:
         description: Some of your exemptions could be withdrawn before the end of your registration period.
         guidance_link_label: "latest guidance"
         guidance: "Before you renew your exemptions you must read the %{guidance_link} (opens in new tab) to see if there have been any changes."
-        options:
-          "yes": "Renew with these details"
-          "no": "I need to make other changes"
         next_button: "Continue"
   activemodel:
     errors:
       models:
         waste_exemptions_engine/renewal_start_form:
           attributes:
-            temp_renew_without_changes:
-              inclusion: "Select if you want to renew with these details or need to make changes"
             token:
               invalid_format: "The token is not valid"
               missing: "The token is missing"
