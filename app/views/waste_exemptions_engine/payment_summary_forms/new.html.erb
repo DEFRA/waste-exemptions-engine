@@ -30,9 +30,6 @@
         label: { text: t(".payment_options.card") },
         hint: { text: t(".payment_options.card_hint") },
         link_errors: true do %>
-        <%= f.govuk_text_field :receipt_email,
-        label: { text: t(".receipt_email_label") },
-        width: 'two-thirds' %>
     <% end %>
     <%= f.govuk_radio_button :payment_type, "bank_transfer",
       label: { text: t(".payment_options.bank") },

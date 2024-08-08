@@ -35,8 +35,7 @@ module WasteExemptionsEngine
         {
           payment_summary_form: {
             token: form.token,
-            payment_type: "card",
-            receipt_email: "test@example.com"
+            payment_type: "card"
           }
         }
       end
@@ -53,8 +52,7 @@ module WasteExemptionsEngine
           {
             payment_summary_form: {
               token: form.token,
-              payment_type: "invalid",
-              receipt_email: "invalid-email"
+              payment_type: "invalid"
             }
           }
         end

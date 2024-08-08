@@ -5,8 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe PaymentSummaryForm, type: :model do
     let(:payment_type) { nil }
-    let(:receipt_email) { nil }
-    let(:transient_registration) { build(:new_charged_registration, workflow_state: :payment_summary_form, payment_type: payment_type, receipt_email: receipt_email) }
+    let(:transient_registration) { build(:new_charged_registration, workflow_state: :payment_summary_form, payment_type:) }
 
     subject(:form) { build(:payment_summary_form, transient_registration: transient_registration) }
 
@@ -25,41 +24,6 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "receipt_email validation" do
-      context "when payment_type is card" do
-        let(:payment_type) { "card" }
-
-        context "when receipt_email is not present" do
-          let(:receipt_email) { nil }
-
-          it "is invalid" do
-            expect(form).not_to be_valid
-          end
-
-          it "adds an error to the receipt_email attribute after validity checked" do
-            form.valid?
-            expect(form.errors[:receipt_email]).to be_present
-          end
-        end
-
-        context "when receipt_email is present" do
-          let(:receipt_email) { "test@example.com" }
-
-          it "is valid" do
-            expect(form).to be_valid
-          end
-        end
-      end
-
-      context "when payment_type is bank_transfer" do
-        let(:payment_type) { "bank_transfer" }
-
-        it "does not validate the receipt_email" do
-          expect(form).to be_valid
-        end
-      end
-    end
-
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the selected payment type" do
@@ -68,11 +32,6 @@ module WasteExemptionsEngine
           expect { form.submit(valid_params) }
             .to change(transient_registration, :payment_type)
             .from(nil).to("card")
-        end
-
-        it "updates the transient registration with the receipt email when payment type is card" do
-          valid_params = { payment_type: "card", receipt_email: "test@example.com" }
-          expect(form.submit(valid_params)).to be(true)
         end
       end
 
