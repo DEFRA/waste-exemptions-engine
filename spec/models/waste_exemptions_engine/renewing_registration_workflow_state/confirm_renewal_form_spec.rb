@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe RenewingRegistration do
     describe "#workflow_state" do
       it_behaves_like "a simple progressing transition",
-                      current_state: :renew_without_changes_form,
+                      current_state: :confirm_renewal_form,
                       next_state: :declaration_form,
                       factory: :renewing_registration
     end
