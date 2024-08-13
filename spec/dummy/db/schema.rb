@@ -234,7 +234,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_114006) do
     t.boolean "reminder_opt_in", default: true
     t.string "unsubscribe_token"
     t.boolean "charged", default: false
-    t.string "receipt_email"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
@@ -344,7 +343,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_01_114006) do
     t.boolean "temp_confirm_no_exemption_changes"
     t.boolean "temp_check_your_answers_flow"
     t.string "temp_company_no"
-    t.string "receipt_email"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
