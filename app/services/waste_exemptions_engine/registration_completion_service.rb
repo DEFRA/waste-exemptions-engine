@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class RegistrationCompletionService < BaseService
+    # rubocop:disable Metrics/MethodLength
     def run(transient_registration:)
       @transient_registration = transient_registration
       @registration = nil
@@ -9,31 +10,26 @@ module WasteExemptionsEngine
       @transient_registration.with_lock do
         # This update is necessary as this will make the `with_lock` prevent race conditions
         @transient_registration.update(workflow_state: :creating_registration)
-
         activate_exemptions
-
         @registration = Registration.new(copyable_attributes)
         copy_addresses
         copy_exemptions
         copy_people
-        copy_charging_attribytes
-
+        copy_charging_attributes
         add_metadata
-
         @registration.save!
-
+        copy_order if @registration.charged?
         @transient_registration.destroy
       end
 
       send_confirmation_messages
-
       @registration
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration&.reference) if defined?(Airbrake)
       Rails.logger.error "Completing registration error: #{e}"
-
       raise e
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
@@ -49,8 +45,13 @@ module WasteExemptionsEngine
       end
     end
 
-    def copy_charging_attribytes
+    def copy_charging_attributes
       @registration.charged = @transient_registration.charged?
+    end
+
+    def copy_order
+      account = @registration.create_account(balance: 0)
+      account.orders << @transient_registration.order if @transient_registration.order.present?
     end
 
     def copy_addresses
@@ -81,7 +82,6 @@ module WasteExemptionsEngine
 
     def send_confirmation_messages
       send_confirmation_letter unless @registration.contact_email.present?
-
       send_confirmation_emails
     end
 
