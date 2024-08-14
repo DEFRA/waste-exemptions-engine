@@ -1,8 +1,8 @@
-<%= render("waste_exemptions_engine/shared/back", token: @renew_without_changes_form.token) %>
+<%= render("waste_exemptions_engine/shared/back", token: @confirm_renewal_form.token) %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= form_for(@renew_without_changes_form) do |f| %>
+    <%= form_for(@confirm_renewal_form) do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
