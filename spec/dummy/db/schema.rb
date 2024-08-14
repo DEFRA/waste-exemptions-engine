@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_135826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "registration_id", null: false
+    t.integer "balance", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_id"], name: "index_accounts_on_registration_id"
+  end
 
   create_table "addresses", id: :serial, force: :cascade do |t|
     t.integer "address_type", default: 0
@@ -234,7 +242,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.boolean "reminder_opt_in", default: true
     t.string "unsubscribe_token"
     t.boolean "charged", default: false
-    t.string "receipt_email"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
@@ -344,7 +351,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.boolean "temp_confirm_no_exemption_changes"
     t.boolean "temp_check_your_answers_flow"
     t.string "temp_company_no"
-    t.string "receipt_email"
     t.string "temp_payment_method"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
@@ -397,6 +403,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "accounts", "registrations"
   add_foreign_key "addresses", "registrations"
   add_foreign_key "analytics_page_views", "analytics_user_journeys", column: "user_journey_id"
   add_foreign_key "bucket_exemptions", "buckets"

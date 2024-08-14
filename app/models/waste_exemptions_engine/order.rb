@@ -2,7 +2,6 @@
 
 module WasteExemptionsEngine
   class Order < ApplicationRecord
-
     self.table_name = "orders"
 
     belongs_to :order_owner, polymorphic: true

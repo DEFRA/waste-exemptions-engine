@@ -241,14 +241,41 @@ module WasteExemptionsEngine
         end
 
         context "when the transient_registration is charged" do
-          let(:new_charged_registration) { create(:new_charged_registration) }
+          let(:new_charged_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
+          let!(:order) { create(:order, order_owner: new_charged_registration) }
+
+          before do
+            new_charged_registration.update(order: order)
+          end
+
+          subject(:run_service) { described_class.run(transient_registration: new_charged_registration) }
 
           it "copies over charging attributes" do
-            new_registration = described_class.run(transient_registration: new_charged_registration)
+            registration = run_service
 
-            aggregate_failures do
-              expect(new_registration.charged).to be_truthy
-            end
+            expect(registration.charged).to be_truthy
+          end
+
+          it "creates an account for the registration" do
+            expect { run_service }.to change(Account, :count).by(1)
+          end
+
+          it "associates the account with the registration" do
+            registration = run_service
+
+            expect(registration.account).to be_present
+          end
+
+          it "copies the order to the new account" do
+            registration = run_service
+
+            expect(registration.account.orders).to include(order)
+          end
+
+          it "sets the account balance to 0" do
+            registration = run_service
+
+            expect(registration.account.balance).to eq(0)
           end
         end
       end
