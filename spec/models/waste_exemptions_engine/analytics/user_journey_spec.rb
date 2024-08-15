@@ -68,14 +68,14 @@ module WasteExemptionsEngine
           it { expect(described_class.passed_start_cutoff_page).to include(journey_past_front_office_edit_page) }
         end
 
-        describe "with renew_without_changes_form being a cutoff page" do
+        describe "with confirm_renewal_form being a cutoff page" do
           let!(:journey_initial_page_only) { create(:user_journey, visited_pages: %w[renewal_start_form]) }
-          let!(:journey_to_renew_without_changes_page) { create(:user_journey, visited_pages: %w[renewal_start_form renew_without_changes_form]) }
-          let!(:journey_past_renew_without_changes_page) { create(:user_journey, visited_pages: %w[renewal_start_form renew_without_changes_form declaration_form]) }
+          let!(:journey_to_confirm_renewal_page) { create(:user_journey, visited_pages: %w[renewal_start_form confirm_renewal_form]) }
+          let!(:journey_past_confirm_renewal_page) { create(:user_journey, visited_pages: %w[renewal_start_form confirm_renewal_form declaration_form]) }
 
           it { expect(described_class.passed_start_cutoff_page).not_to include(journey_initial_page_only) }
-          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_renew_without_changes_page) }
-          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_renew_without_changes_page) }
+          it { expect(described_class.passed_start_cutoff_page).not_to include(journey_to_confirm_renewal_page) }
+          it { expect(described_class.passed_start_cutoff_page).to include(journey_past_confirm_renewal_page) }
         end
       end
 

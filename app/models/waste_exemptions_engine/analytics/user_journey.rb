@@ -18,7 +18,7 @@ module WasteExemptionsEngine
         location_form
         edit_exemptions_form
         front_office_edit_form
-        renew_without_changes_form
+        confirm_renewal_form
       ].freeze
 
       COMPLETION_PAGES = %w[
