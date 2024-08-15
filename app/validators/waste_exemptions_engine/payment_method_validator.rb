@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class PaymentTypeValidator < BaseValidator
+  class PaymentMethodValidator < BaseValidator
     include CanValidateSelection
 
     VALID_PAYMENT_TYPES = %w[card bank_transfer].freeze
