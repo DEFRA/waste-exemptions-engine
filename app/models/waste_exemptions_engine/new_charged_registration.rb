@@ -20,5 +20,9 @@ module WasteExemptionsEngine
     def charged?
       true
     end
+
+    def prepare_for_payment(mode, _user = nil)
+      # @todo: Update payment details if necessary
+    end
   end
 end

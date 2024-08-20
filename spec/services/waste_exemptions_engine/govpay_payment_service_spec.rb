@@ -1,0 +1,117 @@
+# require "webmock/rspec"
+require "rails_helper"
+
+module WasteExemptionsEngine
+  RSpec.describe GovpayPaymentService do
+    let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
+    let(:order) { build(:order, :with_charge_detail) }
+    let(:transient_registration) { create(:new_charged_registration, order: order) }
+    let(:current_user) { instance_double("User", email: "user@example.com") }
+    let(:govpay_service) { described_class.new(transient_registration, transient_registration.order, current_user) }
+
+    before do
+      allow(Rails.configuration).to receive(:govpay_url).and_return(govpay_host)
+      
+      stub_request(:any, /.*#{govpay_host}.*/).to_return(
+        status: 200,
+        body: File.read("./spec/fixtures/files/govpay/create_payment_created_response.json")
+      )
+    end
+
+    describe "prepare_for_payment" do
+      let(:defra_ruby_govpay_api) { DefraRubyGovpay::API.new(host_is_back_office:) }
+      let(:host_is_back_office) { WasteExemptionsEngine.configuration.host_is_back_office? }
+
+      before do
+        allow(DefraRubyGovpay::API).to receive(:new).and_return(defra_ruby_govpay_api)
+        allow(defra_ruby_govpay_api).to receive(:send_request).with(anything).and_call_original
+      end
+
+      context "when the request is valid" do
+        it "returns a link" do
+          url = govpay_service.prepare_for_payment[:url]
+          # expect the value from the payment response file fixture
+          expect(url).to eq("https://www.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231")
+        end
+
+        it "does not change payment status" do
+          expect { govpay_service.prepare_for_payment }.not_to change { transient_registration.order.payment&.payment_status }
+        end
+
+        context "when the request is from the back-office" do
+          before do
+            allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
+            allow(defra_ruby_govpay_api).to receive(:send_request).with(anything).and_call_original
+          end
+
+          it "sends the moto flag to GovPay" do
+            govpay_service.prepare_for_payment
+
+            expect(defra_ruby_govpay_api).to have_received(:send_request).with(
+              is_moto: true,
+              method: :post,
+              path: anything,
+              params: hash_including(moto: true)
+            )
+          end
+        end
+
+        context "when the request is from the front-office" do
+          before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
+
+          it "does not send the moto flag to GovPay" do
+            govpay_service.prepare_for_payment
+
+            expect(defra_ruby_govpay_api).to have_received(:send_request).with(
+              is_moto: false,
+              method: :post,
+              path: anything,
+              params: hash_not_including(moto: true)
+            )
+          end
+        end
+      end
+
+      context "when the request is invalid" do
+        before do
+          stub_request(:any, /.*#{govpay_host}.*/).to_return(
+            status: 200,
+            body: File.read("./spec/fixtures/files/govpay/create_payment_error_response.json")
+          )
+        end
+
+        it "returns :error" do
+          expect(govpay_service.prepare_for_payment).to eq(:error)
+        end
+      end
+    end
+
+    describe "#payment_callback_url" do
+      let(:callback_host) { Faker::Internet.url }
+
+      before { allow(Rails.configuration).to receive(:front_office_url).and_return(callback_host) }
+
+      subject(:callback_url) { govpay_service.payment_callback_url }
+
+      context "when the order does not exist" do
+
+        before { transient_registration.order = nil }
+
+        it "raises an exception" do
+          expect { callback_url }.to raise_error(StandardError)
+        end
+      end
+
+      context "when the order exists" do
+
+        it "the callback url includes the base path" do
+          expect(callback_url).to start_with(callback_host)
+        end
+
+        it "the callback url includes the payment uuid" do
+          expect(callback_url).to include(transient_registration.order.order_uuid)
+        end
+      end
+    end
+  end
+end
