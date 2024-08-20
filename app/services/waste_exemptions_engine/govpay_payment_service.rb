@@ -6,10 +6,9 @@ module WasteExemptionsEngine
   class GovpayPaymentService
     attr_reader :order
 
-    def initialize(transient_registration, order, current_user)
+    def initialize(transient_registration, order, _user = nil)
       @transient_registration = transient_registration
       @order = order
-      @current_user = current_user
     end
 
     def prepare_for_payment

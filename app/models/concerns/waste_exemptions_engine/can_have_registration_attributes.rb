@@ -26,5 +26,11 @@ module WasteExemptionsEngine
     def farm_affiliated?
       is_a_farmer? || on_a_farm?
     end
+
+    def pending_online_payment?
+      return false unless order&.payment.present?
+
+      GovpayValidatorService.valid_govpay_status?(:pending, order.payment.payment_status)
+    end
   end
 end

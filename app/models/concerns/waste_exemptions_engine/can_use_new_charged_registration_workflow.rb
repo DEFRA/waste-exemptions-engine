@@ -65,6 +65,7 @@ module WasteExemptionsEngine
         state :check_your_answers_form
         state :declaration_form
         state :payment_summary_form
+        state :govpay_form
         state :registration_complete_form
 
         # Transitions
@@ -274,8 +275,15 @@ module WasteExemptionsEngine
           transitions from: :declaration_form,
                       to: :payment_summary_form
 
-          transitions from: :payment_summary_form,
-                      to: :registration_complete_form
+          transitions from: :payment_summary_form, to: :govpay_form
+          #             if: :paying_by_card?
+
+          transitions from: :govpay_form,
+                      to: :registration_received_pending_govpay_payment_form,
+                      if: :pending_online_payment?
+
+          transitions from: :govpay_form, to: :registration_complete_form
+
 
           # Check your answers
           transitions from: :applicant_name_form,
@@ -494,6 +502,10 @@ module WasteExemptionsEngine
 
     def check_your_answers_flow?
       temp_check_your_answers_flow == true
+    end
+
+    def paying_by_card?
+      payment_type == "card"
     end
   end
 end
