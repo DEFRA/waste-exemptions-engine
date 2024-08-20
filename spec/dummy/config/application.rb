@@ -57,5 +57,10 @@ module Dummy
     config.registration_renewal_grace_window = ENV["REGISTRATION_RENEWAL_GRACE_WINDOW"] || 30
     config.first_renewal_email_reminder_days = ENV.fetch("FIRST_RENEWAL_EMAIL_REMINDER_DAYS", nil)
     config.i18n.load_path += Dir["#{config.root}/config/locales/**/*.yml"]
+
+    # Govpay
+    config.govpay_url = ENV["WEX_GOVPAY_URL"] || "https://publicapi.payments.service.gov.uk"
+    config.govpay_front_office_api_token = ENV["WEX_GOVPAY_FRONT_OFFICE_API_TOKEN"] || "token"
+    config.govpay_back_office_api_token = ENV["WEX_GOVPAY_BACK_OFFICE_API_TOKEN"] || "token"
   end
 end
