@@ -15,10 +15,13 @@ module WasteExemptionsEngine
     end
 
     def charge_detail
-      ChargeDetail.new(
-        registration_charge_amount:,
-        band_charge_details:
-      )
+      unless order.charge_detail.present?
+        order.charge_detail = ChargeDetail.new(
+          registration_charge_amount:,
+          band_charge_details:
+        )
+      end
+      order.charge_detail
     end
 
     def total_compliance_charge_amount

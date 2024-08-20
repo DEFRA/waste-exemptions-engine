@@ -11,11 +11,14 @@ module WasteExemptionsEngine
     end
 
     def charge_detail
-      ChargeDetail.new(
-        registration_charge_amount:,
-        band_charge_details:,
-        bucket_charge_amount:
-      )
+      unless order.charge_detail.present?
+        order.charge_detail = ChargeDetail.new(
+          registration_charge_amount:,
+          band_charge_details:,
+          bucket_charge_amount:
+        )
+      end
+      order.charge_detail
     end
 
     private
