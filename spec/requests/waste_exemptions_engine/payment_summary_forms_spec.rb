@@ -35,7 +35,7 @@ module WasteExemptionsEngine
         {
           payment_summary_form: {
             token: form.token,
-            payment_type: "card"
+            temp_payment_method: "card"
           }
         }
       end
@@ -52,7 +52,7 @@ module WasteExemptionsEngine
           {
             payment_summary_form: {
               token: form.token,
-              payment_type: "invalid"
+              temp_payment_method: "invalid"
             }
           }
         end
