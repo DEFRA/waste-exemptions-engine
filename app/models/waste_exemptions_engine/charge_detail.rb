@@ -16,5 +16,9 @@ module WasteExemptionsEngine
     def recalculate_total_charge_amount
       self.total_charge_amount = registration_charge_amount + total_compliance_charge_amount
     end
+
+    def total_charge_amount
+      read_attribute(:total_charge_amount) || recalculate_total_charge_amount
+    end
   end
 end

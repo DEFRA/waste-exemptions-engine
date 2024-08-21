@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     belongs_to :order_owner, polymorphic: true
     has_many :order_exemptions, dependent: :destroy
-    has_many :exemptions, through: :order_exemptions
+    has_many :exemptions, through: :order_exemptions, after_add: :reset_charge_detail
 
     has_one :order_bucket, dependent: :destroy
     has_one :bucket, through: :order_bucket
@@ -34,6 +34,12 @@ module WasteExemptionsEngine
 
     def order_calculator
       WasteExemptionsEngine::OrderCalculatorService.new(self)
+    end
+
+    private
+
+    def reset_charge_detail(_exemption)
+      charge_detail.band_charge_details = order_calculator.band_charge_details if charge_detail.present?
     end
   end
 end
