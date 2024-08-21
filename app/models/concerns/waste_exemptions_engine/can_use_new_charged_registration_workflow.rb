@@ -275,8 +275,8 @@ module WasteExemptionsEngine
           transitions from: :declaration_form,
                       to: :payment_summary_form
 
-          transitions from: :payment_summary_form, to: :govpay_form
-          #             if: :paying_by_card?
+          transitions from: :payment_summary_form, to: :govpay_form,
+                      if: :paying_by_card?
 
           transitions from: :govpay_form,
                       to: :registration_received_pending_govpay_payment_form,
@@ -505,7 +505,7 @@ module WasteExemptionsEngine
     end
 
     def paying_by_card?
-      payment_type == "card"
+      temp_payment_method == "card"
     end
   end
 end
