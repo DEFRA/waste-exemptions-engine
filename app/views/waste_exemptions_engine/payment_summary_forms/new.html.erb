@@ -24,14 +24,14 @@
     <%= form_for @payment_summary_form do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
       <h2 class="govuk-heading-m"><%= t(".make_payment") %></h2>
-      <%= f.govuk_radio_buttons_fieldset :payment_type,
-        legend: { text: t(".payment_type_legend"), size: "m" } do %>
-        <%= f.govuk_radio_button :payment_type, "card",
+      <%= f.govuk_radio_buttons_fieldset :temp_payment_method,
+        legend: { text: t(".temp_payment_method_legend"), size: "m" } do %>
+        <%= f.govuk_radio_button :temp_payment_method, "card",
         label: { text: t(".payment_options.card") },
         hint: { text: t(".payment_options.card_hint") },
         link_errors: true do %>
     <% end %>
-    <%= f.govuk_radio_button :payment_type, "bank_transfer",
+    <%= f.govuk_radio_button :temp_payment_method, "bank_transfer",
       label: { text: t(".payment_options.bank") },
       hint: { text: t(".payment_options.bank_hint") } %>
   <% end %>
