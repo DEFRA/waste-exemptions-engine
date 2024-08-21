@@ -23,7 +23,7 @@ module WasteExemptionsEngine
 
         state :check_registered_name_and_address_form
         state :incorrect_company_form
-        state :renew_without_changes_form
+        state :confirm_renewal_form
 
         # Exemptions
         state :exemptions_form
@@ -93,7 +93,7 @@ module WasteExemptionsEngine
                       to: :incorrect_company_form
 
           transitions from: :renewal_start_form,
-                      to: :renew_without_changes_form
+                      to: :confirm_renewal_form
 
           # Location
           transitions from: :location_form,
@@ -280,7 +280,7 @@ module WasteExemptionsEngine
                       to: :renewal_complete_form
 
           # Renew without changes jumps to declaration form
-          transitions from: :renew_without_changes_form,
+          transitions from: :confirm_renewal_form,
                       to: :declaration_form
 
           # Check Your Answers

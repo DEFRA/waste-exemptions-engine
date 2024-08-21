@@ -4,15 +4,15 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Renew Without Changes Forms" do
-    let(:form) { build(:renew_without_changes_form) }
+    let(:form) { build(:confirm_renewal_form) }
 
-    describe "GET renew_without_changes_form" do
-      let(:request_path) { "/waste_exemptions_engine/#{form.token}/renew-without-changes" }
+    describe "GET confirm_renewal_form" do
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/confirm-renewal" }
 
       it "renders the appropriate template", :vcr do
         get request_path
 
-        expect(response).to render_template("waste_exemptions_engine/renew_without_changes_forms/new")
+        expect(response).to render_template("waste_exemptions_engine/confirm_renewal_forms/new")
       end
 
       it "returns a 200 status code", :vcr do
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
     end
 
     empty_form_is_valid = true
-    include_examples "POST form", :renew_without_changes_form, "/renew-without-changes", empty_form_is_valid do
+    include_examples "POST form", :confirm_renewal_form, "/confirm-renewal", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }
     end
