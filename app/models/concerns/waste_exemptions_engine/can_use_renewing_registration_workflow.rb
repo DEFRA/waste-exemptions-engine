@@ -169,8 +169,7 @@ module WasteExemptionsEngine
                         operator_address_lookup_form
                         operator_address_manual_form
                       ],
-                      to: :renewal_start_form,
-                      if: :check_your_answers_flow?
+                      to: :renewal_start_form
         end
 
         event :skip_to_manual_address do
@@ -189,74 +188,62 @@ module WasteExemptionsEngine
 
         event :edit_exemptions do
           transitions from: :renewal_start_form,
-                      to: :exemptions_form,
-                      if: :check_your_answers_flow?
+                      to: :exemptions_form
         end
 
         event :edit_applicant_name do
           transitions from: :renewal_start_form,
-                      to: :applicant_name_form,
-                      if: :check_your_answers_flow?
+                      to: :applicant_name_form
         end
 
         event :edit_applicant_phone do
           transitions from: :renewal_start_form,
-                      to: :applicant_phone_form,
-                      if: :check_your_answers_flow?
+                      to: :applicant_phone_form
         end
 
         event :edit_applicant_email do
           transitions from: :renewal_start_form,
-                      to: :applicant_email_form,
-                      if: :check_your_answers_flow?
+                      to: :applicant_email_form
         end
 
         event :edit_contact_address do
           transitions from: :renewal_start_form,
-                      to: :contact_postcode_form,
-                      if: :check_your_answers_flow?
+                      to: :contact_postcode_form
         end
 
         event :edit_contact_name do
           transitions from: :renewal_start_form,
-                      to: :contact_name_form,
-                      if: :check_your_answers_flow?
+                      to: :contact_name_form
         end
 
         event :edit_contact_phone do
           transitions from: :renewal_start_form,
-                      to: :contact_phone_form,
-                      if: :check_your_answers_flow?
+                      to: :contact_phone_form
         end
 
         event :edit_contact_email do
           transitions from: :renewal_start_form,
-                      to: :contact_email_form,
-                      if: :check_your_answers_flow?
+                      to: :contact_email_form
         end
 
         event :edit_contact_position do
           transitions from: :renewal_start_form,
-                      to: :contact_position_form,
-                      if: :check_your_answers_flow?
+                      to: :contact_position_form
         end
 
         event :edit_on_a_farm do
           transitions from: :renewal_start_form,
-                      to: :on_a_farm_form,
-                      if: :check_your_answers_flow?
+                      to: :on_a_farm_form
         end
 
         event :edit_is_a_farmer do
           transitions from: :renewal_start_form,
-                      to: :is_a_farmer_form,
-                      if: :check_your_answers_flow?
+                      to: :is_a_farmer_form
         end
 
         event :edit_operator_address do
           transitions from: :renewal_start_form,
-                      to: :operator_postcode_form,
-                      if: :check_your_answers_flow?
+                      to: :operator_postcode_form
         end
       end
     end
@@ -302,8 +289,10 @@ module WasteExemptionsEngine
       excluded_exemptions.empty?
     end
 
-    def check_your_answers_flow?
-      temp_check_your_answers_flow == true
-    end
+    # def check_your_answers_flow?
+    #   # byebug
+    #   temp_check_your_answers_flow == true
+    #   true
+    # end
   end
 end
