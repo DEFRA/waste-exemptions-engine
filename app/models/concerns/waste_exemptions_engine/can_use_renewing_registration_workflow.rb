@@ -186,64 +186,30 @@ module WasteExemptionsEngine
                       to: :contact_address_manual_form
         end
 
-        event :edit_exemptions do
-          transitions from: :renewal_start_form,
-                      to: :exemptions_form
-        end
-
-        event :edit_applicant_name do
-          transitions from: :renewal_start_form,
-                      to: :applicant_name_form
-        end
-
-        event :edit_applicant_phone do
-          transitions from: :renewal_start_form,
-                      to: :applicant_phone_form
-        end
-
-        event :edit_applicant_email do
-          transitions from: :renewal_start_form,
-                      to: :applicant_email_form
+        # These are all the states reachable from :renewal_start_form
+        %i[
+          exemptions
+          applicant_email
+          applicant_name
+          applicant_phone
+          contact_email
+          contact_name
+          contact_phone
+          contact_position
+          is_a_farmer
+          on_a_farm
+        ].each do |attribute|
+          event :"edit_#{attribute}" do
+            transitions from: :renewal_start_form, to: :"#{attribute}_form"
+          end
         end
 
         event :edit_contact_address do
-          transitions from: :renewal_start_form,
-                      to: :contact_postcode_form
-        end
-
-        event :edit_contact_name do
-          transitions from: :renewal_start_form,
-                      to: :contact_name_form
-        end
-
-        event :edit_contact_phone do
-          transitions from: :renewal_start_form,
-                      to: :contact_phone_form
-        end
-
-        event :edit_contact_email do
-          transitions from: :renewal_start_form,
-                      to: :contact_email_form
-        end
-
-        event :edit_contact_position do
-          transitions from: :renewal_start_form,
-                      to: :contact_position_form
-        end
-
-        event :edit_on_a_farm do
-          transitions from: :renewal_start_form,
-                      to: :on_a_farm_form
-        end
-
-        event :edit_is_a_farmer do
-          transitions from: :renewal_start_form,
-                      to: :is_a_farmer_form
+          transitions from: :renewal_start_form, to: :contact_postcode_form
         end
 
         event :edit_operator_address do
-          transitions from: :renewal_start_form,
-                      to: :operator_postcode_form
+          transitions from: :renewal_start_form, to: :operator_postcode_form
         end
       end
     end
