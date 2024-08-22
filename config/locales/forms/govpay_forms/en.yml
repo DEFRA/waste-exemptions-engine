@@ -3,12 +3,15 @@ en:
     govpay_forms:
       cancel:
         invalid_response: "Invalid Govpay cancel response"
+        message_title: "A problem with your payment"
         message: "Your attempt to pay has been cancelled. Please try again or select a different payment method."
       error:
         invalid_response: "Invalid Govpay error response"
+        message_title: "A problem with your payment"
         message: "An error has occurred and your payment has not been processed. Please try again or select a different payment method."
       failure:
         invalid_response: "Invalid Govay failure response"
+        message_title: "A problem with your payment"
         message: "Your payment has been refused. Please try again or select a different payment method."
       new:
         setup_error: "An error has occurred when preparing for your payment. Please try again or select a different payment method."

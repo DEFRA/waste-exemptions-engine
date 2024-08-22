@@ -99,7 +99,8 @@ module WasteExemptionsEngine
 
     def form_error_message(action, type = :message)
       action = GovpayPaymentDetailsService.payment_status(action)
-      flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}")
+      flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}_title")
+      flash[:error_details] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}")
     end
   end
 end
