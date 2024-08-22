@@ -44,7 +44,7 @@ module WasteExemptionsEngine
         post "/waste_exemptions_engine/#{exemptions_summary_form.token}/exemptions-summary",
              params: { exemptions_summary_form: { token: exemptions_summary_form.token } }
 
-        expect(response).to redirect_to(exemptions_summary_forms_path(exemptions_summary_form.token))
+        expect(response).to redirect_to(check_your_answers_forms_path(exemptions_summary_form.token))
       end
     end
   end
