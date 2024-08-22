@@ -38,8 +38,8 @@ module WasteExemptionsEngine
 
     private
 
-    def reset_charge_detail(_exemption)
-      charge_detail.band_charge_details = order_calculator.band_charge_details if charge_detail.present?
+    def reset_charge_detail(exemption)
+      charge_detail.band_charge_details = order_calculator.band_charge_details if exemption && charge_detail.present?
     end
   end
 end
