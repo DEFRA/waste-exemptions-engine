@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_134454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -70,6 +70,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.integer "additional_compliance_charge_amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "charge_detail_id"
+    t.index ["charge_detail_id"], name: "index_band_charge_details_on_charge_detail_id"
   end
 
   create_table "bands", force: :cascade do |t|
@@ -102,6 +104,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.integer "bucket_charge_amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.integer "total_charge_amount"
+    t.index ["order_id"], name: "index_charge_details_on_order_id"
   end
 
   create_table "charges", force: :cascade do |t|
@@ -167,7 +172,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.datetime "updated_at", null: false
     t.string "order_owner_type"
     t.bigint "order_owner_id"
+    t.string "order_uuid"
     t.index ["order_owner_type", "order_owner_id"], name: "index_orders_on_order_owner"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "payment_type"
+    t.integer "payment_amount"
+    t.string "payment_status"
+    t.bigint "order_id"
+    t.datetime "date_time"
+    t.string "govpay_id"
+    t.string "refunded_payment_govpay_id"
+    t.boolean "moto_payment", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "people", id: :serial, force: :cascade do |t|
@@ -239,14 +259,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
     t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
-  end
-
-  create_table "reports_generated_reports", id: :serial, force: :cascade do |t|
-    t.string "file_name"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.date "data_from_date"
-    t.date "data_to_date"
   end
 
   create_table "transient_addresses", id: :serial, force: :cascade do |t|
@@ -348,32 +360,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "invitation_token"
-    t.datetime "invitation_created_at", precision: nil
-    t.datetime "invitation_sent_at", precision: nil
-    t.datetime "invitation_accepted_at", precision: nil
-    t.integer "invitation_limit"
-    t.integer "invited_by_id"
-    t.string "invited_by_type"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at", precision: nil
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.string "session_token"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "role"
-    t.boolean "active", default: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  end
-
   create_table "version_archives", id: :serial, force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -397,13 +383,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_122732) do
 
   add_foreign_key "addresses", "registrations"
   add_foreign_key "analytics_page_views", "analytics_user_journeys", column: "user_journey_id"
+  add_foreign_key "band_charge_details", "charge_details"
   add_foreign_key "bucket_exemptions", "buckets"
   add_foreign_key "bucket_exemptions", "exemptions"
+  add_foreign_key "charge_details", "orders"
   add_foreign_key "exemptions", "bands"
   add_foreign_key "order_buckets", "buckets"
   add_foreign_key "order_buckets", "orders"
   add_foreign_key "order_exemptions", "exemptions"
   add_foreign_key "order_exemptions", "orders"
+  add_foreign_key "payments", "orders"
   add_foreign_key "people", "registrations"
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"
