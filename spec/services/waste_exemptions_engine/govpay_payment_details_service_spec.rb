@@ -12,9 +12,6 @@ module WasteExemptionsEngine
     let(:valid_order_uuid) { order.order_uuid }
     let(:order_uuid) { valid_order_uuid }
     let(:is_moto) { false }
-    let(:current_user) { build(:user) }
-    let(:govpay_front_office_api_token) { Rails.configuration.govpay_front_office_api_token }
-    let(:govpay_back_office_api_token) { Rails.configuration.govpay_back_office_api_token }
 
     subject(:service) { described_class.new(order_uuid: order_uuid, is_moto: is_moto) }
 
@@ -86,7 +83,7 @@ module WasteExemptionsEngine
               # Stub the Govpay API only for the front-office bearer token,
               # so the spec will fail if the request is made using the back-office token.
               stub_request(:get, %r{.*#{govpay_host}/(v1/)?payments/#{govpay_id}})
-                .with(headers: { "Authorization" => "Bearer #{govpay_front_office_api_token}" })
+                .with(headers: { "Authorization" => "Bearer #{Rails.configuration.govpay_front_office_api_token}" })
                 .to_return(status: 200, body: File.read("./spec/fixtures/files/govpay/#{response_fixture}"))
             end
 
@@ -107,7 +104,7 @@ module WasteExemptionsEngine
               # Stub the Govpay API only for the back-office bearer token,
               # so the spec will fail if the request is made using the front-office token.
               stub_request(:get, %r{.*#{govpay_host}/(v1/)?payments/#{govpay_id}})
-                # .with(headers: { "Authorization" => "Bearer #{govpay_back_office_api_token}" })
+                # .with(headers: { "Authorization" => "Bearer #{Rails.configuration.govpay_back_office_api_token}" })
                 .to_return(status: 200, body: File.read("./spec/fixtures/files/govpay/#{response_fixture}"))
             end
 

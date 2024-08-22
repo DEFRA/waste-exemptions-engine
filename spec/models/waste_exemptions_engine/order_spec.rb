@@ -113,9 +113,11 @@ module WasteExemptionsEngine
 
       context "with no pre-existing uuid" do
         it "generates and saves a uuid" do
-          expect(order[:order_uuid]).to be_nil
-          expect(order.order_uuid).to be_present
-          expect(order[:order_uuid]).to be_present
+          aggregate_failures "uuids" do
+            expect(order[:order_uuid]).to be_nil
+            expect(order.order_uuid).to be_present
+            expect(order[:order_uuid]).to be_present
+          end
         end
       end
 

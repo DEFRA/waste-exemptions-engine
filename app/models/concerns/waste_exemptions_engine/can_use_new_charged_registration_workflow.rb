@@ -284,7 +284,6 @@ module WasteExemptionsEngine
 
           transitions from: :govpay_form, to: :registration_complete_form
 
-
           # Check your answers
           transitions from: :applicant_name_form,
                       to: :check_your_answers_form

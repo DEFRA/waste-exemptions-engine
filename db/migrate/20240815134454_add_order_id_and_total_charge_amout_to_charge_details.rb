@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddOrderIdAndTotalChargeAmoutToChargeDetails < ActiveRecord::Migration[7.1]
   def change
     add_reference :charge_details, :order, foreign_key: true

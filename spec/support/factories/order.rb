@@ -12,7 +12,7 @@ FactoryBot.define do
     end
 
     trait :with_charge_detail do
-      charge_detail { build(:charge_detail) }
+      charge_detail
     end
   end
 end

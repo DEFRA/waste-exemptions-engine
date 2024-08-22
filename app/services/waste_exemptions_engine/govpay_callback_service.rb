@@ -50,7 +50,7 @@ module WasteExemptionsEngine
     def valid_unsuccessful_payment?(validation_method)
       return false unless govpay_response_validator(@payment_status).public_send(validation_method)
 
-      @order.update_after_online_payment(@payment_status)
+      @order.payment.update(payment_status: @payment_status)
       true
     end
 

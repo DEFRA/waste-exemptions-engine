@@ -23,7 +23,7 @@ module WasteExemptionsEngine
         order_uuid: params[:uuid],
         is_moto: WasteExemptionsEngine.configuration.host_is_back_office?
       ).govpay_payment_status
-      
+
       @transient_registration.with_lock do
         case GovpayPaymentDetailsService.payment_status(govpay_payment_status)
         when :success, :pending
@@ -81,7 +81,7 @@ module WasteExemptionsEngine
     end
 
     def response_is_valid?(action, params)
-      valid_method = "valid_#{GovpayPaymentDetailsService.payment_status(action)}?".to_sym
+      valid_method = :"valid_#{GovpayPaymentDetailsService.payment_status(action)}?"
       order_uuid = params[:uuid]
       govpay_service = GovpayCallbackService.new(order_uuid)
 

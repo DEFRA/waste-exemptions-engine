@@ -26,21 +26,16 @@ module WasteExemptionsEngine
 
       govpay_payment_id = response_json["payment_id"]
       if govpay_payment_id.present?
-        order.payment = WasteExemptionsEngine::Payment.new(payment_type: :govpay_payment) unless order.payment.present?
-
-        order.payment.govpay_id = govpay_payment_id
-        order.payment.save!
+        store_govpay_id(order, govpay_payment_id)
         {
-          payment: nil, # @payment,
+          payment: order.payment, # @payment,
           url: govpay_redirect_url(response)
         }
       else
         :error
       end
-    rescue StandardError => e
+    rescue StandardError => _e
       # The error will have been logged by CanSendGovPayRequest, just return an error response here
-      puts e.message
-      byebug
       :error
     end
 
@@ -70,6 +65,11 @@ module WasteExemptionsEngine
         description: "Your Waste Exemptions Registration #{@transient_registration.reference}",
         moto: WasteExemptionsEngine.configuration.host_is_back_office?
       }
+    end
+
+    def store_govpay_id(order, govpay_payment_id)
+      order.payment = WasteExemptionsEngine::Payment.new(payment_type: :govpay_payment) unless order.payment.present?
+      order.payment.update(govpay_id: govpay_payment_id)
     end
   end
 end
