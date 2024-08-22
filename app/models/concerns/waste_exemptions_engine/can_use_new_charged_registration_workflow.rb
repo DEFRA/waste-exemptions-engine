@@ -279,7 +279,7 @@ module WasteExemptionsEngine
                       if: :paying_by_card?
 
           transitions from: :govpay_form,
-                      to: :registration_received_pending_govpay_payment_form,
+                      to: :registration_received_pending_payment_form,
                       if: :pending_online_payment?
 
           transitions from: :govpay_form, to: :registration_complete_form
