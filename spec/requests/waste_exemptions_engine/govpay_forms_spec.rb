@@ -147,7 +147,9 @@ module WasteExemptionsEngine
                   payment.update!(payment_status: "created")
                 end
 
-                xit "redirects to registration_received_pending_payment_form" do
+                it "redirects to registration_received_pending_payment_form" do
+                  skip "registration_received_pending_payment_form is not implemented yet"
+
                   get payment_callback_govpay_forms_path(token, payment.payment_uuid)
                   expect(response).to redirect_to(new_registration_received_pending_payment_form_path(token))
                 end
