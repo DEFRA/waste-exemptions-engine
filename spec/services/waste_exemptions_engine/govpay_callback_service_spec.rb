@@ -54,8 +54,6 @@ module WasteExemptionsEngine
         end
 
         context "when a new order is initiated before the first one is completed" do
-          before { transient_registration.prepare_for_payment("card", nil) }
-
           it { expect(govpay_callback_service.valid_success?).to be true }
         end
       end

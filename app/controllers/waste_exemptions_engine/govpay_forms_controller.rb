@@ -42,7 +42,6 @@ module WasteExemptionsEngine
     private
 
     def prepare_for_payment
-      @transient_registration.prepare_for_payment(:govpay)
       order = @transient_registration.order
       govpay_service = GovpayPaymentService.new(@transient_registration, order)
       govpay_service.prepare_for_payment

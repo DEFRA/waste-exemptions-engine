@@ -67,7 +67,7 @@ module WasteExemptionsEngine
         return_url: payment_callback_url(payment),
         reference: payment.payment_uuid,
         description: "Your Waste Exemptions Registration #{@transient_registration.reference}",
-        moto: WasteExemptionsEngine.configuration.host_is_back_office?
+        moto: host_is_back_office
       }
     end
 
