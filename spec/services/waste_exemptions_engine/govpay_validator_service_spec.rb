@@ -5,9 +5,9 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe GovpayValidatorService do
     let(:transient_registration) { create(:new_charged_registration) }
-    let(:order) { build(:order, order_owner: transient_registration) }
-    let(:payment) { build(:payment, order: order) }
-    let(:govpay_validator_service) { described_class.new(order, order&.order_uuid, govpay_status) }
+    let(:order) { create(:order, order_owner: transient_registration) }
+    let(:payment) { create(:payment, order: order) }
+    let(:govpay_validator_service) { described_class.new(order, payment.payment_uuid, govpay_status) }
     let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
 
     before do

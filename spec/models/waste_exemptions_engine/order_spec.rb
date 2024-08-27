@@ -106,27 +106,5 @@ module WasteExemptionsEngine
         it { expect(has_bucket).to be true }
       end
     end
-
-    describe "#order_uuid" do
-      let(:transient_registration) { build(:new_charged_registration) }
-      let(:order) { described_class.new(order_owner: transient_registration) }
-
-      context "with no pre-existing uuid" do
-        it "generates and saves a uuid" do
-          aggregate_failures "uuids" do
-            expect(order[:order_uuid]).to be_nil
-            expect(order.order_uuid).to be_present
-            expect(order[:order_uuid]).to be_present
-          end
-        end
-      end
-
-      context "with a pre-existing uuid" do
-        it "returns the existing uuid" do
-          uuid = order.order_uuid
-          expect(order.order_uuid).to eq uuid
-        end
-      end
-    end
   end
 end

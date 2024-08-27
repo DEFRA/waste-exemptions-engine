@@ -7,6 +7,7 @@ module WasteExemptionsEngine
   RSpec.describe GovpayPaymentService do
     let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
     let(:order) { build(:order, :with_charge_detail) }
+    let(:payment) { build(:payment, order: order) }
     let(:transient_registration) { create(:new_charged_registration, order: order) }
     let(:govpay_service) { described_class.new(transient_registration, transient_registration.order) }
 
@@ -36,7 +37,7 @@ module WasteExemptionsEngine
         end
 
         it "does not change payment status" do
-          expect { govpay_service.prepare_for_payment }.not_to change { transient_registration.order.payment&.payment_status }
+          expect { govpay_service.prepare_for_payment }.not_to change(payment, :payment_status)
         end
 
         context "when the request is from the back-office" do
@@ -92,25 +93,25 @@ module WasteExemptionsEngine
 
       before { allow(Rails.configuration).to receive(:front_office_url).and_return(callback_host) }
 
-      subject(:callback_url) { govpay_service.payment_callback_url }
+      context "when the payment does not exist" do
+        let(:payment) { nil }
 
-      context "when the order does not exist" do
-
-        before { transient_registration.order = nil }
+        subject(:callback_url) { govpay_service.payment_callback_url(payment) }
 
         it "raises an exception" do
           expect { callback_url }.to raise_error(StandardError)
         end
       end
 
-      context "when the order exists" do
+      context "when the payment exists" do
+        subject(:callback_url) { govpay_service.payment_callback_url(payment) }
 
         it "the callback url includes the base path" do
           expect(callback_url).to start_with(callback_host)
         end
 
         it "the callback url includes the payment uuid" do
-          expect(callback_url).to include(transient_registration.order.order_uuid)
+          expect(callback_url).to include(payment.payment_uuid)
         end
       end
     end

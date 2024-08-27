@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       @transient_registration ||= TransientRegistration.where(token: params[:token]).first
 
       govpay_payment_status = GovpayPaymentDetailsService.new(
-        order_uuid: params[:uuid],
+        payment_uuid: params[:uuid],
         is_moto: WasteExemptionsEngine.configuration.host_is_back_office?
       ).govpay_payment_status
 
@@ -33,8 +33,8 @@ module WasteExemptionsEngine
         end
       end
     rescue StandardError => e
-      Rails.logger.warn "Govpay payment callback error for order uuid \"#{params[:uuid]}\": #{e}"
-      Airbrake.notify(e, message: "Govpay callback error for order uuid", order_uuid: params[:uuid])
+      Rails.logger.warn "Govpay payment callback error for payment uuid \"#{params[:uuid]}\": #{e}"
+      Airbrake.notify(e, message: "Govpay callback error for payment uuid", payment_uuid: params[:uuid])
       flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.new.internal_error")
       go_back
     end
@@ -82,8 +82,8 @@ module WasteExemptionsEngine
 
     def response_is_valid?(action, params)
       valid_method = :"valid_#{GovpayPaymentDetailsService.payment_status(action)}?"
-      order_uuid = params[:uuid]
-      govpay_service = GovpayCallbackService.new(order_uuid)
+      payment_uuid = params[:uuid]
+      govpay_service = GovpayCallbackService.new(payment_uuid)
 
       govpay_service.public_send(valid_method)
     end

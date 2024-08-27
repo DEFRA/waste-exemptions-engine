@@ -7,18 +7,18 @@ module WasteExemptionsEngine
   RSpec.describe GovpayPaymentDetailsService do
     let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
     let(:transient_registration) { create(:new_charged_registration) }
-    let(:order) { build(:order, order_owner: transient_registration) }
-    let(:payment) { build(:payment, order: order) }
-    let(:valid_order_uuid) { order.order_uuid }
-    let(:order_uuid) { valid_order_uuid }
+    let(:order) { create(:order, order_owner: transient_registration) }
+    let(:payment) { create(:payment, order: order, govpay_id: govpay_id) }
+    let(:valid_payment_uuid) { payment.payment_uuid }
+    let(:payment_uuid) { valid_payment_uuid }
     let(:is_moto) { false }
 
-    subject(:service) { described_class.new(order_uuid: order_uuid, is_moto: is_moto) }
+    subject(:service) { described_class.new(payment_uuid: payment_uuid, is_moto: is_moto) }
 
     describe "govpay_payment_status" do
 
       context "with an invalid payment uuid" do
-        let(:order_uuid) { "bad_uuid" }
+        let(:payment_uuid) { "bad_uuid" }
 
         before { allow(Airbrake).to receive(:notify) }
 
@@ -29,7 +29,7 @@ module WasteExemptionsEngine
         it "notifies Airbrake" do
           service.govpay_payment_status
         rescue ArgumentError
-          expect(Airbrake).to have_received(:notify).with(StandardError, hash_including(order_uuid: order_uuid))
+          expect(Airbrake).to have_received(:notify).with(StandardError, hash_including(payment_uuid: payment_uuid))
         end
       end
 

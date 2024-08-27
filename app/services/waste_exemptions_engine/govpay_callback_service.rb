@@ -5,10 +5,10 @@ require "rest-client"
 module WasteExemptionsEngine
   class GovpayCallbackService
 
-    def initialize(order_uuid)
-      @order_uuid = order_uuid
+    def initialize(payment_uuid)
+      @payment_uuid = payment_uuid
       @payment_status = govpay_payment_details_service.govpay_payment_status
-      @order = order_by_order_uuid
+      @payment = payment_by_payment_uuid
       @transient_registration = @order&.order_owner
     end
 
@@ -39,27 +39,27 @@ module WasteExemptionsEngine
     private
 
     def govpay_payment_details_service
-      GovpayPaymentDetailsService.new(order_uuid: @order_uuid,
+      GovpayPaymentDetailsService.new(payment_uuid: @payment_uuid,
                                       is_moto: WasteExemptionsEngine.configuration.host_is_back_office?)
     end
 
-    def order_by_order_uuid
-      Order.find_by(order_uuid: @order_uuid)
+    def payment_by_payment_uuid
+      Payment.find_by(payment_uuid: @payment_uuid)
     end
 
     def valid_unsuccessful_payment?(validation_method)
       return false unless govpay_response_validator(@payment_status).public_send(validation_method)
 
-      @order.payment.update(payment_status: @payment_status)
+      @payment.update(payment_status: @payment_status)
       true
     end
 
     def update_payment_data
-      @order.payment.update(payment_status: "success")
+      @payment.update(payment_status: "success")
     end
 
     def govpay_response_validator(govpay_status)
-      GovpayValidatorService.new(@order, @order_uuid, govpay_status)
+      GovpayValidatorService.new(@payment&.order, @payment_uuid, govpay_status)
     end
   end
 end

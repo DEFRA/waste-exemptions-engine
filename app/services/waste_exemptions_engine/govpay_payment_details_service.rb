@@ -5,12 +5,12 @@ require "rest-client"
 module WasteExemptionsEngine
   class GovpayPaymentDetailsService
 
-    def initialize(govpay_id: nil, is_moto: false, order_uuid: nil,
+    def initialize(govpay_id: nil, is_moto: false, payment_uuid: nil,
                    entity: ::WasteExemptionsEngine::TransientRegistration)
-      @order_uuid = order_uuid
+      @payment_uuid = payment_uuid
       @is_moto = is_moto
       @entity = entity
-      @govpay_id = govpay_id || order.payment.govpay_id
+      @govpay_id = govpay_id || payment.govpay_id
     end
 
     # Payment status in Govpay terms
@@ -23,17 +23,13 @@ module WasteExemptionsEngine
       status
     rescue StandardError => e
       Rails.logger.error "#{e.class} error retrieving status for payment, " \
-                         "uuid #{@order_uuid}, govpay id #{govpay_id}: #{e}"
+                         "uuid #{@payment_uuid}, govpay id #{govpay_id}: #{e}"
       Airbrake.notify(e, message: e.message,
-                         order_uuid:,
+                         payment_uuid:,
                          govpay_id:,
                          entity:)
 
       raise e
-    end
-
-    def payment
-      @payment ||= DefraRubyGovpay::Payment.new(response)
     end
 
     # Payment status in application terms
@@ -50,7 +46,7 @@ module WasteExemptionsEngine
 
     private
 
-    attr_reader :order_uuid, :entity, :govpay_id
+    attr_reader :payment_uuid, :entity, :govpay_id
 
     def defra_ruby_govpay_api
       @defra_ruby_govpay_api ||= DefraRubyGovpay::API.new(
@@ -68,11 +64,11 @@ module WasteExemptionsEngine
         )
     end
 
-    def order
-      Order.find_by!(order_uuid: order_uuid)
+    def payment
+      Payment.find_by!(payment_uuid: payment_uuid)
     rescue StandardError => e
-      Airbrake.notify(e, message: "Order not found for order uuid", order_uuid:)
-      raise ArgumentError, "Order not found for order uuid \"#{order_uuid}\": #{e}"
+      Airbrake.notify(e, message: "Order not found for payment uuid", payment_uuid:)
+      raise ArgumentError, "Order not found for payment uuid \"#{payment_uuid}\": #{e}"
     end
   end
 end

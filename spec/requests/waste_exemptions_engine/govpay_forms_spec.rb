@@ -34,7 +34,7 @@ module WasteExemptionsEngine
 
           it "creates a new payment" do
             get new_govpay_form_path(token)
-            expect(transient_registration.order.reload.payment).to be_present
+            expect(transient_registration.order.reload.payments).to be_present
           end
 
           it "redirects to govpay" do
@@ -44,7 +44,7 @@ module WasteExemptionsEngine
 
           it "populates govpay_id on the payment" do
             get new_govpay_form_path(token)
-            expect(transient_registration.order.reload.payment.govpay_id).to be_present
+            expect(transient_registration.order.reload.payments.last.govpay_id).to be_present
           end
 
           context "when the transient_registration is a new registration" do
@@ -55,7 +55,7 @@ module WasteExemptionsEngine
 
             it "creates a new payment" do
               get new_govpay_form_path(token)
-              expect(transient_registration.order.reload.payment).to be_present
+              expect(transient_registration.order.reload.payments).to be_present
             end
           end
 
@@ -92,21 +92,21 @@ module WasteExemptionsEngine
           context "when govpay status is success" do
             let(:govpay_status) { "success" }
 
-            context "when the order_uuid is valid and the balance is paid" do
+            context "when the payment_uuid is valid and the balance is paid" do
 
               it "updates payment status" do
-                expect { get payment_callback_govpay_forms_path(token, order.order_uuid) }
+                expect { get payment_callback_govpay_forms_path(token, payment.payment_uuid) }
                   .to change { payment.reload.payment_status }.from("created").to("success")
               end
 
               it "redirects to registration_complete_form" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(response).to redirect_to(new_registration_complete_form_path(token))
               end
 
               it "does not log an error" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(Airbrake).not_to have_received(:notify)
               end
@@ -123,7 +123,7 @@ module WasteExemptionsEngine
               end
 
               it "does not update payment status" do
-                expect(transient_registration.order.reload.payment.payment_status).to eq("created")
+                expect(payment.payment_status).to eq("created")
               end
 
               it "redirects to payment_summary_form" do
@@ -133,7 +133,7 @@ module WasteExemptionsEngine
               it "notifies Airbrake" do
                 expect(Airbrake)
                   .to have_received(:notify)
-                  .with("Invalid Govpay response: Cannot find matching order", { order_uuid: "invalid_uuid" })
+                  .with("Invalid Govpay response: Cannot find matching order", { payment_uuid: "invalid_uuid" })
               end
             end
           end
@@ -148,14 +148,14 @@ module WasteExemptionsEngine
                 end
 
                 it "redirects to renewal_received_pending_govpay_payment_form" do
-                  get payment_callback_govpay_forms_path(token, order.order_uuid)
+                  get payment_callback_govpay_forms_path(token, payment.payment_uuid)
                   expect(response).to redirect_to(new_renewal_received_pending_govpay_payment_form_path(token))
                 end
               end
 
               context "when the payment uuid is invalid" do
                 it "redirects to payment_summary_form" do
-                  get payment_callback_govpay_forms_path(token, "invalid_order_uuid")
+                  get payment_callback_govpay_forms_path(token, "invalid_payment_uuid")
                   expect(response).to redirect_to(new_payment_summary_form_path(token))
                 end
               end
@@ -167,13 +167,13 @@ module WasteExemptionsEngine
             RSpec.shared_examples "payment is unsuccessful but no error" do
 
               it "redirects to payment_summary_form" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(response).to redirect_to(new_payment_summary_form_path(token))
               end
 
               it "does not log an error" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(Airbrake).not_to have_received(:notify)
               end
@@ -182,13 +182,13 @@ module WasteExemptionsEngine
             RSpec.shared_examples "payment is unsuccessful with an error" do
 
               it "redirects to payment_summary_form" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(response).to redirect_to(new_payment_summary_form_path(token))
               end
 
               it "logs an error" do
-                get payment_callback_govpay_forms_path(token, order.order_uuid)
+                get payment_callback_govpay_forms_path(token, payment.payment_uuid)
 
                 expect(Airbrake).to have_received(:notify).at_least(:once)
               end

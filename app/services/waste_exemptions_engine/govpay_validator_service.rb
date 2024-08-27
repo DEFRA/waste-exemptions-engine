@@ -8,9 +8,9 @@ module WasteExemptionsEngine
   # validate the payment status before we record that a payment has been made (or failed) and allow the user
   # to continue.
   class GovpayValidatorService
-    def initialize(order, order_uuid, govpay_status)
+    def initialize(order, payment_uuid, govpay_status)
       @order = order
-      @order_uuid = order_uuid
+      @payment_uuid = payment_uuid
       @govpay_status = govpay_status
     end
 
@@ -48,29 +48,29 @@ module WasteExemptionsEngine
     private
 
     def valid?(action)
-      valid_order? && valid_order_uuid? && valid_status?(action)
+      valid_order? && valid_payment_uuid? && valid_status?(action)
     end
 
     def valid_order?
       return true if @order.present?
 
       Rails.logger.error "Invalid Govpay response: Cannot find matching order"
-      Airbrake.notify "Invalid Govpay response: Cannot find matching order", { order_uuid: @order_uuid }
+      Airbrake.notify "Invalid Govpay response: Cannot find matching order", { payment_uuid: @payment_uuid }
       false
     end
 
-    def valid_order_uuid?
-      unless @order_uuid.present?
+    def valid_payment_uuid?
+      unless @payment_uuid.present?
         Rails.logger.error "Invalid Govpay response: Missing payment uuid"
         Airbrake.notify "Invalid Govpay response: Missing payment uuid", order_id: @order&.id
         return false
       end
 
-      order = Order.find_by(order_uuid: @order_uuid)
+      order = Payment.find_by(payment_uuid: @payment_uuid)&.order
       return true if order.present?
 
-      Rails.logger.error "Invalid Govpay response: No matching order for payment uuid #{@order_uuid}"
-      Airbrake.notify "Invalid Govpay response: No matching order for payment uuid", order_uuid: @order_uuid
+      Rails.logger.error "Invalid Govpay response: No matching order for payment uuid #{@payment_uuid}"
+      Airbrake.notify "Invalid Govpay response: No matching order for payment uuid", payment_uuid: @payment_uuid
       false
     end
 

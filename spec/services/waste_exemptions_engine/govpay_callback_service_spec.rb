@@ -6,7 +6,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe GovpayCallbackService do
     let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
-    let(:govpay_callback_service) { described_class.new(order.order_uuid) }
+    let(:govpay_callback_service) { described_class.new(payment.payment_uuid) }
     let(:govpay_payment_details_service) { instance_double(GovpayPaymentDetailsService) }
 
     let(:transient_registration) { create(:new_charged_registration) }
@@ -32,7 +32,7 @@ module WasteExemptionsEngine
 
         it "updates the payment status" do
           govpay_callback_service.valid_success?
-          expect(order.reload.payment.payment_status).to eq("success")
+          expect(payment.reload.payment_status).to eq("success")
         end
 
         context "when run in the front office" do
@@ -74,7 +74,7 @@ module WasteExemptionsEngine
         end
 
         it "does not update payment status" do
-          expect { govpay_callback_service.valid_success? }.not_to change(order.payment, :payment_status)
+          expect { govpay_callback_service.valid_success? }.not_to change(payment, :payment_status)
         end
       end
     end
