@@ -1,0 +1,46 @@
+en:
+  waste_exemptions_engine:
+    registration_received_pending_payment_forms:
+      new:
+        title: Your registration number is %{reference}
+        heading: Your registration number is %{reference}
+        panel_text: Use this number as a payment reference when you send payment
+        bank_details_heading: Bank details
+        sort_code: Sort code
+        sort_code_value: "11-11-11"
+        account_number: Account number
+        account_number_value: "11??????"
+        payment_reference: Payment reference
+        payment_reference_hint: We cannot complete your registration without this
+        payment_due: Payment due
+        overseas_payments: Overseas payments
+        iban: "IBAN: GB23 NWBK 607080 10014411"
+        swift_bic: "SWIFT/BIC: NWBK GB2L"
+        currency: "Currency: Sterling"
+        confirm_payment_heading: Confirm you've paid
+        confirm_payment_instruction: Email us to confirm you've paid. Include your registration number in your email so we can match your payment to your registration.
+        email_us: Email us
+        contact_email: "enquiries@wex.com"
+        email_include_details: What to include when you email us
+        email_subject: "Email subject:"
+        email_subject_content: "Waste exemptions payment confirmation %{reference}"
+        email_body: "Email body:"
+        email_body_content:
+          payment_confirmation_reference: "Payment confirmation reference: %{reference}"
+          date_paid: "Date paid: %{date}"
+          amount: "Amount: %{amount}"
+        email_sent: We've sent an email to %{email} with the payment details and instructions.
+        payment_processing_time: Please allow 5 working days for your payment to reach us.
+        alternative_payment_method: Alternatively, contact us to pay by credit or debit card.
+        error_heading: A problem to fix
+        next_button: Finished
+        survey_link_text: What do you think of this service?
+        survey_link_hint: (takes 30 seconds)
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/registration_complete_form:
+          attributes:
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

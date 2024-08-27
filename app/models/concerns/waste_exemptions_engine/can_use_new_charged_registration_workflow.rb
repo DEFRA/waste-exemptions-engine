@@ -67,6 +67,7 @@ module WasteExemptionsEngine
         state :payment_summary_form
         state :govpay_form
         state :registration_complete_form
+        state :registration_received_pending_payment_form
 
         # Transitions
         event :next do
@@ -275,8 +276,13 @@ module WasteExemptionsEngine
           transitions from: :declaration_form,
                       to: :payment_summary_form
 
-          transitions from: :payment_summary_form, to: :govpay_form,
+          transitions from: :payment_summary_form,
+                      to: :govpay_form,
                       if: :paying_by_card?
+
+          transitions from: :payment_summary_form,
+                      to: :registration_received_pending_payment_form,
+                      if: :payment_via_bank_transfer?
 
           transitions from: :govpay_form,
                       to: :registration_received_pending_payment_form,
@@ -508,6 +514,10 @@ module WasteExemptionsEngine
 
     def paying_by_card?
       temp_payment_method == "card"
+    end
+
+    def payment_via_bank_transfer?
+      temp_payment_method == "bank_transfer"
     end
   end
 end

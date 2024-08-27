@@ -1,0 +1,86 @@
+<% content_for :page_title, t(".title", reference: @registration.reference) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        <%= t(".heading", reference: @registration.reference) %>
+        <br />
+      </h1>
+      <div class="govuk-panel__body">
+        <span id="reg_identifier"><%= t(".panel_text") %></span>
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m"><%= t(".bank_details_heading") %></h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt ><%= t(".sort_code") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= t(".sort_code_value") %></strong></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt><%= t(".account_number") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= t(".account_number_value") %></strong></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt>
+          <%= t(".payment_reference") %><br>
+          <span class="govuk-hint"><%= t(".payment_reference_hint") %></span>
+        </dt>
+        <dd class="govuk-summary-list__value"><strong><%= @registration.reference %></strong></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt><%= t(".payment_due") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= @registration_received_pending_payment_form.total_charge %></strong></dd>
+      </div>
+    </dl>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text"><%= t(".overseas_payments") %></span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body"><%= t(".iban") %></p>
+        <p class="govuk-body"><%= t(".swift_bic") %></p>
+        <p class="govuk-body"><%= t(".currency") %></p>
+      </div>
+    </details>
+
+    <h2 class="govuk-heading-m"><%= t(".confirm_payment_heading") %></h2>
+    <p class="govuk-body"><%= t(".confirm_payment_instruction") %></p>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt><%= t(".email_us") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= t(".contact_email") %></strong></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt><%= t(".payment_reference") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= @registration.reference %></strong></dd>
+      </div>
+    </dl>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text"><%= t(".email_include_details") %></span>
+      </summary>
+      <div class="govuk-details__text">
+        <h3 class="govuk-heading-s"><%= t(".email_subject") %></h3>
+        <p class="govuk-body"><%= t(".email_subject_content", reference: @registration.reference) %></p>
+        <h3 class="govuk-heading-s"><%= t(".email_body") %></h3>
+        <p class="govuk-body">
+        <%= t(".email_body_content.payment_confirmation_reference", reference: @registration.reference) %>
+        <br>
+        <%= t(".email_body_content.date_paid", date: @registration.expires_on) %>
+        <br>
+        <%= t(".email_body_content.amount", amount: @registration_received_pending_payment_form.total_charge) %>
+        </p>
+      </div>
+    </details>
+
+    <p class="govuk-body"><%= t(".email_sent", email: @registration_received_pending_payment_form.applicant_email) %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".payment_processing_time") %></li>
+      <li><%= t(".alternative_payment_method") %></li>
+    </ul>
+  </div>
+</div>

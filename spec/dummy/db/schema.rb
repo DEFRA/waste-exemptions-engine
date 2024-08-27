@@ -15,6 +15,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_131328) do
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
 
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "registration_id", null: false
+    t.integer "balance", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_id"], name: "index_accounts_on_registration_id"
+  end
+
   create_table "addresses", id: :serial, force: :cascade do |t|
     t.integer "address_type", default: 0
     t.integer "mode", default: 0
@@ -382,6 +390,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_131328) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "accounts", "registrations"
   add_foreign_key "addresses", "registrations"
   add_foreign_key "analytics_page_views", "analytics_user_journeys", column: "user_journey_id"
   add_foreign_key "band_charge_details", "charge_details"
