@@ -85,12 +85,12 @@ module WasteExemptionsEngine
             allow(GovpayPaymentService).to receive(:new).and_return(payment_service)
             allow(payment_service).to receive(:prepare_for_payment)
             allow(GovpayPaymentDetailsService).to receive(:new).and_return(payment_details_service)
-            allow(payment_details_service).to receive(:govpay_payment_status).and_return(govpay_status)
+            allow(payment_details_service).to receive(:govpay_payment_status).and_return(payment_status)
             payment
           end
 
           context "when govpay status is success" do
-            let(:govpay_status) { "success" }
+            let(:payment_status) { "success" }
 
             context "when the payment_uuid is valid and the balance is paid" do
 
@@ -144,12 +144,12 @@ module WasteExemptionsEngine
 
               context "when the payment uuid is valid" do
                 before do
-                  order.update!(govpay_status: "created")
+                  payment.update!(payment_status: "created")
                 end
 
-                it "redirects to renewal_received_pending_govpay_payment_form" do
+                xit "redirects to registration_received_pending_payment_form" do
                   get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-                  expect(response).to redirect_to(new_renewal_received_pending_govpay_payment_form_path(token))
+                  expect(response).to redirect_to(new_registration_received_pending_payment_form_path(token))
                 end
               end
 
@@ -159,6 +159,18 @@ module WasteExemptionsEngine
                   expect(response).to redirect_to(new_payment_summary_form_path(token))
                 end
               end
+            end
+
+            context "when govpay status is created" do
+              let(:payment_status) { "created" }
+
+              it_behaves_like "payment is pending"
+            end
+
+            context "when govpay status is submitted" do
+              let(:payment_status) { "submitted" }
+
+              it_behaves_like "payment is pending"
             end
           end
 
@@ -198,7 +210,7 @@ module WasteExemptionsEngine
           context "with an invalid success status" do
             before { allow(GovpayValidatorService).to receive(:valid_govpay_status?).and_return(false) }
 
-            let(:govpay_status) { "success" }
+            let(:payment_status) { "success" }
 
             it_behaves_like "payment is unsuccessful with an error"
           end
@@ -206,7 +218,7 @@ module WasteExemptionsEngine
           context "with an invalid failure status" do
             before { allow(GovpayValidatorService).to receive(:valid_govpay_status?).and_return(false) }
 
-            let(:govpay_status) { "cancelled" }
+            let(:payment_status) { "cancelled" }
 
             it_behaves_like "payment is unsuccessful with an error"
           end
