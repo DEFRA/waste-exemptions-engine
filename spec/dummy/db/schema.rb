@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_15_134454) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_23_131328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -187,6 +187,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_134454) do
     t.boolean "moto_payment", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_uuid"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
