@@ -4,22 +4,22 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe PaymentSummaryForm, type: :model do
-    let(:payment_type) { nil }
-    let(:transient_registration) { build(:new_charged_registration, workflow_state: :payment_summary_form, payment_type:) }
+    let(:temp_payment_method) { nil }
+    let(:transient_registration) { build(:new_charged_registration, workflow_state: :payment_summary_form, temp_payment_method:) }
 
     subject(:form) { build(:payment_summary_form, transient_registration: transient_registration) }
 
-    it "validates the payment type using the PaymentTypeValidator class" do
+    it "validates the payment type using the PaymentMethodValidator class" do
       validators = form._validators
-      expect(validators[:payment_type].first.class).to eq(WasteExemptionsEngine::PaymentTypeValidator)
+      expect(validators[:temp_payment_method].first.class).to eq(WasteExemptionsEngine::PaymentMethodValidator)
     end
 
     it_behaves_like "a validated form", :payment_summary_form do
-      let(:valid_params) { { payment_type: "bank_transfer" } }
+      let(:valid_params) { { temp_payment_method: "bank_transfer" } }
       let(:invalid_params) do
         [
-          { payment_type: "invalid" },
-          { payment_type: "" }
+          { temp_payment_method: "invalid" },
+          { temp_payment_method: "" }
         ]
       end
     end
@@ -27,17 +27,17 @@ module WasteExemptionsEngine
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the selected payment type" do
-          valid_params = { payment_type: "card" }
+          valid_params = { temp_payment_method: "card" }
 
           expect { form.submit(valid_params) }
-            .to change(transient_registration, :payment_type)
+            .to change(transient_registration, :temp_payment_method)
             .from(nil).to("card")
         end
       end
 
       context "when the form is invalid" do
         it "does not submit" do
-          invalid_params = { payment_type: "invalid" }
+          invalid_params = { temp_payment_method: "invalid" }
           expect(form.submit(invalid_params)).to be(false)
         end
       end

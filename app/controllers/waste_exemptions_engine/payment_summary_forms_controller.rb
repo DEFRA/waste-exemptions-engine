@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.fetch(:payment_summary_form, {}).permit(:payment_type)
+      params.fetch(:payment_summary_form, {}).permit(:temp_payment_method)
     end
   end
 end
