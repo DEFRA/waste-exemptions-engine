@@ -2,6 +2,7 @@ en:
   waste_exemptions_engine:
     payment_summary_forms:
       new:
+        title: Payment summary
         heading: Payment summary
         payment_summary: Payment summary
         charges:
