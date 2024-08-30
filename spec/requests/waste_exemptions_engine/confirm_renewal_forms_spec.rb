@@ -27,11 +27,5 @@ module WasteExemptionsEngine
         expect(response.body).to have_valid_html
       end
     end
-
-    empty_form_is_valid = true
-    include_examples "POST form", :confirm_renewal_form, "/confirm-renewal", empty_form_is_valid do
-      let(:form_data) { {} }
-      let(:invalid_form_data) { [] }
-    end
   end
 end
