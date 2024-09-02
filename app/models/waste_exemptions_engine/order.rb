@@ -2,15 +2,22 @@
 
 module WasteExemptionsEngine
   class Order < ApplicationRecord
-
     self.table_name = "orders"
+
+    delegate :total_charge_amount, to: :charge_detail
 
     belongs_to :order_owner, polymorphic: true
     has_many :order_exemptions, dependent: :destroy
-    has_many :exemptions, through: :order_exemptions
+    has_many :exemptions, through: :order_exemptions, after_add: :reset_charge_detail
+    has_many :payments, dependent: :destroy
 
     has_one :order_bucket, dependent: :destroy
     has_one :bucket, through: :order_bucket
+    has_one :charge_detail, dependent: :destroy
+
+    # def payment(govpay_id)
+    #   payments.find_by(govpay_id: govpay_id)
+    # end
 
     def highest_band
       return nil if exemptions.empty?
@@ -20,6 +27,16 @@ module WasteExemptionsEngine
 
     def bucket?
       bucket.present?
+    end
+
+    def order_calculator
+      WasteExemptionsEngine::OrderCalculatorService.new(self)
+    end
+
+    private
+
+    def reset_charge_detail(exemption)
+      charge_detail.band_charge_details = order_calculator.band_charge_details if exemption && charge_detail.present?
     end
   end
 end

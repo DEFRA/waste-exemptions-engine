@@ -10,5 +10,9 @@ FactoryBot.define do
     trait :with_bucket do
       association :bucket
     end
+
+    trait :with_charge_detail do
+      charge_detail
+    end
   end
 end

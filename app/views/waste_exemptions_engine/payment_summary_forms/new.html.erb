@@ -1,4 +1,6 @@
 <%= render("waste_exemptions_engine/shared/back", token: @payment_summary_form.token) %>
+<%= render("waste_exemptions_engine/shared/error", error: flash[:error], details: flash[:error_details]) if flash[:error].present? %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l"><%= t(".heading") %></h1>

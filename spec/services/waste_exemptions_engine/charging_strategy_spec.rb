@@ -50,14 +50,6 @@ module WasteExemptionsEngine
       it { expect(strategy.charge_detail.band_charge_details.length).to eq 3 }
       it { expect(strategy.charge_detail.bucket_charge_amount).to be_zero }
 
-      it "does not persist the charge_detail" do
-        expect { strategy.charge_detail }.not_to change(ChargeDetail, :count)
-      end
-
-      it "does not persist the band_charge_details" do
-        expect { strategy.charge_detail }.not_to change(BandChargeDetail, :count)
-      end
-
       context "when order details are changed" do
         let(:new_exemption) { build(:exemption, band: Band.last) }
 

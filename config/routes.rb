@@ -588,6 +588,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "payment-summary",
               path_names: { new: "" }
 
+    resources :govpay_forms,
+              only: %i[new create],
+              path: "govpay",
+              path_names: { new: "" } do
+                get "payment_callback/:uuid",
+                    to: "govpay_forms#payment_callback",
+                    as: "payment_callback",
+                    on: :collection
+              end
+
+    resources :registration_received_pending_payment_forms,
+              only: %i[new],
+              path: "registration-received-pending-payment",
+              path_names: { new: "" }
+
     get "/back", to: "forms#go_back", as: "go_back_forms"
 
     # Deregistering

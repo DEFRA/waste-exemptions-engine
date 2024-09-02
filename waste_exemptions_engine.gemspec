@@ -76,4 +76,7 @@ Gem::Specification.new do |s|
 
   # Used to generate a PDF from HTML
   s.add_dependency "wicked_pdf"
+
+  # Used to handle payments via Govpay API
+  s.add_dependency "defra_ruby_govpay"
 end

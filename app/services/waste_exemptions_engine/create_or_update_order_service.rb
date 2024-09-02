@@ -5,6 +5,7 @@ module WasteExemptionsEngine
     def run(transient_registration:)
       @transient_registration = transient_registration
       @order = transient_registration.order || transient_registration.create_order
+      reset_charge_detail
       assign_exemptions
       assign_bucket
       @order
@@ -23,6 +24,12 @@ module WasteExemptionsEngine
       return unless @transient_registration.farm_affiliated? && farmer_bucket.present?
 
       @order.create_order_bucket!(bucket: farmer_bucket)
+    end
+
+    def reset_charge_detail
+      @order.charge_detail.band_charge_details.destroy_all if @order.charge_detail&.band_charge_details.present?
+      @order.charge_detail.destroy if @order.charge_detail.present?
+      @order.reload
     end
 
     def farmer_bucket

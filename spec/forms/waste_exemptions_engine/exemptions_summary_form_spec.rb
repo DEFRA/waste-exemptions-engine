@@ -12,7 +12,7 @@ module WasteExemptionsEngine
 
     describe "#order" do
       context "when transient_registration has an order" do
-        let(:existing_order) { build(:order) }
+        let(:existing_order) { create(:order) }
 
         before do
           allow(form.transient_registration).to receive(:order).and_return(existing_order)
