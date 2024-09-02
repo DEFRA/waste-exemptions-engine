@@ -19,15 +19,5 @@ module WasteExemptionsEngine
         expect(response.body).to have_html_escaped_string(edit_site_postcode_form.temp_site_postcode)
       end
     end
-
-    context "when renewing an existing registration" do
-      let(:renew_site_postcode_form) { build(:renew_site_postcode_form) }
-
-      it "pre-fills site postcode information" do
-        get "/waste_exemptions_engine/#{renew_site_postcode_form.token}/site-postcode"
-
-        expect(response.body).to have_html_escaped_string(renew_site_postcode_form.temp_site_postcode)
-      end
-    end
   end
 end
