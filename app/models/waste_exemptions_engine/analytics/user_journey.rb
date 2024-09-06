@@ -14,13 +14,6 @@ module WasteExemptionsEngine
 
       serialize :registration_data, type: Hash, coder: JSON
 
-      START_CUTOFF_PAGES = %w[
-        location_form
-        edit_exemptions_form
-        front_office_edit_form
-        confirm_renewal_form
-      ].freeze
-
       COMPLETION_PAGES = %w[
         register_in_wales_form
         register_in_scotland_form
