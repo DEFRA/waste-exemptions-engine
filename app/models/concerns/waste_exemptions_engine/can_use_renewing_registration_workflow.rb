@@ -254,11 +254,5 @@ module WasteExemptionsEngine
     def no_exemptions_deregistered?
       excluded_exemptions.empty?
     end
-
-    # def check_your_answers_flow?
-    #   # byebug
-    #   temp_check_your_answers_flow == true
-    #   true
-    # end
   end
 end
