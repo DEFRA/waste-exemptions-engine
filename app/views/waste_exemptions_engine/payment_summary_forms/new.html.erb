@@ -25,7 +25,6 @@
     <p class="govuk-body" id="vat-note"><%= t(".vat_note") %></p>
     <%= form_for @payment_summary_form do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
-      <h2 class="govuk-heading-m"><%= t(".make_payment") %></h2>
       <%= f.govuk_radio_buttons_fieldset :temp_payment_method,
         legend: { text: t(".temp_payment_method_legend"), size: "m" } do %>
         <%= f.govuk_radio_button :temp_payment_method, "card",
