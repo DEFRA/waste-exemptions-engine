@@ -10,8 +10,7 @@ en:
           registration_charge: Registration charge
           total_charge: Total amount due
         vat_note: All charges are outside the scope of VAT.
-        make_payment: Make a payment
-        payment_type_legend: Select a payment method
+        temp_payment_method_legend: Make a payment
         payment_options:
           card: Pay by credit, debit card, Google or Apple Pay
           card_hint: You will be transferred to our secure GovPay site. We accept MasterCard, Maestro and Visa.
