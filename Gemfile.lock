@@ -303,7 +303,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (1.5.7)
+    pg (1.5.8)
     phonelib (0.9.1)
     protocol-hpack (1.4.3)
     protocol-http (0.26.5)
