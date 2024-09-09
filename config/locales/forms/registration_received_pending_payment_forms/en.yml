@@ -7,9 +7,9 @@ en:
         panel_text: Use this number as a payment reference when you send payment
         bank_details_heading: Bank details
         sort_code: Sort code
-        sort_code_value: "11-11-11"
+        sort_code_value: "60-70-80"
         account_number: Account number
-        account_number_value: "11??????"
+        account_number_value: "10014411"
         payment_reference: Payment reference
         payment_reference_hint: We cannot complete your registration without this
         payment_due: Payment due
