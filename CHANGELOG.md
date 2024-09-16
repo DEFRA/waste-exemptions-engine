@@ -6,6 +6,9 @@
 
 **Implemented enhancements:**
 
+- RUBY-3051 & RUBY-3052 : payment by card and payment via bank transfer [\#1078](https://github.com/DEFRA/waste-exemptions-engine/pull/1078) ([brujeo](https://github.com/brujeo))
+- rename renew\_without\_changes\_form to confirm\_renewal\_form [\#1066](https://github.com/DEFRA/waste-exemptions-engine/pull/1066) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- RUBY 3173 wex charging 2 0 payment summary page [\#1060](https://github.com/DEFRA/waste-exemptions-engine/pull/1060) ([jjromeo](https://github.com/jjromeo))
 - Feature/ruby 3260 cya cleanup [\#1059](https://github.com/DEFRA/waste-exemptions-engine/pull/1059) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - \[RUBY-3231\] Adjust content on private beta unavailable page [\#1054](https://github.com/DEFRA/waste-exemptions-engine/pull/1054) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3267\] feat: Add ability to edit contact name and email on Renewal Start page [\#1051](https://github.com/DEFRA/waste-exemptions-engine/pull/1051) ([brujeo](https://github.com/brujeo))
@@ -230,6 +233,10 @@
 
 **Fixed bugs:**
 
+- \[RUBY-3051\] Update title content and bank details for registration received pending payment form [\#1085](https://github.com/DEFRA/waste-exemptions-engine/pull/1085) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3173\] Remove extra unneded heading that said "Temp payment method" [\#1084](https://github.com/DEFRA/waste-exemptions-engine/pull/1084) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3173\] Add `title` field to payment summary form locale file [\#1079](https://github.com/DEFRA/waste-exemptions-engine/pull/1079) ([jjromeo](https://github.com/jjromeo))
+- RUBY 3173 Rename `payment_type` to `temp_payment_method` and add to schema [\#1068](https://github.com/DEFRA/waste-exemptions-engine/pull/1068) ([jjromeo](https://github.com/jjromeo))
 - Ruby 3169 wex charging 1 0 implement exemptions summary [\#1057](https://github.com/DEFRA/waste-exemptions-engine/pull/1057) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3169\] Add ExemptionCostsPresenter to handle exemption charges and update relevant views and forms [\#1055](https://github.com/DEFRA/waste-exemptions-engine/pull/1055) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3169\] Refactor order creation service to handle updates [\#1052](https://github.com/DEFRA/waste-exemptions-engine/pull/1052) ([jjromeo](https://github.com/jjromeo))
@@ -373,6 +380,18 @@
 
 **Merged pull requests:**
 
+- Bump phonelib from 0.9.1 to 0.9.2 [\#1089](https://github.com/DEFRA/waste-exemptions-engine/pull/1089) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump pg from 1.5.7 to 1.5.8 [\#1088](https://github.com/DEFRA/waste-exemptions-engine/pull/1088) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump paper\_trail from 15.1.0 to 15.2.0 [\#1087](https://github.com/DEFRA/waste-exemptions-engine/pull/1087) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rubocop-rspec from 3.0.4 to 3.0.5 [\#1086](https://github.com/DEFRA/waste-exemptions-engine/pull/1086) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Fix/ruby 3292 user journey stats [\#1083](https://github.com/DEFRA/waste-exemptions-engine/pull/1083) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Bump govuk\_design\_system\_formbuilder from 5.4.1 to 5.6.0 [\#1082](https://github.com/DEFRA/waste-exemptions-engine/pull/1082) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump activerecord from 7.1.3.4 to 7.1.4 [\#1077](https://github.com/DEFRA/waste-exemptions-engine/pull/1077) ([dependabot[bot]](https://github.com/apps/dependabot))
+- !! DO NOT MERGE !! Chore/ruby 3292 remove redundant renewal code [\#1074](https://github.com/DEFRA/waste-exemptions-engine/pull/1074) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Bump vcr from 6.2.0 to 6.3.1 [\#1072](https://github.com/DEFRA/waste-exemptions-engine/pull/1072) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rspec-rails from 6.1.3 to 6.1.4 [\#1069](https://github.com/DEFRA/waste-exemptions-engine/pull/1069) ([dependabot[bot]](https://github.com/apps/dependabot))
+- pin activerecord version to avoid unsupported version error from paper\_trail [\#1065](https://github.com/DEFRA/waste-exemptions-engine/pull/1065) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
+- Update CHANGELOG [\#1062](https://github.com/DEFRA/waste-exemptions-engine/pull/1062) ([PaulDoyle-DEFRA](https://github.com/PaulDoyle-DEFRA))
 - \[RUBY-3169\] Add IDs to table headers and summary list values in `exemptions_summary_forms/new.html.erb` for better accessibility. [\#1058](https://github.com/DEFRA/waste-exemptions-engine/pull/1058) ([jjromeo](https://github.com/jjromeo))
 - Bump notifications-ruby-client from 6.1.0 to 6.2.0 [\#1056](https://github.com/DEFRA/waste-exemptions-engine/pull/1056) ([dependabot[bot]](https://github.com/apps/dependabot))
 - \[RUBY-3224\] Replace old gov-uk css class within html certificate [\#1040](https://github.com/DEFRA/waste-exemptions-engine/pull/1040) ([jjromeo](https://github.com/jjromeo))
