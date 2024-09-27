@@ -6,6 +6,10 @@ class RegistrableTest
   include WasteExemptionsEngine::CanHaveViewCertificateToken
 
   attr_accessor :view_certificate_token, :view_certificate_token_created_at
+
+  def save!
+    true
+  end
 end
 
 module WasteExemptionsEngine
