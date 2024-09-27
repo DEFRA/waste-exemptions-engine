@@ -5,8 +5,9 @@
   @presenter ||= presenter
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title><%=t ".title" %></title>
     <%= yield :stylesheets %>
     <meta charset="utf-8" >
     <%= stylesheet_link_tag "certificates", media: "all" %>

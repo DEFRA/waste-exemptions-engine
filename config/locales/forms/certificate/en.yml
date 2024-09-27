@@ -2,6 +2,8 @@ en:
   waste_exemptions_engine:
     certificates:
       show:
+        title: Waste exemption registration certificate
+        heading: Waste exemption registration %{registration_number}
         view_as_pdf: View as PDF (opens in a new window)
         business_types:
           soleTrader: Individual or sole trader
@@ -10,7 +12,6 @@ en:
           limitedLiabilityPartnership: Limited liability partnership
           localAuthority: Local authority or public body
           charity: Charity or trust
-        heading: Waste exemption registration %{registration_number}
         confirmation:
           heading: Waste exemption registration %{registration_number}
           paragraph1: We confirm that the details you have entered, as shown below, are now on the exemptions register. Your registration should show on the public register within 24 hours. Your registration details, including contact, site and business addresses are below.
