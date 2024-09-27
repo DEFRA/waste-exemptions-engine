@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     end
 
     def template_id
-      @pdf.present? ? "56cc61ac-45f1-4229-83ad-0a9a3a6383fe" : "8fcf5d04-944f-4cd1-b261-962fedd3859f"
+      @pdf.present? ? "9025773f-35a3-4894-b8c6-105d65c19df4" : "8fcf5d04-944f-4cd1-b261-962fedd3859f"
     end
 
     # For CanHaveCommunicationLog
@@ -42,7 +42,7 @@ module WasteExemptionsEngine
         template_id: template_id,
         personalisation: {
           reference: @registration.reference,
-          link_to_file: Notifications.prepare_upload(prepare_pdf_certificate),
+          link_to_file: WasteExemptionsEngine::ViewCertificateLinkService.run(registration: @registration),
           unsubscribe_link: WasteExemptionsEngine::UnsubscribeLinkService.run(registration: @registration)
         }
       }
