@@ -1,0 +1,78 @@
+en:
+  waste_exemptions_engine:
+    certificates:
+      show:
+        view_as_pdf: View as PDF (opens in a new window)
+        business_types:
+          soleTrader: Individual or sole trader
+          limitedCompany: Limited company
+          partnership: Partnership
+          limitedLiabilityPartnership: Limited liability partnership
+          localAuthority: Local authority or public body
+          charity: Charity or trust
+        heading: Waste exemption registration %{registration_number}
+        confirmation:
+          heading: Waste exemption registration %{registration_number}
+          paragraph1: We confirm that the details you have entered, as shown below, are now on the exemptions register. Your registration should show on the public register within 24 hours. Your registration details, including contact, site and business addresses are below.
+          warning: This document is not a permit. Exemptions may have ceased or been revoked.
+          paragraph2: "To check whether these exemptions are still valid, check the company’s registration %{company_registration_number} on the public register of waste exemptions:"
+        business_responsibilities:
+          heading: Business responsibilities
+          first_paragraph:
+            description: "The business or organisation responsible for carrying out the exempt waste operations agrees to:"
+            list_items:
+              first: comply with all limits on waste types and quantities
+              second: comply with all conditions governing how waste must be stored, handled and treated
+              third: carry out the operations without endangering human health or harming the environment
+          second_paragraph:
+            description: "For the operations to remain exempt they must be carried out without:"
+            list_items:
+              first: causing risk to water, air, soil, plants or animals
+              second: causing a nuisance through noise and odours
+              third: negatively affecting the countryside or places of special interest
+          paragraph3: In sensitive locations, extra controls may be needed over and above those set out in the exemptions to make sure this happens.
+        registration_details:
+          heading: Registration details
+          registration_details:
+            heading: Registration details
+            reference_number: Reference Number
+            date_registered: Date registered
+          exemptions:
+            active_heading: Waste exemptions
+            expires_on: Expires on %{expire_date}
+            inactive_heading: De-registered exemptions
+            ceased_on: Ceased on %{cease_date}
+          contact_details:
+            heading: Your contact details
+            name: Your name
+            business_telephone: Your telephone number
+            business_email: Your email address
+          business_details:
+            heading: Waste operator details
+            partners: Partners
+            business_type: Business or organisation type
+            responsible_person: Waste operator responsible for these waste operations
+            responsible_person_address: Address of the Waste operator
+          waste_operations_contact:
+            heading: Waste operations contact
+            name: Name
+            position: Position
+            telephone_n: Telephone number
+            address: Address
+            email: Email
+          waste_operations_details:
+            heading: Waste operation details
+
+      confirm_email:
+        title: "In order to access your certificate, enter the email address that was used during registration."
+        heading: "In order to access your certificate, enter the email address that was used during registration."
+        email_label: "Email address"
+        email_hint: "This is the email address that was entered during registration"
+        submit: "Confirm"
+
+      process_email:
+        error: "You need to enter the email address that the certificate link was sent to"  
+
+      errors:
+        token: "There is a problem with the link you have used to access this page. Please contact the Environment Agency for help."
+

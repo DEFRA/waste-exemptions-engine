@@ -643,6 +643,22 @@ WasteExemptionsEngine::Engine.routes.draw do
 
   end
 
+  get ":registration_reference/certificate",
+      to: "certificates#show",
+      as: "certificate"
+
+  get ":registration_reference/pdf_certificate",
+      to: "certificates#pdf",
+      as: "pdf_certificate"
+
+  get ":registration_reference/certificate_confirm_email",
+      to: "certificates#confirm_email",
+      as: "certificate_confirm_email"
+
+  post ":registration_reference/certificate_process_email",
+       to: "certificates#process_email",
+       as: "certificate_process_email"
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:status",
       to: "errors#show",

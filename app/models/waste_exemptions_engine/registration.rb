@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class Registration < ApplicationRecord
     include CanHaveRegistrationAttributes
+    include CanHaveViewCertificateToken
 
     has_paper_trail meta: { json: :json_for_version }
 

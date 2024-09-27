@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     def generate_token(field, timestamp_field)
       send("#{field}=", SecureRandom.uuid)
       send("#{timestamp_field}=", Time.zone.now)
+      save!
 
       send(field)
     end
