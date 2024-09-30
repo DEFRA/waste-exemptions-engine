@@ -25,16 +25,10 @@ table tr td:first-child {
   width: 220px;
 }
 
-ul, li {
-  list-style-type: none;
-  margin-left: 0;
-  padding-left: 0;
+.govuk-table__row th {
+  width: 50%;
 }
 
-li, td, p, .certificate_text {
-  font-size: 1em;
-  line-height: 1.5;
-}
 
 #wrapper {
   width: 800px; /* fixed width like a standard paper size */
