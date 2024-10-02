@@ -5,15 +5,16 @@ module WasteExemptionsEngine
     before_action :find_resource
     before_action :ensure_valid_email, only: %i[show pdf]
     before_action :ensure_valid_token, only: %i[confirm_email show pdf]
+    before_action :confirm_email_form, only: %i[confirm_email process_email]
 
     def confirm_email
       # to render the confirm_email view, with registration from before_action
     end
 
     def process_email
-      email = params[:email]
+      email = params[:confirm_email_form][:email]
       unless valid_email?(email)
-        flash[:error] = I18n.t(".waste_exemptions_engine.certificates.process_email.error")
+        @confirm_email_form.errors.add(:email, I18n.t(".waste_exemptions_engine.certificates.process_email.error"))
         render :confirm_email and return
       end
 
@@ -39,6 +40,10 @@ module WasteExemptionsEngine
 
     private
 
+    def confirm_email_form
+      @confirm_email_form ||= WasteExemptionsEngine::ConfirmEmailForm.new
+    end
+
     def ensure_valid_email
       return if valid_email?(session[:valid_email])
 
@@ -46,7 +51,7 @@ module WasteExemptionsEngine
     end
 
     def valid_email?(email)
-      [@resource.contact_email, @resource.applicant_email].compact.map(&:downcase).include?(email.to_s.downcase)
+      [@resource.contact_email, @resource.applicant_email].compact.map(&:downcase).include?(email.to_s.strip.downcase)
     end
 
     def ensure_valid_token
