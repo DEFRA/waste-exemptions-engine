@@ -1,5 +1,6 @@
 <%= form_for @start_form do |f| %>
   <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+  <%= render("waste_exemptions_engine/shared/error", error: flash[:error], details: flash[:error_details]) if flash[:error].present? %>
 
   <%= f.govuk_collection_radio_buttons :start_option,
       [

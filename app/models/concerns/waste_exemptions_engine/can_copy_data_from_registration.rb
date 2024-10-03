@@ -29,7 +29,9 @@ module WasteExemptionsEngine
         "reminder_opt_in",
         "submitted_at",
         "updated_at",
-        "charged"
+        "charged",
+        "view_certificate_token",
+        "view_certificate_token_created_at"
       )
 
       assign_attributes(attributes)

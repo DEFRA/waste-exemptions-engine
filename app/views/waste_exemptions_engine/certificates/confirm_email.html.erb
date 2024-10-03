@@ -1,0 +1,19 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @confirm_email_form, url: certificate_process_email_path(@resource.reference), method: :post, html: { class: 'govuk-form-group' }, local: true do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+      
+      <h1 class="govuk-heading-l"><%=t('.heading')%></h1>
+      
+      <%= f.hidden_field :reference, value: @resource&.reference %>
+
+      <%= f.govuk_text_field :email,
+          label: { text: t(".email_label") },
+          hint: { text: t(".email_hint") },
+          width: 20 %>
+
+      <br />
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,220 @@
+<%
+  # When this template is used by a controller, the @presenter variable is exposed.
+  # But when it is rendered from (eg) the RegistrationActivatedEmailService,
+  # the instance variable is not available, only the local one.
+  @presenter ||= presenter
+%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%=t ".title" %></title>
+    <%= yield :stylesheets %>
+    <meta charset="utf-8" >
+    <%= stylesheet_link_tag "certificates", media: "all" %>
+  </head>
+
+  <body>
+    <%= link_to t('.view_as_pdf'), pdf_certificate_path(@presenter.reference, token: params[:token]), class: "govuk-!-display-none-print govuk-button", target: "_blank" %>
+    <div id="wrapper">
+      <div class="govuk-width-container">
+        <main id="content" role="main" class="group">
+          <div class="grid-wrapper">
+            <div class="grid-2-3">
+              <h1 class="govuk-heading-l"><%=t ".confirmation.heading", registration_number: @presenter.reference %></h1>
+              <p class="govuk-body">
+                <%=t ".confirmation.paragraph1" %>
+              </p>
+
+              <p class="govuk-body">
+                <strong><%=t ".confirmation.warning" %></strong>
+              </p>
+
+              <p class="govuk-body">
+                <%=t ".confirmation.paragraph2", company_registration_number: @presenter.reference %>
+                <br \>
+                <%= link_to "https://environment.data.gov.uk/public-register/view/search-waste-exemptions", "https://environment.data.gov.uk/public-register/view/search-waste-exemptions" %>
+              </p>
+
+              <h1 class="govuk-heading-l"><%=t ".business_responsibilities.heading" %></h1>
+              <div class="govuk-body">
+                <%=t ".business_responsibilities.first_paragraph.description" %>
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                  <li><%=t ".business_responsibilities.first_paragraph.list_items.first" %></li>
+                  <li><%=t ".business_responsibilities.first_paragraph.list_items.second" %></li>
+                  <li><%=t ".business_responsibilities.first_paragraph.list_items.third" %></li>
+                </ul>
+              </div>
+
+              <div class="govuk-body">
+                <%=t ".business_responsibilities.second_paragraph.description" %>
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                  <li><%=t ".business_responsibilities.second_paragraph.list_items.first" %></li>
+                  <li><%=t ".business_responsibilities.second_paragraph.list_items.second" %></li>
+                  <li><%=t ".business_responsibilities.second_paragraph.list_items.third" %></li>
+                </ul>
+              </div>
+
+              <p class="govuk-body">
+                <%=t ".business_responsibilities.paragraph3" %>
+              </p>
+
+              <h1 class="govuk-heading-l"><%=t ".registration_details.heading" %></h1>
+
+              <h2 class="govuk-heading-m"><%=t ".registration_details.registration_details.heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.reference_number" %></th>
+                      <td class="govuk-table__cell"><%= @presenter.reference %></td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.date_registered" %></th>
+                      <td class="govuk-table__cell"><%= @presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.active_heading" %></caption>
+                  <tbody class="govuk-table__body">
+                    <% @presenter.sorted_active_registration_exemptions.each do |registration_exemption| %>
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
+                        <td class="govuk-table__cell">
+                          <%=t(".registration_details.exemptions.expires_on",
+                              expire_date: registration_exemption.expires_on.to_formatted_s(:day_month_year)) %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+
+              <% if @presenter.sorted_deregistered_registration_exemptions.any? %>
+                <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
+                <div class="table-wrapper">
+                  <table class="govuk-table">
+                    <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.inactive_heading" %></caption>
+                    <tbody class="govuk-table__body">
+                      <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
+                        <tr class="govuk-table__row">
+                          <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
+                          <td class="govuk-table__cell">
+                            <%=t(".registration_details.exemptions.ceased_on",
+                                cease_date: registration_exemption.deregistered_at.to_formatted_s(:day_month_year)) %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              <% end %>
+
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.contact_details.heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.name" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.applicant_name %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_telephone" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.applicant_phone %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.contact_details.business_email" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.applicant_email %> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.business_details.heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.business_type" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.human_business_type %> </td>
+                    </tr>
+                    <% if @presenter.partnership? %>
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row">
+                          <%=t ".registration_details.business_details.partners" %>
+                        </th>
+                        <td class="govuk-table__cell"> <%= @presenter.partners_names %> </td>
+                      </tr>
+                    <% else %>
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person" %></th>
+                        <td class="govuk-table__cell"> <%= @presenter.operator_name %> </td>
+                      </tr>
+                    <% end %>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.business_details.responsible_person_address" %></th>
+                      <td class="govuk-table__cell">
+                        <% displayable_address(@presenter.operator_address).each do |line| %>
+                          <%= line %><br>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.waste_operations_contact.heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.name" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.contact_name %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.position" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.contact_position %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.telephone_n" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.contact_phone %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.email" %></th>
+                      <td class="govuk-table__cell"> <%= @presenter.contact_email %> </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_contact.address" %></th>
+                      <td class="govuk-table__cell">
+                        <% displayable_address(@presenter.contact_address).each do |line| %>
+                          <%= line %><br>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.waste_operations_details.heading" %></h2>
+              <div class="table-wrapper">
+                <table class="govuk-table">
+                  <tbody class="govuk-table__body">
+                    <% if @presenter.site_address&.located_by_grid_reference? %>
+                      <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: @presenter.site_address %>
+                    <% else %>
+                      <%= render "waste_exemptions_engine/pdfs/site_address_lines", address: @presenter.site_address %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
