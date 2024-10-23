@@ -5,6 +5,8 @@ module WasteExemptionsEngine
     self.table_name = "companies"
     RECENTLY_UPDATED_LIMIT = 3.months.ago
 
+    validates_uniqueness_of :company_no
+
     scope :recently_updated, -> { where("updated_at > ?", RECENTLY_UPDATED_LIMIT) }
 
     def self.find_or_create_by_company_no(company_no, name)
