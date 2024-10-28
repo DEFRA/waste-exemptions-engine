@@ -70,7 +70,7 @@ module WasteExemptionsEngine
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
-            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/invalid_or_inactive_company")
             expect(response.body).to have_valid_html
           end
         end
@@ -87,7 +87,7 @@ module WasteExemptionsEngine
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
-            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/invalid_or_inactive_company")
             expect(response.body).to have_valid_html
           end
         end

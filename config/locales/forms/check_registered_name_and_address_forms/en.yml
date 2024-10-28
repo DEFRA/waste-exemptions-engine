@@ -9,7 +9,7 @@ en:
           "no": "No"
         company_number: "Companies House Number - %{company_no}"
         enter_a_different_number: "Enter a different number"
-      inactive_company:
+      invalid_or_inactive_company:
         title: We could not validate your Companies House number
         heading: "We could not validate your Companies House number %{company_no}"
         paragraph_1: There is an issue with your Companies House number against this registration. You must either create a new registration, or speak to our contact centre.

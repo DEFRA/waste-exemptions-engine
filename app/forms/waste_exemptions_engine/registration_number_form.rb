@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class RegistrationNumberForm < BaseForm
     delegate :temp_company_no, :business_type, to: :transient_registration
 
-    validates :temp_company_no, "defra_ruby/validators/companies_house_number": true
+    validates :temp_company_no, "defra_ruby/validators/companies_house_number": { permitted_types: %w[llp ltd] }
 
     def submit(params)
       params[:temp_company_no] = process_company_no(params[:temp_company_no])
