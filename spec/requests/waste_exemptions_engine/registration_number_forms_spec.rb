@@ -16,11 +16,7 @@ module WasteExemptionsEngine
         status: 200,
         body: companies_house_response.to_json
       )
-
-      VCR.insert_cassette("company_no_valid", allow_playback_repeats: true)
     end
-
-    after { VCR.eject_cassette }
 
     include_examples "GET form", :registration_number_form, "/registration-number"
     include_examples "POST form", :registration_number_form, "/registration-number" do
