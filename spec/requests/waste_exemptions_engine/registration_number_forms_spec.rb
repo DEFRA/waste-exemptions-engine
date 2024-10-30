@@ -31,28 +31,26 @@ module WasteExemptionsEngine
 
       before { post request_path, params: valid_params }
 
+      shared_examples "does not report unsupported company type" do
+        it { expect(response.body).not_to include unsupported_company_type_message }
+      end
+
       context "with ltd company type" do
         let(:companies_house_type) { "ltd" }
 
-        it "does not report unsupported company type" do
-          expect(response.body).not_to include unsupported_company_type_message
-        end
+        it_behaves_like "does not report unsupported company type"
       end
 
       context "with llp company type" do
         let(:companies_house_type) { "llp" }
 
-        it "does not report unsupported company type" do
-          expect(response.body).not_to include unsupported_company_type_message
-        end
+        it_behaves_like "does not report unsupported company type"
       end
 
       context "with plc company type" do
-        let(:companies_house_type) { "llp" }
+        let(:companies_house_type) { "plc" }
 
-        it "does not report unsupported company type" do
-          expect(response.body).not_to include unsupported_company_type_message
-        end
+        it_behaves_like "does not report unsupported company type"
       end
     end
 
