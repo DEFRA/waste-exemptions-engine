@@ -76,7 +76,10 @@ module WasteExemptionsEngine
         order: order,
         payment_type: Payment::PAYMENT_TYPE_GOVPAY,
         payment_status: Payment::PAYMENT_STATUS_CREATED,
-        payment_uuid: SecureRandom.uuid
+        payment_uuid: SecureRandom.uuid,
+        payment_amount: order.total_charge_amount,
+        reference: "Govpay payment for #{order.order_uuid}",
+        date_time: Time.zone.now
       )
     end
   end

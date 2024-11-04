@@ -15,6 +15,8 @@ module WasteExemptionsEngine
     has_one :bucket, through: :order_bucket
     has_one :charge_detail, dependent: :destroy
 
+    after_initialize :generate_order_uuid
+
     # def payment(govpay_id)
     #   payments.find_by(govpay_id: govpay_id)
     # end
@@ -37,6 +39,10 @@ module WasteExemptionsEngine
 
     def reset_charge_detail(exemption)
       charge_detail.band_charge_details = order_calculator.band_charge_details if exemption && charge_detail.present?
+    end
+
+    def generate_order_uuid
+      self.order_uuid ||= SecureRandom.uuid
     end
   end
 end
