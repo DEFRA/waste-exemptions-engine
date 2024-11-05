@@ -6,8 +6,12 @@ module WasteExemptionsEngine
 
     # Govpay - currently the only payment provider we use
     PAYMENT_TYPE_GOVPAY = "govpay_payment"
+    PAYMENT_TYPE_BANK_TRANSFER = "bank_transfer"
+    PAYMENT_TYPE_MISSING_CARD_PAYMENT = "missing_card_payment"
+    PAYMENT_TYPE_OTHER = "other_payment"
 
-    enum payment_type: { govpay_payment: PAYMENT_TYPE_GOVPAY }
+    enum payment_type: { govpay_payment: PAYMENT_TYPE_GOVPAY, bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
+                         missing_card_payment: PAYMENT_TYPE_MISSING_CARD_PAYMENT, other_payment: PAYMENT_TYPE_OTHER }
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
@@ -41,7 +45,8 @@ module WasteExemptionsEngine
       error: PAYMENT_STATUS_ERROR
     }
 
-    belongs_to :order
+    belongs_to :order, optional: true
+    belongs_to :account, optional: true
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
