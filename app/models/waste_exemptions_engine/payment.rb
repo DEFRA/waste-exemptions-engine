@@ -6,8 +6,16 @@ module WasteExemptionsEngine
 
     # Govpay - currently the only payment provider we use
     PAYMENT_TYPE_GOVPAY = "govpay_payment"
+    PAYMENT_TYPE_BANK_TRANSFER = "bank_transfer"
+    PAYMENT_TYPE_REFUND = "refund"
 
-    enum payment_type: { govpay_payment: PAYMENT_TYPE_GOVPAY }
+    enum payment_type: {
+      govpay_payment: PAYMENT_TYPE_GOVPAY,
+      bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
+      refund: PAYMENT_TYPE_REFUND
+    }
+
+    REFUNDABLE_OFFLINE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER]
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
@@ -41,12 +49,13 @@ module WasteExemptionsEngine
       error: PAYMENT_STATUS_ERROR
     }
 
-    belongs_to :order
+    belongs_to :account
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
     validates :payment_status, presence: true
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
+    scope :refundable_offline, -> { where(payment_type: PAYMENT_TYPE_BANK_TRANSFER) }
   end
 end

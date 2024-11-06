@@ -6,6 +6,10 @@ module WasteExemptionsEngine
 
     belongs_to :registration, class_name: "Registration", optional: true
     has_many :orders, as: :order_owner, dependent: :destroy
+    has_many :payments, dependent: :destroy
 
+    def update_balance!
+      #update balance based on payments
+    end
   end
 end
