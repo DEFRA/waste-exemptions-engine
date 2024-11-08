@@ -40,6 +40,20 @@ module WasteExemptionsEngine
           expect { govpay_service.prepare_for_payment }.not_to change(payment, :payment_status)
         end
 
+        it "creates a payment with expected attributes" do
+          response = govpay_service.prepare_for_payment
+
+          aggregate_failures do
+            expect(response[:payment].payment_type).to eq(Payment::PAYMENT_TYPE_GOVPAY)
+            expect(response[:payment].payment_amount).to eq(order.total_charge_amount)
+            expect(response[:payment].payment_status).to eq(Payment::PAYMENT_STATUS_CREATED)
+            expect(response[:payment].date_time.to_s).to include(Date.today.to_s)
+            expect(response[:payment].govpay_id).to be_present
+            expect(response[:payment].payment_uuid).to be_present
+            expect(response[:payment].reference).to be_present
+          end
+        end
+
         context "when the request is from the back-office" do
           before do
             allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)

@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     has_many :payments, dependent: :destroy
 
     def update_balance!
-      #update balance based on payments
+      self.balance = orders.sum(&:total_charge_amount) - payments.sum(&:payment_amount)
     end
   end
 end
