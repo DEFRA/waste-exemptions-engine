@@ -19,7 +19,7 @@ module WasteExemptionsEngine
       refund: PAYMENT_TYPE_REFUND
     }
 
-    REFUNDABLE_OFFLINE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER, PAYMENT_TYPE_MISSING_CARD_PAYMENT]
+    REFUNDABLE_OFFLINE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER, PAYMENT_TYPE_MISSING_CARD_PAYMENT].freeze
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
