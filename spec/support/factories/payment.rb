@@ -6,6 +6,9 @@ FactoryBot.define do
     payment_amount { 1000 }
     payment_status { "created" }
     payment_uuid { SecureRandom.uuid }
-    order
+
+    trait :with_order do
+      order
+    end
   end
 end

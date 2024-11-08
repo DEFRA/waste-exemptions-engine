@@ -46,7 +46,7 @@ module WasteExemptionsEngine
     }
 
     belongs_to :order, optional: true
-    belongs_to :account, optional: true
+    belongs_to :account
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true

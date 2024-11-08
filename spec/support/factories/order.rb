@@ -14,5 +14,9 @@ FactoryBot.define do
     trait :with_charge_detail do
       charge_detail
     end
+
+    trait :with_payment do
+      payments { [build(:payment)] }
+    end
   end
 end
