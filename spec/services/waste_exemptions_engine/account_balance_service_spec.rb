@@ -69,6 +69,19 @@ module WasteExemptionsEngine
             expect(balance).to eq(expected_balance)
           end
         end
+
+        context "when payment_amount is not set" do
+          let(:expected_balance) { 0 - order_one.total_charge_amount }
+
+          before do
+            payment_one.update(payment_amount: nil)
+          end
+
+          it "calculates the correct account balance" do
+            balance = described_class.run(account)
+            expect(balance).to eq(expected_balance)
+          end
+        end
       end
     end
   end

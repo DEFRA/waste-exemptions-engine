@@ -12,11 +12,11 @@ module WasteExemptionsEngine
     private
 
     def total_due
-      account.orders.sum(&:total_charge_amount) || 0
+      account&.orders&.sum { |x| x.total_charge_amount || 0 } || 0
     end
 
     def total_paid
-      account.payments.select(&:success?).sum(&:payment_amount) || 0
+      account.payments&.select(&:success?)&.sum { |x| x.payment_amount || 0 } || 0
     end
   end
 end
