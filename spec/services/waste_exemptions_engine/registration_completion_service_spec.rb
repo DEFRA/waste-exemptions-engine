@@ -242,7 +242,7 @@ module WasteExemptionsEngine
 
         context "when the transient_registration is charged" do
           let(:new_charged_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
-          let!(:order) { create(:order, :with_payment, order_owner: new_charged_registration) }
+          let!(:order) { create(:order, :with_charge_detail, :with_payment, order_owner: new_charged_registration) }
 
           before do
             new_charged_registration.update(order: order)

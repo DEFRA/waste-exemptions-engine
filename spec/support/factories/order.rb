@@ -16,7 +16,10 @@ FactoryBot.define do
     end
 
     trait :with_payment do
-      payments { [build(:payment)] }
+      payments do
+        [build(:payment, payment_amount: total_charge_amount,
+                         payment_status: WasteExemptionsEngine::Payment::PAYMENT_STATUS_SUCCESS)]
+      end
     end
   end
 end
