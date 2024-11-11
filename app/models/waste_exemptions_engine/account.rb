@@ -11,5 +11,9 @@ module WasteExemptionsEngine
     def update_balance
       self.balance = orders.sum(&:total_charge_amount) - payments.sum(&:payment_amount)
     end
+
+    def overpaid?
+      balance.negative?
+    end
   end
 end
