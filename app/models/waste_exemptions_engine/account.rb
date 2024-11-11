@@ -8,5 +8,9 @@ module WasteExemptionsEngine
     has_many :orders, as: :order_owner, dependent: :destroy
     has_many :payments, dependent: :destroy
 
+    def balance
+      AccountBalanceService.run(self)
+    end
+
   end
 end

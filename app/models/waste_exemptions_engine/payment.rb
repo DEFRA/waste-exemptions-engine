@@ -54,4 +54,8 @@ module WasteExemptionsEngine
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
   end
+
+  def success?
+    payment_status == PAYMENT_STATUS_SUCCESS
+  end
 end
