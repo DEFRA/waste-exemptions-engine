@@ -51,6 +51,7 @@ module WasteExemptionsEngine
 
     def copy_order
       account = @registration.create_account(balance: 0)
+      @transient_registration.order.payments.each { |payment| account.payments << payment }
       account.orders << @transient_registration.order if @transient_registration.order.present?
     end
 
