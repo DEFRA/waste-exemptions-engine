@@ -8,12 +8,14 @@ module WasteExemptionsEngine
     PAYMENT_TYPE_GOVPAY = "govpay_payment"
     PAYMENT_TYPE_BANK_TRANSFER = "bank_transfer"
     PAYMENT_TYPE_MISSING_CARD_PAYMENT = "missing_card_payment"
+    PAYMENT_TYPE_REVERSAL = "reversal"
     PAYMENT_TYPE_OTHER = "other_payment"
     PAYMENT_TYPE_REFUND = "refund"
 
     enum payment_type: {
       govpay_payment: PAYMENT_TYPE_GOVPAY,
       bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
+      reversal: PAYMENT_TYPE_REVERSAL,
       missing_card_payment: PAYMENT_TYPE_MISSING_CARD_PAYMENT,
       other_payment: PAYMENT_TYPE_OTHER,
       refund: PAYMENT_TYPE_REFUND
