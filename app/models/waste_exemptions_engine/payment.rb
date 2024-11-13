@@ -59,6 +59,8 @@ module WasteExemptionsEngine
 
     belongs_to :order, optional: true
     belongs_to :account, optional: true
+    belongs_to :reversal, class_name: "Payment", optional: true
+    has_one :original_payment, class_name: "Payment", foreign_key: :reversal_id
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
@@ -66,5 +68,9 @@ module WasteExemptionsEngine
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
     scope :refundable, -> { where(payment_type: REFUNDABLE_PAYMENT_TYPES) }
+    scope :reverseable, -> { refundable.where(reversal_id: nil) }
+    scope :refunds, -> { where(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
+    scope :excluding_refunds, -> { where.not(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
+
   end
 end
