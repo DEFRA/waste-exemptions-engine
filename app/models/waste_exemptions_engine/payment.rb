@@ -21,9 +21,9 @@ module WasteExemptionsEngine
       refund: PAYMENT_TYPE_REFUND
     }
 
-    REFUNDABLE_OFFLINE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER,
-                                        PAYMENT_TYPE_MISSING_CARD_PAYMENT,
-                                        PAYMENT_TYPE_GOVPAY].freeze
+    REFUNDABLE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER,
+                                PAYMENT_TYPE_MISSING_CARD_PAYMENT,
+                                PAYMENT_TYPE_GOVPAY].freeze
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
@@ -65,6 +65,6 @@ module WasteExemptionsEngine
     validates :payment_status, presence: true
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
-    scope :refundable_offline, -> { where(payment_type: REFUNDABLE_OFFLINE_PAYMENT_TYPES) }
+    scope :refundable, -> { where(payment_type: REFUNDABLE_PAYMENT_TYPES) }
   end
 end
