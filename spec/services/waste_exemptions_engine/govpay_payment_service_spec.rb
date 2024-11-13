@@ -23,10 +23,13 @@ module WasteExemptionsEngine
     describe "prepare_for_payment" do
       let(:defra_ruby_govpay_api) { DefraRubyGovpay::API.new(host_is_back_office:) }
       let(:host_is_back_office) { WasteExemptionsEngine.configuration.host_is_back_office? }
+      let(:placeholder_registration) { create(:registration, lifecycle_status: "placeholder", account: build(:account)) }
 
       before do
         allow(DefraRubyGovpay::API).to receive(:new).and_return(defra_ruby_govpay_api)
         allow(defra_ruby_govpay_api).to receive(:send_request).with(anything).and_call_original
+
+        transient_registration.reference = placeholder_registration.reference
       end
 
       context "when the request is valid" do

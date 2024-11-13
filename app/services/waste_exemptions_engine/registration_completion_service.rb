@@ -11,7 +11,17 @@ module WasteExemptionsEngine
         # This update is necessary as this will make the `with_lock` prevent race conditions
         @transient_registration.update(workflow_state: :creating_registration)
         activate_exemptions
-        @registration = Registration.new(copyable_attributes)
+
+        # Check whether a placeholder registration was created pre-payment
+        placeholder_registration = Registration.find_by(reference: @transient_registration.reference,
+                                                        lifecycle_status: "placeholder")
+        if placeholder_registration.present?
+          @registration = placeholder_registration
+          @registration.update(copyable_attributes.merge(lifecycle_status: "complete"))
+        else
+          @registration = Registration.new(copyable_attributes)
+        end
+
         copy_addresses
         copy_exemptions
         copy_people
@@ -50,8 +60,7 @@ module WasteExemptionsEngine
     end
 
     def copy_order
-      account = @registration.create_account(balance: 0)
-      @transient_registration.order.payments.each { |payment| account.payments << payment }
+      account = @registration.account || @registration.create_account(balance: 0)
       account.orders << @transient_registration.order if @transient_registration.order.present?
     end
 

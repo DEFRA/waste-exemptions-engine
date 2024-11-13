@@ -6,6 +6,8 @@ module WasteExemptionsEngine
     def new
       super(GovpayForm, "govpay_form")
 
+      set_registration_reference
+
       payment_info = prepare_for_payment
 
       if payment_info == :error
@@ -33,13 +35,19 @@ module WasteExemptionsEngine
         end
       end
     rescue StandardError => e
-      Rails.logger.warn "Govpay payment callback error for payment uuid \"#{params[:uuid]}\": #{e}"
+      Rails.logger.error "Govpay payment callback error for payment uuid \"#{params[:uuid]}\": #{e}"
       Airbrake.notify(e, message: "Govpay callback error for payment uuid", payment_uuid: params[:uuid])
       flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.new.internal_error")
       go_back
     end
 
     private
+
+    # create a placeholder registration so we can include the reference in the Govpay payment receipt
+    def set_registration_reference
+      placeholder_registration = Registration.create!(account: Account.new, lifecycle_status: "placeholder")
+      @transient_registration.update(reference: placeholder_registration.reference)
+    end
 
     def prepare_for_payment
       order = @transient_registration.order
@@ -98,7 +106,7 @@ module WasteExemptionsEngine
 
     def form_error_message(action, type = :message)
       action = GovpayPaymentDetailsService.payment_status(action)
-      flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}_title")
+      flash[:error] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}.message_title")
       flash[:error_details] = I18n.t(".waste_exemptions_engine.govpay_forms.#{action}.#{type}")
     end
   end

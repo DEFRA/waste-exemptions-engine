@@ -28,9 +28,10 @@ module WasteExemptionsEngine
     end
 
     def pending_online_payment?
-      return false unless order.payments.any?
+      # Transient registrations don't have accounts
+      return false unless respond_to?(:account) && account.payments.any?
 
-      GovpayValidatorService.valid_govpay_status?(:pending, order.payments.last.payment_status)
+      GovpayValidatorService.valid_govpay_status?(:pending, account.payments.last.payment_status)
     end
   end
 end
