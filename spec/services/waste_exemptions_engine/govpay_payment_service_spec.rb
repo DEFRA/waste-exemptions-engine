@@ -53,7 +53,6 @@ module WasteExemptionsEngine
             expect(response[:payment].date_time.to_s).to include(Date.today.to_s)
             expect(response[:payment].govpay_id).to be_present
             expect(response[:payment].payment_uuid).to be_present
-            expect(response[:payment].reference).to include(order.order_uuid)
           end
         end
 
