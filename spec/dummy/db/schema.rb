@@ -273,6 +273,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_13_154617) do
     t.index ["created_at"], name: "index_registrations_on_created_at"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
+    t.index ["lifecycle_status"], name: "index_registrations_on_lifecycle_status"
     t.index ["reference"], name: "index_registrations_on_reference", unique: true
     t.index ["renew_token"], name: "index_registrations_on_renew_token", unique: true
     t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
