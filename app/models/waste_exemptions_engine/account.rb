@@ -8,12 +8,12 @@ module WasteExemptionsEngine
     has_many :orders, as: :order_owner, dependent: :destroy
     has_many :payments, dependent: :destroy
 
-    def update_balance
-      self.balance = orders.sum(&:total_charge_amount) - payments.sum(&:payment_amount)
+    def overpaid?
+      balance.positive?
     end
 
-    def overpaid?
-      balance.negative?
+    def balance
+      AccountBalanceService.run(self)
     end
   end
 end

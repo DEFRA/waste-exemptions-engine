@@ -56,7 +56,7 @@ module WasteExemptionsEngine
     }
 
     belongs_to :order, optional: true
-    belongs_to :account, optional: true
+    belongs_to :account
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
@@ -64,5 +64,9 @@ module WasteExemptionsEngine
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
     scope :refundable, -> { where(payment_type: REFUNDABLE_PAYMENT_TYPES) }
+  end
+
+  def success?
+    payment_status == PAYMENT_STATUS_SUCCESS
   end
 end
