@@ -58,7 +58,7 @@ module WasteExemptionsEngine
     }
 
     belongs_to :order, optional: true
-    belongs_to :account, optional: true
+    belongs_to :account
     belongs_to :reversal, class_name: "Payment", optional: true
     has_one :original_payment, class_name: "Payment", foreign_key: :reversal_id
 
@@ -72,5 +72,9 @@ module WasteExemptionsEngine
     scope :refunds, -> { where(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
     scope :excluding_refunds, -> { where.not(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
 
+  end
+
+  def success?
+    payment_status == PAYMENT_STATUS_SUCCESS
   end
 end
