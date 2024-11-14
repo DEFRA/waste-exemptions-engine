@@ -55,7 +55,7 @@ module WasteExemptionsEngine
     end
 
     def update_payment_data
-      @payment.update(payment_status: "success")
+      @payment.update(payment_status: "success", reference: @payment.payment_uuid)
     end
 
     def govpay_response_validator(govpay_status)
