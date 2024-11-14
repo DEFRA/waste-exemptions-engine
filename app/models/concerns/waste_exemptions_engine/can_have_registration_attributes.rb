@@ -28,10 +28,18 @@ module WasteExemptionsEngine
     end
 
     def pending_online_payment?
-      # Transient registrations don't have accounts
-      return false unless respond_to?(:account) && account.payments.any?
+      account_payments = if respond_to?(:account)
+                           account.payments
+                         else
+                           # This is a transient registration so look for the payment on the registration
+                           WasteExemptionsEngine::Registration.find_by(reference:).account.payments
+                         end
 
-      GovpayValidatorService.valid_govpay_status?(:pending, account.payments.last.payment_status)
+      payment = account_payments.where(payment_type: Payment::PAYMENT_TYPE_GOVPAY).last
+
+      return false if payment.blank?
+
+      GovpayValidatorService.valid_govpay_status?(:pending, payment.payment_status)
     end
   end
 end

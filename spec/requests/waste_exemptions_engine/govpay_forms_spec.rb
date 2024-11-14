@@ -215,6 +215,14 @@ module WasteExemptionsEngine
 
         it_behaves_like "payment is unsuccessful with an error"
       end
+
+      context "when the GovpayPaymentDetailsService raises an error" do
+        before { allow(payment_details_service).to receive(:govpay_payment_status).and_raise(StandardError) }
+
+        let(:payment_status) { "success" }
+
+        it_behaves_like "payment is unsuccessful with an error"
+      end
     end
   end
 end
