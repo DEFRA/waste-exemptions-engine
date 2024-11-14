@@ -31,6 +31,8 @@ module WasteExemptionsEngine
       account_payments = if respond_to?(:account)
                            account.payments
                          else
+                           return false if reference.blank?
+
                            # This is a transient registration so look for the payment on the registration
                            WasteExemptionsEngine::Registration.find_by(reference:).account.payments
                          end
