@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReversalFieldsToPayments < ActiveRecord::Migration[7.1]
   def change
     add_column :payments, :reversed_by, :string
