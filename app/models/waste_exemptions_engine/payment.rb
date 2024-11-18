@@ -9,9 +9,19 @@ module WasteExemptionsEngine
     PAYMENT_TYPE_BANK_TRANSFER = "bank_transfer"
     PAYMENT_TYPE_MISSING_CARD_PAYMENT = "missing_card_payment"
     PAYMENT_TYPE_OTHER = "other_payment"
+    PAYMENT_TYPE_REFUND = "refund"
 
-    enum payment_type: { govpay_payment: PAYMENT_TYPE_GOVPAY, bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
-                         missing_card_payment: PAYMENT_TYPE_MISSING_CARD_PAYMENT, other_payment: PAYMENT_TYPE_OTHER }
+    enum payment_type: {
+      govpay_payment: PAYMENT_TYPE_GOVPAY,
+      bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
+      missing_card_payment: PAYMENT_TYPE_MISSING_CARD_PAYMENT,
+      other_payment: PAYMENT_TYPE_OTHER,
+      refund: PAYMENT_TYPE_REFUND
+    }
+
+    REFUNDABLE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER,
+                                PAYMENT_TYPE_MISSING_CARD_PAYMENT,
+                                PAYMENT_TYPE_GOVPAY].freeze
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
@@ -53,6 +63,7 @@ module WasteExemptionsEngine
     validates :payment_status, presence: true
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
+    scope :refundable, -> { where(payment_type: REFUNDABLE_PAYMENT_TYPES) }
   end
 
   def success?

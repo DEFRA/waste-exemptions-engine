@@ -8,9 +8,12 @@ module WasteExemptionsEngine
     has_many :orders, as: :order_owner, dependent: :destroy
     has_many :payments, dependent: :destroy
 
+    def overpaid?
+      balance.positive?
+    end
+
     def balance
       AccountBalanceService.run(self)
     end
-
   end
 end
