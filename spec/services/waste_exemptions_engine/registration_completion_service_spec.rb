@@ -242,7 +242,7 @@ module WasteExemptionsEngine
 
         context "when the transient_registration is charged" do
           let(:order) { create(:order, :with_charge_detail, order_owner: new_charged_registration) }
-          let(:placeholder_registration) { create(:registration, lifecycle_status: "placeholder", account: build(:account)) }
+          let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
           let(:new_charged_registration) do
             create(:new_charged_registration, :complete,
                    reference: placeholder_registration.reference,
@@ -282,8 +282,8 @@ module WasteExemptionsEngine
             expect(registration.account.balance).to eq(0)
           end
 
-          it "sets the registration lifecycle_status to 'complete'" do
-            expect { run_service }.to change { registration.reload.lifecycle_status }.to eq "complete"
+          it "sets the registration placeholder attribute to false" do
+            expect { run_service }.to change { registration.reload.placeholder }.to false
           end
         end
       end

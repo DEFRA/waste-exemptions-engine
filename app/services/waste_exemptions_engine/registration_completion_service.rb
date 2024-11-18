@@ -14,10 +14,10 @@ module WasteExemptionsEngine
 
         # Check whether a placeholder registration was created pre-payment
         placeholder_registration = Registration.find_by(reference: @transient_registration.reference,
-                                                        lifecycle_status: "placeholder")
+                                                        placeholder: true)
         if placeholder_registration.present?
           @registration = placeholder_registration
-          @registration.update(copyable_attributes.merge(lifecycle_status: "complete"))
+          @registration.update(copyable_attributes.merge(placeholder: false))
         else
           @registration = Registration.new(copyable_attributes)
         end

@@ -45,7 +45,7 @@ module WasteExemptionsEngine
 
     # create a placeholder registration so we can include the reference in the Govpay payment receipt
     def set_registration_reference
-      placeholder_registration = Registration.create!(account: Account.new, lifecycle_status: "placeholder")
+      placeholder_registration = Registration.create!(account: Account.new, placeholder: true)
       @transient_registration.update(reference: placeholder_registration.reference)
     end
 

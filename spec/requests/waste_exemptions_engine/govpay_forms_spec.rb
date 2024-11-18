@@ -65,7 +65,7 @@ module WasteExemptionsEngine
       let(:govpay_host) { "https://publicapi.payments.service.gov.uk" }
       let(:payment_service) { instance_double(GovpayPaymentService) }
       let(:payment_details_service) { instance_double(GovpayPaymentDetailsService) }
-      let(:placeholder_registration) { create(:registration, lifecycle_status: "placeholder", account: build(:account)) }
+      let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
       let(:payment) { create(:payment, account: placeholder_registration.account, order: order, payment_status: "created") }
 
       before do
