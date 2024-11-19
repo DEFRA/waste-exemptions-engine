@@ -94,7 +94,7 @@ module WasteExemptionsEngine
     rescue AASM::UndefinedState, AASM::InvalidTransition => e
       error_message = "Failed to transition from #{workflow_state} to next state: #{e.message}"
       Airbrake.notify(e, error_message: error_message, reference: reference) if defined?(Airbrake)
-      Rails.logger.warn error_message
+      Rails.logger.error error_message
     end
 
     def previous_valid_state!
