@@ -26,7 +26,7 @@ module WasteExemptionsEngine
       context "when balance is negative" do
         before { allow(account).to receive(:balance).and_return(-50) }
 
-        it "returns true" do
+        it "returns false" do
           expect(account.overpaid?).to be false
         end
       end

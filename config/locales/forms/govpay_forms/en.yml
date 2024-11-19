@@ -10,7 +10,7 @@ en:
         message_title: "A problem with your payment"
         message: "An error has occurred and your payment has not been processed. Please try again or select a different payment method."
       failure:
-        invalid_response: "Invalid Govay failure response"
+        invalid_response: "Invalid Govpay failure response"
         message_title: "A problem with your payment"
         message: "Your payment has been refused. Please try again or select a different payment method."
       new:
@@ -19,4 +19,4 @@ en:
         invalid_response: "Invalid Govpay pending response"
         message: "Your payment is still pending."
       success:
-        invalid_response: "Invalid Govay success response"
+        invalid_response: "Invalid Govpay success response"

@@ -23,6 +23,7 @@ module WasteExemptionsEngine
         "edit_token",
         "edit_token_created_at",
         "id",
+        "placeholder",
         "referring_registration_id",
         "renew_token",
         "unsubscribe_token",
