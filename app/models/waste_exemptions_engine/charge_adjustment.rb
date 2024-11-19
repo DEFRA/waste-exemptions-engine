@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WasteExemptionsEngine
   class ChargeAdjustment < ApplicationRecord
     self.table_name = "charge_adjustments"
