@@ -71,7 +71,6 @@ module WasteExemptionsEngine
     scope :reverseable, -> { refundable.where(reversal_id: nil) }
     scope :refunds, -> { where(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
     scope :excluding_refunds, -> { where.not(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
-
   end
 
   def success?
