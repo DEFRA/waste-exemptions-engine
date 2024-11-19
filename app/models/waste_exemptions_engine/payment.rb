@@ -60,7 +60,6 @@ module WasteExemptionsEngine
     belongs_to :order, optional: true
     belongs_to :account
     belongs_to :reversal, class_name: "Payment", optional: true
-    has_one :original_payment, class_name: "Payment", foreign_key: :reversal_id
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
