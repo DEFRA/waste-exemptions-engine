@@ -51,6 +51,7 @@ module WasteExemptionsEngine
                               id
                               reference
                               start_option
+                              temp_waste_activities
                               temp_confirm_exemption_edits
                               temp_confirm_no_exemption_changes
                               temp_contact_postcode

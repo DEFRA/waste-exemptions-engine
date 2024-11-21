@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        href=\"/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_waste_activities_form\" id=\"new_waste_activities_form\"
+        action=\"/waste_exemptions_engine/wcWZQcFjDmv7HBcmR7sFchKw/select-waste-activities\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">Select the waste activities you do</h1>\n\n
+        \     <div class=\"govuk-form-group \">\n        \n\n          <div class=\"govuk-checkboxes\">\n\n
+        \               <h2 class=\"govuk-heading-m govuk-!-margin-bottom-1 govuk-!-padding-top-3\">Treating
+        waste</h2>\n                <p class=\"govuk-body\">\n                  This
+        means preparing, recovering, sorting and treating certain waste materials,
+        such as waste wood and plant matter. See \n                  <a target=\"_blank\"
+        href=\"https://www.gov.uk/government/collections/waste-exemptions-treating-waste\">Treating
+        waste: waste exemptions.</a>\n                  (opens in new window)\n                </p>\n\n
+        \             <div class=\"govuk-checkboxes__item govuk-!-margin-left-2\">\n
+        \               <input id=\"waste_activities_form_checkbox-1\" class=\"govuk-checkboxes__input\"
+        type=\"checkbox\" value=\"1\" name=\"waste_activities_form[temp_waste_activities][]\"
+        />\n                  <label class=\"govuk-label govuk-checkboxes__label\"
+        for=\"waste_activities_form_checkbox-1\">\n                  <span>MyString</span>\n</label>
+        \             </div>\n\n              <div class=\"govuk-checkboxes__item
+        govuk-!-margin-left-2\">\n                <input id=\"waste_activities_form_checkbox-2\"
+        class=\"govuk-checkboxes__input\" type=\"checkbox\" value=\"2\" name=\"waste_activities_form[temp_waste_activities][]\"
+        />\n                  <label class=\"govuk-label govuk-checkboxes__label\"
+        for=\"waste_activities_form_checkbox-2\">\n                  <span>MyString</span>\n</label>
+        \             </div>\n\n              <div class=\"govuk-checkboxes__item
+        govuk-!-margin-left-2\">\n                <input id=\"waste_activities_form_checkbox-3\"
+        class=\"govuk-checkboxes__input\" type=\"checkbox\" value=\"3\" name=\"waste_activities_form[temp_waste_activities][]\"
+        />\n                  <label class=\"govuk-label govuk-checkboxes__label\"
+        for=\"waste_activities_form_checkbox-3\">\n                  <span>MyString</span>\n</label>
+        \             </div>\n\n              <div class=\"govuk-checkboxes__item
+        govuk-!-margin-left-2\">\n                <input id=\"waste_activities_form_checkbox-4\"
+        class=\"govuk-checkboxes__input\" type=\"checkbox\" value=\"4\" name=\"waste_activities_form[temp_waste_activities][]\"
+        />\n                  <label class=\"govuk-label govuk-checkboxes__label\"
+        for=\"waste_activities_form_checkbox-4\">\n                  <span>MyString</span>\n</label>
+        \             </div>\n\n              <div class=\"govuk-checkboxes__item
+        govuk-!-margin-left-2\">\n                <input id=\"waste_activities_form_checkbox-5\"
+        class=\"govuk-checkboxes__input\" type=\"checkbox\" value=\"5\" name=\"waste_activities_form[temp_waste_activities][]\"
+        />\n                  <label class=\"govuk-label govuk-checkboxes__label\"
+        for=\"waste_activities_form_checkbox-5\">\n                  <span>MyString</span>\n</label>
+        \             </div>\n          </div>\n\n       \n      </div>\n\n      <button
+        type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\" data-module=\"govuk-button\"
+        data-prevent-double-click=\"true\">Continue</button>\n</form>  </div>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 20 Nov 2024 17:15:44 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 validator.w3.org
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Request-Id:
+      - 8e5a1571db089424
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Vq7BaPKNRD33OzIZ77rKmRyhy63171OtMEg2dwHgjqc-1732122944-1.0.1.1-nUOUX8A5JXqFDP46zb1cIZS1KLT1iyimUo3Rm2uub7XEXuR1augG_a3E6VRsksBpmDiGQdOOIiSq9eraNbwHSA;
+        path=/; expires=Wed, 20-Nov-24 17:45:44 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8e5a1571db089424-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjM4LCJsYXN0Q29sdW1uIjoxNzUsImZpcnN0Q29sdW1uIjoxNywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC0xXCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiMVwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjE1OX0seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjo0NCwibGFzdENvbHVtbiI6MTc1LCJmaXJzdENvbHVtbiI6MTcsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6IiAgICAgICAgICA8aW5wdXQgaWQ9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1fY2hlY2tib3gtMlwiIGNsYXNzPVwiZ292dWstY2hlY2tib3hlc19faW5wdXRcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjJcIiBuYW1lPVwid2FzdGVfYWN0aXZpdGllc19mb3JtW3RlbXBfd2FzdGVfYWN0aXZpdGllc11bXVwiIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxNTl9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NTAsImxhc3RDb2x1bW4iOjE3NSwiZmlyc3RDb2x1bW4iOjE3LCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIgICAgICAgICAgPGlucHV0IGlkPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTNcIiBjbGFzcz1cImdvdnVrLWNoZWNrYm94ZXNfX2lucHV0XCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIzXCIgbmFtZT1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybVt0ZW1wX3dhc3RlX2FjdGl2aXRpZXNdW11cIiAvPlxuICAgICAiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTU5fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjU2LCJsYXN0Q29sdW1uIjoxNzUsImZpcnN0Q29sdW1uIjoxNywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC00XCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNFwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjE1OX0seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjo2MiwibGFzdENvbHVtbiI6MTc1LCJmaXJzdENvbHVtbiI6MTcsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6IiAgICAgICAgICA8aW5wdXQgaWQ9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1fY2hlY2tib3gtNVwiIGNsYXNzPVwiZ292dWstY2hlY2tib3hlc19faW5wdXRcIiB0eXBlPVwiY2hlY2tib3hcIiB2YWx1ZT1cIjVcIiBuYW1lPVwid2FzdGVfYWN0aXZpdGllc19mb3JtW3RlbXBfd2FzdGVfYWN0aXZpdGllc11bXVwiIC8+XG4gICAgICIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxNTl9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLTA0MDI0MzgyMzkxYmI5MTA1ODQxNDVkODExM2NmMzVlZjM3NmI1NWQxMjViYjQ1MTZjZWJlYjE0Y2U3ODg1OTcuY3NzXCIgbWVkaWE9XCJhbGxcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLTI3NjEwMDkxZjQ2ZTcyN2ExZjY2ZjljYjE5NzIzY2M4NWYwNjUwZTkxMDRlYmVmODQ5MzRjOWU5Y2M5YjVlYjAuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld193YXN0ZV9hY3Rpdml0aWVzX2Zvcm1cIiBpZD1cIm5ld193YXN0ZV9hY3Rpdml0aWVzX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvd2NXWlFjRmpEbXY3SEJjbVI3c0ZjaEt3L3NlbGVjdC13YXN0ZS1hY3Rpdml0aWVzXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIFxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbiAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPlNlbGVjdCB0aGUgd2FzdGUgYWN0aXZpdGllcyB5b3UgZG88L2gxPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cCBcIj5cbiAgICAgICAgXG5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwiZ292dWstY2hlY2tib3hlc1wiPlxuXG4gICAgICAgICAgICAgICAgPGgyIGNsYXNzPVwiZ292dWstaGVhZGluZy1tIGdvdnVrLSEtbWFyZ2luLWJvdHRvbS0xIGdvdnVrLSEtcGFkZGluZy10b3AtM1wiPlRyZWF0aW5nIHdhc3RlPC9oMj5cbiAgICAgICAgICAgICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5cbiAgICAgICAgICAgICAgICAgIFRoaXMgbWVhbnMgcHJlcGFyaW5nLCByZWNvdmVyaW5nLCBzb3J0aW5nIGFuZCB0cmVhdGluZyBjZXJ0YWluIHdhc3RlIG1hdGVyaWFscywgc3VjaCBhcyB3YXN0ZSB3b29kIGFuZCBwbGFudCBtYXR0ZXIuIFNlZSBcbiAgICAgICAgICAgICAgICAgIDxhIHRhcmdldD1cIl9ibGFua1wiIGhyZWY9XCJodHRwczovL3d3dy5nb3YudWsvZ292ZXJubWVudC9jb2xsZWN0aW9ucy93YXN0ZS1leGVtcHRpb25zLXRyZWF0aW5nLXdhc3RlXCI+VHJlYXRpbmcgd2FzdGU6IHdhc3RlIGV4ZW1wdGlvbnMuPC9hPlxuICAgICAgICAgICAgICAgICAgKG9wZW5zIGluIG5ldyB3aW5kb3cpXG4gICAgICAgICAgICAgICAgPC9wPlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtIGdvdnVrLSEtbWFyZ2luLWxlZnQtMlwiPlxuICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC0xXCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiMVwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWNoZWNrYm94ZXNfX2xhYmVsXCIgZm9yPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTFcIj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPk15U3RyaW5nPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtIGdvdnVrLSEtbWFyZ2luLWxlZnQtMlwiPlxuICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC0yXCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiMlwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWNoZWNrYm94ZXNfX2xhYmVsXCIgZm9yPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTJcIj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPk15U3RyaW5nPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtIGdvdnVrLSEtbWFyZ2luLWxlZnQtMlwiPlxuICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC0zXCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiM1wiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWNoZWNrYm94ZXNfX2xhYmVsXCIgZm9yPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTNcIj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPk15U3RyaW5nPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtIGdvdnVrLSEtbWFyZ2luLWxlZnQtMlwiPlxuICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC00XCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNFwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWNoZWNrYm94ZXNfX2xhYmVsXCIgZm9yPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTRcIj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPk15U3RyaW5nPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtIGdvdnVrLSEtbWFyZ2luLWxlZnQtMlwiPlxuICAgICAgICAgICAgICAgIDxpbnB1dCBpZD1cIndhc3RlX2FjdGl2aXRpZXNfZm9ybV9jaGVja2JveC01XCIgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pbnB1dFwiIHR5cGU9XCJjaGVja2JveFwiIHZhbHVlPVwiNVwiIG5hbWU9XCJ3YXN0ZV9hY3Rpdml0aWVzX2Zvcm1bdGVtcF93YXN0ZV9hY3Rpdml0aWVzXVtdXCIgLz5cbiAgICAgICAgICAgICAgICAgIDxsYWJlbCBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWNoZWNrYm94ZXNfX2xhYmVsXCIgZm9yPVwid2FzdGVfYWN0aXZpdGllc19mb3JtX2NoZWNrYm94LTVcIj5cbiAgICAgICAgICAgICAgICAgIDxzcGFuPk15U3RyaW5nPC9zcGFuPlxuPC9sYWJlbD4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgXG4gICAgICA8L2Rpdj5cblxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Wed, 20 Nov 2024 17:13:15 GMT
+recorded_with: VCR 6.3.1

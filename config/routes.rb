@@ -213,6 +213,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "site-address-lookup",
               path_names: { new: "" }
 
+    resources :waste_activities_forms,
+              only: %i[new create],
+              path: "select-waste-activities",
+              path_names: { new: "" }
+
     resources :exemptions_forms,
               only: %i[new create],
               path: "exemptions",

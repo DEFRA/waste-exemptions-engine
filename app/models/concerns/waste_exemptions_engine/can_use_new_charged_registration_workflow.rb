@@ -58,6 +58,7 @@ module WasteExemptionsEngine
         state :site_postcode_form
         state :site_address_lookup_form
 
+        state :waste_activities_form
         state :exemptions_form
         state :exemptions_summary_form
 
@@ -89,6 +90,10 @@ module WasteExemptionsEngine
                       if: :should_register_in_wales?
 
           transitions from: :location_form,
+                      to: :waste_activities_form
+
+          # Waste Activities
+          transitions from: :waste_activities_form,
                       to: :exemptions_form
 
           # Exemptions
