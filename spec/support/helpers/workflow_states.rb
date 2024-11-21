@@ -9,8 +9,16 @@ module Helpers
     def self.can_navigate_flexibly_to_state?(state)
       return false unless state_can_navigate_flexibly?(state)
 
-      previous_state = previous_state(WasteExemptionsEngine::NewRegistration.new(workflow_state: state))
+      # curently some states are only available for charged registrations.
+      # This is a temporary solution until we release the new registration flow.
+      charged_registration_states = [:waste_activities_form]
+      transient_registration = if charged_registration_states.include?(state)
+                                 WasteExemptionsEngine::NewChargedRegistration.new(workflow_state: state)
+                               else
+                                 WasteExemptionsEngine::NewRegistration.new(workflow_state: state)
+                               end
 
+      previous_state = previous_state(transient_registration)
       previous_state && state_can_navigate_flexibly?(previous_state)
     end
 
