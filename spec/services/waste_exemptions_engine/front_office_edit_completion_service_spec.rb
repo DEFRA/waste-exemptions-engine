@@ -21,7 +21,7 @@ module WasteExemptionsEngine
 
     describe "run" do
 
-      subject(:run_service) { described_class.run(edit_registration: edit_registration) }
+      subject(:run_service) { described_class.run(edit_registration: edit_registration.reload) }
 
       let(:edit_registration) { create(:front_office_edit_registration) }
       let(:registration) { edit_registration.registration }
@@ -114,7 +114,7 @@ module WasteExemptionsEngine
       end
 
       RSpec.shared_examples "updates contact address attribute" do
-        it { expect { run_service }.to change { registration.reload.addresses.first.send(modified_attribute) } }
+        it { expect { run_service }.to change { registration.reload.contact_address.send(modified_attribute) } }
       end
 
       RSpec.shared_examples "does not update contact attribute" do
