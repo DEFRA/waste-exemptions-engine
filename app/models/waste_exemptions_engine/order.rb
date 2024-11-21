@@ -9,17 +9,12 @@ module WasteExemptionsEngine
     belongs_to :order_owner, polymorphic: true
     has_many :order_exemptions, dependent: :destroy
     has_many :exemptions, through: :order_exemptions, after_add: :reset_charge_detail
-    has_many :payments, dependent: :destroy
 
     has_one :order_bucket, dependent: :destroy
     has_one :bucket, through: :order_bucket
     has_one :charge_detail, dependent: :destroy
 
     after_initialize :generate_order_uuid
-
-    # def payment(govpay_id)
-    #   payments.find_by(govpay_id: govpay_id)
-    # end
 
     def highest_band
       return nil if exemptions.empty?

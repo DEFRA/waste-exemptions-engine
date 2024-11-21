@@ -28,9 +28,20 @@ module WasteExemptionsEngine
     end
 
     def pending_online_payment?
-      return false unless order.payments.any?
+      account_payments = if respond_to?(:account)
+                           account.payments
+                         else
+                           return false if reference.blank?
 
-      GovpayValidatorService.valid_govpay_status?(:pending, order.payments.last.payment_status)
+                           # This is a transient registration so look for the payment on the registration
+                           WasteExemptionsEngine::Registration.find_by(reference:).account.payments
+                         end
+
+      payment = account_payments.where(payment_type: Payment::PAYMENT_TYPE_GOVPAY).last
+
+      return false if payment.blank?
+
+      GovpayValidatorService.valid_govpay_status?(:pending, payment.payment_status)
     end
   end
 end
