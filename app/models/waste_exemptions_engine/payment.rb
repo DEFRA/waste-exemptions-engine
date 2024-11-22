@@ -23,7 +23,8 @@ module WasteExemptionsEngine
 
     REFUNDABLE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER,
                                 PAYMENT_TYPE_MISSING_CARD_PAYMENT,
-                                PAYMENT_TYPE_GOVPAY].freeze
+                                PAYMENT_TYPE_GOVPAY,
+                                PAYMENT_TYPE_OTHER].freeze
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
