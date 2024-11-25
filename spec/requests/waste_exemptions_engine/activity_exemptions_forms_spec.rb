@@ -15,13 +15,13 @@ module WasteExemptionsEngine
     end
 
     context "when adding exemptions in the new charged registration flow" do
-      let(:exemptions_form) { build(:new_charged_registration_flow_exemptions_form) }
+      let(:activity_exemptions_form) { build(:new_charged_registration_flow_activity_exemptions_form) }
 
       it "directs to confirm activity exemptions form when submitted" do
-        post "/waste_exemptions_engine/#{exemptions_form.token}/select-waste-exemptions",
-             params: { exemptions_form: { temp_exemptions: WasteExemptionsEngine::Exemption.limit(5).pluck(:id) } }
+        post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
+             params: { activity_exemptions_form: { temp_exemptions: WasteExemptionsEngine::Exemption.limit(5).pluck(:id) } }
 
-        expect(response).to redirect_to(confirm_activity_exemptions_forms_path(exemptions_form.token))
+        expect(response).to redirect_to(confirm_activity_exemptions_forms_path(activity_exemptions_form.token))
       end
     end
   end
