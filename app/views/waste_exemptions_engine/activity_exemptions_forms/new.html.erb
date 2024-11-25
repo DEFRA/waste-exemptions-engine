@@ -1,0 +1,51 @@
+<%= render("waste_exemptions_engine/shared/back", token: @activity_exemptions_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @activity_exemptions_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+      <p class="govuk-body"><%= t(".description") %></p>
+
+      <div class="govuk-form-group <%= "govuk-form-group--error" if @activity_exemptions_form.errors[:exemptions].any? %>">
+        <fieldset id="<%="matched_exemptions"%>" class="govuk-fieldset">
+          <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
+
+          <% if @activity_exemptions_form.errors[:temp_exemptions].any? %>
+            <span class="govuk-error-message" id="activity-exemptions-form-temp-exemptions-field-error"><%= @activity_exemptions_form.errors[:temp_exemptions].join(", ") %></span>
+          <% end %>
+          <div class="govuk-checkboxes">
+            <% current_activity = nil %>
+            <% selected_activity_exemptions(@activity_exemptions_form.transient_registration.temp_waste_activities).each do |exemption|  %>
+              
+              <% if current_activity != exemption.waste_activity_id %>
+                <% if current_activity.present? %><hr /><% end %>
+                <h2 class="govuk-heading-m govuk-!-padding-top-3"><%= exemption.waste_activity&.name  %></h2>
+                <% current_activity = exemption.waste_activity_id %>
+              <% end %>
+
+              <div class="govuk-checkboxes__item">
+                <%= f.check_box :temp_exemptions,
+                    { :multiple => true,
+                      id: "activity_exemptions_form_checkbox-#{exemption.code}",
+                      checked: @activity_exemptions_form.temp_exemptions&.include?(exemption.id.to_s),
+                      class: "govuk-checkboxes__input",
+                    }, exemption.id, nil %>
+                  <%= f.label "checkbox-#{exemption.code}", class: "govuk-label govuk-checkboxes__label" do %>
+                  <span class="govuk-!-font-weight-bold"><%= exemption.code %></span> <span class="govuk-!-font-weight-bold"><%= exemption.summary %></span>
+                  - <span><%= exemption.description %></span> <%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>. 
+                  <%= exemption.band&.name %>
+                <% end %>
+              </div>
+
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
+</div>
