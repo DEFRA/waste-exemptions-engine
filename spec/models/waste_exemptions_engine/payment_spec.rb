@@ -43,7 +43,7 @@ module WasteExemptionsEngine
 
       describe ".refundable" do
         it "returns payments that are refundable" do
-          expect(described_class.refundable).to contain_exactly(govpay_payment, bank_transfer_payment, missing_card_payment, already_reversed_payment, already_refunded_payment)
+          expect(described_class.refundable).to contain_exactly(govpay_payment, bank_transfer_payment, missing_card_payment, already_reversed_payment, already_refunded_payment, other_payment)
         end
       end
 
