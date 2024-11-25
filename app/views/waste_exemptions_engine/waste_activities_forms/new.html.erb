@@ -31,11 +31,11 @@
                 <%= f.check_box :temp_waste_activities,
                     { :multiple => true,
                       id: "waste_activities_form_checkbox-#{activity.id}",
-                      checked: @waste_activities_form.temp_waste_activities&.include?(activity),
+                      checked: @waste_activities_form.temp_waste_activities&.include?(activity.id.to_s),
                       class: "govuk-checkboxes__input",
                     }, activity.id, nil %>
                   <%= f.label "checkbox-#{activity.id}", class: "govuk-label govuk-checkboxes__label" do %>
-                  <span><%= activity.name %></span>
+                  <span><%= activity.name_alternative %></span>
                 <% end %>
               </div>
             <% end %>
