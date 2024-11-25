@@ -199,7 +199,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_13_154617) do
     t.bigint "account_id"
     t.string "reference"
     t.string "comments", limit: 500
+    t.string "created_by"
+    t.integer "associated_payment_id"
     t.index ["account_id"], name: "index_payments_on_account_id"
+    t.index ["associated_payment_id"], name: "index_payments_on_associated_payment_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
