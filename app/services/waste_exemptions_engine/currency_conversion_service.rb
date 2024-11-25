@@ -2,8 +2,10 @@
 
 module WasteExemptionsEngine
   class CurrencyConversionService
-    def self.convert_pence_to_pounds(pence, hide_pence_if_zero: false)
+    def self.convert_pence_to_pounds(pence, hide_pence_if_zero: false, return_float: false)
       pounds = pence.to_f / 100
+      return pounds if return_float
+
       format_pounds(pounds, hide_pence_if_zero)
     end
 
