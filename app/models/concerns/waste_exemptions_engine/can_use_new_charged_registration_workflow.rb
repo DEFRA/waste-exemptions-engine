@@ -59,6 +59,8 @@ module WasteExemptionsEngine
         state :site_address_lookup_form
 
         state :waste_activities_form
+        state :activity_exemptions_form
+        state :confirm_activity_exemptions_form
         state :exemptions_form
         state :exemptions_summary_form
 
@@ -94,10 +96,14 @@ module WasteExemptionsEngine
 
           # Waste Activities
           transitions from: :waste_activities_form,
-                      to: :exemptions_form
+                      to: :activity_exemptions_form
 
-          # Exemptions
-          transitions from: :exemptions_form,
+          # Activity Exemptions
+          transitions from: :activity_exemptions_form,
+                      to: :confirm_activity_exemptions_form
+
+          # Exemptions Summary
+          transitions from: :confirm_activity_exemptions_form,
                       to: :exemptions_summary_form
 
           transitions from: :exemptions_summary_form,
