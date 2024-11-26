@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       create_list(:waste_activity, 5)
     end
 
-    include_examples "GET form", :waste_activities_form, "/select-waste-activities"
+    include_examples "GET form", :waste_activities_form, "/select-waste-activities", is_charged: true
     include_examples "POST form", :waste_activities_form, "/select-waste-activities" do
       let(:form_data) { { temp_waste_activities: WasteActivity.limit(5).pluck(:id) } }
       let(:invalid_form_data) { [{ temp_waste_activities: nil }] }

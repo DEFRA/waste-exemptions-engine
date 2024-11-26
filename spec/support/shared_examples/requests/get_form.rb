@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "GET form" do |form_factory, path|
+# is_charged is a temporary flag to indicate if the registration is charged or not.
+RSpec.shared_examples "GET form" do |form_factory, path, is_charged: false|
   let(:correct_form) { build(form_factory) }
 
   describe "GET #{form_factory}" do
@@ -29,15 +30,15 @@ RSpec.shared_examples "GET form" do |form_factory, path|
     context "when the registration is not in the correct state" do
       let(:bad_request_path) { "/waste_exemptions_engine/#{incorrect_form.token}#{path}" }
 
-      flexible_navigation_allowed = Helpers::WorkflowStates.can_navigate_flexibly_to_state?(form_factory)
+      flexible_navigation_allowed = Helpers::WorkflowStates.can_navigate_flexibly_to_state?(form_factory, is_charged:)
 
       context "when the form can navigate flexibly", if: flexible_navigation_allowed do
         let!(:incorrect_workflow_state) { Helpers::WorkflowStates.previous_state(correct_form.transient_registration) }
         let(:incorrect_form) do
           # curently some states are only available for charged registrations.
+          # In that case, we call :charged trait
           # This is a temporary solution until we release the new registration flow.
-          charged_registration_states = [:waste_activities_form]
-          build(incorrect_workflow_state, charged_registration_states.include?(form_factory) ? :charged : nil)
+          build(incorrect_workflow_state, is_charged ? :charged : nil)
         end
 
         it "renders the appropriate template" do

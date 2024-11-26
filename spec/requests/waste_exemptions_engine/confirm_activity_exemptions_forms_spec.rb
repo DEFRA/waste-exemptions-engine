@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Confirm Activity Exemptions Forms" do
-    include_examples "GET form", :confirm_activity_exemptions_form, "/your-selected-exemptions"
+    include_examples "GET form", :confirm_activity_exemptions_form, "/your-selected-exemptions", is_charged: true
     include_examples "POST form", :confirm_activity_exemptions_form, "/your-selected-exemptions" do
       let(:form_data) { { temp_confirm_exemptions: "true" } }
       let(:invalid_form_data) { [{ temp_confirm_exemptions: nil }] }

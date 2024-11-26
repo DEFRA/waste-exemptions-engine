@@ -6,13 +6,13 @@ module Helpers
       transient_registration.aasm.states(permitted: true).map(&:name)
     end
 
-    def self.can_navigate_flexibly_to_state?(state)
+    def self.can_navigate_flexibly_to_state?(state, is_charged: false)
       return false unless state_can_navigate_flexibly?(state)
 
-      # curently some states are only available for charged registrations.
+      # curently some workflow states are only available for charged registrations.
+      # In that case, we pass is_charged=true flag
       # This is a temporary solution until we release the new registration flow.
-      charged_registration_states = [:waste_activities_form]
-      transient_registration = if charged_registration_states.include?(state)
+      transient_registration = if is_charged
                                  WasteExemptionsEngine::NewChargedRegistration.new(workflow_state: state)
                                else
                                  WasteExemptionsEngine::NewRegistration.new(workflow_state: state)

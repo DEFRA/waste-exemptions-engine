@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :location_form, class: "WasteExemptionsEngine::LocationForm" do
-
     model_factory { :new_registration }
 
     trait :charged do
