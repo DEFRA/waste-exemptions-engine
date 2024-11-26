@@ -17,11 +17,11 @@ module WasteExemptionsEngine
     context "when adding waste_activities in the new charged registration flow" do
       let(:waste_activities_form) { build(:new_charged_registration_flow_waste_activities_form) }
 
-      it "directs to exemptions form when submitted" do
+      it "directs to activity_exemptions form when submitted" do
         post "/waste_exemptions_engine/#{waste_activities_form.token}/select-waste-activities",
              params: { waste_activities_form: { temp_waste_activities: WasteExemptionsEngine::WasteActivity.limit(5).pluck(:id) } }
 
-        expect(response).to redirect_to(exemptions_forms_path(waste_activities_form.token))
+        expect(response).to redirect_to(activity_exemptions_forms_path(waste_activities_form.token))
       end
     end
   end

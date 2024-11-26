@@ -61,7 +61,7 @@ module WasteExemptionsEngine
         state :waste_activities_form
         state :activity_exemptions_form
         state :confirm_activity_exemptions_form
-        state :exemptions_form
+        # state :exemptions_form
         state :exemptions_summary_form
 
         # End pages
@@ -311,7 +311,7 @@ module WasteExemptionsEngine
           transitions from: :applicant_email_form,
                       to: :check_your_answers_form
 
-          transitions from: :exemptions_form,
+          transitions from: :confirm_activity_exemptions_form,
                       to: :check_your_answers_form
 
           transitions from: :contact_name_form,
@@ -372,7 +372,7 @@ module WasteExemptionsEngine
 
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
-                      to: :exemptions_form,
+                      to: :waste_activities_form,
                       if: :check_your_answers_flow?
         end
 
