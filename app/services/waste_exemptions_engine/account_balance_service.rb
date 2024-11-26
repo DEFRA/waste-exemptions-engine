@@ -12,11 +12,18 @@ module WasteExemptionsEngine
     private
 
     def total_due
-      account&.orders&.sum { |x| x.total_charge_amount || 0 } || 0
+      base_total = account&.orders&.sum { |x| x.total_charge_amount || 0 } || 0
+      total_adjustments + base_total
     end
 
     def total_paid
       account.payments&.select(&:success?)&.sum { |x| x.payment_amount || 0 } || 0
+    end
+
+    def total_adjustments
+      account&.charge_adjustments&.sum do |adjustment|
+        adjustment.increase? ? adjustment.amount : -adjustment.amount
+      end
     end
   end
 end

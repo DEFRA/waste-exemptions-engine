@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_13_154617) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_18_143709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -105,6 +105,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_13_154617) do
     t.string "bucket_type"
     t.index ["bucket_type"], name: "index_buckets_on_bucket_type", unique: true
     t.index ["name"], name: "index_buckets_on_name", unique: true
+  end
+
+  create_table "charge_adjustments", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.integer "amount", null: false
+    t.string "adjustment_type", null: false
+    t.string "reason", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_charge_adjustments_on_account_id"
   end
 
   create_table "charge_details", force: :cascade do |t|
@@ -408,6 +418,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_13_154617) do
   add_foreign_key "band_charge_details", "charge_details"
   add_foreign_key "bucket_exemptions", "buckets"
   add_foreign_key "bucket_exemptions", "exemptions"
+  add_foreign_key "charge_adjustments", "accounts"
   add_foreign_key "charge_details", "orders"
   add_foreign_key "exemptions", "bands"
   add_foreign_key "order_buckets", "buckets"

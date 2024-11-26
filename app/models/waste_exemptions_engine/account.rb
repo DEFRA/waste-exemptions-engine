@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     belongs_to :registration, class_name: "Registration", optional: true
     has_many :orders, as: :order_owner, dependent: :destroy
     has_many :payments, dependent: :destroy
+    has_many :charge_adjustments, dependent: :destroy
 
     def overpaid?
       balance.positive?
