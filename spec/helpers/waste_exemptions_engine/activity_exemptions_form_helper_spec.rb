@@ -5,11 +5,16 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe ActivityExemptionsFormsHelper do
     describe "#selected_activity_exemptions" do
+      before do
+        create_list(:waste_activity, 3)
+      end
+
       it "returns a list of selected exemptions ordered by activity id and exemption id" do
-        exemption_one = create(:exemption, waste_activity_id: 2)
-        exemption_two = create(:exemption, waste_activity_id: 2)
-        exemption_three = create(:exemption, waste_activity_id: 1)
-        exemption_four = create(:exemption, waste_activity_id: 3)
+        activities = WasteExemptionsEngine::WasteActivity.all
+        exemption_one = create(:exemption, waste_activity_id: activities.second.id)
+        exemption_two = create(:exemption, waste_activity_id: activities.second.id)
+        exemption_three = create(:exemption, waste_activity_id: activities.first.id)
+        exemption_four = create(:exemption, waste_activity_id: activities.third.id)
 
         aggregate_failures "sorting waste activities" do
           exemptions = helper.selected_activity_exemptions([exemption_one.id, exemption_two.id, exemption_three.id, exemption_four.id])
