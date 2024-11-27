@@ -8,12 +8,14 @@ module WasteExemptionsEngine
     PAYMENT_TYPE_GOVPAY = "govpay_payment"
     PAYMENT_TYPE_BANK_TRANSFER = "bank_transfer"
     PAYMENT_TYPE_MISSING_CARD_PAYMENT = "missing_card_payment"
+    PAYMENT_TYPE_REVERSAL = "reversal"
     PAYMENT_TYPE_OTHER = "other_payment"
     PAYMENT_TYPE_REFUND = "refund"
 
     enum payment_type: {
       govpay_payment: PAYMENT_TYPE_GOVPAY,
       bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
+      reversal: PAYMENT_TYPE_REVERSAL,
       missing_card_payment: PAYMENT_TYPE_MISSING_CARD_PAYMENT,
       other_payment: PAYMENT_TYPE_OTHER,
       refund: PAYMENT_TYPE_REFUND
@@ -21,7 +23,8 @@ module WasteExemptionsEngine
 
     REFUNDABLE_PAYMENT_TYPES = [PAYMENT_TYPE_BANK_TRANSFER,
                                 PAYMENT_TYPE_MISSING_CARD_PAYMENT,
-                                PAYMENT_TYPE_GOVPAY].freeze
+                                PAYMENT_TYPE_GOVPAY,
+                                PAYMENT_TYPE_OTHER].freeze
 
     # Payment created using the API. Your user has not yet visited next_url.	finished? false
     PAYMENT_STATUS_CREATED = "created"
@@ -57,16 +60,25 @@ module WasteExemptionsEngine
 
     belongs_to :order, optional: true
     belongs_to :account
+    belongs_to :associated_payment, class_name: "Payment", optional: true
 
     validates :payment_uuid, presence: true
     validates :payment_type, presence: true
     validates :payment_status, presence: true
 
     scope :not_cancelled, -> { where.not(payment_status: PAYMENT_STATUS_CANCELLED) }
+    scope :refunds_and_reversals, -> { where(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
+    scope :excluding_refunds_and_reversals, -> { where.not(payment_type: [PAYMENT_TYPE_REFUND, PAYMENT_TYPE_REVERSAL]) }
     scope :refundable, -> { where(payment_type: REFUNDABLE_PAYMENT_TYPES) }
-  end
+    scope :reverseable, lambda {
+      excluding_refunds_and_reversals
+        .success
+        .where.not(payment_type: PAYMENT_TYPE_GOVPAY)
+        .where.not(id: Payment.where.not(associated_payment_id: nil).select(:associated_payment_id))
+    }
 
-  def success?
-    payment_status == PAYMENT_STATUS_SUCCESS
+    def success?
+      payment_status == PAYMENT_STATUS_SUCCESS
+    end
   end
 end

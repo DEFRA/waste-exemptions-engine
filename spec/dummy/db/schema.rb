@@ -107,6 +107,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_124607) do
     t.index ["name"], name: "index_buckets_on_name", unique: true
   end
 
+  create_table "charge_adjustments", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.integer "amount", null: false
+    t.string "adjustment_type", null: false
+    t.string "reason", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_charge_adjustments_on_account_id"
+  end
+
   create_table "charge_details", force: :cascade do |t|
     t.integer "registration_charge_amount"
     t.integer "bucket_charge_amount", default: 0
@@ -201,7 +211,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_124607) do
     t.bigint "account_id"
     t.string "reference"
     t.string "comments", limit: 500
+    t.string "created_by"
+    t.integer "associated_payment_id"
     t.index ["account_id"], name: "index_payments_on_account_id"
+    t.index ["associated_payment_id"], name: "index_payments_on_associated_payment_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
@@ -417,6 +430,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_124607) do
   add_foreign_key "band_charge_details", "charge_details"
   add_foreign_key "bucket_exemptions", "buckets"
   add_foreign_key "bucket_exemptions", "exemptions"
+  add_foreign_key "charge_adjustments", "accounts"
   add_foreign_key "charge_details", "orders"
   add_foreign_key "exemptions", "bands"
   add_foreign_key "order_buckets", "buckets"
