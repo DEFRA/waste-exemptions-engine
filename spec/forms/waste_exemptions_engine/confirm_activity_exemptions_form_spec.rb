@@ -4,7 +4,9 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe ConfirmActivityExemptionsForm, type: :model do
-    let(:three_exemption_ids) { Exemption.order("RANDOM()").last(3) }
+    let(:activity_one) { create(:waste_activity) }
+    let(:activity_two) { create(:waste_activity) }
+    let(:selected_exemption_ids) { Exemption.order("RANDOM()").last(5).map(&:id) }
 
     subject(:form) { build(:confirm_activity_exemptions_form) }
 
@@ -21,7 +23,8 @@ module WasteExemptionsEngine
 
     describe "#submit" do
       before do
-        form.transient_registration.update(temp_exemptions: three_exemption_ids)
+        create_list(:exemption, 5, waste_activity_id: [activity_one.id, activity_two.id].sample)
+        form.transient_registration.update(temp_exemptions: selected_exemption_ids)
       end
 
       context "when the form is valid" do
@@ -33,7 +36,7 @@ module WasteExemptionsEngine
             expect(form.temp_confirm_exemptions).to be_nil
             form.submit(valid_params)
             expect(form.temp_confirm_exemptions).to eq(valid_params[:temp_confirm_exemptions])
-            expect(transient_registration.exemptions.map(&:id)).to match_array(three_exemption_ids)
+            expect(transient_registration.exemptions.map(&:id)).to match_array(selected_exemption_ids)
           end
         end
       end
