@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_22_124607) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_28_154543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -391,6 +391,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_22_124607) do
     t.string "temp_payment_method"
     t.text "temp_waste_activities", default: [], array: true
     t.text "temp_exemptions", default: [], array: true
+    t.boolean "temp_confirm_exemptions"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end

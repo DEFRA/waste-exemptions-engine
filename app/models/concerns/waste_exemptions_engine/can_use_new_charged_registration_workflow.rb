@@ -61,7 +61,6 @@ module WasteExemptionsEngine
         state :waste_activities_form
         state :activity_exemptions_form
         state :confirm_activity_exemptions_form
-        # state :exemptions_form
         state :exemptions_summary_form
 
         # End pages
@@ -102,10 +101,17 @@ module WasteExemptionsEngine
           transitions from: :activity_exemptions_form,
                       to: :confirm_activity_exemptions_form
 
-          # Exemptions Summary
+          # Confirm Exemptions
           transitions from: :confirm_activity_exemptions_form,
-                      to: :exemptions_summary_form
+                      to: :exemptions_summary_form,
+                      if: :proceed_with_selected_exemptions?
 
+          # Change Exemptions
+          transitions from: :confirm_activity_exemptions_form,
+                      to: :waste_activities_form,
+                      if: :change_selected_exemptions?
+
+          # Exemptions Summary
           transitions from: :exemptions_summary_form,
                       to: :applicant_name_form,
                       unless: :check_your_answers_flow?
@@ -529,6 +535,14 @@ module WasteExemptionsEngine
 
     def payment_via_bank_transfer?
       temp_payment_method == "bank_transfer"
+    end
+
+    def proceed_with_selected_exemptions?
+      temp_confirm_exemptions == true
+    end
+
+    def change_selected_exemptions?
+      temp_confirm_exemptions == false
     end
   end
 end
