@@ -16,5 +16,17 @@ module WasteExemptionsEngine
     def balance
       AccountBalanceService.run(self)
     end
+
+    def successful_payments
+      payments.successful_payments
+    end
+
+    def refunds_and_reversals
+      payments.refunds_and_reversals
+    end
+
+    def sorted_orders
+      orders.recent_first
+    end
   end
 end
