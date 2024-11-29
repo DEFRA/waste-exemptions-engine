@@ -4,13 +4,14 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Waste Activities Forms" do
-    before do
-      create_list(:waste_activity, 5)
-    end
+    let(:activity_one) { create(:waste_activity, category: :using_waste) }
+    let(:activity_two) { create(:waste_activity, category: :storing_waste) }
+    let(:activity_three) { create(:waste_activity, category: :disposing_of_waste) }
+    let(:activity_ids) { [activity_one.id, activity_two.id, activity_three.id] }
 
     include_examples "GET form", :waste_activities_form, "/select-waste-activities", is_charged: true
     include_examples "POST form", :waste_activities_form, "/select-waste-activities" do
-      let(:form_data) { { temp_waste_activities: WasteActivity.limit(5).pluck(:id) } }
+      let(:form_data) { { temp_waste_activities: activity_ids } }
       let(:invalid_form_data) { [{ temp_waste_activities: nil }] }
     end
 
@@ -19,7 +20,7 @@ module WasteExemptionsEngine
 
       it "directs to activity_exemptions form when submitted" do
         post "/waste_exemptions_engine/#{waste_activities_form.token}/select-waste-activities",
-             params: { waste_activities_form: { temp_waste_activities: WasteExemptionsEngine::WasteActivity.limit(5).pluck(:id) } }
+             params: { waste_activities_form: { temp_waste_activities: activity_ids } }
 
         expect(response).to redirect_to(activity_exemptions_forms_path(waste_activities_form.token))
       end

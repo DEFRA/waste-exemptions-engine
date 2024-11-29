@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :waste_activity, class: "WasteExemptionsEngine::WasteActivity" do
-    name { Faker::Lorem.words(number: 3) }
-    category { WasteExemptionsEngine::WasteActivity::ACTIVITY_CATEGORIES.values.sample }
+    name { Faker::Lorem.sentence }
+    name_alternative { name }
+    category { WasteExemptionsEngine::WasteActivity::ACTIVITY_CATEGORIES.keys.sample }
   end
 end
