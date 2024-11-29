@@ -9,6 +9,8 @@ module WasteExemptionsEngine
     has_many :payments, dependent: :destroy
     has_many :charge_adjustments, dependent: :destroy
 
+    delegate :successful_payments, :refunds_and_reversals, to: :payments
+
     def overpaid?
       balance.positive?
     end
@@ -17,16 +19,8 @@ module WasteExemptionsEngine
       AccountBalanceService.run(self)
     end
 
-    def successful_payments
-      payments.successful_payments
-    end
-
-    def refunds_and_reversals
-      payments.refunds_and_reversals
-    end
-
     def sorted_orders
-      orders.recent_first
+      orders.order(created_at: :desc)
     end
   end
 end
