@@ -21,14 +21,14 @@
           
             <% category_activities(category).each do |activity|  %>
               <div class="govuk-checkboxes__item govuk-!-margin-left-2">
-                <%= f.check_box :waste_activity_ids,
+                <%= f.check_box :temp_waste_activities,
                     { :multiple => true,
                       id: "waste_activities_form_checkbox-#{activity.id}",
                       checked: @waste_activities_form.temp_waste_activities&.include?(activity),
                       class: "govuk-checkboxes__input",
                     }, activity.id, nil %>
                   <%= f.label "checkbox-#{activity.id}", class: "govuk-label govuk-checkboxes__label" do %>
-                  <span><%= activity.name %></span>
+                  <span><%= activity.name_alternative %></span>
                 <% end %>
               </div>
             <% end %>
