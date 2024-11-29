@@ -22,7 +22,7 @@
               
               <% if current_activity != exemption.waste_activity_id %>
                 <% if current_activity.present? %><hr /><% end %>
-                <h2 class="govuk-heading-m govuk-!-padding-top-3"><%= exemption.waste_activity&.name  %></h2>
+                <h2 class="govuk-heading-m govuk-!-padding-top-3"><%= exemption.waste_activity&.name_gerund  %></h2>
                 <% current_activity = exemption.waste_activity_id %>
               <% end %>
 

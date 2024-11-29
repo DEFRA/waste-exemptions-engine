@@ -419,7 +419,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_154543) do
 
   create_table "waste_activities", force: :cascade do |t|
     t.string "name"
-    t.string "name_alternative"
+    t.string "name_gerund"
     t.integer "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
