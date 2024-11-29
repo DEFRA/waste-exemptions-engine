@@ -1,0 +1,41 @@
+en:
+  waste_exemptions_engine:
+    waste_activities_forms:
+      new:
+        title: Select the waste activities you do
+        heading: Select the waste activities you do
+        opens_in_new_window: "(opens in new window)"
+        waste_activities:
+          categories:
+            using_waste: 
+              title: Using waste
+              description: "This means you use waste for another activity, for example, burning waste for fuel, or spreading it on land as fertiliser. See "
+              link_text: "Using waste: waste exemptions."
+              link_url: https://www.gov.uk/government/collections/waste-exemptions-using-waste
+            disposing_of_waste: 
+              title: Disposing of waste
+              description: "This means depositing waste or burning plant or wood waste in an incinerator or in the open. See "
+              link_text: "Disposing of waste: waste exemptions."
+              link_url: https://www.gov.uk/government/collections/waste-exemptions-disposing-of-waste
+            treating_waste: 
+              title: Treating waste
+              description: "This means preparing, recovering, sorting and treating certain waste materials, such as waste wood and plant matter. See "
+              link_text: "Treating waste: waste exemptions."
+              link_url: https://www.gov.uk/government/collections/waste-exemptions-treating-waste
+            storing_waste: 
+              title: Storing waste
+              description: "This means storing certain waste in secure containers or at secure sites. It covers the storage of sludge. See "
+              link_text: "Storing waste: waste exemptions."
+              link_url: https://www.gov.uk/government/collections/waste-exemptions-storing-waste
+        
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/waste_activities_form:
+          attributes:
+            temp_waste_activities:
+              blank: "You need to select at least one activity"
+              inclusion: "You need to select at least one activity"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

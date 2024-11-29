@@ -1,0 +1,23 @@
+en:
+  waste_exemptions_engine:
+    activity_exemptions_forms:
+      new:
+        title: Select the waste exemptions you need
+        heading: Select the waste exemptions you need
+        description: |
+          You must pay a band charge for each exemption you select. 
+          Band 1 being the highest charge and band 3 the lowest.
+        next_button: Continue
+        see: See
+        opens_in_new_window: (opens in a new window)
+        exemption_link_name: "%{exemption_code} guidance"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/activity_exemptions_form:
+          attributes:
+            temp_exemptions:
+              inclusion: "You need to select at least one exemption"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

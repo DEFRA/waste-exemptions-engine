@@ -1,0 +1,51 @@
+<%= render("waste_exemptions_engine/shared/back", token: @confirm_activity_exemptions_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @confirm_activity_exemptions_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+      
+      <p class="govuk-body"><%= t(".description") %></p>
+      
+      <div class="govuk-body">
+
+        <% current_band = nil %>
+        <% selected_activity_exemptions(@confirm_activity_exemptions_form.transient_registration.temp_exemptions).each do |exemption| %>
+          <% if current_band != exemption&.band_id %>
+            <h2 class="govuk-heading-m govuk-!-padding-top-2"><%= exemption.band&.name  %> exemptions</h2>
+            <% current_band = exemption&.band_id %>
+          <% end %>
+          
+          <p><span class="govuk-!-font-weight-bold"><%= exemption.code %></span> <span class="govuk-!-font-weight-bold"><%= exemption.summary %></span></p>
+        <% end %>
+      </div>
+      
+      <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_activity_exemptions_form.errors[:workflow_state].any? %>">
+        <%= f.govuk_collection_radio_buttons :temp_confirm_exemptions,
+            [
+              OpenStruct.new(
+                id: true,
+                name: t(".options.true")
+              ),
+              OpenStruct.new(
+                id: false,
+                name: t(".options.false")
+              )
+            ],
+            :id,
+            :name,
+            legend: {
+              text: t(".heading"),
+              hidden: true
+            },
+            inline: true %>
+
+        <br /><br />
+        <%= f.govuk_submit %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
