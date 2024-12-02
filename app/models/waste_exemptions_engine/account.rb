@@ -18,9 +18,5 @@ module WasteExemptionsEngine
     def balance
       AccountBalanceService.run(self)
     end
-
-    def sorted_orders
-      orders.order(created_at: :desc)
-    end
   end
 end

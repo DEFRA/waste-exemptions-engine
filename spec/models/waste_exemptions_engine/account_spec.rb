@@ -81,16 +81,5 @@ module WasteExemptionsEngine
         expect(account.refunds_and_reversals).to eq(refunds_scope)
       end
     end
-
-    describe "#sorted_orders" do
-      let(:account) { create(:account) }
-      let!(:oldest_order) { create(:order, order_owner: account, created_at: 3.days.ago) }
-      let!(:newest_order) { create(:order, order_owner: account, created_at: 1.day.ago) }
-      let!(:middle_order) { create(:order, order_owner: account, created_at: 2.days.ago) }
-
-      it "returns orders sorted by created_at in descending order" do
-        expect(account.sorted_orders).to eq([newest_order, middle_order, oldest_order])
-      end
-    end
   end
 end
