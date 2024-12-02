@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_18_143709) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_28_154543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -157,7 +157,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_143709) do
     t.text "guidance"
     t.boolean "hidden", default: false
     t.bigint "band_id"
+    t.bigint "waste_activity_id"
     t.index ["band_id"], name: "index_exemptions_on_band_id"
+    t.index ["waste_activity_id"], name: "index_exemptions_on_waste_activity_id"
   end
 
   create_table "feature_toggles", force: :cascade do |t|
@@ -387,6 +389,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_143709) do
     t.boolean "temp_check_your_answers_flow"
     t.string "temp_company_no"
     t.string "temp_payment_method"
+    t.text "temp_waste_activities", default: [], array: true
+    t.text "temp_exemptions", default: [], array: true
+    t.boolean "temp_confirm_exemptions"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
@@ -410,6 +415,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_143709) do
     t.datetime "created_at", precision: nil
     t.json "json"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
+  create_table "waste_activities", force: :cascade do |t|
+    t.string "name"
+    t.string "name_gerund"
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "accounts", "registrations"

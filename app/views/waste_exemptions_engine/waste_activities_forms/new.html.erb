@@ -1,0 +1,41 @@
+<%= render("waste_exemptions_engine/shared/back", token: @waste_activities_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @waste_activities_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+      <div class="govuk-form-group <%= "govuk-form-group--error" if @waste_activities_form.errors[:temp_waste_activities].any? %>">
+        <% if @waste_activities_form.errors[:temp_waste_activities].any? %>
+          <span class="govuk-error-message" id="waste-activities-form-waste-activities-field-error"><%= @waste_activities_form.errors[:temp_waste_activities].join(", ") %></span>
+        <% end %>
+        <div class="govuk-checkboxes">
+          <% all_categories.each do |category| %>
+            
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-4"><%= t(".waste_activities.categories.#{category}.title") %></h2>
+            <p class="govuk-body govuk-!-margin-bottom-3">
+              <%= t(".waste_activities.categories.#{category}.description") %>
+              <%= link_to t(".waste_activities.categories.#{category}.link_text"), t(".waste_activities.categories.#{category}.link_url"), target: "_blank" %>
+              <%= t(".opens_in_new_window") %>
+            </p>
+          
+            <% category_activities(category).each do |activity|  %>
+              <div class="govuk-checkboxes__item govuk-!-margin-left-2">
+                <%= f.check_box :temp_waste_activities,
+                    { :multiple => true,
+                      id: "waste_activities_form_checkbox-#{activity.id}",
+                      checked: @waste_activities_form.temp_waste_activities&.include?(activity.id.to_s),
+                      class: "govuk-checkboxes__input",
+                    }, activity.id, nil %>
+                  <%= f.label "checkbox-#{activity.id}", class: "govuk-label govuk-checkboxes__label" do %>
+                  <span><%= activity.name %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
+</div>
