@@ -58,7 +58,9 @@ module WasteExemptionsEngine
         state :site_postcode_form
         state :site_address_lookup_form
 
-        state :exemptions_form
+        state :waste_activities_form
+        state :activity_exemptions_form
+        state :confirm_activity_exemptions_form
         state :exemptions_summary_form
 
         # End pages
@@ -89,12 +91,27 @@ module WasteExemptionsEngine
                       if: :should_register_in_wales?
 
           transitions from: :location_form,
-                      to: :exemptions_form
+                      to: :waste_activities_form
 
-          # Exemptions
-          transitions from: :exemptions_form,
-                      to: :exemptions_summary_form
+          # Waste Activities
+          transitions from: :waste_activities_form,
+                      to: :activity_exemptions_form
 
+          # Activity Exemptions
+          transitions from: :activity_exemptions_form,
+                      to: :confirm_activity_exemptions_form
+
+          # Confirm Exemptions
+          transitions from: :confirm_activity_exemptions_form,
+                      to: :exemptions_summary_form,
+                      if: :proceed_with_selected_exemptions?
+
+          # Change Exemptions
+          transitions from: :confirm_activity_exemptions_form,
+                      to: :waste_activities_form,
+                      if: :change_selected_exemptions?
+
+          # Exemptions Summary
           transitions from: :exemptions_summary_form,
                       to: :applicant_name_form,
                       unless: :check_your_answers_flow?
@@ -300,7 +317,7 @@ module WasteExemptionsEngine
           transitions from: :applicant_email_form,
                       to: :check_your_answers_form
 
-          transitions from: :exemptions_form,
+          transitions from: :confirm_activity_exemptions_form,
                       to: :check_your_answers_form
 
           transitions from: :contact_name_form,
@@ -361,7 +378,7 @@ module WasteExemptionsEngine
 
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
-                      to: :exemptions_form,
+                      to: :waste_activities_form,
                       if: :check_your_answers_flow?
         end
 
@@ -518,6 +535,14 @@ module WasteExemptionsEngine
 
     def payment_via_bank_transfer?
       temp_payment_method == "bank_transfer"
+    end
+
+    def proceed_with_selected_exemptions?
+      temp_confirm_exemptions == true
+    end
+
+    def change_selected_exemptions?
+      temp_confirm_exemptions == false
     end
   end
 end
