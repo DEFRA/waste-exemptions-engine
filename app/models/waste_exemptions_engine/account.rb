@@ -9,8 +9,6 @@ module WasteExemptionsEngine
     has_many :payments, dependent: :destroy
     has_many :charge_adjustments, dependent: :destroy
 
-    delegate :successful_payments, :refunds_and_reversals, to: :payments
-
     def overpaid?
       balance.positive?
     end
