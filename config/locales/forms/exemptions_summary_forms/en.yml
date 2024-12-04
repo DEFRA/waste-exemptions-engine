@@ -8,7 +8,7 @@ en:
         charge_explanation: "You'll pay a:"
         full_compliance_charge: "full compliance charge for one exemption from the highest exemption band you select"
         discounted_charge: "discounted charge for all other exemptions"
-        registration_fee: "a single registration fee of £41"
+        registration_fee: "a single registration charge of %{charge_amount}"
         exemption: "Exemption"
         band: "Band"
         compliance_charge: "Compliance charge"
