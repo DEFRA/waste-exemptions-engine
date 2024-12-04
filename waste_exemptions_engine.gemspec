@@ -27,8 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency "high_voltage", "~> 3.1"
   s.add_dependency "rails", "~> 7.1"
 
-  # paper_trail currently does not support rails 7.2.
-  s.add_dependency "activerecord", "< 7.2"
+  # paper_trail currently does not support rails > 8.0.
+  s.add_dependency "activerecord", "< 8.0"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
