@@ -71,7 +71,8 @@ module WasteExemptionsEngine
                                                            "updated_at")
 
             renewing_person = renewing_registration.people.find do |find_person|
-              (find_person.attributes.to_a & copyable_attributes.to_a) == copyable_attributes.to_a
+              # Rubocop Style/BitwisePredicate returns a false positive here - this is a set union, not a bitwise operation
+              (find_person.attributes.to_a & copyable_attributes.to_a) == copyable_attributes.to_a # rubocop:disable Style/BitwisePredicate
             end
 
             expect(renewing_person).to be_present
