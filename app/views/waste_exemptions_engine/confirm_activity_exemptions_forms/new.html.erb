@@ -18,7 +18,7 @@
             <% current_band = exemption&.band_id %>
           <% end %>
           
-          <p><span class="govuk-!-font-weight-bold"><%= exemption.code %></span> <span class="govuk-!-font-weight-bold"><%= exemption.summary %></span></p>
+          <p><%= exemption.code %> <%= exemption.summary %></p>
         <% end %>
       </div>
       
