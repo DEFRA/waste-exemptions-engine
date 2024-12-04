@@ -7,7 +7,7 @@
     <ul class="govuk-list govuk-list--bullet">
       <li><%= t(".full_compliance_charge") %></li>
       <li><%= t(".discounted_charge") %></li>
-      <li><%= t(".registration_fee") %></li>
+      <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
     </ul>
     <table class="govuk-table">
       <thead class="govuk-table__head">
