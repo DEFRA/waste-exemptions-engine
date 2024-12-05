@@ -6,7 +6,9 @@ module WasteExemptionsEngine
     include CannotSubmitForm
 
     def new
-      super(DeregistrationCompleteNoChangeForm, "deregistration_complete_no_change_form")
+      return unless super(DeregistrationCompleteNoChangeForm, "deregistration_complete_no_change_form")
+
+      @transient_registration.destroy
     end
   end
 end
