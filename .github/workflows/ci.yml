@@ -80,7 +80,7 @@ jobs:
           sed -i 's/\/home\/runner\/work\/waste-exemptions-engine\/waste-exemptions-engine\//\/github\/workspace\//g' coverage/coverage.json
 
       - name: Analyze with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: sonarsource/sonarqube-scan-action@master
         with:
           projectBaseDir: /github/workspace
         env:
