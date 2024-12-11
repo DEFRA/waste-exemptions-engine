@@ -77,7 +77,7 @@ jobs:
       # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/6
       - name: Update coverage output
         run: |
-          sed -i 's/\/home\/runner\/work\/DEFRA\/waste-exemptions-engine\//\/github\/workspace\//g' coverage/coverage.json
+          sed -i "s@/home/runner/work/DEFRA/waste-exemptions-engine@/github/workspace@g" coverage/coverage.json
 
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarqube-scan-action@master
