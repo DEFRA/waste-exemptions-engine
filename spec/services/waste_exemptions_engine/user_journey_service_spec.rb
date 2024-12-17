@@ -149,9 +149,7 @@ module WasteExemptionsEngine
         end
 
         context "with a logged-in user" do
-          # rubocop:disable RSpec/VerifiedDoubleReference
-          let(:current_user) { instance_double("User", email: "user@example.com") }
-          # rubocop:enable RSpec/VerifiedDoubleReference
+          let(:current_user) { double("user", email: "user@example.com") } # rubocop:disable RSpec/VerifiedDoubles
 
           it "stores the current user's email address on the user journey" do
             described_class.run(transient_registration:, current_user:)

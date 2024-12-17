@@ -43,6 +43,12 @@ module WasteExemptionsEngine
 
           expect(response.body).to have_html_escaped_string("Enter a different number")
         end
+
+        context "when the companies house API response does not include an address" do
+          let(:company_address) { nil }
+
+          it { expect { get request_path }.not_to raise_error }
+        end
       end
     end
 
@@ -70,7 +76,7 @@ module WasteExemptionsEngine
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
-            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/invalid_or_inactive_company")
             expect(response.body).to have_valid_html
           end
         end
@@ -87,18 +93,18 @@ module WasteExemptionsEngine
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
-            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/inactive_company")
+            expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/invalid_or_inactive_company")
             expect(response.body).to have_valid_html
           end
         end
       end
 
-      context "when the company house API is down" do
+      context "when the companies house API is down" do
         before { allow(companies_house_service).to receive(:status).and_raise(StandardError) }
 
         it "raises an error" do
           get request_path
-          expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/companies_house_down")
+          expect(response).to render_template("waste_exemptions_engine/shared/companies_house_down")
         end
       end
     end

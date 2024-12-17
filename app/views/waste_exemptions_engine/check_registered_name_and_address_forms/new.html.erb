@@ -35,7 +35,7 @@
           <%= @check_registered_name_and_address_form.registered_company_name %>
           </h2>
           <p class="govuk-body">
-            <% @check_registered_name_and_address_form.registered_office_address_lines.each do |line| %>
+            <% @check_registered_name_and_address_form.registered_office_address_lines&.each do |line| %>
               <%= line %> <br>
             <% end%>
           </p>

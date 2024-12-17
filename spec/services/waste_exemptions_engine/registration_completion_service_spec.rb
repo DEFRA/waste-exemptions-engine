@@ -241,11 +241,17 @@ module WasteExemptionsEngine
         end
 
         context "when the transient_registration is charged" do
-          let(:new_charged_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
-          let!(:order) { create(:order, order_owner: new_charged_registration) }
+          let(:order) { create(:order, :with_charge_detail, order_owner: new_charged_registration) }
+          let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
+          let(:new_charged_registration) do
+            create(:new_charged_registration, :complete,
+                   reference: placeholder_registration.reference,
+                   workflow_state: "registration_complete_form")
+          end
 
           before do
             new_charged_registration.update(order: order)
+            placeholder_registration.account.payments << create(:payment, payment_amount: order.total_charge_amount, payment_status: "success")
           end
 
           subject(:run_service) { described_class.run(transient_registration: new_charged_registration) }
@@ -256,17 +262,15 @@ module WasteExemptionsEngine
             expect(registration.charged).to be_truthy
           end
 
-          it "creates an account for the registration" do
-            expect { run_service }.to change(Account, :count).by(1)
+          it "does not create a new registration" do
+            expect { run_service }.not_to change(Registration, :count)
           end
 
-          it "associates the account with the registration" do
-            registration = run_service
-
-            expect(registration.account).to be_present
+          it "does not create a new account for the registration" do
+            expect { run_service }.not_to change(Account, :count)
           end
 
-          it "copies the order to the new account" do
+          it "copies the order to the account" do
             registration = run_service
 
             expect(registration.account.orders).to include(order)
@@ -276,6 +280,10 @@ module WasteExemptionsEngine
             registration = run_service
 
             expect(registration.account.balance).to eq(0)
+          end
+
+          it "sets the registration placeholder attribute to false" do
+            expect { run_service }.to change { registration.reload.placeholder }.to false
           end
         end
       end

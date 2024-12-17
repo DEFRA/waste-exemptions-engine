@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     end
 
     def prepare_for_payment
-      # ensure the is persisted before attempting to create a payment
+      # ensure the order is persisted before attempting to create a payment
       raise "Order must be persisted before payment can be taken" unless order.persisted?
 
       @payment = create_payment
@@ -23,7 +23,7 @@ module WasteExemptionsEngine
       if govpay_payment_id.present?
         @payment.update(govpay_id: govpay_payment_id)
         {
-          payment: @payment, # @payment,
+          payment: @payment,
           url: govpay_redirect_url(response)
         }
       else
@@ -71,12 +71,19 @@ module WasteExemptionsEngine
       }
     end
 
+    def registration_account
+      Registration.find_by(reference: @transient_registration.reference).account
+    end
+
     def create_payment
       WasteExemptionsEngine::Payment.create!(
+        account: registration_account,
         order: order,
         payment_type: Payment::PAYMENT_TYPE_GOVPAY,
         payment_status: Payment::PAYMENT_STATUS_CREATED,
-        payment_uuid: SecureRandom.uuid
+        payment_uuid: SecureRandom.uuid,
+        payment_amount: order.total_charge_amount,
+        date_time: Time.zone.now
       )
     end
   end

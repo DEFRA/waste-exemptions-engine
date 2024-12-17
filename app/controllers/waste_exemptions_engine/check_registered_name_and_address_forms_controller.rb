@@ -8,12 +8,10 @@ module WasteExemptionsEngine
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
       return if new_registration
 
-      begin
-        render(:inactive_company) unless validate_company_number && validate_company_status
-      rescue StandardError
-        Rails.logger.error "Failed to load"
-        render(:companies_house_down)
-      end
+      render(:invalid_or_inactive_company) unless validate_company_number && validate_company_status
+    rescue StandardError
+      Rails.logger.error "Failed to load"
+      render("waste_exemptions_engine/shared/companies_house_down")
     end
 
     def create
