@@ -98,7 +98,7 @@ module WasteExemptionsEngine
 
         it "raises an error" do
           get request_path
-          expect(response).to render_template("waste_exemptions_engine/check_registered_name_and_address_forms/companies_house_down")
+          expect(response).to render_template("waste_exemptions_engine/shared/companies_house_down")
         end
       end
     end

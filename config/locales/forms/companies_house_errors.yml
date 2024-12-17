@@ -1,0 +1,8 @@
+en:
+  waste_exemptions_engine:
+    shared:
+      companies_house_down:
+        title: There is a problem with Companies House
+        heading: There is a problem with Companies House
+        paragraph_1: We are unable to verify your Companies House details at the moment
+        paragraph_2: Please try again later.
