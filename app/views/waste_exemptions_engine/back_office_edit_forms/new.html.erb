@@ -1,3 +1,5 @@
+<% content_for :title, t(".heading", reference: @back_office_edit_form.reference) %>
+
 <%= render("waste_exemptions_engine/shared/back", back_path: edit_back_path(@back_office_edit_form.transient_registration)) %>
 
 <%= form_for(@back_office_edit_form) do |f| %>
@@ -151,6 +153,7 @@
             <dt class="govuk-summary-list__key">
               <%= t(".sections.operator.labels.company_no") %>
             </dt>
+
             <dd class="govuk-summary-list__value">
               <%= @back_office_edit_form.company_no %>
             </dd>

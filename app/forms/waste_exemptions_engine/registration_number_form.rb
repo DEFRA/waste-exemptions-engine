@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "defra_ruby_companies_house"
+
 module WasteExemptionsEngine
   class RegistrationNumberForm < BaseForm
     delegate :temp_company_no, :business_type, to: :transient_registration
@@ -8,6 +10,14 @@ module WasteExemptionsEngine
 
     def submit(params)
       params[:temp_company_no] = process_company_no(params[:temp_company_no])
+      temp_company_no = params[:temp_company_no]
+
+      # back_office_edit_registrations don't have a confirmation page so we update the
+      # transient registration's relevant copyable attributes here:
+      if @transient_registration.is_a?(BackOfficeEditRegistration)
+        params[:operator_name] = DefraRubyCompaniesHouse.new(temp_company_no).company_name
+        params[:company_no] = temp_company_no
+      end
 
       super
     end
