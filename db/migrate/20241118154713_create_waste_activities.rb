@@ -2,12 +2,14 @@
 
 class CreateWasteActivities < ActiveRecord::Migration[7.1]
   def change
-    create_table :waste_activities do |t|
-      t.string :name
-      t.string :name_gerund
-      t.integer :category
+    unless table_exists?(:waste_activities)
+      create_table :waste_activities do |t|
+        t.string :name
+        t.string :name_gerund
+        t.integer :category
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 end
