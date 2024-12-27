@@ -177,23 +177,10 @@ module WasteExemptionsEngine
 
           ### SITE LOCATION
 
-          # Site Grid Reference -> Check Site Address
+          # Site Grid Reference -> Site Postcode
           transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form,
-                      if: :skip_to_manual_address?
-
-          # Site Grid Reference -> Operator Postcode
-          transitions from: :site_grid_reference_form,
-                      to: :operator_postcode_form
-
-          # Check Site Address -> Site Postcode
-          transitions from: :check_site_address_form,
                       to: :site_postcode_form,
-                      unless: :reuse_address_for_site_location?
-
-          # Check Site Address -> Operator Postcode
-          transitions from: :check_site_address_form,
-                      to: :operator_postcode_form
+                      unless: :check_your_answers_flow?
 
           # Site Postcode -> Site Address Lookup
           transitions from: :site_postcode_form,
@@ -201,6 +188,11 @@ module WasteExemptionsEngine
 
           # Site Address Lookup -> Operator Postcode
           transitions from: :site_address_lookup_form,
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
+
+          # Check Site Address -> Operator Postcode
+          transitions from: :check_site_address_form,
                       to: :operator_postcode_form
 
           ### OPERATOR LOCATION
@@ -421,6 +413,12 @@ module WasteExemptionsEngine
 
           transitions from: :exemptions_summary_form,
                       to: :check_your_answers_form
+
+          transitions from: :site_grid_reference_form,
+                      to: :check_your_answers_form
+
+          transitions from: :site_address_lookup_form,
+                      to: :check_your_answers_form
         end
 
         event :skip_to_manual_address do
@@ -439,7 +437,7 @@ module WasteExemptionsEngine
 
         event :skip_to_address do
           transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form
+                      to: :site_postcode_form
         end
 
         event :edit_exemptions do
@@ -499,6 +497,18 @@ module WasteExemptionsEngine
         event :edit_operator_address do
           transitions from: :check_your_answers_form,
                       to: :operator_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_address do
+          transitions from: :check_your_answers_form,
+                      to: :site_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_grid_reference do
+          transitions from: :check_your_answers_form,
+                      to: :site_grid_reference_form,
                       if: :check_your_answers_flow?
         end
 
