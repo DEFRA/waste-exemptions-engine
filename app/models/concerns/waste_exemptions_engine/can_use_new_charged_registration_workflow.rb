@@ -180,6 +180,7 @@ module WasteExemptionsEngine
           # Site Grid Reference -> Site Postcode
           transitions from: :site_grid_reference_form,
                       to: :site_postcode_form,
+                      if: :skip_to_manual_address?,
                       unless: :check_your_answers_flow?
 
           # Site Postcode -> Site Address Lookup
@@ -194,6 +195,11 @@ module WasteExemptionsEngine
           # Check Site Address -> Operator Postcode
           transitions from: :check_site_address_form,
                       to: :operator_postcode_form
+
+          # Site Grid Reference -> Operator Postcode
+          transitions from: :site_grid_reference_form,
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
           ### OPERATOR LOCATION
 
