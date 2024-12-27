@@ -18,10 +18,12 @@ module WasteExemptionsEngine
         company_status:
       }
     end
+    let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
 
     before do
       allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
       allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
+      allow(NewRegistration).to receive(:new).and_return(new_registration)
     end
 
     include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
@@ -32,9 +34,6 @@ module WasteExemptionsEngine
 
     context "with a new registration" do
       context "when check_registered_name_and_address_form is given a valid companies house number" do
-        before do
-          check_registered_name_and_address_form.transient_registration.temp_company_no = "12345678"
-        end
 
         it "displays the registered company name" do
           get request_path
