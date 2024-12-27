@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "defra_ruby_companies_house"
+require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe "Renew" do
@@ -11,15 +11,17 @@ module WasteExemptionsEngine
       let(:company_name) { Faker::Company.name }
       let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
       let(:transient_registration_token) { RenewingRegistration.first.token }
-      let(:companies_house_service) { instance_double(DefraRubyCompaniesHouse) }
+      let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+      let(:companies_house_api_reponse) do
+        {
+          company_name:,
+          registered_office_address: company_address
+        }
+      end
 
       before do
-        allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_service)
-        allow(companies_house_service).to receive_messages(
-          load_company: true,
-          company_name: company_name,
-          registered_office_address_lines: company_address
-        )
+        allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+        allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
       end
 
       context "with a valid renew token" do

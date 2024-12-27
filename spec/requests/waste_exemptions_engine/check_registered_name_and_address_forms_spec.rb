@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "defra_ruby_companies_house"
+require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe "Check Registered Name And Address Forms" do
     let(:check_registered_name_and_address_form) { build(:check_registered_name_and_address_form) }
+    let(:request_path) { "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address" }
+    let(:company_status) { :active }
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
-    let(:request_path) { "/waste_exemptions_engine/#{check_registered_name_and_address_form.token}/check-registered-name-and-address" }
-    let(:companies_house_service) { instance_double(DefraRubyCompaniesHouse) }
+    let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+    let(:companies_house_api_reponse) do
+      {
+        company_name:,
+        registered_office_address: company_address,
+        company_status:
+      }
+    end
 
     before do
-      allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_service)
-      allow(companies_house_service).to receive_messages(load_company: true, company_name: company_name, registered_office_address_lines: company_address, status: :active)
+      allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+      allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
     end
 
     include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
@@ -24,13 +32,17 @@ module WasteExemptionsEngine
 
     context "with a new registration" do
       context "when check_registered_name_and_address_form is given a valid companies house number" do
+        before do
+          check_registered_name_and_address_form.transient_registration.temp_company_no = "12345678"
+        end
+
         it "displays the registered company name" do
           get request_path
 
           expect(response.body).to have_html_escaped_string(company_name)
         end
 
-        it "displays the regsitered company address" do
+        it "displays the registered company address" do
           get request_path
 
           company_address.each do |line|
@@ -69,7 +81,7 @@ module WasteExemptionsEngine
       let(:request_path) { "/waste_exemptions_engine/#{renewing_registration.token}/check-registered-name-and-address" }
 
       context "when the company status is no longer active" do
-        before { allow(companies_house_service).to receive(:status).and_return(:inactive) }
+        let(:company_status) { :inactive }
 
         it "displays inactive company error" do
           get request_path
@@ -100,7 +112,7 @@ module WasteExemptionsEngine
       end
 
       context "when the companies house API is down" do
-        before { allow(companies_house_service).to receive(:status).and_raise(StandardError) }
+        before { allow(companies_house_api).to receive(:run).and_raise(StandardError) }
 
         it "raises an error" do
           get request_path

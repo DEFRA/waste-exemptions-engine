@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "defra_ruby_companies_house"
+require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe CheckRegisteredNameAndAddressForm, type: :model do
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
-    let(:companies_house_instance) { instance_double(DefraRubyCompaniesHouse) }
+    let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+    let(:companies_house_api_reponse) do
+      {
+        company_name:,
+        registered_office_address: company_address
+      }
+    end
 
     before do
-      allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_instance)
-      allow(companies_house_instance).to receive_messages(load_company: true, company_name: company_name, registered_office_address_lines: company_address)
+      allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+      allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
     end
 
     it_behaves_like "a validated form", :check_registered_name_and_address_form do
