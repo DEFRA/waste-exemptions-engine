@@ -4,17 +4,20 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationNumberForm, type: :model do
-    let(:companies_house_validator) { instance_double(DefraRuby::Validators::CompaniesHouseService) }
     let(:company_name) { Faker::Company.name }
     let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
-    let(:companies_house_instance) { instance_double(DefraRubyCompaniesHouse) }
+    let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+    let(:companies_house_api_reponse) do
+      {
+        company_name:,
+        registered_office_address: company_address,
+        company_status: :active
+      }
+    end
 
     before do
-      allow(DefraRuby::Validators::CompaniesHouseService).to receive(:new).and_return(companies_house_validator)
-      allow(companies_house_validator).to receive(:status).and_return(:active)
-
-      allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_instance)
-      allow(companies_house_instance).to receive_messages(load_company: true, company_name: company_name, registered_office_address_lines: company_address)
+      allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+      allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
     end
 
     subject(:form) { build(:registration_number_form) }

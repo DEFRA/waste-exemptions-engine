@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-require "defra_ruby_companies_house"
+require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   class CheckRegisteredNameAndAddressFormsController < FormsController
     def new
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
-      return if new_registration
 
       render(:invalid_or_inactive_company) unless validate_company_number && validate_company_status
-    rescue StandardError
-      Rails.logger.error "Failed to load"
+    rescue StandardError => e
+      Rails.logger.error "Failed to load: #{e}"
       render("waste_exemptions_engine/shared/companies_house_down")
     end
 
@@ -28,11 +27,15 @@ module WasteExemptionsEngine
     end
 
     def validate_company_status
-      DefraRubyCompaniesHouse.new(@transient_registration.temp_company_no).status == :active
+      companies_house_details[:company_status] == :active
     end
 
     def validate_company_number
       @transient_registration.temp_company_no&.match?(VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX)
+    end
+
+    def companies_house_details
+      @companies_house_details ||= @check_registered_name_and_address_form.companies_house_details
     end
 
     def transient_registration_attributes
