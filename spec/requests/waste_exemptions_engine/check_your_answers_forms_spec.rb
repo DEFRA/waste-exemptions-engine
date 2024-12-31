@@ -4,9 +4,22 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Check Your Answers Forms", :vcr do
+
+    let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+    let(:companies_house_api_response) do
+      {
+        company_name: Faker::Company.name,
+        company_status: :active
+      }
+    end
+
     before do
       WasteExemptionsEngine::Exemption.delete_all
       create_list(:exemption, 5)
+
+      allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+      allow(companies_house_api).to receive(:run).and_return(companies_house_api_response)
+
       VCR.insert_cassette("company_no_valid", allow_playback_repeats: true)
     end
 
