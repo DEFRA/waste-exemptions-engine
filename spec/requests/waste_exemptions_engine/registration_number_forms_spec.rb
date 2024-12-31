@@ -1,21 +1,26 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "defra_ruby_companies_house"
+require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   RSpec.describe "Registration Number Forms", :vcr do
     let(:companies_house_service) { instance_double(DefraRubyCompaniesHouse) }
     let(:request_path) { "/waste_exemptions_engine/#{registration_number_form.token}/registration-number" }
     let(:companies_house_type) { "ltd" }
-    let(:companies_house_response) { JSON.parse(File.read("spec/fixtures/files/companies_house_response.json")) }
+    let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
+    let(:companies_house_api_response) do
+      {
+        company_name: Faker::Company.name,
+        registered_office_address: ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"],
+        company_status: :active
+      }
+    end
 
     before do
-      companies_house_response["type"] = companies_house_type
-      stub_request(:get, /#{Rails.configuration.companies_house_host}[a-zA-Z\d]{8}/).to_return(
-        status: 200,
-        body: companies_house_response.to_json
-      )
+      companies_house_api_response["type"] = companies_house_type
+      allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
+      allow(companies_house_api).to receive(:run).and_return(companies_house_api_response)
     end
 
     include_examples "GET form", :registration_number_form, "/registration-number"
@@ -75,11 +80,7 @@ module WasteExemptionsEngine
       let(:registration_number_form) { build(:back_office_edit_registration_number_form) }
       let(:companies_house_instance) { instance_double(DefraRubyCompaniesHouse) }
 
-      before do
-        allow(DefraRubyCompaniesHouse).to receive(:new).and_return(companies_house_instance)
-        allow(companies_house_instance).to receive(:load_company).and_raise(StandardError)
-        allow(companies_house_instance).to receive(:company_name).and_raise(StandardError)
-      end
+      before { allow(companies_house_api).to receive(:run).and_raise(StandardError) }
 
       it "redirects to the companies house down page" do
         post "/waste_exemptions_engine/#{registration_number_form.token}/registration-number",
