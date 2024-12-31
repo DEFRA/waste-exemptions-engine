@@ -166,7 +166,7 @@ GEM
     defra_ruby_area (2.2.0)
       nokogiri (>= 1.13.2)
       rest-client (~> 2.0)
-    defra_ruby_companies_house (1.0.0)
+    defra_ruby_companies_house (1.0.3)
       i18n
       rest-client (~> 2.0)
     defra_ruby_email (1.3.0)
