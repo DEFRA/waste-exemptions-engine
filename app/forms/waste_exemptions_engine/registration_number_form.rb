@@ -15,17 +15,12 @@ module WasteExemptionsEngine
       # back_office_edit_registrations don't have a confirmation page so we update the
       # transient registration's relevant copyable attributes here:
       if @transient_registration.is_a?(BackOfficeEditRegistration)
+        companies_house_details = DefraRuby::CompaniesHouse::API.run(company_number: temp_company_no)
         params[:operator_name] = companies_house_details[:company_name]
         params[:company_no] = temp_company_no
       end
 
       super
-    end
-
-    def companies_house_details
-      @companies_house_details ||= DefraRuby::CompaniesHouse::API.run(
-        company_number: @transient_registration.company_no
-      )
     end
 
     private
