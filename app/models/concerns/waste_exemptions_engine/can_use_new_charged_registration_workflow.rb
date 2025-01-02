@@ -115,7 +115,8 @@ module WasteExemptionsEngine
 
           # Main people -> Operator name
           transitions from: :main_people_form,
-                      to: :operator_name_form
+                      to: :operator_name_form,
+                      unless: :check_your_answers_flow?
 
           ### NON COMPANY FLOW (Individual, local authority and charity)
 
@@ -148,7 +149,8 @@ module WasteExemptionsEngine
 
           # Check registered name and address -> Waste activities
           transitions from: :check_registered_name_and_address_form,
-                      to: :waste_activities_form
+                      to: :waste_activities_form,
+                      unless: :check_your_answers_flow?
 
           # Incorrect company -> Registration number
           transitions from: :incorrect_company_form,
@@ -420,6 +422,12 @@ module WasteExemptionsEngine
           transitions from: :exemptions_summary_form,
                       to: :check_your_answers_form
 
+          transitions from: :main_people_form,
+                      to: :check_your_answers_form
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :check_your_answers_form
+
           transitions from: :site_grid_reference_form,
                       to: :check_your_answers_form
 
@@ -503,6 +511,18 @@ module WasteExemptionsEngine
         event :edit_operator_address do
           transitions from: :check_your_answers_form,
                       to: :operator_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_main_people do
+          transitions from: :check_your_answers_form,
+                      to: :main_people_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_registration_number do
+          transitions from: :check_your_answers_form,
+                      to: :registration_number_form,
                       if: :check_your_answers_flow?
         end
 
