@@ -73,225 +73,290 @@ module WasteExemptionsEngine
 
         # Transitions
         event :next do
-          # Start
+          # Start -> Location
           transitions from: :beta_start_form,
                       to: :location_form
 
-          # Location
+          # Location -> Register in Northern Ireland
           transitions from: :location_form,
                       to: :register_in_northern_ireland_form,
                       if: :should_register_in_northern_ireland?
 
+          # Location -> Register in Scotland
           transitions from: :location_form,
                       to: :register_in_scotland_form,
                       if: :should_register_in_scotland?
 
+          # Location -> Register in Wales
           transitions from: :location_form,
                       to: :register_in_wales_form,
                       if: :should_register_in_wales?
 
+          # Location -> On a farm
           transitions from: :location_form,
-                      to: :waste_activities_form
+                      to: :on_a_farm_form
 
-          # Waste Activities
-          transitions from: :waste_activities_form,
-                      to: :activity_exemptions_form
-
-          # Activity Exemptions
-          transitions from: :activity_exemptions_form,
-                      to: :confirm_activity_exemptions_form
-
-          # Confirm Exemptions
-          transitions from: :confirm_activity_exemptions_form,
-                      to: :exemptions_summary_form,
-                      if: :proceed_with_selected_exemptions?
-
-          # Change Exemptions
-          transitions from: :confirm_activity_exemptions_form,
-                      to: :waste_activities_form,
-                      if: :change_selected_exemptions?
-
-          # Exemptions Summary
-          transitions from: :exemptions_summary_form,
-                      to: :applicant_name_form,
-                      unless: :check_your_answers_flow?
-
-          # Applicant details
-          transitions from: :applicant_name_form,
-                      to: :applicant_phone_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :applicant_phone_form,
-                      to: :applicant_email_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :applicant_email_form,
-                      to: :business_type_form,
-                      unless: :check_your_answers_flow?
-
-          # Operator details
-          transitions from: :business_type_form,
-                      to: :main_people_form,
-                      if: :partnership?
-
-          transitions from: :business_type_form,
-                      to: :operator_name_form,
-                      if: :skip_registration_number?
-
-          transitions from: :business_type_form,
-                      to: :registration_number_form
-
-          transitions from: :main_people_form,
-                      to: :operator_name_form
-
-          transitions from: :registration_number_form,
-                      to: :check_registered_name_and_address_form
-
-          transitions from: :check_registered_name_and_address_form,
-                      to: :incorrect_company_form,
-                      if: :companies_house_details_incorrect?
-
-          transitions from: :check_registered_name_and_address_form,
-                      to: :operator_postcode_form
-
-          transitions from: :incorrect_company_form,
-                      to: :registration_number_form
-
-          transitions from: :operator_name_form,
-                      to: :operator_postcode_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :operator_postcode_form,
-                      to: :operator_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :operator_postcode_form,
-                      to: :operator_address_lookup_form
-
-          transitions from: :operator_address_lookup_form,
-                      to: :operator_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :operator_address_lookup_form,
-                      to: :check_contact_name_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :operator_address_manual_form,
-                      to: :check_contact_name_form,
-                      unless: :check_your_answers_flow?
-
-          # Contact details
-          transitions from: :check_contact_name_form,
-                      to: :contact_name_form,
-                      unless: :temp_reuse_applicant_name?
-
-          transitions from: :check_contact_name_form,
-                      to: :contact_position_form
-
-          transitions from: :contact_name_form,
-                      to: :contact_position_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_position_form,
-                      to: :check_contact_phone_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :check_contact_phone_form,
-                      to: :contact_phone_form,
-                      unless: :temp_reuse_applicant_phone?
-
-          transitions from: :check_contact_phone_form,
-                      to: :contact_email_form,
-                      unless: :applicant_email?
-
-          transitions from: :check_contact_phone_form,
-                      to: :check_contact_email_form
-
-          transitions from: :contact_phone_form,
-                      to: :contact_email_form,
-                      unless: %i[applicant_email check_your_answers_flow?]
-
-          transitions from: :contact_phone_form,
-                      to: :check_contact_email_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :check_contact_email_form,
-                      to: :contact_email_form,
-                      unless: :temp_reuse_applicant_email?
-
-          transitions from: :check_contact_email_form,
-                      to: :check_contact_address_form,
-                      if: :temp_reuse_applicant_email?
-
-          transitions from: :contact_email_form,
-                      to: :check_contact_address_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :check_contact_address_form,
-                      to: :contact_postcode_form,
-                      unless: :temp_reuse_operator_address?
-
-          transitions from: :check_contact_address_form,
-                      to: :on_a_farm_form,
-                      if: :temp_reuse_operator_address?
-
-          transitions from: :contact_postcode_form,
-                      to: :contact_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :contact_postcode_form,
-                      to: :contact_address_lookup_form
-
-          transitions from: :contact_address_lookup_form,
-                      to: :contact_address_manual_form,
-                      if: :skip_to_manual_address?
-
-          transitions from: :contact_address_lookup_form,
-                      to: :on_a_farm_form,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :contact_address_manual_form,
-                      to: :on_a_farm_form,
-                      unless: :check_your_answers_flow?
-
-          # Farm questions
+          # On a farm -> Is a farmer
           transitions from: :on_a_farm_form,
                       to: :is_a_farmer_form,
                       unless: :check_your_answers_flow?
 
+          # Is a farmer -> Business type
           transitions from: :is_a_farmer_form,
-                      to: :site_grid_reference_form,
+                      to: :business_type_form,
                       unless: :check_your_answers_flow?
 
-          # Site questions
-          transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form,
-                      if: :skip_to_manual_address?
+          ### PARTNER FLOW
 
-          transitions from: :site_grid_reference_form,
-                      to: :check_your_answers_form
+          # Business type -> Main people (partnership)
+          transitions from: :business_type_form,
+                      to: :main_people_form,
+                      if: :partnership?
 
-          transitions from: :check_site_address_form,
+          # Main people -> Operator name
+          transitions from: :main_people_form,
+                      to: :operator_name_form,
+                      unless: :check_your_answers_flow?
+
+          ### NON COMPANY FLOW (Individual, local authority and charity)
+
+          # Business type -> Operator name
+          transitions from: :business_type_form,
+                      to: :operator_name_form,
+                      if: :skip_registration_number?
+
+          ### PARTNER && NON COMPANY FLOW
+
+          # Operator name -> Waste activities
+          transitions from: :operator_name_form,
+                      to: :waste_activities_form,
+                      unless: :check_your_answers_flow?
+
+          ### COMPANY FLOW (limited and llp))
+
+          # Business type -> Registration number
+          transitions from: :business_type_form,
+                      to: :registration_number_form
+
+          # Registration number -> Check registered name and address
+          transitions from: :registration_number_form,
+                      to: :check_registered_name_and_address_form
+
+          # Check registered name and address -> Incorrect company
+          transitions from: :check_registered_name_and_address_form,
+                      to: :incorrect_company_form,
+                      if: :companies_house_details_incorrect?
+
+          # Check registered name and address -> Waste activities
+          transitions from: :check_registered_name_and_address_form,
+                      to: :waste_activities_form,
+                      unless: :check_your_answers_flow?
+
+          # Incorrect company -> Registration number
+          transitions from: :incorrect_company_form,
+                      to: :registration_number_form
+
+          ### WASTE ACTIVITIES & EXEMPTIONS
+
+          # Waste Activities -> Activity Exemptions
+          transitions from: :waste_activities_form,
+                      to: :activity_exemptions_form
+
+          # Activity Exemptions -> Confirm Exemptions
+          transitions from: :activity_exemptions_form,
+                      to: :confirm_activity_exemptions_form
+
+          # Confirm Exemptions -> Site Grid Reference
+          transitions from: :confirm_activity_exemptions_form,
+                      to: :site_grid_reference_form,
+                      if: :proceed_with_selected_exemptions?,
+                      unless: :check_your_answers_flow?
+
+          # Confirm Exemptions -> Waste Activities
+          transitions from: :confirm_activity_exemptions_form,
+                      to: :waste_activities_form,
+                      if: :change_selected_exemptions?
+
+          ### SITE LOCATION
+
+          # Site Grid Reference -> Site Postcode
+          transitions from: :site_grid_reference_form,
                       to: :site_postcode_form,
-                      unless: :reuse_address_for_site_location?
+                      if: :skip_to_manual_address?,
+                      unless: :check_your_answers_flow?
 
-          transitions from: :check_site_address_form,
-                      to: :check_your_answers_form
-
+          # Site Postcode -> Site Address Lookup
           transitions from: :site_postcode_form,
                       to: :site_address_lookup_form
 
+          # Site Address Lookup -> Operator Postcode
           transitions from: :site_address_lookup_form,
-                      to: :check_your_answers_form
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
-          transitions from: :site_address_lookup_form,
-                      to: :site_grid_reference_form
+          # Check Site Address -> Operator Postcode
+          transitions from: :check_site_address_form,
+                      to: :operator_postcode_form
+
+          # Site Grid Reference -> Operator Postcode
+          transitions from: :site_grid_reference_form,
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
+
+          ### OPERATOR LOCATION
+
+          # Operator Postcode -> Operator Address Manual
+          transitions from: :operator_postcode_form,
+                      to: :operator_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          # Operator Postcode -> Operator Address Lookup
+          transitions from: :operator_postcode_form,
+                      to: :operator_address_lookup_form
+
+          # Operator Address Lookup -> Operator Address Manual
+          transitions from: :operator_address_lookup_form,
+                      to: :operator_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          # Operator Address Lookup -> Applicant Name
+          transitions from: :operator_address_lookup_form,
+                      to: :applicant_name_form,
+                      unless: :check_your_answers_flow?
+
+          # Operator Address Manual -> Applicant Name
+          transitions from: :operator_address_manual_form,
+                      to: :applicant_name_form,
+                      unless: :check_your_answers_flow?
+
+          ### APPLICANT DETAILS
+
+          # Applicant Name -> Applicant Phone
+          transitions from: :applicant_name_form,
+                      to: :applicant_phone_form,
+                      unless: :check_your_answers_flow?
+
+          # Applicant Phone -> Applicant Email
+          transitions from: :applicant_phone_form,
+                      to: :applicant_email_form,
+                      unless: :check_your_answers_flow?
+
+          # Applicant Email -> Check Contact Name
+          transitions from: :applicant_email_form,
+                      to: :check_contact_name_form,
+                      unless: :check_your_answers_flow?
+
+          ### CONTACT DETAILS
+
+          # Check Contact Name -> Contact Name
+          transitions from: :check_contact_name_form,
+                      to: :contact_name_form,
+                      unless: :temp_reuse_applicant_name?
+
+          # Check Contact Name -> Contact Position
+          transitions from: :check_contact_name_form,
+                      to: :contact_position_form
+
+          # Contact Name -> Contact Position
+          transitions from: :contact_name_form,
+                      to: :contact_position_form,
+                      unless: :check_your_answers_flow?
+
+          # Contact Position -> Check Contact Phone
+          transitions from: :contact_position_form,
+                      to: :check_contact_phone_form,
+                      unless: :check_your_answers_flow?
+
+          # Check Contact Phone -> Contact Phone
+          transitions from: :check_contact_phone_form,
+                      to: :contact_phone_form,
+                      unless: :temp_reuse_applicant_phone?
+
+          # Check Contact Phone -> Contact Email
+          transitions from: :check_contact_phone_form,
+                      to: :contact_email_form,
+                      unless: :applicant_email?
+
+          # Contact Phone -> Contact Email
+          transitions from: :check_contact_phone_form,
+                      to: :check_contact_email_form
+
+          # Contact Phone -> Contact Email
+          transitions from: :contact_phone_form,
+                      to: :contact_email_form,
+                      unless: %i[applicant_email check_your_answers_flow?]
+
+          # Contact Phone -> Check Contact Email
+          transitions from: :contact_phone_form,
+                      to: :check_contact_email_form,
+                      unless: :check_your_answers_flow?
+
+          # Check Contact Email -> Contact Email
+          transitions from: :check_contact_email_form,
+                      to: :contact_email_form,
+                      unless: :temp_reuse_applicant_email?
+
+          # Check Contact Email -> Check Contact Address
+          transitions from: :check_contact_email_form,
+                      to: :check_contact_address_form,
+                      if: :temp_reuse_applicant_email?
+
+          # Contact Email -> Check Contact Address
+          transitions from: :contact_email_form,
+                      to: :check_contact_address_form,
+                      unless: :check_your_answers_flow?
+
+          # Check Contact Address -> Contact Postcode
+          transitions from: :check_contact_address_form,
+                      to: :contact_postcode_form,
+                      unless: :temp_reuse_operator_address?
+
+          # Check Contact Address -> Check Your Answers
+          transitions from: :check_contact_address_form,
+                      to: :check_your_answers_form,
+                      if: :temp_reuse_operator_address?
+
+          # Contact Postcode -> Contact Address Manual
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          # Contact Postcode -> Contact Address Lookup
+          transitions from: :contact_postcode_form,
+                      to: :contact_address_lookup_form
+
+          # Contact Address Lookup -> Contact Address Manual
+          transitions from: :contact_address_lookup_form,
+                      to: :contact_address_manual_form,
+                      if: :skip_to_manual_address?
+
+          # Contact Address Lookup -> Check Your Answers
+          transitions from: :contact_address_lookup_form,
+                      to: :check_your_answers_form,
+                      unless: :check_your_answers_flow?
+
+          # Contact Address Manual -> Check Your Answers
+          transitions from: :contact_address_manual_form,
+                      to: :check_your_answers_form,
+                      unless: :check_your_answers_flow?
+
+          ### CHECK YOUR ANSWERS
 
           transitions from: :check_your_answers_form,
-                      to: :declaration_form
+                      to: :exemptions_summary_form
+
+          ### EXEMPTIONS SUMMARY
+
+          transitions from: :exemptions_summary_form,
+                      to: :declaration_form,
+                      unless: :check_your_answers_flow?
+
+          ### DECLARATION
 
           transitions from: :declaration_form,
                       to: :payment_summary_form
+
+          ### PAYMENT SUMMARY
 
           transitions from: :payment_summary_form,
                       to: :govpay_form,
@@ -307,7 +372,8 @@ module WasteExemptionsEngine
 
           transitions from: :govpay_form, to: :registration_complete_form
 
-          # Check your answers
+          ### CHECK YOUR ANSWERS CHANGE MINI-FLOW
+
           transitions from: :applicant_name_form,
                       to: :check_your_answers_form
 
@@ -354,6 +420,18 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :exemptions_summary_form,
+                      to: :check_your_answers_form
+
+          transitions from: :main_people_form,
+                      to: :check_your_answers_form
+
+          transitions from: :check_registered_name_and_address_form,
+                      to: :check_your_answers_form
+
+          transitions from: :site_grid_reference_form,
+                      to: :check_your_answers_form
+
+          transitions from: :site_address_lookup_form,
                       to: :check_your_answers_form
         end
 
@@ -373,7 +451,7 @@ module WasteExemptionsEngine
 
         event :skip_to_address do
           transitions from: :site_grid_reference_form,
-                      to: :check_site_address_form
+                      to: :site_postcode_form
         end
 
         event :edit_exemptions do
@@ -433,6 +511,30 @@ module WasteExemptionsEngine
         event :edit_operator_address do
           transitions from: :check_your_answers_form,
                       to: :operator_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_main_people do
+          transitions from: :check_your_answers_form,
+                      to: :main_people_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_registration_number do
+          transitions from: :check_your_answers_form,
+                      to: :registration_number_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_address do
+          transitions from: :check_your_answers_form,
+                      to: :site_postcode_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_site_grid_reference do
+          transitions from: :check_your_answers_form,
+                      to: :site_grid_reference_form,
                       if: :check_your_answers_flow?
         end
 
