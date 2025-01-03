@@ -23,7 +23,7 @@ module WasteExemptionsEngine
         it "transitions to :check_contact_email_form" do
           expect(new_registration)
             .to transition_from(:confirm_activity_exemptions_form)
-            .to(:exemptions_summary_form)
+            .to(:site_grid_reference_form)
             .on_event(:next)
         end
       end
