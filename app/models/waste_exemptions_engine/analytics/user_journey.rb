@@ -4,7 +4,6 @@ module WasteExemptionsEngine
   module Analytics
     class UserJourney < ApplicationRecord
       self.table_name = "analytics_user_journeys"
-      self.primary_key = "id"
 
       # Relationships
       has_many :page_views, class_name: "WasteExemptionsEngine::Analytics::PageView"
