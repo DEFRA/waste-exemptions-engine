@@ -2,8 +2,6 @@
 
 class CreateChargeAdjustments < ActiveRecord::Migration[7.1]
   def change
-    return if table_exists?(:charge_adjustments)
-
     create_table :charge_adjustments do |t|
       t.references :account, null: false, foreign_key: true
       t.integer :amount, null: false
