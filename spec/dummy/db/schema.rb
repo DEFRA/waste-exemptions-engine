@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_154543) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_10_172421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -87,6 +87,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_154543) do
     t.integer "sequence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "beta_participants", force: :cascade do |t|
+    t.string "reg_number"
+    t.string "email"
+    t.string "token"
+    t.datetime "invited_at"
+    t.boolean "opted_in"
+    t.string "registration_type"
+    t.bigint "registration_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_type", "registration_id"], name: "index_beta_participants_on_registration"
   end
 
   create_table "bucket_exemptions", force: :cascade do |t|
