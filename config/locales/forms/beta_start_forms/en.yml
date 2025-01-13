@@ -6,10 +6,19 @@ en:
         heading: Welcome to Private Beta
         welcome_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         start_registration_button_label: Start a new registration
+        continue_registration_button_label: Continue registration
       unavailable:
         title: Sorry, the private beta testing service is unavailable
         heading: Sorry, the private beta testing service is unavailable
         paragraph_1: The private beta testing service is no longer available for research. We're currently making improvements.
+        paragraph_2_start: Read
+        paragraph_2_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#register-renew-or-change-your-exemptions
+        paragraph_2_link_text: guidance on GOV.UK
+        paragraph_2_end: to find out how to register a new exemption or manage an existing registration, or call 03708 506 506 to speak to an advisor.
+      invalid_token:
+        title: You're not authorised to access this page
+        heading: You're not authorised to access this page
+        paragraph_1: This link is no longer valid. It may have expired or been used already.
         paragraph_2_start: Read
         paragraph_2_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#register-renew-or-change-your-exemptions
         paragraph_2_link_text: guidance on GOV.UK
