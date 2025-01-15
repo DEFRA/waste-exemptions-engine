@@ -16,11 +16,14 @@ en:
         paragraph_2_link_text: guidance on GOV.UK
         paragraph_2_end: to find out how to register a new exemption or manage an existing registration, or call 03708 506 506 to speak to an advisor.
       invalid_token:
-        title: You're not authorised to access this page
-        heading: You're not authorised to access this page
-        paragraph_1: This link is no longer valid. It may have expired or been used already.
-        paragraph_2_start: Read
+        title: Your unique token is not valid
+        heading: Your unique token is not valid
+        paragraph_1: "This could be because:"
+        paragraph_1_1: it's already been used
+        paragraph_1_2: the service is not yet open
+        paragraph_1_3: the link has been copied into the browser incorrectly
+        paragraph_2_start: Call 01234 123 123 to speak to an adviser or read
         paragraph_2_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#register-renew-or-change-your-exemptions
-        paragraph_2_link_text: guidance on GOV.UK
-        paragraph_2_end: to find out how to register a new exemption or manage an existing registration, or call 03708 506 506 to speak to an advisor.
+        paragraph_2_link_text: guidance on gov.uk
+        paragraph_2_end: to find out how to register a new exemption or change your registration details.
       
