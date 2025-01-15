@@ -13,10 +13,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                 only: %i[new create],
                 path: "start",
                 path_names: { new: "" }
-
-      # @todo
-      # resources :beta_optin_forms
-      # resources :beta_optout_forms
     end
   end
 

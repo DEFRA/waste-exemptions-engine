@@ -6,7 +6,6 @@ module WasteExemptionsEngine
     belongs_to :registration, polymorphic: true
 
     validates :reg_number, presence: true, uniqueness: true
-    validates :email, uniqueness: true
     validates :token, uniqueness: true
 
     before_create :generate_token
