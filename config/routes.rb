@@ -7,10 +7,18 @@ WasteExemptionsEngine::Engine.routes.draw do
             path_names: { new: "" }
 
   # Private Beta
-  resources :beta_start_forms,
-            only: %i[new create],
-            path: "beta-start",
-            path_names: { new: "" }
+  scope "/beta" do
+    scope "/:participant_token" do
+      resources :beta_start_forms,
+                only: %i[new create],
+                path: "start",
+                path_names: { new: "" }
+
+      # @todo
+      # resources :beta_optin_forms
+      # resources :beta_optout_forms
+    end
+  end
 
   scope "/:token" do
     resources :contact_agency_forms,
