@@ -60,6 +60,10 @@ module WasteExemptionsEngine
       context "when participant token is valid but participant already completed a registration" do
         let(:registration) { create(:registration, :complete) }
 
+        before do
+          beta_participant.update(registration: registration)
+        end
+
         it "renders the error template" do
           get request_path
 
@@ -72,6 +76,10 @@ module WasteExemptionsEngine
 
       context "when participant token is valid and registration has been partially completed earlier" do
         let(:registration) { create(:new_charged_registration, location: "england") }
+
+        before do
+          beta_participant.update(registration: registration)
+        end
 
         it "renders the new template" do
           get request_path
