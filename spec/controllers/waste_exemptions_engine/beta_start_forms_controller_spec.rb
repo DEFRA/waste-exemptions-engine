@@ -5,7 +5,9 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe BetaStartFormsController, type: :request do
     let(:form) { build(:beta_start_form) }
-    let(:request_path) { "/waste_exemptions_engine/beta-start" }
+    let(:beta_participant) { create(:beta_participant) }
+    let(:participant_token) { beta_participant.token }
+    let(:request_path) { "/waste_exemptions_engine/beta/#{participant_token}/start" }
 
     it "is a FormController" do
       expect(described_class.superclass).to eq(WasteExemptionsEngine::FormsController)
@@ -31,7 +33,9 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when token is missing" do
+      context "when participant token is invalid" do
+        let(:participant_token) { "INVALID_TOKEN" }
+
         it "renders the error template" do
           get request_path
 
@@ -42,25 +46,9 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when participant token is invalid" do
-        let(:invalid_token) { "INVALID_TOKEN" }
-
-        it "renders the error template" do
-          get request_path + "?participant_token=#{invalid_token}"
-
-          aggregate_failures do
-            expect(response).to have_http_status(:unauthorized)
-            expect(response).to render_template("waste_exemptions_engine/beta_start_forms/invalid_token")
-          end
-        end
-      end
-
       context "when participant token is valid" do
-        let(:participant_token) { "VALID_TOKEN" }
-        let(:participant) { create(:beta_participant, token: participant_token) }
-
         it "renders the new template" do
-          get request_path + "?participant_token=#{participant.token}"
+          get request_path
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
@@ -71,11 +59,9 @@ module WasteExemptionsEngine
 
       context "when participant token is valid but participant already completed a registration" do
         let(:registration) { create(:registration, :complete) }
-        let(:participant_token) { "VALID_TOKEN" }
-        let(:participant) { create(:beta_participant, token: participant_token, registration: registration) }
 
         it "renders the error template" do
-          get request_path + "?participant_token=#{participant.token}"
+          get request_path
 
           aggregate_failures do
             expect(response).to have_http_status(:unauthorized)
@@ -86,11 +72,9 @@ module WasteExemptionsEngine
 
       context "when participant token is valid and registration has been partially completed earlier" do
         let(:registration) { create(:new_charged_registration, location: "england") }
-        let(:participant_token) { "VALID_TOKEN" }
-        let(:participant) { create(:beta_participant, token: participant_token, registration: registration) }
 
         it "renders the new template" do
-          get request_path + "?participant_token=#{participant.token}"
+          get request_path
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
@@ -99,7 +83,7 @@ module WasteExemptionsEngine
         end
 
         it "changes button label from 'Start new registration' to 'Continue registration'" do
-          get request_path + "?participant_token=#{participant.token}"
+          get request_path
 
           expect(response.body).to include I18n.t("waste_exemptions_engine.beta_start_forms.new.continue_registration_button_label")
         end
