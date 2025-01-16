@@ -1,0 +1,25 @@
+en:
+  waste_exemptions_engine:
+    confirm_farm_exemptions_forms:
+      new:
+        back_link: Back
+        heading: Your selected exemptions
+        description: "The exemptions you’ve selected are as follows:"
+        subheading:
+          no_exemptions_selected: No farming exemptions were selected
+          exemptions_selected: On farm exemptions
+        options:
+          "true": I do not want any more waste exemptions.
+          "false": I want to add waste exemptions that are not included in the farming exemptions.
+        add_more_farm_exemptions: If you need to add more exemptions you can go back
+        add_more_farm_exemptions_link: to the farmer exemption page.
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/confirm_farm_exemptions_form:
+          attributes:
+            temp_confirm_exemptions:
+              inclusion: |
+                If you want to continue you need to select either 
+                I do not want any more exemptions or 
+                I want to add waste exemptions that are not included in the farming exemptions.

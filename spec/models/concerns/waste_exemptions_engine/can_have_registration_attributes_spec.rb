@@ -12,8 +12,13 @@ class TestRegistrationClass
     @on_a_farm = on_a_farm
   end
 
-  def is_a_farmer?; is_a_farmer; end
-  def on_a_farm?; on_a_farm; end
+  def is_a_farmer?
+    is_a_farmer
+  end
+
+  def on_a_farm?
+    on_a_farm
+  end
 end
 
 module WasteExemptionsEngine
