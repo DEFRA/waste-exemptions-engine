@@ -11,7 +11,7 @@ module WasteExemptionsEngine
     has_many :exemptions, through: :order_exemptions, after_add: :reset_charge_detail
 
     has_one :order_bucket, dependent: :destroy
-    has_one :bucket, through: :order_bucket
+    has_one :bucket, through: :order_bucket, source: :bucket
     has_one :charge_detail, dependent: :destroy
 
     after_initialize :generate_order_uuid
