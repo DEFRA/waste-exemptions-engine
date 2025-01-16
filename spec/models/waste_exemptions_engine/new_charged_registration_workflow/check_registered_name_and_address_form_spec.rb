@@ -1,0 +1,50 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+module WasteExemptionsEngine
+  RSpec.describe NewChargedRegistration do
+    describe "#workflow_state" do
+      let(:new_registration) do
+        create(:new_charged_registration,
+               workflow_state: :check_registered_name_and_address_form,
+               temp_use_registered_company_details: temp_use_registered_company_details)
+      end
+
+      context "when temp_use_registered_company_details is true" do
+        let(:temp_use_registered_company_details) { true }
+
+        it "transitions to :operator_postcode_form" do
+          expect(new_registration)
+            .to transition_from(:check_registered_name_and_address_form)
+            .to(:waste_activities_form)
+            .on_event(:next)
+        end
+      end
+
+      context "when temp_use_registered_company_details is false" do
+        let(:temp_use_registered_company_details) { false }
+
+        it "transitions to :incorrect_company" do
+          expect(new_registration)
+            .to transition_from(:check_registered_name_and_address_form)
+            .to(:incorrect_company_form)
+            .on_event(:next)
+        end
+      end
+
+      context "when the registration is farm_affiliated" do
+        let(:temp_use_registered_company_details) { true }
+
+        before { allow(new_registration).to receive(:farm_affiliated?).and_return(true) }
+
+        it "changes to farm_exemptions_form after the 'next' event" do
+          expect(new_registration)
+            .to transition_from(:check_registered_name_and_address_form)
+            .to(:farm_exemptions_form)
+            .on_event(:next)
+        end
+      end
+    end
+  end
+end
