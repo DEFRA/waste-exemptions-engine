@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
+    attr_accessor :order
+
     def initialize(order:)
       @order = order
       @order_calculator = WasteExemptionsEngine::OrderCalculatorService.new(order)
@@ -11,11 +13,17 @@ module WasteExemptionsEngine
       @exemptions ||= @order.exemptions.sort_by { |e| -e.band.initial_compliance_charge.charge_amount }
     end
 
+    def band(exemption)
+      exemption_in_bucket?(exemption) ? "N/A" : exemption.band&.sequence
+    end
+
     def compliance_charge(exemption)
-      if first_exemption_in_highest_band?(exemption)
-        format_currency(exemption.band.initial_compliance_charge.charge_amount_in_pounds)
+      if exemption_in_bucket?(exemption)
+        bucket_exemption_compliance_charge(exemption)
+      elsif first_exemption_in_highest_band?(exemption)
+        format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
-        format_currency(exemption.band.additional_compliance_charge.charge_amount_in_pounds)
+        format_charge_as_currency(exemption.band.additional_compliance_charge)
       else
         format_currency(0)
       end
@@ -24,6 +32,8 @@ module WasteExemptionsEngine
     def charge_type(exemption)
       if exemption.band.additional_compliance_charge.charge_amount.zero?
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+      elsif farmer_bucket_exemption?(exemption)
+        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.farm")
       elsif first_exemption_in_highest_band?(exemption)
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.full")
       else
@@ -62,12 +72,36 @@ module WasteExemptionsEngine
       helpers.number_to_currency(amount, unit: "£")
     end
 
+    def format_charge_as_currency(charge)
+      format_currency(charge.charge_amount_in_pounds)
+    end
+
     def helpers
       ActionController::Base.helpers
     end
 
     def first_exemption_in_highest_band?(exemption)
       exemption.band == highest_band && exemption == exemptions.first
+    end
+
+    def farmer_bucket_in_order?
+      order.bucket == Bucket.farmer_bucket
+    end
+
+    def farmer_bucket_exemption?(exemption)
+      farmer_bucket_in_order? && Bucket.farmer_bucket&.exemptions&.include?(exemption)
+    end
+
+    def exemption_in_bucket?(exemption)
+      order.bucket.present? && order.bucket.exemptions.include?(exemption)
+    end
+
+    def first_exemption_in_bucket?(exemption)
+      order.bucket&.exemptions&.first == exemption
+    end
+
+    def bucket_exemption_compliance_charge(exemption)
+      first_exemption_in_bucket?(exemption) ? format_charge_as_currency(order.bucket.initial_compliance_charge) : ""
     end
   end
 end
