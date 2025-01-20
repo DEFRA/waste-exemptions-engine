@@ -22,9 +22,13 @@ module WasteExemptionsEngine
       super(BetaStartForm, "beta_start_form")
     end
 
-    def unavailable; end
+    def unavailable
+      # view only
+    end
 
-    def invalid_token; end
+    def invalid_token
+      # view only
+    end
 
     private
 
