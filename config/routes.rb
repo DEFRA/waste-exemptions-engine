@@ -13,6 +13,17 @@ WasteExemptionsEngine::Engine.routes.draw do
                 only: %i[new create],
                 path: "start",
                 path_names: { new: "" }
+
+      get "/unavailable", to: "beta_start_forms#unavailable", as: "private_beta_unavailable"
+      get "/invalid_token", to: "beta_start_forms#invalid_token", as: "private_beta_invalid_token"
+
+      get "/opt-in", to: "beta_participants#opt_in", as: "opt_in_beta_participants"
+      get "/opt-in-confirmation", to: "beta_participants#opt_in_confirmation",
+                                  as: "opt_in_confirmation_beta_participants"
+
+      get "/opt-out", to: "beta_participants#opt_out", as: "opt_out_beta_participants"
+      get "/opt-out-confirmation", to: "beta_participants#opt_out_confirmation",
+                                   as: "opt_out_confirmation_beta_participants"
     end
   end
 

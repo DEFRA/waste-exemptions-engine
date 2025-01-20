@@ -1,0 +1,20 @@
+en:
+  waste_exemptions_engine:
+    beta_participants:
+      opt_out_confirmation:
+        title: You've opted out of private beta
+        heading: You've opted out of private beta
+        paragraph_0: You've opted out of using private beta to renew your waste exemptions.
+        paragraph_1: You'll get an email inviting you to renew your waste exemptions in the current service when it's time.
+        paragraph_2_start: If you want to register a new exemption or update your registration details, go to
+        paragraph_2_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#register-renew-or-change-your-exemptions
+        paragraph_2_link_text: guidance on gov.uk
+      opt_in_confirmation:
+        title: You've opted in for private beta
+        heading: You've opted in for private beta
+        paragraph_0: Thank you for agreeing to renew your waste exemptions through the private beta of the new registration service.
+        paragraph_1: You’ll get an email with a link to enter the service, and details of what to do.
+        paragraph_2_start: If you want to register a new exemption or update your registration details, go to
+        paragraph_2_link: https://www.gov.uk/guidance/register-your-waste-exemptions-environmental-permits#register-renew-or-change-your-exemptions
+        paragraph_2_link_text: guidance on gov.uk
+      
