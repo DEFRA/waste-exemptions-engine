@@ -5,6 +5,47 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe FarmerChargingStrategy do
 
+    let(:registration_charge) { Charge.registration_charge.first }
+
+    # If the only selected exemptions are in the farmer bucket and the total compliance
+    # charge (if non-farmer-bucket) would have been less than the standard registration
+    # charge, registration_charge_amount should return the lower value.
+    describe "#registration_charge_amount" do
+      include_context "with bands and charges"
+      include_context "farm bucket"
+
+      subject(:registration_charge_amount) { described_class.new(order).registration_charge_amount }
+
+      let!(:bucket) { create(:bucket, exemptions: build_list(:exemption, 2, band: Band.all.sample)) }
+      let(:order) { build(:order, bucket:, exemptions: [bucket.exemptions.first]) }
+      let(:farmer_exemptions_compliance_charge_total) { order.exemptions.sum { |ex| ex.band.initial_compliance_charge.charge_amount } }
+      let(:order_exemption_band_compliance_charge) { order.exemptions.first.band.initial_compliance_charge }
+
+      context "when the total compliance charge for the selected farmer exemptions is less than the standard registration charge" do
+        before { order_exemption_band_compliance_charge.update(charge_amount: registration_charge.charge_amount - 1) }
+
+        it "returns the total compliance charge for the selected farmer exemptions only" do
+          expect(registration_charge_amount).to eq farmer_exemptions_compliance_charge_total
+        end
+
+        context "when the order includes non-farmer bucket exemptions" do
+          before { order.exemptions << build(:exemption) }
+
+          it "returns the standard registration charge" do
+            expect(registration_charge_amount).to eq registration_charge.charge_amount
+          end
+        end
+      end
+
+      context "when the total compliance charge for the selected farmer exemptions is greater than the standard registration charge" do
+        before { order_exemption_band_compliance_charge.update(charge_amount: registration_charge.charge_amount + 1) }
+
+        it "returns the standard registration charge" do
+          expect(registration_charge_amount).to eq registration_charge.charge_amount
+        end
+      end
+    end
+
     describe "#charge_details" do
       subject(:charge_details) { described_class.new(order).charge_detail }
 
@@ -38,6 +79,9 @@ module WasteExemptionsEngine
 
         context "with an order with bucket exemptions only" do
           let(:exemptions) { bucket_exemptions }
+
+          # Ensure the "bucket charge less than registration charge" rule does not fire
+          before { band_1.initial_compliance_charge.update(charge_amount: registration_charge.charge_amount + 1) }
 
           it { expect(charge_details.registration_charge_amount).to eq(registration_charge_amount) }
 
