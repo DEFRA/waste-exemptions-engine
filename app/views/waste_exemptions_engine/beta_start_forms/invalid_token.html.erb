@@ -1,17 +1,21 @@
-<h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-<p class="govuk-body">
-  <%= t(".paragraph_1") %>
-</p>
+    <p class="govuk-body">
+      <%= t(".paragraph_1") %>
+    </p>
 
-<ol class="govuk-list govuk-list--bullet">
-  <li><%= t(".paragraph_1_1") %></li>
-  <li><%= t(".paragraph_1_2") %></li>
-  <li><%= t(".paragraph_1_3") %></li>
-</ol>
+    <ol class="govuk-list govuk-list--bullet">
+      <li><%= t(".paragraph_1_1") %></li>
+      <li><%= t(".paragraph_1_2") %></li>
+      <li><%= t(".paragraph_1_3") %></li>
+    </ol>
 
-<p class="govuk-body">
-  <%= t(".paragraph_2_start") %>
-  <%= link_to t(".paragraph_2_link_text"), t(".paragraph_2_link"), target: "_blank" %>
-  <%= t(".paragraph_2_end") %>
-</p>
+    <p class="govuk-body">
+      <%= t(".paragraph_2_start") %>
+      <%= link_to t(".paragraph_2_link_text"), t(".paragraph_2_link"), target: "_blank" %>
+      <%= t(".paragraph_2_end") %>
+    </p>
+  </div>
+</div>

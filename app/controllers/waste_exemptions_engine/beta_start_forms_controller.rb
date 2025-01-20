@@ -2,10 +2,10 @@
 
 module WasteExemptionsEngine
   class BetaStartFormsController < FormsController
-    def new
-      return render(:unavailable, status: 503) unless private_beta_active?
-      return render(:invalid_token, status: 401) unless participant_token_valid? || params[:token].present?
+    before_action :check_private_beta_active, except: %i[unavailable invalid_token]
+    before_action :check_participant_token_valid, except: %i[unavailable invalid_token]
 
+    def new
       @action = :start
 
       # continue already started registration if beta participant opens beta-start link again
@@ -22,7 +22,23 @@ module WasteExemptionsEngine
       super(BetaStartForm, "beta_start_form")
     end
 
+    def unavailable; end
+
+    def invalid_token; end
+
     private
+
+    def check_private_beta_active
+      return if private_beta_active?
+
+      redirect_to private_beta_unavailable_path
+    end
+
+    def check_participant_token_valid
+      return if participant_token_valid? || params[:token].present?
+
+      redirect_to private_beta_invalid_token_path
+    end
 
     def private_beta_active?
       WasteExemptionsEngine::FeatureToggle.active?(:private_beta)
