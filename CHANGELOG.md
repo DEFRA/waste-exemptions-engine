@@ -6,6 +6,14 @@
 
 **Implemented enhancements:**
 
+- RUBY-3270:  wex charging update page sequence for charged registration journey [\#1152](https://github.com/DEFRA/waste-exemptions-engine/pull/1152) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3498 registration fee content [\#1138](https://github.com/DEFRA/waste-exemptions-engine/pull/1138) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- RUBY-3055 & RUBY-3452: New exemptions workflow: select waste activities, select exemptions, confirm exemptions pages [\#1134](https://github.com/DEFRA/waste-exemptions-engine/pull/1134) ([brujeo](https://github.com/brujeo))
+- RUBY 2704 wex charging bo 3 1 3 refund a payment page [\#1132](https://github.com/DEFRA/waste-exemptions-engine/pull/1132) ([jjromeo](https://github.com/jjromeo))
+- RUBY 2703 wex charging bo 3 1 2 increase or decrease a charge page [\#1129](https://github.com/DEFRA/waste-exemptions-engine/pull/1129) ([jjromeo](https://github.com/jjromeo))
+- RUBY-3456:  wex charging payment schema changes + account balance calculations [\#1124](https://github.com/DEFRA/waste-exemptions-engine/pull/1124) ([brujeo](https://github.com/brujeo))
+- RUBY 2704 wex charging bo 3 1 3 refund a payment page [\#1119](https://github.com/DEFRA/waste-exemptions-engine/pull/1119) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-2705\] Add payments association to Account model and generate order UUID in Order model [\#1117](https://github.com/DEFRA/waste-exemptions-engine/pull/1117) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3408 company ltd llp only [\#1106](https://github.com/DEFRA/waste-exemptions-engine/pull/1106) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - RUBY-3343: wex accessibility - replace pdf certificate with html version [\#1095](https://github.com/DEFRA/waste-exemptions-engine/pull/1095) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3298 search order [\#1094](https://github.com/DEFRA/waste-exemptions-engine/pull/1094) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
@@ -236,6 +244,13 @@
 
 **Fixed bugs:**
 
+- fix/RUBY-3411\_back\_office\_edit\_company\_number [\#1155](https://github.com/DEFRA/waste-exemptions-engine/pull/1155) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3496\] payment summary translation message error [\#1149](https://github.com/DEFRA/waste-exemptions-engine/pull/1149) ([brujeo](https://github.com/brujeo))
+- Fix/ruby 3432 companies house number [\#1143](https://github.com/DEFRA/waste-exemptions-engine/pull/1143) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Delete deregistration transient registrations on completion [\#1141](https://github.com/DEFRA/waste-exemptions-engine/pull/1141) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- RUBY-3055 & RUBY-3452: Choose my exemptions layout adjustments [\#1139](https://github.com/DEFRA/waste-exemptions-engine/pull/1139) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3055\] Fixed an issue with pre-selected waste activities [\#1136](https://github.com/DEFRA/waste-exemptions-engine/pull/1136) ([brujeo](https://github.com/brujeo))
+- Fix intermittent spec failure in `front_office_edit_completion_service_spec` [\#1131](https://github.com/DEFRA/waste-exemptions-engine/pull/1131) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3355\] Update reference label and hint in capture\_reference\_forms [\#1092](https://github.com/DEFRA/waste-exemptions-engine/pull/1092) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3051\] Update title content and bank details for registration received pending payment form [\#1085](https://github.com/DEFRA/waste-exemptions-engine/pull/1085) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3173\] Remove extra unneded heading that said "Temp payment method" [\#1084](https://github.com/DEFRA/waste-exemptions-engine/pull/1084) ([jjromeo](https://github.com/jjromeo))
@@ -384,6 +399,18 @@
 
 **Merged pull requests:**
 
+- Bump defra\_ruby\_companies\_house from 1.0.0 to 1.0.3 [\#1154](https://github.com/DEFRA/waste-exemptions-engine/pull/1154) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Chore/ruby 3441 companies house gem [\#1151](https://github.com/DEFRA/waste-exemptions-engine/pull/1151) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Bump activerecord from 7.1.4.2 to 7.1.5.1 [\#1142](https://github.com/DEFRA/waste-exemptions-engine/pull/1142) ([dependabot[bot]](https://github.com/apps/dependabot))
+- \[RUBY-2704\] Refactor payment scopes in `Payment` model [\#1135](https://github.com/DEFRA/waste-exemptions-engine/pull/1135) ([jjromeo](https://github.com/jjromeo))
+- Bump defra\_ruby\_validators from 2.7.1 to 2.7.2 [\#1128](https://github.com/DEFRA/waste-exemptions-engine/pull/1128) ([dependabot[bot]](https://github.com/apps/dependabot))
+- RUBY 2713 Extend payment model and add migration to enable reversal functionality [\#1127](https://github.com/DEFRA/waste-exemptions-engine/pull/1127) ([jjromeo](https://github.com/jjromeo))
+- Bump defra\_ruby\_validators from 2.7.0 to 2.7.1 [\#1126](https://github.com/DEFRA/waste-exemptions-engine/pull/1126) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Feature/ruby 2701 govpay balance [\#1125](https://github.com/DEFRA/waste-exemptions-engine/pull/1125) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Bump bullet from 7.2.0 to 8.0.0 [\#1123](https://github.com/DEFRA/waste-exemptions-engine/pull/1123) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump paper\_trail from 15.2.0 to 16.0.0 [\#1120](https://github.com/DEFRA/waste-exemptions-engine/pull/1120) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump pdf-reader from 2.12.0 to 2.13.0 [\#1118](https://github.com/DEFRA/waste-exemptions-engine/pull/1118) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#1115](https://github.com/DEFRA/waste-exemptions-engine/pull/1115) ([brujeo](https://github.com/brujeo))
 - feature/RUBY-3408\_company\_ltd\_llp\_only [\#1114](https://github.com/DEFRA/waste-exemptions-engine/pull/1114) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump wicked\_pdf from 2.8.1 to 2.8.2 [\#1113](https://github.com/DEFRA/waste-exemptions-engine/pull/1113) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.9.2 to 0.9.3 [\#1112](https://github.com/DEFRA/waste-exemptions-engine/pull/1112) ([dependabot[bot]](https://github.com/apps/dependabot))
