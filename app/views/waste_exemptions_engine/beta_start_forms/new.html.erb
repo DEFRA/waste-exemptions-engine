@@ -1,5 +1,6 @@
 <%= form_for @beta_start_form do |f| %>
   <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+  
 
   <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
@@ -7,5 +8,6 @@
     <%= t(".welcome_text") %>
   </p>
 
-  <%= f.govuk_submit t(".start_registration_button_label") %>
+  <%= f.hidden_field :token, name: "token", value: @transient_registration&.token %>
+  <%= f.govuk_submit t(".#{@action}_registration_button_label") %>
 <% end %>
