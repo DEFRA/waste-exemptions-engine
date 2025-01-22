@@ -22,7 +22,7 @@
         <% @exemptions_summary_form.exemptions.each do |exemption| %>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><%= exemption.code %> - <%= exemption.summary %></td>
-            <td class="govuk-table__cell"><%= exemption.band.sequence %></td>
+            <td class="govuk-table__cell"><%= @exemptions_summary_form.band(exemption) %></td>
             <td class="govuk-table__cell"><%= @exemptions_summary_form.compliance_charge(exemption) %></td>
             <td class="govuk-table__cell"><%= @exemptions_summary_form.charge_type(exemption) %></td>
           </tr>

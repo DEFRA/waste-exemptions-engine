@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     end
 
     def farm_affiliated?
-      is_a_farmer? || on_a_farm?
+      is_a_farmer? && on_a_farm?
     end
 
     def pending_online_payment?

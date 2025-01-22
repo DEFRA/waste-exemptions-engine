@@ -78,6 +78,11 @@ FactoryBot.define do
       is_a_farmer { true }
       exemptions { WasteExemptionsEngine::Exemption.all }
     end
+
+    trait :farm_affiliated do
+      on_a_farm { true }
+      is_a_farmer { true }
+    end
   end
 
   factory :new_charged_registration_by_bank_transfer, parent: :new_charged_registration do

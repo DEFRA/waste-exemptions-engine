@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class ExemptionsSummaryForm < BaseForm
-    delegate :exemptions, :compliance_charge, :charge_type, :registration_charge, :total_charge,
+    delegate :exemptions, :compliance_charge, :charge_type, :registration_charge, :total_charge, :band,
              to: :exemption_costs_presenter
 
     def order

@@ -6,6 +6,8 @@ module WasteExemptionsEngine
   RSpec.describe ExemptionCostsPresenter do
     include_context "with bands and charges"
     include_context "with an order with exemptions"
+    include_context "farm bucket"
+
     let(:order_calculator) { WasteExemptionsEngine::OrderCalculatorService.new(order) }
 
     subject(:presenter) { described_class.new(order: order) }
@@ -26,6 +28,22 @@ module WasteExemptionsEngine
           sorted_exemptions = exemptions.sort_by { |exemption| exemption.band.sequence }
           expect(presenter.exemptions.map(&:code)).to match_array(sorted_exemptions.map(&:code))
         end
+      end
+    end
+
+    describe "#band" do
+      let(:exemptions) { [Bucket.farmer_bucket.exemptions.last] }
+
+      context "when the exemption is part of a farmer bucket" do
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it { expect(presenter.band(exemptions[0])).to eq("N/A") }
+      end
+
+      context "when the exemption is not part of a farmer bucket" do
+        before { order.update(bucket: nil) }
+
+        it { expect(presenter.band(exemptions[0])).to eq(exemptions[0].band.sequence) }
       end
     end
 
@@ -55,6 +73,30 @@ module WasteExemptionsEngine
 
           it "returns the correct charge for the exemption in the lowest band" do
             expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
+          end
+        end
+      end
+
+      context "when the order includes the farm bucket" do
+
+        let(:exemptions) { Bucket.farmer_bucket.exemptions }
+
+        before do
+          Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 9876)
+          order.bucket = Bucket.farmer_bucket
+          # exclude the first bucket exemption to test the first-bucket-exemption-in-the-order logic
+          order.exemptions = Bucket.farmer_bucket.exemptions[1..]
+          order.order_calculator
+        end
+
+        it "returns the bucket compliance charge for the first farm exemption in the order" do
+          first_bucket_exemption = order.exemptions.first
+          expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.39")
+        end
+
+        it "returns blank for the rest of the farm exemptions" do
+          order.exemptions[1..].each do |exemption|
+            expect(presenter.compliance_charge(exemption)).to be_blank
           end
         end
       end
@@ -114,6 +156,23 @@ module WasteExemptionsEngine
 
           it "returns 'Discounted' for the exemption in the lowest band" do
             expect(presenter.charge_type(exemptions[3])).to eq("Discounted")
+          end
+        end
+
+        context "with an exemption from the farmer bucket" do
+          let(:order) { CreateOrUpdateOrderService.run(transient_registration:) }
+          let(:exemption) { Bucket.farmer_bucket.exemptions.first }
+
+          context "when the transient registration is not farm_affiliated" do
+            let(:transient_registration) { create(:new_charged_registration, on_a_farm: false) }
+
+            it { expect(presenter.charge_type(exemption)).not_to eq("Farmer exemptions") }
+          end
+
+          context "when the transient registration is farm_affiliated" do
+            let(:transient_registration) { create(:new_charged_registration, :farm_affiliated) }
+
+            it { expect(presenter.charge_type(exemption)).to eq("Farmer exemptions") }
           end
         end
       end

@@ -21,11 +21,20 @@ module WasteExemptionsEngine
       order.charge_detail
     end
 
-    private
-
     def bucket_charge_amount
-      order.exemptions.intersect?(bucket.exemptions) ? bucket.initial_compliance_charge.charge_amount : 0
+      return 0 unless order.exemptions.intersect?(bucket.exemptions)
+
+      default_bucket_charge_amount = bucket.initial_compliance_charge.charge_amount
+
+      if (order.exemptions - bucket.exemptions).empty?
+        non_bucket_compliance_charge = order.exemptions.sum { |ex| ex.band.initial_compliance_charge.charge_amount }
+        [non_bucket_compliance_charge, default_bucket_charge_amount].min
+      else
+        default_bucket_charge_amount
+      end
     end
+
+    private
 
     def chargeable_exemptions(band)
       order.exemptions

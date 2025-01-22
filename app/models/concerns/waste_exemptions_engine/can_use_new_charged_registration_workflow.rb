@@ -60,7 +60,9 @@ module WasteExemptionsEngine
 
         state :waste_activities_form
         state :activity_exemptions_form
+        state :farm_exemptions_form
         state :confirm_activity_exemptions_form
+        state :confirm_farm_exemptions_form
         state :exemptions_summary_form
 
         # End pages
@@ -129,6 +131,10 @@ module WasteExemptionsEngine
 
           # Operator name -> Waste activities
           transitions from: :operator_name_form,
+                      to: :farm_exemptions_form,
+                      if: :farm_affiliated?
+
+          transitions from: :operator_name_form,
                       to: :waste_activities_form,
                       unless: :check_your_answers_flow?
 
@@ -149,6 +155,10 @@ module WasteExemptionsEngine
 
           # Check registered name and address -> Waste activities
           transitions from: :check_registered_name_and_address_form,
+                      to: :farm_exemptions_form,
+                      if: :farm_affiliated?
+
+          transitions from: :check_registered_name_and_address_form,
                       to: :waste_activities_form,
                       unless: :check_your_answers_flow?
 
@@ -166,8 +176,16 @@ module WasteExemptionsEngine
           transitions from: :activity_exemptions_form,
                       to: :confirm_activity_exemptions_form
 
+          transitions from: :farm_exemptions_form,
+                      to: :confirm_farm_exemptions_form
+
           # Confirm Exemptions -> Site Grid Reference
           transitions from: :confirm_activity_exemptions_form,
+                      to: :site_grid_reference_form,
+                      if: :proceed_with_selected_exemptions?,
+                      unless: :check_your_answers_flow?
+
+          transitions from: :confirm_farm_exemptions_form,
                       to: :site_grid_reference_form,
                       if: :proceed_with_selected_exemptions?,
                       unless: :check_your_answers_flow?
@@ -175,6 +193,10 @@ module WasteExemptionsEngine
           # Confirm Exemptions -> Waste Activities
           transitions from: :confirm_activity_exemptions_form,
                       to: :waste_activities_form,
+                      if: :change_selected_exemptions?
+
+          transitions from: :confirm_farm_exemptions_form,
+                      to: :farm_exemptions_form,
                       if: :change_selected_exemptions?
 
           ### SITE LOCATION
@@ -383,6 +405,9 @@ module WasteExemptionsEngine
           transitions from: :applicant_email_form,
                       to: :check_your_answers_form
 
+          transitions from: :confirm_farm_exemptions_form,
+                      to: :check_your_answers_form
+
           transitions from: :confirm_activity_exemptions_form,
                       to: :check_your_answers_form
 
@@ -455,6 +480,10 @@ module WasteExemptionsEngine
         end
 
         event :edit_exemptions do
+          transitions from: :check_your_answers_form,
+                      to: :farm_exemptions_form,
+                      if: :check_your_answers_flow? && :farm_affiliated?
+
           transitions from: :check_your_answers_form,
                       to: :waste_activities_form,
                       if: :check_your_answers_flow?
