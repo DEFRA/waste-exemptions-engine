@@ -1,0 +1,22 @@
+en:
+  waste_exemptions_engine:
+    farm_exemptions_forms:
+      new:
+        title: &title Select the waste exemptions for agricultural activities on your farm.
+        heading: *title
+        description: You can select any or all of these exemptions for a fixed discounted price.
+        next_button: Continue
+        see: See
+        opens_in_new_window: (opens in a new window)
+        exemption_link_name: "%{exemption_code} guidance"
+        legend: Exemptions
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/farm_exemptions_form:
+          attributes:
+            temp_exemptions:
+              inclusion: No farming exemptions were selected
+            token:
+              invalid_format: The token is not valid
+              missing: The token is missing

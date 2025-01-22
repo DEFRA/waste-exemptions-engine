@@ -1,0 +1,53 @@
+<%= render("waste_exemptions_engine/shared/back", token: @confirm_farm_exemptions_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @confirm_farm_exemptions_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+      <p class="govuk-body"> <%= t(".description") %></p>
+
+      <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
+
+      <h2 class="govuk-heading-m">
+         <%= selected_farm_exemptions.empty? ? t(".subheading.no_exemptions_selected") : t(".subheading.exemptions_selected") %>
+      </h2>
+      
+      <div class="govuk-heading-s">
+        <% selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration).each do |exemption| %>
+          <p><%= exemption.code %> <%= exemption.summary %></p>
+        <% end %>
+      </div>
+      
+      <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_farm_exemptions_form.errors[:workflow_state].any? %>">
+        <%= f.govuk_collection_radio_buttons :temp_confirm_exemptions,
+            [
+              OpenStruct.new(
+                id: true,
+                name: t(".options.true")
+              ),
+              OpenStruct.new(
+                id: false,
+                name: t(".options.false")
+              )
+            ],
+            :id,
+            :name,
+            legend: {
+              text: t(".heading"),
+              hidden: true
+            },
+            inline: true %>
+
+        <br /><br />
+        <%= f.govuk_submit %>
+      </div>
+
+    <% end %>
+
+    <% add_more_link = link_to t(".add_more_farm_exemptions_link"), new_farm_exemptions_form_path %>
+    <p class="govuk-body"><%= t(".add_more_farm_exemptions") %> <%= add_more_link %></p>
+
+  </div>
+</div>

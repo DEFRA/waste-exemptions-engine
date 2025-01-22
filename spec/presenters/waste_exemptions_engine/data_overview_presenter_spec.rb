@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "./spec/models/waste_exemptions_engine/concerns/can_sort_exemption_codes"
 
 module WasteExemptionsEngine
   RSpec.describe DataOverviewPresenter, type: :presenter do
