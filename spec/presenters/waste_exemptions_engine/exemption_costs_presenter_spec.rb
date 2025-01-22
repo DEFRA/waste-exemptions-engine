@@ -84,13 +84,14 @@ module WasteExemptionsEngine
         before do
           Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 9876)
           order.bucket = Bucket.farmer_bucket
-          order.exemptions = Bucket.farmer_bucket.exemptions
+          # exclude the first bucket exemption to test the first-bucket-exemption-in-the-order logic
+          order.exemptions = Bucket.farmer_bucket.exemptions[1..]
           order.order_calculator
         end
 
-        it "returns the bucket compliance charge for the first farm exemption" do
-          first_bucket_exemption = order.bucket.exemptions.first
-          expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£98.76")
+        it "returns the bucket compliance charge for the first farm exemption in the order" do
+          first_bucket_exemption = order.exemptions.first
+          expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.39")
         end
 
         it "returns blank for the rest of the farm exemptions" do

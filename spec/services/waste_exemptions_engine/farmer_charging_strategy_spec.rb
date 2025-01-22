@@ -39,17 +39,43 @@ module WasteExemptionsEngine
         context "with an order with bucket exemptions only" do
           let(:exemptions) { bucket_exemptions }
 
-          it { expect(charge_details.registration_charge_amount).to eq(registration_charge_amount) }
+          context "when the total compliance charge amount is greater than the bucket charge" do
+            before do
+              band_1.initial_compliance_charge.update(charge_amount: bucket.initial_compliance_charge.charge_amount + 1)
+            end
 
-          it { expect(band_charges.length).to eq 3 }
-          it { expect(band_charges[0].initial_compliance_charge_amount).to be_zero }
-          it { expect(band_charges[1].initial_compliance_charge_amount).to be_zero }
-          it { expect(band_charges[2].initial_compliance_charge_amount).to be_zero }
+            it { expect(charge_details.registration_charge_amount).to eq(registration_charge_amount) }
 
-          it { expect(charge_details.bucket_charge_amount).to eq bucket_charge_amount }
+            it { expect(band_charges.length).to eq 3 }
+            it { expect(band_charges[0].initial_compliance_charge_amount).to be_zero }
+            it { expect(band_charges[1].initial_compliance_charge_amount).to be_zero }
+            it { expect(band_charges[2].initial_compliance_charge_amount).to be_zero }
 
-          it { expect(charge_details.total_compliance_charge_amount).to eq bucket_charge_amount }
-          it { expect(charge_details.total_charge_amount).to eq registration_charge_amount + bucket_charge_amount }
+            it { expect(charge_details.bucket_charge_amount).to eq bucket_charge_amount }
+
+            it { expect(charge_details.total_compliance_charge_amount).to eq bucket_charge_amount }
+            it { expect(charge_details.total_charge_amount).to eq registration_charge_amount + bucket_charge_amount }
+          end
+
+          context "when the total compliance charge amount is less than the bucket charge" do
+            let(:exemptions) { [bucket_exemptions.first] }
+            let(:exemption_band) { exemptions[0].band }
+            let(:expected_total_compliance_charge_amount) { exemption_band.initial_compliance_charge.charge_amount }
+
+            before do
+              exemption_band.initial_compliance_charge.update(charge_amount: bucket.initial_compliance_charge.charge_amount - 1)
+            end
+
+            it { expect(charge_details.registration_charge_amount).to eq(registration_charge_amount) }
+
+            it { expect(band_charges.length).to eq 1 }
+            it { expect(band_charges[0].initial_compliance_charge_amount).to be_zero }
+
+            it { expect(charge_details.bucket_charge_amount).to eq expected_total_compliance_charge_amount }
+
+            it { expect(charge_details.total_compliance_charge_amount).to eq expected_total_compliance_charge_amount }
+            it { expect(charge_details.total_charge_amount).to eq registration_charge_amount + expected_total_compliance_charge_amount }
+          end
         end
 
         context "with an order with both bucket and non-bucket exemptions" do

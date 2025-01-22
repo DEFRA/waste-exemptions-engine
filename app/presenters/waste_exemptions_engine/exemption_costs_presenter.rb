@@ -96,12 +96,18 @@ module WasteExemptionsEngine
       order.bucket.present? && order.bucket.exemptions.include?(exemption)
     end
 
-    def first_exemption_in_bucket?(exemption)
-      order.bucket&.exemptions&.first == exemption
+    def first_bucket_exemption_in_order?(exemption)
+      bucket_exemptions = order.bucket&.exemptions&.to_a
+      return false if bucket_exemptions.empty?
+
+      bucket_exemptions_in_order = bucket_exemptions.intersection(order.exemptions)
+      return false if bucket_exemptions_in_order.empty?
+
+      exemption == bucket_exemptions_in_order.first
     end
 
     def bucket_exemption_compliance_charge(exemption)
-      first_exemption_in_bucket?(exemption) ? format_charge_as_currency(order.bucket.initial_compliance_charge) : ""
+      first_bucket_exemption_in_order?(exemption) ? format_currency(@order_calculator.bucket_charge_amount / 100.0) : ""
     end
   end
 end
