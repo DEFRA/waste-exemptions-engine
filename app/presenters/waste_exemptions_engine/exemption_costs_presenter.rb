@@ -14,7 +14,11 @@ module WasteExemptionsEngine
     end
 
     def band(exemption)
-      exemption_in_bucket?(exemption) ? "N/A" : exemption.band&.sequence
+      if exemption_in_bucket?(exemption)
+        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+      else
+        exemption.band&.sequence
+      end
     end
 
     def compliance_charge(exemption)
