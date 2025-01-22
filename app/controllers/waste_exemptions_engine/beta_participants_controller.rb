@@ -1,32 +1,29 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class BetaStartFormsController < FormsController
+  class BetaParticipantsController < ::ApplicationController
     before_action :check_private_beta_active, except: %i[unavailable invalid_token]
     before_action :check_participant_token_valid, except: %i[unavailable invalid_token]
 
-    def new
-      @action = :start
-
-      # continue already started registration if beta participant opens beta-start link again
-      if participant.present? && participant.registration.present?
-        params[:token] = participant.registration.token
-        # button text should be "Continue" if first registration page is already filled
-        @action = :continue if participant.registration.location.present?
-      end
-
-      super(BetaStartForm, "beta_start_form")
+    def opt_in
+      participant.update(opted_in: true)
+      redirect_to opt_in_confirmation_beta_participants_path
     end
 
-    def create
-      super(BetaStartForm, "beta_start_form")
+    def opt_out
+      participant.update(opted_in: false)
+      redirect_to opt_out_confirmation_beta_participants_path
     end
 
-    def unavailable
+    def opt_in_confirmation
       # view only
     end
 
-    def invalid_token
+    def opt_out_confirmation
+      # view only
+    end
+
+    def opt_error
       # view only
     end
 
@@ -56,18 +53,6 @@ module WasteExemptionsEngine
       return false if params[:participant_token].nil?
 
       participant.present? && participant&.registration_type != "WasteExemptionsEngine::Registration"
-    end
-
-    def transient_registration_attributes
-      params.fetch(:beta_start_form, {}).permit(:beta_start_option)
-    end
-
-    def find_or_initialize_registration(token)
-      @transient_registration = TransientRegistration.find_by(
-        token: token
-      ) || NewChargedRegistration.new
-
-      participant.update(registration: @transient_registration) if participant.present?
     end
   end
 end

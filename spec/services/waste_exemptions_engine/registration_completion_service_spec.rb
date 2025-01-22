@@ -285,6 +285,11 @@ module WasteExemptionsEngine
           it "sets the registration placeholder attribute to false" do
             expect { run_service }.to change { registration.reload.placeholder }.to false
           end
+
+          it "updates the beta participant registration details" do
+            beta_participant = create(:beta_participant, registration: new_charged_registration)
+            expect { run_service }.to change { beta_participant.reload.registration }.to registration
+          end
         end
       end
     end
