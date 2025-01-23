@@ -21,5 +21,13 @@ module WasteExemptionsEngine
         expect(beta_participant).to have_received(:generate_token)
       end
     end
+
+    describe "#private_beta_start_url" do
+      let(:beta_participant) { build(:beta_participant) }
+
+      it "returns the correct URL" do
+        expect(beta_participant.private_beta_start_url).to include("beta/#{beta_participant.token}/start")
+      end
+    end
   end
 end
