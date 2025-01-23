@@ -38,6 +38,7 @@ module Dummy
     # Paths
     config.front_office_url = ENV["FRONT_OFFICE_URL"] || "http://localhost:3000"
     config.back_office_url = ENV["BACK_OFFICE_URL"] || "http://localhost:8000"
+    config.host = config.front_office_url
 
     # Companies House config
     config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/"
