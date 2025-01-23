@@ -15,6 +15,7 @@ en:
         message: "Your payment has been refused. Please try again or select a different payment method."
       new:
         setup_error: "An error has occurred when preparing for your payment. Please try again or select a different payment method."
+        internal_error: "An error has occurred when preparing for your payment. Please try again or select a different payment method."
       pending:
         invalid_response: "Invalid Govpay pending response"
         message: "Your payment is still pending."
