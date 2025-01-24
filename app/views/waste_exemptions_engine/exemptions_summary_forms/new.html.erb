@@ -2,13 +2,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
-    <h2 class="govuk-heading-m"><%= t(".how_charges_calculated") %></h2>
-    <p class="govuk-body"><%= t(".charge_explanation") %></p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><%= t(".full_compliance_charge") %></li>
-      <li><%= t(".discounted_charge") %></li>
-      <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
-    </ul>
+    <p class="govuk-body"><%= t(".beta_subheading") %></p>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -39,6 +33,13 @@
         <dd class="govuk-summary-list__value" id="total-charge"><%= @exemptions_summary_form.total_charge %></dd>
       </div>
     </dl>
+    <h2 class="govuk-heading-m"><%= t(".how_charges_calculated") %></h2>
+    <p class="govuk-body"><%= t(".charge_explanation") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".full_compliance_charge") %></li>
+      <li><%= t(".discounted_charge") %></li>
+      <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
+    </ul>
     <%= form_for @exemptions_summary_form do |f| %>
       <%= f.govuk_submit t(".continue") %>
     <% end %>
