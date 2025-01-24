@@ -105,14 +105,14 @@ module WasteExemptionsEngine
     end
 
     describe "#payment_callback_url" do
+      subject(:callback_url) { govpay_service.payment_callback_url(payment) }
+
       let(:callback_host) { Faker::Internet.url }
 
-      before { allow(Rails.configuration).to receive(:front_office_url).and_return(callback_host) }
+      before { allow(Rails.configuration).to receive(:host).and_return(callback_host) }
 
       context "when the payment does not exist" do
         let(:payment) { nil }
-
-        subject(:callback_url) { govpay_service.payment_callback_url(payment) }
 
         it "raises an exception" do
           expect { callback_url }.to raise_error(StandardError)
@@ -120,8 +120,6 @@ module WasteExemptionsEngine
       end
 
       context "when the payment exists" do
-        subject(:callback_url) { govpay_service.payment_callback_url(payment) }
-
         it "the callback url includes the base path" do
           expect(callback_url).to start_with(callback_host)
         end
