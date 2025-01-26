@@ -9,7 +9,7 @@
       <p class="govuk-body"> <%= t(".description") %></p>
 
       <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
-
+<% Rails.logger.warn "\n>>> selected_farm_exemptions: # {selected_farm_exemptions.pluck(:code)}\n" %>
       <h2 class="govuk-heading-m">
          <%= selected_farm_exemptions.empty? ? t(".subheading.no_exemptions_selected") : t(".subheading.exemptions_selected") %>
       </h2>
