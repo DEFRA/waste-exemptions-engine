@@ -7,7 +7,7 @@ module WasteExemptionsEngine
   class SortableTest
     include CanSortExemptions
   end
-  
+
   RSpec.describe ExemptionCostsPresenter do
     include_context "with bands and charges"
     include_context "with an order with exemptions"
