@@ -187,10 +187,10 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           transitions from: :confirm_farm_exemptions_form,
-                        to: :no_farm_exemptions_selected_form,
-                        if: :no_exemptions_selected?,
-                        unless: :check_your_answers_flow?
-  
+                      to: :no_farm_exemptions_selected_form,
+                      if: :no_exemptions_selected?,
+                      unless: :check_your_answers_flow?
+
           transitions from: :confirm_farm_exemptions_form,
                       to: :site_grid_reference_form,
                       if: :proceed_with_selected_exemptions?,
