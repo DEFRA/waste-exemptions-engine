@@ -2,13 +2,13 @@ en:
   waste_exemptions_engine:
     exemptions_summary_forms:
       new:
-        title: "You have selected the following exemptions"
-        heading: "You have selected the following exemptions"
-        how_charges_calculated: "How are exemption charges calculated"
-        charge_explanation: "You'll pay a:"
-        full_compliance_charge: "full compliance charge for one exemption from the highest exemption band you select"
-        discounted_charge: "discounted charge for all other exemptions"
-        registration_fee: "a single registration charge of %{charge_amount}"
+        title: "Your exemptions"
+        heading: "Your exemptions"
+        beta_subheading: "You will not pay for these exemptions. Charges shown are indicative only."
+        how_charges_calculated: "How exemption charges are calculated"
+        full_compliance_charge: "Full charge for one exemption from the highest band"
+        discounted_charge: "Discounted charge for all other exemptions in bands 1 or 2"
+        registration_fee: "Single registration charge of %{charge_amount}"
         exemption: "Exemption"
         band: "Band"
         compliance_charge: "Compliance charge"
