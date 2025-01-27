@@ -6,9 +6,9 @@ en:
         heading: *title
         how_charges_calculated: How the exemption charges are calculated
         charge_explanation: "You'll pay a:"
-        registration_fee: "registration fee of %{charge_amount} – this fee applies per site even if you register more than one exemption at the same time"
+        registration_fee: "registration charge of %{charge_amount} – this fee applies per site even if you register more than one exemption at the same time"
         full_compliance_charge: fixed compliance charge
-        discounted_charge: discounted fee if you are a farmer
+        discounted_charge: discounted charge if you are a farmer
 
         charge_bands: "Compliance charge bands are fixed and depend on the:"
         charge_bands_bullet_1: amount of checks the Environment Agency need to carry out
