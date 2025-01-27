@@ -683,7 +683,6 @@ module WasteExemptionsEngine
     end
 
     def no_exemptions_selected?
-      Rails.logger.warn "\n++++ no_exemptions_selected?: #{temp_exemptions.nil? || temp_exemptions.empty?}\n"
       temp_exemptions.nil? || temp_exemptions.empty?
     end
   end
