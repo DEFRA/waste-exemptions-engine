@@ -35,7 +35,7 @@ module WasteExemptionsEngine
     end
 
     def payment_callback_url(payment)
-      host = Rails.configuration.front_office_url
+      host = Rails.configuration.host
       path = WasteExemptionsEngine::Engine.routes.url_helpers.payment_callback_govpay_forms_path(
         token: @transient_registration.token, uuid: payment.payment_uuid
       )
