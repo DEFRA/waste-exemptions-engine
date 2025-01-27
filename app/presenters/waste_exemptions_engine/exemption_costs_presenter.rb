@@ -56,8 +56,8 @@ module WasteExemptionsEngine
       helpers.number_to_currency(
         WasteExemptionsEngine::CurrencyConversionService
         .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
-      unit: "£",
-      precision: 0
+        unit: "£",
+        precision: 0
       )
     end
 
