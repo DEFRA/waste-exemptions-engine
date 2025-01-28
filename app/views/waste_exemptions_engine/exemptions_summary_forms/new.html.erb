@@ -2,7 +2,20 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
-    <p class="govuk-body"><%= t(".beta_subheading") %></p>
+    <h2 class="govuk-heading-m"><%= t(".how_charges_calculated") %></h2>
+    <p class="govuk-body"><%= t(".charge_explanation") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
+      <li><%= t(".full_compliance_charge") %></li>
+      <li><%= t(".discounted_charge") %></li>
+    </ul>
+
+    <p class="govuk-body"><%= t(".charge_bands") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".charge_bands_bullet_1") %></li>
+      <li><%= t(".charge_bands_bullet_2") %></li>
+    </ul>
+
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -23,6 +36,7 @@
         <% end %>
       </tbody>
     </table>
+
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key"><%= t(".registration_charge") %></dt>
