@@ -29,11 +29,12 @@
         legend: { text: t(".temp_payment_method_legend"), size: "m" } do %>
         <%= f.govuk_radio_button :temp_payment_method, "card",
         label: { text: t(".payment_options.card") },
+        hint: { text: t(".payment_options.card_hint") },
         link_errors: true do %>
     <% end %>
     <%= f.govuk_radio_button :temp_payment_method, "bank_transfer",
-      label: { text: t(".payment_options.bank") }
-    %>
+      label: { text: t(".payment_options.bank") },
+      hint: { text: t(".payment_options.bank_hint") } %>
   <% end %>
   <%= f.govuk_submit t(".payment_submit_button_label") %>
 <% end %>
