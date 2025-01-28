@@ -90,12 +90,6 @@ module WasteExemptionsEngine
             expect(response).to render_template("waste_exemptions_engine/beta_start_forms/new")
           end
         end
-
-        it "changes button label from 'Start new registration' to 'Continue registration'" do
-          get request_path
-
-          expect(response.body).to include I18n.t("waste_exemptions_engine.beta_start_forms.new.continue_registration_button_label")
-        end
       end
     end
 

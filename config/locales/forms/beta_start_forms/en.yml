@@ -2,11 +2,19 @@ en:
   waste_exemptions_engine:
     beta_start_forms:
       new:
-        title: Welcome to Private Beta
-        heading: Welcome to Private Beta
-        welcome_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        start_registration_button_label: Start a new registration
-        continue_registration_button_label: Continue registration
+        title: This is private beta
+        heading: This is private beta
+        intro_paragraph: "Thank you for renewing your waste exemptions in private beta. When you've finished your registration, you'll get:"
+        bullet_1: confirmation of your registration
+        bullet_2_html: your exemptions registered for 3 years on the <a href="https://environment.data.gov.uk/public-register/view/search-waste-exemptions" target="_blank" rel="noopener noreferrer" class="govuk-link">public register</a> (opens in a new window)
+        bullet_3: a link to a survey to give your feedback
+        what_youll_do_heading: What you'll do
+        what_youll_do_paragraph: As you go through the registration process, you'll be shown details of waste exemption charges that we may introduce in future. We'll ask you to tell us whether you would pay for your exemptions by credit or debit card, or by bank transfer.
+        no_charge_text: You will not be asked to give any payment details and you will not be charged to register your exemptions.
+        privacy_heading: Privacy notice
+        privacy_paragraph_1_html: Read our <a href="https://wasteexemptions.service.gov.uk/pages/privacy" target="_blank" rel="noopener noreferrer" class="govuk-link">privacy notice</a> (opens in a new window) to find out how we use your information.
+        privacy_paragraph_2_html: By continuing to the service, you confirm that you've read and agree to the <a href="https://wasteexemptions.service.gov.uk/pages/privacy" target="_blank" rel="noopener noreferrer" class="govuk-link">privacy notice</a> (opens in a new window)
+        continue: Continue
       unavailable:
         title: Sorry, the private beta testing service is unavailable
         heading: Sorry, the private beta testing service is unavailable

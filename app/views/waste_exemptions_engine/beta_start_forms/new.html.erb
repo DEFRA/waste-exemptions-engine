@@ -1,13 +1,25 @@
 <%= form_for @beta_start_form do |f| %>
   <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
-  
 
   <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-  <p class="govuk-body">
-    <%= t(".welcome_text") %>
-  </p>
+  <p class="govuk-body"><%= t(".intro_paragraph") %></p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li><%= t(".bullet_1") %></li>
+    <li><%= t(".bullet_2_html") %></li>
+    <li><%= t(".bullet_3") %></li>
+  </ul>
+
+  <h2 class="govuk-heading-m"><%= t(".what_youll_do_heading") %></h2>
+  <p class="govuk-body"><%= t(".what_youll_do_paragraph") %></p>
+
+  <p class="govuk-body govuk-!-font-weight-bold"><%= t(".no_charge_text") %></p>
+
+  <h2 class="govuk-heading-m"><%= t(".privacy_heading") %></h2>
+  <p class="govuk-body"><%= t(".privacy_paragraph_1_html") %></p>
+  <p class="govuk-body"><%= t(".privacy_paragraph_2_html") %></p>
 
   <%= f.hidden_field :token, name: "token", value: @transient_registration&.token %>
-  <%= f.govuk_submit t(".#{@action}_registration_button_label") %>
+  <%= f.govuk_submit t(".continue") %>
 <% end %>

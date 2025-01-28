@@ -2,6 +2,9 @@
 
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
+
+    include CanSortExemptions
+
     attr_accessor :order
 
     def initialize(order:)
@@ -49,6 +52,15 @@ module WasteExemptionsEngine
       format_currency(
         WasteExemptionsEngine::CurrencyConversionService
         .convert_pence_to_pounds(@order_calculator.registration_charge_amount)
+      )
+    end
+
+    def registration_charge_without_pence
+      helpers.number_to_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
+        unit: "£",
+        precision: 0
       )
     end
 
@@ -107,7 +119,7 @@ module WasteExemptionsEngine
       bucket_exemptions_in_order = bucket_exemptions.intersection(order.exemptions)
       return false if bucket_exemptions_in_order.empty?
 
-      exemption == bucket_exemptions_in_order.first
+      exemption == sorted_exemptions(bucket_exemptions_in_order).first
     end
 
     def bucket_exemption_compliance_charge(exemption)

@@ -9,7 +9,6 @@
       <p class="govuk-body"> <%= t(".description") %></p>
 
       <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
-
       <h2 class="govuk-heading-m">
          <%= selected_farm_exemptions.empty? ? t(".subheading.no_exemptions_selected") : t(".subheading.exemptions_selected") %>
       </h2>

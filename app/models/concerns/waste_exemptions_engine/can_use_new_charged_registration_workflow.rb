@@ -64,6 +64,7 @@ module WasteExemptionsEngine
         state :confirm_activity_exemptions_form
         state :confirm_farm_exemptions_form
         state :exemptions_summary_form
+        state :no_farm_exemptions_selected_form
 
         # End pages
         state :check_your_answers_form
@@ -183,6 +184,11 @@ module WasteExemptionsEngine
           transitions from: :confirm_activity_exemptions_form,
                       to: :site_grid_reference_form,
                       if: :proceed_with_selected_exemptions?,
+                      unless: :check_your_answers_flow?
+
+          transitions from: :confirm_farm_exemptions_form,
+                      to: :no_farm_exemptions_selected_form,
+                      if: :no_exemptions_selected?,
                       unless: :check_your_answers_flow?
 
           transitions from: :confirm_farm_exemptions_form,
@@ -674,6 +680,10 @@ module WasteExemptionsEngine
 
     def change_selected_exemptions?
       temp_confirm_exemptions == false
+    end
+
+    def no_exemptions_selected?
+      temp_exemptions.nil? || temp_exemptions.empty?
     end
   end
 end
