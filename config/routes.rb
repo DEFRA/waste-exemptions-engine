@@ -374,6 +374,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "registration-complete",
               path_names: { new: "" }
 
+    resources :private_beta_registration_complete_forms,
+              only: %i[new create],
+              path: "private-beta-registration-complete",
+              path_names: { new: "" }
+
     resources :capture_reference_forms,
               only: %i[new create],
               path: "enter-your-waste-exemption-registration-number",
