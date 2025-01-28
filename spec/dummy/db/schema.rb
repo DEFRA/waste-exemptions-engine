@@ -308,21 +308,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_28_112137) do
     t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
   end
 
-  create_table "reports_downloads", force: :cascade do |t|
-    t.string "report_type"
-    t.string "report_file_name"
-    t.string "user_id"
-    t.datetime "downloaded_at"
-  end
-
-  create_table "reports_generated_reports", id: :serial, force: :cascade do |t|
-    t.string "file_name"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.date "data_from_date"
-    t.date "data_to_date"
-  end
-
   create_table "transient_addresses", id: :serial, force: :cascade do |t|
     t.integer "address_type", default: 0
     t.integer "mode", default: 0
