@@ -10,11 +10,13 @@ en:
           registration_charge: Registration charge
           total_charge: Total amount due
         vat_note: All charges are outside the scope of VAT.
-        temp_payment_method_legend: Tell us how you'd pay
+        temp_payment_method_legend: Make a payment
         payment_options:
-          card: I'd use a credit or debit card
-          bank: I'd pay by bank transfer
-        payment_submit_button_label: Continue
+          card: Pay by credit, debit card, Google or Apple Pay
+          card_hint: You will be transferred to our secure GovPay site. We accept MasterCard, Maestro and Visa.
+          bank: Pay by bank transfer and then email us to confirm payment
+          bank_hint: We cannot send you a confirmation email until your payment clears.
+        payment_submit_button_label: Proceed to payment
   activemodel:
     errors:
       models:
