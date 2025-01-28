@@ -1,0 +1,8 @@
+en:
+  waste_exemptions_engine:
+    no_farm_exemptions_selected_forms:
+      new:
+        title: &title You have not selected any exemptions so you cannot continue with your registration.
+        heading: *title
+        description: To continue with your registration you can go back and select farming or non-farming exemptions.
+        back_link: Back

@@ -3,6 +3,11 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
+
+  class SortableTest
+    include CanSortExemptions
+  end
+
   RSpec.describe ExemptionCostsPresenter do
     include_context "with bands and charges"
     include_context "with an order with exemptions"
@@ -55,31 +60,33 @@ module WasteExemptionsEngine
           exemption = exemptions.first
           expect(presenter.compliance_charge(exemption)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
         end
+      end
 
-        context "with multiple exemptions including same highest band" do
-          include_context "with multiple exemptions including same highest band"
+      context "with multiple exemptions including same highest band" do
+        include_context "with multiple exemptions including same highest band"
 
-          it "returns the correct charge for the highest band exemption" do
-            expect(presenter.compliance_charge(exemptions[0])).to eq("£409.00")
-          end
+        it "returns the correct charge for the highest band exemption" do
+          expect(presenter.compliance_charge(exemptions[0])).to eq("£409.00")
+        end
 
-          it "returns the correct charge for the second exemption in the highest band" do
-            expect(presenter.compliance_charge(exemptions[1])).to eq("£74.00")
-          end
+        it "returns the correct charge for the second exemption in the highest band" do
+          expect(presenter.compliance_charge(exemptions[1])).to eq("£74.00")
+        end
 
-          it "returns the correct charge for the exemption in the middle band" do
-            expect(presenter.compliance_charge(exemptions[2])).to eq("£74.00")
-          end
+        it "returns the correct charge for the exemption in the middle band" do
+          expect(presenter.compliance_charge(exemptions[2])).to eq("£74.00")
+        end
 
-          it "returns the correct charge for the exemption in the lowest band" do
-            expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
-          end
+        it "returns the correct charge for the exemption in the lowest band" do
+          expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
         end
       end
 
       context "when the order includes the farm bucket" do
-
-        let(:exemptions) { Bucket.farmer_bucket.exemptions }
+        # Make the sequence of exemptions in the order different to the sequence in
+        # the farm bucket to test "first sorted exemption" logic.
+        let(:exemptions) { Bucket.farmer_bucket.exemptions[1..].reverse }
+        let(:sorted_exemptions) { SortableTest.new.sorted_exemptions(exemptions) }
 
         before do
           Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 9876)
@@ -90,7 +97,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the bucket compliance charge for the first farm exemption in the order" do
-          first_bucket_exemption = order.exemptions.first
+          first_bucket_exemption = sorted_exemptions.first
           expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.39")
         end
 

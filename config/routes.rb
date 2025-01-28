@@ -268,10 +268,14 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "renew-no-exemptions",
               path_names: { new: "" }
 
+    resources :no_farm_exemptions_selected_forms,
+              only: %i[new],
+              path: "no-farm-exemptions-selected",
+              path_names: { new: "" }
+
     resources :check_your_answers_forms,
               only: %i[new create],
               path: "check-your-answers",
-              # path_names: { new: "" }
               path_names: { new: "" } do
                 get "applicant-name",
                     to: "check_your_answers_forms#edit_applicant_name",

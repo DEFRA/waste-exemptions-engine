@@ -2,6 +2,9 @@
 
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
+
+    include CanSortExemptions
+
     attr_accessor :order
 
     def initialize(order:)
@@ -116,7 +119,7 @@ module WasteExemptionsEngine
       bucket_exemptions_in_order = bucket_exemptions.intersection(order.exemptions)
       return false if bucket_exemptions_in_order.empty?
 
-      exemption == bucket_exemptions_in_order.first
+      exemption == sorted_exemptions(bucket_exemptions_in_order).first
     end
 
     def bucket_exemption_compliance_charge(exemption)

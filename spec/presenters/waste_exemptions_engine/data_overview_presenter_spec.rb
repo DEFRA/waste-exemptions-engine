@@ -239,9 +239,5 @@ module WasteExemptionsEngine
         end
       end
     end
-
-    context "when presenter has CanSortExemptionCodes concern included" do
-      it_behaves_like "can_sort_exemption_codes", described_class
-    end
   end
 end

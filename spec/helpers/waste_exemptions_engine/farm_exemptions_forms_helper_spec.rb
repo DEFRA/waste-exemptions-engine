@@ -5,10 +5,11 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe FarmExemptionsFormsHelper do
 
-    %i[y z w x].each do |activity|
+    %i[U T D S].each do |activity|
       let!("activity_#{activity}") { create(:waste_activity) }
-      (1..3).each do |i|
-        let!("exemption_#{activity}_#{i}") do
+      # Use 9..11 to ensure a mix of single- and double-digit codes to test sorting
+      (9..11).each do |i|
+        let!("exemption_#{activity}#{i}") do
           create(:exemption, waste_activity: send("activity_#{activity}"), code: "#{activity}#{i}")
         end
       end
@@ -18,11 +19,11 @@ module WasteExemptionsEngine
     let!(:farmer_bucket) do
       create(:bucket, bucket_type: "farmer",
                       exemptions: [
-                        exemption_x_2,
-                        exemption_x_1,
-                        exemption_w_1,
-                        exemption_w_3,
-                        exemption_y_2
+                        exemption_S11,
+                        exemption_S9,
+                        exemption_D10,
+                        exemption_D9,
+                        exemption_U11
                       ])
     end
     # rubocop:enable RSpec/LetSetup
@@ -31,11 +32,11 @@ module WasteExemptionsEngine
 
       it "returns a list of farm exemptions ordered by activity id and exemption id" do
         expect(helper.sorted_farm_exemptions.pluck(:code)).to eq [
-          exemption_y_2.code,
-          exemption_w_1.code,
-          exemption_w_3.code,
-          exemption_x_1.code,
-          exemption_x_2.code
+          exemption_U11.code,
+          exemption_D9.code,
+          exemption_D10.code,
+          exemption_S9.code,
+          exemption_S11.code
         ]
       end
     end
@@ -51,20 +52,23 @@ module WasteExemptionsEngine
       end
 
       context "with some selected exemptions" do
-        let(:transient_registration) { build(:new_charged_registration, temp_exemptions: Exemption.pluck(:id)) }
-
-        it "returns the selected farm exemptions" do
-          expect(exemption_list).to include(
-            exemption_y_2,
-            exemption_w_1,
-            exemption_w_3,
-            exemption_x_1,
-            exemption_x_2
-          )
+        let(:temp_exemptions) do
+          [
+            exemption_D10.id,
+            exemption_S11.id,
+            exemption_U11.id
+          ]
         end
+        let(:transient_registration) { build(:new_charged_registration, temp_exemptions:) }
 
-        it "does not include the non-farm exemption" do
-          expect(exemption_list).not_to include(exemption_z_1)
+        it "returns the selected farm exemptions only, sorted U/T/D/S" do
+          expect(exemption_list).to eq(
+            [
+              exemption_U11,
+              exemption_D10,
+              exemption_S11
+            ]
+          )
         end
       end
     end
