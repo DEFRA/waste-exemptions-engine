@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     private_beta_registration_complete_forms:
       new:
-        title: &title You have registered your exemptions for 3 years
+        title: &title You have registered your exemptions for 3 years.
         heading: *title
         highlight_text: Your registration number is
         subheading: What will happen next
