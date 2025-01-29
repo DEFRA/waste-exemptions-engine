@@ -2,26 +2,21 @@ en:
   waste_exemptions_engine:
     exemptions_summary_forms:
       new:
-        title: &title You have selected the following exemptions
-        heading: *title
-        how_charges_calculated: How the exemption charges are calculated
-        charge_explanation: "You'll pay a:"
-        registration_fee: "registration charge of %{charge_amount} – this fee applies per site even if you register more than one exemption at the same time"
-        full_compliance_charge: fixed compliance charge
-        discounted_charge: discounted charge if you are a farmer
-
-        charge_bands: "Compliance charge bands are fixed and depend on the:"
-        charge_bands_bullet_1: amount of checks the Environment Agency need to carry out
-        charge_bands_bullet_2: the impact of the activity on the environment
-
-        exemption: Exemption
-        band: Band
-        compliance_charge: Compliance charge
-        full: Full
-        discounted: Discounted
-        n_a: N/A
-        farm: Farmer exemptions
-        full_or_discounted: Full or discounted charge
-        registration_charge: Registration charge
-        total_charge: Total charge
-        continue: Continue
+        title: "Your exemptions"
+        heading: "Your exemptions"
+        beta_subheading: "You will not pay for these exemptions. Charges shown are indicative only."
+        how_charges_calculated: "How exemption charges are calculated"
+        full_compliance_charge: "Full charge for one exemption from the highest band"
+        discounted_charge: "Discounted charge for all additional exemptions in bands 1, 2 and upper"
+        registration_fee: "Single registration charge of %{charge_amount}"
+        exemption: "Exemption"
+        band: "Band"
+        compliance_charge: "Compliance charge"
+        full: "Full"
+        discounted: "Discounted"
+        n_a: "N/A"
+        farm: "Farmer exemptions"
+        full_or_discounted: "Full or discounted charge"
+        registration_charge: "Registration charge"
+        total_charge: "Total charge"
+        continue: "Continue"
