@@ -2,9 +2,9 @@ en:
   waste_exemptions_engine:
     contact_name_forms:
       new:
-        title: Who should we contact about this waste exemption operation?
-        heading: Who should we contact about this waste exemption operation?
-        description: We will contact this person if we need to discuss the waste operation
+        title: &title Who is the contact for this registration?
+        heading: *title
+        description: We will contact this person if we need to discuss the registration
         contact_first_name_label: First name
         contact_last_name_label: Last name
         error_heading: A problem to fix

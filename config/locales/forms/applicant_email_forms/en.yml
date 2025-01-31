@@ -2,8 +2,8 @@ en:
   waste_exemptions_engine:
     applicant_email_forms:
       new:
-        title: What's the email address of the person filling in this form?
-        heading: What's the email address of the person filling in this form?
+        title: &title Applicant's email address
+        heading: *title
         error_heading: A problem to fix
         applicant_email_label: Email address
         confirmed_email_label: Confirm email address
@@ -15,14 +15,14 @@ en:
         waste_exemptions_engine/applicant_email_form:
           attributes:
             applicant_email:
-              blank: "Enter an email address"
-              invalid_format: "Enter a valid email address - there’s a mistake in that one"
+              blank: Enter an email address
+              invalid_format: Enter a valid email address - there’s a mistake in that one
             confirmed_email:
-              blank: "Enter your email address again to confirm it"
-              invalid_format: "Enter a valid confirmed email address - there’s a mistake in that one"
-              does_not_match: "The email addresses you’ve entered don’t match"
+              blank: Enter your email address again to confirm it
+              invalid_format: Enter a valid confirmed email address - there’s a mistake in that one
+              does_not_match: The email addresses you’ve entered don’t match
             no_email_address:
               not_blank: You cannot enter email addresses and select 'This customer has no access to an email address'
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing

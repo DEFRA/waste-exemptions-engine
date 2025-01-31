@@ -3,15 +3,12 @@ en:
     confirm_farm_exemptions_forms:
       new:
         back_link: Back
-        heading: Your selected exemptions
-        description: "The exemptions you’ve selected are as follows:"
-        subheading:
-          no_exemptions_selected: No farming exemptions were selected
-          exemptions_selected: On farm exemptions
+        heading: Your selected farming exemptions
+        description: "Your farming exemptions are:"
         options:
           "true": I do not want any more waste exemptions.
           "false": I want to add waste exemptions that are not included in the farming exemptions.
-        add_more_farm_exemptions: If you need to add more exemptions you can go back
+        add_more_farm_exemptions: If you need more farming exemptions, go back
         add_more_farm_exemptions_link: to the farmer exemption page.
   activemodel:
     errors:

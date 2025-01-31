@@ -2,10 +2,9 @@ en:
   waste_exemptions_engine:
     applicant_phone_forms:
       new:
-        title: What's the telephone number of the person filling in this form?
-        heading: What's the telephone number of the person filling in this form?
-        applicant_phone_label: Telephone number
-        applicant_phone_hint: This can be a landline or mobile
+        title: &title Applicant's phone number
+        heading: *title
+        applicant_phone_label: Enter your landline or mobile number
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
@@ -14,9 +13,9 @@ en:
         waste_exemptions_engine/applicant_phone_form:
           attributes:
             applicant_phone:
-              blank: "Enter a telephone number"
-              invalid_format: "Enter a valid telephone number"
-              too_long: "Check the number you entered - it should have no more than than 15 characters"
+              blank: Enter a telephone number
+              invalid_format: Enter a valid telephone number
+              too_long: Check the number you entered - it should have no more than than 15 characters
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing
