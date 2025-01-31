@@ -2,9 +2,9 @@ en:
   waste_exemptions_engine:
     farm_exemptions_forms:
       new:
-        title: &title Select the waste exemptions for agricultural activities on your farm.
+        title: &title Select your farming waste exemptions
         heading: *title
-        description: You can select any or all of these exemptions for a fixed discounted price.
+        description: Select any number of exemptions for a single discounted price.
         next_button: Continue
         see: See
         opens_in_new_window: (opens in a new window)

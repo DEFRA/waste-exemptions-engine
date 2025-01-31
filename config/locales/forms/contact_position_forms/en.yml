@@ -2,10 +2,10 @@ en:
   waste_exemptions_engine:
     contact_position_forms:
       new:
-        title: What's their position?
-        heading: What's their position?
-        position_label: Position (optional)
-        position_hint: For example, Manager
+        title: &title Role of contact person
+        heading: *title
+        position_label: Job title (optional)
+        position_hint: For example, manager, agent
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
