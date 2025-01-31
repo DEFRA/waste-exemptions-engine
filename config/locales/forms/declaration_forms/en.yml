@@ -4,14 +4,13 @@ en:
       new:
         title: Declaration
         heading: Declaration
-        notice: You can be prosecuted and fined if you provide false or misleading information.
+        notice: You can be prosecuted and fined if you knowingly provide false or misleading information.
         list_item_1: |
-          You must operate within the limits and conditions of your exemption, if you don't you will not
-          be exempt and your activity will be illegal. The Environment Agency may de-register your exemption
-          and also take enforcement action, especially if your activity harms people or the environment.
-        list_item_2: The business or organisation carrying out the waste operation has authorised me to provide this information
-        list_item_3: By registering, you confirm that the information you have provided is true
-        declaration_text: I understand and agree with the declaration above.
+          You must operate within the limits and conditions of your exemption. If you do not, you will not
+          be exempt and your activity will be illegal.
+        list_item_2: You are authorised to provide the information in this registration.
+        list_item_3: By registering, you confirm that the information you have provided is true.
+        declaration_text: I understand and agree with the declaration above
         privacy_link_text: "Privacy: how we use your personal information (opens new tab)"
         error_heading: A problem to fix
         next_button: Continue
