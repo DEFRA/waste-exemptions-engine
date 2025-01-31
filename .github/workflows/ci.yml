@@ -16,6 +16,7 @@ jobs:
       PG_PORT: 5432
       PG_USERNAME: postgres
       TZ: UTC
+      PRIVATE_BETA_FEEDBACK_URL: "https://example.com/beta_feedback"
 
     # Service containers to run with `runner-job`
     services:

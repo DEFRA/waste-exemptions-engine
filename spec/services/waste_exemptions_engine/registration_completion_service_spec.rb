@@ -243,10 +243,12 @@ module WasteExemptionsEngine
         context "when the transient_registration is charged" do
           let(:order) { create(:order, :with_charge_detail, order_owner: new_charged_registration) }
           let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
+          let(:temp_payment_method) { %w[card bank_transfer].sample }
           let(:new_charged_registration) do
             create(:new_charged_registration, :complete,
                    reference: placeholder_registration.reference,
-                   workflow_state: "registration_complete_form")
+                   workflow_state: "registration_complete_form",
+                   temp_payment_method:)
           end
 
           before do
@@ -289,6 +291,11 @@ module WasteExemptionsEngine
           it "updates the beta participant registration details" do
             beta_participant = create(:beta_participant, registration: new_charged_registration)
             expect { run_service }.to change { beta_participant.reload.registration }.to registration
+          end
+
+          it "updates the beta participant selected payment method" do
+            beta_participant = create(:beta_participant, registration: new_charged_registration)
+            expect { run_service }.to change { beta_participant.reload.selected_payment_method }.to temp_payment_method
           end
         end
       end

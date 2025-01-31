@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_10_172421) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_28_112137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_172421) do
     t.bigint "registration_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "selected_payment_method"
     t.index ["registration_type", "registration_id"], name: "index_beta_participants_on_registration"
   end
 
