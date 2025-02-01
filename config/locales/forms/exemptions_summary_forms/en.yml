@@ -16,6 +16,7 @@ en:
         discounted: Discounted
         n_a: N/A
         farm: Farmer exemptions
+        farmer_discount: Discounted charge if you are a farmer
         full_or_discounted: Full or discounted charge
         registration_charge: Registration charge
         total_charge: Total charge
