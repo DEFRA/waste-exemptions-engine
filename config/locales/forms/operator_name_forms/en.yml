@@ -9,7 +9,7 @@ en:
           limitedLiabilityPartnership: What is the registered name of the limited liability partnership?
           localAuthority: What is the name of the local authority or public body?
           partnership: What is the name of the partnership?
-          soleTrader: Who is carrying out the waste operation?
+          soleTrader: Who is carrying out the waste activity?
         description:
           charity: &operator_description This is the name of the operator responsible for the waste activity
           limitedCompany: *operator_description

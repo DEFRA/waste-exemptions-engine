@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     business_type_forms:
       new:
-        title: &title What type of business are you?
+        title: &title What type of business is carrying out the waste activity?
         heading: *title
         description: Choose the option that best describes the business.
         options:
