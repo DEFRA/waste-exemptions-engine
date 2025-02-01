@@ -36,6 +36,9 @@
     </dl>
     <h2 class="govuk-heading-m"><%= t(".how_charges_calculated") %></h2>
     <ul class="govuk-list govuk-list--bullet">
+      <% if @exemptions_summary_form.farm_affiliated? %>
+        <li><%= t(".farmer_discount") %></li>
+      <% end %>
       <li><%= t(".full_compliance_charge") %></li>
       <li><%= t(".discounted_charge") %></li>
       <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge_without_pence) %></li>

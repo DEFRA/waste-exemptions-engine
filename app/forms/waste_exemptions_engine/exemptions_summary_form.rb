@@ -11,6 +11,8 @@ module WasteExemptionsEngine
              :registration_charge_without_pence,
              to: :exemption_costs_presenter
 
+    delegate :farm_affiliated?, to: :transient_registration
+
     def order
       @order ||= create_or_update_order
     end
