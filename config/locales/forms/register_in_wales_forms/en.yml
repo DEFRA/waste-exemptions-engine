@@ -4,7 +4,7 @@ en:
       new:
         title: You cannot register your exemptions here
         heading: You cannot register your exemptions here
-        paragraph_1: In Wales you need to register with Natural Resources Wales. Go to 
+        paragraph_1: For waste exemptions in Wales you need to register with Natural Resources Wales. Go to 
         service_link: Register your waste exemptions (Wales)
         paragraph_2: Call 03708 506506 if you need any help.
   activemodel:

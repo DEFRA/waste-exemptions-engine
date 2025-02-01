@@ -12,7 +12,7 @@
       
       <div class="govuk-heading-s">
         <% selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration).each do |exemption| %>
-          <p><%= exemption.code %> <%= exemption.summary %></p>
+          <%= exemption.code %> <%= exemption.summary %><br>
         <% end %>
       </div>
       
@@ -36,7 +36,7 @@
             },
             inline: true %>
 
-        <br /><br />
+        <br>
         <% add_more_link = link_to t(".add_more_farm_exemptions_link"), new_farm_exemptions_form_path %>
         <p class="govuk-body"><%= t(".add_more_farm_exemptions") %> <%= add_more_link %></p>
 
