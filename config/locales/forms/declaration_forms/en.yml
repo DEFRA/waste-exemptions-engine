@@ -10,7 +10,7 @@ en:
           be exempt and your activity will be illegal.
         list_item_2: You are authorised to provide the information in this registration.
         list_item_3: By registering, you confirm that the information you have provided is true.
-        declaration_text: I understand and agree with the declaration above
+        declaration_text: I understand and agree with the declaration above.
         privacy_link_text: "Privacy: how we use your personal information (opens new tab)"
         error_heading: A problem to fix
         next_button: Continue
