@@ -2,8 +2,8 @@ en:
   waste_exemptions_engine:
     check_contact_phone_forms:
       new:
-        title: Do you want to use this telephone number as a contact number?
-        heading: Do you want to use this telephone number as a contact number?
+        title: &title Is this phone number the correct contact number?
+        heading: *title
         options:
           "yes": "Yes"
           "no": "No"

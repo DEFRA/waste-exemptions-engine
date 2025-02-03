@@ -2,9 +2,9 @@ en:
   waste_exemptions_engine:
     contact_postcode_forms:
       new:
-        title: What's their postcode?
-        heading: What's their postcode?
-        postcode_label: Please enter a UK postcode
+        title: &title Postcode for contact address
+        heading: *title
+        postcode_label: Enter a UK postcode
         postcode_hint: For example, BS1 5AH
         error_heading: A problem to fix
         next_button: Find address

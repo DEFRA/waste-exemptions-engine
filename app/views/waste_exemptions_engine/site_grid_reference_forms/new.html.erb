@@ -13,16 +13,17 @@
         <%= t(".heading") %>
       </h1>
 
-      <div class="govuk-inset-text">
+      <p class=govuk-body>
         <%= t(".grid_reference_or_address",
-                grid_ref_finder_link: link_to( t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/", rel: "external", target: "_blank"),
-                postcode_link: link_to( t(".postcode_link"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token))
+                postcode_link: link_to( t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token))
                 ).html_safe %>
-      </div>
+      </p>
+
+      <% grid_ref_finder_link = link_to( t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/", rel: "external", target: "_blank") %>
 
       <%= f.govuk_text_field :grid_reference,
         label: {
-          text: t(".grid_reference_label"),
+          text: t(".grid_reference_label", grid_ref_finder_link:).html_safe,
           size: "s"
         },
         width: "one-third",
