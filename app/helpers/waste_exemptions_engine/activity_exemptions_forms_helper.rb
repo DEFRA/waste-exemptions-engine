@@ -3,7 +3,9 @@
 module WasteExemptionsEngine
   module ActivityExemptionsFormsHelper
     def selected_activity_exemptions(waste_activity_ids = [])
-      exemptions = WasteExemptionsEngine::Exemption.where(waste_activity_id: waste_activity_ids).order(:waste_activity_id, :id)
+      exemptions = WasteExemptionsEngine::Exemption.where(waste_activity_id: waste_activity_ids).order(
+        :waste_activity_id, :id
+      )
 
       # If user wants to add non-farming exemptions,
       # exclude exemptions that are in the farmer bucket

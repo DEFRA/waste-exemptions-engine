@@ -7,11 +7,11 @@ module WasteExemptionsEngine
     validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
 
     def submit(params)
-      if !temp_confirm_exemptions
+      if temp_confirm_exemptions
+        attributes = { temp_exemptions: params[:temp_exemptions] }
+      else
         combined_exemptions = temp_exemptions + params[:temp_exemptions]
         attributes = { temp_exemptions: combined_exemptions }
-      else
-        attributes = { temp_exemptions: params[:temp_exemptions] }
       end
 
       super(attributes)
