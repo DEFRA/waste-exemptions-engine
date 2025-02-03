@@ -6,6 +6,19 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-3598\] Update exemptions [\#1180](https://github.com/DEFRA/waste-exemptions-engine/pull/1180) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3616 content sweep 1 [\#1179](https://github.com/DEFRA/waste-exemptions-engine/pull/1179) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Add farmer discount bullet to exemptions summary if farm affiliated [\#1178](https://github.com/DEFRA/waste-exemptions-engine/pull/1178) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Content sweep updates part 1 [\#1177](https://github.com/DEFRA/waste-exemptions-engine/pull/1177) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Feature/ruby 3615 declaration content [\#1176](https://github.com/DEFRA/waste-exemptions-engine/pull/1176) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3598\] Updating exemptions.csv file [\#1175](https://github.com/DEFRA/waste-exemptions-engine/pull/1175) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3609\] Simplified exemptions summary form [\#1173](https://github.com/DEFRA/waste-exemptions-engine/pull/1173) ([jjromeo](https://github.com/jjromeo))
+- Feature/ruby 3608 3594 bypass payments [\#1171](https://github.com/DEFRA/waste-exemptions-engine/pull/1171) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3233\] Update Beta Start Form for Waste Exemptions Private Beta [\#1170](https://github.com/DEFRA/waste-exemptions-engine/pull/1170) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3609\] Update exemptions summary page content for private beta [\#1168](https://github.com/DEFRA/waste-exemptions-engine/pull/1168) ([jjromeo](https://github.com/jjromeo))
+- Adding method to generate private beta invite link [\#1166](https://github.com/DEFRA/waste-exemptions-engine/pull/1166) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3536 farmer exemptions only journey [\#1162](https://github.com/DEFRA/waste-exemptions-engine/pull/1162) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- RUBY-3232: wex charging private beta invite token [\#1161](https://github.com/DEFRA/waste-exemptions-engine/pull/1161) ([brujeo](https://github.com/brujeo))
 - RUBY-3270:  wex charging update page sequence for charged registration journey [\#1152](https://github.com/DEFRA/waste-exemptions-engine/pull/1152) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3498 registration fee content [\#1138](https://github.com/DEFRA/waste-exemptions-engine/pull/1138) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - RUBY-3055 & RUBY-3452: New exemptions workflow: select waste activities, select exemptions, confirm exemptions pages [\#1134](https://github.com/DEFRA/waste-exemptions-engine/pull/1134) ([brujeo](https://github.com/brujeo))
@@ -244,6 +257,10 @@
 
 **Fixed bugs:**
 
+- Completion page content tweaks [\#1172](https://github.com/DEFRA/waste-exemptions-engine/pull/1172) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Fix/ruby 3536 farm exemptions only [\#1169](https://github.com/DEFRA/waste-exemptions-engine/pull/1169) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Fix payment callback URL for back-office [\#1165](https://github.com/DEFRA/waste-exemptions-engine/pull/1165) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Fix/ruby 3232 post qa fixes [\#1164](https://github.com/DEFRA/waste-exemptions-engine/pull/1164) ([brujeo](https://github.com/brujeo))
 - fix/RUBY-3411\_back\_office\_edit\_company\_number [\#1155](https://github.com/DEFRA/waste-exemptions-engine/pull/1155) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3496\] payment summary translation message error [\#1149](https://github.com/DEFRA/waste-exemptions-engine/pull/1149) ([brujeo](https://github.com/brujeo))
 - Fix/ruby 3432 companies house number [\#1143](https://github.com/DEFRA/waste-exemptions-engine/pull/1143) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
@@ -399,6 +416,8 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG [\#1160](https://github.com/DEFRA/waste-exemptions-engine/pull/1160) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Bump govuk\_design\_system\_formbuilder from 5.7.1 to 5.8.0 [\#1158](https://github.com/DEFRA/waste-exemptions-engine/pull/1158) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump defra\_ruby\_companies\_house from 1.0.0 to 1.0.3 [\#1154](https://github.com/DEFRA/waste-exemptions-engine/pull/1154) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Chore/ruby 3441 companies house gem [\#1151](https://github.com/DEFRA/waste-exemptions-engine/pull/1151) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump activerecord from 7.1.4.2 to 7.1.5.1 [\#1142](https://github.com/DEFRA/waste-exemptions-engine/pull/1142) ([dependabot[bot]](https://github.com/apps/dependabot))
