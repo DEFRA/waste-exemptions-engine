@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 require "rails_helper"
 
@@ -28,7 +28,7 @@ module WasteExemptionsEngine
       context "when user confirms farming exemptions" do
         let(:temp_confirm_exemptions) { true }
 
-        it "returns all exemptions for selected waste activities" do
+        it "returns all exemptions for selected waste activities", :aggregate_failures do
           exemptions = helper.selected_activity_exemptions(transient_registration)
           expect(exemptions).to include(*farming_exemptions)
           expect(exemptions).to include(*non_farming_exemptions)
@@ -38,7 +38,7 @@ module WasteExemptionsEngine
       context "when user wants to add non-farming exemptions" do
         let(:temp_confirm_exemptions) { false }
 
-        it "excludes farming bucket exemptions" do
+        it "excludes farming bucket exemptions", :aggregate_failures do
           exemptions = helper.selected_activity_exemptions(transient_registration)
           expect(exemptions).not_to include(*farming_exemptions)
           expect(exemptions).to include(*non_farming_exemptions)
@@ -50,7 +50,7 @@ module WasteExemptionsEngine
           allow(WasteExemptionsEngine::Bucket).to receive(:farmer_bucket).and_return(nil)
         end
 
-        it "returns all exemptions" do
+        it "returns all exemptions", :aggregate_failures do
           exemptions = helper.selected_activity_exemptions(transient_registration)
           expect(exemptions).to include(*farming_exemptions)
           expect(exemptions).to include(*non_farming_exemptions)

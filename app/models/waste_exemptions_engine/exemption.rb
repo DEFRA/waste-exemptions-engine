@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     has_many :buckets, through: :bucket_exemptions
 
     scope :visible, -> { where(hidden: false) }
-    scope :for_waste_activities, ->(waste_activity_ids) {
+    scope :for_waste_activities, lambda { |waste_activity_ids|
       where(waste_activity_id: waste_activity_ids).order(:waste_activity_id, :id)
     }
 
