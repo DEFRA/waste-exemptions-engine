@@ -18,8 +18,8 @@
           <% end %>
           <div class="govuk-checkboxes">
             <% current_activity = nil %>
-            <% selected_activity_exemptions(@activity_exemptions_form.transient_registration.temp_waste_activities).each do |exemption|  %>
-              
+            <% selected_activity_exemptions(@transient_registration).each do |exemption|  %>
+
               <% if current_activity != exemption.waste_activity_id %>
                 <% if current_activity.present? %><hr /><% end %>
                 <h2 class="govuk-heading-m govuk-!-padding-top-3"><%= exemption.waste_activity&.name_gerund  %></h2>
@@ -35,7 +35,7 @@
                     }, exemption.id, nil %>
                   <%= f.label "checkbox-#{exemption.code}", class: "govuk-label govuk-checkboxes__label" do %>
                   <span class="govuk-!-font-weight-bold"><%= exemption.code %></span> <span class="govuk-!-font-weight-bold"><%= exemption.summary %></span>
-                  - <span><%= exemption.description %></span> <%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>. 
+                  - <span><%= exemption.description %></span> <%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>.
                   <%= exemption.band&.name %>
                 <% end %>
               </div>
