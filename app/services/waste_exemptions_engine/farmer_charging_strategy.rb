@@ -23,13 +23,12 @@ module WasteExemptionsEngine
 
     def bucket_charge_amount
       order_bucket_exemptions = order.exemptions & bucket.exemptions
+
       return 0 if order_bucket_exemptions.empty?
 
       default_bucket_charge_amount = bucket.initial_compliance_charge.charge_amount
 
-      order_bucket_compliance_charge = order_bucket_exemptions.sum do |ex|
-        ex.band.initial_compliance_charge.charge_amount
-      end
+      order_bucket_compliance_charge = order_bucket_exemptions.sum { |ex| ex.band.initial_compliance_charge.charge_amount }
 
       [order_bucket_compliance_charge, default_bucket_charge_amount].min
     end

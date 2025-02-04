@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#frozen_string_literal: true
 
 require "rails_helper"
 
@@ -8,18 +8,52 @@ module WasteExemptionsEngine
       let(:activity_one) { create(:waste_activity) }
       let(:activity_two) { create(:waste_activity) }
       let(:activity_three) { create(:waste_activity) }
+      let(:transient_registration) { create(:new_charged_registration, temp_waste_activities:, temp_confirm_exemptions:) }
+      let(:temp_waste_activities) { [activity_one.id, activity_two.id, activity_three.id] }
+      let(:temp_confirm_exemptions) { true }
+      let(:farmer_bucket) { create(:bucket) }
+      let(:farming_exemptions) { create_list(:exemption, 2, waste_activity: activity_one) }
+      let(:non_farming_exemptions) { create_list(:exemption, 2, waste_activity: activity_two) }
 
-      it "returns a list of selected exemptions ordered by activity id and exemption id" do
-        aggregate_failures "sorting waste activities" do
-          activity_ids = [activity_one.id, activity_two.id, activity_three.id]
-          create_list(:exemption, 4, waste_activity_id: activity_ids.sample)
+      before do
+        allow(transient_registration).to receive(:temp_confirm_exemptions).and_return(temp_confirm_exemptions)
+        allow(WasteExemptionsEngine::Bucket).to receive(:farmer_bucket).and_return(farmer_bucket)
+        allow(farmer_bucket).to receive(:exemption_ids).and_return(farming_exemptions.map(&:id))
 
-          exemptions = helper.selected_activity_exemptions(activity_ids)
-          exemption_acivity_ids = exemptions.map(&:waste_activity_id)
-          expect(exemptions.first.waste_activity_id).to eq(exemption_acivity_ids.min)
-          expect(exemptions.second.waste_activity_id).to be >= exemption_acivity_ids.min
-          expect(exemptions.third.waste_activity_id).to be <= exemption_acivity_ids.max
-          expect(exemptions.last.waste_activity_id).to eq(exemption_acivity_ids.max)
+        # Actually create the exemptions in the database
+        farming_exemptions
+        non_farming_exemptions
+      end
+
+      context "when user confirms farming exemptions" do
+        let(:temp_confirm_exemptions) { true }
+
+        it "returns all exemptions for selected waste activities" do
+          exemptions = helper.selected_activity_exemptions(transient_registration)
+          expect(exemptions).to include(*farming_exemptions)
+          expect(exemptions).to include(*non_farming_exemptions)
+        end
+      end
+
+      context "when user wants to add non-farming exemptions" do
+        let(:temp_confirm_exemptions) { false }
+
+        it "excludes farming bucket exemptions" do
+          exemptions = helper.selected_activity_exemptions(transient_registration)
+          expect(exemptions).not_to include(*farming_exemptions)
+          expect(exemptions).to include(*non_farming_exemptions)
+        end
+      end
+
+      context "when there is no farmer bucket" do
+        before do
+          allow(WasteExemptionsEngine::Bucket).to receive(:farmer_bucket).and_return(nil)
+        end
+
+        it "returns all exemptions" do
+          exemptions = helper.selected_activity_exemptions(transient_registration)
+          expect(exemptions).to include(*farming_exemptions)
+          expect(exemptions).to include(*non_farming_exemptions)
         end
       end
     end
