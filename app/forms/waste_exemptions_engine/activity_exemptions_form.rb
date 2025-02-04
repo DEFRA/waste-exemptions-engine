@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       if temp_confirm_exemptions
         attributes = { temp_exemptions: params[:temp_exemptions] }
       else
-        combined_exemptions = temp_exemptions + params[:temp_exemptions]
+        combined_exemptions = Array(temp_exemptions) + Array(params[:temp_exemptions])
         attributes = { temp_exemptions: combined_exemptions }
       end
 
