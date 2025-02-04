@@ -80,6 +80,13 @@ module WasteExemptionsEngine
 
         context "with an order with both bucket and non-bucket exemptions" do
           let(:exemptions) { bucket_exemptions + multiple_bands_multiple_exemptions }
+          # Calculate the expected bucket charge as the lesser of:
+          #   - the sum of the initial compliance charges for the bucket exemptions in the order
+          #   - the default bucket charge amount
+          let(:expected_bucket_charge_amount) do
+            bucket_exemptions_in_order = exemptions.select { |ex| bucket.exemptions.include?(ex) }
+            [bucket_exemptions_in_order.sum { |ex| ex.band.initial_compliance_charge.charge_amount }, bucket_charge_amount].min
+          end
 
           it { expect(charge_details.registration_charge_amount).to eq(registration_charge_amount) }
 
@@ -93,11 +100,11 @@ module WasteExemptionsEngine
           it { expect(band_charges[2].initial_compliance_charge_amount).to eq(band_3.initial_compliance_charge.charge_amount) }
           it { expect(band_charges[2].additional_compliance_charge_amount).to be_zero }
 
-          it { expect(charge_details.bucket_charge_amount).to eq bucket_charge_amount }
+          it { expect(charge_details.bucket_charge_amount).to eq expected_bucket_charge_amount }
 
           it do
             expect(charge_details.total_compliance_charge_amount).to eq(
-              bucket_charge_amount +
+              expected_bucket_charge_amount +
               band_charges.sum { |bc| bc.initial_compliance_charge_amount + bc.additional_compliance_charge_amount }
             )
           end
@@ -106,7 +113,7 @@ module WasteExemptionsEngine
             expect(charge_details.total_charge_amount).to eq(
               registration_charge_amount +
               total_compliance_charge_amount +
-              bucket_charge_amount
+              expected_bucket_charge_amount
             )
           end
         end
@@ -118,6 +125,9 @@ module WasteExemptionsEngine
         include_context "for charging scenarios"
 
         let(:bucket_exemptions) { [exemption_U1, exemption_U4, exemption_U8, exemption_U10] }
+        let(:expected_farmers_bucket_charge_amount) do
+          [bucket_exemptions.sum { |ex| ex.band.initial_compliance_charge.charge_amount }, farmers_bucket_charge_amount].min
+        end
 
         before { bucket.initial_compliance_charge.update(charge_amount: 9_000) }
 
@@ -138,7 +148,7 @@ module WasteExemptionsEngine
 
           it { expect(band_charges_u3).to be_nil }
 
-          it { expect(charge_details.bucket_charge_amount).to eq farmers_bucket_charge_amount }
+          it { expect(charge_details.bucket_charge_amount).to eq expected_farmers_bucket_charge_amount }
 
           it { expect(charge_details.total_charge_amount).to eq 138_500 }
         end
@@ -159,7 +169,7 @@ module WasteExemptionsEngine
 
           it { expect(band_charges_u3).to be_nil }
 
-          it { expect(charge_details.bucket_charge_amount).to eq farmers_bucket_charge_amount }
+          it { expect(charge_details.bucket_charge_amount).to eq expected_farmers_bucket_charge_amount }
 
           it { expect(charge_details.total_charge_amount).to eq 13_100 }
         end
