@@ -4,20 +4,26 @@ en:
       new:
         title: Operator name
         heading:
-          localAuthority: What's the name of the local authority or public body?
-          limitedCompany: What's the registered name of the company?
-          limitedLiabilityPartnership: What's the registered name of the limited liability partnership?
-          partnership: What's the name of the partnership?
-          soleTrader: Who's carrying out the waste operation?
-          charity: What's the name of the charity or trust?
-        description: This is the name of the operator responsible for the waste operation
+          charity: What is the name of the charity or trust?
+          limitedCompany: What is the registered name of the company?
+          limitedLiabilityPartnership: What is the registered name of the limited liability partnership?
+          localAuthority: What is the name of the local authority or public body?
+          partnership: What is the name of the partnership?
+          soleTrader: Who is carrying out the waste activity?
+        description:
+          charity: &operator_description This is the name of the operator responsible for the waste activity
+          limitedCompany: *operator_description
+          limitedLiabilityPartnership: *operator_description
+          localAuthority: *operator_description
+          partnership: *operator_description
+          soleTrader: This is the name of the person responsible for the waste activity
         operator_name_label:
-          localAuthority: Local authority or public body name
+          charity: Charity or trust name
           limitedCompany: Registered company name
+          limitedLiabilityPartnership: Limited liability partnership name
+          localAuthority: Local authority or public body name
           partnership: Partnership name
           soleTrader: Full name
-          charity: Charity or trust name
-          limitedLiabilityPartnership: Limited liability partnership name
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
@@ -26,8 +32,8 @@ en:
         waste_exemptions_engine/operator_name_form:
           attributes:
             operator_name:
-              blank: "You must enter a name"
-              too_long: "Enter a shorter name with no more than 255 characters"
+              blank: You must enter a name
+              too_long: Enter a shorter name with no more than 255 characters
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing

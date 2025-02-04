@@ -6,38 +6,32 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
-        href=\"/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css\"
-        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-e7473747669b589218de86035464048c90a00729227c3a03fb2b03b020fd274f.js\"
+        href=\"/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n\n<div
         class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
         \   <form class=\"new_registration_number_form\" id=\"new_registration_number_form\"
-        action=\"/waste_exemptions_engine/Mp2gTg11dasVKYgy9qgnRV34/registration-number\"
+        action=\"/waste_exemptions_engine/zKCe1xdPgffby2dQ4qN1GQ6X/registration-number\"
         accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
         \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
-        \     <h1 class=\"govuk-heading-l\">{:limitedCompany=&gt;&quot;What&#39;s
-        the company registration number?&quot;, :limitedLiabilityPartnership=&gt;&quot;What&#39;s
-        the registration number of the limited liability partnership?&quot;}</h1>\n\n
-        \     <div class=\"govuk-form-group\"><label for=\"registration-number-form-company-no-field\"
-        class=\"govuk-label\">Registration number</label><div class=\"govuk-hint\"
-        id=\"registration-number-form-company-no-hint\">An 8 digit number, or 2 letters
-        followed by a 6 digit number</div><input id=\"registration-number-form-company-no-field\"
-        class=\"govuk-input govuk-input--width-10\" aria-describedby=\"registration-number-form-company-no-hint\"
-        type=\"text\" name=\"registration_number_form[company_no]\" /></div>\n\n      <details
-        class=\"govuk-details\" data-module=\"govuk-details\">\n        <summary class=\"govuk-details__summary\">\n
-        \         <span class=\"govuk-details__summary-text\">What&#39;s a registration
-        number?</span>\n        </summary>\n        <div class=\"govuk-details__text\">\n
+        \     <h1 class=\"govuk-heading-l\">{:limitedCompany=&gt;&quot;What is the
+        company registration number?&quot;, :limitedLiabilityPartnership=&gt;&quot;What
+        is the registration number of the limited liability partnership?&quot;}</h1>\n\n
+        \     <div class=\"govuk-form-group\"><label for=\"registration-number-form-temp-company-no-field\"
+        class=\"govuk-label\">An 8-digit number, or 2 letters followed by a 6-digit
+        number</label><input id=\"registration-number-form-temp-company-no-field\"
+        class=\"govuk-input govuk-input--width-10\" type=\"text\" name=\"registration_number_form[temp_company_no]\"
+        /></div>\n\n      <details class=\"govuk-details\" data-module=\"govuk-details\">\n
+        \       <summary class=\"govuk-details__summary\">\n          <span class=\"govuk-details__summary-text\">What&#39;s
+        a registration number?</span>\n        </summary>\n        <div class=\"govuk-details__text\">\n
         \         {:limitedCompany=&gt;&quot;This is issued when the company is registered,
         and can be found on your Certificate of Incorporation and any paperwork from
         Companies House.&quot;, :limitedLiabilityPartnership=&gt;&quot;This is issued
         when the limited liability partnership is registered, and can be found on
         your Certificate of Incorporation and any paperwork from Companies House.&quot;}\n
-        \       </div>\n      </details>\n\n      <p class=\"govuk-body\">{:limitedCompany=&gt;&quot;We&#39;ll
-        look this number up in the Companies House register to make sure it belongs
-        to an active company.&quot;, :limitedLiabilityPartnership=&gt;&quot;We&#39;ll
-        look this number up in the Companies House register to make sure it belongs
-        to an active limited liability partnership.&quot;}</p>\n\n      <button type=\"submit\"
-        formnovalidate=\"formnovalidate\" class=\"govuk-button\" data-module=\"govuk-button\"
-        data-prevent-double-click=\"true\">Continue</button>\n</form>  </div>\n</div>\n\n\n</body>\n</html>\n"
+        \       </div>\n      </details>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -53,7 +47,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Jun 2023 16:20:51 GMT
+      - Fri, 31 Jan 2025 11:00:45 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -71,7 +65,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       Vary:
-      - Accept-Encoding, User-Agent
+      - Accept-Encoding
+      Via:
+      - 1.1 validator.w3.org
       Strict-Transport-Security:
       - max-age=15552015; preload
       Public-Key-Pins:
@@ -82,22 +78,22 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 7d08c94da8cc772b
+      - 90a9332708f87750
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=0eCOEDFbbE3c6tlWjscWsU6gHIUHrBYQwNgpqvVTges-1685636451-0-AfTzWW0KvPZNM7ptGOGRERvfEpX5oW14KE0ias016SdmxD+HgGc+OxsSTvo8ZoSo5S2vGIzR/JK9JHzPrxn07pE=;
-        path=/; expires=Thu, 01-Jun-23 16:50:51 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=BDadyBJyye_PFUGVCpkTB9uzOQCYeJp0Wxh7sqJY8gc-1738321245-1.0.1.1-WD8SWeA8x48fOLgNrq_LoqXIIIrQcODeucV0e86zGHJQdAW3w.VB6RqLDKzI8JgKyeIkmEfkctleqUJUEuyotw;
+        path=/; expires=Fri, 31-Jan-25 11:30:45 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 7d08c94da8cc772b-LHR
+      - 90a9332708f87750-LHR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NS5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjI2LCJsYXN0Q29sdW1uIjo0ODgsImZpcnN0Q29sdW1uIjoyNzUsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6Im1iZXI8L2Rpdj48aW5wdXQgaWQ9XCJyZWdpc3RyYXRpb24tbnVtYmVyLWZvcm0tY29tcGFueS1uby1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXQgZ292dWstaW5wdXQtLXdpZHRoLTEwXCIgYXJpYS1kZXNjcmliZWRieT1cInJlZ2lzdHJhdGlvbi1udW1iZXItZm9ybS1jb21wYW55LW5vLWhpbnRcIiB0eXBlPVwidGV4dFwiIG5hbWU9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1bY29tcGFueV9ub11cIiAvPjwvZGl2PiIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoyMTR9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUuY3NzXCIgbWVkaWE9XCJhbGxcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLWU3NDczNzQ3NjY5YjU4OTIxOGRlODYwMzU0NjQwNDhjOTBhMDA3MjkyMjdjM2EwM2ZiMmIwM2IwMjBmZDI3NGYuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X3JlZ2lzdHJhdGlvbl9udW1iZXJfZm9ybVwiIGlkPVwibmV3X3JlZ2lzdHJhdGlvbl9udW1iZXJfZm9ybVwiIGFjdGlvbj1cIi93YXN0ZV9leGVtcHRpb25zX2VuZ2luZS9NcDJnVGcxMWRhc1ZLWWd5OXFnblJWMzQvcmVnaXN0cmF0aW9uLW51bWJlclwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICBcbiAgPC9kaXY+XG48L2Rpdj5cblxuXG4gICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLWxcIj57OmxpbWl0ZWRDb21wYW55PSZndDsmcXVvdDtXaGF0JiMzOTtzIHRoZSBjb21wYW55IHJlZ2lzdHJhdGlvbiBudW1iZXI/JnF1b3Q7LCA6bGltaXRlZExpYWJpbGl0eVBhcnRuZXJzaGlwPSZndDsmcXVvdDtXaGF0JiMzOTtzIHRoZSByZWdpc3RyYXRpb24gbnVtYmVyIG9mIHRoZSBsaW1pdGVkIGxpYWJpbGl0eSBwYXJ0bmVyc2hpcD8mcXVvdDt9PC9oMT5cblxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWZvcm0tZ3JvdXBcIj48bGFiZWwgZm9yPVwicmVnaXN0cmF0aW9uLW51bWJlci1mb3JtLWNvbXBhbnktbm8tZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsXCI+UmVnaXN0cmF0aW9uIG51bWJlcjwvbGFiZWw+PGRpdiBjbGFzcz1cImdvdnVrLWhpbnRcIiBpZD1cInJlZ2lzdHJhdGlvbi1udW1iZXItZm9ybS1jb21wYW55LW5vLWhpbnRcIj5BbiA4IGRpZ2l0IG51bWJlciwgb3IgMiBsZXR0ZXJzIGZvbGxvd2VkIGJ5IGEgNiBkaWdpdCBudW1iZXI8L2Rpdj48aW5wdXQgaWQ9XCJyZWdpc3RyYXRpb24tbnVtYmVyLWZvcm0tY29tcGFueS1uby1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXQgZ292dWstaW5wdXQtLXdpZHRoLTEwXCIgYXJpYS1kZXNjcmliZWRieT1cInJlZ2lzdHJhdGlvbi1udW1iZXItZm9ybS1jb21wYW55LW5vLWhpbnRcIiB0eXBlPVwidGV4dFwiIG5hbWU9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1bY29tcGFueV9ub11cIiAvPjwvZGl2PlxuXG4gICAgICA8ZGV0YWlscyBjbGFzcz1cImdvdnVrLWRldGFpbHNcIiBkYXRhLW1vZHVsZT1cImdvdnVrLWRldGFpbHNcIj5cbiAgICAgICAgPHN1bW1hcnkgY2xhc3M9XCJnb3Z1ay1kZXRhaWxzX19zdW1tYXJ5XCI+XG4gICAgICAgICAgPHNwYW4gY2xhc3M9XCJnb3Z1ay1kZXRhaWxzX19zdW1tYXJ5LXRleHRcIj5XaGF0JiMzOTtzIGEgcmVnaXN0cmF0aW9uIG51bWJlcj88L3NwYW4+XG4gICAgICAgIDwvc3VtbWFyeT5cbiAgICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWRldGFpbHNfX3RleHRcIj5cbiAgICAgICAgICB7OmxpbWl0ZWRDb21wYW55PSZndDsmcXVvdDtUaGlzIGlzIGlzc3VlZCB3aGVuIHRoZSBjb21wYW55IGlzIHJlZ2lzdGVyZWQsIGFuZCBjYW4gYmUgZm91bmQgb24geW91ciBDZXJ0aWZpY2F0ZSBvZiBJbmNvcnBvcmF0aW9uIGFuZCBhbnkgcGFwZXJ3b3JrIGZyb20gQ29tcGFuaWVzIEhvdXNlLiZxdW90OywgOmxpbWl0ZWRMaWFiaWxpdHlQYXJ0bmVyc2hpcD0mZ3Q7JnF1b3Q7VGhpcyBpcyBpc3N1ZWQgd2hlbiB0aGUgbGltaXRlZCBsaWFiaWxpdHkgcGFydG5lcnNoaXAgaXMgcmVnaXN0ZXJlZCwgYW5kIGNhbiBiZSBmb3VuZCBvbiB5b3VyIENlcnRpZmljYXRlIG9mIEluY29ycG9yYXRpb24gYW5kIGFueSBwYXBlcndvcmsgZnJvbSBDb21wYW5pZXMgSG91c2UuJnF1b3Q7fVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGV0YWlscz5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+ezpsaW1pdGVkQ29tcGFueT0mZ3Q7JnF1b3Q7V2UmIzM5O2xsIGxvb2sgdGhpcyBudW1iZXIgdXAgaW4gdGhlIENvbXBhbmllcyBIb3VzZSByZWdpc3RlciB0byBtYWtlIHN1cmUgaXQgYmVsb25ncyB0byBhbiBhY3RpdmUgY29tcGFueS4mcXVvdDssIDpsaW1pdGVkTGlhYmlsaXR5UGFydG5lcnNoaXA9Jmd0OyZxdW90O1dlJiMzOTtsbCBsb29rIHRoaXMgbnVtYmVyIHVwIGluIHRoZSBDb21wYW5pZXMgSG91c2UgcmVnaXN0ZXIgdG8gbWFrZSBzdXJlIGl0IGJlbG9uZ3MgdG8gYW4gYWN0aXZlIGxpbWl0ZWQgbGlhYmlsaXR5IHBhcnRuZXJzaGlwLiZxdW90O308L3A+XG5cbiAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGZvcm1ub3ZhbGlkYXRlPVwiZm9ybW5vdmFsaWRhdGVcIiBjbGFzcz1cImdvdnVrLWJ1dHRvblwiIGRhdGEtbW9kdWxlPVwiZ292dWstYnV0dG9uXCIgZGF0YS1wcmV2ZW50LWRvdWJsZS1jbGljaz1cInRydWVcIj5Db250aW51ZTwvYnV0dG9uPlxuPC9mb3JtPiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
-  recorded_at: Thu, 01 Jun 2023 16:15:34 GMT
-recorded_with: VCR 6.1.0
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjI2LCJsYXN0Q29sdW1uIjozNDgsImZpcnN0Q29sdW1uIjoxODUsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6ImVyPC9sYWJlbD48aW5wdXQgaWQ9XCJyZWdpc3RyYXRpb24tbnVtYmVyLWZvcm0tdGVtcC1jb21wYW55LW5vLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dCBnb3Z1ay1pbnB1dC0td2lkdGgtMTBcIiB0eXBlPVwidGV4dFwiIG5hbWU9XCJyZWdpc3RyYXRpb25fbnVtYmVyX2Zvcm1bdGVtcF9jb21wYW55X25vXVwiIC8+PC9kaXY+IiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjE2NH0seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjoyLCJmaXJzdExpbmUiOjEsImxhc3RDb2x1bW4iOjYsImZpcnN0Q29sdW1uIjoxNiwic3ViVHlwZSI6Indhcm5pbmciLCJtZXNzYWdlIjoiQ29uc2lkZXIgYWRkaW5nIGEg4oCcbGFuZ+KAnSBhdHRyaWJ1dGUgdG8gdGhlIOKAnGh0bWzigJ0gc3RhcnQgdGFnIHRvIGRlY2xhcmUgdGhlIGxhbmd1YWdlIG9mIHRoaXMgZG9jdW1lbnQuIiwiZXh0cmFjdCI6IlRZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6N31dLCJzb3VyY2UiOnsidHlwZSI6InRleHQvaHRtbCIsImVuY29kaW5nIjoiVVRGLTgiLCJjb2RlIjoiPCFET0NUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkPlxuICA8dGl0bGU+RHVtbXk8L3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2NyaXB0IHNyYz1cIi9hc3NldHMvYXBwbGljYXRpb24tMjc2MTAwOTFmNDZlNzI3YTFmNjZmOWNiMTk3MjNjYzg1ZjA2NTBlOTEwNGViZWY4NDkzNGM5ZTljYzliNWViMC5qc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIj48L3NjcmlwdD5cbiAgXG48L2hlYWQ+XG48Ym9keT5cblxuXG5cblxuPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgPGZvcm0gY2xhc3M9XCJuZXdfcmVnaXN0cmF0aW9uX251bWJlcl9mb3JtXCIgaWQ9XCJuZXdfcmVnaXN0cmF0aW9uX251bWJlcl9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL3pLQ2UxeGRQZ2ZmYnkyZFE0cU4xR1E2WC9yZWdpc3RyYXRpb24tbnVtYmVyXCIgYWNjZXB0LWNoYXJzZXQ9XCJVVEYtOFwiIG1ldGhvZD1cInBvc3RcIj5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIFxuICA8L2Rpdj5cbjwvZGl2PlxuXG5cbiAgICAgIDxoMSBjbGFzcz1cImdvdnVrLWhlYWRpbmctbFwiPns6bGltaXRlZENvbXBhbnk9Jmd0OyZxdW90O1doYXQgaXMgdGhlIGNvbXBhbnkgcmVnaXN0cmF0aW9uIG51bWJlcj8mcXVvdDssIDpsaW1pdGVkTGlhYmlsaXR5UGFydG5lcnNoaXA9Jmd0OyZxdW90O1doYXQgaXMgdGhlIHJlZ2lzdHJhdGlvbiBudW1iZXIgb2YgdGhlIGxpbWl0ZWQgbGlhYmlsaXR5IHBhcnRuZXJzaGlwPyZxdW90O308L2gxPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cFwiPjxsYWJlbCBmb3I9XCJyZWdpc3RyYXRpb24tbnVtYmVyLWZvcm0tdGVtcC1jb21wYW55LW5vLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1sYWJlbFwiPkFuIDgtZGlnaXQgbnVtYmVyLCBvciAyIGxldHRlcnMgZm9sbG93ZWQgYnkgYSA2LWRpZ2l0IG51bWJlcjwvbGFiZWw+PGlucHV0IGlkPVwicmVnaXN0cmF0aW9uLW51bWJlci1mb3JtLXRlbXAtY29tcGFueS1uby1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXQgZ292dWstaW5wdXQtLXdpZHRoLTEwXCIgdHlwZT1cInRleHRcIiBuYW1lPVwicmVnaXN0cmF0aW9uX251bWJlcl9mb3JtW3RlbXBfY29tcGFueV9ub11cIiAvPjwvZGl2PlxuXG4gICAgICA8ZGV0YWlscyBjbGFzcz1cImdvdnVrLWRldGFpbHNcIiBkYXRhLW1vZHVsZT1cImdvdnVrLWRldGFpbHNcIj5cbiAgICAgICAgPHN1bW1hcnkgY2xhc3M9XCJnb3Z1ay1kZXRhaWxzX19zdW1tYXJ5XCI+XG4gICAgICAgICAgPHNwYW4gY2xhc3M9XCJnb3Z1ay1kZXRhaWxzX19zdW1tYXJ5LXRleHRcIj5XaGF0JiMzOTtzIGEgcmVnaXN0cmF0aW9uIG51bWJlcj88L3NwYW4+XG4gICAgICAgIDwvc3VtbWFyeT5cbiAgICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWRldGFpbHNfX3RleHRcIj5cbiAgICAgICAgICB7OmxpbWl0ZWRDb21wYW55PSZndDsmcXVvdDtUaGlzIGlzIGlzc3VlZCB3aGVuIHRoZSBjb21wYW55IGlzIHJlZ2lzdGVyZWQsIGFuZCBjYW4gYmUgZm91bmQgb24geW91ciBDZXJ0aWZpY2F0ZSBvZiBJbmNvcnBvcmF0aW9uIGFuZCBhbnkgcGFwZXJ3b3JrIGZyb20gQ29tcGFuaWVzIEhvdXNlLiZxdW90OywgOmxpbWl0ZWRMaWFiaWxpdHlQYXJ0bmVyc2hpcD0mZ3Q7JnF1b3Q7VGhpcyBpcyBpc3N1ZWQgd2hlbiB0aGUgbGltaXRlZCBsaWFiaWxpdHkgcGFydG5lcnNoaXAgaXMgcmVnaXN0ZXJlZCwgYW5kIGNhbiBiZSBmb3VuZCBvbiB5b3VyIENlcnRpZmljYXRlIG9mIEluY29ycG9yYXRpb24gYW5kIGFueSBwYXBlcndvcmsgZnJvbSBDb21wYW5pZXMgSG91c2UuJnF1b3Q7fVxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGV0YWlscz5cblxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Fri, 31 Jan 2025 11:00:46 GMT
+recorded_with: VCR 6.3.1

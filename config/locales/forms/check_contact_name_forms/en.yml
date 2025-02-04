@@ -2,8 +2,8 @@ en:
   waste_exemptions_engine:
     check_contact_name_forms:
       new:
-        title: Do you want to use this as the contact name?
-        heading: Do you want to use this as the contact name?
+        title: &title Is this the name of the contact person?
+        heading: *title
         options:
           "yes": "Yes"
           "no": "No"
