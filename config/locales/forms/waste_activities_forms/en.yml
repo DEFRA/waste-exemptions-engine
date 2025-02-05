@@ -2,31 +2,27 @@ en:
   waste_exemptions_engine:
     waste_activities_forms:
       new:
-        title: Select the waste activities you do
-        heading: Select the waste activities you do
-        opens_in_new_window: "(opens in new window)"
+        title: &title Select the waste activities you do
+        heading: *title
+        exemption_guides:
+          guide_text: See
+          link_text: full list of waste exemption guides
+          link_url: https://www.gov.uk/government/collections/waste-exemptions-using-waste
+          opens_in_new_window: (opens in new window)
         waste_activities:
           categories:
             using_waste: 
               title: Using waste
-              description: "This means you use waste for another activity, for example, burning waste for fuel, or spreading it on land as fertiliser. See "
-              link_text: "Using waste: waste exemptions."
-              link_url: https://www.gov.uk/government/collections/waste-exemptions-using-waste
+              description: This means you use waste for another activity, for example, burning waste for fuel, or spreading it on land as fertiliser.
             disposing_of_waste: 
               title: Disposing of waste
-              description: "This means depositing waste or burning plant or wood waste in an incinerator or in the open. See "
-              link_text: "Disposing of waste: waste exemptions."
-              link_url: https://www.gov.uk/government/collections/waste-exemptions-disposing-of-waste
+              description: This means depositing waste or burning plant or wood waste in an incinerator or in the open.
             treating_waste: 
               title: Treating waste
-              description: "This means preparing, recovering, sorting and treating certain waste materials, such as waste wood and plant matter. See "
-              link_text: "Treating waste: waste exemptions."
-              link_url: https://www.gov.uk/government/collections/waste-exemptions-treating-waste
+              description: This means preparing, recovering, sorting and treating certain waste materials, such as waste wood and plant matter.
             storing_waste: 
               title: Storing waste
-              description: "This means storing certain waste in secure containers or at secure sites. It covers the storage of sludge. See "
-              link_text: "Storing waste: waste exemptions."
-              link_url: https://www.gov.uk/government/collections/waste-exemptions-storing-waste
+              description: This means storing certain waste in secure containers or at secure sites. It covers the storage of sludge.
         
   activemodel:
     errors:
@@ -34,8 +30,8 @@ en:
         waste_exemptions_engine/waste_activities_form:
           attributes:
             temp_waste_activities:
-              blank: "You need to select at least one activity"
-              inclusion: "You need to select at least one activity"
+              blank: You need to select at least one activity
+              inclusion: You need to select at least one activity
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing

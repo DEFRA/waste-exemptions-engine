@@ -48,7 +48,7 @@ module WasteExemptionsEngine
         it "transitions to :farm_exemptions_form" do
           expect(new_registration)
             .to transition_from(:confirm_farm_exemptions_form)
-            .to(:farm_exemptions_form)
+            .to(:waste_activities_form)
             .on_event(:next)
         end
       end

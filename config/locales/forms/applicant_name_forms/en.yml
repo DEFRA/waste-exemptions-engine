@@ -2,9 +2,9 @@ en:
   waste_exemptions_engine:
     applicant_name_forms:
       new:
-        title: Who is filling in this form?
-        heading: Who is filling in this form?
-        description: Enter your name, even if you're an agent, employee or other third-party
+        title: &title Name of person filling in this form ('the applicant')
+        heading: *title
+        description: Enter your own name, even if you're filling it in for someone else.
         applicant_first_name_label: First name
         applicant_last_name_label: Last name
         error_heading: A problem to fix
@@ -15,13 +15,13 @@ en:
         waste_exemptions_engine/applicant_name_form:
           attributes:
             applicant_first_name:
-              blank: "You must enter a first name"
-              invalid: "The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
-              too_long: "The first name must have no more than 70 characters"
+              blank: You must enter a first name
+              invalid: The first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes
+              too_long: The first name must have no more than 70 characters
             applicant_last_name:
-              blank: "You must enter a last name"
-              invalid: "The last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
-              too_long: "The last name must have no more than 70 characters"
+              blank: You must enter a last name
+              invalid: The last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes
+              too_long: The last name must have no more than 70 characters
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing

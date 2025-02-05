@@ -12,7 +12,7 @@
       </h1>
 
       <p class="govuk-hint">
-        <%= t(".description") %>
+        <%= t(".description.#{@operator_name_form.business_type}") %>
       </p>
 
       <%= f.govuk_text_field :operator_name,

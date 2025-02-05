@@ -9,6 +9,10 @@
 
       <h1 class="govuk-heading-l"><%= t(".heading.#{@operator_postcode_form.business_type}") %></h1>
 
+      <p class="govuk-body">
+        <%= t(".location_may_be_different") %>
+      </p>
+
       <%= f.govuk_text_field :temp_operator_postcode,
           label: { text: t(".postcode_label") },
           hint: { text: t(".postcode_hint") },

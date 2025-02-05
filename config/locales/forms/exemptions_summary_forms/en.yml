@@ -2,21 +2,22 @@ en:
   waste_exemptions_engine:
     exemptions_summary_forms:
       new:
-        title: "Your exemptions"
-        heading: "Your exemptions"
-        beta_subheading: "You will not pay for these exemptions. Charges shown are indicative only."
-        how_charges_calculated: "How exemption charges are calculated"
-        full_compliance_charge: "Full charge for one exemption from the highest band"
-        discounted_charge: "Discounted charge for all additional exemptions in bands 1, 2 and upper"
+        title: Your exemptions
+        heading: Your exemptions
+        beta_subheading: You will not pay for these exemptions. Charges shown are indicative only.
+        how_charges_calculated: How exemption charges are calculated
+        full_compliance_charge: Full charge for one exemption from the highest band
+        discounted_charge: Discounted charge for all additional exemptions in bands 1, 2 and upper
         registration_fee: "Single registration charge of %{charge_amount}"
-        exemption: "Exemption"
-        band: "Band"
-        compliance_charge: "Compliance charge"
-        full: "Full"
-        discounted: "Discounted"
-        n_a: "N/A"
-        farm: "Farmer exemptions"
-        full_or_discounted: "Full or discounted charge"
-        registration_charge: "Registration charge"
-        total_charge: "Total charge"
-        continue: "Continue"
+        exemption: Exemption
+        band: Band
+        compliance_charge: Compliance charge
+        full: Full
+        discounted: Discounted
+        n_a: N/A
+        farm: Farmer exemptions
+        farmer_discount: Discounted charge if you are a farmer
+        full_or_discounted: Full or discounted charge
+        registration_charge: Registration charge
+        total_charge: Total charge
+        continue: Continue
