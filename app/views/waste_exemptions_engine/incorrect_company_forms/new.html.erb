@@ -14,7 +14,7 @@
       <p class="govuk-body"><a href="https://www.gov.uk/file-changes-to-a-company-with-companies-house" target="_blank"><%= t(".service_link") %></a> <%= t(".new_window") %> </p>
 
       <p class="govuk-body">
-        <% if @transient_registration.is_a?(WasteExemptionsEngine::NewRegistration) %>
+        <% if @transient_registration.new_or_charged? %>
             <%= f.govuk_submit t(".enter_a_different_number") %>
           <% else %>
             <%= t(".must_create_new_registration") %>
