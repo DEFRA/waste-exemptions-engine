@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe UpdateExemptionsService do
+  RSpec.describe ExemptionParamsService do
     let(:registration) { build(:new_charged_registration) }
     let(:new_exemptions) { ["1", "2", "3"] }
     let(:existing_activity_exemptions) { ["4", "5"] }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class UpdateExemptionsService < BaseService
+  class ExemptionParamsService < BaseService
     def run(registration:, exemption_type:, new_exemptions:)
       new_exemptions = Array(new_exemptions)
 
