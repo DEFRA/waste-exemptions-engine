@@ -10,6 +10,7 @@ module WasteExemptionsEngine
 
     subject(:form) { build(:activity_exemptions_form) }
     let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
+    let(:two_farm_exemptions) { Exemption.order("RANDOM()").first(2) }
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
@@ -23,16 +24,45 @@ module WasteExemptionsEngine
     end
 
     describe "#submit" do
-      context "when the form is valid" do
-        it "updates the transient registration with the selected activity exemptions" do
-          activity_exemptions_id_strings = three_exemptions.map(&:id).map(&:to_s)
-          valid_params = { temp_exemptions: activity_exemptions_id_strings }
-          transient_registration = form.transient_registration
+      let(:farm_exemptions) { two_farm_exemptions.map(&:id).map(&:to_s) }
+      let(:activity_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
+      let(:valid_params) { { temp_exemptions: activity_exemptions } }
+
+      before do
+        form.transient_registration.temp_farm_exemptions = farm_exemptions
+      end
+
+      context "when temp_confirm_exemptions is true" do
+        before do
+          form.transient_registration.temp_confirm_exemptions = true
+          form.transient_registration.temp_activity_exemptions = ["999"]
+        end
+
+        it "replaces existing activity exemptions and preserves farm exemptions" do
+          form.submit(valid_params)
 
           aggregate_failures do
-            expect(transient_registration.temp_exemptions).to be_empty
-            form.submit(valid_params)
-            expect(transient_registration.temp_exemptions).to match_array(activity_exemptions_id_strings)
+            expect(form.transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
+            expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
+            expect(form.transient_registration.temp_exemptions).to match_array(farm_exemptions + activity_exemptions)
+          end
+        end
+      end
+
+      context "when temp_confirm_exemptions is false" do
+        before do
+          form.transient_registration.temp_confirm_exemptions = false
+          # Add some existing activity exemptions that should be combined
+          form.transient_registration.temp_activity_exemptions = ["999"]
+        end
+
+        it "combines with existing activity exemptions and preserves farm exemptions" do
+          form.submit(valid_params)
+
+          aggregate_failures do
+            expect(form.transient_registration.temp_activity_exemptions).to match_array(["999"] + activity_exemptions)
+            expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
+            expect(form.transient_registration.temp_exemptions).to match_array(farm_exemptions + ["999"] + activity_exemptions)
           end
         end
       end

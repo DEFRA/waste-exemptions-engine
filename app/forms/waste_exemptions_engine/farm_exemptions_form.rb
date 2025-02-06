@@ -2,10 +2,14 @@
 
 module WasteExemptionsEngine
   class FarmExemptionsForm < BaseForm
-    delegate :temp_exemptions, to: :transient_registration
+    delegate :temp_farm_exemptions, :temp_activity_exemptions, to: :transient_registration
 
     def submit(params)
-      attributes = { temp_exemptions: params[:temp_exemptions] }
+      # Set farm exemptions and combine with activity exemptions for temp_exemptions
+      attributes = {
+        temp_farm_exemptions: params[:temp_exemptions],
+        temp_exemptions: Array(params[:temp_exemptions]) + Array(temp_activity_exemptions)
+      }
 
       super(attributes)
     end
