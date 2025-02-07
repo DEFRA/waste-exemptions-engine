@@ -118,7 +118,7 @@ module WasteExemptionsEngine
       false
     end
 
-    def new_or_charged?
+    def new?
       is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
     end
 
