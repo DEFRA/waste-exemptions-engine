@@ -118,6 +118,10 @@ module WasteExemptionsEngine
       false
     end
 
+    def new?
+      is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
+    end
+
     private
 
     def default_workflow_state
