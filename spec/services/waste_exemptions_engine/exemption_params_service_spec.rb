@@ -24,9 +24,9 @@ module WasteExemptionsEngine
           }
         end
 
-        context "when temp_confirm_exemptions is false and farm_affiliated is true" do
+        context "when temp_add_additional_non_farm_exemptions is true and farm_affiliated is true" do
           before do
-            registration.temp_confirm_exemptions = false
+            registration.temp_add_additional_non_farm_exemptions = true
             allow(registration).to receive(:farm_affiliated?).and_return(true)
           end
 
@@ -40,9 +40,9 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when temp_confirm_exemptions is true" do
+        context "when temp_add_additional_non_farm_exemptions is false" do
           before do
-            registration.temp_confirm_exemptions = true
+            registration.temp_add_additional_non_farm_exemptions = false
             allow(registration).to receive(:farm_affiliated?).and_return(true)
           end
 
@@ -66,9 +66,9 @@ module WasteExemptionsEngine
           }
         end
 
-        context "when temp_confirm_exemptions is false and farm_affiliated is true" do
+        context "when temp_add_additional_non_farm_exemptions is true and farm_affiliated is true" do
           before do
-            registration.temp_confirm_exemptions = false
+            registration.temp_add_additional_non_farm_exemptions = true
             allow(registration).to receive(:farm_affiliated?).and_return(true)
           end
 
@@ -82,9 +82,9 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when temp_confirm_exemptions is true" do
+        context "when temp_add_additional_non_farm_exemptions is false" do
           before do
-            registration.temp_confirm_exemptions = true
+            registration.temp_add_additional_non_farm_exemptions = false
             allow(registration).to receive(:farm_affiliated?).and_return(true)
           end
 

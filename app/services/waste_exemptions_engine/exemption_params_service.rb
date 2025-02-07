@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     def run(registration:, exemption_type:, new_exemptions:)
       new_exemptions = Array(new_exemptions)
 
-      total_exemptions = if registration.temp_confirm_exemptions == false && registration.farm_affiliated?
+      total_exemptions = if registration.temp_add_additional_non_farm_exemptions && registration.farm_affiliated?
                           case exemption_type
                           when :farm
                             new_exemptions + Array(registration.temp_activity_exemptions)

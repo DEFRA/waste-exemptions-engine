@@ -18,7 +18,7 @@ module WasteExemptionsEngine
     private
 
     def exclude_farming_exemptions?(transient_registration)
-      transient_registration.temp_confirm_exemptions == false &&
+      transient_registration.temp_add_additional_non_farm_exemptions == true &&
         transient_registration.farm_affiliated?
     end
   end
