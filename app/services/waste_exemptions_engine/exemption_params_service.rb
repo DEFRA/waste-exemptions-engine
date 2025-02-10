@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module WasteExemptionsEngine
   class ExemptionParamsService < BaseService
     def run(registration:, exemption_type:, new_exemptions:)
       new_exemptions      = Array(new_exemptions)
       activity_exemptions = Array(registration.temp_activity_exemptions)
       farm_exemptions     = Array(registration.temp_farm_exemptions)
-      is_farm             = registration.farm_affiliated? && registration.temp_add_additional_non_farm_exemptions == true
+      is_farm             = registration.farm_affiliated? &&
+                            registration.temp_add_additional_non_farm_exemptions == true
 
       total_exemptions = case exemption_type
                          when :farm
