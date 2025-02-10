@@ -32,35 +32,46 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ temp_use_registered_company_details: "" }] }
     end
 
-    context "with a new registration" do
-      context "when check_registered_name_and_address_form is given a valid companies house number" do
+    shared_examples "diplays the expected details" do
+      it "displays the registered company name" do
+        get request_path
 
-        it "displays the registered company name" do
-          get request_path
+        expect(response.body).to have_html_escaped_string(company_name)
+      end
 
-          expect(response.body).to have_html_escaped_string(company_name)
-        end
+      it "displays the registered company address" do
+        get request_path
 
-        it "displays the registered company address" do
-          get request_path
-
-          company_address.each do |line|
-            expect(response.body).to include(line)
-          end
-        end
-
-        it "displays a link to enter a different number" do
-          get request_path
-
-          expect(response.body).to have_html_escaped_string("Enter a different number")
-        end
-
-        context "when the companies house API response does not include an address" do
-          let(:company_address) { nil }
-
-          it { expect { get request_path }.not_to raise_error }
+        company_address.each do |line|
+          expect(response.body).to include(line)
         end
       end
+
+      it "displays a link to enter a different number" do
+        get request_path
+
+        expect(response.body).to have_html_escaped_string(
+          I18n.t(".waste_exemptions_engine.check_registered_name_and_address_forms.new.enter_a_different_number")
+        )
+      end
+
+      context "when the companies house API response does not include an address" do
+        let(:company_address) { nil }
+
+        it { expect { get request_path }.not_to raise_error }
+      end
+    end
+
+    context "with a new registration" do
+      let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
+
+      it_behaves_like "diplays the expected details"
+    end
+
+    context "with a new charged registration" do
+      let(:new_registration) { build(:new_charged_registration, temp_company_no: "12345678") }
+
+      it_behaves_like "diplays the expected details"
     end
 
     context "when checking registered name and address on Check Your Answers page - new registration" do
