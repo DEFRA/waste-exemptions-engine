@@ -4,10 +4,16 @@ en:
       new:
         back_link: Back
         heading: Your selected exemptions
-        description: "You've selected these exemptions:"
+        farm_exemptions: On farm exemptions
         options:
-          "true": "I want to proceed with the exemptions I’ve selected"
-          "false": "I want to change the exemptions I’ve selected"
+          farm:
+            "true": "I do not need any more waste exemptions."
+            "false": "I want to add waste exemptions that are not included in the farming exemptions."
+          standard:
+            "true": "I want to proceed with the exemptions I've selected"
+            "false": "I want to change the exemptions I've selected"
+        farm_link_text: If you need to add more farming exemptions you can go back to the
+        farm_link: farmer exemption page
   activemodel:
     errors:
       models:

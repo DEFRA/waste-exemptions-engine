@@ -44,6 +44,28 @@ module WasteExemptionsEngine
           form.submit(valid_params)
           expect(form.transient_registration.exemptions.map(&:id)).to match_array(selected_exemption_ids)
         end
+
+        context "when registration is farm affiliated" do
+          before do
+            allow(form.transient_registration).to receive(:farm_affiliated?).and_return(true)
+          end
+
+          it "sets temp_add_additional_non_farm_exemptions to false" do
+            form.submit(valid_params)
+            expect(form.transient_registration.temp_add_additional_non_farm_exemptions).to be false
+          end
+        end
+
+        context "when registration is not farm affiliated" do
+          before do
+            allow(form.transient_registration).to receive(:farm_affiliated?).and_return(false)
+          end
+
+          it "does not set temp_add_additional_non_farm_exemptions" do
+            form.submit(valid_params)
+            expect(form.transient_registration.temp_add_additional_non_farm_exemptions).to be_nil
+          end
+        end
       end
 
       context "when temp_confirm_exemptions is false" do
@@ -52,6 +74,12 @@ module WasteExemptionsEngine
         it "does not assign the transient_registration exemptions" do
           form.submit(valid_params)
           expect(form.transient_registration.exemptions).to be_empty
+        end
+
+        it "does not modify temp_add_additional_non_farm_exemptions" do
+          original_value = form.transient_registration.temp_add_additional_non_farm_exemptions
+          form.submit(valid_params)
+          expect(form.transient_registration.temp_add_additional_non_farm_exemptions).to eq(original_value)
         end
       end
 

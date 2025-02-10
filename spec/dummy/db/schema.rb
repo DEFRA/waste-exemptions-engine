@@ -408,6 +408,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.boolean "temp_confirm_exemptions"
     t.text "temp_farm_exemptions", default: [], array: true
     t.text "temp_activity_exemptions", default: [], array: true
+    t.boolean "temp_add_additional_non_farm_exemptions"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end

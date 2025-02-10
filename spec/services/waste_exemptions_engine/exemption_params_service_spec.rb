@@ -5,9 +5,9 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe ExemptionParamsService do
     let(:registration) { build(:new_charged_registration) }
-    let(:new_exemptions) { ["1", "2", "3"] }
-    let(:existing_activity_exemptions) { ["4", "5"] }
-    let(:existing_farm_exemptions) { ["6", "7"] }
+    let(:new_exemptions) { %w[1 2 3] }
+    let(:existing_activity_exemptions) { %w[4 5] }
+    let(:existing_farm_exemptions) { %w[6 7] }
 
     before do
       registration.temp_activity_exemptions = existing_activity_exemptions
