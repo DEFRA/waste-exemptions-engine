@@ -4,7 +4,13 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe FarmExemptionsForm, type: :model do
-    before { create_list(:exemption, 5) }
+    before do
+      create_list(:exemption, 5)
+      transient_registration.on_a_farm = farm_registration
+      transient_registration.is_a_farmer = farm_registration
+      transient_registration.temp_add_additional_non_farm_exemptions = farm_registration
+      transient_registration.save
+    end
 
     subject(:form) { build(:farm_exemptions_form) }
     let(:transient_registration) { form.transient_registration }
@@ -12,13 +18,6 @@ module WasteExemptionsEngine
 
     let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
     let(:two_activity_exemptions) { Exemption.order("RANDOM()").first(2) }
-
-    before do
-      transient_registration.on_a_farm = farm_registration
-      transient_registration.is_a_farmer = farm_registration
-      transient_registration.temp_add_additional_non_farm_exemptions = farm_registration
-      transient_registration.save
-    end
 
     it_behaves_like "a validated form", :farm_exemptions_form do
       let(:valid_params) { { temp_exemptions: three_exemptions.map(&:id).map(&:to_s) } }
@@ -33,7 +32,7 @@ module WasteExemptionsEngine
           it { expect(form.valid?).to be false }
 
           it "fails to submit" do
-            expect(form.submit(valid_params)).to eq(false)
+            expect(form.submit(valid_params)).to be(false)
           end
         end
 
@@ -44,6 +43,7 @@ module WasteExemptionsEngine
 
           context "when the registration is farm affiliated and can add additional exemptions" do
             let(:farm_registration) { true }
+
             before do
               transient_registration.temp_activity_exemptions = activity_exemptions
             end
@@ -61,6 +61,7 @@ module WasteExemptionsEngine
 
           context "when the registration is not farm affiliated" do
             let(:farm_registration) { false }
+
             before do
               transient_registration.temp_activity_exemptions = activity_exemptions
             end
