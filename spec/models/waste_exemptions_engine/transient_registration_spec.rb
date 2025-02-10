@@ -143,5 +143,13 @@ module WasteExemptionsEngine
         it { expect(new_registration).to be_charged }
       end
     end
+
+    describe "#new?" do
+      it { expect(build(:new_registration).new?).to be true }
+      it { expect(build(:new_charged_registration).new?).to be true }
+      it { expect(build(:renewing_registration).new?).to be false }
+      it { expect(build(:front_office_edit_registration).new?).to be false }
+      it { expect(build(:back_office_edit_registration).new?).to be false }
+    end
   end
 end
