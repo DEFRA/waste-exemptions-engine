@@ -6,14 +6,14 @@ module WasteExemptionsEngine
       new_exemptions      = Array(new_exemptions)
       activity_exemptions = Array(registration.temp_activity_exemptions)
       farm_exemptions     = Array(registration.temp_farm_exemptions)
-      is_farm             = registration.farm_affiliated? &&
+      combine_exemptions             = registration.farm_affiliated? &&
                             registration.temp_add_additional_non_farm_exemptions == true
 
       total_exemptions = case exemption_type
                          when :farm
-                           is_farm ? (activity_exemptions + new_exemptions) : activity_exemptions
+                           combine_exemptions ? (activity_exemptions + new_exemptions) : activity_exemptions
                          when :activity
-                           is_farm ? (new_exemptions + farm_exemptions) : new_exemptions
+                           combine_exemptions ? (new_exemptions + farm_exemptions) : new_exemptions
                          else
                            new_exemptions
                          end

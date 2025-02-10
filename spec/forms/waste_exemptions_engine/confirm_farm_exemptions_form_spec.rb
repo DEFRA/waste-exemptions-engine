@@ -32,7 +32,7 @@ module WasteExemptionsEngine
     describe "#submit" do
       before do
         create_list(:exemption, 5)
-        form.transient_registration.update(temp_exemptions: selected_exemption_ids)
+        form.transient_registration.update(temp_farm_exemptions: selected_exemption_ids)
       end
 
       context "when temp_add_additional_non_farm_exemptions is false" do

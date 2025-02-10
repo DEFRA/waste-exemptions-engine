@@ -9,6 +9,7 @@ module WasteExemptionsEngine
     end
 
     subject(:form) { build(:activity_exemptions_form) }
+    let(:transient_registration) { form.transient_registration }
     let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
     let(:two_farm_exemptions) { Exemption.order("RANDOM()").first(2) }
 
@@ -32,37 +33,35 @@ module WasteExemptionsEngine
         form.transient_registration.temp_farm_exemptions = farm_exemptions
       end
 
-      context "when temp_confirm_exemptions is true" do
+      context "when temp_add_additional_non_farm_exemptions is false" do
         before do
-          form.transient_registration.temp_confirm_exemptions = true
-          form.transient_registration.temp_activity_exemptions = ["999"]
+          transient_registration.temp_add_additional_non_farm_exemptions = false
         end
 
-        it "replaces existing activity exemptions and preserves farm exemptions" do
+        it "returns" do
           form.submit(valid_params)
 
           aggregate_failures do
             expect(form.transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
             expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-            expect(form.transient_registration.temp_exemptions).to match_array(farm_exemptions + activity_exemptions)
+            expect(form.transient_registration.temp_exemptions).to match_array(activity_exemptions)
           end
         end
       end
 
-      context "when temp_confirm_exemptions is false" do
+      context "when temp_add_additional_non_farm_exemptions is true" do
         before do
-          form.transient_registration.temp_confirm_exemptions = false
-          # Add some existing activity exemptions that should be combined
-          form.transient_registration.temp_activity_exemptions = ["999"]
+          transient_registration.temp_add_additional_non_farm_exemptions = true
+          allow(transient_registration).to receive(:farm_affiliated?).and_return(true)
         end
 
-        it "combines with existing activity exemptions and preserves farm exemptions" do
+        it "combines with farm exemptions" do
           form.submit(valid_params)
 
           aggregate_failures do
-            expect(form.transient_registration.temp_activity_exemptions).to match_array(["999"] + activity_exemptions)
+            expect(form.transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
             expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-            expect(form.transient_registration.temp_exemptions).to match_array(farm_exemptions + ["999"] + activity_exemptions)
+            expect(form.transient_registration.temp_exemptions).to match_array((farm_exemptions + activity_exemptions).uniq)
           end
         end
       end
