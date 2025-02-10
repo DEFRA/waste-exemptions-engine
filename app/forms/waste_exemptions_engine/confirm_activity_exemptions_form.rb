@@ -15,9 +15,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      if params[:temp_confirm_exemptions] == "true"
-        params.merge!(exemption_ids: temp_exemptions)
-      end
+      params.merge!(exemption_ids: temp_exemptions) if params[:temp_confirm_exemptions] == "true"
 
       super
     end
