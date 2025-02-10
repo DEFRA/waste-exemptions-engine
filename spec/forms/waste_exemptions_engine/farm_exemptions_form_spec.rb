@@ -22,6 +22,7 @@ module WasteExemptionsEngine
 
     it_behaves_like "a validated form", :farm_exemptions_form do
       let(:valid_params) { { temp_exemptions: three_exemptions.map(&:id).map(&:to_s) } }
+      let(:invalid_params) { { temp_exemptions: [] } }
     end
 
     describe "#submit" do
@@ -29,20 +30,10 @@ module WasteExemptionsEngine
         context "when no exemptions have been selected" do
           let(:valid_params) { { temp_exemptions: [] } }
 
-          it { expect(form.valid?).to be true }
+          it { expect(form.valid?).to be false }
 
-          it "clears farm exemptions but preserves activity exemptions" do
-            transient_registration = form.transient_registration
-            activity_exemptions = two_activity_exemptions.map(&:id).map(&:to_s)
-            transient_registration.temp_activity_exemptions = activity_exemptions
-
-            form.submit(valid_params)
-
-            aggregate_failures do
-              expect(transient_registration.temp_farm_exemptions).to be_empty
-              expect(transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
-              expect(transient_registration.temp_exemptions).to match_array(activity_exemptions)
-            end
+          it "fails to submit" do
+            expect(form.submit(valid_params)).to eq(false)
           end
         end
 

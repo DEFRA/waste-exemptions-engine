@@ -11,8 +11,10 @@ module WasteExemptionsEngine
       # Determine total exemptions based on type and settings
       total_exemptions = case exemption_type
                         when :farm
-                          # For farm exemptions, combine with activity exemptions if allowed
-                          if registration.temp_add_additional_non_farm_exemptions && registration.farm_affiliated?
+                          # Always include activity exemptions, add farm exemptions if allowed
+                          if new_exemptions.empty?
+                            activity_exemptions
+                          elsif registration.temp_add_additional_non_farm_exemptions && registration.farm_affiliated?
                             activity_exemptions + new_exemptions
                           else
                             activity_exemptions
@@ -26,10 +28,7 @@ module WasteExemptionsEngine
                           end
                         end.uniq
 
-      {
-        "temp_#{exemption_type}_exemptions": new_exemptions,
-        temp_exemptions: total_exemptions.uniq
-      }
+      { "temp_#{exemption_type}_exemptions": new_exemptions, temp_exemptions: total_exemptions.uniq }
     end
   end
 end
