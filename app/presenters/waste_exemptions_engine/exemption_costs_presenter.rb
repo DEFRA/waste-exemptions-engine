@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
 
@@ -13,7 +14,18 @@ module WasteExemptionsEngine
     end
 
     def exemptions
-      @exemptions ||= @order.exemptions.sort_by { |e| -e.band.initial_compliance_charge.charge_amount }
+      @exemptions ||= begin
+        all_exemptions = @order.exemptions
+        farm_exemptions = all_exemptions.select { |e| farmer_bucket_exemption?(e) }
+        non_farm_exemptions = all_exemptions.reject { |e| farmer_bucket_exemption?(e) }
+
+        sorted_farm_exemptions = sorted_exemptions(farm_exemptions)
+        sorted_non_farm_exemptions = non_farm_exemptions.sort_by do |e|
+          [-e.band.initial_compliance_charge.charge_amount, e.code]
+        end
+
+        sorted_farm_exemptions + sorted_non_farm_exemptions
+      end
     end
 
     def band(exemption)
@@ -127,3 +139,4 @@ module WasteExemptionsEngine
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
