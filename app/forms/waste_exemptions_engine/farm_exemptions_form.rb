@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class FarmExemptionsForm < BaseForm
     delegate :temp_exemptions, :temp_farm_exemptions, to: :transient_registration
 
-    validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
+    validate :validate_exemptions
 
     def submit(params)
       attributes = ExemptionParamsService.run(
@@ -14,6 +14,15 @@ module WasteExemptionsEngine
       )
 
       super(attributes)
+    end
+
+    private
+
+    def validate_exemptions
+      return if temp_exemptions.nil?
+      return if temp_exemptions.is_a?(Array)
+
+      errors.add(:temp_exemptions, :invalid)
     end
   end
 end
