@@ -18,8 +18,6 @@ module WasteExemptionsEngine
         new_exemptions: temp_exemptions
       )
 
-      attributes[:temp_farm_exemptions] = temp_exemptions
-
       super(attributes)
     end
   end

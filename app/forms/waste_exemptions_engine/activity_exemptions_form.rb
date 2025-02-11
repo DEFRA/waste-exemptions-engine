@@ -13,8 +13,6 @@ module WasteExemptionsEngine
         new_exemptions: params[:temp_exemptions]
       )
 
-      attributes[:temp_activity_exemptions] = params[:temp_exemptions]
-
       super(attributes)
     end
   end
