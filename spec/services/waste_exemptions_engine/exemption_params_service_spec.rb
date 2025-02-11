@@ -15,6 +15,23 @@ module WasteExemptionsEngine
     end
 
     describe ".run" do
+      context "when given an invalid exemption type" do
+        let(:options) do
+          {
+            registration: registration,
+            exemption_type: :invalid,
+            new_exemptions: new_exemptions
+          }
+        end
+
+        it "raises an ArgumentError" do
+          expect { described_class.run(options) }.to raise_error(
+            ArgumentError,
+            "Invalid exemption_type: invalid. Must be :farm or :activity"
+          )
+        end
+      end
+
       context "when updating farm exemptions" do
         let(:options) do
           {
