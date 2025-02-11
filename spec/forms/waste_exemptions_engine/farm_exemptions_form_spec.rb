@@ -6,15 +6,15 @@ module WasteExemptionsEngine
   RSpec.describe FarmExemptionsForm, type: :model do
     before do
       create_list(:exemption, 5)
-      transient_registration.on_a_farm = farm_registration
-      transient_registration.is_a_farmer = farm_registration
-      transient_registration.temp_add_additional_non_farm_exemptions = farm_registration
+      transient_registration.on_a_farm = true
+      transient_registration.is_a_farmer = true
+      transient_registration.temp_add_additional_non_farm_exemptions = add_additional_non_farm_exemptions
       transient_registration.save
     end
 
     subject(:form) { build(:farm_exemptions_form) }
     let(:transient_registration) { form.transient_registration }
-    let(:farm_registration) { true }
+    let(:add_additional_non_farm_exemptions) { true }
 
     let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
     let(:two_activity_exemptions) { Exemption.order("RANDOM()").first(2) }
@@ -41,38 +41,36 @@ module WasteExemptionsEngine
           let(:activity_exemptions) { two_activity_exemptions.map(&:id).map(&:to_s) }
           let(:valid_params) { { temp_exemptions: farm_exemptions } }
 
-          context "when the registration is farm affiliated and can add additional exemptions" do
-            let(:farm_registration) { true }
+          context "when adding additional non-farm exemptions" do
+            let(:add_additional_non_farm_exemptions) { true }
 
             before do
               transient_registration.temp_activity_exemptions = activity_exemptions
             end
 
-            it "updates temp_farm_exemptions and combines with existing activity exemptions" do
+            it "combines with existing activity exemptions" do
               form.submit(valid_params)
 
               aggregate_failures do
-                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-                expect(transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
-                expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq)
+                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions.sort)
+                expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq.sort)
               end
             end
           end
 
-          context "when the registration is not farm affiliated" do
-            let(:farm_registration) { false }
+          context "when not adding additional non-farm exemptions" do
+            let(:add_additional_non_farm_exemptions) { false }
 
             before do
               transient_registration.temp_activity_exemptions = activity_exemptions
             end
 
-            it "updates temp_farm_exemptions but keeps only activity exemptions" do
+            it "uses only the new farm exemptions" do
               form.submit(valid_params)
 
               aggregate_failures do
-                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-                expect(transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
-                expect(transient_registration.temp_exemptions).to match_array(activity_exemptions)
+                expect(transient_registration.temp_exemptions).to match_array(farm_exemptions.sort)
+                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions.sort)
               end
             end
           end

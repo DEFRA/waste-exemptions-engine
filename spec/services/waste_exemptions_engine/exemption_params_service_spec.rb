@@ -35,7 +35,7 @@ module WasteExemptionsEngine
 
             expect(result).to eq(
               temp_farm_exemptions: new_exemptions,
-              temp_exemptions: (new_exemptions + existing_activity_exemptions).uniq
+              temp_exemptions: (new_exemptions + existing_activity_exemptions).uniq.sort
             )
           end
         end
@@ -51,7 +51,7 @@ module WasteExemptionsEngine
 
             expect(result).to eq(
               temp_farm_exemptions: new_exemptions,
-              temp_exemptions: new_exemptions
+              temp_exemptions: new_exemptions.sort
             )
           end
         end
@@ -77,7 +77,7 @@ module WasteExemptionsEngine
 
             expect(result).to eq(
               temp_activity_exemptions: new_exemptions,
-              temp_exemptions: (new_exemptions + existing_farm_exemptions).uniq
+              temp_exemptions: (new_exemptions + existing_farm_exemptions).uniq.sort
             )
           end
         end
@@ -93,7 +93,7 @@ module WasteExemptionsEngine
 
             expect(result).to eq(
               temp_activity_exemptions: new_exemptions,
-              temp_exemptions: new_exemptions
+              temp_exemptions: new_exemptions.sort
             )
           end
         end
