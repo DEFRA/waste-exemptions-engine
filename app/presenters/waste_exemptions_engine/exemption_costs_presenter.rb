@@ -14,6 +14,7 @@ module WasteExemptionsEngine
     end
 
     def exemptions
+      # Show farm exemptions first, then sort the rest by compliance charge amount
       @exemptions ||= begin
         all_exemptions = @order.exemptions
         farm_exemptions = all_exemptions.select { |e| farmer_bucket_exemption?(e) }
