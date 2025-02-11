@@ -9,8 +9,8 @@ module WasteExemptionsEngine
 
     include_examples "GET form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions", is_charged: true
     include_examples "POST form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions" do
-      let(:form_data) { { temp_confirm_exemptions: "true" } }
-      let(:invalid_form_data) { [{ temp_confirm_exemptions: nil }] }
+      let(:form_data) { { temp_add_additional_non_farm_exemptions: "true" } }
+      let(:invalid_form_data) { [{ temp_add_additional_non_farm_exemptions: nil }] }
     end
 
     context "when adding exemptions in the new charged registration flow" do
@@ -23,7 +23,7 @@ module WasteExemptionsEngine
 
       it "directs to confirm activity exemptions form when submitted" do
         post "/waste_exemptions_engine/#{confirm_farm_exemptions_form.token}/your-selected-farm-exemptions",
-             params: { confirm_farm_exemptions_form: { temp_confirm_exemptions: "true" } }
+             params: { confirm_farm_exemptions_form: { temp_add_additional_non_farm_exemptions: "false" } }
 
         expect(response).to redirect_to(site_grid_reference_forms_path(confirm_farm_exemptions_form.token))
       end

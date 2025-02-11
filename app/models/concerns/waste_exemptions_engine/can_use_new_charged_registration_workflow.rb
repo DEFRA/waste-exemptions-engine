@@ -194,7 +194,7 @@ module WasteExemptionsEngine
 
           transitions from: :confirm_farm_exemptions_form,
                       to: :site_grid_reference_form,
-                      if: :proceed_with_selected_exemptions?,
+                      if: :proceed_with_selected_farm_exemptions?,
                       unless: :check_your_answers_flow?
 
           # Confirm Exemptions -> Waste Activities
@@ -681,6 +681,10 @@ module WasteExemptionsEngine
 
     def proceed_with_selected_exemptions?
       temp_confirm_exemptions == true
+    end
+
+    def proceed_with_selected_farm_exemptions?
+      temp_add_additional_non_farm_exemptions == false
     end
 
     def retry_adding_exemptions?
