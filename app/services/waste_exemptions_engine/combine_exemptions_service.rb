@@ -5,6 +5,14 @@ module WasteExemptionsEngine
     # This service combines exemption parameters (from activity and farm exemptions) based
     # on whether the transient_registration should have both or just one of the exemption
     # types.
+    #
+    # If a transient_registration is farm affiliated and the user has selected
+    # to add additional non-farm exemptions, the service will combine the
+    # exemptions from both types.
+    #
+    # The service returns the set of new exemptions passed in separately in all
+    # cases so that they can be kept separate and the exemptions can be
+    # registrered as the registration's exemptions of each type
 
     def run(transient_registration:, exemption_type:, new_exemptions:)
       new_exemptions = Array(new_exemptions)
