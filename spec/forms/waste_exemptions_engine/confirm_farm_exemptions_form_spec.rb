@@ -6,7 +6,9 @@ module WasteExemptionsEngine
   RSpec.describe ConfirmFarmExemptionsForm, type: :model do
     subject(:form) { build(:confirm_farm_exemptions_form) }
 
-    let(:selected_exemption_ids) { Exemption.order("RANDOM()").last(5).map(&:id) }
+    let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
+    let(:selected_exemptions) { Exemption.order("RANDOM()").last(5) }
+    let(:selected_exemption_ids) { selected_exemptions.map(&:id) }
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
@@ -32,7 +34,8 @@ module WasteExemptionsEngine
     describe "#submit" do
       before do
         create_list(:exemption, 5)
-        form.transient_registration.update(temp_farm_exemptions: selected_exemption_ids)
+        selected_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
+        form.transient_registration.update(temp_exemptions: selected_exemption_ids)
       end
 
       context "when temp_add_additional_non_farm_exemptions is false" do

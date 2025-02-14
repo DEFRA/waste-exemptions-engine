@@ -25,12 +25,15 @@ module WasteExemptionsEngine
     end
 
     describe "#submit" do
+      let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
       let(:farm_exemptions) { two_farm_exemptions.map(&:id).map(&:to_s) }
       let(:activity_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
       let(:valid_params) { { temp_exemptions: activity_exemptions } }
 
       before do
-        form.transient_registration.temp_farm_exemptions = farm_exemptions
+        # Associate farm exemptions with farmer bucket
+        two_farm_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
+        form.transient_registration.temp_exemptions = farm_exemptions
       end
 
       context "when temp_add_additional_non_farm_exemptions is false" do
@@ -41,11 +44,7 @@ module WasteExemptionsEngine
         it "returns" do
           form.submit(valid_params)
 
-          aggregate_failures do
-            expect(form.transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
-            expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-            expect(form.transient_registration.temp_exemptions).to match_array(activity_exemptions)
-          end
+          expect(form.transient_registration.temp_exemptions).to match_array(activity_exemptions)
         end
       end
 
@@ -58,11 +57,7 @@ module WasteExemptionsEngine
         it "combines with farm exemptions" do
           form.submit(valid_params)
 
-          aggregate_failures do
-            expect(form.transient_registration.temp_activity_exemptions).to match_array(activity_exemptions)
-            expect(form.transient_registration.temp_farm_exemptions).to match_array(farm_exemptions)
-            expect(form.transient_registration.temp_exemptions).to match_array((farm_exemptions + activity_exemptions).uniq)
-          end
+          expect(form.transient_registration.temp_exemptions).to match_array((farm_exemptions + activity_exemptions).uniq)
         end
       end
     end

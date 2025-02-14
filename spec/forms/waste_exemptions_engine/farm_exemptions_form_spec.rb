@@ -37,24 +37,27 @@ module WasteExemptionsEngine
         end
 
         context "when farm exemptions have been selected" do
+          let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
           let(:farm_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
           let(:activity_exemptions) { two_activity_exemptions.map(&:id).map(&:to_s) }
           let(:valid_params) { { temp_exemptions: farm_exemptions } }
+
+          before do
+            # Associate farm exemptions with farmer bucket
+            three_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
+          end
 
           context "when adding additional non-farm exemptions" do
             let(:add_additional_non_farm_exemptions) { true }
 
             before do
-              transient_registration.temp_activity_exemptions = activity_exemptions
+              transient_registration.temp_exemptions = activity_exemptions
             end
 
             it "combines with existing activity exemptions" do
               form.submit(valid_params)
 
-              aggregate_failures do
-                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions.sort)
-                expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq.sort)
-              end
+              expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq.sort)
             end
           end
 
@@ -62,16 +65,13 @@ module WasteExemptionsEngine
             let(:add_additional_non_farm_exemptions) { false }
 
             before do
-              transient_registration.temp_activity_exemptions = activity_exemptions
+              transient_registration.temp_exemptions = activity_exemptions
             end
 
             it "uses only the new farm exemptions" do
               form.submit(valid_params)
 
-              aggregate_failures do
-                expect(transient_registration.temp_exemptions).to match_array(farm_exemptions.sort)
-                expect(transient_registration.temp_farm_exemptions).to match_array(farm_exemptions.sort)
-              end
+              expect(transient_registration.temp_exemptions).to match_array(farm_exemptions.sort)
             end
           end
         end

@@ -5,13 +5,20 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe ExemptionParamsService do
     let(:registration) { build(:new_charged_registration) }
+    let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
     let(:new_exemptions) { %w[1 2 3] }
     let(:existing_activity_exemptions) { %w[4 5] }
     let(:existing_farm_exemptions) { %w[6 7] }
 
     before do
-      registration.temp_activity_exemptions = existing_activity_exemptions
-      registration.temp_farm_exemptions = existing_farm_exemptions
+      # Create exemptions and associate farm exemptions with farmer bucket
+      existing_farm_exemptions.each do |id|
+        exemption = create(:exemption, id: id)
+        create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption)
+      end
+      existing_activity_exemptions.each { |id| create(:exemption, id: id) }
+
+      registration.temp_exemptions = existing_activity_exemptions + existing_farm_exemptions
     end
 
     describe ".run" do
@@ -51,7 +58,6 @@ module WasteExemptionsEngine
             result = described_class.run(options)
 
             expect(result).to eq(
-              temp_farm_exemptions: new_exemptions,
               temp_exemptions: (new_exemptions + existing_activity_exemptions).uniq.sort
             )
           end
@@ -67,7 +73,6 @@ module WasteExemptionsEngine
             result = described_class.run(options)
 
             expect(result).to eq(
-              temp_farm_exemptions: new_exemptions,
               temp_exemptions: new_exemptions.sort
             )
           end
@@ -93,7 +98,6 @@ module WasteExemptionsEngine
             result = described_class.run(options)
 
             expect(result).to eq(
-              temp_activity_exemptions: new_exemptions,
               temp_exemptions: (new_exemptions + existing_farm_exemptions).uniq.sort
             )
           end
@@ -109,7 +113,6 @@ module WasteExemptionsEngine
             result = described_class.run(options)
 
             expect(result).to eq(
-              temp_activity_exemptions: new_exemptions,
               temp_exemptions: new_exemptions.sort
             )
           end
