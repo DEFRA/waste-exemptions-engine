@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def submit(params)
       attributes = CombineExemptionsService.run(
-        registration: transient_registration,
+        transient_registration:,
         exemption_type: :farm,
         new_exemptions: params[:temp_exemptions]
       )

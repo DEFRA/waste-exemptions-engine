@@ -2,10 +2,14 @@
 
 module WasteExemptionsEngine
   class CombineExemptionsService < BaseService
-    def run(registration:, exemption_type:, new_exemptions:)
+    # This service combines exemption parameters (from activity and farm exemptions) based
+    # on whether the transient_registration should have both or just one of the exemption
+    # types.
+
+    def run(transient_registration:, exemption_type:, new_exemptions:)
       new_exemptions = Array(new_exemptions)
-      activity_exemptions = Array(registration.temp_activity_exemptions)
-      can_combine = registration.farm_affiliated? && registration.temp_add_additional_non_farm_exemptions
+      activity_exemptions = Array(transient_registration.temp_activity_exemptions)
+      can_combine = transient_registration.farm_affiliated? && transient_registration.temp_add_additional_non_farm_exemptions
 
       total_exemptions = case exemption_type
                          when :farm
@@ -16,7 +20,7 @@ module WasteExemptionsEngine
                            end
                          when :activity
                            if can_combine
-                             (new_exemptions + Array(registration.temp_farm_exemptions)).uniq.sort
+                             (new_exemptions + Array(transient_registration.temp_farm_exemptions)).uniq.sort
                            else
                              new_exemptions.sort
                            end
