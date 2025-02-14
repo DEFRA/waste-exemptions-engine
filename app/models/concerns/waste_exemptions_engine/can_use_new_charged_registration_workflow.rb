@@ -200,7 +200,7 @@ module WasteExemptionsEngine
           # Confirm Exemptions -> Waste Activities
           transitions from: :confirm_activity_exemptions_form,
                       to: :waste_activities_form,
-                      if: :retry_adding_exemptions?
+                      if: :reselect_exemptions?
 
           transitions from: :confirm_farm_exemptions_form,
                       to: :waste_activities_form,
@@ -687,7 +687,7 @@ module WasteExemptionsEngine
       temp_add_additional_non_farm_exemptions == false
     end
 
-    def retry_adding_exemptions?
+    def reselect_exemptions?
       temp_confirm_exemptions == false
     end
 
