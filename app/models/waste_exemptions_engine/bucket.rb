@@ -25,5 +25,9 @@ module WasteExemptionsEngine
     def self.farmer_bucket
       find_by(bucket_type: "farmer")
     end
+
+    def exemption_ids
+      exemptions.pluck(:id).map(&:to_s)
+    end
   end
 end

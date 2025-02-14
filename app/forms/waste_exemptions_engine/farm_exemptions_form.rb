@@ -2,16 +2,22 @@
 
 module WasteExemptionsEngine
   class FarmExemptionsForm < BaseForm
-    delegate :temp_exemptions, :temp_farm_exemptions, to: :transient_registration
+    delegate :temp_exemptions, to: :transient_registration
 
     validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
 
     def submit(params)
-      attributes = CombineExemptionsService.run(
-        transient_registration:,
-        exemption_type: :farm,
-        new_exemptions: params[:temp_exemptions]
-      )
+      # Get the current exemptions and new farm exemptions
+      current_exemptions = Array(temp_exemptions)
+      new_farm_exemptions = Array(params[:temp_exemptions])
+
+      # Keep non-farm exemptions and add new farm exemptions
+      non_farm_exemptions = current_exemptions.reject do |id|
+        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+      end
+
+      # Update with new exemptions (non-farm + selected farm)
+      attributes = { temp_exemptions: (non_farm_exemptions + new_farm_exemptions).uniq.sort }
 
       super(attributes)
     end

@@ -13,7 +13,11 @@ module WasteExemptionsEngine
     end
 
     def farm_exemptions(transient_registration)
-      WasteExemptionsEngine::Exemption.where(id: transient_registration.temp_farm_exemptions).order(:band_id, :id)
+      selected_farm_exemption_ids = transient_registration.temp_exemptions.select do |id|
+        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+      end
+
+      WasteExemptionsEngine::Exemption.where(id: selected_farm_exemption_ids).order(:band_id, :id)
     end
 
     def exemptions_by_band(exemptions)

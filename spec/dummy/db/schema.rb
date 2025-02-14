@@ -162,6 +162,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.string "sent_to"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "company_no", null: false
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_no"], name: "index_companies_on_company_no", unique: true
+  end
+
   create_table "exemptions", id: :serial, force: :cascade do |t|
     t.integer "category"
     t.string "code"
@@ -308,6 +317,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
   end
 
+  create_table "reports_downloads", force: :cascade do |t|
+    t.string "report_type"
+    t.string "report_file_name"
+    t.string "user_id"
+    t.datetime "downloaded_at"
+  end
+
+  create_table "reports_generated_reports", id: :serial, force: :cascade do |t|
+    t.string "file_name"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.date "data_from_date"
+    t.date "data_to_date"
+  end
+
   create_table "transient_addresses", id: :serial, force: :cascade do |t|
     t.integer "address_type", default: 0
     t.integer "mode", default: 0
@@ -406,11 +430,40 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.text "temp_waste_activities", default: [], array: true
     t.text "temp_exemptions", default: [], array: true
     t.boolean "temp_confirm_exemptions"
-    t.text "temp_farm_exemptions", default: [], array: true
-    t.text "temp_activity_exemptions", default: [], array: true
     t.boolean "temp_add_additional_non_farm_exemptions"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
+    t.integer "invitation_limit"
+    t.integer "invited_by_id"
+    t.string "invited_by_type"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at", precision: nil
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "session_token"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "role"
+    t.boolean "active", default: true
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   create_table "version_archives", id: :serial, force: :cascade do |t|

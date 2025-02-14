@@ -17,7 +17,19 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
-      params.merge!(exemption_ids: temp_farm_exemptions) if params[:temp_add_additional_non_farm_exemptions] == "false"
+      # When user opts out of additional non-farm exemptions
+      if params[:temp_add_additional_non_farm_exemptions] == "false"
+
+        # Keep only farm exemptions in temp_exemptions
+        farm_only_exemptions = temp_exemptions.select do |id|
+          WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+        end
+
+        params.merge!(
+          exemption_ids: farm_only_exemptions,
+          temp_exemptions: farm_only_exemptions
+        )
+      end
 
       super
     end
