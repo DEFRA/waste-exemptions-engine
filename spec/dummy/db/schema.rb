@@ -162,6 +162,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_28_112137) do
     t.string "sent_to"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "company_no", null: false
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_no"], name: "index_companies_on_company_no", unique: true
+  end
+
   create_table "exemptions", id: :serial, force: :cascade do |t|
     t.integer "category"
     t.string "code"
