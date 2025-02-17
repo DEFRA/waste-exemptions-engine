@@ -4,7 +4,6 @@ module WasteExemptionsEngine
   class ConfirmFarmExemptionsForm < BaseForm
     delegate :exemption_ids,
              :temp_exemptions,
-             :temp_farm_exemptions,
              :temp_add_additional_non_farm_exemptions,
              to: :transient_registration
 
