@@ -47,9 +47,13 @@ module WasteExemptionsEngine
             three_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
           end
 
-          context "when adding additional non-farm exemptions" do
-            let(:add_additional_non_farm_exemptions) { true }
+          it "updates the transient registration with the selected farm exemptions" do
+            form.submit(valid_params)
 
+            expect(transient_registration.temp_exemptions).to match_array(farm_exemptions)
+          end
+
+          context "when the user has added non-farm exemptions already" do
             before do
               transient_registration.temp_exemptions = activity_exemptions
             end
@@ -58,20 +62,6 @@ module WasteExemptionsEngine
               form.submit(valid_params)
 
               expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq.sort)
-            end
-          end
-
-          context "when not adding additional non-farm exemptions" do
-            let(:add_additional_non_farm_exemptions) { false }
-
-            before do
-              transient_registration.temp_exemptions = activity_exemptions
-            end
-
-            it "uses only the new farm exemptions" do
-              form.submit(valid_params)
-
-              expect(transient_registration.temp_exemptions).to match_array(farm_exemptions.sort)
             end
           end
         end
