@@ -31,7 +31,7 @@ module WasteExemptionsEngine
 
     describe "#non_farm_exemptions" do
       let(:transient_registration) do
-        create(:new_registration).tap do |reg|
+        create(:new_charged_registration).tap do |reg|
           reg.temp_exemptions = [band_two_farm_exemption.id, band_one_farm_exemption.id,
                                  band_two_standard_exemption.id, band_one_standard_exemption.id]
           reg.save!
@@ -65,7 +65,7 @@ module WasteExemptionsEngine
 
     describe "#farm_exemptions" do
       let(:transient_registration) do
-        create(:new_registration).tap do |reg|
+        create(:new_charged_registration).tap do |reg|
           reg.temp_exemptions = [band_two_farm_exemption.id, band_one_farm_exemption.id,
                                  band_two_standard_exemption.id]
           reg.save!
@@ -98,14 +98,17 @@ module WasteExemptionsEngine
     end
 
     describe "#show_farm_exemptions?" do
-      context "when registration is farm affiliated" do
-        let(:transient_registration) do
-          create(:new_registration).tap do |reg|
-            reg.temp_add_additional_non_farm_exemptions = true
-            reg.farm_affiliated = true
-            reg.save!
-          end
+      let(:transient_registration) do
+        create(:new_charged_registration).tap do |reg|
+          reg.temp_add_additional_non_farm_exemptions = true
+          reg.is_a_farmer = farm_affiliated
+          reg.on_a_farm = farm_affiliated
+          reg.save!
         end
+      end
+
+      context "when registration is farm affiliated" do
+        let(:farm_affiliated) { true }
 
         it "returns true when temp_add_additional_non_farm_exemptions is true" do
           expect(helper.show_farm_exemptions?(transient_registration)).to be true
@@ -118,13 +121,7 @@ module WasteExemptionsEngine
       end
 
       context "when registration is not farm affiliated" do
-        let(:transient_registration) do
-          create(:new_registration).tap do |reg|
-            reg.temp_add_additional_non_farm_exemptions = true
-            reg.farm_affiliated = false
-            reg.save!
-          end
-        end
+        let(:farm_affiliated) { false }
 
         it "returns false" do
           expect(helper.show_farm_exemptions?(transient_registration)).to be false
