@@ -11,13 +11,15 @@ module WasteExemptionsEngine
       current_exemptions = Array(temp_exemptions)
       new_farm_exemptions = Array(params[:temp_exemptions])
 
-      # Keep non-farm exemptions and add new farm exemptions
-      non_farm_exemptions = current_exemptions.reject do |id|
+      # Get non-farm exemptions from transient_registration
+      current_non_farm_exemptions = current_exemptions.reject do |id|
         WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
       end
 
-      # Update with new exemptions (non-farm + selected farm)
-      attributes = { temp_exemptions: (non_farm_exemptions + new_farm_exemptions).uniq.sort }
+      # Combine non-farm exemptions with only the new farm exemptions
+      # This is to allow removing farm exemptions when the user deselects
+      # them while keeping the non-farm exemptions that are not handled by this form
+      attributes = { temp_exemptions: (current_non_farm_exemptions + new_farm_exemptions).uniq.sort }
 
       super(attributes)
     end
