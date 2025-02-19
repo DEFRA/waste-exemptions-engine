@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- RUBY 3537 wex charging farmer journey farming exemptions and non farming exemptions route [\#1182](https://github.com/DEFRA/waste-exemptions-engine/pull/1182) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3598\] Update exemptions [\#1180](https://github.com/DEFRA/waste-exemptions-engine/pull/1180) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3616 content sweep 1 [\#1179](https://github.com/DEFRA/waste-exemptions-engine/pull/1179) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Add farmer discount bullet to exemptions summary if farm affiliated [\#1178](https://github.com/DEFRA/waste-exemptions-engine/pull/1178) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
@@ -28,6 +29,7 @@
 - RUBY 2704 wex charging bo 3 1 3 refund a payment page [\#1119](https://github.com/DEFRA/waste-exemptions-engine/pull/1119) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-2705\] Add payments association to Account model and generate order UUID in Order model [\#1117](https://github.com/DEFRA/waste-exemptions-engine/pull/1117) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3408 company ltd llp only [\#1106](https://github.com/DEFRA/waste-exemptions-engine/pull/1106) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3406\] Add `Company` model and migration for `companies` table [\#1103](https://github.com/DEFRA/waste-exemptions-engine/pull/1103) ([jjromeo](https://github.com/jjromeo))
 - RUBY-3343: wex accessibility - replace pdf certificate with html version [\#1095](https://github.com/DEFRA/waste-exemptions-engine/pull/1095) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3298 search order [\#1094](https://github.com/DEFRA/waste-exemptions-engine/pull/1094) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - RUBY-3051 & RUBY-3052 : payment by card and payment via bank transfer [\#1078](https://github.com/DEFRA/waste-exemptions-engine/pull/1078) ([brujeo](https://github.com/brujeo))
@@ -257,6 +259,8 @@
 
 **Fixed bugs:**
 
+- Fix/ruby 3582 ch number link [\#1189](https://github.com/DEFRA/waste-exemptions-engine/pull/1189) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3537\] Update exemption selection logic for farmer and non-farmer journeys [\#1185](https://github.com/DEFRA/waste-exemptions-engine/pull/1185) ([jjromeo](https://github.com/jjromeo))
 - Completion page content tweaks [\#1172](https://github.com/DEFRA/waste-exemptions-engine/pull/1172) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Fix/ruby 3536 farm exemptions only [\#1169](https://github.com/DEFRA/waste-exemptions-engine/pull/1169) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Fix payment callback URL for back-office [\#1165](https://github.com/DEFRA/waste-exemptions-engine/pull/1165) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
@@ -416,6 +420,8 @@
 
 **Merged pull requests:**
 
+- tech debt: Removing exemptions.csv and seed job to import exemptions [\#1183](https://github.com/DEFRA/waste-exemptions-engine/pull/1183) ([brujeo](https://github.com/brujeo))
+- Update CHANGELOG [\#1181](https://github.com/DEFRA/waste-exemptions-engine/pull/1181) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Update CHANGELOG [\#1160](https://github.com/DEFRA/waste-exemptions-engine/pull/1160) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump govuk\_design\_system\_formbuilder from 5.7.1 to 5.8.0 [\#1158](https://github.com/DEFRA/waste-exemptions-engine/pull/1158) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump defra\_ruby\_companies\_house from 1.0.0 to 1.0.3 [\#1154](https://github.com/DEFRA/waste-exemptions-engine/pull/1154) ([dependabot[bot]](https://github.com/apps/dependabot))
