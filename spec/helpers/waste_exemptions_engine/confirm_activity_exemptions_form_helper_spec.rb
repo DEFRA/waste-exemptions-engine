@@ -100,7 +100,7 @@ module WasteExemptionsEngine
     describe "#show_farm_exemptions?" do
       let(:transient_registration) do
         create(:new_charged_registration).tap do |reg|
-          reg.temp_add_additional_non_farm_exemptions = true
+          reg.temp_add_additional_non_bucket_exemptions = true
           reg.is_a_farmer = farm_affiliated
           reg.on_a_farm = farm_affiliated
           reg.save!
@@ -110,12 +110,12 @@ module WasteExemptionsEngine
       context "when registration is farm affiliated" do
         let(:farm_affiliated) { true }
 
-        it "returns true when temp_add_additional_non_farm_exemptions is true" do
+        it "returns true when temp_add_additional_non_bucket_exemptions is true" do
           expect(helper.show_farm_exemptions?(transient_registration)).to be true
         end
 
-        it "returns false when temp_add_additional_non_farm_exemptions is false" do
-          transient_registration.update!(temp_add_additional_non_farm_exemptions: false)
+        it "returns false when temp_add_additional_non_bucket_exemptions is false" do
+          transient_registration.update!(temp_add_additional_non_bucket_exemptions: false)
           expect(helper.show_farm_exemptions?(transient_registration)).to be false
         end
       end

@@ -8,7 +8,7 @@ module WasteExemptionsEngine
       create_list(:exemption, 5)
       transient_registration.on_a_farm = true
       transient_registration.is_a_farmer = true
-      transient_registration.temp_add_additional_non_farm_exemptions = add_additional_non_farm_exemptions
+      transient_registration.temp_add_additional_non_bucket_exemptions = add_additional_non_farm_exemptions
       transient_registration.save
     end
 

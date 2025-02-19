@@ -4,20 +4,20 @@ module WasteExemptionsEngine
   class ConfirmFarmExemptionsForm < BaseForm
     delegate :exemption_ids,
              :temp_exemptions,
-             :temp_add_additional_non_farm_exemptions,
+             :temp_add_additional_non_bucket_exemptions,
              to: :transient_registration
 
-    validates :temp_add_additional_non_farm_exemptions, "defra_ruby/validators/true_false": true
+    validates :temp_add_additional_non_bucket_exemptions, "defra_ruby/validators/true_false": true
 
     def initialize(transient_registration)
-      transient_registration.temp_add_additional_non_farm_exemptions = nil
+      transient_registration.temp_add_additional_non_bucket_exemptions = nil
 
       super
     end
 
     def submit(params)
       # When user opts out of additional non-farm exemptions
-      if params[:temp_add_additional_non_farm_exemptions] == "false"
+      if params[:temp_add_additional_non_bucket_exemptions] == "false"
 
         # Keep only farm exemptions in temp_exemptions
         farm_only_exemptions = temp_exemptions.select do |id|

@@ -12,21 +12,21 @@ module WasteExemptionsEngine
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
-      expect(validators[:temp_add_additional_non_farm_exemptions].first.class)
+      expect(validators[:temp_add_additional_non_bucket_exemptions].first.class)
         .to eq(DefraRuby::Validators::TrueFalseValidator)
     end
 
     it_behaves_like "a validated form", :confirm_farm_exemptions_form do
       let(:valid_params) do
         [
-          { temp_add_additional_non_farm_exemptions: "false" },
-          { temp_add_additional_non_farm_exemptions: "true" }
+          { temp_add_additional_non_bucket_exemptions: "false" },
+          { temp_add_additional_non_bucket_exemptions: "true" }
         ]
       end
       let(:invalid_params) do
         [
-          { temp_add_additional_non_farm_exemptions: "" },
-          { temp_add_additional_non_farm_exemptions: nil }
+          { temp_add_additional_non_bucket_exemptions: "" },
+          { temp_add_additional_non_bucket_exemptions: nil }
         ]
       end
     end
@@ -38,8 +38,8 @@ module WasteExemptionsEngine
         form.transient_registration.update(temp_exemptions: selected_exemption_ids)
       end
 
-      context "when temp_add_additional_non_farm_exemptions is false" do
-        let(:valid_params) { { temp_add_additional_non_farm_exemptions: "false" } }
+      context "when temp_add_additional_non_bucket_exemptions is false" do
+        let(:valid_params) { { temp_add_additional_non_bucket_exemptions: "false" } }
 
         it "copies selected exemptions to transient_registration exemptions" do
           form.submit(valid_params)
@@ -47,8 +47,8 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when temp_add_additional_non_farm_exemptions is true" do
-        let(:valid_params) { { temp_add_additional_non_farm_exemptions: "true" } }
+      context "when temp_add_additional_non_bucket_exemptions is true" do
+        let(:valid_params) { { temp_add_additional_non_bucket_exemptions: "true" } }
 
         it "does not assign the transient_registration exemptions" do
           form.submit(valid_params)
@@ -56,8 +56,8 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when temp_add_additional_non_farm_exemptions is empty" do
-        let(:invalid_params) { { temp_add_additional_non_farm_exemptions: "" } }
+      context "when temp_add_additional_non_bucket_exemptions is empty" do
+        let(:invalid_params) { { temp_add_additional_non_bucket_exemptions: "" } }
 
         it "does not assign the transient_registration exemptions" do
           form.submit(invalid_params)
