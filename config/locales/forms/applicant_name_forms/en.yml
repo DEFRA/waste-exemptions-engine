@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     applicant_name_forms:
       new:
-        title: &title Name of person filling in this form ('the applicant')
+        title: &title Name of person filling in this form (the applicant)
         heading: *title
         description: Enter your own name, even if you're filling it in for someone else.
         applicant_first_name_label: First name
