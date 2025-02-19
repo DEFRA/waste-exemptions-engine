@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     contact_email_forms:
       new:
-        title: &title What's the correct email address to contact?
+        title: &title What's the contact email address?
         heading: *title
         error_heading: A problem to fix
         contact_email_label: Email address
