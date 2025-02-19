@@ -38,6 +38,7 @@ Metrics/ClassLength:
     - app/presenters/waste_exemptions_engine/registration_details_presenter.rb
     - app/models/waste_exemptions_engine/transient_registration.rb
     - app/services/waste_exemptions_engine/registration_completion_service.rb
+    - app/presenters/waste_exemptions_engine/exemption_costs_presenter.rb
 
 # Some modules need to be lengthy, especially specs
 Metrics/ModuleLength:

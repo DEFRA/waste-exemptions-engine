@@ -14,7 +14,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.fetch(:confirm_farm_exemptions_form, {}).permit(:temp_confirm_exemptions)
+      params.fetch(:confirm_farm_exemptions_form, {}).permit(:temp_add_additional_non_bucket_exemptions)
     end
   end
 end

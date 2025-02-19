@@ -2,19 +2,33 @@
 
 module WasteExemptionsEngine
   class ConfirmFarmExemptionsForm < BaseForm
-    delegate :exemption_ids, :temp_exemptions, to: :transient_registration
-    delegate :temp_confirm_exemptions, to: :transient_registration
+    delegate :exemption_ids,
+             :temp_exemptions,
+             :temp_add_additional_non_bucket_exemptions,
+             to: :transient_registration
 
-    validates :temp_confirm_exemptions, "defra_ruby/validators/true_false": true
+    validates :temp_add_additional_non_bucket_exemptions, "defra_ruby/validators/true_false": true
 
     def initialize(transient_registration)
-      transient_registration.temp_confirm_exemptions = nil
+      transient_registration.temp_add_additional_non_bucket_exemptions = nil
 
       super
     end
 
     def submit(params)
-      params.merge!(exemption_ids: temp_exemptions) if params[:temp_confirm_exemptions] == "true"
+      # When user opts out of additional non-farm exemptions
+      if params[:temp_add_additional_non_bucket_exemptions] == "false"
+
+        # Keep only farm exemptions in temp_exemptions
+        farm_only_exemptions = temp_exemptions.select do |id|
+          WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+        end
+
+        params.merge!(
+          exemption_ids: farm_only_exemptions,
+          temp_exemptions: farm_only_exemptions
+        )
+      end
 
       super
     end

@@ -9,7 +9,9 @@ module WasteExemptionsEngine
     end
 
     subject(:form) { build(:activity_exemptions_form) }
+    let(:transient_registration) { form.transient_registration }
     let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
+    let(:two_farm_exemptions) { Exemption.order("RANDOM()").first(2) }
 
     it "validates the matched exemptions using the ExemptionsValidator class" do
       validators = form._validators
@@ -23,17 +25,44 @@ module WasteExemptionsEngine
     end
 
     describe "#submit" do
-      context "when the form is valid" do
-        it "updates the transient registration with the selected activity exemptions" do
-          activity_exemptions_id_strings = three_exemptions.map(&:id).map(&:to_s)
-          valid_params = { temp_exemptions: activity_exemptions_id_strings }
-          transient_registration = form.transient_registration
+      let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
+      let(:farm_exemptions) { two_farm_exemptions.map(&:id).map(&:to_s) }
+      let(:activity_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
+      let(:valid_params) { { temp_exemptions: activity_exemptions } }
 
-          aggregate_failures do
-            expect(transient_registration.temp_exemptions).to be_empty
-            form.submit(valid_params)
-            expect(transient_registration.temp_exemptions).to match_array(activity_exemptions_id_strings)
-          end
+      context "when there are no farm exemptions" do
+        it "sets temp_exemptions to the new exemptions" do
+          form.submit(valid_params)
+
+          expect(transient_registration.reload.temp_exemptions).to match_array(activity_exemptions)
+        end
+      end
+
+      context "when there are farm exemptions already present" do
+        before do
+          # Associate farm exemptions with farmer bucket
+          two_farm_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
+          form.transient_registration.temp_exemptions = farm_exemptions
+        end
+
+        it "combines the new exemptions with the farm exemptions" do
+          form.submit(valid_params)
+
+          expect(transient_registration.reload.temp_exemptions).to match_array((farm_exemptions + activity_exemptions).uniq)
+        end
+      end
+
+      context "when there are non-farm exemptions already present" do
+        before do
+          farmer_bucket
+          create(:exemption, id: 999)
+          form.transient_registration.temp_exemptions = ["999"]
+        end
+
+        it "onlies keep the new non-farm exemptions" do
+          form.submit(valid_params)
+
+          expect(transient_registration.reload.temp_exemptions).to match_array(activity_exemptions)
         end
       end
     end
