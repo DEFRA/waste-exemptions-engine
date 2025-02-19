@@ -10,7 +10,7 @@
 
       <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
 
-      <div class="govuk-heading-s">
+      <div class="govuk-body">
         <% selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration).each do |exemption| %>
           <%= exemption.code %> <%= exemption.summary %><br>
         <% end %>
