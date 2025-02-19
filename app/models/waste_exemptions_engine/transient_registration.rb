@@ -30,6 +30,15 @@ module WasteExemptionsEngine
     has_many :transient_registration_exemptions, dependent: :destroy
     has_many :exemptions, through: :transient_registration_exemptions
 
+    # temp_exemptions - a temporary field to store selected exemptions, array
+
+    # temp_confirm_exemptions - a temporary field for storing whether the user
+    # has confirmed the exemptions they have selected, boolean
+
+    # temp_add_additional_non_farm_exemptions - a temporary field for storing
+    # when a user during the farmer journey has selected to add non-farm
+    # exemptions, after selecting farm exemptions, boolean
+
     alias addresses transient_addresses
     def addresses=(address_array)
       update(transient_addresses: address_array)
@@ -54,6 +63,7 @@ module WasteExemptionsEngine
                               temp_waste_activities
                               temp_exemptions
                               temp_confirm_exemptions
+                              temp_add_additional_non_farm_exemptions
                               temp_confirm_exemption_edits
                               temp_confirm_no_exemption_changes
                               temp_contact_postcode

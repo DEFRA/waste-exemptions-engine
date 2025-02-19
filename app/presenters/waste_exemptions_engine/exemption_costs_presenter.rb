@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
 
@@ -140,4 +139,3 @@ module WasteExemptionsEngine
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
