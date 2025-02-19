@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     end
 
     def show_farm_exemptions?(transient_registration)
-      transient_registration.farm_affiliated? && transient_registration.temp_add_additional_non_farm_exemptions
+      transient_registration.farm_affiliated? && transient_registration.temp_add_additional_non_bucket_exemptions
     end
 
     def non_farm_exemptions(transient_registration)

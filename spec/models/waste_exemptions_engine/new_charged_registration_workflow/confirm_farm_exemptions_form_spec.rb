@@ -8,13 +8,13 @@ module WasteExemptionsEngine
       let(:new_registration) do
         create(:new_charged_registration,
                workflow_state: :confirm_farm_exemptions_form,
-               temp_add_additional_non_farm_exemptions: temp_add_additional_non_farm_exemptions,
+               temp_add_additional_non_bucket_exemptions: temp_add_additional_non_bucket_exemptions,
                temp_exemptions: temp_exemptions,
                temp_confirm_exemptions: temp_confirm_exemptions)
       end
 
       context "when proceeding with selected farm exemptions" do
-        let(:temp_add_additional_non_farm_exemptions) { false }
+        let(:temp_add_additional_non_bucket_exemptions) { false }
         let(:temp_confirm_exemptions) { true }
 
         context "when farm exemptions have been selected" do
@@ -41,7 +41,7 @@ module WasteExemptionsEngine
       end
 
       context "when adding additional non-farm exemptions" do
-        let(:temp_add_additional_non_farm_exemptions) { true }
+        let(:temp_add_additional_non_bucket_exemptions) { true }
         let(:temp_confirm_exemptions) { true }
         let(:temp_exemptions) { [create(:exemption).id] }
 
@@ -54,7 +54,7 @@ module WasteExemptionsEngine
       end
 
       context "when in check your answers flow" do
-        let(:temp_add_additional_non_farm_exemptions) { false }
+        let(:temp_add_additional_non_bucket_exemptions) { false }
         let(:temp_confirm_exemptions) { true }
         let(:temp_exemptions) { [create(:exemption).id] }
 

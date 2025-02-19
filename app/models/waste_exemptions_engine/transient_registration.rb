@@ -35,7 +35,7 @@ module WasteExemptionsEngine
     # temp_confirm_exemptions - a temporary field for storing whether the user
     # has confirmed the exemptions they have selected, boolean
 
-    # temp_add_additional_non_farm_exemptions - a temporary field for storing
+    # temp_add_additional_non_bucket_exemptions - a temporary field for storing
     # when a user during the farmer journey has selected to add non-farm
     # exemptions, after selecting farm exemptions, boolean
 
@@ -63,7 +63,7 @@ module WasteExemptionsEngine
                               temp_waste_activities
                               temp_exemptions
                               temp_confirm_exemptions
-                              temp_add_additional_non_farm_exemptions
+                              temp_add_additional_non_bucket_exemptions
                               temp_confirm_exemption_edits
                               temp_confirm_no_exemption_changes
                               temp_contact_postcode

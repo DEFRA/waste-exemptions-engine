@@ -684,7 +684,7 @@ module WasteExemptionsEngine
     end
 
     def proceed_with_selected_farm_exemptions?
-      temp_add_additional_non_farm_exemptions == false
+      temp_add_additional_non_bucket_exemptions == false
     end
 
     def reselect_exemptions?
@@ -692,7 +692,7 @@ module WasteExemptionsEngine
     end
 
     def add_additional_non_farm_exemptions?
-      temp_add_additional_non_farm_exemptions == true
+      temp_add_additional_non_bucket_exemptions == true
     end
 
     def no_exemptions_selected?
