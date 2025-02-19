@@ -16,6 +16,13 @@ module WasteExemptionsEngine
       it { expect(charge_detail.total_compliance_charge_amount).to eq total_compliance_charge_amount }
     end
 
+    describe "#total_compliance_charge_amount_excluding_bucket" do
+      let(:bucket_charge_amount) { 100 }
+      let(:charge_detail) { build(:charge_detail, bucket_charge_amount: bucket_charge_amount) }
+
+      it { expect(charge_detail.total_compliance_charge_amount_excluding_bucket).to eq(charge_detail.total_compliance_charge_amount - bucket_charge_amount) }
+    end
+
     describe "#total_charge_amount" do
       it do
         expect(charge_detail.total_charge_amount).to eq(
