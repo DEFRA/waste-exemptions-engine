@@ -9,13 +9,13 @@
       <p class="govuk-body"> <%= t(".description") %></p>
 
       <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
-      
-      <div class="govuk-heading-s">
+
+      <div class="govuk-body">
         <% selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration).each do |exemption| %>
           <%= exemption.code %> <%= exemption.summary %><br>
         <% end %>
       </div>
-      
+
       <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_farm_exemptions_form.errors[:workflow_state].any? %>">
         <%= f.govuk_collection_radio_buttons :temp_confirm_exemptions,
             [
