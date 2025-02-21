@@ -109,7 +109,7 @@ module WasteExemptionsEngine
             order.update(bucket: Bucket.farmer_bucket)
             order.exemptions = exemptions
             # Set the bucket charge
-            Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 70198)
+            Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 70_198)
           end
 
           it "returns bucket charge for first bucket exemption" do
