@@ -9,7 +9,7 @@ en:
           "false": I do not want any more waste exemptions.
           "true": I want to add waste exemptions that are not included in the farming exemptions.
         add_more_farm_exemptions: If you need more farming exemptions, go back
-        add_more_farm_exemptions_link: to the farmer exemption page.
+        add_more_farm_exemptions_link: to the farming exemptions page.
   activemodel:
     errors:
       models:
