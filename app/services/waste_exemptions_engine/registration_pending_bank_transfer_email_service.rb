@@ -5,6 +5,7 @@ require "notifications/client"
 module WasteExemptionsEngine
   class RegistrationPendingBankTransferEmailService < BaseService
     include CanHaveCommunicationLog
+    include FinanceDetailsHelper
 
     def run(registration:, recipient:)
       return unless registration.account.present?
@@ -47,13 +48,17 @@ module WasteExemptionsEngine
           last_name: @registration.contact_last_name,
           account_number: I18n.t("#{payment_details_path}.account_number_value"),
           sort_code: I18n.t("#{payment_details_path}.sort_code_value"),
-          payment_due: @registration.account.balance,
+          payment_due: payment_due,
           iban: I18n.t("#{payment_details_path}.iban"),
           swiftbic: I18n.t("#{payment_details_path}.swift_bic"),
           currency: "Sterling",
           reg_identifier: @registration.reference
         }
       }
+    end
+
+    def payment_due
+      display_pence_as_pounds_and_cents(@registration.account.balance.abs)
     end
   end
 end
