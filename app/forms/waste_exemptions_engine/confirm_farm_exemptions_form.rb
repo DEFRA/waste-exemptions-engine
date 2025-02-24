@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       if params[:temp_add_additional_non_bucket_exemptions] == "false"
 
         # Keep only farm exemptions in temp_exemptions
-        farm_only_exemptions = temp_exemptions.select do |id|
+        farm_only_exemptions = Array(temp_exemptions).select do |id|
           WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
         end
 
