@@ -28,10 +28,7 @@ module WasteExemptionsEngine
         copy_charging_attributes
         add_metadata
         @registration.save!
-        if @registration.charged?
-          copy_order
-          update_beta_participant_registration_details
-        end
+        copy_order if @registration.charged?
         @transient_registration.destroy
       end
 
@@ -120,16 +117,6 @@ module WasteExemptionsEngine
 
     def distinct_recipients
       [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
-    end
-
-    def update_beta_participant_registration_details
-      beta_participant = BetaParticipant.find_by(registration: @transient_registration)
-      return if beta_participant.blank?
-
-      beta_participant.update(
-        registration: @registration,
-        selected_payment_method: @transient_registration.temp_payment_method
-      )
     end
   end
 end
