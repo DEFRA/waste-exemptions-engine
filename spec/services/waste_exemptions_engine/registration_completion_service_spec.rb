@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationCompletionService do
-    let(:new_registration) { create(:new_registration, :complete, workflow_state: "registration_complete_form") }
+    let(:new_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
     let(:registration) { Registration.last }
 
     describe "#complete" do
@@ -49,6 +49,7 @@ module WasteExemptionsEngine
           expect(WasteExemptionsEngine::Registration.count).to eq(1)
 
           # Clean up after the threads have executed
+          WasteExemptionsEngine::Account.delete_all
           WasteExemptionsEngine::Address.delete_all
           WasteExemptionsEngine::Person.delete_all
           WasteExemptionsEngine::RegistrationExemption.delete_all
@@ -109,14 +110,35 @@ module WasteExemptionsEngine
         end
 
         context "when the contact email is not blank (AD)" do
-          it "sends a confirmation email to both the applicant and the contact emails" do
-            run_service
+          context "when payment method is not bank transfer" do
+            it "sends a confirmation email to both the applicant and the contact emails" do
+              run_service
 
-            aggregate_failures do
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.applicant_email)
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.contact_email)
+              aggregate_failures do
+                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                             recipient: new_registration.applicant_email)
+                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                             recipient: new_registration.contact_email)
+              end
+            end
+          end
+
+          context "when payment method is bank transfer" do
+            before do
+              allow(RegistrationPendingBankTransferEmailService).to receive(:run)
+            end
+
+            it "sends a registration pending bank transfer payment email to both the applicant and the contact emails" do
+              new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
+
+              run_service
+
+              aggregate_failures do
+                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                                                recipient: new_registration.applicant_email)
+                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                                                recipient: new_registration.contact_email)
+              end
             end
           end
 

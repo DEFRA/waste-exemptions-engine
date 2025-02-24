@@ -29,6 +29,12 @@ module WasteExemptionsEngine
         add_metadata
         @registration.save!
         copy_order if @registration.charged?
+
+        # Memoize the payment_method to supress registration confirmation email
+        # if the payment method is bank_transfer
+        @payment_method = @transient_registration.temp_payment_method
+
+        # Destroy the transient registration
         @transient_registration.destroy
       end
 
@@ -104,7 +110,11 @@ module WasteExemptionsEngine
 
     def send_confirmation_emails
       distinct_recipients.each do |recipient|
-        send_confirmation_email(recipient) if recipient.present?
+        if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
+          send_registration_pending_bank_transfer_email(recipient)
+        elsif recipient.present?
+          send_confirmation_email(recipient)
+        end
       end
     end
 
@@ -113,6 +123,13 @@ module WasteExemptionsEngine
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Confirmation email error: #{e}"
+    end
+
+    def send_registration_pending_bank_transfer_email(recipient)
+      RegistrationPendingBankTransferEmailService.run(registration: @registration, recipient: recipient)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Registration pending bank transfer email error: #{e}"
     end
 
     def distinct_recipients
