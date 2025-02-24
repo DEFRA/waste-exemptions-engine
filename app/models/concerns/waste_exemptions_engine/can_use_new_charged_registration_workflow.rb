@@ -696,7 +696,7 @@ module WasteExemptionsEngine
     end
 
     def no_exemptions_selected?
-      temp_exemptions.nil? || temp_exemptions.empty?
+      (temp_exemptions.nil? || temp_exemptions.empty?) && temp_add_additional_non_bucket_exemptions == false
     end
   end
 end

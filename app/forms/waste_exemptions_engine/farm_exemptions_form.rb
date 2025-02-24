@@ -4,8 +4,6 @@ module WasteExemptionsEngine
   class FarmExemptionsForm < BaseForm
     delegate :temp_exemptions, to: :transient_registration
 
-    validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
-
     def submit(params)
       # Get the current exemptions and new farm exemptions
       current_exemptions = Array(temp_exemptions)
