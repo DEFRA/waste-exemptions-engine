@@ -2,13 +2,7 @@
 
 module WasteExemptionsEngine
   class ExemptionsSummaryForm < BaseForm
-    delegate :exemptions,
-             :compliance_charge,
-             :charge_type,
-             :registration_charge,
-             :total_charge,
-             :band,
-             :registration_charge_without_pence,
+    delegate :exemptions, :compliance_charge, :charge_type, :registration_charge, :total_charge, :band,
              to: :exemption_costs_presenter
 
     delegate :farm_affiliated?, to: :transient_registration
