@@ -31,11 +31,26 @@ module WasteExemptionsEngine
         context "when no farm exemptions have been selected" do
           let(:temp_exemptions) { [] }
 
-          it "transitions to no_farm_exemptions_selected_form" do
-            expect(new_registration)
-              .to transition_from(:confirm_farm_exemptions_form)
-              .to(:no_farm_exemptions_selected_form)
-              .on_event(:next)
+          context "when looking to add additional non-farm exemptions" do
+            let(:temp_add_additional_non_bucket_exemptions) { true }
+
+            it "transitions to waste_activities_form" do
+              expect(new_registration)
+                .to transition_from(:confirm_farm_exemptions_form)
+                .to(:waste_activities_form)
+                .on_event(:next)
+            end
+          end
+
+          context "when not looking to add additional non-farm exemptions" do
+            let(:temp_add_additional_non_bucket_exemptions) { false }
+
+            it "transitions to no_farm_exemptions_selected_form" do
+              expect(new_registration)
+                .to transition_from(:confirm_farm_exemptions_form)
+                .to(:no_farm_exemptions_selected_form)
+                .on_event(:next)
+            end
           end
         end
       end
