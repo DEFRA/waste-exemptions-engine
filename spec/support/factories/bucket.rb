@@ -5,5 +5,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Bucket #{n}" }
     initial_compliance_charge { association :charge, :initial_compliance_charge }
     bucket_type { "farmer" }
+    exemptions { create_list(:exemption, 4) }
   end
 end
