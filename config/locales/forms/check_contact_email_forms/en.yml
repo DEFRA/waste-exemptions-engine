@@ -2,7 +2,7 @@ en:
   waste_exemptions_engine:
     check_contact_email_forms:
       new:
-        title: &title Is this the correct email address to contact?
+        title: &title Is this the contact email address?
         heading: *title
         options:
           "yes": "Yes"

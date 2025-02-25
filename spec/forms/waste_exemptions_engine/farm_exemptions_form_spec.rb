@@ -4,36 +4,58 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe FarmExemptionsForm, type: :model do
-    before { create_list(:exemption, 5) }
-
-    subject(:form) { build(:farm_exemptions_form) }
-
-    let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
-
-    it_behaves_like "a validated form", :activity_exemptions_form do
-      let(:valid_params) { { temp_exemptions: three_exemptions.map(&:id).map(&:to_s) } }
+    before do
+      create_list(:exemption, 5)
+      transient_registration.on_a_farm = true
+      transient_registration.is_a_farmer = true
+      transient_registration.temp_add_additional_non_bucket_exemptions = add_additional_non_farm_exemptions
+      transient_registration.save
     end
 
-    describe "#submit" do
-      context "when the form is valid" do
-        context "when no exemptions have been selected" do
-          let(:valid_params) { { temp_exemptions: [] } }
+    subject(:form) { build(:farm_exemptions_form) }
+    let(:transient_registration) { form.transient_registration }
+    let(:add_additional_non_farm_exemptions) { true }
 
-          it { expect(form.valid?).to be true }
+    let(:three_exemptions) { Exemption.order("RANDOM()").last(3) }
+    let(:two_activity_exemptions) { Exemption.order("RANDOM()").first(2) }
+
+    describe "#submit" do
+      context "when no exemptions have been selected" do
+        let(:valid_params) { { temp_exemptions: [] } }
+
+        it { expect(form.valid?).to be true }
+
+        it "can submit" do
+          expect(form.submit(valid_params)).to be(true)
+        end
+      end
+
+      context "when farm exemptions have been selected" do
+        let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
+        let(:farm_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
+        let(:activity_exemptions) { two_activity_exemptions.map(&:id).map(&:to_s) }
+        let(:valid_params) { { temp_exemptions: farm_exemptions } }
+
+        before do
+          # Associate farm exemptions with farmer bucket
+          three_exemptions.each { |exemption| create(:bucket_exemption, bucket: farmer_bucket, exemption: exemption) }
         end
 
-        context "when exemptions have been selected" do
-          let(:activity_exemptions_id_strings) { three_exemptions.map(&:id).map(&:to_s) }
-          let(:valid_params) { { temp_exemptions: activity_exemptions_id_strings } }
+        it "updates the transient registration with the selected farm exemptions" do
+          form.submit(valid_params)
 
-          it "updates the transient registration with the selected activity exemptions" do
-            transient_registration = form.transient_registration
+          expect(transient_registration.temp_exemptions).to match_array(farm_exemptions)
+        end
 
-            aggregate_failures do
-              expect(transient_registration.temp_exemptions).to be_empty
-              form.submit(valid_params)
-              expect(transient_registration.temp_exemptions).to match_array(activity_exemptions_id_strings)
-            end
+        context "when the user has added non-farm exemptions already" do
+          before do
+            transient_registration.temp_exemptions = activity_exemptions
+          end
+
+          it "combines with existing activity exemptions" do
+            form.submit(valid_params)
+
+            expect(transient_registration.temp_exemptions).to match_array((activity_exemptions + farm_exemptions).uniq.sort)
           end
         end
       end

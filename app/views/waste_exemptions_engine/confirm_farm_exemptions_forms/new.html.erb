@@ -8,24 +8,28 @@
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
       <p class="govuk-body"> <%= t(".description") %></p>
 
-      <% selected_farm_exemptions = selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration) %>
-      
-      <div class="govuk-heading-s">
-        <% selected_farm_exemptions(@confirm_farm_exemptions_form.transient_registration).each do |exemption| %>
+      <% selected_farm_exemptions = selected_farm_exemptions(@transient_registration) %>
+
+      <div class="govuk-body">
+        <% if selected_farm_exemptions(@transient_registration).present? %>
+        <% selected_farm_exemptions(@transient_registration).each do |exemption| %>
           <%= exemption.code %> <%= exemption.summary %><br>
         <% end %>
+      <% else %>
+        <p class="govuk-heading-s"><%= t(".no_farm_exemptions") %></p>
+      <% end %>
       </div>
-      
+
       <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_farm_exemptions_form.errors[:workflow_state].any? %>">
-        <%= f.govuk_collection_radio_buttons :temp_confirm_exemptions,
+        <%= f.govuk_collection_radio_buttons :temp_add_additional_non_bucket_exemptions,
             [
-              OpenStruct.new(
-                id: true,
-                name: t(".options.true")
-              ),
               OpenStruct.new(
                 id: false,
                 name: t(".options.false")
+              ),
+              OpenStruct.new(
+                id: true,
+                name: t(".options.true")
               )
             ],
             :id,
