@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :bucket, class: "WasteExemptionsEngine::Bucket" do
-    name { "Bucket #{Faker::Lorem.unique.word}" }
+    sequence(:name) { |n| "Bucket #{n}" }
     initial_compliance_charge { association :charge, :initial_compliance_charge }
     bucket_type { "farmer" }
   end
