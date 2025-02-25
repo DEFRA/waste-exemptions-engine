@@ -4,7 +4,7 @@ en:
       new:
         title: &title Contact phone number
         heading: *title
-        contact_phone_label: Enter the contact phone number
+        contact_phone_label: Enter the contact person's phone number
         contact_phone_hint: This can be a landline or mobile
         error_heading: A problem to fix
         next_button: Continue

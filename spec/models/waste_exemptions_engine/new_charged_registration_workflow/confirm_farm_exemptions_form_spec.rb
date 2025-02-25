@@ -8,47 +8,79 @@ module WasteExemptionsEngine
       let(:new_registration) do
         create(:new_charged_registration,
                workflow_state: :confirm_farm_exemptions_form,
-               temp_confirm_exemptions: temp_confirm_exemptions,
-               temp_exemptions: temp_exemption_ids)
+               temp_add_additional_non_bucket_exemptions: temp_add_additional_non_bucket_exemptions,
+               temp_exemptions: temp_exemptions,
+               temp_confirm_exemptions: temp_confirm_exemptions)
       end
 
-      context "when temp_confirm_exemptions is true" do
+      context "when proceeding with selected farm exemptions" do
+        let(:temp_add_additional_non_bucket_exemptions) { false }
         let(:temp_confirm_exemptions) { true }
 
-        context "when no exemptions have been selected" do
-          let(:temp_exemption_ids) { [] }
+        context "when farm exemptions have been selected" do
+          let(:temp_exemptions) { [create(:exemption).id] }
 
-          it "transitions to :no_farm_exemptions_selected_form" do
-            expect(new_registration)
-              .to transition_from(:confirm_farm_exemptions_form)
-              .to(:no_farm_exemptions_selected_form)
-              .on_event(:next)
-          end
-        end
-
-        context "when some exemptions have been selected" do
-          let(:temp_exemption_ids) do
-            create_list(:exemption, 3)
-            Exemption.limit(3).map(&:id)
-          end
-
-          it "transitions to :site_grid_reference_form" do
+          it "transitions to site_grid_reference_form" do
             expect(new_registration)
               .to transition_from(:confirm_farm_exemptions_form)
               .to(:site_grid_reference_form)
               .on_event(:next)
           end
         end
+
+        context "when no farm exemptions have been selected" do
+          let(:temp_exemptions) { [] }
+
+          context "when looking to add additional non-farm exemptions" do
+            let(:temp_add_additional_non_bucket_exemptions) { true }
+
+            it "transitions to waste_activities_form" do
+              expect(new_registration)
+                .to transition_from(:confirm_farm_exemptions_form)
+                .to(:waste_activities_form)
+                .on_event(:next)
+            end
+          end
+
+          context "when not looking to add additional non-farm exemptions" do
+            let(:temp_add_additional_non_bucket_exemptions) { false }
+
+            it "transitions to no_farm_exemptions_selected_form" do
+              expect(new_registration)
+                .to transition_from(:confirm_farm_exemptions_form)
+                .to(:no_farm_exemptions_selected_form)
+                .on_event(:next)
+            end
+          end
+        end
       end
 
-      context "when temp_confirm_exemptions is false" do
-        let(:temp_confirm_exemptions) { false }
-        let(:temp_exemption_ids) { [create(:exemption).id] }
+      context "when adding additional non-farm exemptions" do
+        let(:temp_add_additional_non_bucket_exemptions) { true }
+        let(:temp_confirm_exemptions) { true }
+        let(:temp_exemptions) { [create(:exemption).id] }
 
-        it "transitions to :farm_exemptions_form" do
+        it "transitions to waste_activities_form" do
           expect(new_registration)
             .to transition_from(:confirm_farm_exemptions_form)
             .to(:waste_activities_form)
+            .on_event(:next)
+        end
+      end
+
+      context "when in check your answers flow" do
+        let(:temp_add_additional_non_bucket_exemptions) { false }
+        let(:temp_confirm_exemptions) { true }
+        let(:temp_exemptions) { [create(:exemption).id] }
+
+        before do
+          new_registration.temp_check_your_answers_flow = true
+        end
+
+        it "transitions to check_your_answers_form" do
+          expect(new_registration)
+            .to transition_from(:confirm_farm_exemptions_form)
+            .to(:check_your_answers_form)
             .on_event(:next)
         end
       end

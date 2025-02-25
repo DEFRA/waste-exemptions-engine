@@ -2,8 +2,38 @@
 
 module WasteExemptionsEngine
   module ConfirmActivityExemptionsFormsHelper
-    def selected_activity_exemptions(waste_activity_ids = [])
-      WasteExemptionsEngine::Exemption.where(id: waste_activity_ids).order(:band_id, :id)
+    def selected_exemptions(exemption_ids = [])
+      WasteExemptionsEngine::Exemption.where(id: exemption_ids)
+                                      .order(:band_id, :id)
+    end
+
+    def show_farm_exemptions?(transient_registration)
+      transient_registration.farm_affiliated? && transient_registration.temp_add_additional_non_bucket_exemptions
+    end
+
+    def non_farm_exemptions(transient_registration)
+      selected_non_farm_exemption_ids = transient_registration.temp_exemptions.reject do |id|
+        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+      end
+
+      WasteExemptionsEngine::Exemption.where(id: selected_non_farm_exemption_ids).order(:band_id, :id)
+    end
+
+    def farm_exemptions(transient_registration)
+      selected_farm_exemption_ids = transient_registration.temp_exemptions.select do |id|
+        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+      end
+
+      WasteExemptionsEngine::Exemption.where(id: selected_farm_exemption_ids).order(:band_id, :id)
+    end
+
+    def exemptions_by_band(exemptions)
+      exemptions.group_by(&:band_id).sort.map do |_band_id, band_exemptions|
+        {
+          name: band_exemptions.first.band&.name,
+          exemptions: band_exemptions
+        }
+      end
     end
   end
 end
