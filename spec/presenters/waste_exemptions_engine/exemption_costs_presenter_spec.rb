@@ -174,7 +174,7 @@ module WasteExemptionsEngine
         end
 
         it "returns blank for the rest of the farm exemptions" do
-          order.exemptions[1..].each do |exemption|
+          sorted_exemptions[1..].each do |exemption|
             expect(presenter.compliance_charge(exemption)).to be_blank
           end
         end
