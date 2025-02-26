@@ -4,9 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Activity Exemptions Forms" do
-    before do
-      create_list(:exemption, 5)
-    end
+    include_context "farm bucket"
 
     include_examples "GET form", :activity_exemptions_form, "/select-waste-exemptions", is_charged: true
     include_examples "POST form", :activity_exemptions_form, "/select-waste-exemptions" do
