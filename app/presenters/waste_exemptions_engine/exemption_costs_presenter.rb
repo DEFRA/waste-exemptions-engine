@@ -32,13 +32,13 @@ module WasteExemptionsEngine
       if exemption_in_bucket?(exemption)
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
       else
-        exemption.band&.sequence
+        exemption.band&.sequence || I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
       end
     end
 
     def compliance_charge(exemption)
       if exemption_in_bucket?(exemption)
-        bucket_exemption_compliance_charge(exemption)
+        bucket_exemption_compliance_charge(exemption).presence || ""
       elsif first_exemption_in_highest_band?(exemption)
         format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
@@ -64,15 +64,6 @@ module WasteExemptionsEngine
       format_currency(
         WasteExemptionsEngine::CurrencyConversionService
         .convert_pence_to_pounds(@order_calculator.registration_charge_amount)
-      )
-    end
-
-    def registration_charge_without_pence
-      helpers.number_to_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
-        unit: "£",
-        precision: 0
       )
     end
 
@@ -110,7 +101,6 @@ module WasteExemptionsEngine
 
     def first_exemption_in_highest_band?(exemption)
       return false if exemption_in_bucket?(exemption)
-
       non_bucket_exemptions = exemptions.reject { |e| exemption_in_bucket?(e) }
       exemption.band == highest_band && exemption == non_bucket_exemptions.first
     end
@@ -138,7 +128,23 @@ module WasteExemptionsEngine
     end
 
     def bucket_exemption_compliance_charge(exemption)
-      first_bucket_exemption_in_order?(exemption) ? format_currency(@order_calculator.bucket_charge_amount / 100.0) : ""
+      if first_bucket_exemption_in_order?(exemption)
+        format_currency(
+          WasteExemptionsEngine::CurrencyConversionService
+          .convert_pence_to_pounds(@order_calculator.bucket_charge_amount)
+        )
+      else
+        ""
+      end
+    end
+
+    def registration_charge_without_pence
+      helpers.number_to_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
+        unit: "£",
+        precision: 0
+      )
     end
   end
 end
