@@ -32,7 +32,7 @@ module WasteExemptionsEngine
 
       context "when farm exemptions have been selected" do
         let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
-        let(:farm_exemptions) { three_exemptions.map(&:id).map(&:to_s) }
+        let(:farm_exemptions) { farmer_bucket.exemptions.limit(3).map(&:id).map(&:to_s) }
         let(:activity_exemptions) { two_activity_exemptions.map(&:id).map(&:to_s) }
         let(:valid_params) { { temp_exemptions: farm_exemptions } }
 

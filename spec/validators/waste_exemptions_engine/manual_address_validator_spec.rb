@@ -60,7 +60,7 @@ module WasteExemptionsEngine
 
         optional_attributes.each do |property|
           context "when the #{property} is missing (because it is optional" do
-            it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*(inputs[property][:missing]))
+            it_behaves_like "a valid record", Test::ManualAddressValidatable.new(*inputs[property][:missing])
           end
         end
       end
@@ -93,7 +93,7 @@ module WasteExemptionsEngine
 
         required_attributes.each do |property|
           context "because the #{property} is missing" do
-            validatable = Test::ManualAddressValidatable.new(*(inputs[property][:missing]))
+            validatable = Test::ManualAddressValidatable.new(*inputs[property][:missing])
             error_message = Helpers::Translator.error_message(validatable, property, :blank)
 
             it_behaves_like "an invalid record", validatable, property, error_message
@@ -102,7 +102,7 @@ module WasteExemptionsEngine
 
         length_validated_attributes.each do |property|
           context "because the #{property} is too long" do
-            validatable = Test::ManualAddressValidatable.new(*(inputs[property][:too_long]))
+            validatable = Test::ManualAddressValidatable.new(*inputs[property][:too_long])
             error_message = Helpers::Translator.error_message(validatable, property, :too_long)
 
             it_behaves_like "an invalid record", validatable, property, error_message

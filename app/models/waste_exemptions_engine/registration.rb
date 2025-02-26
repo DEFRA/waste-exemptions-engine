@@ -69,10 +69,11 @@ module WasteExemptionsEngine
     end
 
     def expiry_month
-      return unless expires_on.present?
+      expiry_date = expires_on
+      return unless expiry_date.present?
 
-      month = expires_on.strftime("%B")
-      year = expires_on.year
+      month = expiry_date.strftime("%B")
+      year = expiry_date.year
 
       "#{month} #{year}"
     end
