@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     def submit(params)
       # This form handles all non-farm exemptions; the param holds what has been selected in the form
-      selected_non_farm_exemptions = params[:temp_exemptions]
+      selected_non_farm_exemptions = params[:temp_exemptions] || []
 
       # Combine any previously selected farm exemptions with non-farm exemptions selected on this form
       attributes = { temp_exemptions: (farmer_bucket_exemptions + selected_non_farm_exemptions).uniq.sort }
