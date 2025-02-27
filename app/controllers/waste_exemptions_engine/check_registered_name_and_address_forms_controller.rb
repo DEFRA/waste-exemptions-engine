@@ -4,6 +4,10 @@ require "defra_ruby/companies_house"
 
 module WasteExemptionsEngine
   class CheckRegisteredNameAndAddressFormsController < FormsController
+
+    VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX =
+      /\A(\d{8,8}$)|([a-zA-Z]{2}\d{6}$)|([a-zA-Z]{2}\d{5}[a-zA-Z]{1}$)\z/i
+
     def new
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
 
@@ -18,9 +22,6 @@ module WasteExemptionsEngine
     end
 
     private
-
-    VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX =
-      /\A(\d{8,8}$)|([a-zA-Z]{2}\d{6}$)|([a-zA-Z]{2}\d{5}[a-zA-Z]{1}$)\z/i
 
     def validate_company_status
       companies_house_details[:company_status] == :active

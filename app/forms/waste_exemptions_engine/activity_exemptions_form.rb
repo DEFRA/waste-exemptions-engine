@@ -7,21 +7,25 @@ module WasteExemptionsEngine
     validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
 
     def submit(params)
-      # Get the current exemptions and new non-farm exemptions
-      current_exemptions = Array(temp_exemptions)
-      new_non_farm_exemptions = Array(params[:temp_exemptions])
+      # This form handles all non-farm exemptions; the param holds what has been selected in the form
+      selected_non_farm_exemptions = params[:temp_exemptions] || []
 
-      # Get farm exemptions from transient_registration
-      current_farm_exemptions = current_exemptions.select do |id|
-        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
-      end
-
-      # Combine farm exemptions with only the new non-farm exemptions
-      # This is to allow removing non-farm exemptions when the user deselects
-      # them while keeping the farm exemptions that are not handled by this form
-      attributes = { temp_exemptions: (current_farm_exemptions + new_non_farm_exemptions).uniq.sort }
+      # Combine any previously selected farm exemptions with non-farm exemptions selected on this form
+      attributes = { temp_exemptions: (farmer_bucket_exemptions + selected_non_farm_exemptions).uniq.sort }
 
       super(attributes)
+    end
+
+    private
+
+    # This form doesn't handle farm exemptions if the order has a farmer bucket.
+    # Read them from the transient_registration.
+    def farmer_bucket_exemptions
+      return [] if @transient_registration.order&.bucket.nil?
+
+      temp_exemptions.select do |id|
+        WasteExemptionsEngine::Bucket.farmer_bucket.exemption_ids.include?(id)
+      end
     end
   end
 end
