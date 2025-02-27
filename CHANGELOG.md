@@ -262,6 +262,8 @@
 
 **Fixed bugs:**
 
+- Fix/ruby 3664 deselect exemptions [\#1210](https://github.com/DEFRA/waste-exemptions-engine/pull/1210) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- RUBY 3643 wex charging exemptions summary page non farming exemption is shown at discounted amount with farming exemptions [\#1205](https://github.com/DEFRA/waste-exemptions-engine/pull/1205) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3618\] Fix typo in farming exemptions page link in English locale file. [\#1203](https://github.com/DEFRA/waste-exemptions-engine/pull/1203) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3663\] Remove mandatory validation for `temp_exemptions` in `FarmExemptionsForm` [\#1202](https://github.com/DEFRA/waste-exemptions-engine/pull/1202) ([jjromeo](https://github.com/jjromeo))
 - RUBY 3537 wex charging farmer journey farming exemptions and non farming exemptions route [\#1190](https://github.com/DEFRA/waste-exemptions-engine/pull/1190) ([jjromeo](https://github.com/jjromeo))
@@ -426,7 +428,13 @@
 
 **Merged pull requests:**
 
+- Bump phonelib from 0.10.4 to 0.10.5 [\#1208](https://github.com/DEFRA/waste-exemptions-engine/pull/1208) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#1206](https://github.com/DEFRA/waste-exemptions-engine/pull/1206) ([jjromeo](https://github.com/jjromeo))
+- Bump parallel\_tests from 4.8.0 to 4.9.1 [\#1201](https://github.com/DEFRA/waste-exemptions-engine/pull/1201) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump nokogiri from 1.18.2 to 1.18.3 [\#1200](https://github.com/DEFRA/waste-exemptions-engine/pull/1200) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rack from 3.1.9 to 3.1.10 [\#1196](https://github.com/DEFRA/waste-exemptions-engine/pull/1196) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update CHANGELOG [\#1195](https://github.com/DEFRA/waste-exemptions-engine/pull/1195) ([brujeo](https://github.com/brujeo))
+- Bump net-imap from 0.5.0 to 0.5.6 [\#1193](https://github.com/DEFRA/waste-exemptions-engine/pull/1193) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.10.3 to 0.10.4 [\#1192](https://github.com/DEFRA/waste-exemptions-engine/pull/1192) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump bullet from 8.0.0 to 8.0.1 [\#1191](https://github.com/DEFRA/waste-exemptions-engine/pull/1191) ([dependabot[bot]](https://github.com/apps/dependabot))
 - tech debt: Removing exemptions.csv and seed job to import exemptions [\#1183](https://github.com/DEFRA/waste-exemptions-engine/pull/1183) ([brujeo](https://github.com/brujeo))
