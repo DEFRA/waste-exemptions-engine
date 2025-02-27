@@ -84,7 +84,7 @@ module WasteExemptionsEngine
           end
 
           it "returns blank for additional bucket exemptions" do
-            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("")
+            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
           end
 
           it "returns full charge for first non-bucket exemption in highest band" do
@@ -117,7 +117,7 @@ module WasteExemptionsEngine
           end
 
           it "returns blank for additional bucket exemptions" do
-            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("")
+            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
           end
 
           it "returns full charge for first non-bucket exemption in highest band" do
@@ -175,7 +175,7 @@ module WasteExemptionsEngine
 
         it "returns blank for the rest of the farm exemptions" do
           order.exemptions[1..].each do |exemption|
-            expect(presenter.compliance_charge(exemption)).to be_blank
+            expect(presenter.compliance_charge(exemption)).to eq "not applicable"
           end
         end
       end
@@ -369,6 +369,16 @@ module WasteExemptionsEngine
         it "returns the total charge including registration and compliance charges" do
           expect(presenter.total_charge).to eq("£#{format('%.2f', order_calculator.total_charge_amount / 100.0)}")
         end
+      end
+    end
+
+    describe "#registration_charge_without_pence" do
+      let(:exemptions) { [create(:exemption)] }
+
+      it "returns the registration charge formatted as currency without pence" do
+        amount = order_calculator.registration_charge_amount
+        expected_pounds = (amount / 100.0).floor
+        expect(presenter.registration_charge_without_pence).to eq("£#{expected_pounds}")
       end
     end
   end
