@@ -5,6 +5,10 @@
     <%= form_for @check_contact_name_form do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+      <p class="govuk-hint"><%= t(".description") %></p>
+
+      <br/>
       <%=
         f.govuk_collection_radio_buttons :temp_reuse_applicant_name,
         [
@@ -20,7 +24,7 @@
         :id,
         :name,
         inline: true,
-        legend: { text: t(".heading"), size: "l", tag: "h1" },
+        legend: { text: t(".heading"), hidden: true },
         hint: { text: "#{@check_contact_name_form.applicant_first_name} #{@check_contact_name_form.applicant_last_name}" } %>
 
       <%= f.govuk_submit %>
