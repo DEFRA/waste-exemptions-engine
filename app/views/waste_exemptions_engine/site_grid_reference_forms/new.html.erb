@@ -23,12 +23,16 @@
 
       <%= f.govuk_text_field :grid_reference,
         label: {
-          text: t(".grid_reference_label", grid_ref_finder_link:).html_safe,
+          text: t(".grid_reference_label"),
           size: "s"
         },
         width: "one-third",
         hint: {
-          text: t(".grid_reference_hint")
+          text: safe_join([
+            t(".grid_reference_link_hint", grid_ref_finder_link:).html_safe,
+            tag.br,
+            t(".grid_reference_hint")
+          ])
         }
       %>
 
