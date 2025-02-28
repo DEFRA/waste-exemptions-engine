@@ -373,7 +373,7 @@ module WasteExemptionsEngine
     end
 
     describe "#registration_charge_without_pence" do
-      let(:exemptions) { [create(:exemption), create(:exemption)] }
+      let(:exemptions) { create_list(:exemption, 2) }
 
       before do
         Charge.find_by(charge_type: "registration_charge").update(charge_amount: 5600)
