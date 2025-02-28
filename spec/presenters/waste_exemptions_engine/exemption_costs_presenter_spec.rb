@@ -373,12 +373,14 @@ module WasteExemptionsEngine
     end
 
     describe "#registration_charge_without_pence" do
-      let(:exemptions) { [create(:exemption)] }
+      let(:exemptions) { [create(:exemption), create(:exemption)] }
+
+      before do
+        Charge.find_by(charge_type: "registration_charge").update(charge_amount: 5600)
+      end
 
       it "returns the registration charge formatted as currency without pence" do
-        amount = order_calculator.registration_charge_amount
-        expected_pounds = (amount / 100.0).floor
-        expect(presenter.registration_charge_without_pence).to eq("£#{expected_pounds}")
+        expect(presenter.registration_charge_without_pence).to eq("£56")
       end
     end
   end
