@@ -38,7 +38,8 @@ module WasteExemptionsEngine
 
     def compliance_charge(exemption)
       if exemption_in_bucket?(exemption)
-        bucket_exemption_compliance_charge(exemption).presence || I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+        bucket_exemption_compliance_charge(exemption).presence ||
+          I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
       elsif first_exemption_in_highest_band?(exemption)
         format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
