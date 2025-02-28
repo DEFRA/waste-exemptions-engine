@@ -42,7 +42,7 @@ module WasteExemptionsEngine
       context "when the exemption is part of a farmer bucket" do
         before { order.update(bucket: Bucket.farmer_bucket) }
 
-        it { expect(presenter.band(exemptions[0])).to eq("N/A") }
+        it { expect(presenter.band(exemptions[0])).to eq("not applicable") }
       end
 
       context "when the exemption is not part of a farmer bucket" do
@@ -59,6 +59,78 @@ module WasteExemptionsEngine
         it "returns the initial compliance charge" do
           exemption = exemptions.first
           expect(presenter.compliance_charge(exemption)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
+        end
+      end
+
+      context "with mixed bucket and non-bucket exemptions" do
+        let(:bucket_exemption_high) { create(:exemption, band: band_3) }
+        let(:bucket_exemption_low) { create(:exemption, band: band_1) }
+        let(:first_non_bucket_high) { create(:exemption, band: band_3) }
+        let(:second_non_bucket_high) { create(:exemption, band: band_3) }
+        let(:non_bucket_low) { create(:exemption, band: band_1) }
+
+        context "when bucket exemption is first in order" do
+          let(:exemptions) { [bucket_exemption_high, first_non_bucket_high, second_non_bucket_high, bucket_exemption_low, non_bucket_low] }
+
+          before do
+            # Add exemptions to the farmer bucket
+            Bucket.farmer_bucket.exemptions = [bucket_exemption_high, bucket_exemption_low]
+            order.update(bucket: Bucket.farmer_bucket)
+            order.exemptions = exemptions
+          end
+
+          it "returns bucket charge for first bucket exemption" do
+            expect(presenter.compliance_charge(bucket_exemption_high)).to eq("£#{format('%.2f', order_calculator.bucket_charge_amount / 100.0)}")
+          end
+
+          it "returns blank for additional bucket exemptions" do
+            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
+          end
+
+          it "returns full charge for first non-bucket exemption in highest band" do
+            expect(presenter.compliance_charge(first_non_bucket_high)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
+          end
+
+          it "returns reduced charge for additional non-bucket exemption in highest band" do
+            expect(presenter.compliance_charge(second_non_bucket_high)).to eq("£#{format('%.2f', band_3.additional_compliance_charge.charge_amount_in_pounds)}")
+          end
+
+          it "returns reduced charge for non-bucket exemption in lower band" do
+            expect(presenter.compliance_charge(non_bucket_low)).to eq("£#{format('%.2f', band_1.additional_compliance_charge.charge_amount_in_pounds)}")
+          end
+        end
+
+        context "when non-bucket exemption is first in order" do
+          let(:exemptions) { [first_non_bucket_high, bucket_exemption_high, second_non_bucket_high, bucket_exemption_low, non_bucket_low] }
+
+          before do
+            # Add exemptions to the farmer bucket
+            Bucket.farmer_bucket.exemptions = [bucket_exemption_high, bucket_exemption_low]
+            order.update(bucket: Bucket.farmer_bucket)
+            order.exemptions = exemptions
+            # Set the bucket charge
+            Bucket.farmer_bucket.initial_compliance_charge.update(charge_amount: 70_198)
+          end
+
+          it "returns bucket charge for first bucket exemption" do
+            expect(presenter.compliance_charge(bucket_exemption_high)).to eq("£#{format('%.2f', order_calculator.bucket_charge_amount / 100.0)}")
+          end
+
+          it "returns blank for additional bucket exemptions" do
+            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
+          end
+
+          it "returns full charge for first non-bucket exemption in highest band" do
+            expect(presenter.compliance_charge(first_non_bucket_high)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
+          end
+
+          it "returns reduced charge for additional non-bucket exemption in highest band" do
+            expect(presenter.compliance_charge(second_non_bucket_high)).to eq("£#{format('%.2f', band_3.additional_compliance_charge.charge_amount_in_pounds)}")
+          end
+
+          it "returns reduced charge for non-bucket exemption in lower band" do
+            expect(presenter.compliance_charge(non_bucket_low)).to eq("£#{format('%.2f', band_1.additional_compliance_charge.charge_amount_in_pounds)}")
+          end
         end
       end
 
@@ -103,7 +175,7 @@ module WasteExemptionsEngine
 
         it "returns blank for the rest of the farm exemptions" do
           order.exemptions[1..].each do |exemption|
-            expect(presenter.compliance_charge(exemption)).to be_blank
+            expect(presenter.compliance_charge(exemption)).to eq "not applicable"
           end
         end
       end
@@ -135,6 +207,76 @@ module WasteExemptionsEngine
         it "returns 'Full'" do
           exemption = exemptions.first
           expect(presenter.charge_type(exemption)).to eq("Full")
+        end
+      end
+
+      context "with mixed bucket and non-bucket exemptions" do
+        let(:bucket_exemption_high) { create(:exemption, band: band_3) }
+        let(:bucket_exemption_low) { create(:exemption, band: band_1) }
+        let(:first_non_bucket_high) { create(:exemption, band: band_3) }
+        let(:second_non_bucket_high) { create(:exemption, band: band_3) }
+        let(:non_bucket_low) { create(:exemption, band: band_1) }
+
+        before do
+          Bucket.farmer_bucket.exemptions = [bucket_exemption_high, bucket_exemption_low]
+        end
+
+        context "when bucket exemption is first in order" do
+          let(:exemptions) { [bucket_exemption_high, first_non_bucket_high, second_non_bucket_high, bucket_exemption_low, non_bucket_low] }
+
+          before do
+            order.update(bucket: Bucket.farmer_bucket)
+            order.exemptions = exemptions
+          end
+
+          it "returns 'Farming exemption' for first bucket exemption" do
+            expect(presenter.charge_type(bucket_exemption_high)).to eq("Farming exemption")
+          end
+
+          it "returns 'Farming exemption' for additional bucket exemptions" do
+            expect(presenter.charge_type(bucket_exemption_low)).to eq("Farming exemption")
+          end
+
+          it "returns 'Full' for first non-bucket exemption in highest band" do
+            expect(presenter.charge_type(first_non_bucket_high)).to eq("Full")
+          end
+
+          it "returns 'Discounted' for additional non-bucket exemption in highest band" do
+            expect(presenter.charge_type(second_non_bucket_high)).to eq("Discounted")
+          end
+
+          it "returns 'Discounted' for non-bucket exemption in lower band" do
+            expect(presenter.charge_type(non_bucket_low)).to eq("Discounted")
+          end
+        end
+
+        context "when non-bucket exemption is first in order" do
+          let(:exemptions) { [first_non_bucket_high, bucket_exemption_high, second_non_bucket_high, bucket_exemption_low, non_bucket_low] }
+
+          before do
+            order.update(bucket: Bucket.farmer_bucket)
+            order.exemptions = exemptions
+          end
+
+          it "returns 'Farming exemption' for first bucket exemption" do
+            expect(presenter.charge_type(bucket_exemption_high)).to eq("Farming exemption")
+          end
+
+          it "returns 'Farming exemption' for additional bucket exemptions" do
+            expect(presenter.charge_type(bucket_exemption_low)).to eq("Farming exemption")
+          end
+
+          it "returns 'Full' for first non-bucket exemption in highest band" do
+            expect(presenter.charge_type(first_non_bucket_high)).to eq("Full")
+          end
+
+          it "returns 'Discounted' for additional non-bucket exemption in highest band" do
+            expect(presenter.charge_type(second_non_bucket_high)).to eq("Discounted")
+          end
+
+          it "returns 'Discounted' for non-bucket exemption in lower band" do
+            expect(presenter.charge_type(non_bucket_low)).to eq("Discounted")
+          end
         end
       end
 
@@ -173,13 +315,13 @@ module WasteExemptionsEngine
           context "when the transient registration is not farm_affiliated" do
             let(:transient_registration) { create(:new_charged_registration, on_a_farm: false) }
 
-            it { expect(presenter.charge_type(exemption)).not_to eq("Farmer exemptions") }
+            it { expect(presenter.charge_type(exemption)).not_to eq("Farming exemption") }
           end
 
           context "when the transient registration is farm_affiliated" do
             let(:transient_registration) { create(:new_charged_registration, :farm_affiliated) }
 
-            it { expect(presenter.charge_type(exemption)).to eq("Farmer exemptions") }
+            it { expect(presenter.charge_type(exemption)).to eq("Farming exemption") }
           end
         end
       end
@@ -190,8 +332,8 @@ module WasteExemptionsEngine
         let(:charged_exemption) { create(:exemption, band: band_1) }
         let(:exemptions) { [no_charge_exemption, charged_exemption] }
 
-        it "returns 'N/A'" do
-          expect(presenter.charge_type(no_charge_exemption)).to eq("N/A")
+        it "returns 'not applicable'" do
+          expect(presenter.charge_type(no_charge_exemption)).to eq("not applicable")
         end
       end
     end
@@ -227,6 +369,18 @@ module WasteExemptionsEngine
         it "returns the total charge including registration and compliance charges" do
           expect(presenter.total_charge).to eq("£#{format('%.2f', order_calculator.total_charge_amount / 100.0)}")
         end
+      end
+    end
+
+    describe "#registration_charge_without_pence" do
+      let(:exemptions) { create_list(:exemption, 2) }
+
+      before do
+        Charge.find_by(charge_type: "registration_charge").update(charge_amount: 5600)
+      end
+
+      it "returns the registration charge formatted as currency without pence" do
+        expect(presenter.registration_charge_without_pence).to eq("£56")
       end
     end
   end
