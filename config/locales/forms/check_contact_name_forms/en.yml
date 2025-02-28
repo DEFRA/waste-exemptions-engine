@@ -4,6 +4,7 @@ en:
       new:
         title: &title Is this the name of the contact person?
         heading: *title
+        description: We'll contact this person if we need to discuss the registration
         options:
           "yes": "Yes"
           "no": "No"
