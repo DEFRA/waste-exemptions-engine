@@ -31,6 +31,16 @@ module WasteExemptionsEngine
         expect { get new_govpay_form_path(token) }.to change(Registration, :count).by(1)
       end
 
+      it "sets the transient_registration reference" do
+        expect { get new_govpay_form_path(token) }.to change { transient_registration.reload.reference }.from(nil)
+      end
+
+      it "doesn't change transient_registration reference if govpay page accessed multiple times" do
+        get new_govpay_form_path(token)
+        reference = transient_registration.reload.reference
+        expect { get new_govpay_form_path(token) }.not_to change { transient_registration.reload.reference }.from(reference)
+      end
+
       it "creates a payment" do
         get new_govpay_form_path(token)
         expect(Registration.last.account.payments.length).to eq(1)
