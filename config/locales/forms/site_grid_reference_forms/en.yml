@@ -5,9 +5,9 @@ en:
         title: &title Where will this waste activity take place?
         heading: *title
         legend: *title
-        grid_reference_or_address: |
+        grid_reference_preferred_option: |
           Enter grid reference and site details. This is the preferred option.
-          Or find the address when you %{postcode_link} (opens new window).
+        postcode_alternative_option: Or find the address when you %{postcode_link} (opens new window).
         postcode_link_text: enter the postcode
         grid_reference_label: "National grid reference"
         grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens in new window)."
