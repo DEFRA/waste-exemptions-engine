@@ -5,12 +5,12 @@ en:
         title: &title Where will this waste activity take place?
         heading: *title
         legend: *title
-        grid_reference_or_address: |
+        grid_reference_preferred_option: |
           Enter grid reference and site details. This is the preferred option.
-          Or find the address when you %{postcode_link} (opens new window).
+        postcode_alternative_option: Or find the address when you %{postcode_link} (opens new window).
         postcode_link_text: enter the postcode
         grid_reference_label: "National grid reference"
-        grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens in new window)."
+        grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens new window)."
         grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
         grid_reference_help_link: Help finding a grid reference
         grid_reference_help_hint: Use the free %{link}
