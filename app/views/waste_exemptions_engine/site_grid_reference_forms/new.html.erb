@@ -13,8 +13,9 @@
         <%= t(".heading") %>
       </h1>
 
-      <p class=govuk-body>
-        <%= t(".grid_reference_or_address",
+      <p class="govuk-body">
+        <%= t(".grid_reference_preferred_option") %><br>
+        <%= t(".postcode_alternative_option",
                 postcode_link: link_to( t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token))
                 ).html_safe %>
       </p>
