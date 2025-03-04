@@ -26,6 +26,7 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
+        state :charity_register_free_form
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
@@ -111,6 +112,11 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           ### PARTNER FLOW
+
+          # Business type -> Charity Register Free (charity in front office)
+          transitions from: :business_type_form,
+                      to: :charity_register_free_form,
+                      if: :charity_in_front_office?
 
           # Business type -> Main people (partnership)
           transitions from: :business_type_form,
@@ -697,6 +703,11 @@ module WasteExemptionsEngine
 
     def no_exemptions_selected?
       (temp_exemptions.nil? || temp_exemptions.empty?) && temp_add_additional_non_bucket_exemptions == false
+    end
+
+    def charity_in_front_office?
+      business_type == "charity" &&
+        !WasteExemptionsEngine.configuration.host_is_back_office?
     end
   end
 end
