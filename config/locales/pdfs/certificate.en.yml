@@ -40,7 +40,6 @@ en:
             active_heading: Waste exemptions
             expires_on: Expires on %{expire_date}
             inactive_heading: De-registered exemptions
-            ceased_on: Ceased on %{cease_date}
           contact_details:
             heading: Your contact details
             name: Your name

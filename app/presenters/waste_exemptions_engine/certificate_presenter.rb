@@ -23,6 +23,19 @@ module WasteExemptionsEngine
       format_name(contact_first_name, contact_last_name)
     end
 
+    def ceased_or_revoked_on(registration_exemption)
+      case registration_exemption.state
+      when "revoked"
+        I18n.t("waste_exemptions_engine.exemptions.revoked_on",
+               date: registration_exemption.deregistered_at&.to_formatted_s(:day_month_year))
+      when "ceased"
+        I18n.t("waste_exemptions_engine.exemptions.ceased_on",
+               date: registration_exemption.deregistered_at&.to_formatted_s(:day_month_year))
+      else
+        ""
+      end
+    end
+
     private
 
     def format_name(first_name, last_name)

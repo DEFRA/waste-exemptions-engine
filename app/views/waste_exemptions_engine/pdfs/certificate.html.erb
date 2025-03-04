@@ -128,8 +128,7 @@
                       <tr class="govuk-table__row">
                         <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
                         <td class="govuk-table__cell">
-                          <%=t(".registration_details.exemptions.ceased_on",
-                               cease_date: registration_exemption.deregistered_at.to_formatted_s(:day_month_year)) %>
+                          <%= @presenter.ceased_or_revoked_on(registration_exemption) %>
                         </td>
                       </tr>
                     <% end %>
