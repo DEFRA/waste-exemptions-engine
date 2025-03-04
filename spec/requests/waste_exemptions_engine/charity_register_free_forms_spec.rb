@@ -4,6 +4,6 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Charity Register Free Forms" do
-    include_examples "GET form", :charity_register_free_form, "/charity-register-free"
+    include_examples "GET form", :charity_register_free_form, "/charity-register-free", is_charged: true
   end
 end
