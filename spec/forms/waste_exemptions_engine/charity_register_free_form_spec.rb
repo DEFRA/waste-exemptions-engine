@@ -9,5 +9,11 @@ module WasteExemptionsEngine
     it "validates the form" do
       expect(form).to be_valid
     end
+
+    describe "#submit" do
+      it "raises an error" do
+        expect { form.submit({}) }.to raise_error(UnsubmittableForm)
+      end
+    end
   end
 end
