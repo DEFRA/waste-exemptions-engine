@@ -47,5 +47,24 @@ module WasteExemptionsEngine
         expect(presenter.sorted_active_registration_exemptions).not_to include(active_exemptions)
       end
     end
+
+    describe "#ceased_or_revoked_on" do
+      subject(:ceased_text) { presenter.ceased_or_revoked_on(registration_exemption) }
+
+      let(:registration) { build(:registration) }
+      let(:registration_exemption) { build(:registration_exemption, state:) }
+
+      context "when the exemption has been ceased" do
+        let(:state) { "ceased" }
+
+        it { expect(ceased_text).to match(/^Ceased on/) }
+      end
+
+      context "when the exemption has been revoked" do
+        let(:state) { "revoked" }
+
+        it { expect(ceased_text).to match(/^Revoked on/) }
+      end
+    end
   end
 end
