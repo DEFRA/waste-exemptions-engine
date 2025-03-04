@@ -1,0 +1,5 @@
+en:
+  waste_exemptions_engine:
+    exemptions:
+      ceased_on: Ceased on %{date}
+      revoked_on: Revoked on %{date}
