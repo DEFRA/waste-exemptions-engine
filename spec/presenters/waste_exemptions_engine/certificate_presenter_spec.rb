@@ -65,6 +65,12 @@ module WasteExemptionsEngine
 
         it { expect(ceased_text).to match(/^Revoked on/) }
       end
+
+      context "when the exemption is neither ceased nor revoked" do
+        let(:state) { "active" }
+
+        it { expect(ceased_text).to eq("") }
+      end
     end
   end
 end
