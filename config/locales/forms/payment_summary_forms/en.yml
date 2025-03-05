@@ -22,7 +22,7 @@ en:
       models:
         waste_exemptions_engine/payment_summary_form:
           attributes:
-            payment_type:
+            temp_payment_method:
               inclusion: "Select a payment method"
             token:
               invalid_format: "The token is not valid"
