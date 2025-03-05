@@ -30,6 +30,8 @@ module WasteExemptionsEngine
         )
       end
 
+      WasteExemptionsEngine::CreateOrUpdateOrderService.run(transient_registration: @transient_registration)
+
       super
     end
   end
