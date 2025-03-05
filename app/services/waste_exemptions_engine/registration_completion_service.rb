@@ -110,9 +110,11 @@ module WasteExemptionsEngine
 
     def send_confirmation_emails
       distinct_recipients.each do |recipient|
+        continue unless recipient.present?
+
         if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
           send_registration_pending_bank_transfer_email(recipient)
-        elsif recipient.present?
+        else
           send_confirmation_email(recipient)
         end
       end

@@ -83,15 +83,6 @@ module WasteExemptionsEngine
       )
     end
 
-    def registration_charge_without_pence
-      helpers.number_to_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
-        unit: "£",
-        precision: 0
-      )
-    end
-
     private
 
     def highest_band
