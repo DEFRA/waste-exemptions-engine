@@ -3,15 +3,12 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  # rubocop:disable RSpec/EmptyExampleGroup
   RSpec.describe NewChargedRegistration do
-    # To be reinstated after private beta
-    # describe "#workflow_state" do
-    #   it_behaves_like "a simple progressing transition",
-    #                   current_state: :payment_summary_form,
-    #                   next_state: :registration_received_pending_payment_form,
-    #                   factory: :new_charged_registration_by_bank_transfer
-    # end
+    describe "#workflow_state" do
+      it_behaves_like "a simple progressing transition",
+                      current_state: :payment_summary_form,
+                      next_state: :registration_received_pending_payment_form,
+                      factory: :new_charged_registration_by_bank_transfer
+    end
   end
-  # rubocop:enable RSpec/EmptyExampleGroup
 end

@@ -11,7 +11,7 @@ module WasteExemptionsEngine
         # States / forms
 
         # Start
-        state :beta_start_form, initial: true
+        state :start_form, initial: true
 
         # Location
         state :location_form
@@ -79,7 +79,7 @@ module WasteExemptionsEngine
         # Transitions
         event :next do
           # Start -> Location
-          transitions from: :beta_start_form,
+          transitions from: :start_form,
                       to: :location_form
 
           # Location -> Register in Northern Ireland
@@ -393,17 +393,14 @@ module WasteExemptionsEngine
 
           ### PAYMENT SUMMARY
 
-          transitions from: :payment_summary_form,
-                      to: :private_beta_registration_complete_form
-
           # To be reinstated after private beta
-          # transitions from: :payment_summary_form,
-          #             to: :govpay_form,
-          #             if: :paying_by_card?
+          transitions from: :payment_summary_form,
+                      to: :govpay_form,
+                      if: :paying_by_card?
 
-          # transitions from: :payment_summary_form,
-          #             to: :registration_received_pending_payment_form,
-          #             if: :payment_via_bank_transfer?
+          transitions from: :payment_summary_form,
+                      to: :registration_received_pending_payment_form,
+                      if: :payment_via_bank_transfer?
 
           transitions from: :govpay_form,
                       to: :registration_received_pending_payment_form,

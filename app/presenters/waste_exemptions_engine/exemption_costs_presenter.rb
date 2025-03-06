@@ -2,6 +2,7 @@
 
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
+    NOT_APPLICABLE_TRANSLATION_KEY = "waste_exemptions_engine.exemptions_summary_forms.new.n_a"
 
     include CanSortExemptions
 
@@ -30,15 +31,16 @@ module WasteExemptionsEngine
 
     def band(exemption)
       if exemption_in_bucket?(exemption)
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       else
-        exemption.band&.sequence
+        exemption.band&.sequence || I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       end
     end
 
     def compliance_charge(exemption)
       if exemption_in_bucket?(exemption)
-        bucket_exemption_compliance_charge(exemption)
+        bucket_exemption_compliance_charge(exemption).presence ||
+          I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       elsif first_exemption_in_highest_band?(exemption)
         format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
@@ -50,7 +52,7 @@ module WasteExemptionsEngine
 
     def charge_type(exemption)
       if exemption.band.additional_compliance_charge.charge_amount.zero?
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.n_a")
+        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       elsif farmer_bucket_exemption?(exemption)
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.farm")
       elsif first_exemption_in_highest_band?(exemption)
@@ -64,15 +66,6 @@ module WasteExemptionsEngine
       format_currency(
         WasteExemptionsEngine::CurrencyConversionService
         .convert_pence_to_pounds(@order_calculator.registration_charge_amount)
-      )
-    end
-
-    def registration_charge_without_pence
-      helpers.number_to_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.registration_charge_amount),
-        unit: "£",
-        precision: 0
       )
     end
 
@@ -138,7 +131,14 @@ module WasteExemptionsEngine
     end
 
     def bucket_exemption_compliance_charge(exemption)
-      first_bucket_exemption_in_order?(exemption) ? format_currency(@order_calculator.bucket_charge_amount / 100.0) : ""
+      if first_bucket_exemption_in_order?(exemption)
+        format_currency(
+          WasteExemptionsEngine::CurrencyConversionService
+          .convert_pence_to_pounds(@order_calculator.bucket_charge_amount)
+        )
+      else
+        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
+      end
     end
   end
 end
