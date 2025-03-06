@@ -41,7 +41,7 @@
                     <span><%= activity.name %></span>
                   <% end %>
                   <div id="waste_activities_form_checkbox-<%= activity.id %>-hint" class="govuk-hint govuk-checkboxes__hint">
-                    <%= t(".select_this_category_for") %> <%= WasteExemptionsEngine::Exemption.for_waste_activities(activity).order(:code).map(&:code).join(", ") %>
+                    <%= t(".select_this_category_for") %> <%= exemption_codes_for_activity(activity) %>
                   </div>
                 </div>
               <% end %>
