@@ -73,6 +73,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "business-type",
               path_names: { new: "" }
 
+    resources :charity_register_free_forms,
+              only: %i[new create],
+              path: "charity-register-free",
+              path_names: { new: "" }
+
     resources :registration_number_forms,
               only: %i[new create],
               path: "registration-number",

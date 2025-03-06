@@ -4,7 +4,7 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationCompletionService do
-    let(:new_registration) { create(:new_registration, :complete, workflow_state: "registration_complete_form") }
+    let(:new_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
     let(:registration) { Registration.last }
 
     describe "#complete" do
@@ -49,6 +49,7 @@ module WasteExemptionsEngine
           expect(WasteExemptionsEngine::Registration.count).to eq(1)
 
           # Clean up after the threads have executed
+          WasteExemptionsEngine::Account.delete_all
           WasteExemptionsEngine::Address.delete_all
           WasteExemptionsEngine::Person.delete_all
           WasteExemptionsEngine::RegistrationExemption.delete_all
@@ -109,14 +110,35 @@ module WasteExemptionsEngine
         end
 
         context "when the contact email is not blank (AD)" do
-          it "sends a confirmation email to both the applicant and the contact emails" do
-            run_service
+          context "when payment method is not bank transfer" do
+            it "sends a confirmation email to both the applicant and the contact emails" do
+              run_service
 
-            aggregate_failures do
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.applicant_email)
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.contact_email)
+              aggregate_failures do
+                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                             recipient: new_registration.applicant_email)
+                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                             recipient: new_registration.contact_email)
+              end
+            end
+          end
+
+          context "when payment method is bank transfer" do
+            before do
+              allow(RegistrationPendingBankTransferEmailService).to receive(:run)
+            end
+
+            it "sends a registration pending bank transfer payment email to both the applicant and the contact emails" do
+              new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
+
+              run_service
+
+              aggregate_failures do
+                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                                                recipient: new_registration.applicant_email)
+                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                                                recipient: new_registration.contact_email)
+              end
             end
           end
 
@@ -243,12 +265,10 @@ module WasteExemptionsEngine
         context "when the transient_registration is charged" do
           let(:order) { create(:order, :with_charge_detail, order_owner: new_charged_registration) }
           let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
-          let(:temp_payment_method) { %w[card bank_transfer].sample }
           let(:new_charged_registration) do
             create(:new_charged_registration, :complete,
                    reference: placeholder_registration.reference,
-                   workflow_state: "registration_complete_form",
-                   temp_payment_method:)
+                   workflow_state: "registration_complete_form")
           end
 
           before do
@@ -286,16 +306,6 @@ module WasteExemptionsEngine
 
           it "sets the registration placeholder attribute to false" do
             expect { run_service }.to change { registration.reload.placeholder }.to false
-          end
-
-          it "updates the beta participant registration details" do
-            beta_participant = create(:beta_participant, registration: new_charged_registration)
-            expect { run_service }.to change { beta_participant.reload.registration }.to registration
-          end
-
-          it "updates the beta participant selected payment method" do
-            beta_participant = create(:beta_participant, registration: new_charged_registration)
-            expect { run_service }.to change { beta_participant.reload.selected_payment_method }.to temp_payment_method
           end
         end
       end

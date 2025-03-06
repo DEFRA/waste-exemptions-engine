@@ -11,7 +11,7 @@ module WasteExemptionsEngine
         # States / forms
 
         # Start
-        state :beta_start_form, initial: true
+        state :start_form, initial: true
 
         # Location
         state :location_form
@@ -26,6 +26,7 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
+        state :charity_register_free_form
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
@@ -78,7 +79,7 @@ module WasteExemptionsEngine
         # Transitions
         event :next do
           # Start -> Location
-          transitions from: :beta_start_form,
+          transitions from: :start_form,
                       to: :location_form
 
           # Location -> Register in Northern Ireland
@@ -111,6 +112,11 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           ### PARTNER FLOW
+
+          # Business type -> Charity Register Free (charity in front office)
+          transitions from: :business_type_form,
+                      to: :charity_register_free_form,
+                      if: :charity_in_front_office?
 
           # Business type -> Main people (partnership)
           transitions from: :business_type_form,
@@ -387,17 +393,14 @@ module WasteExemptionsEngine
 
           ### PAYMENT SUMMARY
 
-          transitions from: :payment_summary_form,
-                      to: :private_beta_registration_complete_form
-
           # To be reinstated after private beta
-          # transitions from: :payment_summary_form,
-          #             to: :govpay_form,
-          #             if: :paying_by_card?
+          transitions from: :payment_summary_form,
+                      to: :govpay_form,
+                      if: :paying_by_card?
 
-          # transitions from: :payment_summary_form,
-          #             to: :registration_received_pending_payment_form,
-          #             if: :payment_via_bank_transfer?
+          transitions from: :payment_summary_form,
+                      to: :registration_received_pending_payment_form,
+                      if: :payment_via_bank_transfer?
 
           transitions from: :govpay_form,
                       to: :registration_received_pending_payment_form,
@@ -697,6 +700,11 @@ module WasteExemptionsEngine
 
     def no_exemptions_selected?
       (temp_exemptions.nil? || temp_exemptions.empty?) && temp_add_additional_non_bucket_exemptions == false
+    end
+
+    def charity_in_front_office?
+      business_type == "charity" &&
+        !WasteExemptionsEngine.configuration.host_is_back_office?
     end
   end
 end

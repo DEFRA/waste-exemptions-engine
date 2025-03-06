@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     subject(:form) { build(:activity_exemptions_form) }
 
     let(:transient_registration) { form.transient_registration }
-    let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
+    let(:farmer_bucket) { create(:bucket, bucket_type: "farmer", exemptions: build_list(:exemption, 3)) }
     let(:three_exemptions) { Exemption.where.not(id: farmer_bucket.exemption_ids).order("RANDOM()").last(3) }
 
     before do

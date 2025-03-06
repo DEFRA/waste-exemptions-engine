@@ -28,10 +28,13 @@ module WasteExemptionsEngine
         copy_charging_attributes
         add_metadata
         @registration.save!
-        if @registration.charged?
-          copy_order
-          update_beta_participant_registration_details
-        end
+        copy_order if @registration.charged?
+
+        # Memoize the payment_method to supress registration confirmation email
+        # if the payment method is bank_transfer
+        @payment_method = @transient_registration.temp_payment_method
+
+        # Destroy the transient registration
         @transient_registration.destroy
       end
 
@@ -107,7 +110,13 @@ module WasteExemptionsEngine
 
     def send_confirmation_emails
       distinct_recipients.each do |recipient|
-        send_confirmation_email(recipient) if recipient.present?
+        next unless recipient.present?
+
+        if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
+          send_registration_pending_bank_transfer_email(recipient)
+        else
+          send_confirmation_email(recipient)
+        end
       end
     end
 
@@ -118,18 +127,15 @@ module WasteExemptionsEngine
       Rails.logger.error "Confirmation email error: #{e}"
     end
 
-    def distinct_recipients
-      [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
+    def send_registration_pending_bank_transfer_email(recipient)
+      RegistrationPendingBankTransferEmailService.run(registration: @registration, recipient: recipient)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Registration pending bank transfer email error: #{e}"
     end
 
-    def update_beta_participant_registration_details
-      beta_participant = BetaParticipant.find_by(registration: @transient_registration)
-      return if beta_participant.blank?
-
-      beta_participant.update(
-        registration: @registration,
-        selected_payment_method: @transient_registration.temp_payment_method
-      )
+    def distinct_recipients
+      [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
     end
   end
 end
