@@ -9,5 +9,9 @@ module WasteExemptionsEngine
     def category_activities(category)
       WasteActivity.where(category: category)
     end
+
+    def exemption_codes_for_activity(activity)
+      Exemption.for_waste_activities(activity).order(:code).map(&:code).join(", ")
+    end
   end
 end

@@ -16,18 +16,18 @@
       <div class="govuk-form-group <%= "govuk-form-group--error" if @waste_activities_form.errors[:temp_waste_activities].any? %>">
         <fieldset id="<%="matched_exemptions"%>" class="govuk-fieldset">
           <legend class="govuk-visually-hidden"><%= t(".heading") %></legend>
-        
+
           <% if @waste_activities_form.errors[:temp_waste_activities].any? %>
             <span class="govuk-error-message" id="waste-activities-form-temp-waste-activities-field-error"><%= @waste_activities_form.errors[:temp_waste_activities].join(", ") %></span>
           <% end %>
           <div class="govuk-checkboxes">
             <% all_categories.each do |category| %>
-              
+
               <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-4"><%= t(".waste_activities.categories.#{category}.title") %></h2>
               <p class="govuk-body govuk-!-margin-bottom-3">
                 <%= t(".waste_activities.categories.#{category}.description") %>
               </p>
-            
+
               <% category_activities(category).each do |activity|  %>
                 <div class="govuk-checkboxes__item govuk-!-margin-left-2">
                   <%= f.check_box :temp_waste_activities,
@@ -35,10 +35,14 @@
                         id: "waste_activities_form_checkbox-#{activity.id}",
                         checked: @waste_activities_form.temp_waste_activities&.include?(activity.id.to_s),
                         class: "govuk-checkboxes__input",
+                        "aria-describedby": "waste_activities_form_checkbox-#{activity.id}-hint"
                       }, activity.id, nil %>
                     <%= f.label "checkbox-#{activity.id}", class: "govuk-label govuk-checkboxes__label" do %>
                     <span><%= activity.name %></span>
                   <% end %>
+                  <div id="waste_activities_form_checkbox-<%= activity.id %>-hint" class="govuk-hint govuk-checkboxes__hint">
+                    <%= t(".select_this_category_for") %> <%= exemption_codes_for_activity(activity) %>
+                  </div>
                 </div>
               <% end %>
             <% end %>
