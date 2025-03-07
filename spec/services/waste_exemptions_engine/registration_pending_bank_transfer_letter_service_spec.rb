@@ -9,7 +9,7 @@ module WasteExemptionsEngine
       subject(:service) { described_class.run(registration: registration) }
 
       # Make sure it's a real postcode for Notify validation purposes
-      let(:address) { create(:address, :postal) }
+      let(:address) { create(:address, :postal, postcode: "BS1 1AA") }
       let(:registration) { create(:registration, :complete, :with_active_exemptions, account: build(:account)) }
       let(:order) { create(:order, :with_charge_detail, order_owner: registration.account) }
 
@@ -24,19 +24,13 @@ module WasteExemptionsEngine
       end
 
       it "sends a letter" do
-        mock_response = double(
-          "Notifications::Client::ResponseNotification",
-          template: { "id" => "b614d958-8e85-4168-8e20-6f924dc47dff" },
-          content: { "subject" => "Payment needed for waste exemption registration #{registration.reference}" }
-        )
-        
-        allow_any_instance_of(Notifications::Client).to receive(:send_letter).and_return(mock_response)
-        
-        response = service
-        aggregate_failures do
-          expect(response).to eq(mock_response)
-          expect(response.template["id"]).to eq("b614d958-8e85-4168-8e20-6f924dc47dff")
-          expect(response.content["subject"]).to include("Payment needed for waste exemption registration #{registration.reference}")
+        VCR.use_cassette("registration_pending_bank_transfer_letter") do
+          response = service
+          aggregate_failures do
+            expect(response).to be_a(Notifications::Client::ResponseNotification)
+            expect(response.template["id"]).to eq("b614d958-8e85-4168-8e20-6f924dc47dff")
+            expect(response.content["subject"]).to include("Payment needed for waste exemption registration #{registration.reference}")
+          end
         end
       end
     end
