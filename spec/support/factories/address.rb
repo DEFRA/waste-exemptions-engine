@@ -30,7 +30,7 @@ FactoryBot.define do
       manual
 
       sequence :postcode do |n|
-        "BS#{n}AA"
+        "BS #{n}AA"
       end
 
       uprn { Faker::Alphanumeric.unique.alphanumeric(number: 8) }

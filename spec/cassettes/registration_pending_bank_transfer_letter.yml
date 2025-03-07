@@ -5,10 +5,11 @@ http_interactions:
     uri: https://api.notifications.service.gov.uk/v2/notifications/letter
     body:
       encoding: UTF-8
-      string: '{"template_id":"b614d958-8e85-4168-8e20-6f924dc47dff","personalisation":{"reference":"WEX000001","first_name":"John","last_name":"Doe","account_number":"10014411","sort_code":"60-70-80","payment_due":"0.00","iban":"IBAN:
-        GB23 NWBK 607080 10014411","swiftbic":"SWIFT/BIC: NWBK GB2L","currency":"Sterling","reg_identifier":"WEX000001","address_line_1":"John
-        Doe","address_line_2":"123","address_line_3":"Test Street","address_line_4":"Test
-        Locality","address_line_5":"Test City","address_line_6":"BS1 1AA"}}'
+      string: '{"template_id":"b614d958-8e85-4168-8e20-6f924dc47dff","personalisation":{"reference":"WEX000001","first_name":"Elida","last_name":"Cummings","account_number":"10014411","sort_code":"60-70-80","payment_due":"0.00","iban":"IBAN:
+        GB23 NWBK 607080 10014411","swiftbic":"SWIFT/BIC: NWBK GB2L","currency":"Sterling","reg_identifier":"WEX000001","address_line_1":"Elida
+        Cummings","address_line_2":"University Place","address_line_3":"2546 Isiah
+        Crossroad","address_line_4":"South Georgia and the South Sandwich Islands","address_line_5":"East
+        Thanh","address_line_6":"BS 3AA"}}'
     headers:
       User-Agent:
       - NOTIFY-API-RUBY-CLIENT/6.2.0
@@ -22,19 +23,19 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 201
-      message: CREATED
+      code: 400
+      message: BAD REQUEST
     headers:
       Content-Type:
       - application/json
       Content-Length:
-      - '1368'
+      - '138'
       Connection:
       - keep-alive
       Date:
-      - Fri, 07 Mar 2025 15:05:56 GMT
+      - Fri, 07 Mar 2025 15:27:13 GMT
       X-B3-Spanid:
-      - self-54c26b0db6b8b553
+      - self-49f116d3fc4a93fe
       Server:
       - gunicorn
       Access-Control-Allow-Origin:
@@ -44,31 +45,20 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET,PUT,POST,DELETE
       X-B3-Traceid:
-      - m1OKRZv9rhIRT8LcjLVa25e6B4C2VoWs9u6Lc2rK2bqxLLLE4eBujQ==
+      - xFDWTZz1ih7psw0sB5ejx0MwfxrndoqbyQfrvF2qQAJ-0DPqR2VnZQ==
       X-Cache:
-      - Miss from cloudfront
+      - Error from cloudfront
       Via:
-      - 1.1 543bd78e28d38334d97d31a1d7aded16.cloudfront.net (CloudFront)
+      - 1.1 6fa2f2520e1a521d933565337b2b81de.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - LHR50-P3
       X-Amz-Cf-Id:
-      - m1OKRZv9rhIRT8LcjLVa25e6B4C2VoWs9u6Lc2rK2bqxLLLE4eBujQ==
+      - xFDWTZz1ih7psw0sB5ejx0MwfxrndoqbyQfrvF2qQAJ-0DPqR2VnZQ==
     body:
       encoding: UTF-8
-      string: '{"content":{"body":"Dear John Doe\r\n\r\n#You need to pay for your
-        waste exemption registration and then email us to confirm payment\r\nWe cannot
-        register you until your payment clears.\r\n\r\n#Pay by bank transfer (Bacs)
-        with these details\r\n\r\nSort code 60-70-80\r\nAccount number 10014411\r\nPayment
-        reference WEX000001\r\nPayment due \u00a30.00\r\n\r\n#Overseas payments\r\n\r\nIBAN:
-        IBAN: GB23 NWBK 607080 10014411\r\nSWIFTBIC: SWIFT/BIC: NWBK GB2L\r\nCurrency:
-        Sterling\r\n\r\n#Email us your registration WEX000001 to confirm you\u2019ve
-        paid\r\n\r\nEmail us at ea_fsc_ar@gov.sscl.com\r\n\r\nWhen you email us, include
-        the date you paid, the amount and the payment reference WEX000001.\r\n\r\nAllow
-        5 working days for your payment to reach us.\r\n\r\n#Need help to renew?\r\nCall
-        us on 03708 506 506 (Monday to Friday, 8am to 6pm). \r\nYour waste exemption
-        registration number is WEX000001.","subject":"Payment needed for waste exemption
-        registration WEX000001"},"id":"b6c572fa-7c69-401f-860d-486b575cdb90","reference":null,"scheduled_for":null,"template":{"id":"b614d958-8e85-4168-8e20-6f924dc47dff","uri":"https://api.notifications.service.gov.uk/services/367ec8d8-ae34-4e85-bb3e-870659f93c43/templates/b614d958-8e85-4168-8e20-6f924dc47dff","version":6},"uri":"https://api.notifications.service.gov.uk/v2/notifications/b6c572fa-7c69-401f-860d-486b575cdb90"}
+      string: '{"errors":[{"error":"ValidationError","message":"Last line of address
+        must be a real UK postcode or another country"}],"status_code":400}
 
         '
-  recorded_at: Fri, 07 Mar 2025 15:05:56 GMT
+  recorded_at: Fri, 07 Mar 2025 15:27:13 GMT
 recorded_with: VCR 6.3.1
