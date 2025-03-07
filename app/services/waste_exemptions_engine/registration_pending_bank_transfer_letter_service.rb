@@ -39,17 +39,19 @@ module WasteExemptionsEngine
 
     def personalisation
       payment_details_path = "waste_exemptions_engine.registration_received_pending_payment_forms.new"
+      
+      # Create hash with string keys as required by GOV.UK Notify
       {
-        reference: @registration.reference,
-        first_name: @registration.contact_first_name,
-        last_name: @registration.contact_last_name,
-        account_number: I18n.t("#{payment_details_path}.account_number_value"),
-        sort_code: I18n.t("#{payment_details_path}.sort_code_value"),
-        payment_due: payment_due,
-        iban: I18n.t("#{payment_details_path}.iban"),
-        swiftbic: I18n.t("#{payment_details_path}.swift_bic"),
-        currency: "Sterling",
-        reg_identifier: @registration.reference
+        "reference" => @registration.reference,
+        "first_name" => @registration.contact_first_name,
+        "last_name" => @registration.contact_last_name,
+        "account_number" => I18n.t("#{payment_details_path}.account_number_value"),
+        "sort_code" => I18n.t("#{payment_details_path}.sort_code_value"),
+        "payment_due" => payment_due,
+        "iban" => I18n.t("#{payment_details_path}.iban"),
+        "swiftbic" => I18n.t("#{payment_details_path}.swift_bic"),
+        "currency" => "Sterling",
+        "reg_identifier" => @registration.reference
       }.merge(address_lines)
     end
 

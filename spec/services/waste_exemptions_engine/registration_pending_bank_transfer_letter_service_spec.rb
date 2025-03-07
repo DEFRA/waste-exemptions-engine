@@ -9,8 +9,28 @@ module WasteExemptionsEngine
       subject(:service) { described_class.run(registration: registration) }
 
       # Make sure it's a real postcode for Notify validation purposes
-      let(:address) { create(:address, postcode: "BS1 1AA") }
-      let(:registration) { create(:registration, :complete, :with_active_exemptions, account: build(:account)) }
+      let(:address) do
+        create(
+          :address,
+          premises: "123",
+          street_address: "Test Street",
+          locality: "Test Locality",
+          city: "Test City",
+          postcode: "BS1 1AA"
+        )
+      end
+      
+      let(:registration) do
+        create(
+          :registration,
+          :complete,
+          :with_active_exemptions,
+          account: build(:account),
+          contact_first_name: "John",
+          contact_last_name: "Doe"
+        )
+      end
+      
       let(:order) { create(:order, :with_charge_detail, order_owner: registration.account) }
 
       before do
