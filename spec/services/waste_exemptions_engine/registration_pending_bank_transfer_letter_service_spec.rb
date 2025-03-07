@@ -29,7 +29,7 @@ module WasteExemptionsEngine
           aggregate_failures do
             expect(response).to be_a(Notifications::Client::ResponseNotification)
             expect(response.template["id"]).to eq("b614d958-8e85-4168-8e20-6f924dc47dff")
-            expect(response.content["subject"]).to include("Payment needed for waste exemption registration #{registration.reference}")
+            expect(response.content["subject"]).to include("Payment needed for waste exemption registration WEX000001")
           end
         end
       end
