@@ -73,7 +73,6 @@ module WasteExemptionsEngine
         state :payment_summary_form
         state :govpay_form
         state :registration_complete_form
-        state :private_beta_registration_complete_form
         state :registration_received_pending_payment_form
 
         # Transitions
@@ -393,7 +392,6 @@ module WasteExemptionsEngine
 
           ### PAYMENT SUMMARY
 
-          # To be reinstated after private beta
           transitions from: :payment_summary_form,
                       to: :govpay_form,
                       if: :paying_by_card?

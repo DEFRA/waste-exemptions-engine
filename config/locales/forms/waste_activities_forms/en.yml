@@ -9,21 +9,22 @@ en:
           link_text: full list of waste exemption guides
           link_url: https://www.gov.uk/government/collections/waste-exemptions-using-waste
           opens_in_new_window: (opens in new window)
+        select_this_category_for: "Select this category for:"
         waste_activities:
           categories:
-            using_waste: 
+            using_waste:
               title: Using waste
               description: This means you use waste for another activity, for example, burning waste for fuel, or spreading it on land as fertiliser.
-            disposing_of_waste: 
+            disposing_of_waste:
               title: Disposing of waste
               description: This means depositing waste or burning plant or wood waste in an incinerator or in the open.
-            treating_waste: 
+            treating_waste:
               title: Treating waste
               description: This means preparing, recovering, sorting and treating certain waste materials, such as waste wood and plant matter.
-            storing_waste: 
+            storing_waste:
               title: Storing waste
               description: This means storing certain waste in secure containers or at secure sites. It covers the storage of sludge.
-        
+
   activemodel:
     errors:
       models:

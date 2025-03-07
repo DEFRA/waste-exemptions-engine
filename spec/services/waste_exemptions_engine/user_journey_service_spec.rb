@@ -119,7 +119,6 @@ module WasteExemptionsEngine
             front_office_edit_complete_form
             back_office_edit_complete_form
             registration_complete_form
-            private_beta_registration_complete_form
             renewal_complete_form
             deregistration_complete_full_form
           ].each do |form|
