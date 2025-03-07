@@ -40,8 +40,6 @@ module Dummy
     config.back_office_url = ENV["BACK_OFFICE_URL"] || "http://localhost:8000"
     config.host = config.front_office_url
 
-    config.private_beta_feedback_url = ENV.fetch("PRIVATE_BETA_FEEDBACK_URL", nil)
-
     # Companies House config
     config.companies_house_host = ENV["COMPANIES_HOUSE_URL"] || "https://api.companieshouse.gov.uk/"
     config.companies_house_api_key = ENV.fetch("COMPANIES_HOUSE_API_KEY", nil)

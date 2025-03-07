@@ -15,14 +15,6 @@ module WasteExemptionsEngine
       def form_path
         @transient_registration.save unless @transient_registration.token.present?
 
-        if @transient_registration.workflow_state == "beta_start_form"
-          participant = WasteExemptionsEngine::BetaParticipant.find_by(registration: @transient_registration)
-          if participant.present?
-            return send(:"new_#{@transient_registration.workflow_state}_path",
-                        participant_token: participant.token)
-          end
-        end
-
         send(:"new_#{@transient_registration.workflow_state}_path", token: @transient_registration.token)
       end
     end

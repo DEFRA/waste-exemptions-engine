@@ -6,27 +6,6 @@ WasteExemptionsEngine::Engine.routes.draw do
             path: "start",
             path_names: { new: "" }
 
-  # Private Beta
-  scope "/beta" do
-    scope "/:participant_token" do
-      resources :beta_start_forms,
-                only: %i[new create],
-                path: "start",
-                path_names: { new: "" }
-
-      get "/unavailable", to: "beta_start_forms#unavailable", as: "private_beta_unavailable"
-      get "/invalid_token", to: "beta_start_forms#invalid_token", as: "private_beta_invalid_token"
-
-      get "/opt-in", to: "beta_participants#opt_in", as: "opt_in_beta_participants"
-      get "/opt-in-confirmation", to: "beta_participants#opt_in_confirmation",
-                                  as: "opt_in_confirmation_beta_participants"
-
-      get "/opt-out", to: "beta_participants#opt_out", as: "opt_out_beta_participants"
-      get "/opt-out-confirmation", to: "beta_participants#opt_out_confirmation",
-                                   as: "opt_out_confirmation_beta_participants"
-    end
-  end
-
   scope "/:token" do
     resources :contact_agency_forms,
               only: %i[new create],
@@ -381,11 +360,6 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :registration_complete_forms,
               only: %i[new create],
               path: "registration-complete",
-              path_names: { new: "" }
-
-    resources :private_beta_registration_complete_forms,
-              only: %i[new create],
-              path: "private-beta-registration-complete",
               path_names: { new: "" }
 
     resources :capture_reference_forms,
