@@ -21,5 +21,27 @@ module WasteExemptionsEngine
         expect(helper.category_activities(category)).to eq(WasteActivity.where(category: category))
       end
     end
+
+    describe "#exemption_codes_for_activity" do
+      let(:activity) { create(:waste_activity) }
+
+      before do
+        create(:exemption, code: "U1", waste_activity: activity)
+        create(:exemption, code: "U2", waste_activity: activity)
+        create(:exemption, code: "U3", waste_activity: activity)
+      end
+
+      it "returns a comma-separated list of exemption codes in ascending order" do
+        expect(helper.exemption_codes_for_activity(activity)).to eq("U1, U2, U3")
+      end
+
+      context "when activity has no exemptions" do
+        let(:activity_without_exemptions) { create(:waste_activity) }
+
+        it "returns an empty string" do
+          expect(helper.exemption_codes_for_activity(activity_without_exemptions)).to eq("")
+        end
+      end
+    end
   end
 end
