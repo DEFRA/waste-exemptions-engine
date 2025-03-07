@@ -9,11 +9,13 @@ module WasteExemptionsEngine
       subject(:service) { described_class.run(registration: registration) }
 
       # Make sure it's a real postcode for Notify validation purposes
-      let(:address) { build(:address, postcode: "BS1 1AA") }
-      let(:registration) { create(:registration, :complete, :with_active_exemptions, account: build(:account), contact_address: address) }
+      let(:address) { create(:address, postcode: "BS1 1AA") }
+      let(:registration) { create(:registration, :complete, :with_active_exemptions, account: build(:account)) }
       let(:order) { create(:order, :with_charge_detail, order_owner: registration.account) }
 
-      before { allow(Address).to receive(:new).and_return(address) }
+      before do
+        registration.contact_address = address
+      end
 
       it_behaves_like "CanHaveCommunicationLog" do
         let(:service_class) { described_class }
