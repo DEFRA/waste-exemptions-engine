@@ -208,10 +208,14 @@ module WasteExemptionsEngine
           end
 
           context "when the applicant email is not blank" do
-            it "sends a confirmation letter" do
+            before do
+              new_registration.update(applicant_email: "applicant@example.com")
+            end
+
+            it "does not send a confirmation letter" do
               run_service
 
-              expect(NotifyConfirmationLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
+              expect(NotifyConfirmationLetterService).not_to have_received(:run)
             end
 
             it "only emails the applicant email" do

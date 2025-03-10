@@ -97,11 +97,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      # Always send letters when contact email is blank (even if applicant email exists)
-      send_confirmation_letters if @registration.contact_email.blank?
-
-      # Send emails if either email is present
-      return unless @registration.contact_email.present? || @registration.applicant_email.present?
+      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?(&:present?)
 
       send_confirmation_emails
     end
