@@ -13,6 +13,14 @@ module WasteExemptionsEngine
         # Start
         state :start_form, initial: true
 
+        # Renewal stop
+        state :renewal_stop_form
+
+        # Capture registration data
+        state :capture_reference_form
+        state :capture_email_form
+        state :capture_complete_form
+
         # Location
         state :location_form
         state :register_in_northern_ireland_form
@@ -77,6 +85,24 @@ module WasteExemptionsEngine
 
         # Transitions
         event :next do
+          # DEREGISTRATION: Start -> Location
+          transitions from: :start_form,
+                      to: :capture_reference_form,
+                      if: :should_edit?
+
+          # DEREGISTRATION: Capture reference -> Capture email
+          transitions from: :capture_reference_form,
+                      to: :capture_email_form
+
+          # DEREGISTRATION: Capture email -> Capture complete
+          transitions from: :capture_email_form,
+                      to: :capture_complete_form
+
+          # RENEWAL: Start -> Renewal stop
+          transitions from: :start_form,
+                      to: :renewal_stop_form,
+                      if: :renewal_start_option?
+
           # Start -> Location
           transitions from: :start_form,
                       to: :location_form
