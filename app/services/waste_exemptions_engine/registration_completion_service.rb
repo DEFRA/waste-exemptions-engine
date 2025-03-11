@@ -97,7 +97,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?(&:present?)
+      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?
 
       send_confirmation_emails
     end
