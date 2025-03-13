@@ -2,9 +2,10 @@ en:
   waste_exemptions_engine:
     farm_exemptions_forms:
       new:
-        title: &title Select your farming waste exemptions
+        title: &title Farming exemptions
         heading: *title
-        description: Select any number of exemptions for a single discounted price.
+        description: Select any number of these for a capped price of £88.
+        inset_description: You can add more exemptions later.
         next_button: Continue
         see: See
         opens_in_new_window: (opens in a new window)
