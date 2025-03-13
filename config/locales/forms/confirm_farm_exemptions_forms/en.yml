@@ -4,7 +4,7 @@ en:
       new:
         back_link: Back
         heading: Your exemptions
-        description: "You've selected these exemptions:"
+        description: "You’ve selected these farming exemptions:"
         options:
           "false": I do not want any more waste exemptions.
           "true": I want to add more waste exemptions.
