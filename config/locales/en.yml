@@ -24,6 +24,9 @@ en:
           zero: No addresses found
           one: 1 address found
           other: "%{count} addresses found"
+      notification_banner:
+        title: "Important"
+        text: "The service will be unavailable from 11pm on 31 March to 10am on 1 April. Please complete any registrations before this time. Unfinished registrations will not be saved."
     farmer_bucket: Farmer exemptions
       
   template_labels:
