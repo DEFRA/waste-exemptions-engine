@@ -4,8 +4,8 @@ en:
       new:
         title: &title Farming exemptions
         heading: *title
-        description: Select any number of these for a capped price of £88.
-        inset_description: You can add more exemptions later.
+        description: Select any number of these for a capped charge of £88.
+        inset_description: You can add more exemptions on the next pages.
         next_button: Continue
         see: See
         opens_in_new_window: (opens in a new window)
