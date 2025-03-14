@@ -5,6 +5,7 @@ module WasteExemptionsEngine
     delegate :temp_exemptions, to: :transient_registration
 
     validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
+    validates :temp_exemptions, "waste_exemptions_engine/t28_exemption": true
 
     def submit(params)
       # This form handles all non-farm exemptions; the param holds what has been selected in the form

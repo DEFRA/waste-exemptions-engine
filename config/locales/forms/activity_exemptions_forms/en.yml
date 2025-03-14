@@ -19,6 +19,7 @@ en:
           attributes:
             temp_exemptions:
               inclusion: You need to select at least one exemption
+              t28_exemption_selected: Call 03708 506 506 to register a T28 exemption
             token:
               invalid_format: The token is not valid
               missing: The token is missing

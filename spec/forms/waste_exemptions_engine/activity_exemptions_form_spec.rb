@@ -22,6 +22,12 @@ module WasteExemptionsEngine
         .to eq(WasteExemptionsEngine::ExemptionsValidator)
     end
 
+    it "validates the T28 exemption using the T28ExemptionValidator class" do
+      validators = form._validators
+      expect(validators[:temp_exemptions].map(&:class))
+        .to include(WasteExemptionsEngine::T28ExemptionValidator)
+    end
+
     it_behaves_like "a validated form", :activity_exemptions_form do
       let(:valid_params) { { temp_exemptions: three_exemptions.map(&:id).map(&:to_s) } }
       let(:invalid_params) { { temp_exemptions: [] } }
