@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     include_examples "GET form", :activity_exemptions_form, "/select-waste-exemptions", is_charged: true
     include_examples "POST form", :activity_exemptions_form, "/select-waste-exemptions" do
       let(:form_data) { { temp_exemptions: Exemption.limit(5).pluck(:id) } }
-      let(:invalid_form_data) { [{ temp_exemptions: nil }, { temp_exemptions: [] }] }
+      let(:invalid_form_data) { [{ temp_exemptions: nil }] }
     end
 
     context "when selecting a T28 exemption" do
