@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Adding notification banner [\#1244](https://github.com/DEFRA/waste-exemptions-engine/pull/1244) ([brujeo](https://github.com/brujeo))
 - Minor content changes [\#1199](https://github.com/DEFRA/waste-exemptions-engine/pull/1199) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3618\] Change exemption names to non-bold on the selected farming exemptions page [\#1198](https://github.com/DEFRA/waste-exemptions-engine/pull/1198) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3640\] add method to calculate compliance\_charge\_total excluding bucket\_charge [\#1197](https://github.com/DEFRA/waste-exemptions-engine/pull/1197) ([brujeo](https://github.com/brujeo))
