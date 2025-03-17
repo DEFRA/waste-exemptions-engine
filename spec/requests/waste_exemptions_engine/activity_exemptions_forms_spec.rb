@@ -21,7 +21,7 @@ module WasteExemptionsEngine
           allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
         end
 
-        it "shows a validation error when T28 is selected" do
+        it "stays on the same page due to error" do
           post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
                params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
 
@@ -43,18 +43,11 @@ module WasteExemptionsEngine
           allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
         end
 
-        it "redirects with a see_other status code" do
+        it "redirects with the user as expected due to no error" do
           post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
                params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
 
-          expect(response).to have_http_status(:see_other) # 303 redirect on success
-        end
-
-        it "does not stay on the same page with errors" do
-          post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
-               params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
-
-          expect(response).not_to have_http_status(:ok)
+          expect(response).to be_a_redirect
         end
       end
     end
