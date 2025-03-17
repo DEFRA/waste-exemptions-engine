@@ -5,7 +5,6 @@ module WasteExemptionsEngine
     include CanValidatePresence
     def validate_each(record, attribute, value)
       return true unless value_is_present?(record, attribute, value)
-      return true if WasteExemptionsEngine.configuration.host_is_back_office?
 
       t28_exemption = Exemption.find_by(code: "T28")
 

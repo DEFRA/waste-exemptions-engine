@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     delegate :temp_exemptions, to: :transient_registration
 
     validates :temp_exemptions, "waste_exemptions_engine/exemptions": true
-    validates :temp_exemptions, "waste_exemptions_engine/t28_exemption": true
+    validates :temp_exemptions, "waste_exemptions_engine/t28_exemption": true, if: :front_office?
 
     def submit(params)
       # This form handles all non-farm exemptions; the param holds what has been selected in the form
@@ -18,6 +18,10 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def front_office?
+      !WasteExemptionsEngine.configuration.host_is_back_office?
+    end
 
     # This form doesn't handle farm exemptions if the order has a farmer bucket.
     # Read them from the transient_registration.

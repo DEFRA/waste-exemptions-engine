@@ -11,9 +11,8 @@ module WasteExemptionsEngine
     let(:transient_registration) { create(:new_registration) }
     let(:form) { ActivityExemptionsForm.new(transient_registration) }
 
-    context "when a T28 exemption is selected in the front office" do
+    context "when a T28 exemption is selected" do
       before do
-        allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
         transient_registration.temp_exemptions = [t28_exemption.id.to_s]
         validator.validate_each(form, :temp_exemptions, transient_registration.temp_exemptions)
       end
@@ -26,18 +25,6 @@ module WasteExemptionsEngine
     context "when a T28 exemption is not selected" do
       before do
         transient_registration.temp_exemptions = [t1_exemption.id.to_s]
-        validator.validate_each(form, :temp_exemptions, transient_registration.temp_exemptions)
-      end
-
-      it "does not add an error to the form" do
-        expect(form.errors[:temp_exemptions]).to be_empty
-      end
-    end
-
-    context "when in back office" do
-      before do
-        allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
-        transient_registration.temp_exemptions = [t28_exemption.id.to_s]
         validator.validate_each(form, :temp_exemptions, transient_registration.temp_exemptions)
       end
 
