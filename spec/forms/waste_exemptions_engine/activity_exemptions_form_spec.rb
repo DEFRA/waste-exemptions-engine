@@ -22,6 +22,72 @@ module WasteExemptionsEngine
         .to eq(WasteExemptionsEngine::ExemptionsValidator)
     end
 
+    it "validates the T28 exemption using the T28ExemptionValidator class" do
+      validators = form._validators
+      expect(validators[:temp_exemptions].map(&:class))
+        .to include(WasteExemptionsEngine::T28ExemptionValidator)
+    end
+
+    describe "#front_office?" do
+      context "when in the front office" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+        end
+
+        it "returns true" do
+          expect(form.send(:front_office?)).to be(true)
+        end
+      end
+
+      context "when in the back office" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
+        end
+
+        it "returns false" do
+          expect(form.send(:front_office?)).to be(false)
+        end
+      end
+    end
+
+    describe "T28 exemption validation" do
+      let(:t28_exemption) { create(:exemption, code: "T28") }
+
+      context "when in the front office" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+          transient_registration.temp_exemptions = [t28_exemption.id.to_s]
+        end
+
+        it "is not valid when T28 exemption is selected" do
+          expect(form).not_to be_valid
+        end
+
+        it "includes the T28 error message" do
+          form.valid?
+          expect(form.errors[:temp_exemptions]).to include(
+            I18n.t("activemodel.errors.models.waste_exemptions_engine/activity_exemptions_form.attributes.temp_exemptions.t28_exemption_selected")
+          )
+        end
+      end
+
+      context "when in the back office" do
+        before do
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
+          transient_registration.temp_exemptions = [t28_exemption.id.to_s]
+        end
+
+        it "is valid when T28 exemption is selected" do
+          expect(form).to be_valid
+        end
+
+        it "does not add T28 validation errors" do
+          form.valid?
+          expect(form.errors[:temp_exemptions]).to be_empty
+        end
+      end
+    end
+
     it_behaves_like "a validated form", :activity_exemptions_form do
       let(:valid_params) { { temp_exemptions: three_exemptions.map(&:id).map(&:to_s) } }
       let(:invalid_params) { { temp_exemptions: [] } }
