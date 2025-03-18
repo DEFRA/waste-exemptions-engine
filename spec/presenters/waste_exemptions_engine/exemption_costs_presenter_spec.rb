@@ -45,8 +45,17 @@ module WasteExemptionsEngine
         it { expect(presenter.band(exemptions[0])).to eq("not applicable") }
       end
 
-      context "when the exemption is not part of a farmer bucket" do
-        before { order.update(bucket: nil) }
+      context "when the exemption belongs to most expensive band" do
+        before { exemptions[0].band = band_3 }
+
+        it { expect(presenter.band(exemptions[0])).to eq("Upper") }
+      end
+
+      context "when the exemption is not part of a farmer bucket and does not belong to most expensive band" do
+        before do
+          exemptions[0].band = band_2
+          order.update(bucket: nil)
+        end
 
         it { expect(presenter.band(exemptions[0])).to eq(exemptions[0].band.sequence) }
       end
@@ -245,8 +254,8 @@ module WasteExemptionsEngine
             expect(presenter.charge_type(second_non_bucket_high)).to eq("Discounted")
           end
 
-          it "returns 'Discounted' for non-bucket exemption in lower band" do
-            expect(presenter.charge_type(non_bucket_low)).to eq("Discounted")
+          it "returns 'No discount' for non-bucket exemption in lower band" do
+            expect(presenter.charge_type(non_bucket_low)).to eq("No discount")
           end
         end
 
@@ -274,8 +283,8 @@ module WasteExemptionsEngine
             expect(presenter.charge_type(second_non_bucket_high)).to eq("Discounted")
           end
 
-          it "returns 'Discounted' for non-bucket exemption in lower band" do
-            expect(presenter.charge_type(non_bucket_low)).to eq("Discounted")
+          it "returns 'No discount' for non-bucket exemption in lower band" do
+            expect(presenter.charge_type(non_bucket_low)).to eq("No discount")
           end
         end
       end
@@ -283,9 +292,9 @@ module WasteExemptionsEngine
       context "with an exemption in a lower band" do
         let(:exemptions) { [create(:exemption, band: band_1), create(:exemption, band: band_3)] }
 
-        it "returns 'Discounted'" do
+        it "returns 'No discount'" do
           exemption = exemptions.first
-          expect(presenter.charge_type(exemption)).to eq("Discounted")
+          expect(presenter.charge_type(exemption)).to eq("No discount")
         end
 
         context "with multiple exemptions including same highest band" do
@@ -323,6 +332,18 @@ module WasteExemptionsEngine
 
             it { expect(presenter.charge_type(exemption)).to eq("Farming exemption") }
           end
+        end
+      end
+
+      context "with an exemption in a band with no discounts (cheapest band)" do
+        let(:exemptions) { 2.times.map { create(:exemption, band: band_1) } }
+
+        it "returns 'No discount' for the first band exemption" do
+          expect(presenter.charge_type(exemptions.first)).to eq("No discount")
+        end
+
+        it "returns 'No discount' for the non-first band exemption" do
+          expect(presenter.charge_type(exemptions.second)).to eq("No discount")
         end
       end
 
@@ -368,6 +389,34 @@ module WasteExemptionsEngine
 
         it "returns the total charge including registration and compliance charges" do
           expect(presenter.total_charge).to eq("£#{format('%.2f', order_calculator.total_charge_amount / 100.0)}")
+        end
+      end
+    end
+
+    describe "#farm_exemptions_selected?" do
+      context "when the order has no exemptions" do
+        let(:exemptions) { [] }
+
+        it "returns false" do
+          expect(presenter.farm_exemptions_selected?).to be(false)
+        end
+      end
+
+      context "when the order has exemptions but none are from the farm bucket" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns false" do
+          expect(presenter.farm_exemptions_selected?).to be(false)
+        end
+      end
+
+      context "when the order has exemptions from the farm bucket" do
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns true" do
+          expect(presenter.farm_exemptions_selected?).to be(true)
         end
       end
     end
