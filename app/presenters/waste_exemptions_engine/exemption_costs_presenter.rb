@@ -89,7 +89,7 @@ module WasteExemptionsEngine
     end
 
     def farm_exemptions_selected?
-      @order.exemptions.any? { |e| farmer_bucket_exemption?(e) }
+      farmer_bucket_in_order? && @order.exemptions.any? { |e| farmer_bucket_exemption?(e) }
     end
 
     private
