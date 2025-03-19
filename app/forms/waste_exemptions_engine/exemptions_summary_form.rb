@@ -8,6 +8,7 @@ module WasteExemptionsEngine
              :registration_charge,
              :total_charge,
              :band,
+             :farm_exemptions_selected?,
              to: :exemption_costs_presenter
 
     delegate :farm_affiliated?, to: :transient_registration
