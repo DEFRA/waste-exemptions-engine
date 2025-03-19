@@ -98,6 +98,44 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      describe "#charged?" do
+        context "when band charges are set to 0" do
+          it "returns false" do
+            initial_compliance_charge = create(:charge, :initial_compliance_charge, charge_amount: 0)
+            additional_compliance_charge = create(:charge, :additional_compliance_charge, charge_amount: 0)
+            band = create(:band, initial_compliance_charge: initial_compliance_charge, additional_compliance_charge: additional_compliance_charge)
+            expect(band.charged?).to be(false)
+          end
+        end
+
+        context "when band has charges" do
+          it "returns true" do
+            band = create(:band)
+            expect(band.charged?).to be(true)
+          end
+        end
+      end
+
+      describe "#discount_possible?" do
+        context "when initial_compliance_charge is greater than additional_compliance_charge" do
+          it "returns true" do
+            initial_compliance_charge = create(:charge, :initial_compliance_charge, charge_amount: 100)
+            additional_compliance_charge = create(:charge, :additional_compliance_charge, charge_amount: 50)
+            band = create(:band, initial_compliance_charge: initial_compliance_charge, additional_compliance_charge: additional_compliance_charge)
+            expect(band.discount_possible?).to be(true)
+          end
+        end
+
+        context "when initial_compliance_charge is same as additional_compliance_charge" do
+          it "returns false" do
+            initial_compliance_charge = create(:charge, :initial_compliance_charge, charge_amount: 100)
+            additional_compliance_charge = create(:charge, :additional_compliance_charge, charge_amount: 100)
+            band = create(:band, initial_compliance_charge: initial_compliance_charge, additional_compliance_charge: additional_compliance_charge)
+            expect(band.discount_possible?).to be(false)
+          end
+        end
+      end
     end
   end
 end
