@@ -9,6 +9,7 @@ module WasteExemptionsEngine
       @payment_uuid = payment_uuid
       @payment_status = govpay_payment_details_service.govpay_payment_status
       @payment = payment_by_payment_uuid
+      @order = @payment&.order
       @transient_registration = @order&.order_owner
     end
 
