@@ -56,6 +56,90 @@ module WasteExemptionsEngine
           end
         end
 
+        context "when a recent payment already exists for the order" do
+          before do
+            create(:payment,
+                   order: order,
+                   payment_status: Payment::PAYMENT_STATUS_CREATED,
+                   payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                   payment_amount: order.total_charge_amount,
+                   account: govpay_service.send(:registration_account),
+                   created_at: 10.minutes.ago)
+          end
+
+          it "reuses the existing payment instead of creating a new one" do
+            expect { govpay_service.prepare_for_payment }.not_to change(Payment, :count)
+          end
+
+          it "returns the existing payment" do
+            response = govpay_service.prepare_for_payment
+            expect(response[:payment].id).to eq(Payment.last.id)
+          end
+
+          it "updates the govpay_id of the existing payment" do
+            response = govpay_service.prepare_for_payment
+            expect(response[:payment].govpay_id).to be_present
+          end
+
+          it "changes the govpay_id if one already exists" do
+            Payment.last.update(govpay_id: "old-id")
+            response = govpay_service.prepare_for_payment
+            expect(response[:payment].govpay_id).not_to eq("old-id")
+          end
+        end
+
+        context "when a recent payment exists but with different attributes" do
+          context "when payment amount differs" do
+            before do
+              create(:payment,
+                     order: order,
+                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                     payment_amount: order.total_charge_amount + 100, # Different amount
+                     account: govpay_service.send(:registration_account),
+                     created_at: 10.minutes.ago)
+            end
+
+            it "creates a new payment instead of reusing the existing one" do
+              expect { govpay_service.prepare_for_payment }.to change(Payment, :count).by(1)
+            end
+          end
+
+          context "when payment type differs" do
+            before do
+              create(:payment,
+                     order: order,
+                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                     payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER, # Different type
+                     payment_amount: order.total_charge_amount,
+                     account: govpay_service.send(:registration_account),
+                     created_at: 10.minutes.ago)
+            end
+
+            it "creates a new payment instead of reusing the existing one" do
+              expect { govpay_service.prepare_for_payment }.to change(Payment, :count).by(1)
+            end
+          end
+
+          context "when account differs" do
+            let(:different_account) { create(:account) }
+
+            before do
+              create(:payment,
+                     order: order,
+                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                     payment_amount: order.total_charge_amount,
+                     account: different_account, # Different account
+                     created_at: 10.minutes.ago)
+            end
+
+            it "creates a new payment instead of reusing the existing one" do
+              expect { govpay_service.prepare_for_payment }.to change(Payment, :count).by(1)
+            end
+          end
+        end
+
         context "when the request is from the back-office" do
           before do
             allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
@@ -126,6 +210,146 @@ module WasteExemptionsEngine
 
         it "the callback url includes the payment uuid" do
           expect(callback_url).to include(payment.payment_uuid)
+        end
+      end
+    end
+
+    describe "#find_or_create_payment" do
+      context "when no matching payment exists" do
+        it "creates a new payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
+        end
+
+        it "sets the correct order on the new payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.order).to eq(order)
+        end
+
+        it "sets the correct payment status on the new payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.payment_status).to eq(Payment::PAYMENT_STATUS_CREATED)
+        end
+
+        it "sets the correct payment type on the new payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.payment_type).to eq(Payment::PAYMENT_TYPE_GOVPAY)
+        end
+
+        it "sets the correct payment amount on the new payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.payment_amount).to eq(order.total_charge_amount)
+        end
+
+        it "sets the correct account on the new payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.account).to eq(govpay_service.send(:registration_account))
+        end
+      end
+
+      context "when a matching payment exists" do
+        before do
+          create(:payment,
+                 order: order,
+                 payment_status: Payment::PAYMENT_STATUS_CREATED,
+                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                 payment_amount: order.total_charge_amount,
+                 account: govpay_service.send(:registration_account),
+                 created_at: 10.minutes.ago)
+        end
+
+        it "reuses the existing payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.not_to change(Payment, :count)
+        end
+
+        it "returns the existing payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.id).to eq(Payment.last.id)
+        end
+      end
+
+      context "when a payment exists but is too old" do
+        before do
+          create(:payment,
+                 order: order,
+                 payment_status: Payment::PAYMENT_STATUS_CREATED,
+                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                 payment_amount: order.total_charge_amount,
+                 account: govpay_service.send(:registration_account),
+                 created_at: 31.minutes.ago)
+        end
+
+        it "creates a new payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
+        end
+
+        it "does not return the old payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.id).not_to eq(Payment.last.id)
+        end
+      end
+
+      context "when a payment exists with different payment amount" do
+        before do
+          create(:payment,
+                 order: order,
+                 payment_status: Payment::PAYMENT_STATUS_CREATED,
+                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                 payment_amount: order.total_charge_amount + 100,
+                 account: govpay_service.send(:registration_account),
+                 created_at: 10.minutes.ago)
+        end
+
+        it "creates a new payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
+        end
+
+        it "does not return the existing payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.id).not_to eq(Payment.last.id)
+        end
+      end
+
+      context "when a payment exists with different payment type" do
+        before do
+          create(:payment,
+                 order: order,
+                 payment_status: Payment::PAYMENT_STATUS_CREATED,
+                 payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
+                 payment_amount: order.total_charge_amount,
+                 account: govpay_service.send(:registration_account),
+                 created_at: 10.minutes.ago)
+        end
+
+        it "creates a new payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
+        end
+
+        it "does not return the existing payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.id).not_to eq(Payment.last.id)
+        end
+      end
+
+      context "when a payment exists with different account" do
+        let(:different_account) { create(:account) }
+
+        before do
+          create(:payment,
+                 order: order,
+                 payment_status: Payment::PAYMENT_STATUS_CREATED,
+                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                 payment_amount: order.total_charge_amount,
+                 account: different_account,
+                 created_at: 10.minutes.ago)
+        end
+
+        it "creates a new payment" do
+          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
+        end
+
+        it "does not return the existing payment" do
+          payment = govpay_service.send(:find_or_create_payment)
+          expect(payment.id).not_to eq(Payment.last.id)
         end
       end
     end

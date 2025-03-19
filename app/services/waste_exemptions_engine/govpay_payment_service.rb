@@ -15,7 +15,7 @@ module WasteExemptionsEngine
       # ensure the order is persisted before attempting to create a payment
       raise "Order must be persisted before payment can be taken" unless order.persisted?
 
-      @payment = create_payment
+      @payment = find_or_create_payment
       response = send_govpay_payment_request(@payment)
       response_json = JSON.parse(response.body)
 
@@ -73,6 +73,26 @@ module WasteExemptionsEngine
 
     def registration_account
       Registration.find_by(reference: @transient_registration.reference).account
+    end
+
+    def find_or_create_payment
+      # Look for a recent payment for this order that's still in 'created' status
+      # and was created in the last 30 minutes (adjust time as needed)
+      existing_payment = WasteExemptionsEngine::Payment.where(
+        order: order,
+        payment_status: Payment::PAYMENT_STATUS_CREATED,
+        payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+        payment_amount: order.total_charge_amount,
+        account: registration_account
+      ).where("created_at > ?", 30.minutes.ago).order(created_at: :desc).first
+
+      # Return existing payment if found, otherwise create a new one
+      if existing_payment.present?
+        Rails.logger.info "Reusing existing payment #{existing_payment.id} for order #{order.id}"
+        existing_payment
+      else
+        create_payment
+      end
     end
 
     def create_payment
