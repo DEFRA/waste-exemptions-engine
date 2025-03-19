@@ -215,6 +215,17 @@ module WasteExemptionsEngine
     end
 
     describe "#find_or_create_payment" do
+      let(:defra_ruby_govpay_api) { DefraRubyGovpay::API.new(host_is_back_office:) }
+      let(:host_is_back_office) { WasteExemptionsEngine.configuration.host_is_back_office? }
+      let(:placeholder_registration) { create(:registration, placeholder: true, account: build(:account)) }
+
+      before do
+        allow(DefraRubyGovpay::API).to receive(:new).and_return(defra_ruby_govpay_api)
+        allow(defra_ruby_govpay_api).to receive(:send_request).with(anything).and_call_original
+
+        transient_registration.reference = placeholder_registration.reference
+      end
+
       context "when no matching payment exists" do
         it "creates a new payment" do
           expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
@@ -269,7 +280,7 @@ module WasteExemptionsEngine
 
       context "when a payment exists but is too old" do
         before do
-          create(:payment,
+          @existing_payment = create(:payment,
                  order: order,
                  payment_status: Payment::PAYMENT_STATUS_CREATED,
                  payment_type: Payment::PAYMENT_TYPE_GOVPAY,
@@ -284,13 +295,13 @@ module WasteExemptionsEngine
 
         it "does not return the old payment" do
           payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).not_to eq(Payment.last.id)
+          expect(payment.id).not_to eq(@existing_payment.id)
         end
       end
 
       context "when a payment exists with different payment amount" do
         before do
-          create(:payment,
+          @existing_payment = create(:payment,
                  order: order,
                  payment_status: Payment::PAYMENT_STATUS_CREATED,
                  payment_type: Payment::PAYMENT_TYPE_GOVPAY,
@@ -305,13 +316,13 @@ module WasteExemptionsEngine
 
         it "does not return the existing payment" do
           payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).not_to eq(Payment.last.id)
+          expect(payment.id).not_to eq(@existing_payment.id)
         end
       end
 
       context "when a payment exists with different payment type" do
         before do
-          create(:payment,
+          @existing_payment = create(:payment,
                  order: order,
                  payment_status: Payment::PAYMENT_STATUS_CREATED,
                  payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
@@ -326,7 +337,7 @@ module WasteExemptionsEngine
 
         it "does not return the existing payment" do
           payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).not_to eq(Payment.last.id)
+          expect(payment.id).not_to eq(@existing_payment.id)
         end
       end
 
@@ -334,7 +345,7 @@ module WasteExemptionsEngine
         let(:different_account) { create(:account) }
 
         before do
-          create(:payment,
+          @existing_payment = create(:payment,
                  order: order,
                  payment_status: Payment::PAYMENT_STATUS_CREATED,
                  payment_type: Payment::PAYMENT_TYPE_GOVPAY,
@@ -349,7 +360,7 @@ module WasteExemptionsEngine
 
         it "does not return the existing payment" do
           payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).not_to eq(Payment.last.id)
+          expect(payment.id).not_to eq(@existing_payment.id)
         end
       end
     end
