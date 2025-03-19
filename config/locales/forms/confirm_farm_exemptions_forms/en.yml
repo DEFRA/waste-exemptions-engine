@@ -3,11 +3,11 @@ en:
     confirm_farm_exemptions_forms:
       new:
         back_link: Back
-        heading: Your selected farming exemptions
-        description: "You've selected these exemptions:"
+        heading: Your exemptions
+        description: "You’ve selected these farming exemptions:"
         options:
           "false": I do not want any more waste exemptions.
-          "true": I want to add waste exemptions that are not included in the farming exemptions.
+          "true": I want to add more waste exemptions.
         no_farm_exemptions: No farming exemptions selected
         add_more_farm_exemptions: If you need more farming exemptions, go back
         add_more_farm_exemptions_link: to the farming exemptions page.
@@ -20,4 +20,4 @@ en:
               inclusion: |
                 If you want to continue you need to select either
                 I do not want any more exemptions or
-                I want to add waste exemptions that are not included in the farming exemptions.
+                I want to add more waste exemptions.

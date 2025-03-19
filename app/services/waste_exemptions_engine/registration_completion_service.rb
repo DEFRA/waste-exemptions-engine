@@ -97,7 +97,8 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      send_confirmation_letter unless @registration.contact_email.present?
+      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?
+
       send_confirmation_emails
     end
 
@@ -106,6 +107,13 @@ module WasteExemptionsEngine
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Confirmation letter error: #{e}"
+    end
+
+    def send_registration_pending_bank_transfer_letter
+      RegistrationPendingBankTransferLetterService.run(registration: @registration)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Bank transfer letter error: #{e}"
     end
 
     def send_confirmation_emails
@@ -117,6 +125,14 @@ module WasteExemptionsEngine
         else
           send_confirmation_email(recipient)
         end
+      end
+    end
+
+    def send_confirmation_letters
+      if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
+        send_registration_pending_bank_transfer_letter
+      else
+        send_confirmation_letter
       end
     end
 

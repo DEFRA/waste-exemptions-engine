@@ -9,6 +9,10 @@
 
       <p class="govuk-body"><%= t(".description") %></p>
 
+      <div class="govuk-inset-text">
+        <%= t(".inset_description") %>
+      </div>
+
       <div class="govuk-form-group <%= "govuk-form-group--error" if @farm_exemptions_form.errors[:exemptions].any? %>">
         <fieldset id="<%="matched_exemptions"%>" class="govuk-fieldset">
           <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
