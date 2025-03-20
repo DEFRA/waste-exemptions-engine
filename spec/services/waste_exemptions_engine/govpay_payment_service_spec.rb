@@ -86,6 +86,13 @@ module WasteExemptionsEngine
             response = govpay_service.prepare_for_payment
             expect(response[:payment].govpay_id).not_to eq("old-id")
           end
+
+          it "will not send a second govpay payment request" do
+            govpay_service.prepare_for_payment
+            govpay_service.prepare_for_payment
+            expect(defra_ruby_govpay_api).to have_received(:send_request)
+              .with(hash_including(method: :post, path: "/payments")).once
+          end
         end
 
         context "when a recent payment exists but with different attributes" do
