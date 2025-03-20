@@ -19,7 +19,10 @@ module WasteExemptionsEngine
     def highest_band
       return nil if exemptions.empty?
 
-      exemptions.max_by { |exemption| exemption.band.initial_compliance_charge.charge_amount }.band
+      non_bucket_exemptions = exemptions.reject { |e| exemption_in_bucket?(e) }
+      return nil if non_bucket_exemptions.empty?
+
+      non_bucket_exemptions.max_by { |exemption| exemption.band.initial_compliance_charge.charge_amount }.band
     end
 
     def bucket?
@@ -38,6 +41,10 @@ module WasteExemptionsEngine
 
     def generate_order_uuid
       self.order_uuid ||= SecureRandom.uuid
+    end
+
+    def exemption_in_bucket?(exemption)
+      bucket.present? && bucket.exemptions.include?(exemption)
     end
   end
 end

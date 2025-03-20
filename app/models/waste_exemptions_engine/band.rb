@@ -30,6 +30,14 @@ module WasteExemptionsEngine
       exemptions.empty?
     end
 
+    def charged?
+      initial_compliance_charge.charge_amount.positive? || additional_compliance_charge.charge_amount.positive?
+    end
+
+    def discount_possible?
+      initial_compliance_charge.charge_amount > additional_compliance_charge.charge_amount
+    end
+
     private
 
     def check_for_exemptions
