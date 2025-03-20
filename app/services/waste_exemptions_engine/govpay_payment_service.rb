@@ -16,15 +16,23 @@ module WasteExemptionsEngine
       raise "Order must be persisted before payment can be taken" unless order.persisted?
 
       @payment = find_or_create_payment
+      return {
+        payment: @payment,
+        url: @transient_registration.temp_govpay_next_url
+      } if govpay_payment_in_progress?
+
       response = send_govpay_payment_request(@payment)
       response_json = JSON.parse(response.body)
 
       govpay_payment_id = response_json["payment_id"]
       if govpay_payment_id.present?
+        govpay_next_url = govpay_redirect_url(response)
+
+        @transient_registration.update(temp_govpay_next_url: govpay_next_url)
         @payment.update(govpay_id: govpay_payment_id)
         {
           payment: @payment,
-          url: govpay_redirect_url(response)
+          url: govpay_next_url
         }
       else
         :error
@@ -47,6 +55,8 @@ module WasteExemptionsEngine
     end
 
     private
+
+    attr_reader :payment
 
     def send_govpay_payment_request(payment)
       DefraRubyGovpay::API.new(host_is_back_office:).send_request(
@@ -105,6 +115,19 @@ module WasteExemptionsEngine
         payment_amount: order.total_charge_amount,
         date_time: Time.zone.now
       )
+    end
+
+    def govpay_payment_in_progress?
+      return false if payment.govpay_id.blank? || @transient_registration.temp_govpay_next_url.blank?
+
+      # Payment started but cancelled => not in progress
+      govpay_payment_status != Payment::PAYMENT_STATUS_CANCELLED
+    end
+
+    def govpay_payment_status
+      GovpayPaymentDetailsService.new(payment_uuid: payment.payment_uuid,
+                                      is_moto: WasteExemptionsEngine.configuration.host_is_back_office?)
+        .govpay_payment_status
     end
   end
 end
