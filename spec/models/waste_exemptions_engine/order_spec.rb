@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe Order do
 
     describe "#highest_band" do
-      subject(:highest_band) { described_class.new(exemptions:).highest_band }
+      subject(:highest_band) { order.highest_band }
 
       # rubocop:disable RSpec/IndexedLet
       let(:band_1) do
@@ -33,6 +33,8 @@ module WasteExemptionsEngine
           build(:exemption, band: band_3)
         ]
       end
+
+      let(:order) { described_class.new(exemptions:) }
 
       context "when the order has no exemptions" do
         let(:exemptions) { [] }
@@ -72,6 +74,23 @@ module WasteExemptionsEngine
         end
 
         it { expect(highest_band).to eq band_2 }
+      end
+
+      # Ref RUBY-3719
+      context "when the order has farmer bucket exemptions and non-bucket exemptions" do
+        let(:non_bucket_exemption) { [build(:exemption, band: band_1), build(:exemption, band: band_2)] }
+        let(:bucket_exemptions) { [build(:exemption, band: band_3)] }
+        let(:exemptions) { non_bucket_exemption + bucket_exemptions }
+
+        before do
+          bucket = create(:bucket)
+          bucket.exemptions << bucket_exemptions
+          order.bucket = bucket
+        end
+
+        it "determines the highest band without considering bucket exemptions" do
+          expect(highest_band).to eq band_2
+        end
       end
     end
 

@@ -58,7 +58,7 @@ module WasteExemptionsEngine
         I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       elsif farmer_bucket_exemption?(exemption)
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.farm")
-      elsif least_expensive_band?(exemption.band)
+      elsif exemption.band.charged? && !exemption.band.discount_possible?
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.no_discount")
       elsif first_exemption_in_highest_band?(exemption)
         I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.full")

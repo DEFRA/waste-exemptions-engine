@@ -116,6 +116,16 @@ module WasteExemptionsEngine
               expected_bucket_charge_amount
             )
           end
+
+          # Ref RUBY-3719
+          context "when selected farming exemptions also belong to the highest band and selected non-farming exemptions do not belong to the highest band" do
+            let(:exemptions) { [bucket_exemptions[6], multiple_bands_multiple_exemptions[3]] }
+            let(:order) { create(:order, exemptions:) }
+            let(:charge_details) { described_class.new(order).charge_detail }
+            let(:expected_compliance_charge_amount) { exemptions[0].band.initial_compliance_charge.charge_amount + exemptions[1].band.initial_compliance_charge.charge_amount }
+
+            it { expect(charge_details.total_compliance_charge_amount).to eq(expected_compliance_charge_amount) }
+          end
         end
       end
 
