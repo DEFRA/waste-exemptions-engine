@@ -159,11 +159,13 @@ module WasteExemptionsEngine
 
         context "when govpay status is created" do
           let(:payment_status) { "created" }
+
           it_behaves_like "payment is pending"
         end
 
         context "when govpay status is submitted" do
           let(:payment_status) { "submitted" }
+
           it_behaves_like "payment is pending"
         end
       end
@@ -196,19 +198,25 @@ module WasteExemptionsEngine
 
       context "with an invalid success status" do
         before { allow(GovpayValidatorService).to receive(:valid_govpay_status?).and_return(false) }
+
         let(:payment_status) { "success" }
+
         it_behaves_like "payment is unsuccessful with an error"
       end
 
       context "with an invalid failure status" do
         before { allow(GovpayValidatorService).to receive(:valid_govpay_status?).and_return(false) }
+
         let(:payment_status) { "cancelled" }
+
         it_behaves_like "payment is unsuccessful with an error"
       end
 
       context "when the GovpayPaymentDetailsService raises an error" do
         before { allow(payment_details_service).to receive(:govpay_payment_status).and_raise(StandardError) }
+
         let(:payment_status) { "success" }
+
         it_behaves_like "payment is unsuccessful with an error"
       end
     end

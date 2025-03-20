@@ -87,7 +87,7 @@ module WasteExemptionsEngine
             expect(response[:payment].govpay_id).not_to eq("old-id")
           end
 
-          it "will not send a second govpay payment request" do
+          it "does not send a second govpay payment request" do
             govpay_service.prepare_for_payment
             govpay_service.prepare_for_payment
             expect(defra_ruby_govpay_api).to have_received(:send_request)
@@ -288,12 +288,12 @@ module WasteExemptionsEngine
       context "when a payment exists but is too old" do
         before do
           @existing_payment = create(:payment,
-                 order: order,
-                 payment_status: Payment::PAYMENT_STATUS_CREATED,
-                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
-                 payment_amount: order.total_charge_amount,
-                 account: govpay_service.send(:registration_account),
-                 created_at: 31.minutes.ago)
+                                     order: order,
+                                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                                     payment_amount: order.total_charge_amount,
+                                     account: govpay_service.send(:registration_account),
+                                     created_at: 31.minutes.ago)
         end
 
         it "creates a new payment" do
@@ -309,12 +309,12 @@ module WasteExemptionsEngine
       context "when a payment exists with different payment amount" do
         before do
           @existing_payment = create(:payment,
-                 order: order,
-                 payment_status: Payment::PAYMENT_STATUS_CREATED,
-                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
-                 payment_amount: order.total_charge_amount + 100,
-                 account: govpay_service.send(:registration_account),
-                 created_at: 10.minutes.ago)
+                                     order: order,
+                                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                                     payment_amount: order.total_charge_amount + 100,
+                                     account: govpay_service.send(:registration_account),
+                                     created_at: 10.minutes.ago)
         end
 
         it "creates a new payment" do
@@ -330,12 +330,12 @@ module WasteExemptionsEngine
       context "when a payment exists with different payment type" do
         before do
           @existing_payment = create(:payment,
-                 order: order,
-                 payment_status: Payment::PAYMENT_STATUS_CREATED,
-                 payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
-                 payment_amount: order.total_charge_amount,
-                 account: govpay_service.send(:registration_account),
-                 created_at: 10.minutes.ago)
+                                     order: order,
+                                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                                     payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
+                                     payment_amount: order.total_charge_amount,
+                                     account: govpay_service.send(:registration_account),
+                                     created_at: 10.minutes.ago)
         end
 
         it "creates a new payment" do
@@ -353,12 +353,12 @@ module WasteExemptionsEngine
 
         before do
           @existing_payment = create(:payment,
-                 order: order,
-                 payment_status: Payment::PAYMENT_STATUS_CREATED,
-                 payment_type: Payment::PAYMENT_TYPE_GOVPAY,
-                 payment_amount: order.total_charge_amount,
-                 account: different_account,
-                 created_at: 10.minutes.ago)
+                                     order: order,
+                                     payment_status: Payment::PAYMENT_STATUS_CREATED,
+                                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+                                     payment_amount: order.total_charge_amount,
+                                     account: different_account,
+                                     created_at: 10.minutes.ago)
         end
 
         it "creates a new payment" do

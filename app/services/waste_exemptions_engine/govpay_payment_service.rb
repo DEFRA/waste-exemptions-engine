@@ -16,10 +16,12 @@ module WasteExemptionsEngine
       raise "Order must be persisted before payment can be taken" unless order.persisted?
 
       @payment = find_or_create_payment
-      return {
-        payment: @payment,
-        url: @transient_registration.temp_govpay_next_url
-      } if govpay_payment_in_progress?
+      if govpay_payment_in_progress?
+        return {
+          payment: @payment,
+          url: @transient_registration.temp_govpay_next_url
+        }
+      end
 
       response = send_govpay_payment_request(@payment)
       response_json = JSON.parse(response.body)
@@ -127,7 +129,7 @@ module WasteExemptionsEngine
     def govpay_payment_status
       GovpayPaymentDetailsService.new(payment_uuid: payment.payment_uuid,
                                       is_moto: WasteExemptionsEngine.configuration.host_is_back_office?)
-        .govpay_payment_status
+                                 .govpay_payment_status
     end
   end
 end
