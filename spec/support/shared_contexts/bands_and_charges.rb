@@ -8,7 +8,7 @@ RSpec.shared_context "with bands and charges" do
   let!(:band_1) do
     create(:band,
            initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 5),
-           additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 4))
+           additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 5))
   end
   let!(:band_2) do
     create(:band,
