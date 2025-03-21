@@ -46,6 +46,7 @@ module WasteExemptionsEngine
         state :site_address_lookup_form
 
         # End pages
+        state :reason_for_change_form
         state :declaration_form
         state :back_office_edit_complete_form
 
@@ -178,6 +179,9 @@ module WasteExemptionsEngine
 
           # Completing the edit process
           transitions from: :back_office_edit_form,
+                      to: :reason_for_change_form
+
+          transitions from: :reason_for_change_form,
                       to: :declaration_form
 
           transitions from: :declaration_form,

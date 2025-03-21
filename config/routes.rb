@@ -382,6 +382,11 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "renewal-stop",
               path_names: { new: "" }
 
+    resources :reason_for_change_forms,
+              only: %i[new create],
+              path: "reason-for-change",
+              path_names: { new: "" }
+
     # Editing: Back office
     resources :back_office_edit_forms,
               only: %i[new create],
