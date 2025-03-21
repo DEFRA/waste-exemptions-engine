@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_21_154247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -308,6 +308,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.string "view_certificate_token"
     t.datetime "view_certificate_token_created_at"
     t.boolean "placeholder", default: false
+    t.string "reason_for_change", limit: 500
     t.index ["created_at"], name: "index_registrations_on_created_at"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
@@ -416,6 +417,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_06_113600) do
     t.text "temp_exemptions", default: [], array: true
     t.boolean "temp_confirm_exemptions"
     t.boolean "temp_add_additional_non_bucket_exemptions"
+    t.string "reason_for_change", limit: 500
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end

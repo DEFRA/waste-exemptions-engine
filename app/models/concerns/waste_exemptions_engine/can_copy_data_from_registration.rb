@@ -32,7 +32,8 @@ module WasteExemptionsEngine
         "updated_at",
         "charged",
         "view_certificate_token",
-        "view_certificate_token_created_at"
+        "view_certificate_token_created_at",
+        "reason_for_change"
       )
 
       assign_attributes(attributes)
