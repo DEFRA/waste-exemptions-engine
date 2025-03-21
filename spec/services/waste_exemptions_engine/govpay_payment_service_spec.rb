@@ -78,7 +78,7 @@ module WasteExemptionsEngine
 
           it "updates the govpay_id of the existing payment" do
             response = govpay_service.prepare_for_payment
-            expect(response[:payment].govpay_id).to be_present
+            expect(response[:payment].govpay_id).to eq Payment.last.govpay_id
           end
 
           it "changes the govpay_id if one already exists" do

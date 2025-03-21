@@ -92,8 +92,6 @@ module WasteExemptionsEngine
     end
 
     def find_or_create_payment
-      # Look for a recent payment for this order that's still in 'created' status
-      # and was created in the last 30 minutes
       WasteExemptionsEngine::Payment.where(
         "created_at > ?", 30.minutes.ago
       ).find_or_create_by(
