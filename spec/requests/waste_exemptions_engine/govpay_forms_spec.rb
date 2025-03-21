@@ -19,8 +19,6 @@ module WasteExemptionsEngine
 
     describe "#new" do
       before do
-        allow(GovpayPaymentService).to receive(:new).and_call_original
-
         stub_request(:any, /.*#{govpay_host}.*/).to_return(
           status: 200,
           body: File.read("./spec/fixtures/files/govpay/get_payment_response_created.json")

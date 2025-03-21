@@ -56,15 +56,14 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when a recent payment already exists for the order" do
+        context "when a payment already exists for the order" do
           before do
             create(:payment,
                    order: order,
                    payment_status: Payment::PAYMENT_STATUS_CREATED,
                    payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                    payment_amount: order.total_charge_amount,
-                   account: govpay_service.send(:registration_account),
-                   created_at: 10.minutes.ago)
+                   account: govpay_service.send(:registration_account))
           end
 
           it "reuses the existing payment instead of creating a new one" do
@@ -95,7 +94,7 @@ module WasteExemptionsEngine
           end
         end
 
-        context "when a recent payment exists but with different attributes" do
+        context "when a payment exists but with different attributes" do
           context "when payment amount differs" do
             before do
               create(:payment,
@@ -103,8 +102,7 @@ module WasteExemptionsEngine
                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                      payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                      payment_amount: order.total_charge_amount + 100, # Different amount
-                     account: govpay_service.send(:registration_account),
-                     created_at: 10.minutes.ago)
+                     account: govpay_service.send(:registration_account))
             end
 
             it "creates a new payment instead of reusing the existing one" do
@@ -119,8 +117,7 @@ module WasteExemptionsEngine
                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                      payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER, # Different type
                      payment_amount: order.total_charge_amount,
-                     account: govpay_service.send(:registration_account),
-                     created_at: 10.minutes.ago)
+                     account: govpay_service.send(:registration_account))
             end
 
             it "creates a new payment instead of reusing the existing one" do
@@ -137,8 +134,7 @@ module WasteExemptionsEngine
                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                      payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                      payment_amount: order.total_charge_amount,
-                     account: different_account, # Different account
-                     created_at: 10.minutes.ago)
+                     account: different_account) # Different account
             end
 
             it "creates a new payment instead of reusing the existing one" do
@@ -271,8 +267,7 @@ module WasteExemptionsEngine
                  payment_status: Payment::PAYMENT_STATUS_CREATED,
                  payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                  payment_amount: order.total_charge_amount,
-                 account: govpay_service.send(:registration_account),
-                 created_at: 10.minutes.ago)
+                 account: govpay_service.send(:registration_account))
         end
 
         it "reuses the existing payment" do
@@ -292,8 +287,7 @@ module WasteExemptionsEngine
                                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                                      payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                                      payment_amount: order.total_charge_amount + 100,
-                                     account: govpay_service.send(:registration_account),
-                                     created_at: 10.minutes.ago)
+                                     account: govpay_service.send(:registration_account))
         end
 
         it "creates a new payment" do
@@ -313,8 +307,7 @@ module WasteExemptionsEngine
                                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                                      payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
                                      payment_amount: order.total_charge_amount,
-                                     account: govpay_service.send(:registration_account),
-                                     created_at: 10.minutes.ago)
+                                     account: govpay_service.send(:registration_account))
         end
 
         it "creates a new payment" do
@@ -336,8 +329,7 @@ module WasteExemptionsEngine
                                      payment_status: Payment::PAYMENT_STATUS_CREATED,
                                      payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                                      payment_amount: order.total_charge_amount,
-                                     account: different_account,
-                                     created_at: 10.minutes.ago)
+                                     account: different_account)
         end
 
         it "creates a new payment" do

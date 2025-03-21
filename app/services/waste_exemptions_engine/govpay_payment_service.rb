@@ -92,6 +92,7 @@ module WasteExemptionsEngine
     end
 
     def find_or_create_payment
+      # Find an existing payment or create a new one
       WasteExemptionsEngine::Payment.find_or_create_by(
         order: order,
         payment_status: Payment::PAYMENT_STATUS_CREATED,
@@ -99,6 +100,7 @@ module WasteExemptionsEngine
         payment_amount: order.total_charge_amount,
         account: registration_account
       ) do |payment|
+        # Runs this code if a payment is not found and a new one is created
         payment.payment_uuid = SecureRandom.uuid
         payment.date_time = Time.zone.now
         Rails.logger.info "Creating new payment for order #{order.id}"
