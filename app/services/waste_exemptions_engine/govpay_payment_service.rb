@@ -92,9 +92,7 @@ module WasteExemptionsEngine
     end
 
     def find_or_create_payment
-      WasteExemptionsEngine::Payment.where(
-        "created_at > ?", 30.minutes.ago
-      ).find_or_create_by(
+      WasteExemptionsEngine::Payment.find_or_create_by(
         order: order,
         payment_status: Payment::PAYMENT_STATUS_CREATED,
         payment_type: Payment::PAYMENT_TYPE_GOVPAY,

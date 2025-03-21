@@ -285,27 +285,6 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when a payment exists but is too old" do
-        before do
-          @existing_payment = create(:payment,
-                                     order: order,
-                                     payment_status: Payment::PAYMENT_STATUS_CREATED,
-                                     payment_type: Payment::PAYMENT_TYPE_GOVPAY,
-                                     payment_amount: order.total_charge_amount,
-                                     account: govpay_service.send(:registration_account),
-                                     created_at: 31.minutes.ago)
-        end
-
-        it "creates a new payment" do
-          expect { govpay_service.send(:find_or_create_payment) }.to change(Payment, :count).by(1)
-        end
-
-        it "does not return the old payment" do
-          payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).not_to eq(@existing_payment.id)
-        end
-      end
-
       context "when a payment exists with different payment amount" do
         before do
           @existing_payment = create(:payment,
