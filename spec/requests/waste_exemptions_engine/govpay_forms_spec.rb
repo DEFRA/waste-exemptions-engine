@@ -18,13 +18,11 @@ module WasteExemptionsEngine
     before { allow(Airbrake).to receive(:notify) }
 
     describe "#new" do
-
       before do
         stub_request(:any, /.*#{govpay_host}.*/).to_return(
           status: 200,
           body: File.read("./spec/fixtures/files/govpay/get_payment_response_created.json")
         )
-        # order.charge_detail
       end
 
       it "creates a registration" do
@@ -86,15 +84,12 @@ module WasteExemptionsEngine
         allow(payment_details_service).to receive(:govpay_payment_status).and_return(payment_status)
 
         transient_registration.update(reference: placeholder_registration.reference)
-
-        # payment
       end
 
       context "when govpay status is success" do
         let(:payment_status) { "success" }
 
         context "when the payment_uuid is valid and the balance is paid" do
-
           it "updates payment status" do
             expect { get payment_callback_govpay_forms_path(token, payment.payment_uuid) }
               .to change { payment.reload.payment_status }.from("created").to("success")
@@ -102,13 +97,11 @@ module WasteExemptionsEngine
 
           it "redirects to registration_complete_form" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(response).to redirect_to(new_registration_complete_form_path(token))
           end
 
           it "does not log an error" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(Airbrake).not_to have_received(:notify)
           end
         end
@@ -140,9 +133,7 @@ module WasteExemptionsEngine
       end
 
       context "with pending govpay statuses" do
-
         RSpec.shared_examples "payment is pending" do
-
           context "when the payment uuid is valid" do
             before do
               payment.update!(payment_status: "created")
@@ -178,33 +169,26 @@ module WasteExemptionsEngine
       end
 
       context "with unsuccessful govpay statuses" do
-
         RSpec.shared_examples "payment is unsuccessful but no error" do
-
           it "redirects to payment_summary_form" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(response).to redirect_to(new_payment_summary_form_path(token))
           end
 
           it "does not log an error" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(Airbrake).not_to have_received(:notify)
           end
         end
 
         RSpec.shared_examples "payment is unsuccessful with an error" do
-
           it "redirects to payment_summary_form" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(response).to redirect_to(new_payment_summary_form_path(token))
           end
 
           it "logs an error" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-
             expect(Airbrake).to have_received(:notify).at_least(:once)
           end
         end
