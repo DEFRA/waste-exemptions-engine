@@ -20,7 +20,7 @@ en:
         confirm_payment_heading: Confirm you've paid
         confirm_payment_instruction: Email us to confirm you've paid. Include your registration number in your email so we can match your payment to your registration.
         email_us: Email us
-        contact_email: "enquiries@environment-agency.gov.uk"
+        contact_email: "ea_fsc_ar@gov.sscl.com"
         email_include_details: What to include when you email us
         email_subject: "Email subject:"
         email_subject_content: "Waste exemptions payment confirmation %{reference}"
