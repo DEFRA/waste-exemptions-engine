@@ -1,4 +1,4 @@
-<% if WasteExemptionsEngine::FeatureToggle.active?(:notification_banner) %>  
+<% if WasteExemptionsEngine::FeatureToggle.active?(:notification_banner) && !WasteExemptionsEngine.configuration.host_is_back_office? %>  
   <section class="govuk-notification-banner" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     <div class="govuk-notification-banner__header">
       <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
