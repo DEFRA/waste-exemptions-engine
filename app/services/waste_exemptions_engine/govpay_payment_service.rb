@@ -4,7 +4,7 @@ require "rest-client"
 
 module WasteExemptionsEngine
   class GovpayPaymentService
-    attr_reader :order
+    attr_reader :order, :payment
 
     def initialize(transient_registration, order, _user = nil)
       @transient_registration = transient_registration
@@ -15,20 +15,10 @@ module WasteExemptionsEngine
       # ensure the order is persisted before attempting to create a payment
       raise "Order must be persisted before payment can be taken" unless order.persisted?
 
-      @payment = create_payment
-      response = send_govpay_payment_request(@payment)
-      response_json = JSON.parse(response.body)
+      @payment = find_or_create_payment
+      return existing_payment_response if govpay_payment_in_progress?
 
-      govpay_payment_id = response_json["payment_id"]
-      if govpay_payment_id.present?
-        @payment.update(govpay_id: govpay_payment_id)
-        {
-          payment: @payment,
-          url: govpay_redirect_url(response)
-        }
-      else
-        :error
-      end
+      create_new_payment_response
     rescue StandardError => _e
       # The error will have been logged by CanSendGovPayRequest, just return an error response here
       :error
@@ -47,6 +37,32 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def create_new_payment_response
+      response = send_govpay_payment_request(@payment)
+      response_json = JSON.parse(response.body)
+
+      govpay_payment_id = response_json["payment_id"]
+      if govpay_payment_id.present?
+        govpay_next_url = govpay_redirect_url(response)
+
+        @transient_registration.update(temp_govpay_next_url: govpay_next_url)
+        @payment.update(govpay_id: govpay_payment_id)
+        {
+          payment: @payment,
+          url: govpay_next_url
+        }
+      else
+        :error
+      end
+    end
+
+    def existing_payment_response
+      {
+        payment: @payment,
+        url: @transient_registration.temp_govpay_next_url
+      }
+    end
 
     def send_govpay_payment_request(payment)
       DefraRubyGovpay::API.new(host_is_back_office:).send_request(
@@ -75,16 +91,33 @@ module WasteExemptionsEngine
       Registration.find_by(reference: @transient_registration.reference).account
     end
 
-    def create_payment
-      WasteExemptionsEngine::Payment.create!(
-        account: registration_account,
+    def find_or_create_payment
+      # Find an existing payment or create a new one
+      WasteExemptionsEngine::Payment.find_or_create_by(
         order: order,
-        payment_type: Payment::PAYMENT_TYPE_GOVPAY,
         payment_status: Payment::PAYMENT_STATUS_CREATED,
-        payment_uuid: SecureRandom.uuid,
+        payment_type: Payment::PAYMENT_TYPE_GOVPAY,
         payment_amount: order.total_charge_amount,
-        date_time: Time.zone.now
-      )
+        account: registration_account
+      ) do |payment|
+        # Runs this code if a payment is not found and a new one is created
+        payment.payment_uuid = SecureRandom.uuid
+        payment.date_time = Time.zone.now
+        Rails.logger.info "Creating new payment for order #{order.id}"
+      end
+    end
+
+    def govpay_payment_in_progress?
+      return false if payment.govpay_id.blank? || @transient_registration.temp_govpay_next_url.blank?
+
+      # Payment started but cancelled => not in progress
+      govpay_payment_status != Payment::PAYMENT_STATUS_CANCELLED
+    end
+
+    def govpay_payment_status
+      GovpayPaymentDetailsService.new(payment_uuid: payment.payment_uuid,
+                                      is_moto: WasteExemptionsEngine.configuration.host_is_back_office?)
+                                 .govpay_payment_status
     end
   end
 end
