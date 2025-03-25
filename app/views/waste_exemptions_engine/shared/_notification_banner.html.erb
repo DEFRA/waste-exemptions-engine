@@ -1,4 +1,6 @@
-<% if WasteExemptionsEngine::FeatureToggle.active?(:notification_banner) && !WasteExemptionsEngine.configuration.host_is_back_office? %>  
+<% if WasteExemptionsEngine::FeatureToggle.active?(:notification_banner) && !WasteExemptionsEngine.configuration.host_is_back_office? %>
+  <% from_date_time = ENV.fetch("SERVICE_UNAVAILABLE_FROM", "11pm on 31 March") %> 
+  <% to_date_time = ENV.fetch("SERVICE_UNAVAILABLE_TO", "10am on 1 April") %> 
   <section class="govuk-notification-banner" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     <div class="govuk-notification-banner__header">
       <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
@@ -7,7 +9,7 @@
     </div>
     <div class="govuk-notification-banner__content">
       <p class="govuk-notification-banner__heading">
-        <%= t(".text") %>
+        <%= t(".text", from_date_time:, to_date_time:) %>
       </p>
     </div>
   </section>

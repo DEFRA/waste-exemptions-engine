@@ -26,7 +26,7 @@ en:
           other: "%{count} addresses found"
       notification_banner:
         title: "Important"
-        text: "The service will be unavailable from 11pm on 31 March to 10am on 1 April. Please complete any registrations before this time. Unfinished registrations will not be saved."
+        text: "The service will be unavailable from %{from_date_time} to %{to_date_time}. Please complete any registrations before this time. Unfinished registrations will not be saved."
     farmer_bucket: Farmer exemptions
       
   template_labels:
