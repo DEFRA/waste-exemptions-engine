@@ -1,0 +1,18 @@
+en:
+  waste_exemptions_engine:
+    reason_for_change_forms:
+      new:
+        title: Reason for change
+        heading: Reason for change
+        reason_label: Reason for change
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/reason_for_change_form:
+          attributes:
+            reason_for_change:
+              blank: You must enter a reason
+            token:
+              invalid_format: The token is not valid
+              missing: The token is missing

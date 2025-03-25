@@ -26,7 +26,7 @@ module WasteExemptionsEngine
         site_grid_reference_form
       ]
 
-      transitionable_states = editable_form_states + %i[declaration_form confirm_back_office_edit_cancelled_form]
+      transitionable_states = editable_form_states + %i[reason_for_change_form confirm_back_office_edit_cancelled_form]
 
       context "when a WasteExemptionsEngine::BackOfficeEditRegistration's state is #{current_state}" do
         it "can only transition to the allowed states" do
@@ -43,8 +43,8 @@ module WasteExemptionsEngine
           end
         end
 
-        it "changes to declaration_form after the 'next' event" do
-          expected_state = :declaration_form
+        it "changes to reason_for_change_form after the 'next' event" do
+          expected_state = :reason_for_change_form
           event = :next
           expect(edit_registration).to transition_from(current_state).to(expected_state).on_event(event)
         end
