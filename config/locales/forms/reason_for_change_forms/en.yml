@@ -4,6 +4,7 @@ en:
       new:
         title: Reason for change
         heading: Reason for change
+        reason_label: Reason for change
         next_button: Continue
   activemodel:
     errors:
