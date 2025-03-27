@@ -25,10 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aasm", "~> 5.5"
 
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 7.1"
-
-  # paper_trail currently does not support rails 7.2.
-  s.add_dependency "activerecord", "< 7.2"
+  s.add_dependency "rails", "~> 7.2.2.1"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
@@ -59,7 +56,7 @@ Gem::Specification.new do |s|
   s.add_dependency "pg"
 
   # Used for auditing and version control
-  s.add_dependency "paper_trail"
+  s.add_dependency "paper_trail", ">= 15.2.0"
 
   # Validations
   # A defra created gem of shared validators
