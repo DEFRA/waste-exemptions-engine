@@ -363,6 +363,24 @@ module WasteExemptionsEngine
           expect(registration.versions.last.json.to_s).to include(expected_message)
         end
       end
+
+      describe "object_changes" do
+        it "includes the registration's attribute changes" do
+          operator_name = Faker::Company.name
+
+          registration.update_attribute(:operator_name, operator_name)
+          expect(registration.versions.last.object_changes["operator_name"]).to include(operator_name)
+        end
+      end
+
+      describe "changeset" do
+        it "includes the registration's attribute changes" do
+          operator_name = Faker::Company.name
+
+          registration.update_attribute(:operator_name, operator_name)
+          expect(registration.versions.last.changeset["operator_name"]).to include(operator_name)
+        end
+      end
     end
   end
 end
