@@ -6,8 +6,8 @@ en:
         heading: *title
         legend: waste exemptions
         description: |
-          You must pay a band charge for each exemption you select. 
-          Band 1 being the highest charge and band 3 the lowest.
+          There’s a charge for each exemption, depending on the band it is in. 
+          Upper band is the highest charge and band 3 is the lowest.
         next_button: Continue
         see: See
         opens_in_new_window: (opens in a new window)
