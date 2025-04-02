@@ -22,6 +22,12 @@ RSpec.describe SendRegistrationEditEmailJob do
     context "when reference and email match is successful and contact_email and applicant_email are identical" do
       before { registration.update!(contact_email: email, applicant_email: email) }
 
+      it "sets the edit_link_requested_by attribute" do
+        run_job
+
+        expect(registration.reload.edit_link_requested_by).to eq(email)
+      end
+
       it "sends the email" do
         run_job
 
@@ -34,6 +40,12 @@ RSpec.describe SendRegistrationEditEmailJob do
 
     context "when reference and email match is successful and contact_email and applicant_email are different" do
       before { registration.update!(contact_email: email, applicant_email: Faker::Internet.email) }
+
+      it "sets the edit_link_requested_by attribute" do
+        run_job
+
+        expect(registration.reload.edit_link_requested_by).to eq(email)
+      end
 
       it "sends the email to both email addresses" do
         run_job
@@ -55,8 +67,13 @@ RSpec.describe SendRegistrationEditEmailJob do
     end
 
     context "when reference and email provided do not match any of existing registrations" do
-      it "does not send the email" do
+      it "does not set the edit_link_requested_by attribute" do
+        run_job
 
+        expect(registration.reload.edit_link_requested_by).to be_nil
+      end
+
+      it "does not send the email" do
         run_job
 
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)

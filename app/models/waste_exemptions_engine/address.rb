@@ -8,8 +8,8 @@ module WasteExemptionsEngine
 
     belongs_to :registration
 
-    enum address_type: { unknown: 0, operator: 1, contact: 2, site: 3 }
-    enum mode: { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
+    enum :address_type, { unknown: 0, operator: 1, contact: 2, site: 3 }
+    enum :mode, { unknown_mode: 0, lookup: 1, manual: 2, auto: 3 }
 
     scope :missing_easting_or_northing, -> { where("x IS NULL OR y IS NULL") }
     scope :with_postcode, -> { where.not(postcode: [nil, ""]) }

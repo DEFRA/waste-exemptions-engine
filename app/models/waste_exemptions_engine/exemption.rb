@@ -18,6 +18,6 @@ module WasteExemptionsEngine
       where(waste_activity_id: waste_activity_ids).order(:waste_activity_id, :id)
     }
 
-    enum category: { using_waste: 0, treating_waste: 1, disposing_of_waste: 2, storing_waste: 3 }
+    enum :category, { using_waste: 0, treating_waste: 1, disposing_of_waste: 2, storing_waste: 3 }
   end
 end
