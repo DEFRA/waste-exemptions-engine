@@ -7,6 +7,7 @@ module WasteExemptionsEngine
 
       ActiveRecord::Base.transaction do
         find_original_registration
+        set_paper_trail_whodunnit
         copy_attributes if non_exemption_changes?
         copy_addresses if non_exemption_changes?
         update_exemptions if exemption_changes?
@@ -19,6 +20,12 @@ module WasteExemptionsEngine
 
     def find_original_registration
       @registration = Registration.where(reference: @edit_registration.reference).first
+    end
+
+    def set_paper_trail_whodunnit
+      return unless @registration.edit_link_requested_by.present?
+
+      PaperTrail.request.whodunnit = @registration.edit_link_requested_by
     end
 
     def copy_attributes
