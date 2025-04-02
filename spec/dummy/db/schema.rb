@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_27_113034) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_02_111959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "tsm_system_rows"
@@ -309,6 +309,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_27_113034) do
     t.datetime "view_certificate_token_created_at"
     t.boolean "placeholder", default: false
     t.string "reason_for_change", limit: 500
+    t.string "edit_link_requested_by"
     t.index ["created_at"], name: "index_registrations_on_created_at"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
