@@ -7,7 +7,7 @@ module WasteExemptionsEngine
 
     belongs_to :transient_registration
 
-    enum person_type: { partner: 0 }
+    enum :person_type, { partner: 0 }
 
     def person_attributes
       attributes.except("id", "transient_registration_id", "created_at", "updated_at")
