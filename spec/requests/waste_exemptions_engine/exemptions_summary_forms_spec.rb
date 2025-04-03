@@ -35,6 +35,11 @@ module WasteExemptionsEngine
         post request_path, params: request_body
         expect(response.code).to eq(status_code.to_s)
       end
+
+      it "redirects to the site grid reference form" do
+        post request_path, params: request_body
+        expect(response).to redirect_to(site_grid_reference_forms_path(form.token))
+      end
     end
 
     context "when on Exemptions Summary page during Check Your Answers flow - new registration" do
