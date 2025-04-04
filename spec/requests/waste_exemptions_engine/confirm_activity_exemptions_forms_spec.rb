@@ -22,7 +22,7 @@ module WasteExemptionsEngine
         post "/waste_exemptions_engine/#{confirm_activity_exemptions_form.token}/your-selected-exemptions",
              params: { confirm_activity_exemptions_form: { temp_confirm_exemptions: "true" } }
 
-        expect(response).to redirect_to(site_grid_reference_forms_path(confirm_activity_exemptions_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(confirm_activity_exemptions_form.token))
       end
     end
   end

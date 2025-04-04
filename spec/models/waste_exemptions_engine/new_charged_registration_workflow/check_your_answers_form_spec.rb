@@ -9,10 +9,10 @@ module WasteExemptionsEngine
 
       it_behaves_like "a simple progressing transition",
                       current_state: :check_your_answers_form,
-                      next_state: :exemptions_summary_form,
+                      next_state: :declaration_form,
                       factory: :new_charged_registration
 
-      next_state = :exemptions_summary_form
+      next_state = :declaration_form
       current_state = :check_your_answers_form
 
       subject(:new_registration) do
