@@ -8,6 +8,7 @@ module WasteExemptionsEngine
       ActiveRecord::Base.transaction do
         find_original_registration
         set_paper_trail_whodunnit
+        set_paper_trail_reason
         copy_attributes if non_exemption_changes?
         copy_addresses if non_exemption_changes?
         update_exemptions if exemption_changes?
@@ -23,9 +24,16 @@ module WasteExemptionsEngine
     end
 
     def set_paper_trail_whodunnit
-      return unless @registration.edit_link_requested_by.present?
+      if @registration.edit_link_requested_by.present?
+        PaperTrail.request.whodunnit = @registration.edit_link_requested_by
+        @registration.edit_link_requested_by = nil
+      elsif @registration.contact_email.present?
+        PaperTrail.request.whodunnit = @registration.contact_email
+      end
+    end
 
-      PaperTrail.request.whodunnit = @registration.edit_link_requested_by
+    def set_paper_trail_reason
+      @edit_registration.update(reason_for_change: I18n.t(".waste_exemptions_engine.edited_via_self_serve_reson"))
     end
 
     def copy_attributes
@@ -51,7 +59,7 @@ module WasteExemptionsEngine
     end
 
     def non_exemption_changes?
-      @non_exemption_changes ||= @edit_registration.modified?
+      @non_exemption_changes ||= @edit_registration.modified?(ignore_exemptions: true)
     end
 
     def send_confirmation_email

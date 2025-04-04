@@ -54,6 +54,10 @@ module WasteExemptionsEngine
         it { expect { run_service }.to change { PaperTrail.request.whodunnit } }
       end
 
+      RSpec.shared_examples "sets reason_for_change" do
+        it { expect { run_service }.to change(edit_registration, :reason_for_change) }
+      end
+
       RSpec.shared_examples "does not send a confirmation email" do
         it "does not send the email" do
           run_service
@@ -187,6 +191,7 @@ module WasteExemptionsEngine
         it_behaves_like "calls the exemption deregistration service"
         it_behaves_like "sends a confirmation email via the exemption_deregistration_service"
         it_behaves_like "sets whodunnit"
+        it_behaves_like "sets reason_for_change"
         it_behaves_like "does not update contact details"
         it_behaves_like "creates a new paper_trail version"
         it_behaves_like "deletes the transient registration"
@@ -197,6 +202,7 @@ module WasteExemptionsEngine
         let(:contact_address_changes?) { true }
 
         it_behaves_like "sets whodunnit"
+        it_behaves_like "sets reason_for_change"
         it_behaves_like "updates contact details"
         it_behaves_like "updates contact address details"
         it_behaves_like "does not call the exemption deregistration service"
@@ -213,6 +219,7 @@ module WasteExemptionsEngine
         it_behaves_like "calls the exemption deregistration service"
         it_behaves_like "sends a confirmation email via the exemption_deregistration_service"
         it_behaves_like "sets whodunnit"
+        it_behaves_like "sets reason_for_change"
         it_behaves_like "updates contact details"
         it_behaves_like "updates contact address details"
         it_behaves_like "deletes the transient registration"
