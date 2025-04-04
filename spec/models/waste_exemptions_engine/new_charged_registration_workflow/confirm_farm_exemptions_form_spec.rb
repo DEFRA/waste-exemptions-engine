@@ -20,10 +20,10 @@ module WasteExemptionsEngine
         context "when farm exemptions have been selected" do
           let(:temp_exemptions) { [create(:exemption).id] }
 
-          it "transitions to site_grid_reference_form" do
+          it "transitions to exemptions_summary_form" do
             expect(new_registration)
               .to transition_from(:confirm_farm_exemptions_form)
-              .to(:site_grid_reference_form)
+              .to(:exemptions_summary_form)
               .on_event(:next)
           end
         end
