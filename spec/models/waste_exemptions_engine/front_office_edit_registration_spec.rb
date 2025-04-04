@@ -95,7 +95,7 @@ module WasteExemptionsEngine
       context "when an exemption has been removed" do
         before { edit_registration.exemptions.last.destroy }
 
-        context "when no parameter passed to modifield? metod" do
+        context "when no parameter passed to modified? method" do
           it { expect(edit_registration.modified?).to be true }
         end
 
