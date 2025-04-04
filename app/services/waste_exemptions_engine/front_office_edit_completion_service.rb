@@ -33,7 +33,7 @@ module WasteExemptionsEngine
     end
 
     def set_paper_trail_reason
-      @edit_registration.update(reason_for_change: I18n.t(".waste_exemptions_engine.edited_via_self_serve_reson"))
+      @edit_registration.update(reason_for_change: I18n.t(".waste_exemptions_engine.edited_via_self_serve_reason"))
     end
 
     def copy_attributes
