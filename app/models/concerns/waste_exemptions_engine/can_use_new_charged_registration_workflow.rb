@@ -72,10 +72,8 @@ module WasteExemptionsEngine
         state :farm_exemptions_form
         state :confirm_activity_exemptions_form
         state :confirm_farm_exemptions_form
-        state :exemptions_summary_form
         state :no_farm_exemptions_selected_form
-
-        # End pages
+        state :exemptions_summary_form
         state :check_your_answers_form
         state :declaration_form
         state :payment_summary_form
@@ -212,9 +210,9 @@ module WasteExemptionsEngine
           transitions from: :farm_exemptions_form,
                       to: :confirm_farm_exemptions_form
 
-          # Confirm Exemptions -> Site Grid Reference
+          # Confirm Exemptions -> Exemptions Summary
           transitions from: :confirm_activity_exemptions_form,
-                      to: :site_grid_reference_form,
+                      to: :exemptions_summary_form,
                       if: :proceed_with_selected_exemptions?,
                       unless: :check_your_answers_flow?
 
@@ -224,8 +222,13 @@ module WasteExemptionsEngine
                       unless: :check_your_answers_flow?
 
           transitions from: :confirm_farm_exemptions_form,
-                      to: :site_grid_reference_form,
+                      to: :exemptions_summary_form,
                       if: :proceed_with_selected_farm_exemptions?,
+                      unless: :check_your_answers_flow?
+
+          # Exemptions Summary -> Site Grid Reference
+          transitions from: :exemptions_summary_form,
+                      to: :site_grid_reference_form,
                       unless: :check_your_answers_flow?
 
           # Confirm Exemptions -> Waste Activities
@@ -403,13 +406,7 @@ module WasteExemptionsEngine
           ### CHECK YOUR ANSWERS
 
           transitions from: :check_your_answers_form,
-                      to: :exemptions_summary_form
-
-          ### EXEMPTIONS SUMMARY
-
-          transitions from: :exemptions_summary_form,
-                      to: :declaration_form,
-                      unless: :check_your_answers_flow?
+                      to: :declaration_form
 
           ### DECLARATION
 
