@@ -46,11 +46,15 @@ module WasteExemptionsEngine
     end
 
     def deregister_exemptions(registration_exemptions)
-      registration_exemptions.update_all(
-        state: "ceased",
-        deregistration_message: I18n.t("self_serve_deregistration.message"),
-        deregistered_at: Time.zone.now
-      )
+      registration_exemptions.each do |registration_exemption|
+        PaperTrail.request.whodunnit = @original_registration.edit_link_requested_by ||
+                                       @original_registration.contact_email
+        registration_exemption.update(
+          state: "ceased",
+          deregistration_message: I18n.t("self_serve_deregistration.message"),
+          deregistered_at: Time.zone.now
+        )
+      end
     end
 
     def create_paper_trail_version
