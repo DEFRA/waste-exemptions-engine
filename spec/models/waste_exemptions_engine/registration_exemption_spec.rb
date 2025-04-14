@@ -54,5 +54,40 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "PaperTrail", :versioning do
+      subject(:registration_exemption) { create(:registration_exemption) }
+
+      shared_examples "creates a new version" do
+        it { expect(registration_exemption.versions.count).to eq(1) }
+        it { expect(registration_exemption.versions.first.reify.state).to eq("active") }
+        it { expect(registration_exemption.versions.first.reify.deregistered_at).to be_nil }
+        it { expect(registration_exemption.reload.deregistered_at).not_to be_nil }
+      end
+
+      it "is versioned" do
+        expect(registration_exemption).to be_versioned
+      end
+
+      context "when registration_exemption is expected to be persisted" do
+        before do
+          allow(registration_exemption).to receive(:persist_version?).and_return(true)
+          registration_exemption.update(state: "revoked", deregistered_at: Time.zone.now)
+        end
+
+        it_behaves_like "creates a new version"
+      end
+
+      context "when performing a regular update" do
+        before do
+          allow(registration_exemption).to receive(:persist_version?).and_return(false)
+          registration_exemption.update!(deregistration_message: "foo")
+        end
+
+        it "does not create a new version" do
+          expect(registration_exemption.versions.size).to eq(0)
+        end
+      end
+    end
   end
 end
