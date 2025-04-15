@@ -71,8 +71,8 @@ module WasteExemptionsEngine
 
       context "when registration_exemption is expected to be persisted" do
         before do
-          allow(registration_exemption).to receive(:persist_version?).and_return(true)
-          registration_exemption.update(state: "revoked", deregistered_at: Time.zone.now)
+          # registration_exemption is expected to be persisted when deregistered_at is set
+          registration_exemption.update(state: "revoked", deregistration_message: "foo", deregistered_at: Time.zone.now)
         end
 
         it_behaves_like "creates a new version"
@@ -80,7 +80,7 @@ module WasteExemptionsEngine
 
       context "when performing a regular update" do
         before do
-          allow(registration_exemption).to receive(:persist_version?).and_return(false)
+          # registration_exemption is not expected to be persisted when deregistered_at not is set
           registration_exemption.update!(deregistration_message: "foo")
         end
 
