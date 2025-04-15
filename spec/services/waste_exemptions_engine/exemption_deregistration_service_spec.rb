@@ -68,6 +68,22 @@ module WasteExemptionsEngine
           it "creates a new registration version" do
             expect { run_service }.to change { registration.versions.count }.by(1)
           end
+
+          it "sets whodunnit for registration version" do
+            registration.edit_link_requested_by = "test@example.com"
+            run_service
+            expect(registration.versions.last.whodunnit).to eq("test@example.com")
+          end
+
+          it "creates a new registration exemption version" do
+            expect { run_service }.to change { registration.registration_exemptions.first.versions.count }.by(1)
+          end
+
+          it "sets whodunnit for registration exemption version" do
+            registration.edit_link_requested_by = "test@example.com"
+            run_service
+            expect(registration.registration_exemptions.first.versions.last.whodunnit).to eq("test@example.com")
+          end
         end
 
         it "sends a confirmation email" do
@@ -118,6 +134,10 @@ module WasteExemptionsEngine
         with_versioning do
           it "creates a new registration version" do
             expect { run_service }.to change { registration.versions.count }.by(1)
+          end
+
+          it "creates a new registration exemption version" do
+            expect { run_service }.to change { registration.registration_exemptions.first.versions.count }.by(1)
           end
         end
 
