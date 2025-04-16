@@ -5,8 +5,8 @@ module WasteExemptionsEngine
     include CanUseFrontOfficeEditRegistrationWorkflow
     include CanCopyDataFromRegistration
 
-    def modified?
-      return true if exemptions_modified?
+    def modified?(ignore_exemptions: false)
+      return true if !ignore_exemptions && exemptions_modified?
       return true if contact_address_modified?
 
       %i[

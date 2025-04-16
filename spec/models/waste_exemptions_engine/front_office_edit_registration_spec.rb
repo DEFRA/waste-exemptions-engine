@@ -95,7 +95,17 @@ module WasteExemptionsEngine
       context "when an exemption has been removed" do
         before { edit_registration.exemptions.last.destroy }
 
-        it { expect(edit_registration.modified?).to be true }
+        context "when no parameter passed to modified? method" do
+          it { expect(edit_registration.modified?).to be true }
+        end
+
+        context "when ignore_exemptions parameter set to false" do
+          it { expect(edit_registration.modified?(ignore_exemptions: false)).to be true }
+        end
+
+        context "when ignore_exemptions parameter set to true" do
+          it { expect(edit_registration.modified?(ignore_exemptions: true)).to be false }
+        end
       end
 
       context "when contact first name has been updated" do

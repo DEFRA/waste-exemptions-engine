@@ -25,7 +25,7 @@ module WasteExemptionsEngine
         post "/waste_exemptions_engine/#{confirm_farm_exemptions_form.token}/your-selected-farm-exemptions",
              params: { confirm_farm_exemptions_form: { temp_add_additional_non_bucket_exemptions: "false" } }
 
-        expect(response).to redirect_to(site_grid_reference_forms_path(confirm_farm_exemptions_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(confirm_farm_exemptions_form.token))
       end
     end
   end

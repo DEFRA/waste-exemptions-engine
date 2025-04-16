@@ -25,6 +25,7 @@ en:
           one: 1 address found
           other: "%{count} addresses found"
     farmer_bucket: Farmer exemptions
+    edited_via_self_serve_reason: Edited via self-serve
       
   template_labels:
     registration_edit_email: "Waste exemptions – Update your contact details and deregister your waste exemptions"

@@ -15,12 +15,16 @@
     <h2 class="govuk-heading-m"><%= t(".bank_details_heading") %></h2>
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
-        <dt ><%= t(".sort_code") %></dt>
-        <dd class="govuk-summary-list__value"><strong><%= t(".sort_code_value") %></strong></dd>
+        <dt><%= t(".account_name") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= t(".account_name_value") %></strong></dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt><%= t(".account_number") %></dt>
         <dd class="govuk-summary-list__value"><strong><%= t(".account_number_value") %></strong></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt><%= t(".sort_code") %></dt>
+        <dd class="govuk-summary-list__value"><strong><%= t(".sort_code_value") %></strong></dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt>
@@ -34,6 +38,8 @@
         <dd class="govuk-summary-list__value"><strong><%= @registration_received_pending_payment_form.total_charge %></strong></dd>
       </div>
     </dl>
+    
+    <p class="govuk-body"><%= t(".payment_processing_time") %></p>
 
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
@@ -47,40 +53,22 @@
     </details>
 
     <h2 class="govuk-heading-m"><%= t(".confirm_payment_heading") %></h2>
-    <p class="govuk-body"><%= t(".confirm_payment_instruction") %></p>
-    <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt><%= t(".email_us") %></dt>
-        <dd class="govuk-summary-list__value"><strong><%= t(".contact_email") %></strong></dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt><%= t(".payment_reference") %></dt>
-        <dd class="govuk-summary-list__value"><strong><%= @registration.reference %></strong></dd>
-      </div>
-    </dl>
-
-    <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text"><%= t(".email_include_details") %></span>
-      </summary>
-      <div class="govuk-details__text">
-        <h3 class="govuk-heading-s"><%= t(".email_subject") %></h3>
-        <p class="govuk-body"><%= t(".email_subject_content", reference: @registration.reference) %></p>
-        <h3 class="govuk-heading-s"><%= t(".email_body") %></h3>
-        <p class="govuk-body">
-        <%= t(".email_body_content.payment_confirmation_reference", reference: @registration.reference) %>
-        <br>
-        <%= t(".email_body_content.date_paid", date: @registration.expires_on) %>
-        <br>
-        <%= t(".email_body_content.amount", amount: @registration_received_pending_payment_form.total_charge) %>
-        </p>
-      </div>
-    </details>
+    <p class="govuk-body"><%= t(".confirm_payment_instruction", email: "<strong>ea_fsc_ar@gov.sscl.com</strong>").html_safe %></p>
+    
+    <p class="govuk-body"><%= t(".confirm_payment_details") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t(".payment_reference_bullet") %></li>
+      <li><%= t(".date_paid_bullet") %></li>
+      <li><%= t(".amount_paid_bullet") %></li>
+    </ul>
+    
+    <p class="govuk-body"><%= t(".email_subject_line") %></p>
+    <p class="govuk-body"><strong><%= t(".email_subject_format", reference: @registration.reference) %></strong></p>
+    
+    <p class="govuk-body"><%= t(".email_contact", email: "<strong>ea_fsc_ar@gov.sscl.com</strong>").html_safe %></p>
 
     <p class="govuk-body"><%= t(".email_sent", email: @registration_received_pending_payment_form.applicant_email) %></p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><%= t(".payment_processing_time") %></li>
-      <li><%= t(".alternative_payment_method") %></li>
-    </ul>
+    
+    <p class="govuk-body"><%= t(".alternative_payment_method") %></p>
   </div>
 </div>
