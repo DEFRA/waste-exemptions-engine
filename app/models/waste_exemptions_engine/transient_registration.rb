@@ -135,7 +135,7 @@ module WasteExemptionsEngine
     private
 
     def default_workflow_state
-      "start_form"
+      new? ? "start_form" : "renewal_start_form"
     end
 
     def valid_state?(state)

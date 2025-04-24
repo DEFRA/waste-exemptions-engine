@@ -6,6 +6,14 @@ module WasteExemptionsEngine
   RSpec.describe "Renewal Start Forms" do
     let(:form) { build(:renewal_start_form) }
 
+    # Happy path: The addresses are present.
+    before do
+      form.transient_registration.update(
+        operator_address: build(:transient_address, :operator_address),
+        contact_address: build(:transient_address, :contact_address)
+      )
+    end
+
     describe "GET renewal_start_form" do
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/renewal-start" }
 
@@ -25,6 +33,34 @@ module WasteExemptionsEngine
         get request_path
 
         expect(response.body).to have_valid_html
+      end
+
+      # There is an edge case where a lot of back-and-forth navigation and
+      # changing the postcode can result in an address being nil.
+      shared_examples "redirects to the address form" do |address_type|
+        let(:token) { form.transient_registration.token }
+        let(:request_path) { new_renewal_start_form_path(token) }
+        let(:expected_redirect) { send("new_#{address_type}_postcode_form_path", token:) }
+
+        it { expect { get request_path }.not_to raise_error }
+
+        it "redirects to the correct form" do
+          get request_path
+
+          expect(response).to redirect_to(expected_redirect)
+        end
+      end
+
+      context "when the operator address is not present" do
+        before { form.transient_registration.update(operator_address: nil) }
+
+        it_behaves_like "redirects to the address form", :operator
+      end
+
+      context "when the contact address is not present" do
+        before { form.transient_registration.update(contact_address: nil) }
+
+        it_behaves_like "redirects to the address form", :contact
       end
     end
 

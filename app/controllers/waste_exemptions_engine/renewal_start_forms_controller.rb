@@ -4,6 +4,15 @@ module WasteExemptionsEngine
   class RenewalStartFormsController < FormsController
     def new
       super(RenewalStartForm, "renewal_start_form")
+      # There is an edge case where a lot of back-and-forth navigation and
+      # changing the postcode can result in an address being nil.
+      if @transient_registration.operator_address.nil?
+        @transient_registration.update(workflow_state: "operator_postcode_form")
+        redirect_to_correct_form
+      elsif @transient_registration.contact_address.nil?
+        @transient_registration.update(workflow_state: "contact_postcode_form")
+        redirect_to_correct_form
+      end
     end
 
     def create
