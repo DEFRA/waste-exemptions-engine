@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     include CanConvertPenceToPounds
     pence_to_pounds_fields only: %i[charge_amount]
 
-    enum charge_type: { registration_charge: "registration_charge",
+    enum :charge_type, { registration_charge: "registration_charge",
                         initial_compliance_charge: "initial_compliance_charge",
                         additional_compliance_charge: "additional_compliance_charge" }
 

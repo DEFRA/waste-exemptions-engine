@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     self.table_name = "buckets"
     has_paper_trail
 
-    enum bucket_type: {
+    enum :bucket_type, {
       farmer: "farmer",
       charity: "charity"
     }
