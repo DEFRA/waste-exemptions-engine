@@ -6,10 +6,10 @@ inherit_gem:
 
 require:
   - rubocop-factory_bot
-  - rubocop-rspec_rails
 
 plugins:
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   TargetRubyVersion: 3.2

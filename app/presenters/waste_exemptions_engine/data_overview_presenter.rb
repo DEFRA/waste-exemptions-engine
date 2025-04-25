@@ -273,6 +273,8 @@ module WasteExemptionsEngine
     end
 
     def displayable_address(address)
+      return nil unless address.present?
+
       [address.organisation, address.premises, address.street_address,
        address.locality, address.city, address.postcode].reject(&:blank?).join("<br>").html_safe
     end

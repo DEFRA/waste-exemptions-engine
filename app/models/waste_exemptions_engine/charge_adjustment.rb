@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     validates :reason, presence: true
     validates :adjustment_type, presence: true
 
-    enum adjustment_type: {
+    enum :adjustment_type, {
       increase: "increase",
       decrease: "decrease"
     }

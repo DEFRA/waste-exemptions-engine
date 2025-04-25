@@ -53,6 +53,9 @@ module WasteExemptionsEngine
 
     # Return a string suitable for use as a HTML id
     def html_id_for(prefix, text)
+      # special case: field id is contact_address, not operator_contact_address
+      return text.to_s.downcase.parameterize(separator: "_") if text == "Contact address"
+
       "#{prefix}_#{text}".downcase.parameterize(separator: "_")
     end
 
