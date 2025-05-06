@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     def validate_each(record, attribute, value)
       valid_options = %w[new
                          reregister
+                         deregister
                          edit]
 
       value_is_included?(record, attribute, value, valid_options)

@@ -81,6 +81,10 @@ module WasteExemptionsEngine
                       if: :should_edit?
 
           transitions from: :start_form,
+                      to: :capture_reference_form,
+                      if: :should_deregister?
+
+          transitions from: :start_form,
                       to: :renewal_stop_form,
                       if: :renewal_start_option?
 
@@ -512,6 +516,10 @@ module WasteExemptionsEngine
 
     def should_edit?
       start_option == "edit"
+    end
+
+    def should_deregister?
+      start_option == "deregister"
     end
 
     def should_register_in_northern_ireland?
