@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     PAYMENT_TYPE_OTHER = "other_payment"
     PAYMENT_TYPE_REFUND = "refund"
 
-    enum payment_type: {
+    enum :payment_type, {
       govpay_payment: PAYMENT_TYPE_GOVPAY,
       bank_transfer: PAYMENT_TYPE_BANK_TRANSFER,
       reversal: PAYMENT_TYPE_REVERSAL,
@@ -47,7 +47,7 @@ module WasteExemptionsEngine
     PAYMENT_STATUS_ERROR = "error"
 
     # https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle
-    enum payment_status: {
+    enum :payment_status, {
       created: PAYMENT_STATUS_CREATED,
       started: PAYMENT_STATUS_STARTED,
       submitted: PAYMENT_STATUS_SUBMITTED,

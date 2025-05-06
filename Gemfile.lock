@@ -312,7 +312,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.5.9)
-    phonelib (0.10.7)
+    phonelib (0.10.8)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -435,9 +435,10 @@ GEM
     rubocop-rspec (3.5.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-rspec_rails (2.30.0)
-      rubocop (~> 1.61)
-      rubocop-rspec (~> 3, >= 3.0.1)
+    rubocop-rspec_rails (2.31.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+      rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     ruby-rc4 (0.1.5)
     sassc (2.4.0)

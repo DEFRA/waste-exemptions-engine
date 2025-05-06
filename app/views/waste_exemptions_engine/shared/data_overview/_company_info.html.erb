@@ -10,7 +10,13 @@
     <dt class="govuk-summary-list__key">
       <%= row[:title] %>
     </dt>
-    <dd id="<%= html_id_for("company", row[:title]) %>" class="govuk-summary-list__value">
+    <% html_id = html_id_for("operator", row[:title]) %>
+    <% unless form.errors[row[:title]].any? %>
+      <dt class="govuk-error-message" id="renewal-start-form-<%= html_id %>-field-error">
+        <%= form.errors[html_id].join(", ") %>
+      </dt>
+    <% end %>
+    <dd id="<%= html_id %>" class="govuk-summary-list__value">
       <%= row[:value] %>
     </dd>
     <dd class="govuk-summary-list__actions">

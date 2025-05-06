@@ -2,17 +2,18 @@ en:
   waste_exemptions_engine:
     renewal_start_forms:
       new:
-        title: "Do you want to renew with these details?"
-        heading: "Do you want to renew with these details?"
-        description: Some of your exemptions could be withdrawn before the end of your registration period.
-        guidance_link_label: "latest guidance"
-        guidance: "Before you renew your exemptions you must read the %{guidance_link} (opens in new tab) to see if there have been any changes."
-        next_button: "Continue"
+        title: Are these details correct?
+        heading: Are these details correct?
+        next_button: Continue
   activemodel:
     errors:
       models:
         waste_exemptions_engine/renewal_start_form:
           attributes:
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing
+            operator_address:
+              blank: Enter an address for the business
+            contact_address:
+              blank: Enter a contact address
