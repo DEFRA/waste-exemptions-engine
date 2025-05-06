@@ -24,7 +24,7 @@ module WasteExemptionsEngine
     private
 
     def validate_company_status
-      companies_house_details[:company_status] == :active
+      %i[active voluntary-arrangement].include?(companies_house_details[:company_status])
     end
 
     def validate_company_number

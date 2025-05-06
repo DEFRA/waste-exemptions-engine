@@ -65,7 +65,17 @@ module WasteExemptionsEngine
     context "with a new registration" do
       let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
 
-      it_behaves_like "diplays the expected details"
+      context "when the company status is active" do
+        let(:company_status) { :active }
+
+        it_behaves_like "diplays the expected details"
+      end
+
+      context "when the company status is voluntary-arrangement" do
+        let(:company_status) { :"voluntary-arrangement" }
+
+        it_behaves_like "diplays the expected details"
+      end
     end
 
     context "with a new charged registration" do
