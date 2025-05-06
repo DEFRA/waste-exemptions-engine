@@ -8,6 +8,7 @@ module WasteExemptionsEngine
 
     start_options = %w[new
                        reregister
+                       deregister
                        edit].freeze
 
     it "validates the start option using the StartValidator class" do
