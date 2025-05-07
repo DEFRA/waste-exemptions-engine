@@ -2,9 +2,9 @@ en:
   waste_exemptions_engine:
     capture_reference_forms:
       new:
-        title: Enter your waste exemption registration number
-        heading: Enter your waste exemption registration number
-        reference_label: Registration number
+        title: Registration number
+        heading: Registration number
+        reference_label: Enter your waste exemption registration number
         reference_hint: "Example: WEX000234"
         detail_subheading: I do not know the registration number
         detail: If you don't know your registration number you can search for it on the %{link}

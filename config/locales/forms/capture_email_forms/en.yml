@@ -2,10 +2,14 @@ en:
   waste_exemptions_engine:
     capture_email_forms:
       new:
-        title: In order to send you a link to update your details, enter an email address that was used during registration
-        heading: In order to send you a link to update your details, enter an email address that was used during registration
-        contact_email_label: Email address
-        contact_email_hint: This is one of the email addresses that was entered during registration. If you no longer have access to these emails you can contact the helpline.
+        title: Email address
+        heading: Email address
+        contact_email_label: Enter an email address you used when you registered
+        contact_email_hint: ""
+        detail_subheading: I cannot access an email address used for this registration
+        detail_content:
+          line_1: Call the customer helpline on 03708 506506.
+          line_2: Lines are open Monday to Friday, 8am to 6pm.
         error_heading: A problem to fix
         next_button: Continue
   activemodel:
