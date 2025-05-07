@@ -5,7 +5,7 @@ on: push
 jobs:
   build:
     # You must use a Linux environment when using service containers or container jobs
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       ENV_VARIABLE_TEST_FEATURE: true
       ADDRESS_FACADE_CLIENT_ID: ${{ secrets.ACTIONS_ADDRESS_FACADE_CLIENT_ID }}
@@ -22,10 +22,11 @@ jobs:
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres:15.12
+        image: postgis/postgis:10-2.5
         # Provide the password for postgres
         env:
           POSTGRES_USER: postgres
+          PGUSER: postgres
           POSTGRES_PASSWORD: pinafore
           POSTGRES_DB: waste_exemptions_test
         # Maps tcp port 5432 on service container to the host
@@ -58,8 +59,8 @@ jobs:
 
       - name: Database migrations
         run: |
-          RAILS_ENV=test bundle exec rake db:create --trace --trace
-          RAILS_ENV=test bundle exec rake db:schema:load --trace --trace
+          RAILS_ENV=test bundle exec rake db:create --trace
+          RAILS_ENV=test bundle exec rake db:schema:load --trace
 
       # Run linting first. No point running the tests if there is a linting issue
       - name: Run lint check
