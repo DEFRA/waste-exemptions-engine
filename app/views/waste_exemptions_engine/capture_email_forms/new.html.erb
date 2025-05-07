@@ -14,6 +14,16 @@
           hint: { text: t(".contact_email_hint") },
           width: 20 %>
 
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text"><%= t(".detail_subheading") %></span>
+        </summary>
+        <div class="govuk-details__text">
+          <%= t(".detail_content.line_1") %><br/>
+          <%= t(".detail_content.line_2") %>
+        </div>
+      </details>
+
       <%= f.govuk_submit %>
     <% end %>
   </div>
