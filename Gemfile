@@ -19,6 +19,8 @@ gem "net-smtp"
 # Used for handling background processes
 gem "sucker_punch", "~> 3.1"
 
+gem "activerecord-postgis-adapter"
+
 group :development do
   gem "github_changelog_generator"
   gem "rubocop-rspec"

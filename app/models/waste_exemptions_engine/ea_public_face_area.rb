@@ -2,7 +2,8 @@
 
 module WasteExemptionsEngine
   class EaPublicFaceArea < ApplicationRecord
-    validates :area_name, presence: true
+    self.table_name = "ea_public_face_areas"
+    validates :name, presence: true
     validates :code, presence: true
 
     scope :containing_point, ->(easting, northing) {
