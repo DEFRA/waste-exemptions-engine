@@ -73,7 +73,7 @@ module WasteExemptionsEngine
     end
 
     empty_form_is_valid = true
-    include_examples "POST form", :renewal_start_form, "/renewal-start", empty_form_is_valid do
+    it_behaves_like "POST form", :renewal_start_form, "/renewal-start", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }
     end

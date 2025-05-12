@@ -9,8 +9,8 @@ module WasteExemptionsEngine
       create_list(:exemption, 5)
     end
 
-    include_examples "GET form", :exemptions_form, "/exemptions"
-    include_examples "POST form", :exemptions_form, "/exemptions" do
+    it_behaves_like "GET form", :exemptions_form, "/exemptions"
+    it_behaves_like "POST form", :exemptions_form, "/exemptions" do
       let(:form_data) { { exemption_ids: Exemption.limit(5).pluck(:id) } }
       let(:invalid_form_data) { [{ exemption_ids: [] }] }
     end

@@ -6,7 +6,7 @@ module WasteExemptionsEngine
     validates :name, presence: true
     validates :code, presence: true
 
-    scope :containing_point, ->(easting, northing) {
+    scope :containing_point, lambda { |easting, northing|
       point = RGeo::Cartesian.factory.point(easting, northing)
       where(arel_table[:area].st_contains(point))
     }

@@ -26,8 +26,8 @@ module WasteExemptionsEngine
       allow(NewRegistration).to receive(:new).and_return(new_registration)
     end
 
-    include_examples "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
-    include_examples "POST form", :check_registered_name_and_address_form, "/check-registered-name-and-address" do
+    it_behaves_like "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
+    it_behaves_like "POST form", :check_registered_name_and_address_form, "/check-registered-name-and-address" do
       let(:form_data) { { temp_use_registered_company_details: "true" } }
       let(:invalid_form_data) { [{ temp_use_registered_company_details: "" }] }
     end
