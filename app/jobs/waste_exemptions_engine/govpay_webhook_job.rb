@@ -24,9 +24,9 @@ module WasteExemptionsEngine
       Rails.logger.info "Processed payment webhook for govpay_id: #{result[:id]}, status: #{result[:status]}"
     end
 
-    def process_refund_webhook(_webhook_body)
+    def process_refund_webhook(webhook_body)
       # To be implemented in the future
-      raise NotImplementedError, "Refund webhook processing not implemented"
+      raise NotImplementedError, "Refund webhook processing not implemented", webhook_body: webhook_body
     end
 
     def sanitize_webhook_body(body)
