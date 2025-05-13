@@ -4,15 +4,15 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Operator Postcode Forms" do
-    it_behaves_like "GET form", :operator_postcode_form, "/operator-postcode"
-    it_behaves_like "POST form", :operator_postcode_form, "/operator-postcode" do
+    include_examples "GET form", :operator_postcode_form, "/operator-postcode"
+    include_examples "POST form", :operator_postcode_form, "/operator-postcode" do
       let(:form_data) { { temp_operator_postcode: "BS1 5AH" } }
       let(:invalid_form_data) { [{ temp_operator_postcode: "BA" }, { temp_operator_postcode: nil }] }
     end
 
-    it_behaves_like "skip to manual address",
-                    :operator_postcode_form,
-                    address_type: :operator
+    include_examples "skip to manual address",
+                     :operator_postcode_form,
+                     address_type: :operator
 
     context "when editing an existing registration" do
       let(:edit_operator_postcode_form) { build(:edit_operator_postcode_form) }

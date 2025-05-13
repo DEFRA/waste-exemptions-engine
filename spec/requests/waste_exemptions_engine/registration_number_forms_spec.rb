@@ -23,8 +23,8 @@ module WasteExemptionsEngine
       allow(companies_house_api).to receive(:run).and_return(companies_house_api_response)
     end
 
-    it_behaves_like "GET form", :registration_number_form, "/registration-number"
-    it_behaves_like "POST form", :registration_number_form, "/registration-number" do
+    include_examples "GET form", :registration_number_form, "/registration-number"
+    include_examples "POST form", :registration_number_form, "/registration-number" do
       let(:form_data) { { temp_company_no: "09360070" } }
       let(:invalid_form_data) { [{ temp_company_no: nil }] }
     end

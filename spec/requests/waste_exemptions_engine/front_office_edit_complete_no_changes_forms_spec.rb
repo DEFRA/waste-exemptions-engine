@@ -28,6 +28,6 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "unable to POST form", :front_office_edit_complete_no_changes_form, "/front-office-edit-complete-no-changes"
+    include_examples "unable to POST form", :front_office_edit_complete_no_changes_form, "/front-office-edit-complete-no-changes"
   end
 end

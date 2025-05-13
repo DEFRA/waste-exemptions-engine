@@ -55,6 +55,6 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "unable to POST form", :renewal_complete_form, "/renewal-complete"
+    include_examples "unable to POST form", :renewal_complete_form, "/renewal-complete"
   end
 end

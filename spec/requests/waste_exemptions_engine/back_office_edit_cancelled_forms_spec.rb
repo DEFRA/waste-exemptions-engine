@@ -49,6 +49,6 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "unable to POST form", :back_office_edit_cancelled_form, "/edit-cancelled"
+    include_examples "unable to POST form", :back_office_edit_cancelled_form, "/edit-cancelled"
   end
 end

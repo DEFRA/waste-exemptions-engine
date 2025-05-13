@@ -8,8 +8,8 @@ module WasteExemptionsEngine
     let(:request_path) { "/waste_exemptions_engine/#{incorrect_company_form.token}/incorrect-company" }
 
     empty_form_is_valid = true
-    it_behaves_like "GET form", :incorrect_company_form, "/incorrect-company"
-    it_behaves_like "POST form", :incorrect_company_form, "/incorrect-company", empty_form_is_valid do
+    include_examples "GET form", :incorrect_company_form, "/incorrect-company"
+    include_examples "POST form", :incorrect_company_form, "/incorrect-company", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }
     end

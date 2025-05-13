@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     let(:registration) { create(:registration, :with_active_exemptions) }
     let(:capture_reference_form) { build(:capture_reference_form) }
 
-    it_behaves_like "GET form", :capture_reference_form, "/enter-your-waste-exemption-registration-number/"
+    include_examples "GET form", :capture_reference_form, "/enter-your-waste-exemption-registration-number/"
     describe "POST capture_reference_form" do
       let(:request_path) { "/waste_exemptions_engine/#{capture_reference_form.token}/enter-your-waste-exemption-registration-number" }
       let(:request_body) { { capture_reference_form: { reference: registration.reference } } }

@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     let(:capture_email_form) { build(:capture_email_form) }
     let(:contact_email) { Faker::Internet.email }
 
-    it_behaves_like "GET form", :capture_email_form, "/enter-an-email-address-that-was-used-during-registration/"
+    include_examples "GET form", :capture_email_form, "/enter-an-email-address-that-was-used-during-registration/"
     describe "POST capture_email_form" do
       let(:request_path) { "/waste_exemptions_engine/#{capture_email_form.token}/enter-an-email-address-that-was-used-during-registration" }
       let(:request_body) { { capture_email_form: { reference: registration.reference, contact_email: contact_email } } }

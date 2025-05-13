@@ -32,7 +32,7 @@ module WasteExemptionsEngine
     end
 
     empty_form_is_valid = true
-    it_behaves_like "POST form", :confirm_back_office_edit_cancelled_form, "/confirm-edit-cancelled", empty_form_is_valid do
+    include_examples "POST form", :confirm_back_office_edit_cancelled_form, "/confirm-edit-cancelled", empty_form_is_valid do
       let(:form_data) { {} }
       let(:invalid_form_data) { [] }
     end

@@ -79,6 +79,6 @@ module WasteExemptionsEngine
       end
     end
 
-    it_behaves_like "unable to POST form", :back_office_edit_complete_form, "/edit-complete"
+    include_examples "unable to POST form", :back_office_edit_complete_form, "/edit-complete"
   end
 end

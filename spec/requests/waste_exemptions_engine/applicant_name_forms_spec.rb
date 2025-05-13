@@ -4,8 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Applicant Name Forms" do
-    it_behaves_like "GET form", :applicant_name_form, "/applicant-name"
-    it_behaves_like "POST form", :applicant_name_form, "/applicant-name" do
+    include_examples "GET form", :applicant_name_form, "/applicant-name"
+    include_examples "POST form", :applicant_name_form, "/applicant-name" do
       let(:form_data) { { applicant_first_name: "Joe", applicant_last_name: "Bloggs" } }
       let(:invalid_form_data) { [{ applicant_first_name: nil, applicant_last_name: nil }] }
     end

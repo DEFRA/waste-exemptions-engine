@@ -26,12 +26,12 @@ module WasteExemptionsEngine
     after { VCR.eject_cassette }
 
     describe "GET check_your_answers_form" do
-      it_behaves_like "GET form", :check_your_answers_form, "/check-your-answers"
+      include_examples "GET form", :check_your_answers_form, "/check-your-answers"
     end
 
     describe "POST check_your_answers_form" do
       empty_form_is_valid = true
-      it_behaves_like "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
+      include_examples "POST form", :check_your_answers_form, "/check-your-answers", empty_form_is_valid do
         let(:form_data) { {} }
         let(:invalid_form_data) { [] }
       end
