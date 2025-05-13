@@ -51,6 +51,36 @@ module WasteExemptionsEngine
             end
           end
         end
+
+        context "when new_registration.should_deregister? is true" do
+          before { new_registration.start_option = "deregister" }
+
+          it "can only transition to :capture_reference_form" do
+            permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
+            expect(permitted_states).to eq([:capture_reference_form])
+          end
+
+          it "changes to :capture_reference_form after the 'next' event" do
+            aggregate_failures do
+              expect(new_registration.send(:should_deregister?)).to be(true)
+              expect(new_registration).to transition_from(current_state).to(:capture_reference_form).on_event(:next)
+            end
+          end
+        end
+
+        context "when new_registration.should_deregister? is false" do
+          it "can only transition to :location_form" do
+            permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
+            expect(permitted_states).to eq([:location_form])
+          end
+
+          it "changes to :location_form after the 'next' event" do
+            aggregate_failures do
+              expect(new_registration.send(:should_deregister?)).to be(false)
+              expect(new_registration).to transition_from(current_state).to(:location_form).on_event(:next)
+            end
+          end
+        end
       end
     end
   end

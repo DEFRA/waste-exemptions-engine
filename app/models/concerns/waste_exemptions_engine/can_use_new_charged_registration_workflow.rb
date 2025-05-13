@@ -83,10 +83,15 @@ module WasteExemptionsEngine
 
         # Transitions
         event :next do
-          # DEREGISTRATION: Start -> Location
+          # EDIT: Start -> Location
           transitions from: :start_form,
                       to: :capture_reference_form,
                       if: :should_edit?
+
+          # DEREGISTRATION: Start -> Location
+          transitions from: :start_form,
+                      to: :capture_reference_form,
+                      if: :should_deregister?
 
           # DEREGISTRATION: Capture reference -> Capture email
           transitions from: :capture_reference_form,
@@ -659,6 +664,10 @@ module WasteExemptionsEngine
 
     def should_edit?
       start_option == "edit"
+    end
+
+    def should_deregister?
+      start_option == "deregister"
     end
 
     def should_register_in_northern_ireland?
