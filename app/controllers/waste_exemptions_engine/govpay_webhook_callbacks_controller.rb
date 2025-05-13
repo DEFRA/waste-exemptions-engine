@@ -20,7 +20,7 @@ module WasteExemptionsEngine
       Airbrake.notify(e, body: body, signature: pay_signature)
     ensure
       # always return 200 to Govpay even if validation fails
-      render nothing: true, layout: false, status: 200
+      head :ok
     end
   end
 end
