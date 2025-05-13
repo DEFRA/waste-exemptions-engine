@@ -41,11 +41,13 @@ module WasteExemptionsEngine
         payment_id: webhook_body&.dig("resource", "payment_id") || webhook_body&.dig("payment_id"),
         service_type: service_type
       }
-      Airbrake.notify(error, notification_params)
 
-      # detailed logging - enabled with feature toggle
-      notification_params[:webhook_body] = sanitize_webhook_body(webhook_body)
-      DetailedLogger.error "Webhook job error #{error}: #{notification_params}"
+      if FeatureToggle.active?(:detailed_logging)
+        notification_params[:webhook_body] = sanitize_webhook_body(webhook_body)
+        DetailedLogger.error "Webhook job error #{error}: #{notification_params}"
+      end
+
+      Airbrake.notify(error, notification_params)
     end
   end
 end
