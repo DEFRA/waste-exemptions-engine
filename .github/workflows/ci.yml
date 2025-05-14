@@ -16,6 +16,9 @@ jobs:
       PG_PORT: 5432
       PG_USERNAME: postgres
       TZ: UTC
+      WEX_GOVPAY_CALLBACK_WEBHOOK_SIGNING_SECRET: foo
+      WEX_GOVPAY_BACK_OFFICE_CALLBACK_WEBHOOK_SIGNING_SECRET: foo2
+
 
     # Service containers to run with `runner-job`
     services:

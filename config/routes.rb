@@ -710,6 +710,9 @@ WasteExemptionsEngine::Engine.routes.draw do
       as: "validate_edit_token",
       defaults: { format: :html }
 
+  # GOV.uk pay webhook callback route
+  post "/govpay_payment_update", to: "govpay_webhook_callbacks#process_webhook", as: "process_govpay_webhook"
+
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
 
