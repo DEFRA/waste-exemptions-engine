@@ -21,7 +21,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the matching area" do
-          expect(described_class.run(coordinates)).to eq(area)
+          expect(described_class.run(coordinates)).to eq(area.name)
         end
       end
 
@@ -36,7 +36,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the 'Outside England' area" do
-          expect(described_class.run(coordinates)).to eq(outside_england)
+          expect(described_class.run(coordinates)).to eq(outside_england.name)
         end
       end
     end
