@@ -446,10 +446,12 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :confirm_farm_exemptions_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form,
+                      if: :check_your_answers_flow?
 
           transitions from: :confirm_activity_exemptions_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form,
+                      if: :check_your_answers_flow?
 
           transitions from: :contact_name_form,
                       to: :check_your_answers_form
