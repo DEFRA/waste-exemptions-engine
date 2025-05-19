@@ -15,7 +15,7 @@ module WasteExemptionsEngine
           allow(EaPublicFaceArea).to receive(:find_by_coordinates)
             .with(coordinates[:easting], coordinates[:northing])
             .and_return(area)
-          
+
           allow(EaPublicFaceArea).to receive(:outside_england_area)
             .and_return(outside_england)
         end
@@ -30,7 +30,7 @@ module WasteExemptionsEngine
           allow(EaPublicFaceArea).to receive(:find_by_coordinates)
             .with(coordinates[:easting], coordinates[:northing])
             .and_return(nil)
-          
+
           allow(EaPublicFaceArea).to receive(:outside_england_area)
             .and_return(outside_england)
         end

@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     OUTSIDE_ENGLAND_CODE = "OUTSIDE_ENGLAND"
 
-    scope :containing_point, ->(easting, northing) {
+    scope :containing_point, lambda { |easting, northing|
       point = RGeo::Cartesian.factory.point(easting, northing)
       where(arel_table[:area].st_contains(point))
     }
