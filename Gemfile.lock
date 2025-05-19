@@ -400,6 +400,9 @@ GEM
     rgeo-activerecord (8.0.0)
       activerecord (>= 7.0)
       rgeo (>= 3.0)
+    rgeo-geojson (2.2.0)
+      multi_json (~> 1.15)
+      rgeo (>= 1.0.0)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -540,6 +543,7 @@ DEPENDENCIES
   pdf-reader
   pry-byebug
   rails-controller-testing
+  rgeo-geojson
   rspec-html-matchers
   rspec-rails
   rubocop-rspec

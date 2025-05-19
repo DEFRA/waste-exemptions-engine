@@ -6,13 +6,22 @@ module WasteExemptionsEngine
     validates :name, presence: true
     validates :code, presence: true
 
-    scope :containing_point, lambda { |easting, northing|
+    OUTSIDE_ENGLAND_CODE = "OUTSIDE_ENGLAND"
+
+    scope :containing_point, ->(easting, northing) {
       point = RGeo::Cartesian.factory.point(easting, northing)
       where(arel_table[:area].st_contains(point))
     }
 
     def self.find_by_coordinates(longitude, latitude)
       containing_point(longitude, latitude).first
+    end
+
+    def self.outside_england_area
+      find_or_create_by(code: OUTSIDE_ENGLAND_CODE) do |area|
+        area.name = "Outside England"
+        area.area_id = "OUTSIDE_ENGLAND"
+      end
     end
   end
 end
