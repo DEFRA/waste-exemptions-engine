@@ -16,6 +16,8 @@ require "active_record/connection_adapters/postgresql_adapter"
 Bundler.require(*Rails.groups)
 require "waste_exemptions_engine"
 
+require "waste_exemptions_engine/detailed_logger"
+
 module Dummy
   class Application < Rails::Application
     config.load_defaults 7.0

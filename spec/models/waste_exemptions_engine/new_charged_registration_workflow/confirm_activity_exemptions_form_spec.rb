@@ -38,6 +38,22 @@ module WasteExemptionsEngine
             .on_event(:next)
         end
       end
+
+      context "when in check your answers flow" do
+        let(:temp_confirm_exemptions) { true }
+        let(:temp_exemptions) { [create(:exemption).id] }
+
+        before do
+          new_registration.temp_check_your_answers_flow = true
+        end
+
+        it "transitions to exemptions_summary_form" do
+          expect(new_registration)
+            .to transition_from(:confirm_activity_exemptions_form)
+            .to(:exemptions_summary_form)
+            .on_event(:next)
+        end
+      end
     end
   end
 end
