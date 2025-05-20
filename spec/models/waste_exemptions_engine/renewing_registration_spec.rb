@@ -57,8 +57,8 @@ module WasteExemptionsEngine
                                                             "created_at",
                                                             "updated_at")
 
-            renewing_address_attributes = renewing_registration.public_send("#{address.address_type}_address")
-                                                               .attributes
+            renewing_address_attributes = renewing_registration.public_send("#{address.address_type}_address").attributes
+
             expect(renewing_address_attributes).to include(copyable_attributes)
           end
         end
