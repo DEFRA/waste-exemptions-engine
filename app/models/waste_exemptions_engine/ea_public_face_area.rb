@@ -13,8 +13,8 @@ module WasteExemptionsEngine
       where(arel_table[:area].st_contains(point))
     }
 
-    def self.find_by_coordinates(longitude, latitude)
-      containing_point(longitude, latitude).first
+    def self.find_by_coordinates(easting, northing)
+      containing_point(easting, northing).first
     end
 
     def self.outside_england_area
