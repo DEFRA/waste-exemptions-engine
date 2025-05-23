@@ -5,9 +5,14 @@ module WasteExemptionsEngine
     def run(easting:, northing:)
       return nil unless valid_coordinates?(easting, northing)
 
-      area = EaPublicFaceArea.find_by_coordinates(easting, northing)
-
-      area ? area.name : "Outside England"
+      begin
+        area = EaPublicFaceArea.find_by_coordinates(easting, northing)
+        area ? area.name : "Outside England"
+      rescue StandardError => error
+        Airbrake.notify(error, easting: easting, northing: northing) if defined? Airbrake
+        Rails.logger.error "Area lookup failed:\n #{error}"
+        raise
+      end
     end
 
     private
