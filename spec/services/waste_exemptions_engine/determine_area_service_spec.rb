@@ -51,19 +51,29 @@ module WasteExemptionsEngine
             .and_raise(error)
 
           allow(Rails.logger).to receive(:error)
-          allow(Airbrake).to receive(:notify).with(error, easting: easting, northing: northing) if defined?(Airbrake)
+          allow(Airbrake).to receive(:notify) if defined?(Airbrake)
         end
 
         it "logs the error" do
-          expect(Rails.logger).to receive(:error).with("Area lookup failed:\n #{error}")
-          expect { service.run(easting: easting, northing: northing) }.to raise_error(StandardError)
+          begin
+            service.run(easting: easting, northing: northing)
+          rescue StandardError
+            # Expected to raise error
+          end
+
+          expect(Rails.logger).to have_received(:error).with("Area lookup failed:\n #{error}")
         end
 
         it "notifies Airbrake if defined" do
           if defined?(Airbrake)
-            expect(Airbrake).to receive(:notify).with(error, easting: easting, northing: northing)
+            begin
+              service.run(easting: easting, northing: northing)
+            rescue StandardError
+              # Expected to raise error
+            end
+
+            expect(Airbrake).to have_received(:notify).with(error, easting: easting, northing: northing)
           end
-          expect { service.run(easting: easting, northing: northing) }.to raise_error(StandardError)
         end
 
         it "re-raises the original error" do

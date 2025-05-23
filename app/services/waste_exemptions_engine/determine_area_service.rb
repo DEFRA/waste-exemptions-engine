@@ -8,9 +8,9 @@ module WasteExemptionsEngine
       begin
         area = EaPublicFaceArea.find_by_coordinates(easting, northing)
         area ? area.name : "Outside England"
-      rescue StandardError => error
-        Airbrake.notify(error, easting: easting, northing: northing) if defined? Airbrake
-        Rails.logger.error "Area lookup failed:\n #{error}"
+      rescue StandardError => e
+        Airbrake.notify(e, easting: easting, northing: northing) if defined? Airbrake
+        Rails.logger.error "Area lookup failed:\n #{e}"
         raise
       end
     end
