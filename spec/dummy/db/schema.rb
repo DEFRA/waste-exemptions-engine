@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_06_171200) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_20_123419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -283,6 +283,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_06_171200) do
     t.datetime "updated_at", precision: nil, null: false
     t.text "deregistration_message"
     t.date "deregistered_at"
+    t.string "reason_for_change", limit: 500
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
     t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
     t.index ["registration_id"], name: "index_registration_exemptions_on_registration_id"
