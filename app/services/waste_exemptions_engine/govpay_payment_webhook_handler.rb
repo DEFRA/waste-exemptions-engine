@@ -21,7 +21,7 @@ module WasteExemptionsEngine
       registration = registration_by_govpay_id(govpay_id)
       return if registration.blank?
 
-      update_payment_status(payment, status)
+      update_payment_status_and_reference(payment, status)
 
       complete_renewal_if_ready(registration, status)
 
@@ -33,10 +33,8 @@ module WasteExemptionsEngine
       raise
     end
 
-    def self.update_payment_status(payment, status)
-      payment.update(payment_status: status)
-      # payment.finance_details.update_balance
-      # (payment.finance_details.registration || payment.finance_details.transient_registration).save!
+    def self.update_payment_status_and_reference(payment, status)
+      payment.update(payment_status: status, reference: payment.payment_uuid)
     end
 
     def self.complete_renewal_if_ready(registration, status)

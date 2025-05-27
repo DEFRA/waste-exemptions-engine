@@ -57,6 +57,12 @@ module WasteExemptionsEngine
 
                 expect(Rails.logger).to have_received(:warn)
               end
+
+              it "sets the payment reference to the payment uuid" do
+                run_service
+
+                expect(wex_payment.reload.reference).to eq(wex_payment.payment_uuid)
+              end
             end
 
             context "when the payment status has changed" do
@@ -91,6 +97,10 @@ module WasteExemptionsEngine
 
                 it "updates the balance" do
                   expect { run_service }.to change { registration.account.reload.balance }
+                end
+
+                it "sets the payment reference to the payment uuid" do
+                  expect { run_service }.to change { wex_payment.reload.reference }.to(wex_payment.payment_uuid)
                 end
               end
             end
