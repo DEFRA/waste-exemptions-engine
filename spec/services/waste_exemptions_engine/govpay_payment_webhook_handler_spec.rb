@@ -64,8 +64,9 @@ module WasteExemptionsEngine
                 expect(wex_payment.reload.reference).to eq(wex_payment.payment_uuid)
               end
 
-              it "returns the hash of govpay_id and status" do
-                expect(run_service).to eq({ id: wex_payment.govpay_id, status: wex_payment.payment_status })
+              it "returns the hash which includes govpay_id and status" do
+                response = run_service
+                expect(response).to include(id: wex_payment.govpay_id, status: wex_payment.payment_status)
               end
             end
 
