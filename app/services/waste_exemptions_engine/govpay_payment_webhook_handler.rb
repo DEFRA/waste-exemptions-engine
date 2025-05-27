@@ -12,9 +12,7 @@ module WasteExemptionsEngine
         webhook_body,
         previous_status: previous_status
       )
-
-      govpay_id = result[:id]
-      status = result[:status]
+      govpay_id, status = result.values_at(:id, :status)
 
       return if payment.blank?
 
@@ -27,6 +25,8 @@ module WasteExemptionsEngine
 
       Rails.logger.info "Updated status from #{previous_status} to #{status} for payment #{govpay_id}, " \
                         "registration #{registration.reference}"
+
+      result
     rescue StandardError => e
       Rails.logger.error "Error processing webhook for payment #{govpay_id}: #{e}"
       Airbrake.notify "Error processing webhook for payment #{govpay_id}", e
