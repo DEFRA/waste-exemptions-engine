@@ -12,31 +12,29 @@ module WasteExemptionsEngine
         webhook_body,
         previous_status: previous_status
       )
-
-      govpay_id = result[:id]
-      status = result[:status]
+      govpay_id, status = result.values_at(:id, :status)
 
       return if payment.blank?
 
       registration = registration_by_govpay_id(govpay_id)
       return if registration.blank?
 
-      update_payment_status(payment, status)
+      update_payment_status_and_reference(payment, status)
 
       complete_renewal_if_ready(registration, status)
 
       Rails.logger.info "Updated status from #{previous_status} to #{status} for payment #{govpay_id}, " \
                         "registration #{registration.reference}"
+
+      result
     rescue StandardError => e
       Rails.logger.error "Error processing webhook for payment #{govpay_id}: #{e}"
       Airbrake.notify "Error processing webhook for payment #{govpay_id}", e
       raise
     end
 
-    def self.update_payment_status(payment, status)
-      payment.update(payment_status: status)
-      # payment.finance_details.update_balance
-      # (payment.finance_details.registration || payment.finance_details.transient_registration).save!
+    def self.update_payment_status_and_reference(payment, status)
+      payment.update(payment_status: status, reference: payment.payment_uuid)
     end
 
     def self.complete_renewal_if_ready(registration, status)
