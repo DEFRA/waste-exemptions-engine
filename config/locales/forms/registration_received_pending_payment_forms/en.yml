@@ -21,16 +21,16 @@ en:
         swift_bic: "SWIFT/BIC: NWBK GB2L"
         currency: "Currency: Sterling"
         confirm_payment_heading: "Confirm you've paid"
-        confirm_payment_instruction: "Send an email to %{email} to confirm you've paid."
-        confirm_payment_details: Include the following details
+        confirm_payment_instruction: "Send an email to: %{email} to confirm you've paid."
+        confirm_payment_details: "Include these details in the email:"
         payment_reference_bullet: your payment reference
         date_paid_bullet: the date you paid
         amount_paid_bullet: the amount you paid
-        email_subject_line: In the email subject line write
+        email_subject_line: "In the email subject line write: \"Waste exemption payment confirmation for [%{reference}]\""
         email_subject_format: "Waste exemption payment confirmation for [%{reference}]"
         email_contact: "Email: %{email}"
         email_sent: "We've sent an email to %{email} with these payment details and instructions."
-        alternative_payment_method: If you would rather pay by debit or credit card, call 03708 506506
+        alternative_payment_method: "If you would rather pay by debit or credit card, call 03708 506506."
         error_heading: A problem to fix
         next_button: Finished
         survey_link_text: What do you think of this service?
