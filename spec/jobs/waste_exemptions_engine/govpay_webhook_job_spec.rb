@@ -113,20 +113,40 @@ module WasteExemptionsEngine
 
         context "with service type detection" do
           shared_examples "logs correct service type" do |moto, expected_service|
-            let(:webhook_body) do
-              {
-                "resource_type" => "payment",
-                "resource" => { "moto" => moto }
-              }
+            context "for payment callback" do
+              let(:webhook_body) do
+                {
+                  "resource_type" => "payment",
+                  "resource" => { "moto" => moto }
+                }
+              end
+
+              it "includes correct service type in Airbrake notification" do
+                perform_now
+                expect(Airbrake).to have_received(:notify)
+                  .with(
+                    an_instance_of(StandardError),
+                    hash_including(service_type: expected_service)
+                  )
+              end
             end
 
-            it "includes correct service type in Airbrake notification" do
-              perform_now
-              expect(Airbrake).to have_received(:notify)
-                .with(
-                  an_instance_of(StandardError),
-                  hash_including(service_type: expected_service)
-                )
+            context "for refund callback" do
+              let(:webhook_body) do
+                {
+                  "refund_id" => "123",
+                  "resource" => { "moto" => moto }
+                }
+              end
+
+              it "includes correct service type in Airbrake notification" do
+                perform_now
+                expect(Airbrake).to have_received(:notify)
+                  .with(
+                    an_instance_of(StandardError),
+                    hash_including(service_type: expected_service)
+                  )
+              end
             end
           end
 

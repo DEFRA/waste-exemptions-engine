@@ -19,9 +19,6 @@ module WasteExemptionsEngine
       let(:prior_payment_status) { Payment::PAYMENT_STATUS_SUBMITTED }
       let!(:wex_refund) { create(:payment, order: order, account: registration.account, payment_type: Payment::PAYMENT_TYPE_REFUND, govpay_id: "345", payment_status: prior_payment_status) }
 
-      # # Make finance details refundable
-      # before { registration.finance_details.orders.first.update(total_amount: 1) }
-
       include_examples "Govpay webhook services error logging"
 
       shared_examples "failed refund update" do
