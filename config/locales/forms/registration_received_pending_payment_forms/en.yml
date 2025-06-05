@@ -30,7 +30,7 @@ en:
         email_subject_format: "Waste exemption payment confirmation for [%{reference}]"
         email_contact: "Email: %{email}"
         email_sent: "We've sent an email to %{email} with these payment details and instructions."
-        alternative_payment_method: "If you would rather pay by debit or credit card, call 03708 506506."
+        alternative_payment_method: If you would rather pay by debit or credit card, call 03708 506506.
         error_heading: A problem to fix
         next_button: Finished
         survey_link_text: What do you think of this service?
