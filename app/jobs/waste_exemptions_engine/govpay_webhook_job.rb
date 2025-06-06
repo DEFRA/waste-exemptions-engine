@@ -25,7 +25,7 @@ module WasteExemptionsEngine
     end
 
     def process_refund_webhook(webhook_body)
-      result = GovpayRefundWebhookHandler.process(webhook_body)
+      result = GovpayRefundWebhookHandler.run(webhook_body)
 
       Rails.logger.info "Processed refund webhook for refund_id: #{result[:id]}, status: #{result[:status]}"
     end
