@@ -4,9 +4,9 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe GovpayRefundWebhookHandler do
-    describe ".process" do
+    describe ".run" do
 
-      subject(:run_service) { described_class.process(webhook_body) }
+      subject(:run_service) { described_class.run(webhook_body) }
 
       let(:webhook_body) { JSON.parse(file_fixture("govpay/webhook_refund_update_body.json").read) }
       let(:govpay_refund_id) { webhook_body["refund_id"] }
@@ -42,9 +42,38 @@ module WasteExemptionsEngine
 
         context "when status is present in the update" do
           context "when the refund is not found" do
-            before { webhook_body["refund_id"] = "foo" }
+            before do
+              wex_refund.destroy!
+            end
 
-            it_behaves_like "failed refund update"
+            context "when original payment record exists" do
+              it "creates a new refund payment" do
+                expect { run_service }.to change(Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND), :count).by(1)
+              end
+
+              it "creates a refund with correct attributes" do
+                run_service
+                new_refund = Payment.last
+
+                aggregate_failures do
+                  expect(new_refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
+                  expect(new_refund.payment_amount).to eq(0 - webhook_body["amount"].to_i)
+                  expect(new_refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
+                  expect(new_refund.account_id).to eq(wex_original_payment.account_id)
+                  expect(new_refund.payment_uuid).to be_present
+                  expect(new_refund.govpay_id).to eq(govpay_refund_id)
+                  expect(new_refund.associated_payment).to eq(wex_original_payment)
+                end
+              end
+            end
+
+            context "when original payment record does not exist" do
+              before do
+                wex_original_payment.destroy!
+              end
+
+              it_behaves_like "failed refund update"
+            end
           end
 
           context "when the refund is found" do

@@ -40,7 +40,7 @@ module WasteExemptionsEngine
       before do
         allow(FeatureToggle).to receive(:active?).with(:detailed_logging)
         allow(GovpayPaymentWebhookHandler).to receive(:process).and_return(payment_service_result)
-        allow(GovpayRefundWebhookHandler).to receive(:process).and_return(refund_service_result)
+        allow(GovpayRefundWebhookHandler).to receive(:run).and_return(refund_service_result)
         allow(Rails.logger).to receive(:info)
       end
 
@@ -49,7 +49,7 @@ module WasteExemptionsEngine
           allow(Airbrake).to receive(:notify)
           allow(FeatureToggle).to receive(:active?).with(:detailed_logging).and_return(false)
           allow(GovpayPaymentWebhookHandler).to receive(:process).and_raise(StandardError.new("Test error"))
-          allow(GovpayRefundWebhookHandler).to receive(:process).and_raise(StandardError.new("Test error"))
+          allow(GovpayRefundWebhookHandler).to receive(:run).and_raise(StandardError.new("Test error"))
         end
 
         context "with an unrecognised webhook body" do
@@ -181,7 +181,7 @@ module WasteExemptionsEngine
 
         it "processes the refund webhook using GovpayRefundWebhookHandler" do
           perform_now
-          expect(GovpayRefundWebhookHandler).to have_received(:process).with(webhook_body)
+          expect(GovpayRefundWebhookHandler).to have_received(:run).with(webhook_body)
         end
 
         it "logs the refund webhook processing" do
