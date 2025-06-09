@@ -57,7 +57,7 @@ module WasteExemptionsEngine
 
                 aggregate_failures do
                   expect(new_refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-                  expect(new_refund.payment_amount).to eq(0 - webhook_body["amount"])
+                  expect(new_refund.payment_amount).to eq(0 - webhook_body["amount"].to_i)
                   expect(new_refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
                   expect(new_refund.account_id).to eq(wex_original_payment.account_id)
                   expect(new_refund.payment_uuid).to be_present
