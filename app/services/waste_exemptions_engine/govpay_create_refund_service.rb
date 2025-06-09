@@ -47,12 +47,13 @@ module WasteExemptionsEngine
     def build_refund(payment)
       Payment.new(
         payment_type: Payment::PAYMENT_TYPE_REFUND,
-        payment_amount: 0 - govpay_webhook_body[:amount],
+        payment_amount: 0 - govpay_webhook_body[:amount].to_i,
         payment_status: Payment::PAYMENT_STATUS_SUCCESS,
         account_id: payment.account_id,
         reference: "#{payment.reference}/REFUND",
         payment_uuid: SecureRandom.uuid,
         govpay_id: govpay_webhook_body[:refund_id],
+        comments: "govpay refund",
         associated_payment: payment
       )
     end
