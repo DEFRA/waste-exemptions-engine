@@ -70,7 +70,7 @@ module WasteExemptionsEngine
       raise ArgumentError, "invalid govpay_id"
     end
 
-    def handle_registration_not_found     
+    def handle_registration_not_found
       Rails.logger.error "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
       Airbrake.notify "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
       raise ArgumentError, "invalid govpay_id"
