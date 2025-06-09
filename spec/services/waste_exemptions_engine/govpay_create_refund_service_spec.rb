@@ -200,12 +200,14 @@ module WasteExemptionsEngine
         it "notifies Airbrake" do
           allow(Airbrake).to receive(:notify)
 
-          expect { run_service }.to raise_error(ArgumentError)
+          aggregate_failures do
+            expect { run_service }.to raise_error(ArgumentError)
 
-          expect(Airbrake).to have_received(:notify).with(
-            instance_of(ArgumentError),
-            hash_including(message: "Error processing GovPay request ")
-          )
+            expect(Airbrake).to have_received(:notify).with(
+              instance_of(ArgumentError),
+              hash_including(message: "Error processing GovPay request ")
+            )
+          end
         end
       end
 
