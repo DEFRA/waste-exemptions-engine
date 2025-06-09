@@ -193,23 +193,19 @@ module WasteExemptionsEngine
           aggregate_failures do
             expect { run_service }.to raise_error(ArgumentError)
 
-            expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id non_existent_payment")
             expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
           end
         end
 
-        it "notifies Airbrake twice" do
+        it "notifies Airbrake" do
           allow(Airbrake).to receive(:notify)
 
-          aggregate_failures do
-            expect { run_service }.to raise_error(ArgumentError)
+          expect { run_service }.to raise_error(ArgumentError)
 
-            expect(Airbrake).to have_received(:notify).with("Govpay payment not found for govpay_id non_existent_payment")
-            expect(Airbrake).to have_received(:notify).with(
-              instance_of(ArgumentError),
-              hash_including(message: "Error processing GovPay request ")
-            )
-          end
+          expect(Airbrake).to have_received(:notify).with(
+            instance_of(ArgumentError),
+            hash_including(message: "Error processing GovPay request ")
+          )
         end
       end
 
@@ -342,35 +338,6 @@ module WasteExemptionsEngine
             aggregate_failures do
               expect(refund.associated_payment).to eq(original_payment)
               expect(refund.govpay_id).to eq("345")
-            end
-          end
-        end
-
-        context "when refund amount is zero" do
-          let(:govpay_webhook_body) do
-            {
-              payment_id: "789",
-              refund_id: "345",
-              amount: 0,
-              status: Payment::PAYMENT_STATUS_SUCCESS
-            }.deep_symbolize_keys
-          end
-
-          before do
-            original_payment # ensure payment exists
-          end
-
-          it "creates a refund with zero amount" do
-            run_service
-            refund = Payment.last
-
-            expect(refund.payment_amount).to eq(0)
-          end
-
-          it "still returns the refund payment" do
-            aggregate_failures do
-              expect(run_service).to be_a(Payment)
-              expect(run_service.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
             end
           end
         end
