@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe GovpayCreateRefundService do
+  RSpec.describe GovpayWebhookRefundCreator do
     describe "#run" do
       subject(:run_service) { described_class.new.run(govpay_webhook_body: govpay_webhook_body) }
 

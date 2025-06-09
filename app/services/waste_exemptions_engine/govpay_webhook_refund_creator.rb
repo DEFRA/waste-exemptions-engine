@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  class GovpayCreateRefundService < BaseService
+  class GovpayWebhookRefundCreator < BaseService
     def run(govpay_webhook_body:)
       @govpay_webhook_body = govpay_webhook_body&.deep_symbolize_keys
-      validate_govpay_webhook_body
+      # @todo: this can be moved to DefraRubyGovpay gem at a later stage
+      GovpayRefundWebhookHandler.validate_refund_webhook_body_attributes(@govpay_webhook_body)
 
       original_payment = find_payment
       refund = build_refund(original_payment)
@@ -20,14 +21,6 @@ module WasteExemptionsEngine
     private
 
     attr_accessor :govpay_webhook_body
-
-    def validate_govpay_webhook_body
-      raise ArgumentError, "govpay_webhook_body is required" if govpay_webhook_body.blank?
-      raise ArgumentError, "payment_id is required" unless govpay_webhook_body.include?(:payment_id)
-      raise ArgumentError, "refund_id is required" unless govpay_webhook_body.include?(:refund_id)
-      raise ArgumentError, "amount is required" unless govpay_webhook_body.include?(:amount)
-      raise ArgumentError, "status is required" unless govpay_webhook_body.include?(:status)
-    end
 
     def find_payment
       original_payment = Payment.find_by(

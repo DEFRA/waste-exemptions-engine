@@ -63,7 +63,7 @@ module WasteExemptionsEngine
 
     def handle_refund_not_found
       # create refund record if it doesn't exist
-      @refund = GovpayCreateRefundService.run(govpay_webhook_body: webhook_body)
+      @refund = GovpayWebhookRefundCreator.run(govpay_webhook_body: webhook_body)
     rescue StandardError
       Rails.logger.error "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
       Airbrake.notify "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
