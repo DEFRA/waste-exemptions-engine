@@ -428,9 +428,10 @@ module WasteExemptionsEngine
                       to: :registration_received_pending_payment_form,
                       if: :payment_via_bank_transfer?
 
-          transitions from: :govpay_form,
-                      to: :registration_received_pending_payment_form,
-                      if: :pending_online_payment?
+          # this transition has been temporarily disabled in RUBY-3835
+          # transitions from: :govpay_form,
+          #             to: :registration_received_pending_payment_form,
+          #             if: :pending_online_payment?
 
           transitions from: :govpay_form, to: :registration_complete_form
 
@@ -446,10 +447,12 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :confirm_farm_exemptions_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form,
+                      if: :check_your_answers_flow?
 
           transitions from: :confirm_activity_exemptions_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form,
+                      if: :check_your_answers_flow?
 
           transitions from: :contact_name_form,
                       to: :check_your_answers_form

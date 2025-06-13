@@ -40,6 +40,7 @@ module WasteExemptionsEngine
       before do
         allow(FeatureToggle).to receive(:active?).with(:detailed_logging)
         allow(GovpayPaymentWebhookHandler).to receive(:process).and_return(payment_service_result)
+        allow(GovpayRefundWebhookHandler).to receive(:run).and_return(refund_service_result)
         allow(Rails.logger).to receive(:info)
       end
 
@@ -48,6 +49,7 @@ module WasteExemptionsEngine
           allow(Airbrake).to receive(:notify)
           allow(FeatureToggle).to receive(:active?).with(:detailed_logging).and_return(false)
           allow(GovpayPaymentWebhookHandler).to receive(:process).and_raise(StandardError.new("Test error"))
+          allow(GovpayRefundWebhookHandler).to receive(:run).and_raise(StandardError.new("Test error"))
         end
 
         context "with an unrecognised webhook body" do
@@ -111,20 +113,40 @@ module WasteExemptionsEngine
 
         context "with service type detection" do
           shared_examples "logs correct service type" do |moto, expected_service|
-            let(:webhook_body) do
-              {
-                "resource_type" => "payment",
-                "resource" => { "moto" => moto }
-              }
+            context "for payment callback" do
+              let(:webhook_body) do
+                {
+                  "resource_type" => "payment",
+                  "resource" => { "moto" => moto }
+                }
+              end
+
+              it "includes correct service type in Airbrake notification" do
+                perform_now
+                expect(Airbrake).to have_received(:notify)
+                  .with(
+                    an_instance_of(StandardError),
+                    hash_including(service_type: expected_service)
+                  )
+              end
             end
 
-            it "includes correct service type in Airbrake notification" do
-              perform_now
-              expect(Airbrake).to have_received(:notify)
-                .with(
-                  an_instance_of(StandardError),
-                  hash_including(service_type: expected_service)
-                )
+            context "for refund callback" do
+              let(:webhook_body) do
+                {
+                  "refund_id" => "123",
+                  "resource" => { "moto" => moto }
+                }
+              end
+
+              it "includes correct service type in Airbrake notification" do
+                perform_now
+                expect(Airbrake).to have_received(:notify)
+                  .with(
+                    an_instance_of(StandardError),
+                    hash_including(service_type: expected_service)
+                  )
+              end
             end
           end
 
@@ -150,6 +172,21 @@ module WasteExemptionsEngine
         it "logs the payment webhook processing" do
           perform_now
           expect(Rails.logger).to have_received(:info).with(/Processed payment webhook for govpay_id: hu20sqlact5260q2nanm0q8u93, status:/)
+        end
+      end
+
+      context "with a refund webhook" do
+        let(:webhook_body) { JSON.parse(file_fixture("govpay/webhook_refund_update_body.json").read) }
+        let(:refund_service_result) { { id: "345", payment_id: "789", status: "success" } }
+
+        it "processes the refund webhook using GovpayRefundWebhookHandler" do
+          perform_now
+          expect(GovpayRefundWebhookHandler).to have_received(:run).with(webhook_body)
+        end
+
+        it "logs the refund webhook processing" do
+          perform_now
+          expect(Rails.logger).to have_received(:info).with(/Processed refund webhook for refund_id: 345, status:/)
         end
       end
     end

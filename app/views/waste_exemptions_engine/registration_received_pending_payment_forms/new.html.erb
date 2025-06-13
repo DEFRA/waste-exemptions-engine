@@ -55,6 +55,8 @@
     <h2 class="govuk-heading-m"><%= t(".confirm_payment_heading") %></h2>
     <p class="govuk-body"><%= t(".confirm_payment_instruction", email: "<strong>ea_fsc_ar@gov.sscl.com</strong>").html_safe %></p>
     
+    <p class="govuk-body"><%= t(".email_subject_line", reference: @registration.reference) %></p> 
+    
     <p class="govuk-body"><%= t(".confirm_payment_details") %></p>
     <ul class="govuk-list govuk-list--bullet">
       <li><%= t(".payment_reference_bullet") %></li>
@@ -62,11 +64,6 @@
       <li><%= t(".amount_paid_bullet") %></li>
     </ul>
     
-    <p class="govuk-body"><%= t(".email_subject_line") %></p>
-    <p class="govuk-body"><strong><%= t(".email_subject_format", reference: @registration.reference) %></strong></p>
-    
-    <p class="govuk-body"><%= t(".email_contact", email: "<strong>ea_fsc_ar@gov.sscl.com</strong>").html_safe %></p>
-
     <p class="govuk-body"><%= t(".email_sent", email: @registration_received_pending_payment_form.applicant_email) %></p>
     
     <p class="govuk-body"><%= t(".alternative_payment_method") %></p>
