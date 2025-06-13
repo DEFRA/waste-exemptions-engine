@@ -25,8 +25,9 @@ module WasteExemptionsEngine
     end
 
     def process_refund_webhook(webhook_body)
-      # To be implemented in the future
-      raise NotImplementedError, "Refund webhook processing not implemented", webhook_body: webhook_body
+      result = GovpayRefundWebhookHandler.run(webhook_body)
+
+      Rails.logger.info "Processed refund webhook for refund_id: #{result[:id]}, status: #{result[:status]}"
     end
 
     def sanitize_webhook_body(body)

@@ -132,6 +132,52 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when govpay status is submitted" do
+        let(:payment_status) { "submitted" }
+
+        context "when the payment_uuid is valid" do
+          it "updates payment status" do
+            expect { get payment_callback_govpay_forms_path(token, payment.payment_uuid) }
+              .to change { payment.reload.payment_status }.from("created").to("submitted")
+          end
+
+          it "redirects to registration_complete_form" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            expect(response).to redirect_to(new_registration_complete_form_path(token))
+          end
+
+          it "does not log an error" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            expect(Airbrake).not_to have_received(:notify)
+          end
+        end
+
+        context "when the payment uuid is invalid" do
+          before do
+            stub_request(:any, %r{.*#{govpay_host}/payments}).to_return(
+              status: 200,
+              body: File.read("./spec/fixtures/files/govpay/get_payment_response_not_found.json")
+            )
+
+            get payment_callback_govpay_forms_path(token, "invalid_uuid")
+          end
+
+          it "does not update payment status" do
+            expect(payment.payment_status).to eq("created")
+          end
+
+          it "redirects to payment_summary_form" do
+            expect(response).to redirect_to(new_payment_summary_form_path(token))
+          end
+
+          it "notifies Airbrake" do
+            expect(Airbrake)
+              .to have_received(:notify)
+              .with("Invalid Govpay response: Cannot find matching order", { payment_uuid: "invalid_uuid" })
+          end
+        end
+      end
+
       context "with pending govpay statuses" do
         RSpec.shared_examples "payment is pending" do
           context "when the payment uuid is valid" do

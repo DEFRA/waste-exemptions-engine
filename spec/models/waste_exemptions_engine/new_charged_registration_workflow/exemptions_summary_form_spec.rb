@@ -16,6 +16,19 @@ module WasteExemptionsEngine
           .to(:site_grid_reference_form)
           .on_event(:next)
       end
+
+      context "when in check your answers flow" do
+        before do
+          new_registration.temp_check_your_answers_flow = true
+        end
+
+        it "transitions to check_your_answers_form" do
+          expect(new_registration)
+            .to transition_from(:exemptions_summary_form)
+            .to(:check_your_answers_form)
+            .on_event(:next)
+        end
+      end
     end
   end
 end
