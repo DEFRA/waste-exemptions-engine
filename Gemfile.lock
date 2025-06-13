@@ -313,7 +313,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.5.9)
-    phonelib (0.10.8)
+    phonelib (0.10.9)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
