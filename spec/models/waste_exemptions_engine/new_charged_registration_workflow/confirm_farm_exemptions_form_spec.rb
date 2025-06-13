@@ -77,10 +77,10 @@ module WasteExemptionsEngine
           new_registration.temp_check_your_answers_flow = true
         end
 
-        it "transitions to check_your_answers_form" do
+        it "transitions to exemptions_summary_form" do
           expect(new_registration)
             .to transition_from(:confirm_farm_exemptions_form)
-            .to(:check_your_answers_form)
+            .to(:exemptions_summary_form)
             .on_event(:next)
         end
       end
