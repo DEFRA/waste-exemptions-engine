@@ -55,7 +55,7 @@ module WasteExemptionsEngine
 
     def self.handle_payment_not_found(govpay_id)
       Rails.logger.error "Govpay payment not found for govpay_id #{govpay_id}"
-      Airbrake.notify("Govpay payment not found", { govpay_id: govpay_id })
+      Airbrake.notify "Govpay payment not found for govpay_id #{govpay_id}"
       raise ArgumentError, "invalid govpay_id"
     end
   end
