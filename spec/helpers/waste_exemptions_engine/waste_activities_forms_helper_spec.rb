@@ -69,7 +69,7 @@ module WasteExemptionsEngine
             expected_codes = regular_exemptions.map(&:code).sort
 
             expect(result_codes).to eq(expected_codes)
-            expect(result).not_to include(farm_exemption.code)
+            expect(result_codes).not_to include(farm_exemption.code)
           end
         end
 
