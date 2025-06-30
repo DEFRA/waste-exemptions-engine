@@ -21,11 +21,24 @@ module WasteExemptionsEngine
       include_examples "Govpay webhook services error logging"
 
       context "when the update is not for a payment" do
-        before { webhook_body["resource_type"] = "refund" }
+        before do
+          webhook_body["resource_type"] = "refund"
+          allow(Airbrake).to receive(:notify)
+        end
 
         it { expect { run_service }.to raise_error(ArgumentError) }
 
         it_behaves_like "logs an error"
+
+        it "notifies Airbrake with exception and message parameter" do
+          run_service
+        rescue ArgumentError
+          # Expected error
+          expect(Airbrake).to have_received(:notify).with(
+            an_instance_of(ArgumentError).and(having_attributes(message: "Invalid webhook type refund")),
+            hash_including(message: "Error processing webhook for payment #{govpay_payment_id}")
+          )
+        end
       end
 
       context "when the update is for a payment" do
@@ -39,11 +52,26 @@ module WasteExemptionsEngine
 
         shared_examples "status is present in the update" do
           context "when the payment is not found" do
-            before { webhook_resource["payment_id"] = "foo" }
+            before do
+              webhook_resource["payment_id"] = "foo"
+              allow(Airbrake).to receive(:notify)
+            end
 
             it { expect { run_service }.to raise_error(ArgumentError) }
 
             it_behaves_like "logs an error"
+
+            it "notifies Airbrake with correct parameters" do
+              begin
+                run_service
+              rescue ArgumentError
+                # Expected error
+              end
+
+              expect(Airbrake).to have_received(:notify).with(
+                "Govpay payment not found for govpay_id foo"
+              )
+            end
           end
 
           context "when the payment is found" do
@@ -84,6 +112,27 @@ module WasteExemptionsEngine
               it_behaves_like "no valid transitions", Payment::PAYMENT_STATUS_FAILED
               it_behaves_like "no valid transitions", Payment::PAYMENT_STATUS_CANCELLED
               it_behaves_like "no valid transitions", "error"
+
+              describe "InvalidStatusTransition error" do
+                let(:prior_payment_status) { Payment::PAYMENT_STATUS_SUCCESS }
+                let(:exception) { DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition.new("Invalid payment status transition") }
+
+                before do
+                  assign_webhook_status("started")
+                  allow(DefraRubyGovpay::WebhookPaymentService).to receive(:run).and_raise(exception)
+                  allow(Airbrake).to receive(:notify)
+                end
+
+                it "notifies Airbrake with the exception and payment ID" do
+                  run_service
+                rescue DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition
+                  # This is expected
+                  expect(Airbrake).to have_received(:notify).with(
+                    exception,
+                    hash_including(message: "Error processing webhook for payment #{govpay_payment_id}")
+                  )
+                end
+              end
 
               context "when the webhook changes the status to a non-success value" do
                 let(:prior_payment_status) { Payment::PAYMENT_STATUS_STARTED }

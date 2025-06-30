@@ -29,7 +29,7 @@ module WasteExemptionsEngine
       result
     rescue StandardError => e
       Rails.logger.error "Error processing webhook for payment #{govpay_id}: #{e}"
-      Airbrake.notify "Error processing webhook for payment #{govpay_id}", e
+      Airbrake.notify(e, { message: "Error processing webhook for payment #{govpay_id}" })
       raise
     end
 
