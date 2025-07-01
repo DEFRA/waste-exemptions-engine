@@ -4,6 +4,10 @@ require "waste_exemptions_engine/detailed_logger"
 
 module WasteExemptionsEngine
   class GovpayWebhookJob < ApplicationJob
+
+    # Prevent ActiveJob from logging the full webhook body
+    self.log_arguments = false
+
     def perform(webhook_body)
       if webhook_body["resource_type"]&.downcase == "payment"
         process_payment_webhook(webhook_body)
