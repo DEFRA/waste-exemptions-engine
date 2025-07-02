@@ -27,6 +27,20 @@ module WasteExemptionsEngine
     end
 
     describe "#initialize" do
+      context "when the registration has unknown attributes" do
+        let(:registration) { create(:registration, :complete) }
+        let(:edit_registration) { create(:back_office_edit_registration) }
+
+        before do
+          allow(Registration).to receive(:find_by).and_return(registration)
+          allow(registration).to receive(:attributes).and_return({ "unknown_attribute" => "unknown_value" })
+        end
+
+        it "does not raise UnknownAttributeError" do
+          expect { edit_registration }.not_to raise_error
+        end
+      end
+
       context "when it is initialized with a registration" do
         let(:registration) { create(:registration, :complete) }
         let(:edit_registration) { described_class.new(reference: registration.reference) }
