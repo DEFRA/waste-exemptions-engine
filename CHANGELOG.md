@@ -292,6 +292,9 @@
 
 **Fixed bugs:**
 
+- Suppress logging of full webhook body by rack and active\_job [\#1319](https://github.com/DEFRA/waste-exemptions-engine/pull/1319) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Fix intermittent test failure in waste activities forms helper spec by correcting expectation from `result` to `result_codes` [\#1317](https://github.com/DEFRA/waste-exemptions-engine/pull/1317) ([jjromeo](https://github.com/jjromeo))
+- RUBY 3901 bug in error handling of govpay webhooks [\#1316](https://github.com/DEFRA/waste-exemptions-engine/pull/1316) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3858\] Fix user\_for\_paper\_trail to handle nil current\_user and add tests [\#1313](https://github.com/DEFRA/waste-exemptions-engine/pull/1313) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3801\] Update workflow transitions [\#1295](https://github.com/DEFRA/waste-exemptions-engine/pull/1295) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3779\] Refactor company status validation to support voluntary arrangements [\#1285](https://github.com/DEFRA/waste-exemptions-engine/pull/1285) ([brujeo](https://github.com/brujeo))
@@ -467,6 +470,7 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG [\#1315](https://github.com/DEFRA/waste-exemptions-engine/pull/1315) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3828\] Update GitHub Actions workflow to run on Ubuntu 24.04 instead of ubuntu-latest [\#1309](https://github.com/DEFRA/waste-exemptions-engine/pull/1309) ([jjromeo](https://github.com/jjromeo))
 - Bump phonelib from 0.10.8 to 0.10.9 [\#1306](https://github.com/DEFRA/waste-exemptions-engine/pull/1306) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.10.7 to 0.10.8 [\#1276](https://github.com/DEFRA/waste-exemptions-engine/pull/1276) ([dependabot[bot]](https://github.com/apps/dependabot))
