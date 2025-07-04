@@ -4,6 +4,27 @@ module WasteExemptionsEngine
   module CanCopyDataFromRegistration
     extend ActiveSupport::Concern
 
+    COPY_DATA_OPTIONS = {
+      ignorable_attributes: %w[assistance_mode
+                               created_at
+                               deregistration_email_sent_at
+                               edit_token
+                               edit_token_created_at
+                               id
+                               placeholder
+                               referring_registration_id
+                               renew_token
+                               unsubscribe_token
+                               reminder_opt_in
+                               submitted_at
+                               updated_at
+                               charged
+                               view_certificate_token
+                               view_certificate_token_created_at
+                               reason_for_change
+                               edit_link_requested_by]
+    }.freeze
+
     included do
       after_initialize :copy_data_from_registration, if: :new_record?
     end
@@ -14,28 +35,10 @@ module WasteExemptionsEngine
 
     private
 
-    # rubocop:disable Metrics/MethodLength
     def copy_data_from_registration
-      attributes = registration.attributes.except(
-        "assistance_mode",
-        "created_at",
-        "deregistration_email_sent_at",
-        "edit_token",
-        "edit_token_created_at",
-        "id",
-        "placeholder",
-        "referring_registration_id",
-        "renew_token",
-        "unsubscribe_token",
-        "reminder_opt_in",
-        "submitted_at",
-        "updated_at",
-        "charged",
-        "view_certificate_token",
-        "view_certificate_token_created_at",
-        "reason_for_change",
-        "edit_link_requested_by"
-      )
+      attributes = SafeCopyRegistrationAttributesService.run(source: registration,
+                                                             target_class: self.class,
+                                                             exclude: options[:ignorable_attributes])
 
       assign_attributes(attributes)
 
@@ -47,7 +50,6 @@ module WasteExemptionsEngine
 
       save!
     end
-    # rubocop:enable Metrics/MethodLength
 
     def copy_addresses_from_registration
       registration.addresses.each do |address|
@@ -91,6 +93,10 @@ module WasteExemptionsEngine
 
     def set_temp_company_no_from_registration
       self.temp_company_no = registration&.company_no
+    end
+
+    def options
+      @_options ||= self.class::COPY_DATA_OPTIONS
     end
   end
 end
