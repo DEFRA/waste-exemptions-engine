@@ -9,6 +9,9 @@ class SuppressParamsLoggingMiddleware
     request = ActionDispatch::Request.new(env)
 
     if suppress_logging?(request)
+      Rails.logger.warn "\n**** SUPPRESSING logging of parameters for \"#{request.path}\": #{env["action_dispatch.request.parameters"]}\n"
+      Rails.logger.warn "\n**** SUPPRESSING logging of form_hash for \"#{request.path}\": #{env["rack.request.form_hash"]}\n"
+      Rails.logger.warn "\n**** SUPPRESSING logging of form_input for \"#{request.path}\": #{env["rack.request.form_input"]}\n"
       env["action_dispatch.request.parameters"] = {}
       env["rack.request.form_hash"] = {}
       env["rack.request.form_input"] = StringIO.new("")
