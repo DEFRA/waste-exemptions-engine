@@ -40,7 +40,7 @@ module WasteExemptionsEngine
 
       shared_examples "non-suppressed route" do |route|
         it "writes parameters to the log" do
-          post route, headers: headers, params: {foo: :bar}.to_json
+          post route, headers: headers, params: { foo: :bar }.to_json
 
           expect(Rails.logger).to have_received(:info).with(/Parameters:.*foo.*bar/)
         end
