@@ -5,6 +5,8 @@ FactoryBot.define do
   modes = WasteExemptionsEngine::Address.modes
 
   factory :address, class: "WasteExemptionsEngine::Address" do
+    area { "Outside England" }
+
     trait :operator_address do
       address_type { address_types[:operator] }
     end

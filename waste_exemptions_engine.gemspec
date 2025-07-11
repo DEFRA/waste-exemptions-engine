@@ -55,6 +55,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "pg"
 
+  s.add_dependency "activerecord-postgis-adapter", "~> 10.0.0"
+  s.add_dependency "rgeo"
+
   # Used for auditing and version control
   s.add_dependency "paper_trail", ">= 15.2.0"
 
