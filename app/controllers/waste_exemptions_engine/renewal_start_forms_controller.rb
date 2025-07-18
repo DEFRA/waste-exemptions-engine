@@ -4,6 +4,9 @@ module WasteExemptionsEngine
   class RenewalStartFormsController < FormsController
     def new
       super(RenewalStartForm, "renewal_start_form")
+      # do not perform any rendering or redirects if transient registration is being redirected to start page RUBY-3915
+      return if !@transient_registration.persisted? || @transient_registration.workflow_state == "start_form"
+
       # There is an edge case where a lot of back-and-forth navigation and
       # changing the postcode can result in an address being nil.
       if @transient_registration.operator_address.nil?
