@@ -140,5 +140,18 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    context "with not-existing or deleted registration" do
+      let(:request_path) { "/waste_exemptions_engine/not-existing-registration-token/check-registered-name-and-address" }
+
+      it "edirects to start page" do
+        get request_path
+
+        aggregate_failures do
+          expect(response).to have_http_status(:found)
+          expect(response).to redirect_to(%r{/waste_exemptions_engine/start})
+        end
+      end
+    end
   end
 end
