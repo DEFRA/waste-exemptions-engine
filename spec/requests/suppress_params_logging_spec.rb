@@ -12,7 +12,17 @@ module WasteExemptionsEngine
     engine_route_with_subpath = "#{engine_route}/foo"
 
     let(:webhook_body) { file_fixture("govpay/webhook_payment_update_body.json").read }
-    let(:headers) { { "Pay-Signature" => "a_signature" } }
+    # Not currently material, but for completeness populate all headers that Gov.UK Pay sends us.
+    let(:headers) do
+      {
+        "Accept-Encoding" => "gzip, deflate",
+        "Content-Length" => 1234,
+        "Content-Type" => "application/json",
+        "Host" => "publicapi.payments.service.gov.uk",
+        "Pay-Signature" => "a_signature",
+        "User-Agent" => "rest-client/2.1.0 (linux-gnu x86_64)"
+      }
+    end
 
     before do
       allow(Rails.logger).to receive(:info).and_call_original
