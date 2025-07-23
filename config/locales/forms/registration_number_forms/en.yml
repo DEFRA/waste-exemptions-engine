@@ -4,10 +4,10 @@ en:
       new:
         title: Companies House registration number
         heading:
-          limitedCompany: What is the company registration number?
-          limitedLiabilityPartnership: What is the registration number of the limited liability partnership?
+          limitedCompany: What is your Companies House number?
+          limitedLiabilityPartnership: What is your Companies House number?
         company_no_label: An 8-digit number, or 2 letters followed by a 6-digit number
-        detail_subheading: What's a registration number?
+        detail_subheading: What’s a Companies House number?
         detail:
           limitedCompany: This is issued when the company is registered, and can be found on your Certificate of Incorporation and any paperwork from Companies House.
           limitedLiabilityPartnership: This is issued when the limited liability partnership is registered, and can be found on your Certificate of Incorporation and any paperwork from Companies House.
