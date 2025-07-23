@@ -10,11 +10,14 @@ http_interactions:
         media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
         data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
         class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
-        \   <h1 class=\"govuk-heading-l\">Charities register free</h1>\n\n    <p class=\"govuk-body\">You
-        can only use this service if you have to pay to register waste exemptions.</p>\n\n
-        \   <p class=\"govuk-body\">If you are a charity or trust call 03708 506 506
-        to register your exemptions free.</p>\n    <p class=\"govuk-body\">Lines open
-        Monday to Friday, 8am to 6pm</p>\n  </div>\n</div>\n\n\n</body>\n</html>\n"
+        \   <h1 class=\"govuk-heading-l\">Call our helpline</h1>\n\n    <p class=\"govuk-body\">\n
+        \     Organisations that work exclusively for a\n      <a target=\"_blank\"
+        href=\"https://www.gov.uk/government/publications/charitable-purposes\">charitable
+        purpose</a>\n      (opens in a new window) can register free.\n    </p>\n\n
+        \   <p class=\"govuk-body\">Organisations that do not work ‘exclusively for
+        a charitable purpose’ have to pay.</p>\n    <p class=\"govuk-body\">Call 03708
+        506506 to register your exemptions.</p>\n    <p class=\"govuk-body\">Lines
+        are open Monday to Friday, 8am to 6pm.</p>\n  </div>\n</div>\n\n\n</body>\n</html>\n"
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -30,7 +33,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 04 Mar 2025 14:06:04 GMT
+      - Wed, 23 Jul 2025 16:14:42 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -61,22 +64,22 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Request-Id:
-      - 91b1ee9dac44ed08
+      - 963c78e8bc070037
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=LRuwYoTeMImDrw6SwOI.92MKKtczbfEFwFBSYdZ32Yo-1741097164-1.0.1.1-bNMS84cFYKtFYNCpuhvsZ6TWa8CDtxnsnuLSvsyVq2L6NKC..83lnhOj2vWJ7hZy35mPgQ6eS0aeS6BM3doP7Xr2NsO8z5Fbdsc84J6LLXA;
-        path=/; expires=Tue, 04-Mar-25 14:36:04 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=5l2jjcNLfcEpUTg.T6sH3bmAZExJ2G3OtO3kV1a_gbE-1753287282-1.0.1.1-xbsaqWDG29SQTg7nqsVX0PnYrjb7zrhznnjDNXWmkfpJQm2fB3lFAOc5JSf.MFABBCiVEXlPMw5TvjtHxtqnf7Nyi4Vhf2Vzua7GGRUn5Hw;
+        path=/; expires=Wed, 23-Jul-25 16:44:42 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 91b1ee9dac44ed08-LHR
+      - 963c78e8bc070037-LHR
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi0wNDAyNDM4MjM5MWJiOTEwNTg0MTQ1ZDgxMTNjZjM1ZWYzNzZiNTVkMTI1YmI0NTE2Y2ViZWIxNGNlNzg4NTk3LmNzc1wiIG1lZGlhPVwiYWxsXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi0yNzYxMDA5MWY0NmU3MjdhMWY2NmY5Y2IxOTcyM2NjODVmMDY1MGU5MTA0ZWJlZjg0OTM0YzllOWNjOWI1ZWIwLmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG5cblxuPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+Q2hhcml0aWVzIHJlZ2lzdGVyIGZyZWU8L2gxPlxuXG4gICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+WW91IGNhbiBvbmx5IHVzZSB0aGlzIHNlcnZpY2UgaWYgeW91IGhhdmUgdG8gcGF5IHRvIHJlZ2lzdGVyIHdhc3RlIGV4ZW1wdGlvbnMuPC9wPlxuXG4gICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+SWYgeW91IGFyZSBhIGNoYXJpdHkgb3IgdHJ1c3QgY2FsbCAwMzcwOCA1MDYgNTA2IHRvIHJlZ2lzdGVyIHlvdXIgZXhlbXB0aW9ucyBmcmVlLjwvcD5cbiAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5MaW5lcyBvcGVuIE1vbmRheSB0byBGcmlkYXksIDhhbSB0byA2cG08L3A+XG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuPC9ib2R5PlxuPC9odG1sPiJ9fQo=
-  recorded_at: Tue, 04 Mar 2025 14:06:04 GMT
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjIsImZpcnN0TGluZSI6MSwibGFzdENvbHVtbiI6NiwiZmlyc3RDb2x1bW4iOjE2LCJzdWJUeXBlIjoid2FybmluZyIsIm1lc3NhZ2UiOiJDb25zaWRlciBhZGRpbmcgYSDigJxsYW5n4oCdIGF0dHJpYnV0ZSB0byB0aGUg4oCcaHRtbOKAnSBzdGFydCB0YWcgdG8gZGVjbGFyZSB0aGUgbGFuZ3VhZ2Ugb2YgdGhpcyBkb2N1bWVudC4iLCJleHRyYWN0IjoiVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjo3fV0sInNvdXJjZSI6eyJ0eXBlIjoidGV4dC9odG1sIiwiZW5jb2RpbmciOiJVVEYtOCIsImNvZGUiOiI8IURPQ1RZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQ+XG4gIDx0aXRsZT5EdW1teTwvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi0wNDAyNDM4MjM5MWJiOTEwNTg0MTQ1ZDgxMTNjZjM1ZWYzNzZiNTVkMTI1YmI0NTE2Y2ViZWIxNGNlNzg4NTk3LmNzc1wiIG1lZGlhPVwiYWxsXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzY3JpcHQgc3JjPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi0yNzYxMDA5MWY0NmU3MjdhMWY2NmY5Y2IxOTcyM2NjODVmMDY1MGU5MTA0ZWJlZjg0OTM0YzllOWNjOWI1ZWIwLmpzXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiPjwvc2NyaXB0PlxuICBcbjwvaGVhZD5cbjxib2R5PlxuXG5cblxuPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+Q2FsbCBvdXIgaGVscGxpbmU8L2gxPlxuXG4gICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+XG4gICAgICBPcmdhbmlzYXRpb25zIHRoYXQgd29yayBleGNsdXNpdmVseSBmb3IgYVxuICAgICAgPGEgdGFyZ2V0PVwiX2JsYW5rXCIgaHJlZj1cImh0dHBzOi8vd3d3Lmdvdi51ay9nb3Zlcm5tZW50L3B1YmxpY2F0aW9ucy9jaGFyaXRhYmxlLXB1cnBvc2VzXCI+Y2hhcml0YWJsZSBwdXJwb3NlPC9hPlxuICAgICAgKG9wZW5zIGluIGEgbmV3IHdpbmRvdykgY2FuIHJlZ2lzdGVyIGZyZWUuXG4gICAgPC9wPlxuXG4gICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+T3JnYW5pc2F0aW9ucyB0aGF0IGRvIG5vdCB3b3JrIOKAmGV4Y2x1c2l2ZWx5IGZvciBhIGNoYXJpdGFibGUgcHVycG9zZeKAmSBoYXZlIHRvIHBheS48L3A+XG4gICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+Q2FsbCAwMzcwOCA1MDY1MDYgdG8gcmVnaXN0ZXIgeW91ciBleGVtcHRpb25zLjwvcD5cbiAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5MaW5lcyBhcmUgb3BlbiBNb25kYXkgdG8gRnJpZGF5LCA4YW0gdG8gNnBtLjwvcD5cbiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+  recorded_at: Wed, 23 Jul 2025 16:14:42 GMT
 recorded_with: VCR 6.3.1
