@@ -12,7 +12,12 @@ module WasteExemptionsEngine
       let(:webhook_signing_secret) { ENV.fetch("WEX_GOVPAY_CALLBACK_WEBHOOK_SIGNING_SECRET") }
       let(:digest) { OpenSSL::Digest.new("sha256") }
       let(:valid_signature) { OpenSSL::HMAC.hexdigest(digest, webhook_signing_secret, webhook_body) }
-      let(:headers) { { "Pay-Signature" => valid_signature } }
+      let(:headers) do
+        {
+          "Pay-Signature" => valid_signature,
+          "Content-Type" => "application/json"
+        }
+      end
 
       let(:webhook_validation_service) { class_double(DefraRubyGovpay::WebhookBodyValidatorService) }
 

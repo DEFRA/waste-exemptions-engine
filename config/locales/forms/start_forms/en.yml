@@ -5,7 +5,7 @@ en:
         title: What do you want to do?
         heading: What do you want to do?
         options:
-          new: Start a new waste exemption registration
+          new: Register your waste exemptions
           reregister: Renew a registration
           deregister: Deregister exemptions
           edit: Update contact details
