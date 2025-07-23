@@ -129,5 +129,18 @@ module WasteExemptionsEngine
         it_behaves_like "a valid transition", :contact_email_renewal_start_forms_path, :new_contact_email_form_path
       end
     end
+
+    context "when trying to access not-existing or deleted registration" do
+      let(:request_path) { "/waste_exemptions_engine/not-existing-registration-token/renewal-start" }
+
+      it "redirects to start page" do
+        get request_path
+
+        aggregate_failures do
+          expect(response).to have_http_status(:found)
+          expect(response).to redirect_to(%r{/waste_exemptions_engine/start})
+        end
+      end
+    end
   end
 end

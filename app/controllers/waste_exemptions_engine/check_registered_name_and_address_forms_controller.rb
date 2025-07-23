@@ -10,6 +10,8 @@ module WasteExemptionsEngine
 
     def new
       super(CheckRegisteredNameAndAddressForm, "check_registered_name_and_address_form")
+      # do not perform any rendering or redirects if transient registration is being redirected to start page RUBY-3915
+      return if !@transient_registration.persisted? || @transient_registration.workflow_state == "start_form"
 
       render(:invalid_or_inactive_company) unless validate_company_number && validate_company_status
     rescue StandardError => e
