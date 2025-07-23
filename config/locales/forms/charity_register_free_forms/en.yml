@@ -2,8 +2,12 @@ en:
   waste_exemptions_engine:
     charity_register_free_forms:
       new:
-        title: Charities register free
-        heading: Charities register free
-        paragraph_1: If you are a charity or trust call 03708 506 506 to register your exemptions free.
-        paragraph_2: Lines are open Monday to Friday, 8am to 6pm.
-        paragraph_3: You can only use this service if you pay to register waste exemptions.
+        title: Call our helpline
+        heading: Call our helpline
+        paragraph_1a: Organisations that work exclusively for a
+        paragraph_1b: (opens in a new window) can register free.
+        paragraph_2: Organisations that do not work ‘exclusively for a charitable purpose’ have to pay.
+        paragraph_3: Call 03708 506506 to register your exemptions.
+        paragraph_4: Lines are open Monday to Friday, 8am to 6pm.
+        charitable_purpose_link: https://www.gov.uk/government/publications/charitable-purposes
+        charitable_purpose_link_text: charitable purpose
