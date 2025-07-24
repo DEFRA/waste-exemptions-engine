@@ -5,7 +5,8 @@
   <%= f.govuk_collection_radio_buttons :start_option,
       [
         OpenStruct.new(id: :new, name: t(".options.new")),
-        OpenStruct.new(id: :reregister, name: t(".options.reregister")),
+        # This is temporary under https://eaflood.atlassian.net/browse/RUBY-3957 :
+        # OpenStruct.new(id: :reregister, name: t(".options.reregister")),
         OpenStruct.new(id: :deregister, name: t(".options.deregister")),
         OpenStruct.new(id: :edit, name: t(".options.edit"))
       ],
