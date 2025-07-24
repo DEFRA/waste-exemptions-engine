@@ -26,6 +26,13 @@ module WasteExemptionsEngine
 
         expect(response.body).to have_valid_html
       end
+
+      # This is temporary under https://eaflood.atlassian.net/browse/RUBY-3957
+      it "does not present the renew option" do
+        get request_path
+
+        expect(response.body).not_to include(I18n.t("waste_exemptions_engine.start_forms.new.options.reregister"))
+      end
     end
 
     describe "POST start_form" do
