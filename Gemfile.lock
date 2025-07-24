@@ -11,6 +11,7 @@ PATH
       defra_ruby_email
       defra_ruby_govpay
       defra_ruby_validators (~> 3.0)
+      ffi-geos (~> 1.2.0)
       high_voltage (~> 3.1)
       notifications-ruby-client
       os_map_ref (~> 0.5)
@@ -216,6 +217,8 @@ GEM
     faraday-retry (2.3.2)
       faraday (~> 2.0)
     ffi (1.16.3)
+    ffi-geos (1.2.2)
+      ffi (>= 1.0.0)
     fiber-annotation (0.2.0)
     fiber-local (1.1.0)
       fiber-storage
