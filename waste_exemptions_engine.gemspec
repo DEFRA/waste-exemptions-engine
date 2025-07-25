@@ -56,6 +56,7 @@ Gem::Specification.new do |s|
   s.add_dependency "pg"
 
   s.add_dependency "activerecord-postgis-adapter", "~> 10.0.0"
+  s.add_dependency "ffi-geos", "~> 1.2.0"
   s.add_dependency "rgeo"
 
   # Used for auditing and version control
