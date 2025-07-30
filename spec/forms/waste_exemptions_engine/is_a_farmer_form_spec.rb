@@ -42,6 +42,19 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when the is a farmer answer changes to false" do
+        let(:transient_registration) { form.transient_registration }
+        let(:farmer_bucket) { create(:bucket, bucket_type: "farmer") }
+
+        before do
+          transient_registration.update(is_a_farmer: true, order: build(:order, bucket: farmer_bucket))
+        end
+
+        it "deletes the farmer bucket" do
+          expect { form.submit(is_a_farmer: "false") }.to change { transient_registration.reload.order.bucket }.to(nil)
+        end
+      end
     end
   end
 end
