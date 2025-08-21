@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_20_123419) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_19_134700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_20_123419) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "area"
+    t.string "site_suffix"
+    t.index ["registration_id", "address_type", "site_suffix"], name: "index_addresses_on_registration_type_suffix"
     t.index ["registration_id"], name: "index_addresses_on_registration_id"
   end
 
@@ -284,6 +286,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_20_123419) do
     t.text "deregistration_message"
     t.date "deregistered_at"
     t.string "reason_for_change", limit: 500
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_registration_exemptions_on_address_id"
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
     t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
     t.index ["registration_id"], name: "index_registration_exemptions_on_registration_id"
@@ -483,6 +487,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_20_123419) do
   add_foreign_key "order_exemptions", "orders"
   add_foreign_key "payments", "accounts"
   add_foreign_key "people", "registrations"
+  add_foreign_key "registration_exemptions", "addresses", validate: false
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"
 end

@@ -37,7 +37,8 @@ module WasteExemptionsEngine
     has_one :referred_registration, class_name: "Registration", foreign_key: "referring_registration_id"
 
     # in this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
-    has_one :site_address, -> { where(address_type: 3) }, class_name: "Address", dependent: :destroy
+    has_one :site_address, -> { site }, class_name: "Address", dependent: :destroy
+    has_many :site_addresses, -> { site }, class_name: "Address", dependent: :destroy
     has_one :contact_address, -> { where(address_type: 2) }, class_name: "Address", dependent: :destroy
     has_one :operator_address, -> { where(address_type: 1) }, class_name: "Address", dependent: :destroy
     has_one :account, class_name: "Account", dependent: :destroy
