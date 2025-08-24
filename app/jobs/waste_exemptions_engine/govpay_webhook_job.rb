@@ -8,8 +8,8 @@ module WasteExemptionsEngine
     # Prevent ActiveJob from logging the full webhook body
     self.log_arguments = false
 
-    Rails.logger.warn "\n>>> Processing webhook job for: #{webhook_body.inspect}"
     def perform(webhook_body)
+      Rails.logger.warn "\n>>> Processing webhook job for: #{webhook_body.inspect}"
       if webhook_body["resource_type"]&.downcase == "payment"
         process_payment_webhook(webhook_body)
       elsif webhook_body["refund_id"].present?
