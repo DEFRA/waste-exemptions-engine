@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_19_134700) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_26_104000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -361,6 +361,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_19_134700) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "area"
+    t.string "site_suffix"
+    t.index ["transient_registration_id", "address_type", "site_suffix"], name: "index_transient_addresses_on_registration_type_suffix"
     t.index ["transient_registration_id"], name: "index_transient_addresses_on_transient_registration_id"
   end
 
