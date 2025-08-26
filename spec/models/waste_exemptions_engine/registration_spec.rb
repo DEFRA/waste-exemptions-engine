@@ -27,11 +27,15 @@ module WasteExemptionsEngine
       end
 
       describe "#site_addresses" do
-        it "returns a collection of Addresses of type :site" do
+        it "includes site addresses" do
           site_address_a = create(:address, address_type: 3, registration: registration)
           site_address_b = create(:address, address_type: 3, registration: registration)
-          contact_address = create(:address, address_type: 2, registration: registration)
           expect(registration.site_addresses).to include(site_address_a, site_address_b)
+        end
+
+        it "excludes non-site addresses" do
+          create(:address, address_type: 3, registration: registration)
+          contact_address = create(:address, address_type: 2, registration: registration)
           expect(registration.site_addresses).not_to include(contact_address)
         end
       end
