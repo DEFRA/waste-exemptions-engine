@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_26_104000) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_29_100932) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -384,7 +384,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_26_104000) do
     t.integer "exemption_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "transient_address_id"
     t.index ["exemption_id"], name: "index_transient_registration_exemptions_on_exemption_id"
+    t.index ["transient_address_id"], name: "index_transient_registration_exemptions_on_transient_address_id"
     t.index ["transient_registration_id"], name: "index_trans_reg_exemptions_on_transient_registration_id"
   end
 
@@ -492,4 +494,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_26_104000) do
   add_foreign_key "registration_exemptions", "addresses", validate: false
   add_foreign_key "transient_addresses", "transient_registrations"
   add_foreign_key "transient_people", "transient_registrations"
+  add_foreign_key "transient_registration_exemptions", "transient_addresses", validate: false
 end
