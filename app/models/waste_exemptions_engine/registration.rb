@@ -4,6 +4,7 @@ module WasteExemptionsEngine
   class Registration < ApplicationRecord
     include CanHaveRegistrationAttributes
     include CanHaveViewCertificateToken
+    include CanHaveMultipleSites
 
     has_paper_trail meta: { json: :json_for_version }
 
@@ -38,7 +39,6 @@ module WasteExemptionsEngine
 
     # For compatibility with existing single address code, returning first site address
     has_one :site_address, -> { site.order(created_at: :asc) }, class_name: "Address", dependent: :destroy
-    has_many :site_addresses, -> { site }, class_name: "Address", dependent: :destroy
     has_one :contact_address, -> { where(address_type: 2) }, class_name: "Address", dependent: :destroy
     has_one :operator_address, -> { where(address_type: 1) }, class_name: "Address", dependent: :destroy
     has_one :account, class_name: "Account", dependent: :destroy

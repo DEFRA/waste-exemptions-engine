@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class TransientRegistration < ApplicationRecord
     include CanHaveRegistrationAttributes
+    include CanHaveMultipleSites
 
     self.table_name = "transient_registrations"
 
