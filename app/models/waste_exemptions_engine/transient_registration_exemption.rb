@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
 
     def exemption_attributes
-      attributes.except("id", "transient_registration_id", "created_at", "updated_at")
+      attributes.except("id", "transient_registration_id", "created_at", "updated_at", "transient_address_id")
     end
   end
 end
