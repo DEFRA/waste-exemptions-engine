@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include CanBeOrderedByStateAndExemptionId
 
     belongs_to :transient_registration
+    belongs_to :transient_address, optional: true
     belongs_to :exemption
 
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
