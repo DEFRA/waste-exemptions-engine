@@ -3,7 +3,14 @@
 module WasteExemptionsEngine
   class TransientRegistration < ApplicationRecord
     include CanHaveRegistrationAttributes
-    include CanHaveMultipleTransientSites
+
+    # Method must be defined before CanHaveMultipleSites inclusion
+    # as the concern references it during class definition
+    def self.site_address_class_name
+      "TransientAddress"
+    end
+
+    include CanHaveMultipleSites
 
     self.table_name = "transient_registrations"
 

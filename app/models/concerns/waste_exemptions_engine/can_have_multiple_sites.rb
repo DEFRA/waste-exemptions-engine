@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     extend ActiveSupport::Concern
 
     included do
-      has_many :site_addresses, -> { site }, class_name: "Address", dependent: :destroy
+      has_many :site_addresses, -> { site }, class_name: site_address_class_name, dependent: :destroy
     end
 
     def multisite?

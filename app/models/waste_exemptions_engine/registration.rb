@@ -4,6 +4,13 @@ module WasteExemptionsEngine
   class Registration < ApplicationRecord
     include CanHaveRegistrationAttributes
     include CanHaveViewCertificateToken
+
+    # Method must be defined before CanHaveMultipleSites inclusion
+    # as the concern references it during class definition
+    def self.site_address_class_name
+      "Address"
+    end
+
     include CanHaveMultipleSites
 
     has_paper_trail meta: { json: :json_for_version }
