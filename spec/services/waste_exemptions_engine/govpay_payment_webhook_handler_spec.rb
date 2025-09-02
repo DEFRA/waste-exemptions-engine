@@ -16,9 +16,43 @@ module WasteExemptionsEngine
       let(:registration) { create(:registration, :complete, account: build(:account)) }
       let(:order) { create(:order, :with_charge_detail, order_owner: registration.account) }
 
-      let!(:wex_payment) { create(:payment, order: order, account: registration.account, govpay_id: "hu20sqlact5260q2nanm0q8u93", payment_status: prior_payment_status) }
+      let!(:wex_payment) do
+        create(:payment,
+               order: order,
+               account: registration.account,
+               govpay_id: "hu20sqlact5260q2nanm0q8u93",
+               payment_status: prior_payment_status)
+      end
 
       include_examples "Govpay webhook services error logging"
+
+      shared_examples "an invalid payment status transition" do |old_status, new_status|
+        before do
+          WasteExemptionsEngine::Payment.find_by(govpay_id: govpay_payment_id).update(payment_status: old_status)
+          assign_webhook_status(new_status)
+        end
+
+        it "does not update the status from #{old_status} to #{new_status}" do
+          expect { run_service }.not_to(change { wex_payment.reload.payment_status })
+        rescue DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition
+          # expected exception
+        end
+
+        it "logs an error when attempting to update status from #{old_status} to #{new_status}" do
+          run_service
+
+          expect(Airbrake).to have_received(:notify)
+        rescue DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition
+          # expected exception
+        end
+      end
+
+      shared_examples "no valid transitions" do |old_status|
+        (%w[created started submitted success failed cancelled error] - [old_status]).each do |new_status|
+
+          it_behaves_like "an invalid payment status transition", old_status, new_status
+        end
+      end
 
       context "when the update is not for a payment" do
         before do
@@ -103,9 +137,23 @@ module WasteExemptionsEngine
               include_examples "Govpay webhook status transitions"
 
               # unfinished statuses
-              it_behaves_like "valid and invalid transitions", Payment::PAYMENT_STATUS_CREATED, %w[started submitted success failed cancelled error], %w[]
-              it_behaves_like "valid and invalid transitions", Payment::PAYMENT_STATUS_STARTED, %w[submitted success failed cancelled error], %w[created]
-              it_behaves_like "valid and invalid transitions", Payment::PAYMENT_STATUS_SUBMITTED, %w[success failed cancelled error], %w[started]
+
+              # created
+              %w[started submitted success failed cancelled error].each do |new_status|
+                it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_CREATED, new_status
+              end
+
+              # started
+              %w[submitted success failed cancelled error].each do |new_status|
+                it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_STARTED, new_status
+              end
+              it_behaves_like "an invalid payment status transition", Payment::PAYMENT_STATUS_STARTED, Payment::PAYMENT_STATUS_CREATED
+
+              # submitted
+              %w[success failed cancelled error].each do |new_status|
+                it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_SUBMITTED, new_status
+              end
+              it_behaves_like "an invalid payment status transition", Payment::PAYMENT_STATUS_SUBMITTED, %w[started]
 
               # finished statuses
               it_behaves_like "no valid transitions", Payment::PAYMENT_STATUS_SUCCESS
@@ -176,18 +224,15 @@ module WasteExemptionsEngine
               webhook_body["resource_type"] = resource_type_value
             end
 
-            it_behaves_like "valid and invalid transitions", Payment::PAYMENT_STATUS_CREATED, %w[started submitted success failed cancelled error], %w[]
+            %w[started submitted success failed cancelled error].each do |new_status|
+              it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_CREATED, new_status
+            end
           end
 
           %w[payment PAYMENT].each do |case_variant|
             it_behaves_like "handles case-insensitive resource_type as payment", case_variant
           end
         end
-      end
-
-      # used above and by shared examples - different for payment vs refund webhooks
-      def assign_webhook_status(status)
-        webhook_body["resource"]["state"]["status"] = status
       end
     end
   end

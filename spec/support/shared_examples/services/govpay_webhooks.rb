@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+def assign_webhook_status(status)
+  webhook_body["resource"]["state"]["status"] = status
+end
+
 RSpec.shared_examples "Govpay webhook services error logging" do
 
   before do
@@ -38,10 +42,11 @@ end
 
 RSpec.shared_examples "Govpay webhook status transitions" do
 
-  shared_examples "a valid transition" do |old_status, new_status|
-    let(:prior_payment_status) { old_status }
-
-    before { assign_webhook_status(new_status) }
+  shared_examples "a valid payment status transition" do |old_status, new_status|
+    before do
+      WasteExemptionsEngine::Payment.last.update(payment_status: old_status)
+      assign_webhook_status(new_status)
+    end
 
     it "updates the status from #{old_status} to #{new_status}" do
       expect { run_service }.to change { wex_payment.reload.payment_status }.to(new_status)
@@ -57,39 +62,5 @@ RSpec.shared_examples "Govpay webhook status transitions" do
 
       expect(Rails.logger).to have_received(:info)
     end
-  end
-
-  shared_examples "an invalid transition" do |old_status, new_status|
-    let(:prior_payment_status) { old_status }
-
-    before { assign_webhook_status(new_status) }
-
-    it "does not update the status from #{old_status} to #{new_status}" do
-      expect { run_service }.not_to(change { wex_payment.reload.payment_status })
-    rescue DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition
-      # expected exception
-    end
-
-    it "logs an error when attempting to update status from #{old_status} to #{new_status}" do
-      run_service
-
-      expect(Airbrake).to have_received(:notify)
-    rescue DefraRubyGovpay::WebhookBaseService::InvalidStatusTransition
-      # expected exception
-    end
-  end
-
-  shared_examples "valid and invalid transitions" do |old_status, valid_statuses, invalid_statuses|
-    valid_statuses.each do |new_status|
-      it_behaves_like "a valid transition", old_status, new_status
-    end
-
-    invalid_statuses.each do |new_status|
-      it_behaves_like "an invalid transition", old_status, new_status
-    end
-  end
-
-  shared_examples "no valid transitions" do |old_status|
-    it_behaves_like "valid and invalid transitions", old_status, %w[], %w[created started submitted success failed cancelled error] - [old_status]
   end
 end

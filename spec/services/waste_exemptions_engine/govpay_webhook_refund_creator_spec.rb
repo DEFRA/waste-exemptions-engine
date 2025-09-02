@@ -14,19 +14,18 @@ module WasteExemptionsEngine
                payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                payment_status: Payment::PAYMENT_STATUS_SUCCESS,
                payment_amount: 2000,
-               govpay_id: "789",
+               govpay_id: govpay_payment_id,
                reference: "WEX123456",
                account: account,
                order: order)
       end
 
       let(:govpay_webhook_body) { JSON.parse(file_fixture("govpay/webhook_refund_update_body.json").read) }
+      let(:govpay_payment_id) { govpay_webhook_body["resource_id"] if govpay_webhook_body.present? }
+
+      before { original_payment }
 
       context "when the request is valid" do
-        before do
-          original_payment
-        end
-
         it "returns the refund payment" do
           aggregate_failures do
             expect(run_service).to be_a(Payment)
@@ -43,12 +42,13 @@ module WasteExemptionsEngine
           refund = Payment.last
 
           aggregate_failures do
+            expect(refund.refunded_payment_govpay_id).to eq govpay_payment_id
             expect(refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-            expect(refund.payment_amount).to eq(-2000)
+            expect(refund.payment_amount).to eq(-47_600)
             expect(refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
             expect(refund.account_id).to eq(account.id)
             expect(refund.reference).to eq("WEX123456/REFUND")
-            expect(refund.govpay_id).to eq("345")
+            expect(refund.govpay_id).to be_nil
             expect(refund.associated_payment).to eq(original_payment)
           end
         end
@@ -115,64 +115,27 @@ module WasteExemptionsEngine
           it_behaves_like "raises ArgumentError and logs error", "govpay_webhook_body is required"
         end
 
-        context "when payment_id is missing" do
-          let(:govpay_webhook_body) do
-            {
-              refund_id: "refund456",
-              amount: 1500,
-              status: Payment::PAYMENT_STATUS_SUCCESS
-            }
-          end
+        context "when resource_id is missing" do
+          before { govpay_webhook_body["resource_id"] = nil }
 
-          it_behaves_like "raises ArgumentError and logs error", "payment_id is required"
-        end
-
-        context "when refund_id is missing" do
-          let(:govpay_webhook_body) do
-            {
-              payment_id: original_payment.govpay_id,
-              amount: 1500,
-              status: Payment::PAYMENT_STATUS_SUCCESS
-            }
-          end
-
-          it_behaves_like "raises ArgumentError and logs error", "refund_id is required"
+          it_behaves_like "raises ArgumentError and logs error", "resource_id is required"
         end
 
         context "when amount is missing" do
-          let(:govpay_webhook_body) do
-            {
-              payment_id: original_payment.govpay_id,
-              refund_id: "refund456",
-              status: Payment::PAYMENT_STATUS_SUCCESS
-            }
-          end
+          before { govpay_webhook_body["resource"]["amount"] = nil }
 
           it_behaves_like "raises ArgumentError and logs error", "amount is required"
         end
 
         context "when status is missing" do
-          let(:govpay_webhook_body) do
-            {
-              payment_id: original_payment.govpay_id,
-              refund_id: "refund456",
-              amount: 1500
-            }
-          end
+          before { govpay_webhook_body["resource"]["state"]["status"] = nil }
 
           it_behaves_like "raises ArgumentError and logs error", "status is required"
         end
       end
 
       context "when the original payment is not found" do
-        let(:govpay_webhook_body) do
-          {
-            payment_id: "non_existent_payment",
-            refund_id: "refund456",
-            amount: 1500,
-            status: Payment::PAYMENT_STATUS_SUCCESS
-          }
-        end
+        before { govpay_webhook_body["resource_id"] = "non_existent_payment" }
 
         it "raises ArgumentError" do
           expect { run_service }.to raise_error(ArgumentError, "invalid govpay_id")
@@ -217,11 +180,12 @@ module WasteExemptionsEngine
                  payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
                  payment_status: Payment::PAYMENT_STATUS_SUCCESS,
                  payment_amount: 2000,
-                 govpay_id: "789",
                  reference: "WEX123456",
                  account: account,
                  order: order)
         end
+
+        before { original_payment }
 
         it { expect { run_service }.to raise_error(ArgumentError) }
 
@@ -229,7 +193,7 @@ module WasteExemptionsEngine
           allow(Rails.logger).to receive(:error)
           aggregate_failures do
             expect { run_service }.to raise_error(ArgumentError)
-            expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id 789")
+            expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id #{govpay_payment_id}")
             expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
           end
         end
@@ -242,7 +206,7 @@ module WasteExemptionsEngine
                    payment_type: Payment::PAYMENT_TYPE_GOVPAY,
                    payment_status: Payment::PAYMENT_STATUS_FAILED,
                    payment_amount: 2000,
-                   govpay_id: "789",
+                   govpay_id: govpay_payment_id,
                    reference: "WEX123456",
                    account: account,
                    order: order)
@@ -254,7 +218,7 @@ module WasteExemptionsEngine
             allow(Rails.logger).to receive(:error)
             aggregate_failures do
               expect { run_service }.to raise_error(ArgumentError)
-              expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id 789")
+              expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id #{govpay_payment_id}")
               expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
             end
           end
@@ -279,11 +243,10 @@ module WasteExemptionsEngine
 
             aggregate_failures do
               expect(refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-              expect(refund.payment_amount).to eq(-2000)
+              expect(refund.payment_amount).to eq(-47_600)
               expect(refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
               expect(refund.account_id).to eq(account.id)
               expect(refund.reference).to eq("WEX123456/REFUND")
-              expect(refund.govpay_id).to eq("345")
               expect(refund.associated_payment).to eq(original_payment)
             end
           end
@@ -339,7 +302,7 @@ module WasteExemptionsEngine
 
             aggregate_failures do
               expect(refund.associated_payment).to eq(original_payment)
-              expect(refund.govpay_id).to eq("345")
+              expect(refund.refunded_payment_govpay_id).to eq(original_payment.govpay_id)
             end
           end
         end

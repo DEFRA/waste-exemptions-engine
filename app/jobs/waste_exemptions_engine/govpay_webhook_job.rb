@@ -10,10 +10,10 @@ module WasteExemptionsEngine
 
     def perform(webhook_body)
       Rails.logger.warn "\n>>> Processing webhook job for: #{webhook_body.inspect}"
-      if webhook_body["resource_type"]&.downcase == "payment"
-        process_payment_webhook(webhook_body)
-      elsif webhook_body["refund_id"].present?
+      if webhook_body["event_type"]&.downcase == "card_payment_refunded"
         process_refund_webhook(webhook_body)
+      elsif webhook_body["event_type"]&.match(/^card_payment/)
+        process_payment_webhook(webhook_body)
       else
         raise ArgumentError, "Unrecognised Govpay webhook type"
       end

@@ -2,10 +2,13 @@
 
 module WasteExemptionsEngine
   class GovpayRefundWebhookHandler < BaseService
-    def run(webhook_body)
-      @webhook_body = webhook_body&.deep_symbolize_keys
-      # @todo: this can be moved to DefraRubyGovpay gem at a later stage
+    attr_accessor :govpay_payment_id
+
+    def run(govpay_webhook_body)
+      @webhook_body = govpay_webhook_body&.deep_symbolize_keys
       GovpayRefundWebhookHandler.validate_refund_webhook_body_attributes(@webhook_body)
+
+      @govpay_payment_id = webhook_body[:resource_id]
 
       find_refund
       previous_status = @refund&.payment_status
@@ -32,10 +35,12 @@ module WasteExemptionsEngine
 
     def self.validate_refund_webhook_body_attributes(webhook_body)
       raise ArgumentError, "govpay_webhook_body is required" if webhook_body.blank?
-      raise ArgumentError, "payment_id is required" unless webhook_body.include?(:payment_id)
-      raise ArgumentError, "refund_id is required" unless webhook_body.include?(:refund_id)
-      raise ArgumentError, "amount is required" unless webhook_body.include?(:amount)
-      raise ArgumentError, "status is required" unless webhook_body.include?(:status)
+      unless webhook_body[:event_type] == "card_payment_refunded"
+        raise ArgumentError, "refund webhook event_type \"#{webhook_body[:event_type]}\" is invalid"
+      end
+      raise ArgumentError, "resource_id is required" unless webhook_body[:resource_id]
+      raise ArgumentError, "amount is required" unless webhook_body.dig(:resource, :amount)
+      raise ArgumentError, "status is required" unless webhook_body.dig(:resource, :state, :status)
     end
 
     private
@@ -43,9 +48,12 @@ module WasteExemptionsEngine
     attr_accessor :webhook_body, :refund, :registration
 
     def find_refund
+      payment = Payment.find_by(govpay_id: govpay_payment_id)
+      handle_payment_not_found unless payment.present?
+
       @refund = Payment.find_by(
         payment_type: Payment::PAYMENT_TYPE_REFUND,
-        govpay_id: webhook_body[:refund_id]
+        refunded_payment_govpay_id: govpay_payment_id
       )
       handle_refund_not_found unless @refund.present?
       @refund
@@ -59,6 +67,12 @@ module WasteExemptionsEngine
       @registration = @refund&.account&.registration
       handle_registration_not_found unless @registration.present?
       @registration
+    end
+
+    def handle_payment_not_found
+      Rails.logger.error "Govpay payment not found for govpay_id #{govpay_payment_id}"
+      Airbrake.notify "Govpay payment not found for govpay_id #{govpay_payment_id}"
+      raise ArgumentError, "invalid govpay_id"
     end
 
     def handle_refund_not_found

@@ -79,9 +79,9 @@ module WasteExemptionsEngine
                 aggregate_failures do
                   expect(webhook_body["resource"]).not_to include("email", "card_details")
                   expect(webhook_body["resource"]).to include(
-                    "amount" => 5000,
-                    "description" => "Pay your council tax",
-                    "reference" => "12345"
+                    "amount" => 47_600,
+                    "description" => /^Your Waste Exemptions Registration/,
+                    "reference" => a_kind_of(String)
                   )
                 end
               end
@@ -116,7 +116,7 @@ module WasteExemptionsEngine
             context "for payment callback" do
               let(:webhook_body) do
                 {
-                  "resource_type" => "payment",
+                  "event_type" => "card_payment_succeeded",
                   "resource" => { "moto" => moto }
                 }
               end
@@ -134,7 +134,7 @@ module WasteExemptionsEngine
             context "for refund callback" do
               let(:webhook_body) do
                 {
-                  "refund_id" => "123",
+                  "event_type" => "card_payment_refunded",
                   "resource" => { "moto" => moto }
                 }
               end
