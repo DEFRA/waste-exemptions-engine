@@ -9,6 +9,10 @@ module WasteExemptionsEngine
     has_many :payments, dependent: :destroy
     has_many :charge_adjustments, dependent: :destroy
 
+    def site_count
+      registration.site_count
+    end
+
     def overpaid?
       balance.positive?
     end
