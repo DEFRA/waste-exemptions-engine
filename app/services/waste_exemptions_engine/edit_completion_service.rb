@@ -15,7 +15,7 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      @registration = Registration.includes(:addresses).where(reference: @edit_registration.reference).first
+      @registration = Registration.includes({ addresses: [:registration_exemptions] }, :people).where(reference: @edit_registration.reference).first
     end
 
     def copy_data_from_edit_registration
