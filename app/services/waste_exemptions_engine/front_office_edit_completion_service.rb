@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      @registration = Registration.where(reference: @edit_registration.reference).first
+      @registration = Registration.includes(addresses: [:registration_exemptions]).where(reference: @edit_registration.reference).first
     end
 
     def set_paper_trail_whodunnit
