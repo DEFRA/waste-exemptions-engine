@@ -40,6 +40,29 @@ module WasteExemptionsEngine
         end
       end
 
+      describe "#multisite?" do
+        context "when there is one or no site addresses" do
+          it "returns false for single site address" do
+            expect(registration.multisite?).to be false
+          end
+        end
+
+        context "when there are multiple site addresses" do
+          it "returns true" do
+            create(:address, address_type: 3, registration: registration)
+            expect(registration.multisite?).to be true
+          end
+        end
+      end
+
+      describe "#site_count" do
+        it "returns the count of site addresses" do
+          create(:address, address_type: 3, registration: registration)
+          create(:address, address_type: 3, registration: registration)
+          expect(registration.site_count).to eq(3) # includes the one from factory
+        end
+      end
+
       describe "#operator_address" do
         it "returns an Address of type :operator" do
           operator_address = registration.addresses.find_by(address_type: 1)

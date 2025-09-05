@@ -52,6 +52,35 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#multisite?" do
+      let(:transient_registration) { create(:new_registration) }
+
+      context "when there is one or no site addresses" do
+        it "returns false for single site address" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when there are multiple site addresses" do
+        it "returns true" do
+          create(:transient_address, address_type: 3, transient_registration: transient_registration)
+          expect(transient_registration.multisite?).to be true
+        end
+      end
+    end
+
+    describe "#site_count" do
+      let(:transient_registration) { create(:new_registration) }
+
+      it "returns the count of site addresses" do
+        create(:transient_address, address_type: 3, transient_registration: transient_registration)
+        create(:transient_address, address_type: 3, transient_registration: transient_registration)
+        expect(transient_registration.site_count).to eq(3) # includes the one from factory
+      end
+        end
+      end
+    end
+
     describe "#previous_valid_state!" do
       let(:new_registration) { build(:new_registration) }
 
