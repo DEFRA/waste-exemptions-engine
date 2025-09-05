@@ -77,8 +77,6 @@ module WasteExemptionsEngine
         create(:transient_address, address_type: 3, transient_registration: transient_registration)
         expect(transient_registration.site_count).to eq(3) # includes the one from factory
       end
-        end
-      end
     end
 
     describe "#previous_valid_state!" do
