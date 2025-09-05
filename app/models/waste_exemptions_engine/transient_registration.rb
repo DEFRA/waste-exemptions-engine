@@ -28,7 +28,7 @@ module WasteExemptionsEngine
 
     # TransientRegistration both has_one site_address (single site
     # registrations) and has_many site_addresses (multi site registrations)
-    # through the CanHaveMultipleTransientSites concern
+    # through the CanHaveTransientSites concern
     has_one :site_address, -> { site.order(created_at: :asc) }, class_name: "TransientAddress", dependent: :destroy
     has_one :contact_address, -> { contact }, class_name: "TransientAddress", dependent: :destroy
     has_one :operator_address, -> { operator }, class_name: "TransientAddress", dependent: :destroy
