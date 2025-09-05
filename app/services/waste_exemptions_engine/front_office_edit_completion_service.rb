@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class FrontOfficeEditCompletionService < BaseService
-    def run(edit_registration:)
+    def run(edit_registration:, preload: nil)
       @edit_registration = edit_registration
+      @preload = preload
 
       ActiveRecord::Base.transaction do
         find_original_registration
@@ -20,8 +21,9 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      @registration = Registration.includes(addresses: [:registration_exemptions])
-                                  .where(reference: @edit_registration.reference).first
+      scope = Registration.where(reference: @edit_registration.reference)
+      scope = scope.preload(@preload) if @preload.present?
+      @registration = scope.first
     end
 
     def set_paper_trail_whodunnit

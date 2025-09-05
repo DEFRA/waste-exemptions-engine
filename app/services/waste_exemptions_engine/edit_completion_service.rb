@@ -2,8 +2,9 @@
 
 module WasteExemptionsEngine
   class EditCompletionService < BaseService
-    def run(edit_registration:)
+    def run(edit_registration:, preload: nil)
       @edit_registration = edit_registration
+      @preload = preload
 
       ActiveRecord::Base.transaction do
         find_original_registration
@@ -15,8 +16,9 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      @registration = Registration.includes(:addresses)
-                                  .where(reference: @edit_registration.reference).first
+      scope = Registration.where(reference: @edit_registration.reference)
+      scope = scope.preload(@preload) if @preload.present?
+      @registration = scope.first
     end
 
     def copy_data_from_edit_registration
