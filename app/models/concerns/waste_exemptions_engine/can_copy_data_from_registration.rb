@@ -52,7 +52,8 @@ module WasteExemptionsEngine
     end
 
     def copy_addresses_from_registration
-      registration_with_addresses = Registration.includes(addresses: [:registration_exemptions]).find_by(reference: reference)
+      registration_with_addresses = Registration.includes(addresses: [:registration_exemptions])
+                                                .find_by(reference: reference)
       registration_with_addresses.addresses.each do |address|
         addresses << TransientAddress.new(
           address.attributes.except(
