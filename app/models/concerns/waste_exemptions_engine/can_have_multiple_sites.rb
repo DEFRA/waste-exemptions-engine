@@ -8,10 +8,6 @@ module WasteExemptionsEngine
       has_many :site_addresses, -> { site }, class_name: site_address_class_name, dependent: :destroy
     end
 
-    def multisite?
-      site_addresses.count > 1
-    end
-
     def site_count
       site_addresses.count
     end
