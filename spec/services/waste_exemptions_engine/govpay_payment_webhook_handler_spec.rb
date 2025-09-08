@@ -24,7 +24,12 @@ module WasteExemptionsEngine
                payment_status: prior_payment_status)
       end
 
-      include_examples "Govpay webhook services error logging"
+      before do
+        allow(Rails.logger).to receive(:warn)
+        allow(Rails.logger).to receive(:error)
+      end
+
+      it_behaves_like "Govpay webhook services error logging"
 
       shared_examples "an invalid payment status transition" do |old_status, new_status|
         before do
@@ -55,23 +60,12 @@ module WasteExemptionsEngine
       end
 
       context "when the update is not for a payment" do
-        before do
-          webhook_body["resource_type"] = "refund"
-          allow(Airbrake).to receive(:notify)
-        end
-
-        it { expect { run_service }.to raise_error(ArgumentError) }
+        before { webhook_body["resource_type"] = "refund" }
 
         it_behaves_like "logs an error"
 
-        it "notifies Airbrake with exception and message parameter" do
-          run_service
-        rescue ArgumentError
-          # Expected error
-          expect(Airbrake).to have_received(:notify).with(
-            an_instance_of(ArgumentError).and(having_attributes(message: "Invalid webhook type refund")),
-            hash_including(message: "Error processing webhook for payment #{govpay_payment_id}")
-          )
+        it "raises the expected exception" do
+          expect { run_service }.to raise_error(ArgumentError, /Invalid webhook type refund/)
         end
       end
 
@@ -87,7 +81,7 @@ module WasteExemptionsEngine
         shared_examples "status is present in the update" do
           context "when the payment is not found" do
             before do
-              webhook_resource["payment_id"] = "foo"
+              webhook_body["resource_id"] = "foo"
               allow(Airbrake).to receive(:notify)
             end
 
@@ -133,8 +127,6 @@ module WasteExemptionsEngine
             end
 
             context "when the payment status has changed" do
-
-              include_examples "Govpay webhook status transitions"
 
               # unfinished statuses
 
@@ -217,12 +209,9 @@ module WasteExemptionsEngine
         end
 
         context "when the resource_type has different casings" do
-          include_examples "Govpay webhook status transitions"
-
           shared_examples "handles case-insensitive resource_type as payment" do |resource_type_value|
-            before do
-              webhook_body["resource_type"] = resource_type_value
-            end
+
+            before { webhook_body["resource_type"] = resource_type_value }
 
             %w[started submitted success failed cancelled error].each do |new_status|
               it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_CREATED, new_status

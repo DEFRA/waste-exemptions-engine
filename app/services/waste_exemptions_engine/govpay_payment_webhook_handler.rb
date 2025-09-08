@@ -2,39 +2,41 @@
 
 module WasteExemptionsEngine
   class GovpayPaymentWebhookHandler
-    def self.process(webhook_body)
-      govpay_id = webhook_body.dig("resource", "payment_id")
-      payment = payment_by_govpay_id(govpay_id)
+    attr_reader :govpay_payment_id
+
+    def self.process(govpay_webhook_body)
+      @webhook_body = govpay_webhook_body&.deep_symbolize_keys
+      @govpay_payment_id = @webhook_body[:resource_id]
+      payment = payment_by_govpay_id
 
       previous_status = payment&.payment_status
 
       result = DefraRubyGovpay::WebhookPaymentService.run(
-        webhook_body,
+        @webhook_body,
         previous_status: previous_status
       )
-      govpay_id, status = result.values_at(:id, :status)
+      status = result[:status]
 
       return if payment.blank?
 
-      registration = registration_by_govpay_id(govpay_id)
+      registration = registration_by_govpay_id
       return if registration.blank?
 
-      update_payment_status_and_reference(payment, status)
+      update_payment_status_and_reference(registration, payment, status)
 
-      complete_renewal_if_ready(registration, status)
-
-      Rails.logger.info "Updated status from #{previous_status} to #{status} for payment #{govpay_id}, " \
+      Rails.logger.info "Updated status from #{previous_status} to #{status} for payment #{@govpay_payment_id}, " \
                         "registration #{registration.reference}"
 
       result
     rescue StandardError => e
-      Rails.logger.error "Error processing webhook for payment #{govpay_id}: #{e}"
-      Airbrake.notify(e, { message: "Error processing webhook for payment #{govpay_id}" })
+      Rails.logger.error "Error processing webhook for payment #{@govpay_payment_id}: #{e}"
+      Airbrake.notify(e, { message: "Error processing webhook for payment #{@govpay_payment_id}" })
       raise
     end
 
-    def self.update_payment_status_and_reference(payment, status)
+    def self.update_payment_status_and_reference(registration, payment, status)
       payment.update(payment_status: status, reference: payment.payment_uuid)
+      complete_renewal_if_ready(registration, status)
     end
 
     def self.complete_renewal_if_ready(registration, status)
@@ -44,18 +46,18 @@ module WasteExemptionsEngine
       RenewalCompletionService.new(registration).complete_renewal
     end
 
-    def self.registration_by_govpay_id(govpay_id)
-      payment_by_govpay_id(govpay_id)&.account&.registration
+    def self.registration_by_govpay_id
+      payment_by_govpay_id&.account&.registration
     end
 
-    def self.payment_by_govpay_id(govpay_id)
-      payment = Payment.find_by(govpay_id: govpay_id)
-      payment || handle_payment_not_found(govpay_id)
+    def self.payment_by_govpay_id
+      payment = Payment.find_by(govpay_id: @govpay_payment_id)
+      payment || handle_payment_not_found
     end
 
-    def self.handle_payment_not_found(govpay_id)
-      Rails.logger.error "Govpay payment not found for govpay_id #{govpay_id}"
-      Airbrake.notify "Govpay payment not found for govpay_id #{govpay_id}"
+    def self.handle_payment_not_found
+      Rails.logger.error "Govpay payment not found for govpay_id #{@govpay_payment_id}"
+      Airbrake.notify "Govpay payment not found for govpay_id #{@govpay_payment_id}"
       raise ArgumentError, "invalid govpay_id"
     end
   end

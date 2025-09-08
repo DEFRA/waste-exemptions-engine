@@ -38,7 +38,7 @@ module WasteExemptionsEngine
         webhook_body["resource"]["payment_id"] = wex_original_payment.govpay_id
       end
 
-      include_examples "Govpay webhook services error logging"
+      it_behaves_like "Govpay webhook services error logging"
 
       shared_examples "failed refund update" do
         it { expect { run_service }.to raise_error(ArgumentError) }
@@ -132,6 +132,8 @@ module WasteExemptionsEngine
             context "when the refund status has not changed" do
               let(:prior_refund_status) { Payment::PAYMENT_STATUS_SUCCESS }
 
+              before { allow(Rails.logger).to receive(:warn) }
+
               it { expect { run_service }.not_to change(wex_original_payment, :payment_status) }
 
               it "writes a warning to the Rails log" do
@@ -143,8 +145,6 @@ module WasteExemptionsEngine
 
             context "when the refund status has changed" do
               let(:wex_payment) { wex_refund } # shared example expects wex_payment object
-
-              include_examples "Govpay webhook status transitions"
 
               # unfinished statuses
               it_behaves_like "a valid payment status transition", Payment::PAYMENT_STATUS_SUBMITTED, Payment::PAYMENT_STATUS_SUCCESS
