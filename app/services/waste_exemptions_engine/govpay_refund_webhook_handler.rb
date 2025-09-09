@@ -72,7 +72,7 @@ module WasteExemptionsEngine
     def handle_payment_not_found
       Rails.logger.error "Govpay payment not found for govpay_id #{govpay_payment_id}"
       Airbrake.notify "Govpay payment not found for govpay_id #{govpay_payment_id}"
-      raise ArgumentError, "invalid govpay_id"
+      raise ArgumentError, "payment not found"
     end
 
     def handle_refund_not_found
@@ -81,13 +81,13 @@ module WasteExemptionsEngine
     rescue StandardError
       Rails.logger.error "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
       Airbrake.notify "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
-      raise ArgumentError, "invalid govpay_id"
+      raise ArgumentError, "refund not found"
     end
 
     def handle_registration_not_found
       Rails.logger.error "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
       Airbrake.notify "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
-      raise ArgumentError, "invalid govpay_id"
+      raise ArgumentError, "registration not found"
     end
   end
 end
