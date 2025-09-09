@@ -9,7 +9,6 @@ module WasteExemptionsEngine
     self.log_arguments = false
 
     def perform(webhook_body)
-      Rails.logger.warn "\n>>> Processing webhook job for: #{webhook_body.inspect}"
       if webhook_body["event_type"]&.downcase == "card_payment_refunded"
         process_refund_webhook(webhook_body)
       elsif webhook_body["event_type"]&.match(/^card_payment/)
@@ -24,16 +23,12 @@ module WasteExemptionsEngine
     private
 
     def process_payment_webhook(webhook_body)
-      Rails.logger.warn "\n>>>> Processing webhook for payment #{webhook_body['resource_id']} : #{webhook_body.dig(
-        'resource', 'payment_id'
-      )}"
       result = GovpayPaymentWebhookHandler.process(webhook_body)
 
       Rails.logger.info "Processed payment webhook for govpay_id: #{result[:id]}, status: #{result[:status]}"
     end
 
     def process_refund_webhook(webhook_body)
-      Rails.logger.warn "\n>>>> Processing webhook for refund #{webhook_body['refund_id']}"
       result = GovpayRefundWebhookHandler.run(webhook_body)
 
       Rails.logger.info "Processed refund webhook for refund_id: #{result[:id]}, status: #{result[:status]}"
