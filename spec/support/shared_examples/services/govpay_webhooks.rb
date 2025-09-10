@@ -4,37 +4,35 @@ def assign_webhook_status(status)
   webhook_body["resource"]["state"]["status"] = status
 end
 
-RSpec.shared_examples "Govpay webhook services error logging" do
+RSpec.shared_examples "logs an error" do
 
   before do
     allow(Airbrake).to receive(:notify)
     allow(Rails.logger).to receive(:error)
   end
 
-  RSpec.shared_examples "logs an error" do
-    it "notifies Airbrake" do
-      run_service
+  it "notifies Airbrake" do
+    run_service
 
-      expect(Airbrake).to have_received(:notify)
-    rescue StandardError
-      # expected exception
-    end
-
-    it "writes an error to the Rails log" do
-      run_service
-
-      expect(Rails.logger).to have_received(:error)
-    rescue StandardError
-      # expected exception
-    end
+    expect(Airbrake).to have_received(:notify)
+  rescue StandardError
+    # expected exception
   end
 
-  shared_examples "does not log an error" do
-    it "does not notify Airbrake" do
-      run_service
+  it "writes an error to the Rails log" do
+    run_service
 
-      expect(Airbrake).not_to have_received(:notify)
-    end
+    expect(Rails.logger).to have_received(:error)
+  rescue StandardError
+    # expected exception
+  end
+end
+
+RSpec.shared_examples "does not log an error" do
+  it "does not notify Airbrake" do
+    run_service
+
+    expect(Airbrake).not_to have_received(:notify)
   end
 end
 

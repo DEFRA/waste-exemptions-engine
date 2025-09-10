@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe GovpayPaymentWebhookHandler do
     describe ".process" do
 
-      subject(:run_service) { described_class.process(webhook_body) }
+      subject(:run_service) { described_class.new.process(webhook_body) }
 
       let(:webhook_body) { JSON.parse(file_fixture("govpay/webhook_payment_update_body.json").read) }
       let(:webhook_resource) { webhook_body["resource"] }
@@ -28,8 +28,6 @@ module WasteExemptionsEngine
         allow(Rails.logger).to receive(:warn)
         allow(Rails.logger).to receive(:error)
       end
-
-      it_behaves_like "Govpay webhook services error logging"
 
       shared_examples "an invalid payment status transition" do |old_status, new_status|
         before do

@@ -38,8 +38,6 @@ module WasteExemptionsEngine
         webhook_body["resource"]["payment_id"] = wex_original_payment.govpay_id
       end
 
-      it_behaves_like "Govpay webhook services error logging"
-
       shared_examples "failed refund update" do
         it { expect { run_service }.to raise_error(ArgumentError) }
 
