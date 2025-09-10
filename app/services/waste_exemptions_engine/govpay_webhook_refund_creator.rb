@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     def run(govpay_webhook_body:)
       @govpay_webhook_body = govpay_webhook_body&.deep_symbolize_keys
       # @todo: this can be moved to DefraRubyGovpay gem at a later stage
-      GovpayRefundWebhookHandler.validate_refund_webhook_body_attributes(@govpay_webhook_body)
+      GovpayRefundWebhookHandler.new.validate_refund_webhook_body_attributes(@govpay_webhook_body)
 
       @govpay_payment_id = @govpay_webhook_body[:resource_id]
       original_payment = find_payment

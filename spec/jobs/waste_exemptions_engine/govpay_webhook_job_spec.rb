@@ -34,12 +34,14 @@ module WasteExemptionsEngine
     describe ".perform_now" do
       subject(:perform_now) { described_class.perform_now(webhook_body) }
 
+      let(:payment_webhook_handler) { instance_double(GovpayPaymentWebhookHandler) }
       let(:payment_service_result) { { id: "123", status: "success" } }
       let(:refund_service_result) { { id: "345", payment_id: "789", status: "success" } }
 
       before do
         allow(FeatureToggle).to receive(:active?).with(:detailed_logging)
-        allow(GovpayPaymentWebhookHandler).to receive(:process).and_return(payment_service_result)
+        allow(GovpayPaymentWebhookHandler).to receive(:new).and_return(payment_webhook_handler)
+        allow(payment_webhook_handler).to receive(:process).and_return(payment_service_result)
         allow(GovpayRefundWebhookHandler).to receive(:run).and_return(refund_service_result)
         allow(Rails.logger).to receive(:info)
       end
@@ -48,7 +50,7 @@ module WasteExemptionsEngine
         before do
           allow(Airbrake).to receive(:notify)
           allow(FeatureToggle).to receive(:active?).with(:detailed_logging).and_return(false)
-          allow(GovpayPaymentWebhookHandler).to receive(:process).and_raise(StandardError.new("Test error"))
+          allow(payment_webhook_handler).to receive(:process).and_raise(StandardError.new("Test error"))
           allow(GovpayRefundWebhookHandler).to receive(:run).and_raise(StandardError.new("Test error"))
         end
 
@@ -166,7 +168,7 @@ module WasteExemptionsEngine
 
         it "processes the payment webhook using GovpayPaymentWebhookHandler" do
           perform_now
-          expect(GovpayPaymentWebhookHandler).to have_received(:process).with(webhook_body)
+          expect(payment_webhook_handler).to have_received(:process).with(webhook_body)
         end
 
         it "logs the payment webhook processing" do

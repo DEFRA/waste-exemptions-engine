@@ -23,7 +23,7 @@ module WasteExemptionsEngine
     private
 
     def process_payment_webhook(webhook_body)
-      result = GovpayPaymentWebhookHandler.process(webhook_body)
+      result = GovpayPaymentWebhookHandler.new.process(webhook_body)
 
       Rails.logger.info "Processed payment webhook for govpay_id: #{result[:id]}, status: #{result[:status]}"
     end
