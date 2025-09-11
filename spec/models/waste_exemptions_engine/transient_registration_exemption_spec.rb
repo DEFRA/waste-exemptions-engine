@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     subject(:transient_registration_exemption) { build(:transient_registration_exemption) }
 
     describe "public interface" do
-      associations = %i[transient_registration exemption]
+      associations = %i[transient_registration exemption transient_address]
 
       (Helpers::ModelProperties::TRANSIENT_REGISTRATION_EXEMPTION + associations).each do |property|
         it "responds to property" do

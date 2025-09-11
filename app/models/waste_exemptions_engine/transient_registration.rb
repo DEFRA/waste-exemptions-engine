@@ -4,6 +4,14 @@ module WasteExemptionsEngine
   class TransientRegistration < ApplicationRecord
     include CanHaveRegistrationAttributes
 
+    # Method must be defined before CanHaveMultipleSites inclusion
+    # as the concern references it during class definition
+    def self.site_address_class_name
+      "TransientAddress"
+    end
+
+    include CanHaveMultipleSites
+
     self.table_name = "transient_registrations"
 
     # HasSecureToken provides an easy way to generate unique random tokens for
@@ -18,10 +26,12 @@ module WasteExemptionsEngine
 
     has_many :transient_addresses, dependent: :destroy
 
-    # In this case, we have to pass the correct enum value, as `enum` will not generate the right query in this case.
-    has_one :site_address, -> { where(address_type: 3) }, class_name: "TransientAddress", dependent: :destroy
-    has_one :contact_address, -> { where(address_type: 2) }, class_name: "TransientAddress", dependent: :destroy
-    has_one :operator_address, -> { where(address_type: 1) }, class_name: "TransientAddress", dependent: :destroy
+    # TransientRegistration both has_one site_address (single site
+    # registrations) and has_many site_addresses (multi site registrations)
+    # through the CanHaveTransientSites concern
+    has_one :site_address, -> { site.order(created_at: :asc) }, class_name: "TransientAddress", dependent: :destroy
+    has_one :contact_address, -> { contact }, class_name: "TransientAddress", dependent: :destroy
+    has_one :operator_address, -> { operator }, class_name: "TransientAddress", dependent: :destroy
     accepts_nested_attributes_for :site_address
     accepts_nested_attributes_for :contact_address
     accepts_nested_attributes_for :operator_address
