@@ -103,10 +103,7 @@ module WasteExemptionsEngine
       payment = Payment.find_by(payment_uuid: payment_uuid)
       return if payment.nil? || payment.payment_status != Payment::PAYMENT_STATUS_SUCCESS
 
-      registration = payment.order&.order_owner&.registration
-      return registration if registration.present?
-
-      nil
+      payment.order&.order_owner&.registration
     end
 
     def valid_transient_registration?
