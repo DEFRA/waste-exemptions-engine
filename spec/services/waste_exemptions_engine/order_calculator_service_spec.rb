@@ -61,6 +61,46 @@ module WasteExemptionsEngine
           expect(service.strategy_type).to eq(FarmerChargingStrategy)
         end
       end
+
+      context "with a multisite registration" do
+        let(:order) { build(:order, exemptions:, bucket:, order_owner: multisite_registration) }
+        let(:multisite_registration) { create(:new_charged_registration, is_multisite_registration: true) }
+
+        context "without a bucket" do
+          it "returns the multisite charging strategy type" do
+            expect(service.strategy_type).to eq(MultisiteChargingStrategy)
+          end
+        end
+
+        context "with a non-farmer bucket" do
+          let(:bucket) { build(:bucket, name: "foo", bucket_type: "charity") }
+
+          it "returns the multisite charging strategy type" do
+            expect(service.strategy_type).to eq(MultisiteChargingStrategy)
+          end
+        end
+
+        context "with a farmer bucket" do
+          let(:bucket) { build(:bucket, name: "Farmer exemptions") }
+
+          it "returns the multisite farmer charging strategy type" do
+            expect(service.strategy_type).to eq(MultisiteFarmerChargingStrategy)
+          end
+        end
+      end
+
+      context "with a non-multisite registration" do
+        let(:order) { build(:order, exemptions:, bucket:, order_owner: regular_registration) }
+        let(:regular_registration) { create(:new_charged_registration, is_multisite_registration: false) }
+
+        context "with a farmer bucket" do
+          let(:bucket) { build(:bucket, name: "Farmer exemptions") }
+
+          it "returns the farmer charging strategy type" do
+            expect(service.strategy_type).to eq(FarmerChargingStrategy)
+          end
+        end
+      end
     end
 
     # These methods should all pass through to the calculator:

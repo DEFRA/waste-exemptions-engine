@@ -13,7 +13,7 @@ module WasteExemptionsEngine
     private
 
     def transient_registration_attributes
-      params.fetch(:multisite_site_address_lookup_form, {}).permit(temp_site_address: [:uprn])
+      params.fetch(:multisite_site_address_lookup_form, {}).permit(site_address: [:uprn])
     end
   end
 end

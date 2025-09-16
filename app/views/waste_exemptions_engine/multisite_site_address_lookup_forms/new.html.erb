@@ -4,8 +4,8 @@
   <div class="govuk-grid-column-two-thirds">
     <%= render "waste_exemptions_engine/shared/site_address_lookup_form",
         form_object: @multisite_site_address_lookup_form,
-        address_field: :temp_site_address,
-        field_prefix: "multisite-site-address-lookup-temp-site",
+        address_field: :site_address,
+        field_prefix: "multisite-site-address-lookup-site",
         grid_reference_link: new_multisite_site_grid_reference_form_path(@multisite_site_address_lookup_form.token),
         i18n_scope: "waste_exemptions_engine.multisite_site_address_lookup_forms.new" %>
   </div>
