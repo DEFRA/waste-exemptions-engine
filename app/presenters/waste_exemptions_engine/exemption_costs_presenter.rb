@@ -106,6 +106,32 @@ module WasteExemptionsEngine
       farmer_bucket_in_order? && @order.exemptions.any? { |e| farmer_bucket_exemption?(e) }
     end
 
+    def farming_exemptions
+      @farming_exemptions ||= exemptions.select { |e| farmer_bucket_exemption?(e) }
+    end
+
+    def non_farming_exemptions
+      @non_farming_exemptions ||= exemptions.reject { |e| farmer_bucket_exemption?(e) }
+    end
+
+    def farming_exemptions_codes
+      farming_exemptions.map(&:code).join(", ")
+    end
+
+    def farming_exemptions_charge
+      return format_currency(0) if farming_exemptions.empty?
+
+      first_farming_exemption = farming_exemptions.first
+      compliance_charge(first_farming_exemption)
+    end
+
+    def farming_exemptions_single_site_charge
+      return format_currency(0) if farming_exemptions.empty?
+
+      first_farming_exemption = farming_exemptions.first
+      single_site_compliance_charge(first_farming_exemption)
+    end
+
     private
 
     def highest_band
@@ -201,7 +227,7 @@ module WasteExemptionsEngine
 
     def multisite_charge_for_exemption(_exemption, base_charge_amount)
       # Apply multisite multiplication if this is a multisite registration
-      if @order.order_owner.is_multisite_registration
+      if @order.order_owner&.is_multisite_registration
         site_count = @order.order_owner.site_count
         format_currency(
           WasteExemptionsEngine::CurrencyConversionService

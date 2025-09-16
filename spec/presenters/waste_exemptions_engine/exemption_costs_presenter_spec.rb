@@ -420,5 +420,131 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#farming_exemptions" do
+      context "when the order has no farming exemptions" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns empty array" do
+          expect(presenter.farming_exemptions).to be_empty
+        end
+      end
+
+      context "when the order has farming exemptions" do
+        let(:farming_exemption_1) { Bucket.farmer_bucket.exemptions.first }
+        let(:farming_exemption_2) { Bucket.farmer_bucket.exemptions.second }
+        let(:non_farming_exemption) { create(:exemption, band: band_1) }
+        let(:exemptions) { [farming_exemption_1, non_farming_exemption, farming_exemption_2] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns only farming exemptions" do
+          expect(presenter.farming_exemptions).to contain_exactly(farming_exemption_1, farming_exemption_2)
+        end
+      end
+    end
+
+    describe "#non_farming_exemptions" do
+      context "when the order has no non-farming exemptions" do
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns empty array" do
+          expect(presenter.non_farming_exemptions).to be_empty
+        end
+      end
+
+      context "when the order has mixed exemptions" do
+        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:non_farming_exemption_1) { create(:exemption, band: band_1) }
+        let(:non_farming_exemption_2) { create(:exemption, band: band_2) }
+        let(:exemptions) { [farming_exemption, non_farming_exemption_1, non_farming_exemption_2] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns only non-farming exemptions" do
+          expect(presenter.non_farming_exemptions).to contain_exactly(non_farming_exemption_1, non_farming_exemption_2)
+        end
+      end
+    end
+
+    describe "#farming_exemptions_codes" do
+      context "when there are no farming exemptions" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns empty string" do
+          expect(presenter.farming_exemptions_codes).to eq("")
+        end
+      end
+
+      context "when there are farming exemptions" do
+        let(:farming_exemption_1) { Bucket.farmer_bucket.exemptions.first }
+        let(:farming_exemption_2) { Bucket.farmer_bucket.exemptions.second }
+        let(:exemptions) { [farming_exemption_1, farming_exemption_2] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns comma-separated codes" do
+          # The codes will be sorted by the presenter's exemptions method
+          sorted_codes = presenter.farming_exemptions.map(&:code).join(", ")
+          expect(presenter.farming_exemptions_codes).to eq(sorted_codes)
+        end
+      end
+    end
+
+    describe "#farming_exemptions_charge" do
+      context "when there are no farming exemptions" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns £0.00" do
+          expect(presenter.farming_exemptions_charge).to eq("£0.00")
+        end
+      end
+
+      context "when there are farming exemptions" do
+        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:exemptions) { [farming_exemption] }
+
+        before do
+          order.update(bucket: Bucket.farmer_bucket)
+          order.exemptions = exemptions
+          # Set up proper bucket charge calculation
+          allow_any_instance_of(WasteExemptionsEngine::OrderCalculatorService).to receive(:bucket_charge_amount).and_return(8800) # £88.00 in pence
+        end
+
+        it "returns the bucket charge for farming exemptions" do
+          expect(presenter.farming_exemptions_charge).to eq("£88.00")
+        end
+      end
+    end
+
+    describe "#farming_exemptions_single_site_charge" do
+      context "when there are no farming exemptions" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns £0.00" do
+          expect(presenter.farming_exemptions_single_site_charge).to eq("£0.00")
+        end
+      end
+
+      context "when there are farming exemptions" do
+        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:exemptions) { [farming_exemption] }
+
+        before do
+          order.update(bucket: Bucket.farmer_bucket)
+          order.exemptions = exemptions
+          # Mock the single-site calculator to return the expected charge
+          single_site_calculator = instance_double(WasteExemptionsEngine::OrderCalculator)
+          allow(single_site_calculator).to receive(:bucket_charge_amount).and_return(8800) # £88.00 in pence
+          allow(WasteExemptionsEngine::OrderCalculator).to receive(:new).and_return(single_site_calculator)
+        end
+
+        it "returns the single-site bucket charge for farming exemptions" do
+          expect(presenter.farming_exemptions_single_site_charge).to eq("£88.00")
+        end
+      end
+    end
   end
 end
