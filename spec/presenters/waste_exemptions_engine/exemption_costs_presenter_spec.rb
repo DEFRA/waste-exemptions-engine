@@ -431,15 +431,15 @@ module WasteExemptionsEngine
       end
 
       context "when the order has farming exemptions" do
-        let(:farming_exemption_1) { Bucket.farmer_bucket.exemptions.first }
-        let(:farming_exemption_2) { Bucket.farmer_bucket.exemptions.second }
+        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.second }
         let(:non_farming_exemption) { create(:exemption, band: band_1) }
-        let(:exemptions) { [farming_exemption_1, non_farming_exemption, farming_exemption_2] }
+        let(:exemptions) { [first_farming_exemption, non_farming_exemption, second_farming_exemption] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 
         it "returns only farming exemptions" do
-          expect(presenter.farming_exemptions).to contain_exactly(farming_exemption_1, farming_exemption_2)
+          expect(presenter.farming_exemptions).to contain_exactly(first_farming_exemption, second_farming_exemption)
         end
       end
     end
@@ -457,14 +457,14 @@ module WasteExemptionsEngine
 
       context "when the order has mixed exemptions" do
         let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
-        let(:non_farming_exemption_1) { create(:exemption, band: band_1) }
-        let(:non_farming_exemption_2) { create(:exemption, band: band_2) }
-        let(:exemptions) { [farming_exemption, non_farming_exemption_1, non_farming_exemption_2] }
+        let(:first_non_farming_exemption) { create(:exemption, band: band_1) }
+        let(:second_non_farming_exemption) { create(:exemption, band: band_2) }
+        let(:exemptions) { [farming_exemption, first_non_farming_exemption, second_non_farming_exemption] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 
         it "returns only non-farming exemptions" do
-          expect(presenter.non_farming_exemptions).to contain_exactly(non_farming_exemption_1, non_farming_exemption_2)
+          expect(presenter.non_farming_exemptions).to contain_exactly(first_non_farming_exemption, second_non_farming_exemption)
         end
       end
     end
@@ -479,9 +479,9 @@ module WasteExemptionsEngine
       end
 
       context "when there are farming exemptions" do
-        let(:farming_exemption_1) { Bucket.farmer_bucket.exemptions.first }
-        let(:farming_exemption_2) { Bucket.farmer_bucket.exemptions.second }
-        let(:exemptions) { [farming_exemption_1, farming_exemption_2] }
+        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.second }
+        let(:exemptions) { [first_farming_exemption, second_farming_exemption] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 
@@ -509,8 +509,10 @@ module WasteExemptionsEngine
         before do
           order.update(bucket: Bucket.farmer_bucket)
           order.exemptions = exemptions
-          # Set up proper bucket charge calculation
-          allow_any_instance_of(WasteExemptionsEngine::OrderCalculatorService).to receive(:bucket_charge_amount).and_return(8800) # £88.00 in pence
+          # Mock the order calculator service to return the expected charge
+          calculator_service = instance_double(WasteExemptionsEngine::OrderCalculatorService)
+          allow(calculator_service).to receive(:bucket_charge_amount).and_return(8800) # £88.00 in pence
+          allow(WasteExemptionsEngine::OrderCalculatorService).to receive(:new).and_return(calculator_service)
         end
 
         it "returns the bucket charge for farming exemptions" do
