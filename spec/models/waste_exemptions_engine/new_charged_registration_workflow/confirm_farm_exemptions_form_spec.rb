@@ -20,10 +20,10 @@ module WasteExemptionsEngine
         context "when farm exemptions have been selected" do
           let(:temp_exemptions) { [create(:exemption).id] }
 
-          it "transitions to exemptions_summary_form" do
+          it "transitions to is_multisite_registration_form" do
             expect(new_registration)
               .to transition_from(:confirm_farm_exemptions_form)
-              .to(:exemptions_summary_form)
+              .to(:is_multisite_registration_form)
               .on_event(:next)
           end
         end

@@ -240,8 +240,7 @@ module WasteExemptionsEngine
 
           transitions from: :confirm_farm_exemptions_form,
                       to: :exemptions_summary_form,
-                      if: %i[proceed_with_selected_farm_exemptions? check_your_answers_flow?],
-                      unless: %i[check_your_answers_flow multisite_registration?]
+                      if: %i[proceed_with_selected_farm_exemptions? check_your_answers_flow?]
 
           # Is multisite registration -> Site Grid Reference (if not multisite)
           transitions from: :is_multisite_registration_form,

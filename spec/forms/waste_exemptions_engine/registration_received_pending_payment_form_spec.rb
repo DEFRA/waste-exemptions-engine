@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     end
 
     describe "#exemption_costs_presenter" do
-      let(:mock_order) { instance_double(Order, bucket: nil) }
+      let(:mock_order) { instance_double(Order, bucket: nil, order_owner: nil) }
       let(:mock_transient_registration) { instance_double(NewChargedRegistration, order: mock_order) }
 
       before do
