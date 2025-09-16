@@ -1,0 +1,72 @@
+<%= render("waste_exemptions_engine/shared/back", token: @multiple_sites_form.token) %>
+
+<% content_for :page_title, t(".heading") %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+    <p class="govuk-body"><%= t(".bookmark_hint") %>
+      </br>
+      <%= t(".save_duration") %>
+    </p>
+    <p class="govuk-body"><%= t(".continue_instruction") %></p>
+
+    <% site_addresses = @multiple_sites_form.site_addresses(@page) %>
+    <% if site_addresses.any? %>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header"><%= t(".location_header") %></th>
+            <th scope="col" class="govuk-table__header"><%= t(".site_details_header") %></th>
+            <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden"><%= t(".actions_header") %></span></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <% site_addresses.each_with_index do |site_address, index| %>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <%= (@page.to_i - 1) * @multiple_sites_form.sites_per_page + index + 1 %>
+              </td>
+              <td class="govuk-table__cell">
+                <% if site_address.grid_reference.present? %>
+                  <%= site_address.grid_reference %>
+                <% else %>
+                  <%= [site_address.house_number, site_address.address_line_1, site_address.address_line_2, site_address.town_city, site_address.postcode].compact.join(", ") %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= link_to t(".remove_link"), "#", class: "govuk-link" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= paginate site_addresses,
+          param_name: :page %>
+    <% end %>
+
+    <p class="govuk-body">
+      <%= link_to t(".add_another_site"), new_multisite_site_grid_reference_form_path, class: "govuk-link" %>
+    </p>
+
+    <%= form_for(@multiple_sites_form, url: multiple_sites_forms_path(@multiple_sites_form.token), method: :post, local: true) do |f| %>
+
+      <div class="govuk-button-group">
+        <% if @multiple_sites_form.can_continue? %>
+          <%= f.submit t(".continue"), class: "govuk-button", data: { module: "govuk-button" } %>
+        <% else %>
+          <%= f.submit t(".continue"),
+              class: "govuk-button govuk-button--disabled",
+              disabled: true,
+              "aria-disabled": "true",
+              data: { module: "govuk-button" } %>
+          <p class="govuk-body govuk-!-margin-top-2">
+            <%= t(".minimum_sites_required", count: @multiple_sites_form.minimum_sites_required - @multiple_sites_form.total_sites_count) %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

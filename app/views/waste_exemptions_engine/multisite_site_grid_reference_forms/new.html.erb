@@ -1,0 +1,54 @@
+<%= render("waste_exemptions_engine/shared/back", token: @multisite_site_grid_reference_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for @multisite_site_grid_reference_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l">
+        <%= t(".heading") %>
+      </h1>
+
+      <p class="govuk-body">
+        <%= t(".grid_reference_preferred_option") %><br>
+        <br>
+        <%= link_to(t(".postcode_link_text"), skip_to_address_multisite_site_grid_reference_forms_path(@multisite_site_grid_reference_form.token)) %>
+      </p>
+      <p class="govuk-body"><%= t(".or") %></p>
+
+      <% grid_ref_finder_link = link_to(t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/", rel: "external", target: "_blank") %>
+
+      <%= f.govuk_text_field :grid_reference,
+        label: {
+          text: t(".grid_reference_label"),
+          size: "s"
+        },
+        width: "one-third",
+        hint: {
+          text: safe_join([
+            t(".grid_reference_link_hint", grid_ref_finder_link:).html_safe,
+            tag.br,
+            t(".grid_reference_hint")
+          ])
+        }
+      %>
+
+      <%= f.govuk_text_area :description,
+        label: {
+          text: t(".description_label"),
+          size: "s"
+        },
+        hint: {
+          text: t(".description_hint")
+        },
+        max_chars: 500
+      %>
+
+      <p class="govuk-body">
+        <%= t(".continue_instruction") %>
+      </p>
+
+      <%= f.govuk_submit t(".next_button") %>
+    <% end %>
+  </div>
+</div>

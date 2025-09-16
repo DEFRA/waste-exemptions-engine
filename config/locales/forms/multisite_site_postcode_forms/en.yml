@@ -1,0 +1,24 @@
+en:
+  waste_exemptions_engine:
+    multisite_site_postcode_forms:
+      new:
+        title: What's the postcode of the waste operation?
+        heading: What's the postcode of the waste operation?
+        postcode_label: Please enter a UK postcode
+        postcode_hint: For example, BS1 5AH
+        error_heading: A problem to fix
+        next_button: Find address
+        grid_reference_link: Use grid reference instead
+
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/multisite_site_postcode_form:
+          attributes:
+            temp_site_postcode:
+              blank: Enter a postcode
+              wrong_format: Enter a valid UK postcode
+              no_results: We cannot find any addresses for that postcode. Check the postcode or use a grid reference instead.
+            token:
+              invalid_format: The token is not valid
+              missing: The token is missing

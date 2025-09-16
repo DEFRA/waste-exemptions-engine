@@ -177,6 +177,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "contact-address-manual",
               path_names: { new: "" }
 
+    resources :is_multisite_registration_forms,
+              only: %i[new create],
+              path: "is-multisite-registration",
+              path_names: { new: "" }
+
+    resources :multiple_sites_forms,
+              only: %i[new create],
+              path: "multiple-sites",
+              path_names: { new: "" } do
+                delete "remove_site/:site_id",
+                       to: "multiple_sites_forms#remove_site",
+                       as: "remove_site",
+                       on: :collection
+              end
+
     resources :on_a_farm_forms,
               only: %i[new create],
               path: "on-a-farm",
@@ -197,6 +212,16 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
+    resources :multisite_site_grid_reference_forms,
+              only: %i[new create],
+              path: "multisite-site-grid-reference",
+              path_names: { new: "" } do
+                get "skip_to_address/:token",
+                    to: "multisite_site_grid_reference_forms#skip_to_address",
+                    as: "skip_to_address",
+                    on: :collection
+              end
+
     resources :check_site_address_forms,
               only: %i[new create],
               path: "check-site-address",
@@ -207,9 +232,19 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "site-postcode",
               path_names: { new: "" }
 
+    resources :multisite_site_postcode_forms,
+              only: %i[new create],
+              path: "multisite-site-postcode",
+              path_names: { new: "" }
+
     resources :site_address_lookup_forms,
               only: %i[new create],
               path: "site-address-lookup",
+              path_names: { new: "" }
+
+    resources :multisite_site_address_lookup_forms,
+              only: %i[new create],
+              path: "multisite-site-address-lookup",
               path_names: { new: "" }
 
     resources :waste_activities_forms,
@@ -345,6 +380,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_site_grid_reference",
                     as: "site-grid-reference",
                     on: :collection
+
+                get "multisite-exemptions-summary",
+                    to: "check_your_answers_forms#edit_multisite_exemptions_summary",
+                    as: "multisite-exemptions-summary",
+                    on: :collection
               end
 
     resources :declaration_forms,
@@ -355,6 +395,11 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :exemptions_summary_forms,
               only: %i[new create],
               path: "exemptions-summary",
+              path_names: { new: "" }
+
+    resources :multisite_exemptions_summary_forms,
+              only: %i[new create],
+              path: "multisite-exemptions-summary",
               path_names: { new: "" }
 
     resources :registration_complete_forms,

@@ -45,6 +45,20 @@ module WasteExemptionsEngine
         bucket_exemption_compliance_charge(exemption).presence ||
           I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       elsif first_exemption_in_highest_band?(exemption)
+        multisite_charge_for_exemption(exemption, exemption.band.initial_compliance_charge.charge_amount)
+      elsif exemption.band.additional_compliance_charge.charge_amount.positive?
+        multisite_charge_for_exemption(exemption, exemption.band.additional_compliance_charge.charge_amount)
+      else
+        format_currency(0)
+      end
+    end
+
+    def single_site_compliance_charge(exemption)
+      # Get the single-site charge without multisite multiplication
+      if exemption_in_bucket?(exemption)
+        single_site_bucket_exemption_compliance_charge(exemption).presence ||
+          I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
+      elsif first_exemption_in_highest_band?(exemption)
         format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
         format_charge_as_currency(exemption.band.additional_compliance_charge)
@@ -150,6 +164,29 @@ module WasteExemptionsEngine
       end
     end
 
+    def single_site_bucket_exemption_compliance_charge(exemption)
+      if first_bucket_exemption_in_order?(exemption)
+        # Create a temporary charging strategy to get single-site bucket charge
+        # Use farmer strategy if this is a farmer registration, otherwise regular
+        strategy_type = if farmer_bucket_in_order?
+                          WasteExemptionsEngine::FarmerChargingStrategy
+                        else
+                          WasteExemptionsEngine::RegularChargingStrategy
+                        end
+
+        single_site_calculator = WasteExemptionsEngine::OrderCalculator.new(
+          order: @order,
+          strategy_type: strategy_type
+        )
+        format_currency(
+          WasteExemptionsEngine::CurrencyConversionService
+          .convert_pence_to_pounds(single_site_calculator.bucket_charge_amount)
+        )
+      else
+        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
+      end
+    end
+
     def bands_with_charges
       WasteExemptionsEngine::Band.all.filter { |b| b.initial_compliance_charge&.charge_amount&.positive? }
     end
@@ -160,6 +197,22 @@ module WasteExemptionsEngine
 
     def least_expensive_band?(band)
       bands_with_charges.min_by { |b| b.initial_compliance_charge.charge_amount } == band
+    end
+
+    def multisite_charge_for_exemption(_exemption, base_charge_amount)
+      # Apply multisite multiplication if this is a multisite registration
+      if @order.order_owner.is_multisite_registration
+        site_count = @order.order_owner.site_count
+        format_currency(
+          WasteExemptionsEngine::CurrencyConversionService
+          .convert_pence_to_pounds(base_charge_amount * site_count)
+        )
+      else
+        format_currency(
+          WasteExemptionsEngine::CurrencyConversionService
+          .convert_pence_to_pounds(base_charge_amount)
+        )
+      end
     end
   end
 end

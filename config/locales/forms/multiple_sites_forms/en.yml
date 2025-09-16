@@ -1,0 +1,20 @@
+en:
+  waste_exemptions_engine:
+    multiple_sites_forms:
+      new:
+        heading: "Your waste activity sites"
+        bookmark_hint: "Bookmark this page if you need to return to complete the registration later."
+        save_duration: "Your details will be saved for 30 days."
+        continue_instruction: "Click 'Continue' only when you've added all your sites."
+        location_header: "Location"
+        site_details_header: "Site details/address"
+        actions_header: "Actions"
+        remove_link: "Remove"
+        remove_confirmation: "Are you sure you want to remove this site?"
+        add_another_site: "Add another site"
+        continue: "Continue"
+        minimum_sites_required:
+          one: "You need to add %{count} more site to continue."
+          other: "You need to add %{count} more sites to continue."
+      remove_site:
+        error: "There was an error removing the site. Please try again."
