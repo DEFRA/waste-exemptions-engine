@@ -531,22 +531,28 @@ module WasteExemptionsEngine
       end
 
       context "when there are farming exemptions" do
-        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
-        let(:exemptions) { [farming_exemption] }
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
 
         before do
           order.update(bucket: Bucket.farmer_bucket)
-          order.exemptions = exemptions
-          # Mock the single-site calculator to return the expected charge
-          single_site_calculator = instance_double(WasteExemptionsEngine::OrderCalculator)
-          allow(single_site_calculator).to receive(:bucket_charge_amount).and_return(8800) # £88.00 in pence
-          allow(WasteExemptionsEngine::OrderCalculator).to receive(:new).and_return(single_site_calculator)
         end
 
         it "returns the single-site bucket charge for farming exemptions" do
-          expect(presenter.farming_exemptions_single_site_charge).to eq("£88.00")
+          # Calculate the expected single-site farmer bucket charge
+          single_site_calculator = WasteExemptionsEngine::OrderCalculator.new(
+            order: order,
+            strategy_type: WasteExemptionsEngine::FarmerChargingStrategy
+          )
+          expected_charge = ActionController::Base.helpers.number_to_currency(
+            WasteExemptionsEngine::CurrencyConversionService
+            .convert_pence_to_pounds(single_site_calculator.bucket_charge_amount),
+            unit: "£"
+          )
+
+          expect(presenter.farming_exemptions_single_site_charge).to eq(expected_charge)
         end
       end
     end
+
   end
 end

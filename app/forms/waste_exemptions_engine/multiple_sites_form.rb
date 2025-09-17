@@ -20,11 +20,11 @@ module WasteExemptionsEngine
     end
 
     def minimum_sites_required
-      ENV.fetch("MULTISITE_MINIMUM_SITES", 3).to_i
+      ENV.fetch("MULTISITE_MINIMUM_SITES", 30).to_i
     end
 
     def sites_per_page
-      ENV.fetch("MULTISITE_PAGINATION_SIZE", 2).to_i
+      ENV.fetch("MULTISITE_PAGINATION_SIZE", 20).to_i
     end
   end
 end

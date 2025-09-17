@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        href=\"/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_multisite_site_grid_reference_form\" id=\"new_multisite_site_grid_reference_form\"
+        action=\"/waste_exemptions_engine/XZB7ZpHLXe8uyvtHyycGuxzp/multisite-site-grid-reference\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">\n        Add a site\n      </h1>\n\n
+        \     <p class=\"govuk-body\">\n        Enter the grid reference and site
+        details, or use the postcode finder to add a site.\nClick continue to add
+        more sites. Repeat the process until you have added all your sites.\n<br>\n
+        \       <br>\n        <a href=\"/waste_exemptions_engine/XZB7ZpHLXe8uyvtHyycGuxzp/multisite-site-grid-reference/skip_to_address/XZB7ZpHLXe8uyvtHyycGuxzp\">Enter
+        a postcode</a>\n      </p>\n      <p class=\"govuk-body\">Or</p>\n\n\n      <div
+        class=\"govuk-form-group\"><label for=\"multisite-site-grid-reference-form-grid-reference-field\"
+        class=\"govuk-label govuk-label--s\">Enter a grid reference</label><div class=\"govuk-hint\"
+        id=\"multisite-site-grid-reference-form-grid-reference-hint\">Use the <a rel=\"external\"
+        target=\"_blank\" href=\"http://gridreferencefinder.com/\">UK Grid Reference
+        Finder</a> (opens new window).<br>Enter 2 letters and 10 digits. For example,
+        ST 58132 72695</div><input id=\"multisite-site-grid-reference-form-grid-reference-field\"
+        class=\"govuk-input govuk-!-width-one-third\" aria-describedby=\"multisite-site-grid-reference-form-grid-reference-hint\"
+        type=\"text\" name=\"multisite_site_grid_reference_form[grid_reference]\"
+        /></div>\n\n      <div class=\"govuk-form-group govuk-character-count\" data-module=\"govuk-character-count\"
+        data-maxlength=\"500\"><label for=\"multisite-site-grid-reference-form-description-field\"
+        class=\"govuk-label govuk-label--s\">Site details</label><div class=\"govuk-hint\"
+        id=\"multisite-site-grid-reference-form-description-hint\">For example, nearby
+        landmarks and features, a descriptive name.</div><textarea id=\"multisite-site-grid-reference-form-description-field\"
+        class=\"govuk-textarea govuk-js-character-count\" rows=\"5\" aria-describedby=\"multisite-site-grid-reference-form-description-hint
+        multisite-site-grid-reference-form-description-field-info\" name=\"multisite_site_grid_reference_form[description]\">\n</textarea><span
+        id=\"multisite-site-grid-reference-form-description-field-info\" class=\"govuk-hint
+        govuk-character-count__message\">You can enter up to 500 characters</span></div>\n\n
+        \     <p class=\"govuk-body\">\n        Click &#39;Continue&#39; to add another
+        and review your sites.\n      </p>\n\n      <button type=\"submit\" formnovalidate=\"formnovalidate\"
+        class=\"govuk-button\" data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Sep 2025 15:51:13 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9809c381ebe4ea16-LHR
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 validator.w3.org
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Request-Id:
+      - 9809c381ebe4ea16
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Ne7EIE__SuVCpMDjHrHBoRRoRVf.iItnl.PkOH7Di.I-1758124273-1.0.1.1-z91Cr2Z1xUm.xL2LzMw6RbAyM9KazYCRTpGWB.Cs0gHnWcNyAoRE2NhenuQuh96lTxn.r08oA8Pz0JRDVMrZezUU9zyiRug_93RSCFv0rXo;
+        path=/; expires=Wed, 17-Sep-25 16:21:13 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlcyI6W3sidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6NSwibGFzdENvbHVtbiI6MTY0LCJmaXJzdENvbHVtbiI6MywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiL3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2MiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTYyfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjM3LCJsYXN0Q29sdW1uIjo3MDksImZpcnN0Q29sdW1uIjo0NTIsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6IjI2OTU8L2Rpdj48aW5wdXQgaWQ9XCJtdWx0aXNpdGUtc2l0ZS1ncmlkLXJlZmVyZW5jZS1mb3JtLWdyaWQtcmVmZXJlbmNlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1pbnB1dCBnb3Z1ay0hLXdpZHRoLW9uZS10aGlyZFwiIGFyaWEtZGVzY3JpYmVkYnk9XCJtdWx0aXNpdGUtc2l0ZS1ncmlkLXJlZmVyZW5jZS1mb3JtLWdyaWQtcmVmZXJlbmNlLWhpbnRcIiB0eXBlPVwidGV4dFwiIG5hbWU9XCJtdWx0aXNpdGVfc2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtW2dyaWRfcmVmZXJlbmNlXVwiIC8+PC9kaXY+IiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjI1OH0seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjoyLCJmaXJzdExpbmUiOjEsImxhc3RDb2x1bW4iOjYsImZpcnN0Q29sdW1uIjoxNiwic3ViVHlwZSI6Indhcm5pbmciLCJtZXNzYWdlIjoiQ29uc2lkZXIgYWRkaW5nIGEg4oCcbGFuZ+KAnSBhdHRyaWJ1dGUgdG8gdGhlIOKAnGh0bWzigJ0gc3RhcnQgdGFnIHRvIGRlY2xhcmUgdGhlIGxhbmd1YWdlIG9mIHRoaXMgZG9jdW1lbnQuIiwiZXh0cmFjdCI6IlRZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6N31dLCJzb3VyY2UiOnsidHlwZSI6InRleHQvaHRtbCIsImVuY29kaW5nIjoiVVRGLTgiLCJjb2RlIjoiPCFET0NUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkPlxuICA8dGl0bGU+RHVtbXk8L3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2NyaXB0IHNyYz1cIi9hc3NldHMvYXBwbGljYXRpb24tMjc2MTAwOTFmNDZlNzI3YTFmNjZmOWNiMTk3MjNjYzg1ZjA2NTBlOTEwNGViZWY4NDkzNGM5ZTljYzliNWViMC5qc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIj48L3NjcmlwdD5cbiAgXG48L2hlYWQ+XG48Ym9keT5cblxuXG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X211bHRpc2l0ZV9zaXRlX2dyaWRfcmVmZXJlbmNlX2Zvcm1cIiBpZD1cIm5ld19tdWx0aXNpdGVfc2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL1haQjdacEhMWGU4dXl2dEh5eWNHdXh6cC9tdWx0aXNpdGUtc2l0ZS1ncmlkLXJlZmVyZW5jZVwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICBcbiAgPC9kaXY+XG48L2Rpdj5cblxuXG4gICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLWxcIj5cbiAgICAgICAgQWRkIGEgc2l0ZVxuICAgICAgPC9oMT5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+XG4gICAgICAgIEVudGVyIHRoZSBncmlkIHJlZmVyZW5jZSBhbmQgc2l0ZSBkZXRhaWxzLCBvciB1c2UgdGhlIHBvc3Rjb2RlIGZpbmRlciB0byBhZGQgYSBzaXRlLlxuQ2xpY2sgY29udGludWUgdG8gYWRkIG1vcmUgc2l0ZXMuIFJlcGVhdCB0aGUgcHJvY2VzcyB1bnRpbCB5b3UgaGF2ZSBhZGRlZCBhbGwgeW91ciBzaXRlcy5cbjxicj5cbiAgICAgICAgPGJyPlxuICAgICAgICA8YSBocmVmPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL1haQjdacEhMWGU4dXl2dEh5eWNHdXh6cC9tdWx0aXNpdGUtc2l0ZS1ncmlkLXJlZmVyZW5jZS9za2lwX3RvX2FkZHJlc3MvWFpCN1pwSExYZTh1eXZ0SHl5Y0d1eHpwXCI+RW50ZXIgYSBwb3N0Y29kZTwvYT5cbiAgICAgIDwvcD5cbiAgICAgIDxwIGNsYXNzPVwiZ292dWstYm9keVwiPk9yPC9wPlxuXG5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGxhYmVsIGZvcj1cIm11bHRpc2l0ZS1zaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZ3JpZC1yZWZlcmVuY2UtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWxhYmVsLS1zXCI+RW50ZXIgYSBncmlkIHJlZmVyZW5jZTwvbGFiZWw+PGRpdiBjbGFzcz1cImdvdnVrLWhpbnRcIiBpZD1cIm11bHRpc2l0ZS1zaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZ3JpZC1yZWZlcmVuY2UtaGludFwiPlVzZSB0aGUgPGEgcmVsPVwiZXh0ZXJuYWxcIiB0YXJnZXQ9XCJfYmxhbmtcIiBocmVmPVwiaHR0cDovL2dyaWRyZWZlcmVuY2VmaW5kZXIuY29tL1wiPlVLIEdyaWQgUmVmZXJlbmNlIEZpbmRlcjwvYT4gKG9wZW5zIG5ldyB3aW5kb3cpLjxicj5FbnRlciAyIGxldHRlcnMgYW5kIDEwIGRpZ2l0cy4gRm9yIGV4YW1wbGUsIFNUIDU4MTMyIDcyNjk1PC9kaXY+PGlucHV0IGlkPVwibXVsdGlzaXRlLXNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1ncmlkLXJlZmVyZW5jZS1maWVsZFwiIGNsYXNzPVwiZ292dWstaW5wdXQgZ292dWstIS13aWR0aC1vbmUtdGhpcmRcIiBhcmlhLWRlc2NyaWJlZGJ5PVwibXVsdGlzaXRlLXNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1ncmlkLXJlZmVyZW5jZS1oaW50XCIgdHlwZT1cInRleHRcIiBuYW1lPVwibXVsdGlzaXRlX3NpdGVfZ3JpZF9yZWZlcmVuY2VfZm9ybVtncmlkX3JlZmVyZW5jZV1cIiAvPjwvZGl2PlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cCBnb3Z1ay1jaGFyYWN0ZXItY291bnRcIiBkYXRhLW1vZHVsZT1cImdvdnVrLWNoYXJhY3Rlci1jb3VudFwiIGRhdGEtbWF4bGVuZ3RoPVwiNTAwXCI+PGxhYmVsIGZvcj1cIm11bHRpc2l0ZS1zaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZGVzY3JpcHRpb24tZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLWxhYmVsLS1zXCI+U2l0ZSBkZXRhaWxzPC9sYWJlbD48ZGl2IGNsYXNzPVwiZ292dWstaGludFwiIGlkPVwibXVsdGlzaXRlLXNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1oaW50XCI+Rm9yIGV4YW1wbGUsIG5lYXJieSBsYW5kbWFya3MgYW5kIGZlYXR1cmVzLCBhIGRlc2NyaXB0aXZlIG5hbWUuPC9kaXY+PHRleHRhcmVhIGlkPVwibXVsdGlzaXRlLXNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1maWVsZFwiIGNsYXNzPVwiZ292dWstdGV4dGFyZWEgZ292dWstanMtY2hhcmFjdGVyLWNvdW50XCIgcm93cz1cIjVcIiBhcmlhLWRlc2NyaWJlZGJ5PVwibXVsdGlzaXRlLXNpdGUtZ3JpZC1yZWZlcmVuY2UtZm9ybS1kZXNjcmlwdGlvbi1oaW50IG11bHRpc2l0ZS1zaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZGVzY3JpcHRpb24tZmllbGQtaW5mb1wiIG5hbWU9XCJtdWx0aXNpdGVfc2l0ZV9ncmlkX3JlZmVyZW5jZV9mb3JtW2Rlc2NyaXB0aW9uXVwiPlxuPC90ZXh0YXJlYT48c3BhbiBpZD1cIm11bHRpc2l0ZS1zaXRlLWdyaWQtcmVmZXJlbmNlLWZvcm0tZGVzY3JpcHRpb24tZmllbGQtaW5mb1wiIGNsYXNzPVwiZ292dWstaGludCBnb3Z1ay1jaGFyYWN0ZXItY291bnRfX21lc3NhZ2VcIj5Zb3UgY2FuIGVudGVyIHVwIHRvIDUwMCBjaGFyYWN0ZXJzPC9zcGFuPjwvZGl2PlxuXG4gICAgICA8cCBjbGFzcz1cImdvdnVrLWJvZHlcIj5cbiAgICAgICAgQ2xpY2sgJiMzOTtDb250aW51ZSYjMzk7IHRvIGFkZCBhbm90aGVyIGFuZCByZXZpZXcgeW91ciBzaXRlcy5cbiAgICAgIDwvcD5cblxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Wed, 17 Sep 2025 15:51:13 GMT
+recorded_with: VCR 6.3.1

@@ -245,13 +245,25 @@ module WasteExemptionsEngine
           # Is multisite registration -> Site Grid Reference (if not multisite)
           transitions from: :is_multisite_registration_form,
                       to: :exemptions_summary_form,
-                      unless: :multisite_registration?
+                      unless: %i[multisite_registration? check_your_answers_flow?]
+
+          # Is multisite registration -> Check Your Answers (if not multisite and in check your answers flow)
+          transitions from: :is_multisite_registration_form,
+                      to: :check_your_answers_form,
+                      unless: :multisite_registration?,
+                      if: :check_your_answers_flow?
 
           # Is multisite registration -> Multisite Site Grid Reference (if
           # multisite)
           transitions from: :is_multisite_registration_form,
                       to: :multisite_site_grid_reference_form,
-                      if: :multisite_registration?
+                      if: :multisite_registration?,
+                      unless: :check_your_answers_flow?
+
+          # Is multisite registration -> Multisite Site Grid Reference (if multisite and in check your answers flow)
+          transitions from: :is_multisite_registration_form,
+                      to: :multisite_site_grid_reference_form,
+                      if: %i[multisite_registration? check_your_answers_flow?]
 
           transitions from: :multisite_site_grid_reference_form,
                       to: :multiple_sites_form
@@ -264,10 +276,10 @@ module WasteExemptionsEngine
                       to: :operator_postcode_form,
                       unless: :check_your_answers_flow?
 
-          # Multisite Exemptions Summary -> Operator Postcode
+          # Multisite Exemptions Summary -> Check Your Answers (when in check your answers flow)
           transitions from: :multisite_exemptions_summary_form,
-                      to: :operator_postcode_form,
-                      unless: :check_your_answers_flow?
+                      to: :check_your_answers_form,
+                      if: :check_your_answers_flow?
 
           # Exemptions Summary -> Site Grid Reference
           transitions from: :exemptions_summary_form,
@@ -682,6 +694,12 @@ module WasteExemptionsEngine
         event :edit_is_a_farmer do
           transitions from: :check_your_answers_form,
                       to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_is_multisite_registration do
+          transitions from: :check_your_answers_form,
+                      to: :is_multisite_registration_form,
                       if: :check_your_answers_flow?
         end
 
