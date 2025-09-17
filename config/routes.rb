@@ -692,6 +692,10 @@ WasteExemptionsEngine::Engine.routes.draw do
        to: "certificates#process_email",
        as: "certificate_process_email"
 
+  get ":registration_reference/completed-registration",
+      to: "registrations#complete",
+      as: "completed-registration"
+
   # See http://patrickperey.com/railscast-053-handling-exceptions/
   get "(errors)/:status",
       to: "errors#show",
