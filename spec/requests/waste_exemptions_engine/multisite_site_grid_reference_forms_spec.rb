@@ -53,6 +53,15 @@ module WasteExemptionsEngine
              } }
 
         expect(response).to have_http_status(:see_other)
+      end
+
+      it "does not redirect to check your answers page when form is submitted" do
+        post "/waste_exemptions_engine/#{multisite_site_grid_reference_form.token}/multisite-site-grid-reference",
+             params: { multisite_site_grid_reference_form: {
+               description: "Updated site description",
+               grid_reference: "ST1234567890"
+             } }
+
         expect(response).not_to redirect_to(check_your_answers_forms_path(multisite_site_grid_reference_form.token))
       end
 
