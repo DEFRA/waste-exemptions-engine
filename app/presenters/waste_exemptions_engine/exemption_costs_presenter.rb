@@ -45,9 +45,9 @@ module WasteExemptionsEngine
         bucket_exemption_compliance_charge(exemption).presence ||
           I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       elsif first_exemption_in_highest_band?(exemption)
-        multisite_charge_for_exemption(exemption, exemption.band.initial_compliance_charge.charge_amount)
+        multisite_charge_for_exemption(exemption.band.initial_compliance_charge.charge_amount)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
-        multisite_charge_for_exemption(exemption, exemption.band.additional_compliance_charge.charge_amount)
+        multisite_charge_for_exemption(exemption.band.additional_compliance_charge.charge_amount)
       else
         format_currency(0)
       end
@@ -225,7 +225,7 @@ module WasteExemptionsEngine
       bands_with_charges.min_by { |b| b.initial_compliance_charge.charge_amount } == band
     end
 
-    def multisite_charge_for_exemption(_exemption, base_charge_amount)
+    def multisite_charge_for_exemption(base_charge_amount)
       # Apply multisite multiplication if this is a multisite registration
       if @order.order_owner&.is_multisite_registration
         site_count = @order.order_owner.site_count
