@@ -18,7 +18,7 @@
           <% farming_single_site_charge = @multisite_exemptions_summary_form.farming_exemptions_single_site_charge %>
           <% if farming_total_charge != "£0.00" %>
             <tr class="govuk-table__row">
-              <th class="govuk-table__cell">
+              <th scope="row" class="govuk-table__cell">
                 <%= t("waste_exemptions_engine.multisite_exemptions_summary_forms.new.farming_exemptions") %>:<br>
                 <%= @multisite_exemptions_summary_form.farming_exemptions_codes %>
               </th>
@@ -41,7 +41,7 @@
           <% single_site_charge = @multisite_exemptions_summary_form.single_site_compliance_charge(exemption) %>
           <% if total_charge != "£0.00" %>
             <tr class="govuk-table__row">
-              <th class="govuk-table__cell">
+              <th scope="row" class="govuk-table__cell">
                 <%= exemption.code %> <%= exemption.description.capitalize %>
               </th>
               <td class="govuk-table__cell">
