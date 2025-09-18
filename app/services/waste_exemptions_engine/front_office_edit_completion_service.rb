@@ -7,6 +7,7 @@ module WasteExemptionsEngine
 
       ActiveRecord::Base.transaction do
         find_original_registration
+        preload_associations_for_destruction if non_exemption_changes?
         set_paper_trail_whodunnit
         set_paper_trail_reason
         copy_attributes if non_exemption_changes?
@@ -41,10 +42,12 @@ module WasteExemptionsEngine
       @registration.save!
     end
 
-    def copy_addresses
-      # Preload the associations we're about to destroy (dependent: :destroy)
+    def preload_associations_for_destruction
+      # Preload associations that will be destroyed (dependent: :destroy)
       @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
+    end
 
+    def copy_addresses
       @registration.addresses = []
       @edit_registration.transient_addresses.each do |transient_address|
         new_address = Address.new(transient_address.address_attributes)
