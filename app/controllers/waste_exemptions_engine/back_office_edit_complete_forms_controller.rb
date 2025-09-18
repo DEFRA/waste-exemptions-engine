@@ -11,8 +11,7 @@ module WasteExemptionsEngine
     def new
       return unless super(BackOfficeEditCompleteForm, "back_office_edit_complete_form")
 
-      EditCompletionService.run(edit_registration: @transient_registration,
-                                preload: { addresses: :registration_exemptions })
+      EditCompletionService.run(edit_registration: @transient_registration)
     end
   end
 end
