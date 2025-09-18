@@ -15,12 +15,7 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      scope = Registration.where(reference: @edit_registration.reference)
-      # preload is required when copy_addresses is called which destroys
-      # registration exemptions which would cause an N + 1
-
-      scope = scope.preload(addresses: :registration_exemptions)
-      @registration = scope.first
+      @registration = Registration.where(reference: @edit_registration.reference).first
     end
 
     def copy_data_from_edit_registration
@@ -42,6 +37,9 @@ module WasteExemptionsEngine
     end
 
     def copy_addresses
+      # Preload the associations we're about to destroy (dependent: :destroy)
+      @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
+
       @registration.addresses = []
       @edit_registration.transient_addresses.each do |transient_address|
         new_address = Address.new(transient_address.address_attributes)
