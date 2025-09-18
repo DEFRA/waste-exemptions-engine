@@ -16,6 +16,9 @@ module WasteExemptionsEngine
 
     def find_original_registration
       scope = Registration.where(reference: @edit_registration.reference)
+      # preload is required when copy_addresses is called which destroys
+      # registration exemptions which would cause an N + 1
+
       scope = scope.preload(addresses: :registration_exemptions)
       @registration = scope.first
     end
