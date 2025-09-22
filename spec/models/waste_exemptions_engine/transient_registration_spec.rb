@@ -151,5 +151,44 @@ module WasteExemptionsEngine
       it { expect(build(:front_office_edit_registration).new?).to be false }
       it { expect(build(:back_office_edit_registration).new?).to be false }
     end
+
+    describe "associations" do
+      subject(:transient_registration) { create(:new_registration, :complete) }
+
+      describe "#site_address" do
+        it "returns a TransientAddress of type :site" do
+          site_address = transient_registration.transient_addresses.find_by(address_type: 3)
+          expect(transient_registration.site_address).to eq(site_address)
+        end
+      end
+
+      describe "#site_addresses" do
+        it "includes site addresses" do
+          site_address_a = create(:transient_address, address_type: 3, transient_registration: transient_registration)
+          site_address_b = create(:transient_address, address_type: 3, transient_registration: transient_registration)
+          expect(transient_registration.site_addresses).to include(site_address_a, site_address_b)
+        end
+
+        it "excludes non-site addresses" do
+          create(:transient_address, address_type: 3, transient_registration: transient_registration)
+          contact_address = create(:transient_address, address_type: 2, transient_registration: transient_registration)
+          expect(transient_registration.site_addresses).not_to include(contact_address)
+        end
+      end
+
+      describe "#operator_address" do
+        it "returns a TransientAddress of type :operator" do
+          operator_address = transient_registration.transient_addresses.find_by(address_type: 1)
+          expect(transient_registration.operator_address).to eq(operator_address)
+        end
+      end
+
+      describe "#contact_address" do
+        it "returns a TransientAddress of type :contact" do
+          contact_address = transient_registration.transient_addresses.find_by(address_type: 2)
+          expect(transient_registration.contact_address).to eq(contact_address)
+        end
+      end
+    end
   end
 end

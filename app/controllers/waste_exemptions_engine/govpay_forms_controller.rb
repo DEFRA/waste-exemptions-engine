@@ -21,6 +21,10 @@ module WasteExemptionsEngine
     def payment_callback
       @transient_registration ||= TransientRegistration.where(token: params[:token]).first
 
+      # If transient_registration is not found, then possibly the payment
+      # has already been processed by webhook handler
+      redirect_if_transient_registration_not_found and return if @transient_registration.nil?
+
       govpay_payment_status = GovpayPaymentDetailsService.new(
         payment_uuid: params[:uuid],
         is_moto: WasteExemptionsEngine.configuration.host_is_back_office?
@@ -42,6 +46,16 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def redirect_if_transient_registration_not_found
+      registration = find_registration_by_payment_uuid(params[:uuid])
+      if registration.present?
+        redirect_to completed_registration_path(registration.reference, email: registration.contact_email)
+      else
+        @transient_registration = NewChargedRegistration.new
+        redirect_to_correct_form
+      end
+    end
 
     # create a placeholder registration so we can include the reference in the Govpay payment receipt
     def set_registration_reference
@@ -83,6 +97,13 @@ module WasteExemptionsEngine
       end
 
       go_back
+    end
+
+    def find_registration_by_payment_uuid(payment_uuid)
+      payment = Payment.find_by(payment_uuid: payment_uuid)
+      return if payment.nil? || payment.payment_status != Payment::PAYMENT_STATUS_SUCCESS
+
+      payment.order&.order_owner&.registration
     end
 
     def valid_transient_registration?
