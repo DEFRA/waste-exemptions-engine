@@ -7,6 +7,11 @@ FactoryBot.define do
     payment_status { "created" }
     payment_uuid { SecureRandom.uuid }
 
+    trait :govpay do
+      payment_type { "govpay_payment" }
+      govpay_id { SecureRandom.hex(22) }
+    end
+
     trait :with_order do
       order
     end

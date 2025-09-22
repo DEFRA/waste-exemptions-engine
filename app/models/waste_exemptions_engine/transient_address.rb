@@ -16,7 +16,7 @@ module WasteExemptionsEngine
     before_create :assign_site_details, if: :site?
 
     def address_attributes
-      attributes.except("id", "transient_registration_id", "created_at", "updated_at")
+      attributes.except("id", "transient_registration_id", "created_at", "updated_at", "site_suffix")
     end
 
     def self.create_from_address_finder_data(data, address_type)
