@@ -9,10 +9,10 @@ module WasteExemptionsEngine
     self.log_arguments = false
 
     def perform(webhook_body)
-      if webhook_body["resource_type"]&.downcase == "payment"
-        process_payment_webhook(webhook_body)
-      elsif webhook_body["refund_id"].present?
+      if webhook_body["event_type"]&.downcase == "card_payment_refunded"
         process_refund_webhook(webhook_body)
+      elsif webhook_body["event_type"]&.match(/^card_payment/)
+        process_payment_webhook(webhook_body)
       else
         raise ArgumentError, "Unrecognised Govpay webhook type"
       end
@@ -23,7 +23,7 @@ module WasteExemptionsEngine
     private
 
     def process_payment_webhook(webhook_body)
-      result = GovpayPaymentWebhookHandler.process(webhook_body)
+      result = GovpayPaymentWebhookHandler.new.process(webhook_body)
 
       Rails.logger.info "Processed payment webhook for govpay_id: #{result[:id]}, status: #{result[:status]}"
     end
