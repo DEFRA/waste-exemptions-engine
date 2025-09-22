@@ -6,6 +6,10 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-3935\] Amending content on registration-number page [\#1329](https://github.com/DEFRA/waste-exemptions-engine/pull/1329) ([brujeo](https://github.com/brujeo))
+- \[RUBY-3952\] Update charity stop page [\#1327](https://github.com/DEFRA/waste-exemptions-engine/pull/1327) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3935 wex content change for companies house number change for ltd and llp [\#1326](https://github.com/DEFRA/waste-exemptions-engine/pull/1326) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 3957 hide renewal option [\#1325](https://github.com/DEFRA/waste-exemptions-engine/pull/1325) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3835\] Transition users to registration\_complete\_form [\#1304](https://github.com/DEFRA/waste-exemptions-engine/pull/1304) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3150 wex charging process govpay refund status callbacks adjustments [\#1303](https://github.com/DEFRA/waste-exemptions-engine/pull/1303) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 3150 wex charging process govpay refund status callbacks [\#1301](https://github.com/DEFRA/waste-exemptions-engine/pull/1301) ([brujeo](https://github.com/brujeo))
@@ -292,6 +296,9 @@
 
 **Fixed bugs:**
 
+- Remove farm bucket if farm answers changed to No [\#1335](https://github.com/DEFRA/waste-exemptions-engine/pull/1335) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-3764\] Add ffi-geos gem dependency for geospatial area lookup [\#1328](https://github.com/DEFRA/waste-exemptions-engine/pull/1328) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-3915\] Avoid calling render/redirect multiple times in action [\#1324](https://github.com/DEFRA/waste-exemptions-engine/pull/1324) ([brujeo](https://github.com/brujeo))
 - Suppress logging of full webhook body by rack and active\_job [\#1319](https://github.com/DEFRA/waste-exemptions-engine/pull/1319) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Fix intermittent test failure in waste activities forms helper spec by correcting expectation from `result` to `result_codes` [\#1317](https://github.com/DEFRA/waste-exemptions-engine/pull/1317) ([jjromeo](https://github.com/jjromeo))
 - RUBY 3901 bug in error handling of govpay webhooks [\#1316](https://github.com/DEFRA/waste-exemptions-engine/pull/1316) ([jjromeo](https://github.com/jjromeo))
@@ -470,9 +477,17 @@
 
 **Merged pull requests:**
 
+- Bump pg from 1.5.9 to 1.6.0 [\#1334](https://github.com/DEFRA/waste-exemptions-engine/pull/1334) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump phonelib from 0.10.10 to 0.10.11 [\#1333](https://github.com/DEFRA/waste-exemptions-engine/pull/1333) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump parallel\_tests from 5.3.0 to 5.3.1 [\#1332](https://github.com/DEFRA/waste-exemptions-engine/pull/1332) ([dependabot[bot]](https://github.com/apps/dependabot))
+- \[RUBY-3903\] Refactored the copy\_data\_from\_registration method to use SafeCopyRegistrationAttributesService [\#1321](https://github.com/DEFRA/waste-exemptions-engine/pull/1321) ([brujeo](https://github.com/brujeo))
+- Update CHANGELOG [\#1320](https://github.com/DEFRA/waste-exemptions-engine/pull/1320) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Update CHANGELOG [\#1315](https://github.com/DEFRA/waste-exemptions-engine/pull/1315) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3828\] Update GitHub Actions workflow to run on Ubuntu 24.04 instead of ubuntu-latest [\#1309](https://github.com/DEFRA/waste-exemptions-engine/pull/1309) ([jjromeo](https://github.com/jjromeo))
+- Bump factory\_bot\_rails from 6.4.4 to 6.5.0 [\#1307](https://github.com/DEFRA/waste-exemptions-engine/pull/1307) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.10.8 to 0.10.9 [\#1306](https://github.com/DEFRA/waste-exemptions-engine/pull/1306) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump parallel\_tests from 5.1.0 to 5.3.0 [\#1305](https://github.com/DEFRA/waste-exemptions-engine/pull/1305) ([dependabot[bot]](https://github.com/apps/dependabot))
+- RUBY-3764 Add functionality for local, geospatial lookup of ea areas, replacing the lookup which relied on requests to external apis [\#1293](https://github.com/DEFRA/waste-exemptions-engine/pull/1293) ([jjromeo](https://github.com/jjromeo))
 - Bump phonelib from 0.10.7 to 0.10.8 [\#1276](https://github.com/DEFRA/waste-exemptions-engine/pull/1276) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump dotenv-rails from 3.1.7 to 3.1.8 [\#1268](https://github.com/DEFRA/waste-exemptions-engine/pull/1268) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.10.6 to 0.10.7 [\#1266](https://github.com/DEFRA/waste-exemptions-engine/pull/1266) ([dependabot[bot]](https://github.com/apps/dependabot))
