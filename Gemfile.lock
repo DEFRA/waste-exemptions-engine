@@ -175,7 +175,7 @@ GEM
       notifications-ruby-client
       rails
       sprockets-rails
-    defra_ruby_govpay (1.0.0)
+    defra_ruby_govpay (1.1.0)
       rest-client (~> 2.1)
     defra_ruby_style (0.4.0)
       rubocop (>= 1.0, < 2.0)
