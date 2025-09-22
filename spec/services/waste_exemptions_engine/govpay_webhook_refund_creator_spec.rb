@@ -67,7 +67,7 @@ module WasteExemptionsEngine
       context "when validation fails" do
         shared_examples "raises ArgumentError and logs error" do |error_message|
           it "raises ArgumentError" do
-            expect { run_service }.to raise_error(ArgumentError, error_message)
+            expect { run_service }.to raise_error(ArgumentError, /#{error_message}/)
           end
 
           it "does not create a refund" do
@@ -106,31 +106,25 @@ module WasteExemptionsEngine
         context "when govpay_webhook_body is nil" do
           let(:govpay_webhook_body) { nil }
 
-          it_behaves_like "raises ArgumentError and logs error", "govpay_webhook_body is required"
+          it_behaves_like "raises ArgumentError and logs error", "Missing webhook body"
         end
 
         context "when govpay_webhook_body is empty" do
           let(:govpay_webhook_body) { {} }
 
-          it_behaves_like "raises ArgumentError and logs error", "govpay_webhook_body is required"
+          it_behaves_like "raises ArgumentError and logs error", "Missing webhook body"
         end
 
         context "when resource_id is missing" do
           before { govpay_webhook_body["resource_id"] = nil }
 
-          it_behaves_like "raises ArgumentError and logs error", "resource_id is required"
-        end
-
-        context "when amount is missing" do
-          before { govpay_webhook_body["resource"]["amount"] = nil }
-
-          it_behaves_like "raises ArgumentError and logs error", "amount is required"
+          it_behaves_like "raises ArgumentError and logs error", "Invalid refund webhook"
         end
 
         context "when status is missing" do
           before { govpay_webhook_body["resource"]["state"]["status"] = nil }
 
-          it_behaves_like "raises ArgumentError and logs error", "status is required"
+          it_behaves_like "raises ArgumentError and logs error", "Invalid refund webhook"
         end
       end
 

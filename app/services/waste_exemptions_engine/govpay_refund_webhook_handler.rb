@@ -6,7 +6,6 @@ module WasteExemptionsEngine
 
     def run(govpay_webhook_body)
       @webhook_body = govpay_webhook_body&.deep_symbolize_keys
-      validate_refund_webhook_body_attributes(@webhook_body)
 
       @govpay_payment_id = webhook_body[:resource_id]
 
@@ -31,16 +30,6 @@ module WasteExemptionsEngine
       Rails.logger.error "#{msg}: #{e}"
       Airbrake.notify msg, e
       raise
-    end
-
-    def validate_refund_webhook_body_attributes(webhook_body)
-      raise ArgumentError, "govpay_webhook_body is required" if webhook_body.blank?
-      unless webhook_body[:event_type] == "card_payment_refunded"
-        raise ArgumentError, "refund webhook event_type \"#{webhook_body[:event_type]}\" is invalid"
-      end
-      raise ArgumentError, "resource_id is required" unless webhook_body[:resource_id]
-      raise ArgumentError, "amount is required" unless webhook_body.dig(:resource, :amount)
-      raise ArgumentError, "status is required" unless webhook_body.dig(:resource, :state, :status)
     end
 
     private

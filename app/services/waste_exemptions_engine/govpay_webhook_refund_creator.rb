@@ -5,9 +5,12 @@ module WasteExemptionsEngine
     attr_accessor :govpay_payment_id
 
     def run(govpay_webhook_body:)
+      raise ArgumentError, "Missing webhook body" unless govpay_webhook_body.present?
+
       @govpay_webhook_body = govpay_webhook_body&.deep_symbolize_keys
-      # @todo: this can be moved to DefraRubyGovpay gem at a later stage
-      GovpayRefundWebhookHandler.new.validate_refund_webhook_body_attributes(@govpay_webhook_body)
+
+      # Validate the refund webhook
+      DefraRubyGovpay::WebhookRefundService.run(@govpay_webhook_body)
 
       @govpay_payment_id = @govpay_webhook_body[:resource_id]
       original_payment = find_payment
