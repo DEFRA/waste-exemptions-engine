@@ -26,6 +26,20 @@ module WasteExemptionsEngine
         end
       end
 
+      describe "#site_addresses" do
+        it "includes site addresses" do
+          site_address_a = create(:address, address_type: 3, registration: registration)
+          site_address_b = create(:address, address_type: 3, registration: registration)
+          expect(registration.site_addresses).to include(site_address_a, site_address_b)
+        end
+
+        it "excludes non-site addresses" do
+          create(:address, address_type: 3, registration: registration)
+          contact_address = create(:address, address_type: 2, registration: registration)
+          expect(registration.site_addresses).not_to include(contact_address)
+        end
+      end
+
       describe "#operator_address" do
         it "returns an Address of type :operator" do
           operator_address = registration.addresses.find_by(address_type: 1)
