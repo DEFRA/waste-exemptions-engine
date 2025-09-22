@@ -10,8 +10,10 @@ module WasteExemptionsEngine
 
     belongs_to :registration
     belongs_to :exemption
+    belongs_to :address, optional: true
 
     scope :active, -> { where(state: :active) }
+    scope :for_site_address, ->(address) { where(address: address) }
     scope :expired, -> { where(state: :expired) }
     scope :ceased, -> { where(state: :ceased) }
     scope :order_by_exemption, -> { order(exemption_id: :asc) }
