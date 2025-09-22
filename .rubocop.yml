@@ -54,7 +54,7 @@ Metrics/ModuleLength:
     - spec/**/*
 
 # Bad cop: Not all methods returning a boolean are predicates.
-Naming/PredicateName:
+Naming/PredicateMethod:
   Enabled: false
 
 # Notify uses address_line_1 etc naming convention and we want to align with it

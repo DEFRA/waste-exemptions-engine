@@ -7,8 +7,8 @@ module WasteExemptionsEngine
     before { VCR.insert_cassette("postcode_valid") }
     after { VCR.eject_cassette }
 
-    include_examples "GET form", :operator_address_manual_form, "/operator-address-manual"
-    include_examples "POST form", :operator_address_manual_form, "/operator-address-manual" do
+    it_behaves_like "GET form", :operator_address_manual_form, "/operator-address-manual"
+    it_behaves_like "POST form", :operator_address_manual_form, "/operator-address-manual" do
       let(:form_data) do
         {
           operator_address: {

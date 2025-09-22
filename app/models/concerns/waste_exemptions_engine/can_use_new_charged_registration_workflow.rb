@@ -525,7 +525,7 @@ module WasteExemptionsEngine
         event :edit_exemptions do
           transitions from: :check_your_answers_form,
                       to: :farm_exemptions_form,
-                      if: :check_your_answers_flow? && :farm_affiliated?
+                      if: :check_your_answers_flow? && :farm_affiliated? # rubocop:disable Lint/LiteralAsCondition
 
           transitions from: :check_your_answers_form,
                       to: :waste_activities_form,

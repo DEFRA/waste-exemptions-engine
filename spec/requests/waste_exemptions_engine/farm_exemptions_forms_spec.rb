@@ -7,8 +7,8 @@ module WasteExemptionsEngine
 
     include_context "farm bucket"
 
-    include_examples "GET form", :farm_exemptions_form, "/select-farm-waste-exemptions", is_charged: true
-    include_examples "POST form", :farm_exemptions_form, "/select-farm-waste-exemptions", empty_form_is_valid: true do
+    it_behaves_like "GET form", :farm_exemptions_form, "/select-farm-waste-exemptions", is_charged: true
+    it_behaves_like "POST form", :farm_exemptions_form, "/select-farm-waste-exemptions", empty_form_is_valid: true do
       let(:form_data) { { temp_exemptions: Exemption.limit(3).pluck(:id) } }
     end
 
@@ -34,6 +34,7 @@ module WasteExemptionsEngine
 
     context "when adding farming exemptions" do
       let(:farm_exemptions_form) { build(:farm_exemptions_form) }
+      let(:form_data) { { temp_exemptions: farm_exemptions[0..2].pluck(:id) } }
 
       it "directs to confirm farm activity exemptions form when submitted" do
         post "/waste_exemptions_engine/#{farm_exemptions_form.token}/select-farm-waste-exemptions",

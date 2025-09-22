@@ -13,7 +13,7 @@ module WasteExemptionsEngine
       # do not perform any rendering or redirects if transient registration is being redirected to start page RUBY-3915
       return if !@transient_registration.persisted? || @transient_registration.workflow_state == "start_form"
 
-      render(:invalid_or_inactive_company) unless validate_company_number && validate_company_status
+      render(:invalid_or_inactive_company) unless valid_company_number? && valid_company_status?
     rescue StandardError => e
       Rails.logger.error "Failed to load: #{e}"
       render("waste_exemptions_engine/shared/companies_house_down")
@@ -25,11 +25,11 @@ module WasteExemptionsEngine
 
     private
 
-    def validate_company_status
+    def valid_company_status?
       %i[active voluntary-arrangement].include?(companies_house_details[:company_status])
     end
 
-    def validate_company_number
+    def valid_company_number?
       @transient_registration.temp_company_no&.match?(VALID_COMPANIES_HOUSE_REGISTRATION_NUMBER_REGEX)
     end
 

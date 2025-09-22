@@ -47,7 +47,7 @@ module WasteExemptionsEngine
     end
 
     def farm_rows
-      [on_a_farm_row, farmer_row?]
+      [on_a_farm_row, farmer_row]
     end
 
     def applicant_rows
@@ -202,7 +202,7 @@ module WasteExemptionsEngine
       }
     end
 
-    def farmer_row?
+    def farmer_row
       {
         title: I18n.t("#{reg_i18n_scope}.is_a_farmer.title"),
         value: I18n.t("#{reg_i18n_scope}.is_a_farmer.value.#{is_a_farmer}"),

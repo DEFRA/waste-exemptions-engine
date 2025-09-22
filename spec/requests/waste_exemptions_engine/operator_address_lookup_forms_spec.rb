@@ -7,15 +7,15 @@ module WasteExemptionsEngine
     before { VCR.insert_cassette("postcode_valid", allow_playback_repeats: true) }
     after { VCR.eject_cassette }
 
-    include_examples "GET form", :operator_address_lookup_form, "/operator-address-lookup"
-    include_examples "POST form", :operator_address_lookup_form, "/operator-address-lookup" do
+    it_behaves_like "GET form", :operator_address_lookup_form, "/operator-address-lookup"
+    it_behaves_like "POST form", :operator_address_lookup_form, "/operator-address-lookup" do
       let(:form_data) { { operator_address: { uprn: "340116" } } }
       let(:invalid_form_data) { [{ operator_address: { uprn: nil } }] }
     end
 
-    include_examples "skip to manual address",
-                     :operator_address_lookup_form,
-                     address_type: :operator
+    it_behaves_like "skip to manual address",
+                    :operator_address_lookup_form,
+                    address_type: :operator
 
     context "when editing operator address on Check Your Answers page - new registration" do
       let(:operator_address_lookup_form) { build(:check_your_answers_operator_address_lookup_form) }
