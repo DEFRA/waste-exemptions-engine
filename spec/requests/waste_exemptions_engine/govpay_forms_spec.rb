@@ -263,6 +263,53 @@ module WasteExemptionsEngine
 
         it_behaves_like "payment is unsuccessful with an error"
       end
+
+      context "when the transient registration is not found" do
+        before do
+          allow(TransientRegistration).to receive(:where).and_return(TransientRegistration.where(token: "NOT_EXISTING"))
+          allow(Rails.logger).to receive(:error)
+        end
+
+        let(:payment_status) { "success" }
+
+        context "when the payment has a successful registration associated with it" do
+          let(:registration) { create(:registration, :complete, account: payment.account) }
+
+          before do
+            registration.update(contact_email: Faker::Internet.email)
+            payment.update!(payment_status: "success")
+            order.update(order_owner: payment.account)
+          end
+
+          it "redirects to completed-registration page" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            expect(response.location).to match(/completed-registration\?email=#{registration.contact_email.gsub('@', '%40')}/)
+          end
+
+          it "does not log an error" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            aggregate_failures do
+              expect(Airbrake).not_to have_received(:notify)
+              expect(Rails.logger).not_to have_received(:error)
+            end
+          end
+        end
+
+        context "when the payment does not have a successful registration associated with it" do
+          it "redirects to new_start_form_path" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            expect(response.location).to match(%r{/start})
+          end
+
+          it "does not log an error" do
+            get payment_callback_govpay_forms_path(token, payment.payment_uuid)
+            aggregate_failures do
+              expect(Airbrake).not_to have_received(:notify)
+              expect(Rails.logger).not_to have_received(:error)
+            end
+          end
+        end
+      end
     end
   end
 end
