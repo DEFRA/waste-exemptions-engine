@@ -57,6 +57,10 @@ Metrics/ModuleLength:
 Naming/VariableNumber:
   Enabled: false
 
+# Disable predicate method naming rule
+Naming/PredicateMethod:
+  Enabled: false
+
 # Allow "because" as a prefix:
 RSpec/ContextWording:
   Prefixes:
@@ -95,3 +99,8 @@ RSpec/NestedGroups:
 RSpec/SortMetadata:
   Exclude:
     - "spec/**/*"
+
+# Disable the cop that changes include_examples to it_behaves_like inappropriately
+# include_examples is needed when nested shared examples need to be available at top level
+RSpec/IncludeExamples:
+  Enabled: false
