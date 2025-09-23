@@ -5,6 +5,7 @@ module WasteExemptionsEngine
     self.table_name = "charges"
 
     include CanConvertPenceToPounds
+
     pence_to_pounds_fields only: %i[charge_amount]
 
     enum :charge_type, { registration_charge: "registration_charge",

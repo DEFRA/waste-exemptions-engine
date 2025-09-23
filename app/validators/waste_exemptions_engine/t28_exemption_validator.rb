@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class T28ExemptionValidator < BaseValidator
     include CanValidatePresence
+
     def validate_each(record, attribute, value)
       return true unless value_is_present?(record, attribute, value)
 

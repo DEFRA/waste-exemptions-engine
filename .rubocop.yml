@@ -53,8 +53,16 @@ Metrics/ModuleLength:
     - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
     - spec/**/*
 
+# Bad cop: Not all methods returning a boolean are predicates.
+Naming/PredicateName:
+  Enabled: false
+
 # Notify uses address_line_1 etc naming convention and we want to align with it
 Naming/VariableNumber:
+  Enabled: false
+
+# Disable predicate method naming rule
+Naming/PredicateMethod:
   Enabled: false
 
 # Allow "because" as a prefix:
@@ -95,3 +103,8 @@ RSpec/NestedGroups:
 RSpec/SortMetadata:
   Exclude:
     - "spec/**/*"
+
+# Disable the cop that changes include_examples to it_behaves_like inappropriately
+# include_examples is needed when nested shared examples need to be available at top level
+RSpec/IncludeExamples:
+  Enabled: false

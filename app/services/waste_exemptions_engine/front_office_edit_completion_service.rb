@@ -2,12 +2,12 @@
 
 module WasteExemptionsEngine
   class FrontOfficeEditCompletionService < BaseService
-    def run(edit_registration:, preload: nil)
+    def run(edit_registration:)
       @edit_registration = edit_registration
-      @preload = preload
 
       ActiveRecord::Base.transaction do
         find_original_registration
+        preload_associations_for_destruction if non_exemption_changes?
         set_paper_trail_whodunnit
         set_paper_trail_reason
         copy_attributes if non_exemption_changes?
@@ -21,9 +21,7 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      scope = Registration.where(reference: @edit_registration.reference)
-      scope = scope.preload(@preload) if @preload.present?
-      @registration = scope.first
+      @registration = Registration.where(reference: @edit_registration.reference).first
     end
 
     def set_paper_trail_whodunnit
@@ -42,6 +40,11 @@ module WasteExemptionsEngine
     def copy_attributes
       @registration.attributes = @edit_registration.registration_attributes
       @registration.save!
+    end
+
+    def preload_associations_for_destruction
+      # Preload associations that will be destroyed (dependent: :destroy)
+      @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
     end
 
     def copy_addresses

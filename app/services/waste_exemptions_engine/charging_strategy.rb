@@ -55,7 +55,7 @@ module WasteExemptionsEngine
     end
 
     def initial_compliance_charge_amount(band)
-      return 0 if band != highest_band || chargeable_exemptions(band).count.zero?
+      return 0 if band != highest_band || chargeable_exemptions(band).none?
 
       band.initial_compliance_charge.charge_amount
     end
