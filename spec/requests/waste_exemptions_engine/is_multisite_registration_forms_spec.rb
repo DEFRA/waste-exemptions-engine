@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Is Multisite Registration form" do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     include_examples "GET form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true
     include_examples "POST form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true do
       let(:form_data) { { is_multisite_registration: "true" } }

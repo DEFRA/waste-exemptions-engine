@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe MultisiteExemptionsSummaryForm, type: :model do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     subject(:form) { build(:multisite_exemptions_summary_form) }
 
     it "delegates exemptions to transient_registration" do

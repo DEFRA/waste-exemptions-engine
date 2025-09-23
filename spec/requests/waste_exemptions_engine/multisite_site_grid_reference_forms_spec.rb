@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Multisite Site Grid Reference Forms" do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     include_examples "GET form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true
     include_examples "POST form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true do
       let(:form_data) do

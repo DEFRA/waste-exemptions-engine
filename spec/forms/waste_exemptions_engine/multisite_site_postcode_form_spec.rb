@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe MultisiteSitePostcodeForm, type: :model do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     subject(:form) { build(:multisite_site_postcode_form) }
 
     it_behaves_like "a validated form", :multisite_site_postcode_form do

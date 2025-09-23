@@ -4,7 +4,11 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe MultisiteSiteAddressLookupForm, type: :model do
-    before { VCR.insert_cassette("postcode_valid") }
+    before do
+      VCR.insert_cassette("postcode_valid")
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     after { VCR.eject_cassette }
 
     it_behaves_like "an address lookup form"

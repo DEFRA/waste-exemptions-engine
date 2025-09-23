@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe MultisiteSiteGridReferenceForm, type: :model do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     let(:form) { build(:multisite_site_grid_reference_form) }
 
     describe "validations" do

@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe IsMultisiteRegistrationForm, type: :model do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     subject(:form) { build(:is_multisite_registration_form) }
 
     it "validates the is multisite registration question using the TrueFalseValidator class" do

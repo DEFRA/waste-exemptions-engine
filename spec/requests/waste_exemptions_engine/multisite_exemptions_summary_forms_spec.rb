@@ -4,6 +4,10 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Multisite Exemptions Summary Forms" do
+    before do
+      allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+    end
+
     let(:form) { build(:multisite_exemptions_summary_form) }
 
     describe "GET multisite_exemptions_summary_form" do

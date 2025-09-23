@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     end
 
     def create
-      super(IsMultisiteRegistrationForm, "is_multisite_registration_form")
+      nil unless super(IsMultisiteRegistrationForm, "is_multisite_registration_form")
     end
 
     private

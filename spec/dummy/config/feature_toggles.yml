@@ -11,3 +11,5 @@ env_variable_test_feature:
   active: <%= ENV.fetch("ENV_VARIABLE_TEST_FEATURE", nil) %>
 string_true_test_feature:
   active: "true"
+enable_multisite:
+  active: <%= ENV.fetch("ENABLE_MULTISITE", "true") %>
