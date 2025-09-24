@@ -8,8 +8,8 @@ module WasteExemptionsEngine
       allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
     end
 
-    include_examples "GET form", :multisite_site_postcode_form, "/multisite-site-postcode", is_charged: true
-    include_examples "POST form", :multisite_site_postcode_form, "/multisite-site-postcode", is_charged: true do
+    it_behaves_like "GET form", :multisite_site_postcode_form, "/multisite-site-postcode", is_charged: true
+    it_behaves_like "POST form", :multisite_site_postcode_form, "/multisite-site-postcode", is_charged: true do
       let(:form_data) { { temp_site_postcode: "BS1 5AH" } }
       let(:invalid_form_data) { [{ temp_site_postcode: "BS" }, { temp_site_postcode: nil }] }
     end

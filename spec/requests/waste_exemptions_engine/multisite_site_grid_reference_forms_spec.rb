@@ -8,8 +8,8 @@ module WasteExemptionsEngine
       allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
     end
 
-    include_examples "GET form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true
-    include_examples "POST form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true do
+    it_behaves_like "GET form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true
+    it_behaves_like "POST form", :multisite_site_grid_reference_form, "/multisite-site-grid-reference", is_charged: true do
       let(:form_data) do
         {
           grid_reference: "ST 58337 72855",

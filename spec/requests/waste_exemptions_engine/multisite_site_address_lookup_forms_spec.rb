@@ -11,8 +11,8 @@ module WasteExemptionsEngine
 
     after { VCR.eject_cassette }
 
-    include_examples "GET form", :multisite_site_address_lookup_form, "/multisite-site-address-lookup", is_charged: true
-    include_examples "POST form", :multisite_site_address_lookup_form, "/multisite-site-address-lookup", is_charged: true do
+    it_behaves_like "GET form", :multisite_site_address_lookup_form, "/multisite-site-address-lookup", is_charged: true
+    it_behaves_like "POST form", :multisite_site_address_lookup_form, "/multisite-site-address-lookup", is_charged: true do
       let(:form_data) { { site_address: { uprn: "340116" } } }
       let(:invalid_form_data) { [{ site_address: { uprn: nil } }] }
     end

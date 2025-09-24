@@ -8,8 +8,8 @@ module WasteExemptionsEngine
       allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
     end
 
-    include_examples "GET form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true
-    include_examples "POST form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true do
+    it_behaves_like "GET form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true
+    it_behaves_like "POST form", :is_multisite_registration_form, "/is-multisite-registration", is_charged: true do
       let(:form_data) { { is_multisite_registration: "true" } }
       let(:invalid_form_data) { [] }
     end
