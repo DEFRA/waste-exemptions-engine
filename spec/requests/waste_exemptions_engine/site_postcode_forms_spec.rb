@@ -4,8 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Site Postcode Forms" do
-    include_examples "GET form", :site_postcode_form, "/site-postcode"
-    include_examples "POST form", :site_postcode_form, "/site-postcode" do
+    it_behaves_like "GET form", :site_postcode_form, "/site-postcode"
+    it_behaves_like "POST form", :site_postcode_form, "/site-postcode" do
       let(:form_data) { { temp_site_postcode: "BS1 5AH" } }
       let(:invalid_form_data) { [{ temp_site_postcode: "BS" }, { temp_site_postcode: nil }] }
     end

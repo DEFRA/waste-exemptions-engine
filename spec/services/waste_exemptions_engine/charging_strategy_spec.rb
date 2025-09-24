@@ -75,5 +75,62 @@ module WasteExemptionsEngine
         )
       end
     end
+
+    describe "multisite charging" do
+      subject(:strategy) { described_class.new(multisite_order) }
+
+      let(:exemptions) { multiple_bands_multiple_exemptions }
+      let(:site_count) { 3 }
+      let(:multisite_order) { create(:order, exemptions: exemptions) }
+
+      before do
+        multisite_order.order_owner = create(:new_charged_registration)
+        multisite_order.save!
+        create_list(:transient_address, site_count, :site_address, transient_registration: multisite_order.order_owner)
+      end
+
+      describe "#charge_detail" do
+        it "multiplies compliance charges by site count" do
+          # Create a single site order for comparison
+          single_site_order = create(:order, exemptions: exemptions)
+          single_site_order.order_owner = create(:new_charged_registration)
+          single_site_order.save!
+          # Create exactly 1 site address for true single-site
+          create(:transient_address, :site_address, transient_registration: single_site_order.order_owner)
+
+          single_site_strategy = described_class.new(single_site_order)
+          single_site_total = single_site_strategy.total_compliance_charge_amount
+          multisite_total = strategy.total_compliance_charge_amount
+
+          expect(multisite_total).to eq(single_site_total * site_count)
+        end
+
+        it "does not multiply registration charge by site count" do
+          expect(strategy.registration_charge_amount).to eq(registration_charge_amount)
+        end
+      end
+
+      context "with different site counts" do
+        [1, 2, 5, 10].each do |count|
+          context "with #{count} sites" do
+            let(:site_count) { count }
+
+            it "calculates compliance charges correctly" do
+              # Create base single site order
+              base_order = create(:order, exemptions: exemptions)
+              base_order.order_owner = create(:new_charged_registration)
+              base_order.save!
+              # Create exactly 1 site address for true single-site
+              create(:transient_address, :site_address, transient_registration: base_order.order_owner)
+
+              base_strategy = described_class.new(base_order)
+              base_compliance_charge = base_strategy.total_compliance_charge_amount
+
+              expect(strategy.total_compliance_charge_amount).to eq(base_compliance_charge * count)
+            end
+          end
+        end
+      end
+    end
   end
 end

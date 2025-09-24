@@ -185,5 +185,98 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "multisite farmer charging" do
+      subject(:strategy) { described_class.new(multisite_order) }
+
+      let(:bucket) { create(:bucket) }
+      let(:site_count) { 3 }
+      let(:multisite_order) { create(:order, exemptions: exemptions) }
+
+      before do
+        bucket.exemptions << bucket_exemptions
+        multisite_order.bucket = bucket
+        multisite_order.order_owner = create(:new_charged_registration)
+        multisite_order.save!
+        create_list(:transient_address, site_count, :site_address, transient_registration: multisite_order.order_owner)
+      end
+
+      context "with bucket exemptions" do
+        include_context "with bands and charges"
+        include_context "with an order with exemptions"
+
+        let(:bucket_exemptions) do
+          [
+            build_list(:exemption, 2, band: band_1),
+            build_list(:exemption, 1, band: band_2)
+          ].flatten
+        end
+
+        let(:exemptions) { bucket_exemptions + [build(:exemption, band: band_3)] }
+
+        it "multiplies bucket charge by site count" do
+          # Create single site order for comparison
+          single_site_order = create(:order, exemptions: exemptions)
+          single_site_order.bucket = bucket
+          single_site_order.order_owner = create(:new_charged_registration)
+          single_site_order.save!
+          # Create exactly 1 site address for true single-site
+          create(:transient_address, :site_address, transient_registration: single_site_order.order_owner)
+
+          single_site_strategy = described_class.new(single_site_order)
+          single_site_bucket_charge = single_site_strategy.charge_detail.bucket_charge_amount
+          multisite_bucket_charge = strategy.charge_detail.bucket_charge_amount
+
+          expect(multisite_bucket_charge).to eq(single_site_bucket_charge * site_count)
+        end
+
+        it "multiplies compliance charges by site count" do
+          # Create single site order for comparison
+          single_site_order = create(:order, exemptions: exemptions)
+          single_site_order.bucket = bucket
+          single_site_order.order_owner = create(:new_charged_registration)
+          single_site_order.save!
+          # Create exactly 1 site address for true single-site
+          create(:transient_address, :site_address, transient_registration: single_site_order.order_owner)
+
+          single_site_strategy = described_class.new(single_site_order)
+          single_site_compliance = single_site_strategy.total_compliance_charge_amount
+          multisite_compliance = strategy.total_compliance_charge_amount
+
+          expect(multisite_compliance).to eq(single_site_compliance * site_count)
+        end
+
+        it "does not multiply registration charge by site count" do
+          expect(strategy.registration_charge_amount).to eq(registration_charge_amount)
+        end
+
+        context "with different site counts" do
+          [1, 2, 5, 10].each do |count|
+            context "with #{count} sites" do
+              let(:site_count) { count }
+
+              it "calculates total charges correctly" do
+                # Create base single site order
+                base_order = create(:order, exemptions: exemptions)
+                base_order.bucket = bucket
+                base_order.order_owner = create(:new_charged_registration)
+                base_order.save!
+                # Create exactly 1 site address for true single-site
+                create(:transient_address, :site_address, transient_registration: base_order.order_owner)
+
+                base_strategy = described_class.new(base_order)
+                base_total_charge = base_strategy.total_charge_amount
+                base_registration_charge = base_strategy.registration_charge_amount
+
+                # For farmer charging: registration charge stays the same, everything else scales by site count
+                expected_total = base_registration_charge + ((base_total_charge - base_registration_charge) * count)
+
+                expect(strategy.total_charge_amount).to eq(expected_total)
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end

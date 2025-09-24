@@ -4,8 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe "Contact Phone Forms" do
-    include_examples "GET form", :contact_phone_form, "/contact-phone"
-    include_examples "POST form", :contact_phone_form, "/contact-phone" do
+    it_behaves_like "GET form", :contact_phone_form, "/contact-phone"
+    it_behaves_like "POST form", :contact_phone_form, "/contact-phone" do
       let(:form_data) { { contact_phone: "01234567890" } }
       let(:invalid_form_data) { [{ contact_phone: "123" }, { contact_phone: nil }] }
     end

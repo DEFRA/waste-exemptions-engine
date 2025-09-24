@@ -7,8 +7,20 @@ module WasteExemptionsEngine
     before { VCR.insert_cassette("postcode_valid") }
     after { VCR.eject_cassette }
 
-    include_examples "GET form", :contact_address_manual_form, "/contact-address-manual"
-    include_examples "POST form", :contact_address_manual_form, "/contact-address-manual" do
+    let(:form_data) do
+      {
+        contact_address: {
+          premises: "Example House",
+          street_address: "2 On The Road",
+          locality: "Near Horizon House",
+          city: "Bristol",
+          postcode: "BS1 5AH"
+        }
+      }
+    end
+
+    it_behaves_like "GET form", :contact_address_manual_form, "/contact-address-manual"
+    it_behaves_like "POST form", :contact_address_manual_form, "/contact-address-manual" do
       let(:form_data) do
         {
           contact_address: {
