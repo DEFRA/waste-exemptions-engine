@@ -4,10 +4,8 @@ inherit_gem:
   defra_ruby_style:
     - default.yml
 
-require:
-  - rubocop-factory_bot
-
 plugins:
+  - rubocop-factory_bot
   - rubocop-rspec
   - rubocop-rspec_rails
 
@@ -54,7 +52,7 @@ Metrics/ModuleLength:
     - spec/**/*
 
 # Bad cop: Not all methods returning a boolean are predicates.
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: false
 
 # Notify uses address_line_1 etc naming convention and we want to align with it
