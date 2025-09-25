@@ -7,8 +7,8 @@ module WasteExemptionsEngine
 
     include_context "farm bucket"
 
-    include_examples "GET form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions", is_charged: true
-    include_examples "POST form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions" do
+    it_behaves_like "GET form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions", is_charged: true
+    it_behaves_like "POST form", :confirm_farm_exemptions_form, "/your-selected-farm-exemptions" do
       let(:form_data) { { temp_add_additional_non_bucket_exemptions: "true" } }
       let(:invalid_form_data) { [{ temp_add_additional_non_bucket_exemptions: nil }] }
     end

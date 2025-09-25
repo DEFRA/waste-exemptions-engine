@@ -55,9 +55,9 @@ module WasteExemptionsEngine
     end
 
     def initial_compliance_charge_amount(band)
-      return 0 if band != highest_band || chargeable_exemptions(band).count.zero?
+      return 0 if band != highest_band || chargeable_exemptions(band).none?
 
-      band.initial_compliance_charge.charge_amount
+      band.initial_compliance_charge.charge_amount * site_count
     end
 
     def additional_compliance_charge_amount(band)
@@ -65,7 +65,11 @@ module WasteExemptionsEngine
       additional_chargeable_count = total_chargeable_count - (band == highest_band ? 1 : 0)
       return 0 if additional_chargeable_count < 1
 
-      additional_chargeable_count * band.additional_compliance_charge.charge_amount
+      (additional_chargeable_count * band.additional_compliance_charge.charge_amount) * site_count
+    end
+
+    def site_count
+      order.order_owner&.site_count || 1
     end
   end
 end

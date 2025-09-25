@@ -38,7 +38,10 @@ module WasteExemptionsEngine
       end
 
       context "when the registration is farm_affiliated" do
-        before { allow(new_registration).to receive(:farm_affiliated?).and_return(true) }
+        before do
+          allow(new_registration).to receive(:farm_affiliated?).and_return(true)
+          new_registration.temp_check_your_answers_flow = true
+        end
 
         it "may transition to farm_exemptions_form after the 'next' event" do
           permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)

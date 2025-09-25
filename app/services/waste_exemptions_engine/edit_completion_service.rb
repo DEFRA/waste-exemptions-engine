@@ -21,6 +21,9 @@ module WasteExemptionsEngine
     def copy_data_from_edit_registration
       related_objects_changed?
 
+      # Preload associations before making any changes (to avoid losing unsaved changes)
+      preload_associations_for_destruction
+
       copy_attributes
       copy_addresses
       copy_people
@@ -34,6 +37,11 @@ module WasteExemptionsEngine
 
     def copy_attributes
       @registration.attributes = @edit_registration.registration_attributes
+    end
+
+    def preload_associations_for_destruction
+      # Preload associations that will be destroyed (dependent: :destroy)
+      @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
     end
 
     def copy_addresses

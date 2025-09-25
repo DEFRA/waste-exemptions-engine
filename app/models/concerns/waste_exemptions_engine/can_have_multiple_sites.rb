@@ -7,5 +7,9 @@ module WasteExemptionsEngine
     included do
       has_many :site_addresses, -> { site }, class_name: site_address_class_name, dependent: :destroy
     end
+
+    def site_count
+      site_addresses.count
+    end
   end
 end

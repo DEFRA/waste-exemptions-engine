@@ -40,6 +40,14 @@ module WasteExemptionsEngine
         end
       end
 
+      describe "#site_count" do
+        it "returns the count of site addresses" do
+          create(:address, address_type: 3, registration: registration)
+          create(:address, address_type: 3, registration: registration)
+          expect(registration.site_count).to eq(3) # includes the one from factory
+        end
+      end
+
       describe "#operator_address" do
         it "returns an Address of type :operator" do
           operator_address = registration.addresses.find_by(address_type: 1)

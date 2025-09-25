@@ -6,8 +6,8 @@ module WasteExemptionsEngine
   RSpec.describe "Deregistration Complete Full Forms" do
     let(:registration) { create(:registration) }
 
-    include_examples "GET form", :deregistration_complete_full_form, "/deregistration-complete-full"
-    include_examples "unable to POST form", :deregistration_complete_full_form, "/deregistration-complete-full"
+    it_behaves_like "GET form", :deregistration_complete_full_form, "/deregistration-complete-full"
+    it_behaves_like "unable to POST form", :deregistration_complete_full_form, "/deregistration-complete-full"
 
     context "when the form is loaded" do
       let!(:renewing_registration) { create(:renewing_registration, workflow_state: "deregistration_complete_full_form") }

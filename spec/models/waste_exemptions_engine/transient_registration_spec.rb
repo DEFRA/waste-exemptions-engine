@@ -52,6 +52,16 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#site_count" do
+      let(:transient_registration) { create(:new_registration, :with_all_addresses) }
+
+      it "returns the count of site addresses" do
+        create(:transient_address, :site_address, transient_registration: transient_registration)
+        create(:transient_address, :site_address, transient_registration: transient_registration)
+        expect(transient_registration.site_count).to eq(3) # includes the one from factory
+      end
+    end
+
     describe "#previous_valid_state!" do
       let(:new_registration) { build(:new_registration) }
 

@@ -45,5 +45,24 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#site_count" do
+      let(:registration) { create(:registration) }
+      let(:account) { create(:account, registration: registration) }
+
+      it "delegates to registration.site_count" do
+        allow(registration).to receive(:site_count).and_return(3)
+
+        expect(account.site_count).to eq(3)
+      end
+
+      it "calls registration.site_count" do
+        allow(registration).to receive(:site_count).and_return(3)
+
+        account.site_count
+
+        expect(registration).to have_received(:site_count)
+      end
+    end
   end
 end

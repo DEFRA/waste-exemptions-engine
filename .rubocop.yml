@@ -61,6 +61,10 @@ Naming/PredicateName:
 Naming/VariableNumber:
   Enabled: false
 
+# Disable predicate method naming rule
+Naming/PredicateMethod:
+  Enabled: false
+
 # Allow "because" as a prefix:
 RSpec/ContextWording:
   Prefixes:
