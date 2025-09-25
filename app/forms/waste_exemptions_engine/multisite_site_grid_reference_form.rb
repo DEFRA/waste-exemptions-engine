@@ -8,15 +8,16 @@ module WasteExemptionsEngine
     validates :description, "waste_exemptions_engine/site_description": true
 
     def submit(params)
-      @grid_reference = params[:grid_reference]
-      @description = params[:description]
+      # set attributes for validation
+      self.grid_reference = params[:grid_reference]
+      self.description = params[:description]
 
       return false unless valid?
 
       # Create new site address for the multisite registration
       transient_registration.transient_addresses.create!(
-        grid_reference: @grid_reference,
-        description: @description,
+        grid_reference: grid_reference,
+        description: description,
         address_type: "site",
         mode: "auto"
       )

@@ -192,21 +192,14 @@ module WasteExemptionsEngine
 
     def single_site_bucket_exemption_compliance_charge(exemption)
       if first_bucket_exemption_in_order?(exemption)
-        # Create a temporary charging strategy to get single-site bucket charge
-        # Use farmer strategy if this is a farmer registration, otherwise regular
-        strategy_type = if farmer_bucket_in_order?
-                          WasteExemptionsEngine::FarmerChargingStrategy
-                        else
-                          WasteExemptionsEngine::RegularChargingStrategy
-                        end
+        # Get the multisite bucket charge and divide by site count to get single-site charge
+        multisite_bucket_charge = @order_calculator.bucket_charge_amount
+        site_count = @order.order_owner&.site_count || 1
+        single_site_charge = multisite_bucket_charge / site_count
 
-        single_site_calculator = WasteExemptionsEngine::OrderCalculator.new(
-          order: @order,
-          strategy_type: strategy_type
-        )
         format_currency(
           WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(single_site_calculator.bucket_charge_amount)
+          .convert_pence_to_pounds(single_site_charge)
         )
       else
         I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
@@ -240,5 +233,6 @@ module WasteExemptionsEngine
         )
       end
     end
+
   end
 end
