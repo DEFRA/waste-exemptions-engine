@@ -136,11 +136,13 @@ module WasteExemptionsEngine
       end
 
       context "when site_count is 0" do
-        it "defaults to 1 and calculates charges correctly" do
-          strategy = described_class.new(order)
+        let(:strategy) { described_class.new(order) }
 
-          # Should not be zero (which would happen if multiplied by 0)
+        it "does not return 0 for compliance charge" do
           expect(strategy.total_compliance_charge_amount).to be > 0
+        end
+
+        it "defaults to 1 and calculates charges correctly" do
 
           # Should equal single-site charges (multiplied by 1)
           single_site_order = create(:order,
