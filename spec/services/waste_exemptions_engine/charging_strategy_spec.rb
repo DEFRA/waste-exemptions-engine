@@ -81,20 +81,25 @@ module WasteExemptionsEngine
 
       let(:exemptions) { multiple_bands_multiple_exemptions }
       let(:site_count) { 3 }
-      let(:multisite_order) { create(:order, exemptions: exemptions) }
+      let(:transient_registration) { create(:new_charged_registration) }
+      let(:order) { create(:order, exemptions: exemptions, order_owner: transient_registration) }
+
+      let(:multisite_order) do
+        create(:order,
+               exemptions: exemptions,
+               order_owner: create(:new_charged_registration))
+      end
 
       before do
-        multisite_order.order_owner = create(:new_charged_registration)
-        multisite_order.save!
         create_list(:transient_address, site_count, :site_address, transient_registration: multisite_order.order_owner)
       end
 
       describe "#charge_detail" do
         it "multiplies compliance charges by site count" do
           # Create a single site order for comparison
-          single_site_order = create(:order, exemptions: exemptions)
-          single_site_order.order_owner = create(:new_charged_registration)
-          single_site_order.save!
+          single_site_order = create(:order,
+                                     exemptions: exemptions,
+                                     order_owner: create(:new_charged_registration))
           # Create exactly 1 site address for true single-site
           create(:transient_address, :site_address, transient_registration: single_site_order.order_owner)
 
@@ -117,9 +122,7 @@ module WasteExemptionsEngine
 
             it "calculates compliance charges correctly" do
               # Create base single site order
-              base_order = create(:order, exemptions: exemptions)
-              base_order.order_owner = create(:new_charged_registration)
-              base_order.save!
+              base_order = create(:order, exemptions: exemptions, order_owner: create(:new_charged_registration))
               # Create exactly 1 site address for true single-site
               create(:transient_address, :site_address, transient_registration: base_order.order_owner)
 
@@ -129,6 +132,24 @@ module WasteExemptionsEngine
               expect(strategy.total_compliance_charge_amount).to eq(base_compliance_charge * count)
             end
           end
+        end
+      end
+
+      context "when site_count is 0" do
+        it "defaults to 1 and calculates charges correctly" do
+          strategy = described_class.new(order)
+
+          # Should not be zero (which would happen if multiplied by 0)
+          expect(strategy.total_compliance_charge_amount).to be > 0
+
+          # Should equal single-site charges (multiplied by 1)
+          single_site_order = create(:order,
+                                     exemptions: exemptions,
+                                     order_owner: create(:new_charged_registration))
+          create(:transient_address, :site_address, transient_registration: single_site_order.order_owner)
+
+          single_site_strategy = described_class.new(single_site_order)
+          expect(strategy.total_compliance_charge_amount).to eq(single_site_strategy.total_compliance_charge_amount)
         end
       end
     end
