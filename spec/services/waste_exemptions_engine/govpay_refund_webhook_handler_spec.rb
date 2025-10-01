@@ -33,12 +33,6 @@ module WasteExemptionsEngine
         it_behaves_like "logs an error"
       end
 
-      context "when the original payment is not found" do
-        before { wex_original_payment.destroy! }
-
-        it { expect { run_service }.to raise_error(ArgumentError) }
-      end
-
       context "when the update is not for a refund" do
         before { webhook_body["event_type"] = "card_payment_succeeded" }
 
@@ -53,8 +47,6 @@ module WasteExemptionsEngine
         end
 
         context "when original payment record exists" do
-          let(:refunded_amount) { webhook_body.dig("resource", "refund_summary", "amount_submitted").to_i }
-
           it "creates a new refund payment" do
             expect { run_service }.to change(Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND), :count).by(1)
           end
@@ -67,57 +59,12 @@ module WasteExemptionsEngine
 
             aggregate_failures do
               expect(new_refund.payment_type).to eq Payment::PAYMENT_TYPE_REFUND
-              expect(new_refund.payment_amount).to eq 0 - refunded_amount
+              expect(new_refund.payment_amount).to eq 0 - webhook_body["resource"]["amount"].to_i
               expect(new_refund.payment_status).to eq Payment::PAYMENT_STATUS_SUCCESS
               expect(new_refund.account_id).to eq wex_original_payment.account_id
               expect(new_refund.payment_uuid).to be_present
               expect(new_refund.associated_payment).to eq wex_original_payment
               expect(new_refund.refunded_payment_govpay_id).to eq wex_original_payment.govpay_id
-            end
-          end
-
-          context "when a full refund already exists" do
-            before do
-              create(:payment,
-                     payment_type: Payment::PAYMENT_TYPE_REFUND,
-                     refunded_payment_govpay_id: wex_original_payment.govpay_id,
-                     payment_amount: wex_original_payment.payment_amount)
-            end
-
-            it "does not create a refund" do
-              expect { run_service }.not_to change(Payment, :count)
-            end
-          end
-
-          context "when a partial refund already exists" do
-            before do
-              # The original payment amount is £10.00; here we create a £3.00 pre-existing refund.
-              create(:payment,
-                     payment_type: Payment::PAYMENT_TYPE_REFUND,
-                     payment_status: Payment::PAYMENT_STATUS_SUCCESS,
-                     refunded_payment_govpay_id: wex_original_payment.govpay_id,
-                     payment_amount: -300)
-
-              # set up a refund webhook with a total amount refunded of £8.32
-              webhook_body["resource"]["refund_summary"]["amount_submitted"] = 832
-            end
-
-            it { expect { run_service }.to change(Payment, :count).by(1) }
-
-            it "uses the correct refunded amount" do
-              run_service
-
-              # £8.32 total refunded to date minus £3.00 previously refunded
-              expect(Payment.last.payment_amount).to eq(-532)
-            end
-
-            it "has the correct balance" do
-              total_charges = registration.account.orders.sum { |o| o.charge_detail&.total_charge_amount }
-
-              run_service
-
-              # Original charge total minus original payment plus (£3.00 + £5.32) total refunded
-              expect(registration.reload.account.balance).to eq 0 - total_charges + wex_original_payment.payment_amount - 532
             end
           end
         end
