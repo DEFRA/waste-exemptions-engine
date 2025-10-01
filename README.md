@@ -11,7 +11,7 @@ A Rails Engine for the [Waste Exemptions](https://github.com/DEFRA/waste-exempti
 
 Make sure you already have:
 
-- Ruby 3.2.2
+- Ruby 3.4.6
 - [Bundler](http://bundler.io/) – for installing Ruby gems
 - PostgreSql
 
