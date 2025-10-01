@@ -70,5 +70,77 @@ module WasteExemptionsEngine
         expect(response).to redirect_to(multisite_exemptions_summary_forms_path(multiple_sites_form.token))
       end
     end
+
+    describe "DELETE remove_site" do
+      let(:transient_registration) { form.transient_registration }
+      let!(:site_address) { create(:transient_address, transient_registration: transient_registration, address_type: "site") }
+      let(:request_path) { remove_site_multiple_sites_forms_path(form.token, site_id: site_address.id) }
+
+      context "when site exists" do
+        it "removes the site and redirects back to multiple sites page" do
+          expect {
+            delete request_path
+          }.to change { transient_registration.addresses.where(address_type: "site").count }.by(-1)
+
+          expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: nil))
+        end
+
+        it "removes the correct site" do
+          delete request_path
+          expect(transient_registration.addresses.where(id: site_address.id)).to be_empty
+        end
+
+        context "with page parameter" do
+          it "preserves the page parameter in redirect" do
+            delete request_path, params: { page: 2 }
+            expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: 2))
+          end
+        end
+      end
+
+      context "when site does not exist" do
+        let(:invalid_site_id) { 99999 }
+        let(:invalid_request_path) { remove_site_multiple_sites_forms_path(form.token, site_id: invalid_site_id) }
+
+        it "redirects back to multiple sites page with error" do
+          delete invalid_request_path
+          expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: nil))
+        end
+
+        it "does not remove any sites" do
+          expect {
+            delete invalid_request_path
+          }.not_to change { transient_registration.addresses.where(address_type: "site").count }
+        end
+      end
+
+      context "when site belongs to different registration" do
+        let(:other_registration) { create(:new_charged_registration) }
+        let!(:other_site) { create(:transient_address, address_type: "site", transient_registration: other_registration) }
+        let(:other_site_request_path) { remove_site_multiple_sites_forms_path(form.token, site_id: other_site.id) }
+
+        it "does not remove the site from other registration" do
+          expect {
+            delete other_site_request_path
+          }.not_to change { other_registration.addresses.where(address_type: "site").count }
+        end
+
+        it "redirects back to multiple sites page" do
+          delete other_site_request_path
+          expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: nil))
+        end
+      end
+
+      context "when token is invalid" do
+        let(:invalid_token) { "invalid_token" }
+        let(:invalid_token_path) { remove_site_multiple_sites_forms_path(invalid_token, site_id: site_address.id) }
+
+        it "redirects to start page with the token" do
+          delete invalid_token_path
+          expect(response).to have_http_status(:redirect)
+          expect(response.location).to include("start")
+        end
+      end
+    end
   end
 end

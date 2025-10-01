@@ -36,7 +36,20 @@
                 <% end %>
               </td>
               <td class="govuk-table__cell">
-                <%= link_to t(".remove_link"), "#", class: "govuk-link" %>
+                <%= button_to(
+                    remove_site_multiple_sites_forms_path(@multiple_sites_form.token, site_id: site_address.id),
+                    class: "button-link clear-background",
+                    method: :delete,
+                    params: { page: @page }
+                ) do %>
+                  <%= t(".remove_link") %>
+                  <span class="govuk-visually-hidden">
+                    <%= t(".remove_site_details",
+                        site_details: site_address.grid_reference.present? ?
+                          site_address.grid_reference :
+                          [site_address.house_number, site_address.address_line_1, site_address.address_line_2, site_address.town_city, site_address.postcode].compact.join(", ")) %>
+                  </span>
+                <% end %>
               </td>
             </tr>
           <% end %>
