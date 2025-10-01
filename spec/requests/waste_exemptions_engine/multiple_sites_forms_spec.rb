@@ -78,11 +78,13 @@ module WasteExemptionsEngine
 
       context "when site exists" do
         it "removes the site and redirects back to multiple sites page" do
-          expect {
-            delete request_path
-          }.to change { transient_registration.addresses.where(address_type: "site").count }.by(-1)
+          aggregate_failures do
+            expect do
+              delete request_path
+            end.to change { transient_registration.addresses.where(address_type: "site").count }.by(-1)
 
-          expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: nil))
+            expect(response).to redirect_to(new_multiple_sites_form_path(form.token, page: nil))
+          end
         end
 
         it "removes the correct site" do
@@ -99,7 +101,7 @@ module WasteExemptionsEngine
       end
 
       context "when site does not exist" do
-        let(:invalid_site_id) { 99999 }
+        let(:invalid_site_id) { 99_999 }
         let(:invalid_request_path) { remove_site_multiple_sites_forms_path(form.token, site_id: invalid_site_id) }
 
         it "redirects back to multiple sites page with error" do
@@ -108,9 +110,9 @@ module WasteExemptionsEngine
         end
 
         it "does not remove any sites" do
-          expect {
+          expect do
             delete invalid_request_path
-          }.not_to change { transient_registration.addresses.where(address_type: "site").count }
+          end.not_to change { transient_registration.addresses.where(address_type: "site").count }
         end
       end
 
@@ -120,9 +122,9 @@ module WasteExemptionsEngine
         let(:other_site_request_path) { remove_site_multiple_sites_forms_path(form.token, site_id: other_site.id) }
 
         it "does not remove the site from other registration" do
-          expect {
+          expect do
             delete other_site_request_path
-          }.not_to change { other_registration.addresses.where(address_type: "site").count }
+          end.not_to change { other_registration.addresses.where(address_type: "site").count }
         end
 
         it "redirects back to multiple sites page" do
@@ -137,8 +139,10 @@ module WasteExemptionsEngine
 
         it "redirects to start page with the token" do
           delete invalid_token_path
-          expect(response).to have_http_status(:redirect)
-          expect(response.location).to include("start")
+          aggregate_failures do
+            expect(response).to have_http_status(:redirect)
+            expect(response.location).to include("start")
+          end
         end
       end
     end
