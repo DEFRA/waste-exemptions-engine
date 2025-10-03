@@ -47,6 +47,8 @@ module WasteExemptionsEngine
         end
 
         context "when original payment record exists" do
+          let(:refunded_amount) { webhook_body.dig("resource", "refund_summary", "amount_submitted").to_i }
+
           it "creates a new refund payment" do
             expect { run_service }.to change(Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND), :count).by(1)
           end
@@ -59,12 +61,42 @@ module WasteExemptionsEngine
 
             aggregate_failures do
               expect(new_refund.payment_type).to eq Payment::PAYMENT_TYPE_REFUND
-              expect(new_refund.payment_amount).to eq 0 - webhook_body["resource"]["amount"].to_i
+              expect(new_refund.payment_amount).to eq 0 - refunded_amount
               expect(new_refund.payment_status).to eq Payment::PAYMENT_STATUS_SUCCESS
               expect(new_refund.account_id).to eq wex_original_payment.account_id
               expect(new_refund.payment_uuid).to be_present
               expect(new_refund.associated_payment).to eq wex_original_payment
               expect(new_refund.refunded_payment_govpay_id).to eq wex_original_payment.govpay_id
+            end
+          end
+
+          context "when a full refund already exists" do
+            before do
+              create(:payment,
+                     payment_type: Payment::PAYMENT_TYPE_REFUND,
+                     refunded_payment_govpay_id: wex_original_payment.govpay_id,
+                     payment_amount: wex_original_payment.payment_amount)
+            end
+
+            it "does not create a refund" do
+              expect { run_service }.not_to change(Payment, :count)
+            end
+          end
+
+          context "when a partial refund already exists" do
+            before do
+              create(:payment,
+                     payment_type: Payment::PAYMENT_TYPE_REFUND,
+                     refunded_payment_govpay_id: wex_original_payment.govpay_id,
+                     payment_amount: wex_original_payment.payment_amount - refunded_amount - 5)
+            end
+
+            it { expect { run_service }.to change(Payment, :count).by(1) }
+
+            it "uses the correct refunded amount" do
+              run_service
+
+              expect(Payment.last.payment_amount).to eq(0 - refunded_amount)
             end
           end
         end

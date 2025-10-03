@@ -9,6 +9,12 @@ module WasteExemptionsEngine
 
       @govpay_payment_id = webhook_body[:resource_id]
 
+      unless refundable
+        Rails.logger.warn "Webhook refund amount #{webhook_refund_amount} exceeds maximum " \
+                          "refundable amount #{max_refundable} on payment #{payment.govpay_id}"
+        return
+      end
+
       @registration = find_registration
 
       result = DefraRubyGovpay::WebhookRefundService.run(webhook_body)
@@ -46,6 +52,21 @@ module WasteExemptionsEngine
       Rails.logger.error "Govpay payment not found for govpay_id #{govpay_payment_id}"
       Airbrake.notify "Govpay payment not found for govpay_id #{govpay_payment_id}"
       raise ArgumentError, "payment not found"
+    end
+
+    def webhook_refund_amount
+      @webhook_refund_amount ||= webhook_body.dig(:resource, :refund_summary, :amount_submitted)
+    end
+
+    def max_refundable
+      @max_refundable ||= payment.payment_amount -
+                          Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND,
+                                        refunded_payment_govpay_id: payment.govpay_id)
+                                 .sum(&:payment_amount)
+    end
+
+    def refundable
+      @refundable ||= webhook_refund_amount < max_refundable
     end
 
     def create_refund
