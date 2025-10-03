@@ -41,7 +41,7 @@ module WasteExemptionsEngine
 
       context "when the registration is not found" do
         before { registration.destroy! }
-        
+
         it { expect { run_service }.to raise_error(ArgumentError) }
       end
 
