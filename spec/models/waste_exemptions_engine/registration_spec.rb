@@ -41,10 +41,24 @@ module WasteExemptionsEngine
       end
 
       describe "#site_count" do
-        it "returns the count of site addresses" do
-          create(:address, address_type: 3, registration: registration)
-          create(:address, address_type: 3, registration: registration)
-          expect(registration.site_count).to eq(3) # includes the one from factory
+        context "when is_multisite_registration is true" do
+          before { registration.update(is_multisite_registration: true) }
+
+          it "returns the count of site addresses" do
+            create(:address, address_type: 3, registration: registration)
+            create(:address, address_type: 3, registration: registration)
+            expect(registration.site_count).to eq(3) # includes the one from factory
+          end
+        end
+
+        context "when is_multisite_registration is false" do
+          before { registration.update(is_multisite_registration: false) }
+
+          it "returns 1 regardless of site addresses count" do
+            create(:address, address_type: 3, registration: registration)
+            create(:address, address_type: 3, registration: registration)
+            expect(registration.site_count).to eq(1)
+          end
         end
       end
 

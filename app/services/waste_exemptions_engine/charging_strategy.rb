@@ -69,8 +69,7 @@ module WasteExemptionsEngine
     end
 
     def site_count
-      count = order.order_owner&.site_count
-      count.nil? || count.zero? ? 1 : count
+      order.order_owner&.site_count || 1
     end
   end
 end

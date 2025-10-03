@@ -2,17 +2,17 @@ en:
   waste_exemptions_engine:
     multisite_site_grid_reference_forms:
       new:
-        title: &title Add a site
+        title: &title Where will you do the waste activity?
         heading: *title
-        grid_reference_preferred_option: |
-          Enter the grid reference and site details, or use the postcode finder to add a site.
-          Click continue to add more sites. Repeat the process until you have added all your sites.
+        grid_reference_preferred_option: "Enter the grid reference and site details, or use the address finder to add a site."
+        multisite_instruction: "Click continue to add more sites. Repeat the process until you have added all your sites."
         postcode_link_text: Enter a postcode
+        postcode_suffix: "to find address"
         or: Or
+        grid_reference_help_tool_link: UK Grid Reference Finder
         grid_reference_label: "Enter a grid reference"
         grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens new window)."
-        grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
-        grid_reference_help_tool_link: UK Grid Reference Finder
+        grid_reference_hint: "Enter 2 letters and 10 digits. For example, ST 58132 72695"
         description_label: Site details
         description_hint: "For example, nearby landmarks and features, a descriptive name."
         next_button: Continue

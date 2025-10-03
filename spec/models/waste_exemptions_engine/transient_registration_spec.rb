@@ -55,10 +55,24 @@ module WasteExemptionsEngine
     describe "#site_count" do
       let(:transient_registration) { create(:new_registration, :with_all_addresses) }
 
-      it "returns the count of site addresses" do
-        create(:transient_address, :site_address, transient_registration: transient_registration)
-        create(:transient_address, :site_address, transient_registration: transient_registration)
-        expect(transient_registration.site_count).to eq(3) # includes the one from factory
+      context "when is_multisite_registration is true" do
+        before { transient_registration.update(is_multisite_registration: true) }
+
+        it "returns the count of site addresses" do
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          expect(transient_registration.site_count).to eq(3) # includes the one from factory
+        end
+      end
+
+      context "when is_multisite_registration is false" do
+        before { transient_registration.update(is_multisite_registration: false) }
+
+        it "returns 1 regardless of site addresses count" do
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          expect(transient_registration.site_count).to eq(1)
+        end
       end
     end
 
