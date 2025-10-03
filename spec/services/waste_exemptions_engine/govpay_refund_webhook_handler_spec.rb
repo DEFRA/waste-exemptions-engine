@@ -33,6 +33,18 @@ module WasteExemptionsEngine
         it_behaves_like "logs an error"
       end
 
+      context "when the original payment is not found" do
+        before { wex_original_payment.destroy! }
+
+        it { expect { run_service }.to raise_error(ArgumentError) }
+      end
+
+      context "when the registration is not found" do
+        before { registration.destroy! }
+        
+        it { expect { run_service }.to raise_error(ArgumentError) }
+      end
+
       context "when the update is not for a refund" do
         before { webhook_body["event_type"] = "card_payment_succeeded" }
 
