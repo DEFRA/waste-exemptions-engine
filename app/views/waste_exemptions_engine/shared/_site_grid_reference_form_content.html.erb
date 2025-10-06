@@ -4,11 +4,12 @@
 
 <p class="govuk-body">
   <%= t("#{locale_prefix}.grid_reference_preferred_option") %>
-<% if is_multisite %>
-    <br>
-    <%= t("#{locale_prefix}.multisite_instruction") %>
-<% end %>
+  <% if is_multisite %>
+      <br>
+      <%= t("#{locale_prefix}.multisite_instruction") %>
+  <% end %>
 </p>
+
 <p class="govuk-body">
   <%= link_to(t("#{locale_prefix}.postcode_link_text"), skip_to_address_path) %> <%= t("#{locale_prefix}.postcode_suffix") %>
 </p>
@@ -44,7 +45,7 @@
 
 <% if is_multisite %>
   <p class="govuk-body" style="color: #d4351c;">
-  <%= t("#{locale_prefix}.continue_instruction") %>
+    <%= t("#{locale_prefix}.continue_instruction") %>
   </p>
 <% end %>
 
