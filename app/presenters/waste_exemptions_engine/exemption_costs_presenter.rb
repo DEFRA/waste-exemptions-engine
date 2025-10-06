@@ -3,7 +3,6 @@
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
     NOT_APPLICABLE_TRANSLATION_KEY = "waste_exemptions_engine.exemptions_summary_forms.new.n_a"
-    UPPER_BAND_TRANSLATION_KEY = "waste_exemptions_engine.exemptions_summary_forms.new.upper_band"
 
     include CanSortExemptions
 
@@ -27,16 +26,6 @@ module WasteExemptionsEngine
         end
 
         sorted_farm_exemptions + sorted_non_farm_exemptions
-      end
-    end
-
-    def band(exemption)
-      if exemption_in_bucket?(exemption)
-        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
-      elsif most_expensive_band?(exemption.band)
-        I18n.t(UPPER_BAND_TRANSLATION_KEY)
-      else
-        exemption.band&.sequence || I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       end
     end
 
@@ -64,20 +53,6 @@ module WasteExemptionsEngine
         format_charge_as_currency(exemption.band.additional_compliance_charge)
       else
         format_currency(0)
-      end
-    end
-
-    def charge_type(exemption)
-      if exemption.band.additional_compliance_charge.charge_amount.zero?
-        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
-      elsif farmer_bucket_exemption?(exemption)
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.farm")
-      elsif exemption.band.charged? && !exemption.band.discount_possible?
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.no_discount")
-      elsif first_exemption_in_highest_band?(exemption)
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.full")
-      else
-        I18n.t("waste_exemptions_engine.exemptions_summary_forms.new.discounted")
       end
     end
 
@@ -209,18 +184,6 @@ module WasteExemptionsEngine
       else
         I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
       end
-    end
-
-    def bands_with_charges
-      WasteExemptionsEngine::Band.all.filter { |b| b.initial_compliance_charge&.charge_amount&.positive? }
-    end
-
-    def most_expensive_band?(band)
-      bands_with_charges.max_by { |b| b.initial_compliance_charge.charge_amount } == band
-    end
-
-    def least_expensive_band?(band)
-      bands_with_charges.min_by { |b| b.initial_compliance_charge.charge_amount } == band
     end
 
     def multisite_charge_for_exemption(base_charge_amount)

@@ -4,10 +4,8 @@ module WasteExemptionsEngine
   class ExemptionsSummaryForm < BaseForm
     delegate :exemptions,
              :compliance_charge,
-             :charge_type,
              :registration_charge,
              :total_charge,
-             :band,
              :farm_exemptions_selected?,
              to: :exemption_costs_presenter
 
