@@ -1,5 +1,7 @@
 <%= render("waste_exemptions_engine/shared/back", token: @multisite_site_address_lookup_form.token) %>
 
+<% content_for :page_title, t("waste_exemptions_engine.multisite_site_address_lookup_forms.new.heading") %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= render "waste_exemptions_engine/shared/site_address_lookup_form",

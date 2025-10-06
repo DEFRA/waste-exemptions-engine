@@ -2,7 +2,8 @@ en:
   waste_exemptions_engine:
     is_multisite_registration_forms:
       new:
-        heading: "Is this a multiple site registration (%{count}+ sites)?"
+        title: &title "Is this a multiple site registration (%{count}+ sites)?"
+        heading: *title
         hint: "Multiple site registration is when you register the same exemptions at %{count} or more different sites."
         no: "No"
         yes: "Yes, this is a multiple site registration (%{count}+ sites)"

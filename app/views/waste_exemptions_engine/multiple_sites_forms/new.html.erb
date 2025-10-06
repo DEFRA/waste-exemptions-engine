@@ -17,6 +17,7 @@
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header"></th>
             <th scope="col" class="govuk-table__header"><%= t(".location_header") %></th>
             <th scope="col" class="govuk-table__header"><%= t(".site_details_header") %></th>
             <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden"><%= t(".actions_header") %></span></th>
@@ -29,10 +30,17 @@
                 <%= (@page.to_i - 1) * @multiple_sites_form.sites_per_page + index + 1 %>
               </td>
               <td class="govuk-table__cell">
-                <% if site_address.grid_reference.present? %>
-                  <%= site_address.grid_reference %>
+                <% if site_address.postcode.present? %>
+                  <%= site_address.postcode %>
                 <% else %>
-                  <%= [site_address.house_number, site_address.address_line_1, site_address.address_line_2, site_address.town_city, site_address.postcode].compact.join(", ") %>
+                  <%= site_address.grid_reference %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell">
+                <% if site_address.postcode.present? %>
+                  <%= displayable_address(site_address).reject { |line| line == site_address.postcode }.join(", ") %>
+                <% else %>
+                  <%= site_address.description %>
                 <% end %>
               </td>
               <td class="govuk-table__cell">

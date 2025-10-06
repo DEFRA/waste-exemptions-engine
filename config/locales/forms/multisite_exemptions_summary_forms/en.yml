@@ -2,7 +2,8 @@ en:
   waste_exemptions_engine:
     multisite_exemptions_summary_forms:
       new:
-        heading: "How your charges are calculated"
+        title: &title "How your charges are calculated"
+        heading: *title
         description: "(d) indicates a discounted charge"
         exemption_heading: "Exemption"
         charge_heading: "Charge"

@@ -1,5 +1,7 @@
 <%= render("waste_exemptions_engine/shared/back", token: @is_multisite_registration_form.token) %>
 
+<% content_for :page_title, t(".heading", count: @is_multisite_registration_form.minimum_sites_required) %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= form_for(@is_multisite_registration_form) do |f| %>
