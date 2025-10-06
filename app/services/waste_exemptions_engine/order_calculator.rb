@@ -7,6 +7,7 @@ module WasteExemptionsEngine
 
     delegate :band_charge_details,
              :bucket_charge_amount,
+             :base_bucket_charge_amount,
              :charge_detail,
              :registration_charge_amount,
              :total_charge_amount,

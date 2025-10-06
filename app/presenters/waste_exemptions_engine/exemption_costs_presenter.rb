@@ -167,19 +167,10 @@ module WasteExemptionsEngine
 
     def single_site_bucket_exemption_compliance_charge(exemption)
       if first_bucket_exemption_in_order?(exemption)
-        # Get the base bucket charge directly (before multisite multiplication)
-        order_bucket_exemptions = order.exemptions & order.bucket.exemptions
-        default_bucket_charge = order.bucket.initial_compliance_charge.charge_amount
-        
-        order_bucket_compliance_charge = order_bucket_exemptions.sum do |ex|
-          ex.band.initial_compliance_charge.charge_amount
-        end
-        
-        single_site_charge = [order_bucket_compliance_charge, default_bucket_charge].min
-        
+        # Get the base bucket charge from the strategy (before multisite multiplication)
         format_currency(
           WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(single_site_charge)
+          .convert_pence_to_pounds(@order_calculator.base_bucket_charge_amount)
         )
       else
         I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
@@ -188,18 +179,12 @@ module WasteExemptionsEngine
 
     def multisite_charge_for_exemption(base_charge_amount)
       # Apply multisite multiplication if this is a multisite registration
-      if @order.order_owner&.is_multisite_registration
-        site_count = @order.order_owner.site_count
-        format_currency(
-          WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(base_charge_amount * site_count)
-        )
-      else
-        format_currency(
-          WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(base_charge_amount)
-        )
-      end
+      site_count = @order.order_owner&.is_multisite_registration ? @order.order_owner.site_count : 1
+
+      format_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(base_charge_amount * site_count)
+      )
     end
 
   end
