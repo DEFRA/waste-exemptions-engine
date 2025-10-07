@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class GovpayRefundWebhookHandler < BaseService
-    attr_accessor :govpay_payment_id, :webhook_body, :registration, :refund
+    attr_accessor :govpay_payment_id, :webhook_body, :refund
 
     def run(govpay_webhook_body)
       @webhook_body = govpay_webhook_body&.deep_symbolize_keys
@@ -14,8 +14,6 @@ module WasteExemptionsEngine
                           "refundable amount #{max_refundable} on payment #{payment.govpay_id}"
         return
       end
-
-      @registration = find_registration
 
       result = DefraRubyGovpay::WebhookRefundService.run(webhook_body)
 
@@ -42,16 +40,15 @@ module WasteExemptionsEngine
       ) || handle_payment_not_found
     end
 
-    def find_registration
-      @registration = payment&.account&.registration
-      handle_registration_not_found unless @registration.present?
-      @registration
+    def registration
+      @registration ||= payment&.account&.registration
     end
 
     def handle_payment_not_found
-      Rails.logger.error "Govpay payment not found for govpay_id #{govpay_payment_id}"
-      Airbrake.notify "Govpay payment not found for govpay_id #{govpay_payment_id}"
-      raise ArgumentError, "payment not found"
+      message = "Govpay payment not found for govpay_id #{govpay_payment_id}"
+      Rails.logger.error message
+      Airbrake.notify message
+      raise ArgumentError, message
     end
 
     def webhook_refund_amount
@@ -71,18 +68,11 @@ module WasteExemptionsEngine
 
     def create_refund
       @refund = GovpayWebhookRefundCreator.run(govpay_webhook_body: webhook_body)
-    rescue StandardError
-      message = "Govpay payment not found for govpay_id #{webhook_body[:resource_id]}"
+    rescue StandardError => e
+      message = "Error creating refund for payment with govpay_id #{webhook_body[:resource_id]}: #{e}"
       Rails.logger.error message
       Airbrake.notify message
-      raise ArgumentError, message
-    end
-
-    def handle_registration_not_found
-      message = "Registration not found for payment with govpay_id #{webhook_body[:resource_id]}"
-      Rails.logger.error message
-      Airbrake.notify message
-      raise ArgumentError, message
+      raise
     end
   end
 end
