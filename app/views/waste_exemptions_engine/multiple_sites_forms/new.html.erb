@@ -57,7 +57,7 @@
     <% end %>
 
     <p class="govuk-body">
-      <%= link_to t(".add_another_site"), new_multisite_site_grid_reference_form_path, class: "govuk-link" %>
+      <%= link_to t(".add_another_site"), new_site_grid_reference_form_path(@multiple_sites_form.token), class: "govuk-link" %>
     </p>
 
     <%= form_for(@multiple_sites_form, url: multiple_sites_forms_path(@multiple_sites_form.token), method: :post, local: true) do |f| %>

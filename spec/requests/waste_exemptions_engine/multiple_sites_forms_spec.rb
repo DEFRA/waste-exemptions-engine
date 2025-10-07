@@ -47,9 +47,9 @@ module WasteExemptionsEngine
         expect(response.code).to eq(status_code.to_s)
       end
 
-      it "redirects to the multisite exemptions summary form" do
+      it "redirects to the exemptions summary form" do
         post request_path, params: request_body
-        expect(response).to redirect_to(multisite_exemptions_summary_forms_path(form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(form.token))
       end
 
       context "with page parameter" do
@@ -67,7 +67,7 @@ module WasteExemptionsEngine
         post "/waste_exemptions_engine/#{multiple_sites_form.token}/multiple-sites",
              params: { multiple_sites_form: { token: multiple_sites_form.token } }
 
-        expect(response).to redirect_to(multisite_exemptions_summary_forms_path(multiple_sites_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(multiple_sites_form.token))
       end
     end
   end

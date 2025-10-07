@@ -6,6 +6,7 @@ en:
         heading: *title
         legend: *title
         grid_reference_preferred_option: "Enter the grid reference and site details, or use the address finder to add a site."
+        multisite_instruction: "Click continue to add more sites. Repeat the process until you have added all your sites."
         postcode_link_text: Enter a postcode
         postcode_suffix: "to find address"
         or: Or
@@ -14,9 +15,10 @@ en:
         grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens new window)."
         grid_reference_hint: "Enter 2 letters and 10 digits. For example, ST 58132 72695"
         description_label: Site details
-        description_hint: "Include information like: a description of the site, nearby landmarks, and any built or natural features."
+        description_hint: "For example, nearby landmarks and features, a descriptive name."
         error_heading: A problem to fix
         next_button: Continue
+        continue_instruction: "Click 'Continue' to review and add more sites."
         use_address_link: Use an address instead
   activemodel:
     errors:

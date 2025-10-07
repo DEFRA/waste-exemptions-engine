@@ -10,7 +10,6 @@ en:
         total_heading: "Total"
         how_charges_calculated: "How charges are calculated"
         charge_explanation: "You pay:"
-        capped_farm_charge: "capped charge of £88 for farming exemptions"
         full_compliance_charge: "full compliance charge for one exemption from the most expensive band"
         discounted_charge: "discounted charge for additional exemptions in bands upper, 1 and 2"
         band_3_charge: "compliance charge of £30 for each band 3 exemption"
@@ -35,3 +34,4 @@ en:
         registration_charge_info: "You pay one £56 registration charge for all sites."
         continue: "Continue"
         upper_band: "Upper"
+        farming_exemptions: "Farming exemptions"

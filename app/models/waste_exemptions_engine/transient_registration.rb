@@ -142,6 +142,10 @@ module WasteExemptionsEngine
       is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
     end
 
+    def multisite_registration?
+      false
+    end
+
     private
 
     def default_workflow_state

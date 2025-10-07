@@ -212,16 +212,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
-    resources :multisite_site_grid_reference_forms,
-              only: %i[new create],
-              path: "multisite-site-grid-reference",
-              path_names: { new: "" } do
-                get "skip_to_address/:token",
-                    to: "multisite_site_grid_reference_forms#skip_to_address",
-                    as: "skip_to_address",
-                    on: :collection
-              end
-
     resources :check_site_address_forms,
               only: %i[new create],
               path: "check-site-address",
@@ -232,19 +222,9 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "site-postcode",
               path_names: { new: "" }
 
-    resources :multisite_site_postcode_forms,
-              only: %i[new create],
-              path: "multisite-site-postcode",
-              path_names: { new: "" }
-
     resources :site_address_lookup_forms,
               only: %i[new create],
               path: "site-address-lookup",
-              path_names: { new: "" }
-
-    resources :multisite_site_address_lookup_forms,
-              only: %i[new create],
-              path: "multisite-site-address-lookup",
               path_names: { new: "" }
 
     resources :waste_activities_forms,
@@ -395,11 +375,6 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :exemptions_summary_forms,
               only: %i[new create],
               path: "exemptions-summary",
-              path_names: { new: "" }
-
-    resources :multisite_exemptions_summary_forms,
-              only: %i[new create],
-              path: "multisite-exemptions-summary",
               path_names: { new: "" }
 
     resources :registration_complete_forms,

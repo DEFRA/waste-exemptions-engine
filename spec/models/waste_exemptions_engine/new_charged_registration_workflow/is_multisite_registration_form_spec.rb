@@ -20,10 +20,10 @@ module WasteExemptionsEngine
         context "when is_multisite_registration is true" do
           let(:is_multisite_registration) { true }
 
-          it "transitions to :multisite_site_grid_reference_form" do
+          it "transitions to :site_grid_reference_form" do
             expect(new_registration)
               .to transition_from(current_state)
-              .to(:multisite_site_grid_reference_form)
+              .to(:site_grid_reference_form)
               .on_event(:next)
           end
         end

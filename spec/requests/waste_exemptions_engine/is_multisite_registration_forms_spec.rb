@@ -37,11 +37,11 @@ module WasteExemptionsEngine
         expect(response).not_to redirect_to(new_check_your_answers_form_path(is_multisite_registration_form.token))
       end
 
-      it "redirects to the multisite site grid reference form when submitted with true" do
+      it "redirects to the site grid reference form when submitted with true" do
         post "/waste_exemptions_engine/#{is_multisite_registration_form.token}/is-multisite-registration",
              params: { is_multisite_registration_form: { is_multisite_registration: true } }
 
-        expect(response).to redirect_to(new_multisite_site_grid_reference_form_path(is_multisite_registration_form.token))
+        expect(response).to redirect_to(new_site_grid_reference_form_path(is_multisite_registration_form.token))
       end
     end
   end

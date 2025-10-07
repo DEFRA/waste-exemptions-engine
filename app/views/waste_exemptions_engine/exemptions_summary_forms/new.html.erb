@@ -1,11 +1,114 @@
 <%= render("waste_exemptions_engine/shared/back", token: @exemptions_summary_form.token) %>
+
+<% is_multisite = @exemptions_summary_form.transient_registration.multisite_registration? %>
+<% locale_prefix = "waste_exemptions_engine.exemptions_summary_forms.new" %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= render partial: "waste_exemptions_engine/shared/exemptions_summary_content",
-               locals: {
-                 form_object: @exemptions_summary_form,
-                 is_multisite: false,
-                 locale_prefix: "waste_exemptions_engine.exemptions_summary_forms.new"
-               } %>
+    <h1 class="govuk-heading-l"><%= t("#{locale_prefix}.heading") %></h1>
+    <p class="govuk-body"><%= t("#{locale_prefix}.description") %></p>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t("#{locale_prefix}.exemption_heading") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("#{locale_prefix}.charge_heading") %></th>
+          <th scope="col" class="govuk-table__header"><%= t("#{locale_prefix}.total_heading") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% if @exemptions_summary_form.farming_exemptions.any? %>
+          <% farming_total_charge = @exemptions_summary_form.farming_exemptions_charge %>
+          <% farming_single_site_charge = is_multisite ? @exemptions_summary_form.farming_exemptions_single_site_charge : nil %>
+          <% if farming_total_charge != "£0.00" %>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">
+                <%= t("waste_exemptions_engine.exemptions_summary_forms.new.farming_exemptions") %>:<br>
+                <%= @exemptions_summary_form.farming_exemptions_codes %>
+              </th>
+              <td class="govuk-table__cell">
+                <% if is_multisite %>
+                  <% if farming_single_site_charge == t("waste_exemptions_engine.exemptions_summary_forms.new.n_a") %>
+                    <%= farming_single_site_charge %>
+                  <% else %>
+                    <%= farming_single_site_charge %> <span style="color: #d4351c;">x <%= @exemptions_summary_form.site_count %></span>
+                  <% end %>
+                <% else %>
+                  <%= farming_total_charge %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <%= farming_total_charge %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <% @exemptions_summary_form.non_farming_exemptions.each do |exemption| %>
+          <% total_charge = @exemptions_summary_form.compliance_charge(exemption) %>
+          <% single_site_charge = is_multisite ? @exemptions_summary_form.single_site_compliance_charge(exemption) : nil %>
+          <% if total_charge != "£0.00" %>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">
+                <%= exemption.code %> <%= exemption.description.capitalize %>
+              </th>
+              <td class="govuk-table__cell">
+                <% if is_multisite %>
+                  <% if single_site_charge == t("waste_exemptions_engine.exemptions_summary_forms.new.n_a") %>
+                    <%= single_site_charge %>
+                  <% else %>
+                    <%= single_site_charge %> <span style="color: #d4351c;">x <%= @exemptions_summary_form.site_count %></span>
+                  <% end %>
+                <% else %>
+                  <%= total_charge %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <%= total_charge %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <tr class="govuk-table__row" id="registration-charge-row">
+          <th scope="row" class="govuk-table__header"><%= t("#{locale_prefix}.registration_charge") %></th>
+          <td class="govuk-table__cell"><%= @exemptions_summary_form.registration_charge %></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><%= @exemptions_summary_form.registration_charge %></td>
+        </tr>
+
+        <tr class="govuk-table__row" id="vat-exempt-row">
+          <th scope="row" class="govuk-table__header"><%= t("#{locale_prefix}.vat_exempt") %></th>
+          <td class="govuk-table__cell">£0.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="govuk-table">
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row" id="total-charge-row">
+          <th scope="row" class="govuk-table__header govuk-!-font-weight-bold">
+            <%= t("#{locale_prefix}.total_charge_vat_exempt") %>
+          </th>
+          <td class="govuk-table__cell govuk-table__cell--numeric govuk-!-font-weight-bold">
+            <%= @exemptions_summary_form.total_charge %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="govuk-heading-m"><%= t("#{locale_prefix}.overview_heading") %></h2>
+    <p class="govuk-body"><%= t("#{locale_prefix}.vat_note") %></p>
+    <p class="govuk-body"><%= t("#{locale_prefix}.site_payment_info") %></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><%= t("#{locale_prefix}.full_compliance_charge") %></li>
+      <li><%= t("#{locale_prefix}.discounted_charge") %></li>
+      <li><%= t("#{locale_prefix}.band_3_charge") %></li>
+    </ul>
+    <p class="govuk-body"><%= t("#{locale_prefix}.registration_charge_info") %></p>
+
+    <%= form_for @exemptions_summary_form do |f| %>
+      <%= f.govuk_submit t("#{locale_prefix}.continue") %>
+    <% end %>
   </div>
 </div>

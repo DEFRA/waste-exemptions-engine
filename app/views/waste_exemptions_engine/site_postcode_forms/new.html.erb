@@ -1,10 +1,30 @@
 <%= render("waste_exemptions_engine/shared/back", token: @site_postcode_form.token) %>
 
+<% is_multisite = @site_postcode_form.transient_registration.multisite_registration? %>
+<% i18n_scope = "waste_exemptions_engine.site_postcode_forms.new" %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= render "waste_exemptions_engine/shared/site_postcode_form",
-        form_object: @site_postcode_form,
-        grid_reference_link: site_grid_reference_forms_path(@site_postcode_form.token),
-        i18n_scope: "waste_exemptions_engine.site_postcode_forms.new" %>
+    <%= form_for @site_postcode_form do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t("#{i18n_scope}.heading") %></h1>
+
+      <%= f.govuk_text_field :temp_site_postcode,
+          label: { text: t("#{i18n_scope}.postcode_label") },
+          hint: { text: t("#{i18n_scope}.postcode_hint") },
+          width: 10,
+          autocomplete: "postal-code" %>
+
+      <%= f.govuk_submit t("#{i18n_scope}.next_button") %>
+
+      <% if @site_postcode_form.errors.added?(:temp_site_postcode, :no_results) %>
+        <div class="govuk-body">
+          <%= link_to(t("#{i18n_scope}.grid_reference_link"), new_site_grid_reference_form_path(@site_postcode_form.token)) %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= render("waste_exemptions_engine/shared/os_terms_footer") %>
   </div>
 </div>
