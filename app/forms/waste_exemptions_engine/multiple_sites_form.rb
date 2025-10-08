@@ -20,7 +20,7 @@ module WasteExemptionsEngine
     end
 
     def minimum_sites_required
-      ENV.fetch("MULTISITE_MINIMUM_SITES", WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_default).to_i
+      WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_required
     end
 
     def sites_per_page

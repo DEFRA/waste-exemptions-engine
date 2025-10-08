@@ -6,8 +6,8 @@ module WasteExemptionsEngine
 
     MINIMUM_SITES_DEFAULT = 30
 
-    def self.minimum_sites_default
-      MINIMUM_SITES_DEFAULT
+    def self.minimum_sites_required
+      ENV.fetch("MULTISITE_MINIMUM_SITES", MINIMUM_SITES_DEFAULT).to_i
     end
 
     included do

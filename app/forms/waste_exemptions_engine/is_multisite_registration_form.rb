@@ -7,7 +7,7 @@ module WasteExemptionsEngine
     validates :is_multisite_registration, "defra_ruby/validators/true_false": true
 
     def minimum_sites_required
-      ENV.fetch("MULTISITE_MINIMUM_SITES", WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_default).to_i
+      WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_required
     end
   end
 end
