@@ -67,10 +67,6 @@ module WasteExemptionsEngine
             expect(presenter.compliance_charge(bucket_exemption_high)).to eq("£#{format('%.2f', order_calculator.bucket_charge_amount / 100.0)}")
           end
 
-          it "returns blank for additional bucket exemptions" do
-            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
-          end
-
           it "returns full charge for first non-bucket exemption in highest band" do
             expect(presenter.compliance_charge(first_non_bucket_high)).to eq("£#{format('%.2f', band_3.initial_compliance_charge.charge_amount_in_pounds)}")
           end
@@ -98,10 +94,6 @@ module WasteExemptionsEngine
 
           it "returns bucket charge for first bucket exemption" do
             expect(presenter.compliance_charge(bucket_exemption_high)).to eq("£#{format('%.2f', order_calculator.bucket_charge_amount / 100.0)}")
-          end
-
-          it "returns blank for additional bucket exemptions" do
-            expect(presenter.compliance_charge(bucket_exemption_low)).to eq("not applicable")
           end
 
           it "returns full charge for first non-bucket exemption in highest band" do
@@ -155,12 +147,6 @@ module WasteExemptionsEngine
         it "returns the bucket compliance charge for the first farm exemption in the order" do
           first_bucket_exemption = sorted_exemptions.first
           expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.39")
-        end
-
-        it "returns blank for the rest of the farm exemptions" do
-          order.exemptions[1..].each do |exemption|
-            expect(presenter.compliance_charge(exemption)).to eq "not applicable"
-          end
         end
       end
 

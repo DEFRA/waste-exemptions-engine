@@ -18,51 +18,43 @@
       <tbody class="govuk-table__body">
         <% if @exemptions_summary_form.farming_exemptions.any? %>
           <% farming_total_charge = @exemptions_summary_form.farming_exemptions_charge %>
-          <% if farming_total_charge != "£0.00" %>
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__cell">
-                <%= t(".farming_exemptions") %>:<br>
-                <%= @exemptions_summary_form.farming_exemptions_codes %>
-              </th>
-              <td class="govuk-table__cell">
-                <% if is_multisite %>
-                  <% farming_single_site_charge = @exemptions_summary_form.farming_exemptions_single_site_charge %>
-                  <%= farming_single_site_charge %> x <%= @exemptions_summary_form.site_count %>
-                <% else %>
-                  <%= farming_total_charge %>
-                <% end %>
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__cell">
+              <%= t(".farming_exemptions") %>:<br>
+              <%= @exemptions_summary_form.farming_exemptions_codes %>
+            </th>
+            <td class="govuk-table__cell">
+              <% if is_multisite %>
+                <% farming_single_site_charge = @exemptions_summary_form.farming_exemptions_single_site_charge %>
+                <%= farming_single_site_charge %> x <%= @exemptions_summary_form.site_count %>
+              <% else %>
                 <%= farming_total_charge %>
-              </td>
-            </tr>
-          <% end %>
+              <% end %>
+            </td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <%= farming_total_charge %>
+            </td>
+          </tr>
         <% end %>
 
         <% @exemptions_summary_form.non_farming_exemptions.each do |exemption| %>
           <% total_charge = @exemptions_summary_form.compliance_charge(exemption) %>
-          <% if total_charge != "£0.00" %>
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__cell">
-                <%= exemption.code %> <%= exemption.description.capitalize %>
-              </th>
-              <td class="govuk-table__cell">
-                <% if is_multisite %>
-                  <% single_site_charge = @exemptions_summary_form.single_site_compliance_charge(exemption) %>
-                  <% if single_site_charge == t(".n_a") %>
-                    <%= single_site_charge %>
-                  <% else %>
-                    <%= single_site_charge %> x <%= @exemptions_summary_form.site_count %>
-                  <% end %>
-                <% else %>
-                  <%= total_charge %>
-                <% end %>
-              </td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__cell">
+              <%= exemption.code %> <%= exemption.description.capitalize %>
+            </th>
+            <td class="govuk-table__cell">
+              <% if is_multisite %>
+                <% single_site_charge = @exemptions_summary_form.single_site_compliance_charge(exemption) %>
+                <%= single_site_charge %> x <%= @exemptions_summary_form.site_count %>
+              <% else %>
                 <%= total_charge %>
-              </td>
-            </tr>
-          <% end %>
+              <% end %>
+            </td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <%= total_charge %>
+            </td>
+          </tr>
         <% end %>
 
         <tr class="govuk-table__row" id="registration-charge-row">

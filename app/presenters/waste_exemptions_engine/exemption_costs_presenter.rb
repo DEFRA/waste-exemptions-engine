@@ -2,8 +2,6 @@
 
 module WasteExemptionsEngine
   class ExemptionCostsPresenter
-    NOT_APPLICABLE_TRANSLATION_KEY = "waste_exemptions_engine.exemptions_summary_forms.new.n_a"
-
     include CanSortExemptions
 
     attr_accessor :order
@@ -31,8 +29,7 @@ module WasteExemptionsEngine
 
     def compliance_charge(exemption)
       if exemption_in_bucket?(exemption)
-        bucket_exemption_compliance_charge(exemption).presence ||
-          I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
+        bucket_exemption_compliance_charge(exemption)
       elsif first_exemption_in_highest_band?(exemption)
         multisite_charge_for_exemption(exemption.band.initial_compliance_charge.charge_amount)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
@@ -45,8 +42,7 @@ module WasteExemptionsEngine
     def single_site_compliance_charge(exemption)
       # Get the single-site charge without multisite multiplication
       if exemption_in_bucket?(exemption)
-        single_site_bucket_exemption_compliance_charge(exemption).presence ||
-          I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
+        single_site_bucket_exemption_compliance_charge(exemption)
       elsif first_exemption_in_highest_band?(exemption)
         format_charge_as_currency(exemption.band.initial_compliance_charge)
       elsif exemption.band.additional_compliance_charge.charge_amount.positive?
@@ -144,37 +140,20 @@ module WasteExemptionsEngine
       order.bucket.present? && order.bucket.exemptions.include?(exemption)
     end
 
-    def first_bucket_exemption_in_order?(exemption)
-      bucket_exemptions = order.bucket&.exemptions&.to_a
-      return false if bucket_exemptions.empty?
-
-      bucket_exemptions_in_order = bucket_exemptions.intersection(order.exemptions)
-      return false if bucket_exemptions_in_order.empty?
-
-      exemption == sorted_exemptions(bucket_exemptions_in_order).first
-    end
-
     def bucket_exemption_compliance_charge(exemption)
-      if first_bucket_exemption_in_order?(exemption)
-        format_currency(
-          WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(@order_calculator.bucket_charge_amount)
-        )
-      else
-        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
-      end
+      # All bucket exemptions (farming) are grouped, so always return the bucket charge
+      format_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(@order_calculator.bucket_charge_amount)
+      )
     end
 
     def single_site_bucket_exemption_compliance_charge(exemption)
-      if first_bucket_exemption_in_order?(exemption)
-        # Get the base bucket charge from the strategy (before multisite multiplication)
-        format_currency(
-          WasteExemptionsEngine::CurrencyConversionService
-          .convert_pence_to_pounds(@order_calculator.base_bucket_charge_amount)
-        )
-      else
-        I18n.t(NOT_APPLICABLE_TRANSLATION_KEY)
-      end
+      # All bucket exemptions (farming) are grouped, so always return the base bucket charge
+      format_currency(
+        WasteExemptionsEngine::CurrencyConversionService
+        .convert_pence_to_pounds(@order_calculator.base_bucket_charge_amount)
+      )
     end
 
     def multisite_charge_for_exemption(base_charge_amount)
