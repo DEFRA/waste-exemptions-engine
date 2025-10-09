@@ -23,53 +23,15 @@ module WasteExemptionsEngine
       let(:govpay_webhook_body) { JSON.parse(file_fixture("govpay/webhook_refund_update_body.json").read) }
       let(:govpay_payment_id) { govpay_webhook_body["resource_id"] if govpay_webhook_body.present? }
 
-      before { original_payment }
+      before do
+        allow(Rails.logger).to receive(:error)
+        allow(Airbrake).to receive(:notify)
 
-      context "when the request is valid" do
-        it "returns the refund payment" do
-          aggregate_failures do
-            expect(run_service).to be_a(Payment)
-            expect(run_service.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-          end
-        end
-
-        it "creates a refund payment" do
-          expect { run_service }.to change(Payment, :count).by(1)
-        end
-
-        it "creates a refund with correct attributes" do
-          run_service
-          refund = Payment.last
-
-          aggregate_failures do
-            expect(refund.refunded_payment_govpay_id).to eq govpay_payment_id
-            expect(refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-            expect(refund.payment_amount).to eq(-47_600)
-            expect(refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
-            expect(refund.account_id).to eq(account.id)
-            expect(refund.reference).to eq("WEX123456/REFUND")
-            expect(refund.govpay_id).to be_nil
-            expect(refund.associated_payment).to eq(original_payment)
-          end
-        end
-
-        it "creates a refund with a payment_uuid" do
-          run_service
-          refund = Payment.last
-
-          aggregate_failures do
-            expect(refund.payment_uuid).to be_present
-            expect(refund.payment_uuid).to match(/\A[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\z/i)
-          end
-        end
+        original_payment
       end
 
       context "when validation fails" do
         shared_examples "raises ArgumentError and logs error" do |error_message|
-          it "raises ArgumentError" do
-            expect { run_service }.to raise_error(ArgumentError, /#{error_message}/)
-          end
-
           it "does not create a refund" do
             expect do
 
@@ -80,8 +42,6 @@ module WasteExemptionsEngine
           end
 
           it "logs the error" do
-            allow(Rails.logger).to receive(:error)
-
             aggregate_failures do
               expect { run_service }.to raise_error(ArgumentError)
 
@@ -90,8 +50,6 @@ module WasteExemptionsEngine
           end
 
           it "notifies Airbrake" do
-            allow(Airbrake).to receive(:notify)
-
             aggregate_failures do
               expect { run_service }.to raise_error(ArgumentError)
 
@@ -129,15 +87,16 @@ module WasteExemptionsEngine
       end
 
       context "when the original payment is not found" do
+        let(:expected_error) { /Govpay payment not found for govpay_id non_existent_payment/ }
+
         before { govpay_webhook_body["resource_id"] = "non_existent_payment" }
 
         it "raises ArgumentError" do
-          expect { run_service }.to raise_error(ArgumentError, "invalid govpay_id")
+          expect { run_service }.to raise_error(ArgumentError, expected_error)
         end
 
         it "does not create a refund" do
           expect do
-
             run_service
           rescue StandardError
             nil
@@ -145,18 +104,14 @@ module WasteExemptionsEngine
         end
 
         it "logs the error" do
-          allow(Rails.logger).to receive(:error)
-
           aggregate_failures do
-            expect { run_service }.to raise_error(ArgumentError)
+            expect { run_service }.to raise_error(ArgumentError, expected_error)
 
-            expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
+            expect(Rails.logger).to have_received(:error).with(expected_error).at_least(:once)
           end
         end
 
         it "notifies Airbrake" do
-          allow(Airbrake).to receive(:notify)
-
           aggregate_failures do
             expect { run_service }.to raise_error(ArgumentError)
 
@@ -181,14 +136,12 @@ module WasteExemptionsEngine
 
         before { original_payment }
 
-        it { expect { run_service }.to raise_error(ArgumentError) }
-
         it "logs the error" do
-          allow(Rails.logger).to receive(:error)
           aggregate_failures do
             expect { run_service }.to raise_error(ArgumentError)
-            expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id #{govpay_payment_id}")
-            expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
+            expect(Rails.logger).to have_received(:error)
+              .with(/Govpay payment not found for govpay_id #{govpay_payment_id}/)
+              .at_least(:once)
           end
         end
       end
@@ -206,22 +159,20 @@ module WasteExemptionsEngine
                    order: order)
           end
 
-          it { expect { run_service }.to raise_error(ArgumentError) }
-
           it "logs the error" do
-            allow(Rails.logger).to receive(:error)
             aggregate_failures do
               expect { run_service }.to raise_error(ArgumentError)
-              expect(Rails.logger).to have_received(:error).with("Govpay payment not found for govpay_id #{govpay_payment_id}")
-              expect(Rails.logger).to have_received(:error).with(/ArgumentError.*invalid govpay_id/)
+              expect(Rails.logger).to have_received(:error)
+                .with(/Payment status is not success/)
+                .at_least(:once)
             end
           end
         end
 
         context "when the payment is successful and refund amount is valid" do
-          before do
-            original_payment # ensure payment exists
-          end
+          let(:webhook_refunded_amount) { govpay_webhook_body.dig("resource", "refund_summary", "amount_submitted") }
+
+          before { original_payment }
 
           it "returns refund" do
             expect(run_service).to eq(Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND).last)
@@ -236,13 +187,21 @@ module WasteExemptionsEngine
             refund = Payment.last
 
             aggregate_failures do
+              expect(refund.refunded_payment_govpay_id).to eq govpay_payment_id
               expect(refund.payment_type).to eq(Payment::PAYMENT_TYPE_REFUND)
-              expect(refund.payment_amount).to eq(-47_600)
               expect(refund.payment_status).to eq(Payment::PAYMENT_STATUS_SUCCESS)
               expect(refund.account_id).to eq(account.id)
               expect(refund.reference).to eq("WEX123456/REFUND")
+              expect(refund.govpay_id).to be_nil
               expect(refund.associated_payment).to eq(original_payment)
             end
+          end
+
+          it "uses the correct refunded amount" do
+            run_service
+            refund = Payment.last
+
+            expect(refund.payment_amount).to eq(0 - webhook_refunded_amount)
           end
 
           it "creates a refund with a payment_uuid" do
@@ -256,16 +215,12 @@ module WasteExemptionsEngine
           end
 
           it "does not log any errors" do
-            allow(Rails.logger).to receive(:error)
-
             run_service
 
             expect(Rails.logger).not_to have_received(:error)
           end
 
           it "does not notify Airbrake" do
-            allow(Airbrake).to receive(:notify)
-
             run_service
 
             expect(Airbrake).not_to have_received(:notify)
@@ -324,8 +279,6 @@ module WasteExemptionsEngine
         end
 
         it "logs the error" do
-          allow(Rails.logger).to receive(:error)
-
           aggregate_failures do
             expect { run_service }.to raise_error(ActiveRecord::RecordInvalid)
 
@@ -334,8 +287,6 @@ module WasteExemptionsEngine
         end
 
         it "notifies Airbrake" do
-          allow(Airbrake).to receive(:notify)
-
           aggregate_failures do
             expect { run_service }.to raise_error(ActiveRecord::RecordInvalid)
 
@@ -358,8 +309,6 @@ module WasteExemptionsEngine
         end
 
         it "logs the error" do
-          allow(Rails.logger).to receive(:error)
-
           aggregate_failures do
             expect { run_service }.to raise_error(StandardError)
 
@@ -368,8 +317,6 @@ module WasteExemptionsEngine
         end
 
         it "notifies Airbrake" do
-          allow(Airbrake).to receive(:notify)
-
           aggregate_failures do
             expect { run_service }.to raise_error(StandardError)
 

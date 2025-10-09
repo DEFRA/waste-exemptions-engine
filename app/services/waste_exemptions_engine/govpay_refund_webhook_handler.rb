@@ -2,31 +2,29 @@
 
 module WasteExemptionsEngine
   class GovpayRefundWebhookHandler < BaseService
-    attr_accessor :govpay_payment_id
+    attr_accessor :govpay_payment_id, :webhook_body, :refund
 
     def run(govpay_webhook_body)
       @webhook_body = govpay_webhook_body&.deep_symbolize_keys
 
       @govpay_payment_id = webhook_body[:resource_id]
 
-      find_refund
-      previous_status = @refund&.payment_status
+      unless refundable
+        Rails.logger.warn "Webhook refund amount #{webhook_refund_amount} exceeds maximum " \
+                          "refundable amount #{max_refundable} on payment #{payment.govpay_id}"
+        return
+      end
 
-      result = DefraRubyGovpay::WebhookRefundService.run(
-        webhook_body, previous_status: previous_status
-      )
+      result = DefraRubyGovpay::WebhookRefundService.run(webhook_body)
 
-      refund_govpay_id, payment_govpay_id, status = result.values_at(:id, :payment_id, :status)
+      create_refund
 
-      find_registration
-      update_refund_status_and_reference(status)
-
-      Rails.logger.info "Updated status from #{previous_status} to #{status} for refund #{refund_govpay_id}, " \
-                        "payment #{payment_govpay_id}, registration #{@registration.reference}"
+      Rails.logger.info "Recorded refund #{refund.id}, amount #{webhook_body[:resource][:amount]} for " \
+                        "payment #{govpay_payment_id}, registration #{registration.reference}"
 
       result
     rescue StandardError => e
-      msg = "Error processing webhook for refund #{refund_govpay_id}, payment #{payment_govpay_id}, status #{status}"
+      msg = "Error processing refund webhook for payment #{govpay_payment_id}"
       Rails.logger.error "#{msg}: #{e}"
       Airbrake.notify msg, e
       raise
@@ -34,49 +32,47 @@ module WasteExemptionsEngine
 
     private
 
-    attr_accessor :webhook_body, :refund, :registration
-
-    def find_refund
-      payment = Payment.find_by(govpay_id: govpay_payment_id)
-      handle_payment_not_found unless payment.present?
-
-      @refund = Payment.find_by(
-        payment_type: Payment::PAYMENT_TYPE_REFUND,
-        refunded_payment_govpay_id: govpay_payment_id
-      )
-      handle_refund_not_found unless @refund.present?
-      @refund
+    def payment
+      @payment ||= Payment.find_by(
+        payment_type: Payment::PAYMENT_TYPE_GOVPAY,
+        payment_status: Payment::PAYMENT_STATUS_SUCCESS,
+        govpay_id: govpay_payment_id
+      ) || handle_payment_not_found
     end
 
-    def update_refund_status_and_reference(status)
-      @refund.update(payment_status: status, reference: @refund.payment_uuid)
-    end
-
-    def find_registration
-      @registration = @refund&.account&.registration
-      handle_registration_not_found unless @registration.present?
-      @registration
+    def registration
+      @registration ||= payment&.account&.registration
     end
 
     def handle_payment_not_found
-      Rails.logger.error "Govpay payment not found for govpay_id #{govpay_payment_id}"
-      Airbrake.notify "Govpay payment not found for govpay_id #{govpay_payment_id}"
-      raise ArgumentError, "payment not found"
+      message = "Govpay payment not found for govpay_id #{govpay_payment_id}"
+      Rails.logger.error message
+      Airbrake.notify message
+      raise ArgumentError, message
     end
 
-    def handle_refund_not_found
-      # create refund record if it doesn't exist
+    def webhook_refund_amount
+      @webhook_refund_amount ||= webhook_body.dig(:resource, :refund_summary, :amount_submitted)
+    end
+
+    def max_refundable
+      @max_refundable ||= payment.payment_amount -
+                          Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND,
+                                        refunded_payment_govpay_id: payment.govpay_id)
+                                 .sum(&:payment_amount)
+    end
+
+    def refundable
+      @refundable ||= webhook_refund_amount < max_refundable
+    end
+
+    def create_refund
       @refund = GovpayWebhookRefundCreator.run(govpay_webhook_body: webhook_body)
-    rescue StandardError
-      Rails.logger.error "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
-      Airbrake.notify "Govpay refund not found for govpay_id #{webhook_body[:govpay_id]}"
-      raise ArgumentError, "refund not found"
-    end
-
-    def handle_registration_not_found
-      Rails.logger.error "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
-      Airbrake.notify "Govpay registration not found for govpay_id #{webhook_body[:govpay_id]}"
-      raise ArgumentError, "registration not found"
+    rescue StandardError => e
+      message = "Error creating refund for payment with govpay_id #{webhook_body[:resource_id]}: #{e}"
+      Rails.logger.error message
+      Airbrake.notify message
+      raise
     end
   end
 end
