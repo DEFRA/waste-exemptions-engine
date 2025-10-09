@@ -24,6 +24,8 @@ gem "rgeo-geojson"
 
 group :development do
   gem "github_changelog_generator"
+  gem "rubocop-factory_bot"
+  gem "rubocop-rake"
   gem "rubocop-rspec"
   gem "rubocop-rspec_rails"
   gem "spring"

@@ -59,7 +59,7 @@ Naming/PredicatePrefix:
 Naming/VariableNumber:
   Enabled: false
 
-# Disable predicate method naming rule
+# Bad cop: Not all methods which return a boolean are predicates
 Naming/PredicateMethod:
   Enabled: false
 
