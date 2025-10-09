@@ -21,5 +21,9 @@ module WasteExemptionsEngine
       count = site_addresses.count
       count.zero? ? 1 : count
     end
+
+    def multisite?
+      is_multisite_registration == true && WasteExemptionsEngine::FeatureToggle.active?(:enable_multisite)
+    end
   end
 end

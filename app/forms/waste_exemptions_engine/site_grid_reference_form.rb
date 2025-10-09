@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     def initialize(transient_registration)
       super
       # Pre-populate from existing site_address for single-site context
-      return unless site_address.present? && !transient_registration.multisite_registration?
+      return unless site_address.present? && !transient_registration.multisite?
 
       self.grid_reference = site_address.grid_reference
       self.description = site_address.description
@@ -24,7 +24,7 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      if transient_registration.multisite_registration?
+      if transient_registration.multisite?
         transient_registration.transient_addresses.create!(
           grid_reference: grid_reference,
           description: description,

@@ -1,6 +1,6 @@
 <%= render("waste_exemptions_engine/shared/back", token: @site_address_lookup_form.token) %>
 
-<% is_multisite = @site_address_lookup_form.transient_registration.multisite_registration? %>
+<% is_multisite = @site_address_lookup_form.transient_registration.multisite? %>
 <% i18n_scope = "waste_exemptions_engine.site_address_lookup_forms.new" %>
 <% field_prefix = is_multisite ? "multisite-site-address-lookup-site" : "site-address-lookup-site" %>
 

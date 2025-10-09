@@ -1,6 +1,6 @@
 <%= render("waste_exemptions_engine/shared/back", token: @site_grid_reference_form.token) %>
 
-<% is_multisite = @site_grid_reference_form.transient_registration.multisite_registration? %>
+<% is_multisite = @site_grid_reference_form.transient_registration.multisite? %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">

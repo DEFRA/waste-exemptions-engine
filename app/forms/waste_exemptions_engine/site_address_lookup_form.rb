@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
       return false unless valid? && address_attributes.present?
 
-      if transient_registration.multisite_registration?
+      if transient_registration.multisite?
         transient_registration.transient_addresses.create!(
           address_attributes.merge(
             address_type: "site",

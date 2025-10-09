@@ -176,6 +176,62 @@ module WasteExemptionsEngine
       it { expect(build(:back_office_edit_registration).new?).to be false }
     end
 
+    describe "#multisite?" do
+      let(:transient_registration) { build(:new_registration) }
+
+      context "when is_multisite_registration is false" do
+        before do
+          transient_registration.is_multisite_registration = false
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when is_multisite_registration is true but feature toggle is disabled" do
+        before do
+          transient_registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when is_multisite_registration is true and feature toggle is enabled" do
+        before do
+          transient_registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns true" do
+          expect(transient_registration.multisite?).to be true
+        end
+      end
+
+      context "when is_multisite_registration is nil" do
+        before do
+          transient_registration.is_multisite_registration = nil
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when transient_registration is a non-charged registration" do
+        let(:transient_registration) { build(:new_registration) }
+
+        it "returns false (base implementation)" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+    end
+
     describe "associations" do
       subject(:transient_registration) { create(:new_registration, :complete) }
 

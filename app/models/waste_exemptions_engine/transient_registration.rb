@@ -142,7 +142,7 @@ module WasteExemptionsEngine
       is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
     end
 
-    def multisite_registration?
+    def multisite?
       false
     end
 
