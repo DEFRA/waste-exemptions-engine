@@ -360,11 +360,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                     to: "check_your_answers_forms#edit_site_grid_reference",
                     as: "site-grid-reference",
                     on: :collection
-
-                get "multisite-exemptions-summary",
-                    to: "check_your_answers_forms#edit_multisite_exemptions_summary",
-                    as: "multisite-exemptions-summary",
-                    on: :collection
               end
 
     resources :declaration_forms,
