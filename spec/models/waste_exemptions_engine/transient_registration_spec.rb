@@ -207,8 +207,8 @@ module WasteExemptionsEngine
           allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
         end
 
-        it "returns true" do
-          expect(transient_registration.multisite?).to be true
+        it "returns false because NewRegistration is not charged" do
+          expect(transient_registration.multisite?).to be false
         end
       end
 
