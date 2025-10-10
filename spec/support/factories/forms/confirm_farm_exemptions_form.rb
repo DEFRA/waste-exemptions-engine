@@ -2,6 +2,10 @@
 
 FactoryBot.define do
   factory :confirm_farm_exemptions_form, class: "WasteExemptionsEngine::ConfirmFarmExemptionsForm" do
+    trait :charged do
+      # no additional setup needed - factory already uses charged registration
+    end
+
     initialize_with { new(create(:new_charged_registration, workflow_state: "confirm_farm_exemptions_form")) }
   end
 

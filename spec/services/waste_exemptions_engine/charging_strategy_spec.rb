@@ -87,7 +87,7 @@ module WasteExemptionsEngine
       let(:multisite_order) do
         create(:order,
                exemptions: exemptions,
-               order_owner: create(:new_charged_registration))
+               order_owner: create(:new_charged_registration, is_multisite_registration: true))
       end
 
       before do

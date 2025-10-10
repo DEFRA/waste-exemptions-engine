@@ -1,0 +1,37 @@
+<%= render("waste_exemptions_engine/shared/back", token: @is_multisite_registration_form.token) %>
+
+<% content_for :page_title, t(".heading", count: @is_multisite_registration_form.minimum_sites_required) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@is_multisite_registration_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading", count: @is_multisite_registration_form.minimum_sites_required) %></h1>
+      
+      <div class="govuk-hint">
+        <%= t(".hint", count: @is_multisite_registration_form.minimum_sites_required) %>
+      </div>
+
+      <%= f.govuk_collection_radio_buttons :is_multisite_registration,
+        [
+          OpenStruct.new(
+            id: false,
+            name: t(".no")
+          ),
+          OpenStruct.new(
+            id: true,
+            name: t(".yes", count: @is_multisite_registration_form.minimum_sites_required)
+          )
+        ],
+        :id,
+        :name,
+        legend: {
+          text: t(".heading", count: @is_multisite_registration_form.minimum_sites_required),
+          hidden: true
+        } %>
+
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<%= render("waste_exemptions_engine/shared/back", token: @sites_form.token) %>
+
+<% content_for :page_title, t(".heading") %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+    <p class="govuk-body"><%= t(".bookmark_hint") %>
+      <br>
+      <%= t(".save_duration") %>
+    </p>
+    <p class="govuk-body"><%= t(".continue_instruction") %></p>
+
+    <% site_addresses = @sites_form.site_addresses(@page) %>
+    <% if site_addresses.any? %>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header"><%= t(".location_header") %></th>
+            <th scope="col" class="govuk-table__header"><%= t(".site_details_header") %></th>
+            <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden"><%= t(".actions_header") %></span></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <% site_addresses.each_with_index do |site_address, index| %>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <%= (@page.to_i - 1) * @sites_form.sites_per_page + index + 1 %>
+              </td>
+              <td class="govuk-table__cell">
+                <% if site_address.postcode.present? %>
+                  <%= site_address.postcode %>
+                <% else %>
+                  <%= site_address.grid_reference %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell">
+                <% if site_address.postcode.present? %>
+                  <%= displayable_address(site_address).reject { |line| line == site_address.postcode }.join(", ") %>
+                <% else %>
+                  <%= site_address.description %>
+                <% end %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= link_to t(".remove_link"), "#", class: "govuk-link" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= paginate site_addresses,
+          param_name: :page,
+          views_prefix: 'waste_exemptions_engine' %>
+    <% end %>
+
+    <p class="govuk-body">
+      <%= link_to t(".add_another_site"), new_site_grid_reference_form_path(@sites_form.token), class: "govuk-link" %>
+    </p>
+
+    <%= form_for(@sites_form, url: sites_forms_path(@sites_form.token), method: :post, local: true) do |f| %>
+
+      <div class="govuk-button-group">
+        <% if @sites_form.can_continue? %>
+          <%= f.submit t(".continue"), class: "govuk-button", data: { module: "govuk-button" } %>
+        <% else %>
+          <%= f.submit t(".continue"),
+              class: "govuk-button govuk-button--disabled",
+              disabled: true,
+              "aria-disabled": "true",
+              data: { module: "govuk-button" } %>
+          <p class="govuk-body govuk-!-margin-top-2">
+            <%= t(".minimum_sites_required", count: @sites_form.minimum_sites_required - @sites_form.total_sites_count) %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

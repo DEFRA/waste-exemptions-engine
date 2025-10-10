@@ -1,0 +1,9 @@
+<li class="govuk-pagination__item<%= ' govuk-pagination__item--current' if page.current? %>">
+  <% if page.current? %>
+    <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page <%= page %>" aria-current="page">
+      <%= page %>
+    </a>
+  <% else %>
+    <%= link_to page, url, remote: remote, class: "govuk-link govuk-pagination__link", "aria-label": "Page #{page}" %>
+  <% end %>
+</li>

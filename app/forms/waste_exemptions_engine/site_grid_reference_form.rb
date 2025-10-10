@@ -2,16 +2,42 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
+    include CanClearAddressFinderError
+
     delegate :site_address, to: :transient_registration
-    delegate :grid_reference, :description, to: :site_address, allow_nil: true
+
+    attr_accessor :grid_reference, :description
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
 
-    def submit(params)
-      params.merge!(address_type: :site, mode: :auto)
+    def initialize(transient_registration)
+      super
+      # Pre-populate from existing site_address for single-site context
+      return unless site_address.present? && !transient_registration.multisite?
 
-      super(site_address_attributes: params)
+      self.grid_reference = site_address.grid_reference
+      self.description = site_address.description
+    end
+
+    def submit(params)
+      self.grid_reference = params[:grid_reference]
+      self.description = params[:description]
+
+      return false unless valid?
+
+      if transient_registration.multisite?
+        transient_registration.transient_addresses.create!(
+          grid_reference: grid_reference,
+          description: description,
+          address_type: "site",
+          mode: "auto"
+        )
+        true
+      else
+        params.merge!(address_type: :site, mode: :auto)
+        super(site_address_attributes: params)
+      end
     end
   end
 end

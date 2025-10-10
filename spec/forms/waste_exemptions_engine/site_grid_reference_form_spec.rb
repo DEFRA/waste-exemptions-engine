@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe SiteGridReferenceForm, type: :model do
     subject(:form) { build(:site_grid_reference_form) }
 
-    describe "validationsvalidation" do
+    describe "validations" do
       subject(:validators) { form._validators }
 
       it "validates the site grid reference using the GridReferenceValidator class" do
@@ -36,6 +36,24 @@ module WasteExemptionsEngine
           { grid_reference: "AA1234567890", description: Helpers::TextGenerator.random_string(501) },
           { grid_reference: "", description: "" }
         ]
+      end
+    end
+
+    describe "#initialize" do
+      context "when address_finder_error is set on the transient registration" do
+        let(:transient_registration) { create(:new_charged_registration, workflow_state: "site_grid_reference_form") }
+
+        before do
+          transient_registration.update(address_finder_error: true)
+        end
+
+        it "clears the address_finder_error flag" do
+          expect do
+            described_class.new(transient_registration)
+            transient_registration.reload
+          end.to change(transient_registration, :address_finder_error)
+            .from(true).to(nil)
+        end
       end
     end
 

@@ -22,6 +22,10 @@ module WasteExemptionsEngine
     end
 
     def bucket_charge_amount
+      base_bucket_charge_amount * site_count
+    end
+
+    def base_bucket_charge_amount
       order_bucket_exemptions = order.exemptions & bucket.exemptions
 
       return 0 if order_bucket_exemptions.empty?
@@ -32,7 +36,7 @@ module WasteExemptionsEngine
         ex.band.initial_compliance_charge.charge_amount
       end
 
-      [order_bucket_compliance_charge, default_bucket_charge_amount].min * site_count
+      [order_bucket_compliance_charge, default_bucket_charge_amount].min
     end
 
     private
