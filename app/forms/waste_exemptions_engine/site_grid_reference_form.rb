@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
+    include CanClearAddressFinderError
+
     delegate :site_address, to: :transient_registration
 
     attr_accessor :grid_reference, :description
