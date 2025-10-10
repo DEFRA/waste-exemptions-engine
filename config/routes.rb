@@ -182,12 +182,12 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "is-multisite-registration",
               path_names: { new: "" }
 
-    resources :multiple_sites_forms,
+    resources :sites_forms,
               only: %i[new create],
-              path: "multiple-sites",
+              path: "sites",
               path_names: { new: "" } do
                 delete "remove_site/:site_id",
-                       to: "multiple_sites_forms#remove_site",
+                       to: "sites_forms#remove_site",
                        as: "remove_site",
                        on: :collection
               end

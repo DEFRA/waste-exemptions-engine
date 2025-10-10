@@ -3,12 +3,12 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe MultipleSitesForm, type: :model do
+  RSpec.describe SitesForm, type: :model do
     before do
       allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
     end
 
-    subject(:form) { build(:multiple_sites_form) }
+    subject(:form) { build(:sites_form) }
 
     describe "#site_addresses" do
       let(:transient_registration) { form.transient_registration }

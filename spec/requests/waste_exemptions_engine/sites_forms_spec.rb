@@ -3,19 +3,19 @@
 require "rails_helper"
 
 module WasteExemptionsEngine
-  RSpec.describe "Multiple Sites Forms" do
+  RSpec.describe "Sites Forms" do
     before do
       allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
     end
 
-    let(:form) { build(:multiple_sites_form) }
+    let(:form) { build(:sites_form) }
 
-    describe "GET multiple_sites_form" do
-      let(:request_path) { "/waste_exemptions_engine/#{form.token}/multiple-sites" }
+    describe "GET sites_form" do
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/sites" }
 
       it "renders the appropriate template", :vcr do
         get request_path
-        expect(response).to render_template("waste_exemptions_engine/multiple_sites_forms/new")
+        expect(response).to render_template("waste_exemptions_engine/sites_forms/new")
       end
 
       it "returns a 200 status code", :vcr do
@@ -36,9 +36,9 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "POST multiple_sites_form" do
-      let(:request_path) { "/waste_exemptions_engine/#{form.token}/multiple-sites" }
-      let(:request_body) { { multiple_sites_form: { token: form.token } } }
+    describe "POST sites_form" do
+      let(:request_path) { "/waste_exemptions_engine/#{form.token}/sites" }
+      let(:request_body) { { sites_form: { token: form.token } } }
 
       status_code = WasteExemptionsEngine::ApplicationController::SUCCESSFUL_REDIRECTION_CODE
 
@@ -60,14 +60,14 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when on Multiple Sites page during Check Your Answers flow - new registration" do
-      let(:multiple_sites_form) { build(:check_your_answers_multiple_sites_form) }
+    context "when on Sites page during Check Your Answers flow - new registration" do
+      let(:sites_form) { build(:check_your_answers_sites_form) }
 
       it "continues through multisite workflow when submitted" do
-        post "/waste_exemptions_engine/#{multiple_sites_form.token}/multiple-sites",
-             params: { multiple_sites_form: { token: multiple_sites_form.token } }
+        post "/waste_exemptions_engine/#{sites_form.token}/sites",
+             params: { sites_form: { token: sites_form.token } }
 
-        expect(response).to redirect_to(exemptions_summary_forms_path(multiple_sites_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(sites_form.token))
       end
     end
   end

@@ -62,7 +62,7 @@ module WasteExemptionsEngine
         state :is_a_farmer_form
         # Multisite questions
         state :is_multisite_registration_form
-        state :multiple_sites_form
+        state :sites_form
 
         state :site_grid_reference_form
         state :check_site_address_form
@@ -265,13 +265,13 @@ module WasteExemptionsEngine
                       to: :site_grid_reference_form,
                       if: :multisite?
 
-          # Site Grid Reference -> Multiple Sites (if multisite)
+          # Site Grid Reference -> Sites (if multisite)
           transitions from: :site_grid_reference_form,
-                      to: :multiple_sites_form,
+                      to: :sites_form,
                       if: :multisite?,
                       unless: :skip_to_manual_address?
 
-          transitions from: :multiple_sites_form,
+          transitions from: :sites_form,
                       to: :exemptions_summary_form
 
           # Exemptions Summary -> Operator Postcode (multisite)
@@ -308,9 +308,9 @@ module WasteExemptionsEngine
                       to: :site_address_lookup_form,
                       if: :multisite?
 
-          # Site Address Lookup -> Multiple Sites (if multisite, to add the site)
+          # Site Address Lookup -> Sites (if multisite, to add the site)
           transitions from: :site_address_lookup_form,
-                      to: :multiple_sites_form,
+                      to: :sites_form,
                       if: :multisite?
 
           # SINGLE-SITE transitions

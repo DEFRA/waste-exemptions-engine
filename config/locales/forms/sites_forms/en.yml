@@ -1,6 +1,6 @@
 en:
   waste_exemptions_engine:
-    multiple_sites_forms:
+    sites_forms:
       new:
         title: &title "Your waste activity sites"
         heading: *title

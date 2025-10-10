@@ -1,4 +1,4 @@
-<%= render("waste_exemptions_engine/shared/back", token: @multiple_sites_form.token) %>
+<%= render("waste_exemptions_engine/shared/back", token: @sites_form.token) %>
 
 <% content_for :page_title, t(".heading") %>
 
@@ -12,7 +12,7 @@
     </p>
     <p class="govuk-body"><%= t(".continue_instruction") %></p>
 
-    <% site_addresses = @multiple_sites_form.site_addresses(@page) %>
+    <% site_addresses = @sites_form.site_addresses(@page) %>
     <% if site_addresses.any? %>
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -27,7 +27,7 @@
           <% site_addresses.each_with_index do |site_address, index| %>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">
-                <%= (@page.to_i - 1) * @multiple_sites_form.sites_per_page + index + 1 %>
+                <%= (@page.to_i - 1) * @sites_form.sites_per_page + index + 1 %>
               </td>
               <td class="govuk-table__cell">
                 <% if site_address.postcode.present? %>
@@ -57,13 +57,13 @@
     <% end %>
 
     <p class="govuk-body">
-      <%= link_to t(".add_another_site"), new_site_grid_reference_form_path(@multiple_sites_form.token), class: "govuk-link" %>
+      <%= link_to t(".add_another_site"), new_site_grid_reference_form_path(@sites_form.token), class: "govuk-link" %>
     </p>
 
-    <%= form_for(@multiple_sites_form, url: multiple_sites_forms_path(@multiple_sites_form.token), method: :post, local: true) do |f| %>
+    <%= form_for(@sites_form, url: sites_forms_path(@sites_form.token), method: :post, local: true) do |f| %>
 
       <div class="govuk-button-group">
-        <% if @multiple_sites_form.can_continue? %>
+        <% if @sites_form.can_continue? %>
           <%= f.submit t(".continue"), class: "govuk-button", data: { module: "govuk-button" } %>
         <% else %>
           <%= f.submit t(".continue"),
@@ -72,7 +72,7 @@
               "aria-disabled": "true",
               data: { module: "govuk-button" } %>
           <p class="govuk-body govuk-!-margin-top-2">
-            <%= t(".minimum_sites_required", count: @multiple_sites_form.minimum_sites_required - @multiple_sites_form.total_sites_count) %>
+            <%= t(".minimum_sites_required", count: @sites_form.minimum_sites_required - @sites_form.total_sites_count) %>
           </p>
         <% end %>
       </div>
