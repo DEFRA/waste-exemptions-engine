@@ -177,6 +177,21 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "contact-address-manual",
               path_names: { new: "" }
 
+    resources :is_multisite_registration_forms,
+              only: %i[new create],
+              path: "is-multisite-registration",
+              path_names: { new: "" }
+
+    resources :sites_forms,
+              only: %i[new create],
+              path: "sites",
+              path_names: { new: "" } do
+                delete "remove_site/:site_id",
+                       to: "sites_forms#remove_site",
+                       as: "remove_site",
+                       on: :collection
+              end
+
     resources :on_a_farm_forms,
               only: %i[new create],
               path: "on-a-farm",

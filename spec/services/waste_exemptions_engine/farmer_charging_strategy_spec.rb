@@ -196,7 +196,7 @@ module WasteExemptionsEngine
       before do
         bucket.exemptions << bucket_exemptions
         multisite_order.bucket = bucket
-        multisite_order.order_owner = create(:new_charged_registration)
+        multisite_order.order_owner = create(:new_charged_registration, is_multisite_registration: true)
         multisite_order.save!
         create_list(:transient_address, site_count, :site_address, transient_registration: multisite_order.order_owner)
       end

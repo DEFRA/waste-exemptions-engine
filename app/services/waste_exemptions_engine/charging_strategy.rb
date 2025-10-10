@@ -47,6 +47,11 @@ module WasteExemptionsEngine
       end
     end
 
+    # Override in subclasses that have bucket charges (e.g., FarmerChargingStrategy)
+    def base_bucket_charge_amount
+      0
+    end
+
     private
 
     # Override this in subclasses to exclude exemptions from charging
@@ -69,8 +74,7 @@ module WasteExemptionsEngine
     end
 
     def site_count
-      count = order.order_owner&.site_count
-      count.nil? || count.zero? ? 1 : count
+      order.order_owner&.site_count || 1
     end
   end
 end

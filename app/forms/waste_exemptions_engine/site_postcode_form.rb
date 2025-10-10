@@ -7,6 +7,11 @@ module WasteExemptionsEngine
     validates :temp_site_postcode, "defra_ruby/validators/postcode": true
     validates :temp_site_postcode, "waste_exemptions_engine/address_lookup": true
 
+    def initialize(transient_registration)
+      super
+      transient_registration.update(temp_site_postcode: nil) if transient_registration.multisite?
+    end
+
     def submit(params)
       params[:temp_site_postcode] = format_postcode(params[:temp_site_postcode])
 
