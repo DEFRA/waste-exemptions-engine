@@ -41,10 +41,24 @@ module WasteExemptionsEngine
       end
 
       describe "#site_count" do
-        it "returns the count of site addresses" do
-          create(:address, address_type: 3, registration: registration)
-          create(:address, address_type: 3, registration: registration)
-          expect(registration.site_count).to eq(3) # includes the one from factory
+        context "when is_multisite_registration is true" do
+          before { registration.update(is_multisite_registration: true) }
+
+          it "returns the count of site addresses" do
+            create(:address, address_type: 3, registration: registration)
+            create(:address, address_type: 3, registration: registration)
+            expect(registration.site_count).to eq(3) # includes the one from factory
+          end
+        end
+
+        context "when is_multisite_registration is false" do
+          before { registration.update(is_multisite_registration: false) }
+
+          it "returns 1 regardless of site addresses count" do
+            create(:address, address_type: 3, registration: registration)
+            create(:address, address_type: 3, registration: registration)
+            expect(registration.site_count).to eq(1)
+          end
         end
       end
 
@@ -99,6 +113,72 @@ module WasteExemptionsEngine
       context "when a referring registration is not present" do
         it "returns false" do
           expect(registration).not_to be_already_renewed
+        end
+      end
+    end
+
+    describe "#multisite?" do
+      let(:registration) { build(:registration) }
+
+      context "when registration is not charged" do
+        before do
+          registration.charged = false
+          registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false" do
+          expect(registration.multisite?).to be false
+        end
+      end
+
+      context "when registration is charged" do
+        before do
+          registration.charged = true
+        end
+
+        context "when is_multisite_registration is false" do
+          before do
+            registration.is_multisite_registration = false
+            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+          end
+
+          it "returns false" do
+            expect(registration.multisite?).to be false
+          end
+        end
+
+        context "when is_multisite_registration is true but feature toggle is disabled" do
+          before do
+            registration.is_multisite_registration = true
+            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
+          end
+
+          it "returns false" do
+            expect(registration.multisite?).to be false
+          end
+        end
+
+        context "when is_multisite_registration is true and feature toggle is enabled" do
+          before do
+            registration.is_multisite_registration = true
+            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+          end
+
+          it "returns true" do
+            expect(registration.multisite?).to be true
+          end
+        end
+
+        context "when is_multisite_registration is nil" do
+          before do
+            registration.is_multisite_registration = nil
+            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+          end
+
+          it "returns false" do
+            expect(registration.multisite?).to be false
+          end
         end
       end
     end

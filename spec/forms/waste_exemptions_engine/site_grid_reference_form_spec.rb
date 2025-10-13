@@ -39,6 +39,24 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#initialize" do
+      context "when address_finder_error is set on the transient registration" do
+        let(:transient_registration) { create(:new_charged_registration, workflow_state: "site_grid_reference_form") }
+
+        before do
+          transient_registration.update(address_finder_error: true)
+        end
+
+        it "clears the address_finder_error flag" do
+          expect do
+            described_class.new(transient_registration)
+            transient_registration.reload
+          end.to change(transient_registration, :address_finder_error)
+            .from(true).to(nil)
+        end
+      end
+    end
+
     describe "#submit" do
       context "when the form is valid" do
         it "updates the transient registration with the site grid reference and description" do

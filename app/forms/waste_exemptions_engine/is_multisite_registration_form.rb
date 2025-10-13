@@ -5,5 +5,9 @@ module WasteExemptionsEngine
     delegate :is_multisite_registration, to: :transient_registration
 
     validates :is_multisite_registration, "defra_ruby/validators/true_false": true
+
+    def minimum_sites_required
+      WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_required
+    end
   end
 end

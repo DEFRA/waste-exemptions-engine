@@ -55,10 +55,24 @@ module WasteExemptionsEngine
     describe "#site_count" do
       let(:transient_registration) { create(:new_registration, :with_all_addresses) }
 
-      it "returns the count of site addresses" do
-        create(:transient_address, :site_address, transient_registration: transient_registration)
-        create(:transient_address, :site_address, transient_registration: transient_registration)
-        expect(transient_registration.site_count).to eq(3) # includes the one from factory
+      context "when is_multisite_registration is true" do
+        before { transient_registration.update(is_multisite_registration: true) }
+
+        it "returns the count of site addresses" do
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          expect(transient_registration.site_count).to eq(3) # includes the one from factory
+        end
+      end
+
+      context "when is_multisite_registration is false" do
+        before { transient_registration.update(is_multisite_registration: false) }
+
+        it "returns 1 regardless of site addresses count" do
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          create(:transient_address, :site_address, transient_registration: transient_registration)
+          expect(transient_registration.site_count).to eq(1)
+        end
       end
     end
 
@@ -160,6 +174,62 @@ module WasteExemptionsEngine
       it { expect(build(:renewing_registration).new?).to be false }
       it { expect(build(:front_office_edit_registration).new?).to be false }
       it { expect(build(:back_office_edit_registration).new?).to be false }
+    end
+
+    describe "#multisite?" do
+      let(:transient_registration) { build(:new_registration) }
+
+      context "when is_multisite_registration is false" do
+        before do
+          transient_registration.is_multisite_registration = false
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when is_multisite_registration is true but feature toggle is disabled" do
+        before do
+          transient_registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when is_multisite_registration is true and feature toggle is enabled" do
+        before do
+          transient_registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false because NewRegistration is not charged" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when is_multisite_registration is nil" do
+        before do
+          transient_registration.is_multisite_registration = nil
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "returns false" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
+
+      context "when transient_registration is a non-charged registration" do
+        let(:transient_registration) { build(:new_registration) }
+
+        it "returns false (base implementation)" do
+          expect(transient_registration.multisite?).to be false
+        end
+      end
     end
 
     describe "associations" do

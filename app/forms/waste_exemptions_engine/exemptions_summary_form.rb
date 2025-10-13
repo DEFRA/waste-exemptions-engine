@@ -4,14 +4,18 @@ module WasteExemptionsEngine
   class ExemptionsSummaryForm < BaseForm
     delegate :exemptions,
              :compliance_charge,
-             :charge_type,
+             :single_site_compliance_charge,
              :registration_charge,
              :total_charge,
-             :band,
              :farm_exemptions_selected?,
+             :farming_exemptions,
+             :non_farming_exemptions,
+             :farming_exemptions_codes,
+             :farming_exemptions_charge,
+             :farming_exemptions_single_site_charge,
              to: :exemption_costs_presenter
 
-    delegate :farm_affiliated?, to: :transient_registration
+    delegate :farm_affiliated?, :site_count, to: :transient_registration
 
     def order
       @order ||= create_or_update_order
