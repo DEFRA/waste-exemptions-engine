@@ -44,7 +44,17 @@
                 <% end %>
               </td>
               <td class="govuk-table__cell">
-                <%= link_to t(".remove_link"), "#", class: "govuk-link" %>
+                <%= button_to(
+                    remove_site_sites_forms_path(@sites_form.token, site_id: site_address.id),
+                    class: "button-link clear-background",
+                    method: :delete,
+                    params: { page: @page }
+                ) do %>
+                  <%= t(".remove_link") %>
+                  <span class="govuk-visually-hidden">
+                    <%= t(".remove_site_details", site_details: site_address.site_identifier) %>
+                  </span>
+                <% end %>
               </td>
             </tr>
           <% end %>
