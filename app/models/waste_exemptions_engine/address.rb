@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class Address < ApplicationRecord
     include CanBeLocatedByGridReference
+    include HasDisplayableAddress
 
     self.table_name = "addresses"
 

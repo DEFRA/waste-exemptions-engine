@@ -52,10 +52,7 @@
                 ) do %>
                   <%= t(".remove_link") %>
                   <span class="govuk-visually-hidden">
-                    <%= t(".remove_site_details",
-                        site_details: site_address.grid_reference.present? ?
-                          site_address.grid_reference :
-                          [site_address.house_number, site_address.address_line_1, site_address.address_line_2, site_address.town_city, site_address.postcode].compact.join(", ")) %>
+                    <%= t(".remove_site_details", site_details: site_address.site_identifier) %>
                   </span>
                 <% end %>
               </td>
