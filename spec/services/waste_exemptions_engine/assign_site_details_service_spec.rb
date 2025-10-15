@@ -89,6 +89,46 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when it updates site_suffix" do
+        let(:transient_registration) { create(:new_registration) }
+
+        context "when the address is a site address" do
+          let(:address) { build(:transient_address, :site_address, transient_registration: transient_registration, site_suffix: nil) }
+
+          it "calls AssignSiteSuffixService" do
+            allow(AssignSiteSuffixService).to receive(:run)
+
+            described_class.run(address: address)
+
+            expect(AssignSiteSuffixService).to have_received(:run).with(address: address)
+          end
+        end
+
+        context "when the address is not a site address" do
+          let(:address) { build(:transient_address, :operator_address, transient_registration: transient_registration, site_suffix: nil) }
+
+          it "does not call AssignSiteSuffixService" do
+            allow(AssignSiteSuffixService).to receive(:run)
+
+            described_class.run(address: address)
+
+            expect(AssignSiteSuffixService).not_to have_received(:run)
+          end
+        end
+
+        context "when site_suffix is already present" do
+          let(:address) { build(:transient_address, :site_address, transient_registration: transient_registration, site_suffix: "00001") }
+
+          it "does not call AssignSiteSuffixService" do
+            allow(AssignSiteSuffixService).to receive(:run)
+
+            described_class.run(address: address)
+
+            expect(AssignSiteSuffixService).not_to have_received(:run)
+          end
+        end
+      end
     end
   end
 end

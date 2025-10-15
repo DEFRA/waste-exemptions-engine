@@ -12,6 +12,7 @@ module WasteExemptionsEngine
       assign_x_and_y
       assign_grid_reference
       assign_area_from_x_and_y
+      assign_site_suffix
     end
 
     private
@@ -36,6 +37,13 @@ module WasteExemptionsEngine
       return unless valid_coordinates?
 
       address.area = DetermineAreaService.run(easting: x, northing: y)
+    end
+
+    def assign_site_suffix
+      return if address.site_suffix.present?
+      return unless address.site?
+
+      AssignSiteSuffixService.run(address: address)
     end
 
     def x_and_y_are_nil?
