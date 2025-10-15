@@ -361,9 +361,9 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "site-grid-reference",
                     on: :collection
 
-                get "multiple-sites",
-                    to: "check_your_answers_forms#edit_multiple_sites",
-                    as: "multiple-sites",
+                get "sites",
+                    to: "check_your_answers_forms#edit_sites",
+                    as: "sites",
                     on: :collection
               end
 

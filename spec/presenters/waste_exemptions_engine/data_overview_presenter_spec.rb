@@ -238,6 +238,33 @@ module WasteExemptionsEngine
           expect(presenter.registration_rows).to eq(expected_data)
         end
       end
+
+      context "when the registration is multisite" do
+        let(:new_registration) do
+          create(:new_charged_registration,
+                 :complete,
+                 is_multisite_registration: true)
+        end
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+
+          create_list(:transient_address, 3, :site_address, :using_postal_address, transient_registration: new_registration)
+
+          # Replace the grid reference/site address with site details row
+          expected_data[6] = {
+            title: "Site details",
+            value: "Number of sites 4", # 3 created with create_list + 1 site already on the registration
+            change_url: "check-your-answers/sites",
+            change_link_suffix: "Site details"
+          }
+          expected_data.delete_at(7)
+        end
+
+        it "returns the properly-formatted data with site details row" do
+          expect(presenter.registration_rows).to eq(expected_data)
+        end
+      end
     end
   end
 end

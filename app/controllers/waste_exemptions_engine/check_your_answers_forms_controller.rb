@@ -79,8 +79,8 @@ module WasteExemptionsEngine
       transition_to_edit("edit_main_people")
     end
 
-    def edit_multiple_sites
-      transition_to_edit("edit_multiple_sites")
+    def edit_sites
+      transition_to_edit("edit_sites")
     end
 
     private

@@ -278,7 +278,7 @@ module WasteExemptionsEngine
       {
         title: I18n.t("#{reg_i18n_scope}.site_details.title"),
         value: I18n.t("#{reg_i18n_scope}.site_details.value", count: site_count),
-        change_url: "check-your-answers/multiple-sites",
+        change_url: "check-your-answers/sites",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.site_details.change_link_suffix")
       }
     end

@@ -703,7 +703,7 @@ module WasteExemptionsEngine
                       if: %i[check_your_answers_flow? multisite_feature_enabled?]
         end
 
-        event :edit_multiple_sites do
+        event :edit_sites do
           transitions from: :check_your_answers_form,
                       to: :sites_form,
                       if: %i[check_your_answers_flow? multisite_feature_enabled?]
