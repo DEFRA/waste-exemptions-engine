@@ -31,9 +31,11 @@ module WasteExemptionsEngine
           it "creates registration_exemptions linked to the site address" do
             described_class.run(transient_registration: transient_registration, registration: registration)
 
-            expect(registration.registration_exemptions.count).to eq(2)
-            expect(registration.registration_exemptions.first.address).to eq(site_address)
-            expect(registration.registration_exemptions.second.address).to eq(site_address)
+            aggregate_failures do
+              expect(registration.registration_exemptions.count).to eq(2)
+              expect(registration.registration_exemptions.first.address).to eq(site_address)
+              expect(registration.registration_exemptions.second.address).to eq(site_address)
+            end
           end
 
           it "copies the exemption attributes correctly" do
@@ -52,17 +54,19 @@ module WasteExemptionsEngine
           it "creates registration_exemptions without address link" do
             described_class.run(transient_registration: transient_registration, registration: registration)
 
-            expect(registration.registration_exemptions.count).to eq(2)
-            expect(registration.registration_exemptions.first.address).to be_nil
-            expect(registration.registration_exemptions.second.address).to be_nil
+            aggregate_failures do
+              expect(registration.registration_exemptions.count).to eq(2)
+              expect(registration.registration_exemptions.first.address).to be_nil
+              expect(registration.registration_exemptions.second.address).to be_nil
+            end
           end
         end
       end
 
       context "when it is a multisite registration" do
-        let!(:site_address1) { create(:address, :site_address, registration: registration, site_suffix: "00001") }
-        let!(:site_address2) { create(:address, :site_address, registration: registration, site_suffix: "00002") }
-        let!(:site_address3) { create(:address, :site_address, registration: registration, site_suffix: "00003") }
+        let!(:first_site_address) { create(:address, :site_address, registration: registration, site_suffix: "00001") }
+        let!(:second_site_address) { create(:address, :site_address, registration: registration, site_suffix: "00002") }
+        let!(:third_site_address) { create(:address, :site_address, registration: registration, site_suffix: "00003") }
 
         before do
           allow(transient_registration).to receive(:multisite?).and_return(true)
@@ -78,20 +82,22 @@ module WasteExemptionsEngine
         it "links each exemption to the correct site address" do
           described_class.run(transient_registration: transient_registration, registration: registration)
 
-          site1_exemptions = registration.registration_exemptions.select { |re| re.address == site_address1 }
-          site2_exemptions = registration.registration_exemptions.select { |re| re.address == site_address2 }
-          site3_exemptions = registration.registration_exemptions.select { |re| re.address == site_address3 }
+          site1_exemptions = registration.registration_exemptions.select { |re| re.address == first_site_address }
+          site2_exemptions = registration.registration_exemptions.select { |re| re.address == second_site_address }
+          site3_exemptions = registration.registration_exemptions.select { |re| re.address == third_site_address }
 
-          expect(site1_exemptions.count).to eq(2)
-          expect(site2_exemptions.count).to eq(2)
-          expect(site3_exemptions.count).to eq(2)
+          aggregate_failures do
+            expect(site1_exemptions.count).to eq(2)
+            expect(site2_exemptions.count).to eq(2)
+            expect(site3_exemptions.count).to eq(2)
+          end
         end
 
         it "copies the exemption attributes correctly for each site" do
           described_class.run(transient_registration: transient_registration, registration: registration)
 
           # Each site should have both T1 and T2 exemptions
-          [site_address1, site_address2, site_address3].each do |site|
+          [first_site_address, second_site_address, third_site_address].each do |site|
             site_exemptions = registration.registration_exemptions.select { |re| re.address == site }
             exemption_codes = site_exemptions.map { |re| re.exemption.code }
             expect(exemption_codes).to contain_exactly("T1", "T2")
@@ -125,9 +131,11 @@ module WasteExemptionsEngine
 
             registration.site_addresses.each do |site|
               site_exemptions = registration.registration_exemptions.select { |re| re.address == site }
-              expect(site_exemptions.count).to eq(3)
-              exemption_codes = site_exemptions.map { |re| re.exemption.code }
-              expect(exemption_codes).to contain_exactly("T1", "T2", "T3")
+              aggregate_failures do
+                expect(site_exemptions.count).to eq(3)
+                exemption_codes = site_exemptions.map { |re| re.exemption.code }
+                expect(exemption_codes).to contain_exactly("T1", "T2", "T3")
+              end
             end
           end
         end

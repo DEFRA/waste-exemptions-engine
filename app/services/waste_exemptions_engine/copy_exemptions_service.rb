@@ -6,7 +6,7 @@ module WasteExemptionsEngine
       @transient_registration = transient_registration
       @registration = registration
 
-        copy_exemptions
+      copy_exemptions
     end
 
     private
