@@ -23,6 +23,7 @@ module Helpers
       grid_reference
       description
       area
+      site_suffix
     ].freeze
 
     COMMUNICATION_LOG = %i[
