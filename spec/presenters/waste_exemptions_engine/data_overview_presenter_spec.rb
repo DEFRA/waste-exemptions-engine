@@ -217,8 +217,11 @@ module WasteExemptionsEngine
         before do
           new_registration.site_address = create(:transient_address, :site_address, :using_postal_address)
 
-          # Replace the grid reference with postal address instead
-          expected_data[6] = {
+          # Remove grid reference and site description rows as they don't apply to postal addresses
+          expected_data.reject! { |row| ["Grid reference", "Site description"].include?(row[:title]) }
+
+          # Add site address row for postal addresses
+          expected_data << {
             title: "Site address",
             value: [
               new_registration.site_address.organisation,
@@ -231,10 +234,38 @@ module WasteExemptionsEngine
             change_link_suffix: "Site address",
             change_url: "check-your-answers/check-site-address"
           }
-          expected_data.delete_at(7)
         end
 
         it "returns the properly-formatted data" do
+          expect(presenter.registration_rows).to eq(expected_data)
+        end
+      end
+
+      context "when the registration is multisite" do
+        let(:new_registration) do
+          create(:new_charged_registration,
+                 :complete,
+                 is_multisite_registration: true)
+        end
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+
+          create_list(:transient_address, 3, :site_address, :using_postal_address, transient_registration: new_registration)
+
+          # Remove grid reference and site description rows as they don't apply to multisite
+          expected_data.reject! { |row| ["Grid reference", "Site description"].include?(row[:title]) }
+
+          # Add site details row for multisite registrations
+          expected_data << {
+            title: "Site details",
+            value: "Number of sites 4", # 3 created with create_list + 1 site already on the registration
+            change_url: "check-your-answers/sites",
+            change_link_suffix: "Site details"
+          }
+        end
+
+        it "returns the properly-formatted data with site details row" do
           expect(presenter.registration_rows).to eq(expected_data)
         end
       end
