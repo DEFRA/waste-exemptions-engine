@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     self.table_name = "transient_addresses"
 
     include CanBeLocatedByGridReference
+    include HasDisplayableAddress
 
     belongs_to :transient_registration
 

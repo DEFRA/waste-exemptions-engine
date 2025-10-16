@@ -119,5 +119,136 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#displayable_address_lines" do
+      subject(:address) { build(:transient_address, attributes) }
+
+      context "when all address fields are present" do
+        let(:attributes) do
+          {
+            organisation: "Acme Ltd",
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            locality: "Clifton",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns all address lines" do
+          expect(address.displayable_address_lines).to eq(
+            ["Acme Ltd", "Unit 5", "123 High Street", "Clifton", "Bristol", "BS1 5AH"]
+          )
+        end
+      end
+
+      context "when some address fields are blank" do
+        let(:attributes) do
+          {
+            organisation: nil,
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            locality: "",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns only non-blank address lines" do
+          expect(address.displayable_address_lines).to eq(
+            ["Unit 5", "123 High Street", "Bristol", "BS1 5AH"]
+          )
+        end
+      end
+
+      context "when all address fields are blank" do
+        let(:attributes) do
+          {
+            organisation: nil,
+            premises: "",
+            street_address: nil,
+            locality: "",
+            city: nil,
+            postcode: ""
+          }
+        end
+
+        it "returns an empty array" do
+          expect(address.displayable_address_lines).to eq([])
+        end
+      end
+    end
+
+    describe "#site_identifier" do
+      subject(:address) { build(:transient_address, attributes) }
+
+      context "when grid reference is present" do
+        let(:attributes) do
+          {
+            grid_reference: "ST 58337 72855",
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns the grid reference" do
+          expect(address.site_identifier).to eq("ST 58337 72855")
+        end
+      end
+
+      context "when grid reference is blank and address is present" do
+        let(:attributes) do
+          {
+            grid_reference: "",
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns the formatted address" do
+          expect(address.site_identifier).to eq("Unit 5, 123 High Street, Bristol, BS1 5AH")
+        end
+      end
+
+      context "when grid reference is nil and address is present" do
+        let(:attributes) do
+          {
+            grid_reference: nil,
+            organisation: "Acme Ltd",
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            locality: "Clifton",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns the formatted address with all fields" do
+          expect(address.site_identifier).to eq("Acme Ltd, Unit 5, 123 High Street, Clifton, Bristol, BS1 5AH")
+        end
+      end
+
+      context "when grid reference is blank and some address fields are blank" do
+        let(:attributes) do
+          {
+            grid_reference: nil,
+            organisation: nil,
+            premises: "Unit 5",
+            street_address: "123 High Street",
+            locality: "",
+            city: "Bristol",
+            postcode: "BS1 5AH"
+          }
+        end
+
+        it "returns the formatted address excluding blank fields" do
+          expect(address.site_identifier).to eq("Unit 5, 123 High Street, Bristol, BS1 5AH")
+        end
+      end
+    end
   end
 end
