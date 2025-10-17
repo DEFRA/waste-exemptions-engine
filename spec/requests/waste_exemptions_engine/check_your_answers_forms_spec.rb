@@ -147,6 +147,38 @@ module WasteExemptionsEngine
       describe "GET /check-your-answers/site-grid-reference" do
         it_behaves_like "a valid transition", :site_grid_reference_check_your_answers_forms_path, :new_site_grid_reference_form_path
       end
+
+      describe "GET /check-your-answers/sites" do
+        let(:form) do
+          build(:check_your_answers_form,
+                transient_registration: create(:new_charged_registration,
+                                               :complete,
+                                               workflow_state: "check_your_answers_form",
+                                               is_multisite_registration: true))
+        end
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        end
+
+        it "redirects to sites form" do
+          get sites_check_your_answers_forms_path(token: form.token)
+
+          expect(response).to redirect_to new_sites_form_path(form.token)
+        end
+
+        it "sets temp_check_your_answers_flow variable to true" do
+          get sites_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.temp_check_your_answers_flow).to be_truthy
+        end
+
+        it "adds check_your_answers_form into the workflow history" do
+          get sites_check_your_answers_forms_path(token: form.token)
+
+          expect(form.transient_registration.reload.workflow_history.last).to eq("check_your_answers_form")
+        end
+      end
     end
   end
 end

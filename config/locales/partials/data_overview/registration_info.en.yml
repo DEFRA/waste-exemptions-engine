@@ -32,6 +32,10 @@ en:
           site_address:
             title: Site address
             change_link_suffix: "Site address"
+          site_details:
+            title: Site details
+            value: "Number of sites %{count}"
+            change_link_suffix: "Site details"
           grid_reference:
             title: Grid reference
             change_link_suffix: "Grid reference"
