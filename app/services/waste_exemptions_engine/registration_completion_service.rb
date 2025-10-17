@@ -71,8 +71,17 @@ module WasteExemptionsEngine
     end
 
     def copy_addresses
+      site_counter = 0
+
       @transient_registration.transient_addresses.each do |transient_address|
-        @registration.addresses << Address.new(transient_address.address_attributes)
+        address_attrs = transient_address.address_attributes
+
+        if transient_address.site?
+          site_counter += 1
+          address_attrs["site_suffix"] = format("%05d", site_counter)
+        end
+
+        @registration.addresses << Address.new(address_attrs)
       end
     end
 

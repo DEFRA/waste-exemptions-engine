@@ -94,9 +94,8 @@ module WasteExemptionsEngine
         context "when no data has changed" do
           let(:edit_registration) { create(:back_office_edit_registration) }
 
-          it "creates a new version due to site_suffix assignment" do
-            # Site suffix is auto-assigned when copying addresses, which creates a version
-            expect { run_service }.to change { registration.versions.count }.by(1)
+          it "does not create a new version" do
+            expect { run_service }.not_to change { registration.versions.count }
           end
         end
 
