@@ -19,7 +19,7 @@ module WasteExemptionsEngine
       end
     end
 
-    let(:address_attributes) { (TransientAddress.attribute_names - %w[id created_at updated_at address_type]) }
+    let(:address_attributes) { (TransientAddress.attribute_names - %w[id created_at updated_at address_type site_suffix]) }
 
     describe "submit" do
       let(:form) { build(:check_site_address_form) }

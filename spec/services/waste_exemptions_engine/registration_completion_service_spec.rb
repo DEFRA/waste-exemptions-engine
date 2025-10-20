@@ -79,6 +79,28 @@ module WasteExemptionsEngine
           expect(registration_attribute).to eq(new_registration_attribute)
         end
 
+        it "assigns sequential site_suffix to site addresses" do
+          run_service
+
+          expect(registration.site_address.site_suffix).to eq("00001")
+        end
+
+        context "when there are multiple site addresses" do
+          let(:new_registration) do
+            create(:new_charged_registration, :complete, workflow_state: "registration_complete_form").tap do |reg|
+              create(:transient_address, :site_address, transient_registration: reg)
+              create(:transient_address, :site_address, transient_registration: reg)
+            end
+          end
+
+          it "assigns sequential site_suffixes based on creation order" do
+            run_service
+
+            site_addresses = registration.site_addresses.order(:id)
+            expect(site_addresses.map(&:site_suffix)).to eq(%w[00001 00002 00003])
+          end
+        end
+
         it "sets the correct value for submitted_at" do
           run_service
           expect(registration.submitted_at).to eq(Date.current)
