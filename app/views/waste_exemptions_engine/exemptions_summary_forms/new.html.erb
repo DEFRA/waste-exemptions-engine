@@ -39,6 +39,7 @@
 
         <% @exemptions_summary_form.non_farming_exemptions.each do |exemption| %>
           <% total_charge = @exemptions_summary_form.compliance_charge(exemption) %>
+          <% is_discounted = @exemptions_summary_form.is_discounted_charge?(exemption) %>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__cell">
               <%= @exemptions_summary_form.exemption_title_with_band(exemption) %>
@@ -46,9 +47,9 @@
             <td class="govuk-table__cell">
               <% if is_multisite %>
                 <% single_site_charge = @exemptions_summary_form.single_site_compliance_charge(exemption) %>
-                <%= single_site_charge %> x <%= @exemptions_summary_form.site_count %>
+                <%= single_site_charge %><%= " (d)" if is_discounted %> x <%= @exemptions_summary_form.site_count %>
               <% else %>
-                <%= total_charge %>
+                <%= total_charge %><%= " (d)" if is_discounted %>
               <% end %>
             </td>
             <td class="govuk-table__cell govuk-table__cell--numeric">

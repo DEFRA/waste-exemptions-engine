@@ -385,5 +385,49 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#is_discounted_charge?" do
+      context "when exemption is in a bucket" do
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns false" do
+          expect(presenter.is_discounted_charge?(exemptions.first)).to be(false)
+        end
+      end
+
+      context "when exemption is the first in the highest band" do
+        let(:exemptions) { [create(:exemption, band: band_3)] }
+
+        it "returns false" do
+          expect(presenter.is_discounted_charge?(exemptions.first)).to be(false)
+        end
+      end
+
+      context "when exemption uses additional compliance charge" do
+        let(:first_exemption) { create(:exemption, band: band_3) }
+        let(:second_exemption) { create(:exemption, band: band_3) }
+        let(:exemptions) { [first_exemption, second_exemption] }
+
+        it "returns true for the second exemption" do
+          expect(presenter.is_discounted_charge?(second_exemption)).to be(true)
+        end
+
+        it "returns false for the first exemption" do
+          expect(presenter.is_discounted_charge?(first_exemption)).to be(false)
+        end
+      end
+
+      context "when exemption is in a lower band" do
+        let(:high_band_exemption) { create(:exemption, band: band_3) }
+        let(:low_band_exemption) { create(:exemption, band: band_1) }
+        let(:exemptions) { [high_band_exemption, low_band_exemption] }
+
+        it "returns true for the lower band exemption" do
+          expect(presenter.is_discounted_charge?(low_band_exemption)).to be(true)
+        end
+      end
+    end
+
   end
 end
