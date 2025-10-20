@@ -86,7 +86,7 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions
-      @registration.site_addresses.each do |site_address|
+      @registration.addresses.select(&:site?).each do |site_address|
         CopyExemptionsService.run(
           transient_registration_exemptions: @transient_registration.transient_registration_exemptions,
           site_address: site_address
