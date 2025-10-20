@@ -124,7 +124,7 @@ module WasteExemptionsEngine
     end
 
     def format_currency(amount)
-      helpers.number_to_currency(amount, unit: "£")
+      helpers.number_to_currency(amount, unit: "£", strip_insignificant_zeros: true)
     end
 
     def format_charge_as_currency(charge)

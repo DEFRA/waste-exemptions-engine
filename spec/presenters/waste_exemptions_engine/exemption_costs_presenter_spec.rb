@@ -114,19 +114,19 @@ module WasteExemptionsEngine
         include_context "with multiple exemptions including same highest band"
 
         it "returns the correct charge for the highest band exemption" do
-          expect(presenter.compliance_charge(exemptions[0])).to eq("£409.00")
+          expect(presenter.compliance_charge(exemptions[0])).to eq("£409")
         end
 
         it "returns the correct charge for the second exemption in the highest band" do
-          expect(presenter.compliance_charge(exemptions[1])).to eq("£74.00")
+          expect(presenter.compliance_charge(exemptions[1])).to eq("£74")
         end
 
         it "returns the correct charge for the exemption in the middle band" do
-          expect(presenter.compliance_charge(exemptions[2])).to eq("£74.00")
+          expect(presenter.compliance_charge(exemptions[2])).to eq("£74")
         end
 
         it "returns the correct charge for the exemption in the lowest band" do
-          expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
+          expect(presenter.compliance_charge(exemptions[3])).to eq("£30")
         end
       end
 
@@ -163,9 +163,9 @@ module WasteExemptionsEngine
         let(:no_charge_band) { create(:band, initial_compliance_charge: create(:charge, charge_amount: 0), additional_compliance_charge: create(:charge, charge_amount: 0)) }
         let(:exemptions) { [create(:exemption, band: no_charge_band)] }
 
-        it "returns £0.00" do
+        it "returns £0" do
           exemption = exemptions.first
-          expect(presenter.compliance_charge(exemption)).to eq("£0.00")
+          expect(presenter.compliance_charge(exemption)).to eq("£0")
         end
       end
     end
@@ -190,8 +190,8 @@ module WasteExemptionsEngine
       context "with an empty order" do
         let(:exemptions) { [] }
 
-        it "returns £0.00" do
-          expect(presenter.total_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.total_charge).to eq("£0")
         end
       end
 
@@ -308,8 +308,8 @@ module WasteExemptionsEngine
       context "when there are no farming exemptions" do
         let(:exemptions) { multiple_bands_multiple_exemptions }
 
-        it "returns £0.00" do
-          expect(presenter.farming_exemptions_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.farming_exemptions_charge).to eq("£0")
         end
       end
 
@@ -327,7 +327,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the bucket charge for farming exemptions" do
-          expect(presenter.farming_exemptions_charge).to eq("£88.00")
+          expect(presenter.farming_exemptions_charge).to eq("£88")
         end
       end
     end
@@ -336,8 +336,8 @@ module WasteExemptionsEngine
       context "when there are no farming exemptions" do
         let(:exemptions) { multiple_bands_multiple_exemptions }
 
-        it "returns £0.00" do
-          expect(presenter.farming_exemptions_single_site_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.farming_exemptions_single_site_charge).to eq("£0")
         end
       end
 
