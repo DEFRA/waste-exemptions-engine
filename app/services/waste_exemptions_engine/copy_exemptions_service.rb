@@ -2,9 +2,9 @@
 
 module WasteExemptionsEngine
   class CopyExemptionsService < BaseService
-    def run(transient_registration_exemptions:, site_address:)
-      transient_registration_exemptions.each do |transient_registration_exemption|
-        site_address.registration.registration_exemptions << RegistrationExemption.new(
+    def run(site_address:, transient_registration:, registration:)
+      transient_registration.transient_registration_exemptions.each do |transient_registration_exemption|
+        registration.registration_exemptions << RegistrationExemption.new(
           transient_registration_exemption.exemption_attributes.merge(address: site_address)
         )
       end
