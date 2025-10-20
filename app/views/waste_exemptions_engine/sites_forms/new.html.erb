@@ -82,7 +82,7 @@
               "aria-disabled": "true",
               data: { module: "govuk-button" } %>
           <p class="govuk-body govuk-!-margin-top-2">
-            <%= t(".minimum_sites_required", count: @sites_form.minimum_sites_required - @sites_form.total_sites_count) %>
+            <%= t(".minimum_sites_required", minimum: @sites_form.minimum_sites_required) %>
           </p>
         <% end %>
       </div>

@@ -15,8 +15,6 @@ en:
         remove_site_details: "site at %{site_details}"
         add_another_site: "Add another site"
         continue: "Continue"
-        minimum_sites_required:
-          one: "You need to add %{count} more site to continue."
-          other: "You need to add %{count} more sites to continue."
+        minimum_sites_required: "You need to add at least %{minimum} sites before you can continue."
       remove_site:
         error: "There was an error removing the site. Please try again."
