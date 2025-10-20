@@ -86,7 +86,6 @@
     </table>
 
     <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
-    <p class="govuk-body"><%= t(".vat_note") %></p>
     <p class="govuk-body"><%= t(".site_payment_info") %></p>
     <ul class="govuk-list govuk-list--bullet">
       <li><%= t(".full_compliance_charge") %></li>
@@ -94,6 +93,7 @@
       <li><%= t(".band_3_charge") %></li>
     </ul>
     <p class="govuk-body"><%= t(".registration_charge_info") %></p>
+    <p class="govuk-body"><%= t(".vat_note") %></p>
 
     <%= form_for @exemptions_summary_form do |f| %>
       <%= f.govuk_submit t(".continue") %>
