@@ -22,7 +22,7 @@ module WasteExemptionsEngine
           @registration = Registration.new(copyable_attributes)
         end
 
-        copy_addresses
+        copy_addresses_and_assign_site_suffixes
         copy_exemptions
         copy_people
         copy_charging_attributes
@@ -70,15 +70,28 @@ module WasteExemptionsEngine
       account.orders << @transient_registration.order if @transient_registration.order.present?
     end
 
-    def copy_addresses
+    def copy_addresses_and_assign_site_suffixes
+      site_counter = 0
+
       @transient_registration.transient_addresses.each do |transient_address|
-        @registration.addresses << Address.new(transient_address.address_attributes)
+        address_attrs = transient_address.address_attributes
+
+        if transient_address.site?
+          site_counter += 1
+          address_attrs["site_suffix"] = format("%05d", site_counter)
+        end
+
+        @registration.addresses << Address.new(address_attrs)
       end
     end
 
     def copy_exemptions
-      @transient_registration.transient_registration_exemptions.each do |trans_exemption|
-        @registration.registration_exemptions << RegistrationExemption.new(trans_exemption.exemption_attributes)
+      @registration.addresses.select(&:site?).each do |site_address|
+        CopyExemptionsService.run(
+          site_address: site_address,
+          transient_registration: @transient_registration,
+          registration: @registration
+        )
       end
     end
 

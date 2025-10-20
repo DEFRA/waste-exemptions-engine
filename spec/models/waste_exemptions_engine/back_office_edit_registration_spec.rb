@@ -62,7 +62,8 @@ module WasteExemptionsEngine
             copyable_attributes = address.attributes.except("id",
                                                             "registration_id",
                                                             "created_at",
-                                                            "updated_at")
+                                                            "updated_at",
+                                                            "site_suffix")
 
             edit_address_attributes = edit_registration.public_send("#{address.address_type}_address")
                                                        .attributes
