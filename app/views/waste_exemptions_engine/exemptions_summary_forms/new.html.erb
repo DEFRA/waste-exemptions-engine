@@ -41,7 +41,7 @@
           <% total_charge = @exemptions_summary_form.compliance_charge(exemption) %>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__cell">
-              <%= exemption.code %> <%= exemption.summary.capitalize %>
+              <%= @exemptions_summary_form.exemption_title_with_band(exemption) %>
             </th>
             <td class="govuk-table__cell">
               <% if is_multisite %>

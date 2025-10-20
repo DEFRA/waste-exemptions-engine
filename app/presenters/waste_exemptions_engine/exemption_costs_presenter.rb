@@ -103,6 +103,13 @@ module WasteExemptionsEngine
       single_site_compliance_charge(first_farming_exemption)
     end
 
+    def exemption_title_with_band(exemption)
+      band_name = exemption.band&.name
+      return "#{exemption.code} #{exemption.summary.capitalize}" unless band_name.present?
+
+      "#{exemption.code} #{exemption.summary.capitalize} (#{band_name.downcase})"
+    end
+
     private
 
     def highest_band

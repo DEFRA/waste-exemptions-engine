@@ -13,6 +13,7 @@ module WasteExemptionsEngine
              :farming_exemptions_codes,
              :farming_exemptions_charge,
              :farming_exemptions_single_site_charge,
+             :exemption_title_with_band,
              to: :exemption_costs_presenter
 
     delegate :farm_affiliated?, :site_count, to: :transient_registration

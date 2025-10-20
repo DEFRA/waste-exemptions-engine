@@ -365,5 +365,25 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#exemption_title_with_band" do
+      let(:band) { create(:band, name: "Band 1") }
+      let(:exemption) { create(:exemption, code: "S2", summary: "storing waste in a secure place", band: band) }
+      let(:exemptions) { [exemption] }
+
+      context "when exemption has a band" do
+        it "returns the exemption title with band number" do
+          expect(presenter.exemption_title_with_band(exemption)).to eq("S2 Storing waste in a secure place (band 1)")
+        end
+      end
+
+      context "when exemption has no band" do
+        before { exemption.band = nil }
+
+        it "returns the exemption title without band number" do
+          expect(presenter.exemption_title_with_band(exemption)).to eq("S2 Storing waste in a secure place")
+        end
+      end
+    end
+
   end
 end
