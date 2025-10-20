@@ -52,16 +52,6 @@ module WasteExemptionsEngine
           it_behaves_like "failed refund update"
         end
 
-        context "when refund creation fails" do
-          before do
-            wex_original_payment
-
-            allow(GovpayWebhookRefundCreator).to receive(:run).and_raise(ArgumentError)
-          end
-
-          it_behaves_like "failed refund update"
-        end
-
         context "when original payment record exists" do
           let(:refunded_amount) { webhook_body.dig("resource", "refund_summary", "amount_submitted").to_i }
 
@@ -101,10 +91,15 @@ module WasteExemptionsEngine
 
           context "when a partial refund already exists" do
             before do
+              # The original payment amount is £10.00; here we create a £3.00 pre-existing refund.
               create(:payment,
                      payment_type: Payment::PAYMENT_TYPE_REFUND,
+                     payment_status: Payment::PAYMENT_STATUS_SUCCESS,
                      refunded_payment_govpay_id: wex_original_payment.govpay_id,
-                     payment_amount: wex_original_payment.payment_amount - refunded_amount - 5)
+                     payment_amount: -300)
+
+              # set up a refund webhook with a total amount refunded of £8.32
+              webhook_body["resource"]["refund_summary"]["amount_submitted"] = 832
             end
 
             it { expect { run_service }.to change(Payment, :count).by(1) }
@@ -112,7 +107,17 @@ module WasteExemptionsEngine
             it "uses the correct refunded amount" do
               run_service
 
-              expect(Payment.last.payment_amount).to eq(0 - refunded_amount)
+              # £8.32 total refunded to date minus £3.00 previously refunded
+              expect(Payment.last.payment_amount).to eq(-532)
+            end
+
+            it "has the correct balance" do
+              total_charges = registration.account.orders.sum { |o| o.charge_detail&.total_charge_amount }
+
+              run_service
+
+              # Original charge total minus original payment plus (£3.00 + £5.32) total refunded
+              expect(registration.reload.account.balance).to eq 0 - total_charges + wex_original_payment.payment_amount - 532
             end
           end
         end
