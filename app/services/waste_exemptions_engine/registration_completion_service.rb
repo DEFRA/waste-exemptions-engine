@@ -23,7 +23,7 @@ module WasteExemptionsEngine
         end
 
         copy_addresses_and_assign_site_suffixes
-        CopyExemptionsService.run(transient_registration: @transient_registration, registration: @registration)
+        copy_exemptions
         copy_people
         copy_charging_attributes
         add_metadata
@@ -82,6 +82,15 @@ module WasteExemptionsEngine
         end
 
         @registration.addresses << Address.new(address_attrs)
+      end
+    end
+
+    def copy_exemptions
+      @registration.site_addresses.each do |site_address|
+        CopyExemptionsService.run(
+          transient_registration_exemptions: @transient_registration.transient_registration_exemptions,
+          site_address: site_address
+        )
       end
     end
 
