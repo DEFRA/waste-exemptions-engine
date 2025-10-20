@@ -24,8 +24,9 @@ module WasteExemptionsEngine
 
         it "creates registration_exemptions linked to the site address" do
           described_class.run(
-            transient_registration_exemptions: transient_registration.transient_registration_exemptions,
-            site_address: site_address
+            site_address: site_address,
+            transient_registration: transient_registration,
+            registration: registration
           )
 
           aggregate_failures do
@@ -37,8 +38,9 @@ module WasteExemptionsEngine
 
         it "copies the exemption attributes correctly" do
           described_class.run(
-            transient_registration_exemptions: transient_registration.transient_registration_exemptions,
-            site_address: site_address
+            site_address: site_address,
+            transient_registration: transient_registration,
+            registration: registration
           )
 
           exemption_codes = registration.registration_exemptions.map { |re| re.exemption.code }
@@ -49,8 +51,9 @@ module WasteExemptionsEngine
       context "when there are no exemptions" do
         it "does not create any registration_exemptions" do
           described_class.run(
-            transient_registration_exemptions: transient_registration.transient_registration_exemptions,
-            site_address: site_address
+            site_address: site_address,
+            transient_registration: transient_registration,
+            registration: registration
           )
 
           expect(registration.registration_exemptions.count).to eq(0)
