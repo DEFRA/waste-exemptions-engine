@@ -5,7 +5,7 @@ require "kaminari"
 module WasteExemptionsEngine
   class SitesForm < BaseForm
     def site_addresses(page = 1)
-      addresses = transient_registration.addresses.where(address_type: "site")
+      addresses = transient_registration.addresses.where(address_type: "site").order(:id)
       Kaminari.paginate_array(addresses.to_a)
               .page(page)
               .per(sites_per_page)
