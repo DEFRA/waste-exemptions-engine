@@ -56,7 +56,7 @@ module WasteExemptionsEngine
     end
 
     def max_refundable
-      @max_refundable ||= original_payment.payment_amount -
+      @max_refundable ||= original_payment.payment_amount +
                           Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND,
                                         refunded_payment_govpay_id: original_payment.govpay_id)
                                  .sum(&:payment_amount)
@@ -73,7 +73,7 @@ module WasteExemptionsEngine
     def refunded_amount
       # The amount_submitted from the webhook body minus all refund amounts
       # previously recorded (refund amounts are negative)
-      webhook_refund_amount + amount_already_refunded
+      @refunded_amount ||= webhook_refund_amount + amount_already_refunded
     end
 
     def create_refund
