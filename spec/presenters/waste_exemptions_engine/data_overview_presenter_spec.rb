@@ -259,7 +259,7 @@ module WasteExemptionsEngine
           # Add site details row for multisite registrations
           expected_data << {
             title: "Site details",
-            value: "Number of sites 4", # 3 created with create_list + 1 site already on the registration
+            value: "Number of sites: 4", # 3 created with create_list + 1 site already on the registration
             change_url: "check-your-answers/sites",
             change_link_suffix: "Site details"
           }
