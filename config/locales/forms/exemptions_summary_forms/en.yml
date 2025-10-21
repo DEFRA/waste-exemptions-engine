@@ -27,7 +27,6 @@ en:
         registration_charge: "Registration charge"
         vat_exempt: "VAT exempt"
         total_charge: "Total charge"
-        total_charge_vat_exempt: "Total charge (VAT exempt)"
         overview_heading: "Overview of charges"
         vat_note: "Waste exemptions are exempt from VAT."
         site_payment_info: "For each site you pay:"
