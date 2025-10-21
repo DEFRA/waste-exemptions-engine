@@ -9,8 +9,9 @@ module WasteExemptionsEngine
 
       @govpay_payment_id = webhook_body[:resource_id]
 
-      unless max_refundable.positive?
-        Rails.logger.warn "Webhook refund amount #{webhook_refund_amount} exceeds maximum " \
+      unless -refunded_amount < max_refundable
+        Rails.logger.warn "Webhook refund amount #{webhook_refund_amount} " \
+                          "minus previous total refund amount #{amount_already_refunded} exceeds maximum " \
                           "refundable amount #{max_refundable} on payment #{@original_payment.govpay_id}"
         return
       end
@@ -56,16 +57,12 @@ module WasteExemptionsEngine
     end
 
     def max_refundable
-      @max_refundable ||= original_payment.payment_amount +
-                          Payment.where(payment_type: Payment::PAYMENT_TYPE_REFUND,
-                                        refunded_payment_govpay_id: original_payment.govpay_id)
-                                 .sum(&:payment_amount)
+      @max_refundable ||= original_payment.payment_amount + amount_already_refunded
     end
 
     def amount_already_refunded
       @amount_already_refunded ||= Payment.where(
         payment_type: Payment::PAYMENT_TYPE_REFUND,
-        payment_status: Payment::PAYMENT_STATUS_SUCCESS,
         refunded_payment_govpay_id: govpay_payment_id
       ).sum(&:payment_amount)
     end
