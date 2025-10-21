@@ -81,7 +81,7 @@ module WasteExemptionsEngine
               create(:payment,
                      payment_type: Payment::PAYMENT_TYPE_REFUND,
                      refunded_payment_govpay_id: wex_original_payment.govpay_id,
-                     payment_amount: wex_original_payment.payment_amount)
+                     payment_amount: - wex_original_payment.payment_amount)
             end
 
             it "does not create a refund" do
@@ -118,6 +118,40 @@ module WasteExemptionsEngine
 
               # Original charge total minus original payment plus (£3.00 + £5.32) total refunded
               expect(registration.reload.account.balance).to eq 0 - total_charges + wex_original_payment.payment_amount - 532
+            end
+          end
+
+          context "with multiple partial refunds" do
+            let(:wex_original_payment) do
+              create(:payment,
+                     :govpay,
+                     payment_amount: 47_600,
+                     govpay_id: govpay_payment_id,
+                     order: order,
+                     account: registration.account,
+                     payment_status: Payment::PAYMENT_STATUS_SUCCESS)
+            end
+            let(:total_charges) { order.charge_detail.total_charge_amount }
+
+            it "multiple refunds" do
+              # Note that the refunded amount in the webhook body is cumulative
+
+              aggregate_failures do
+                # Refund £10
+                webhook_body["resource"]["refund_summary"]["amount_submitted"] = 1_000
+                described_class.run(webhook_body)
+                expect(wex_original_payment.reload.account.balance).to eq 46_600 - total_charges
+
+                # Refund £50 - the webhook would have a refunded amount of £10 + £50
+                webhook_body["resource"]["refund_summary"]["amount_submitted"] = 1_000 + 5_000
+                described_class.run(webhook_body)
+                expect(wex_original_payment.reload.account.balance).to eq 41_600 - total_charges
+
+                # Refund the remainder
+                webhook_body["resource"]["refund_summary"]["amount_submitted"] = 1_000 + 5_000 + 41_600
+                described_class.run(webhook_body)
+                expect(wex_original_payment.reload.account.balance).to eq(- total_charges)
+              end
             end
           end
         end
