@@ -20,7 +20,7 @@
       </p>
 
       <p class="govuk-body">
-        <%= link_to(t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %> <%= t(".postcode_suffix") %>
+        <%= t(".postcode_prefix") %> <%= link_to(t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
       </p>
 
       <p class="govuk-body"><%= t(".or") %></p>
