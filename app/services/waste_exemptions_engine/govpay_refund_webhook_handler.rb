@@ -17,9 +17,9 @@ module WasteExemptionsEngine
 
       result = DefraRubyGovpay::WebhookRefundService.run(webhook_body)
 
-      build_refund
+      create_refund
 
-      Rails.logger.info "Recorded refund #{refund.id}, amount #{refunded_amount}} for " \
+      Rails.logger.info "Recorded refund #{refund.id}, amount #{refunded_amount} for " \
                         "payment #{govpay_payment_id}, registration #{registration.reference}"
 
       result
@@ -76,7 +76,7 @@ module WasteExemptionsEngine
       webhook_refund_amount + amount_already_refunded
     end
 
-    def build_refund
+    def create_refund
       @refund = Payment.create!(
         refunded_payment_govpay_id: original_payment.govpay_id,
         payment_type: Payment::PAYMENT_TYPE_REFUND,

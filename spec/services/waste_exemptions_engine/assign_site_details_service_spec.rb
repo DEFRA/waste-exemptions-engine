@@ -89,6 +89,7 @@ module WasteExemptionsEngine
           end
         end
       end
+
     end
   end
 end

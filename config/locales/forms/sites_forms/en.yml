@@ -4,19 +4,17 @@ en:
       new:
         title: &title "Your waste activity sites"
         heading: *title
-        bookmark_hint: "Bookmark this page if you need to return to complete the registration later."
+        bookmark_hint: "Bookmark this page if you need to return to it later."
         save_duration: "Your details will be saved for 30 days."
-        continue_instruction: "Click 'Continue' only when you've added all your sites."
+        continue_instruction: "Only click 'Continue' when you've added all your sites."
         location_header: "Location"
-        site_details_header: "Site details/address"
+        site_details_header: "Details"
         actions_header: "Actions"
         remove_link: "Remove"
         remove_confirmation: "Are you sure you want to remove this site?"
         remove_site_details: "site at %{site_details}"
         add_another_site: "Add another site"
         continue: "Continue"
-        minimum_sites_required:
-          one: "You need to add %{count} more site to continue."
-          other: "You need to add %{count} more sites to continue."
+        minimum_sites_required: "You need to add at least %{minimum} sites before you can continue."
       remove_site:
         error: "There was an error removing the site. Please try again."

@@ -90,8 +90,8 @@ module WasteExemptionsEngine
           end
 
           context "when a partial refund already exists" do
+            # The original payment amount is £10.00; here we create a £3.00 pre-existing refund.
             before do
-              # The original payment amount is £10.00; here we create a £3.00 pre-existing refund.
               create(:payment,
                      payment_type: Payment::PAYMENT_TYPE_REFUND,
                      payment_status: Payment::PAYMENT_STATUS_SUCCESS,
