@@ -114,19 +114,19 @@ module WasteExemptionsEngine
         include_context "with multiple exemptions including same highest band"
 
         it "returns the correct charge for the highest band exemption" do
-          expect(presenter.compliance_charge(exemptions[0])).to eq("£409.00")
+          expect(presenter.compliance_charge(exemptions[0])).to eq("£409")
         end
 
         it "returns the correct charge for the second exemption in the highest band" do
-          expect(presenter.compliance_charge(exemptions[1])).to eq("£74.00")
+          expect(presenter.compliance_charge(exemptions[1])).to eq("£74")
         end
 
         it "returns the correct charge for the exemption in the middle band" do
-          expect(presenter.compliance_charge(exemptions[2])).to eq("£74.00")
+          expect(presenter.compliance_charge(exemptions[2])).to eq("£74")
         end
 
         it "returns the correct charge for the exemption in the lowest band" do
-          expect(presenter.compliance_charge(exemptions[3])).to eq("£30.00")
+          expect(presenter.compliance_charge(exemptions[3])).to eq("£30")
         end
       end
 
@@ -163,9 +163,9 @@ module WasteExemptionsEngine
         let(:no_charge_band) { create(:band, initial_compliance_charge: create(:charge, charge_amount: 0), additional_compliance_charge: create(:charge, charge_amount: 0)) }
         let(:exemptions) { [create(:exemption, band: no_charge_band)] }
 
-        it "returns £0.00" do
+        it "returns £0" do
           exemption = exemptions.first
-          expect(presenter.compliance_charge(exemption)).to eq("£0.00")
+          expect(presenter.compliance_charge(exemption)).to eq("£0")
         end
       end
     end
@@ -190,8 +190,8 @@ module WasteExemptionsEngine
       context "with an empty order" do
         let(:exemptions) { [] }
 
-        it "returns £0.00" do
-          expect(presenter.total_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.total_charge).to eq("£0")
         end
       end
 
@@ -308,8 +308,8 @@ module WasteExemptionsEngine
       context "when there are no farming exemptions" do
         let(:exemptions) { multiple_bands_multiple_exemptions }
 
-        it "returns £0.00" do
-          expect(presenter.farming_exemptions_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.farming_exemptions_charge).to eq("£0")
         end
       end
 
@@ -327,7 +327,7 @@ module WasteExemptionsEngine
         end
 
         it "returns the bucket charge for farming exemptions" do
-          expect(presenter.farming_exemptions_charge).to eq("£88.00")
+          expect(presenter.farming_exemptions_charge).to eq("£88")
         end
       end
     end
@@ -336,8 +336,8 @@ module WasteExemptionsEngine
       context "when there are no farming exemptions" do
         let(:exemptions) { multiple_bands_multiple_exemptions }
 
-        it "returns £0.00" do
-          expect(presenter.farming_exemptions_single_site_charge).to eq("£0.00")
+        it "returns £0" do
+          expect(presenter.farming_exemptions_single_site_charge).to eq("£0")
         end
       end
 
@@ -361,6 +361,70 @@ module WasteExemptionsEngine
           )
 
           expect(presenter.farming_exemptions_single_site_charge).to eq(expected_charge)
+        end
+      end
+    end
+
+    describe "#exemption_title_with_band" do
+      let(:band) { create(:band, name: "Band 1") }
+      let(:exemption) { create(:exemption, code: "S2", summary: "storing waste in a secure place", band: band) }
+      let(:exemptions) { [exemption] }
+
+      context "when exemption has a band" do
+        it "returns the exemption title with band number" do
+          expect(presenter.exemption_title_with_band(exemption)).to eq("S2 Storing waste in a secure place (band 1)")
+        end
+      end
+
+      context "when exemption has no band" do
+        before { exemption.band = nil }
+
+        it "returns the exemption title without band number" do
+          expect(presenter.exemption_title_with_band(exemption)).to eq("S2 Storing waste in a secure place")
+        end
+      end
+    end
+
+    describe "#is_discounted_charge?" do
+      context "when exemption is in a bucket" do
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+
+        before { order.update(bucket: Bucket.farmer_bucket) }
+
+        it "returns false" do
+          expect(presenter.is_discounted_charge?(exemptions.first)).to be(false)
+        end
+      end
+
+      context "when exemption is the first in the highest band" do
+        let(:exemptions) { [create(:exemption, band: band_3)] }
+
+        it "returns false" do
+          expect(presenter.is_discounted_charge?(exemptions.first)).to be(false)
+        end
+      end
+
+      context "when exemption uses additional compliance charge" do
+        let(:first_exemption) { create(:exemption, band: band_3) }
+        let(:second_exemption) { create(:exemption, band: band_3) }
+        let(:exemptions) { [first_exemption, second_exemption] }
+
+        it "returns true for the second exemption" do
+          expect(presenter.is_discounted_charge?(second_exemption)).to be(true)
+        end
+
+        it "returns false for the first exemption" do
+          expect(presenter.is_discounted_charge?(first_exemption)).to be(false)
+        end
+      end
+
+      context "when exemption is in a lower band" do
+        let(:high_band_exemption) { create(:exemption, band: band_3) }
+        let(:low_band_exemption) { create(:exemption, band: band_1) }
+        let(:exemptions) { [high_band_exemption, low_band_exemption] }
+
+        it "returns true for the lower band exemption" do
+          expect(presenter.is_discounted_charge?(low_band_exemption)).to be(true)
         end
       end
     end

@@ -53,24 +53,15 @@ module WasteExemptionsEngine
     end
 
     def registration_charge
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.registration_charge_amount)
-      )
+      format_currency(@order_calculator.registration_charge_amount)
     end
 
     def total_compliance_charge
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.total_compliance_charge_amount)
-      )
+      format_currency(@order_calculator.total_compliance_charge_amount)
     end
 
     def total_charge
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.total_charge_amount)
-      )
+      format_currency(@order_calculator.total_charge_amount)
     end
 
     def farm_exemptions_selected?
@@ -103,18 +94,34 @@ module WasteExemptionsEngine
       single_site_compliance_charge(first_farming_exemption)
     end
 
+    def exemption_title_with_band(exemption)
+      band_name = exemption.band&.name
+      return "#{exemption.code} #{exemption.summary.capitalize}" unless band_name.present?
+
+      "#{exemption.code} #{exemption.summary.capitalize} (#{band_name.downcase})"
+    end
+
+    def is_discounted_charge?(exemption)
+      return false if exemption_in_bucket?(exemption)
+      return false if first_exemption_in_highest_band?(exemption)
+
+      exemption.band.additional_compliance_charge.charge_amount.positive?
+    end
+
     private
 
     def highest_band
       @highest_band ||= @order.highest_band
     end
 
-    def format_currency(amount)
-      helpers.number_to_currency(amount, unit: "£")
+    def format_currency(pence_amount)
+      formatted_amount = WasteExemptionsEngine::CurrencyConversionService
+                         .convert_pence_to_pounds(pence_amount, hide_pence_if_zero: true)
+      "£#{formatted_amount}"
     end
 
     def format_charge_as_currency(charge)
-      format_currency(charge.charge_amount_in_pounds)
+      format_currency(charge.charge_amount)
     end
 
     def helpers
@@ -141,27 +148,18 @@ module WasteExemptionsEngine
     end
 
     def bucket_exemption_compliance_charge
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.bucket_charge_amount)
-      )
+      format_currency(@order_calculator.bucket_charge_amount)
     end
 
     def single_site_bucket_exemption_compliance_charge
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(@order_calculator.base_bucket_charge_amount)
-      )
+      format_currency(@order_calculator.base_bucket_charge_amount)
     end
 
     def multisite_charge_for_exemption(base_charge_amount)
       # Apply multisite multiplication if this is a multisite registration
       site_count = @order.order_owner&.is_multisite_registration ? @order.order_owner.site_count : 1
 
-      format_currency(
-        WasteExemptionsEngine::CurrencyConversionService
-        .convert_pence_to_pounds(base_charge_amount * site_count)
-      )
+      format_currency(base_charge_amount * site_count)
     end
 
   end

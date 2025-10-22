@@ -7,7 +7,7 @@ en:
         error_heading: A problem to fix
         error_description_1: "We're missing some of the information we need to complete your registration:"
         error_description_2: "Please go back and make sure all the required questions have been answered."
-        description: We will send a copy of this summary in a confirmation email
+        description: You will get a copy of this summary in a confirmation email.
         next_button: Continue
   activemodel:
     errors:
