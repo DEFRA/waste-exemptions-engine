@@ -24,11 +24,13 @@
           <dd class="govuk-summary-list__value">
             <%= exemptions_list(transient_registration) %>
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <%= link_to edit_exemptions_front_office_edit_forms_path, "aria-label": t(".edit_links.visually_hidden.exemptions") do %>
-              <%= t(".edit_links.update_link_text") %>
-            <% end %>
-          </dd>
+          <% unless transient_registration.registration.multisite? %>
+            <dd class="govuk-summary-list__actions">
+              <%= link_to edit_exemptions_front_office_edit_forms_path, "aria-label": t(".edit_links.visually_hidden.exemptions") do %>
+                <%= t(".edit_links.update_link_text") %>
+              <% end %>
+            </dd>
+          <% end %>
         </div>
 
         <div class="govuk-summary-list__row">
