@@ -91,6 +91,9 @@
       <li><%= t(".full_compliance_charge") %></li>
       <li><%= t(".discounted_charge") %></li>
       <li><%= t(".band_3_charge") %></li>
+      <% if @exemptions_summary_form.farm_exemptions_selected? %>
+        <li><%= t(".capped_farming_charge") %></li>
+      <% end %>
     </ul>
     <p class="govuk-body"><%= t(".registration_charge_info") %></p>
     <p class="govuk-body"><%= t(".vat_note") %></p>
