@@ -121,5 +121,14 @@ FactoryBot.define do
          build(:address, :site_using_grid_reference, :long_description)]
       end
     end
+
+    trait :multisite do
+      charged { true }
+      is_multisite_registration { true }
+
+      after(:create) do |registration|
+        create_list(:address, 3, :site_address, registration: registration)
+      end
+    end
   end
 end

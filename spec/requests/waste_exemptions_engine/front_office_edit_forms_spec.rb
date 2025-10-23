@@ -52,13 +52,42 @@ module WasteExemptionsEngine
           follow_redirect!
         end
 
-        it "the page includes the expected edit links" do
-          aggregate_failures do
-            expect(response.body).to include edit_exemptions_front_office_edit_forms_path(transient_registration_token)
-            expect(response.body).to include contact_name_front_office_edit_forms_path(transient_registration_token)
-            expect(response.body).to include contact_phone_front_office_edit_forms_path(transient_registration_token)
-            expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
-            expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
+        context "when the registration is single-site" do
+          it "the page includes the expected edit links including exemptions" do
+            aggregate_failures do
+              expect(response.body).to include edit_exemptions_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_name_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_phone_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
+            end
+          end
+        end
+
+        context "when the registration is multi-site" do
+          let(:registration) do
+            create(:registration,
+                   :complete,
+                   :multisite,
+                   edit_token: valid_edit_token,
+                   edit_token_created_at:)
+          end
+
+          before do
+            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+          end
+
+          it "the page does not include the exemptions edit link" do
+            expect(response.body).not_to include edit_exemptions_front_office_edit_forms_path(transient_registration_token)
+          end
+
+          it "the page includes the other expected edit links" do
+            aggregate_failures do
+              expect(response.body).to include contact_name_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_phone_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
+              expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
+            end
           end
         end
       end
