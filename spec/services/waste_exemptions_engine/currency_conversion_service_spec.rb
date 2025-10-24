@@ -6,8 +6,6 @@ module WasteExemptionsEngine
   RSpec.describe CurrencyConversionService do
     describe ".convert_pence_to_pounds" do
       describe "unit tests" do
-        before { allow(helper).to receive(:number_to_currency).and_return("1") } # as strip is called on the result
-
         let(:helper) { ActionController::Base.helpers }
 
         it "formats whole pounds with hide_pence_if_zero as true" do
