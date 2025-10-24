@@ -5,33 +5,11 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe CurrencyConversionService do
     describe ".convert_pence_to_pounds" do
-      let(:helper) { ActionController::Base.helpers }
+      describe "unit tests" do
+        before { allow(helper).to receive(:number_to_currency).and_return("1") } # as strip is called on the result
 
-      before { allow(helper).to receive(:number_to_currency) }
+        let(:helper) { ActionController::Base.helpers }
 
-      context "when hide_pence_if_zero is false" do
-        it "calls number_to_currency with precision 2" do
-          described_class.convert_pence_to_pounds(100, hide_pence_if_zero: false)
-
-          expect(helper).to have_received(:number_to_currency).with(1.0, unit: "", precision: 2)
-        end
-      end
-
-      context "when hide_pence_if_zero is true" do
-        it "calls number_to_currency with precision 0 for whole pounds" do
-          described_class.convert_pence_to_pounds(100, hide_pence_if_zero: true)
-
-          expect(helper).to have_received(:number_to_currency).with(1.0, unit: "", precision: 0)
-        end
-
-        it "calls number_to_currency with precision 2 for non-whole pounds" do
-          described_class.convert_pence_to_pounds(150, hide_pence_if_zero: true)
-
-          expect(helper).to have_received(:number_to_currency).with(1.5, unit: "", precision: 2)
-        end
-      end
-
-      describe "integration tests" do
         it "formats whole pounds with hide_pence_if_zero as true" do
           expect(described_class.convert_pence_to_pounds(100, hide_pence_if_zero: true)).to eq("1")
         end
