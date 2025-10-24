@@ -88,6 +88,9 @@
     <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
     <p class="govuk-body"><%= t(".site_payment_info") %></p>
     <ul class="govuk-list govuk-list--bullet">
+      <% if @exemptions_summary_form.farm_exemptions_selected? %>
+        <li><%= t(".capped_farming_charge") %></li>
+      <% end %>
       <li><%= t(".full_compliance_charge") %></li>
       <li><%= t(".discounted_charge") %></li>
       <li><%= t(".band_3_charge") %></li>

@@ -13,6 +13,7 @@ en:
         full_compliance_charge: "full compliance charge for one exemption from the most expensive band"
         discounted_charge: "discounted charge for additional exemptions in bands upper, 1 and 2"
         band_3_charge: "compliance charge of £30 for each band 3 exemption"
+        capped_farming_charge: "a capped £88 compliance charge for farming exemptions"
         registration_fee: "registration charge of %{charge_amount}"
         band_3_compliance_charge: "compliance charge of £30 for each band 3 exemption"
         exemption: "Exemption"
