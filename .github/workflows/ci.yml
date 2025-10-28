@@ -1,6 +1,13 @@
 name: CI
 
-on: push
+on: 
+  push:
+    paths-ignore:
+      - 'CHANGELOG.md'
+  schedule:
+    - cron: '30 15 * * 2'
+
+
 
 jobs:
   build:
