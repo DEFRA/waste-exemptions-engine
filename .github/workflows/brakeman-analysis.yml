@@ -15,7 +15,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ main ]
   schedule:
-    - cron: '15 14 * * 2'
+    - cron: '00 15 * * 2'
 
 jobs:
   brakeman-scan:
