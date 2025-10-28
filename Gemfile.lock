@@ -151,7 +151,7 @@ GEM
       fiber-annotation
       fiber-local (~> 1.1)
       json
-    crack (1.0.0)
+    crack (1.0.1)
       bigdecimal
       rexml
     crass (1.0.6)
@@ -318,8 +318,8 @@ GEM
       sawyer (~> 0.9)
     os_map_ref (0.5.0)
     ostruct (0.6.3)
-    paper_trail (16.0.0)
-      activerecord (>= 6.1)
+    paper_trail (17.0.0)
+      activerecord (>= 7.1)
       request_store (~> 1.4)
     parallel (1.27.0)
     parallel_tests (5.4.0)
@@ -334,7 +334,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.6.2)
-    phonelib (0.10.12)
+    phonelib (0.10.13)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -533,7 +533,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.6)
       rexml (~> 3.2)
-    webmock (3.25.1)
+    webmock (3.26.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
