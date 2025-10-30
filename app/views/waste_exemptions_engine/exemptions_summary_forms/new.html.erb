@@ -12,7 +12,9 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header"><%= t(".exemption_heading") %></th>
           <th scope="col" class="govuk-table__header"><%= t(".charge_heading") %></th>
-          <th scope="col" class="govuk-table__header"><%= t(".total_heading") %></th>
+          <% if is_multisite %>
+            <th scope="col" class="govuk-table__header"><%= t(".total_heading") %></th>
+          <% end %>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -31,9 +33,11 @@
                 <%= farming_total_charge %>
               <% end %>
             </td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">
-              <%= farming_total_charge %>
-            </td>
+            <% if is_multisite %>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <%= farming_total_charge %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
 
@@ -52,22 +56,28 @@
                 <%= total_charge %><%= " (d)" if is_discounted %>
               <% end %>
             </td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">
-              <%= total_charge %>
-            </td>
+            <% if is_multisite %>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <%= total_charge %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
 
         <tr class="govuk-table__row" id="registration-charge-row">
           <th scope="row" class="govuk-table__header"><%= t(".registration_charge") %></th>
           <td class="govuk-table__cell"><%= @exemptions_summary_form.registration_charge %></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><%= @exemptions_summary_form.registration_charge %></td>
+          <% if is_multisite %>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><%= @exemptions_summary_form.registration_charge %></td>
+          <% end %>
         </tr>
 
         <tr class="govuk-table__row" id="vat-exempt-row">
           <th scope="row" class="govuk-table__header"><%= t(".vat_exempt") %></th>
           <td class="govuk-table__cell">£0</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+          <% if is_multisite %>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
+          <% end %>
         </tr>
       </tbody>
     </table>
