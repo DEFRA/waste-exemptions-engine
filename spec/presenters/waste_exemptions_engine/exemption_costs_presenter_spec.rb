@@ -146,7 +146,7 @@ module WasteExemptionsEngine
 
         it "returns the bucket compliance charge for the first farm exemption in the order" do
           first_bucket_exemption = sorted_exemptions.first
-          expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.39")
+          expect(presenter.compliance_charge(first_bucket_exemption)).to eq("£0.40")
         end
       end
 
@@ -425,6 +425,21 @@ module WasteExemptionsEngine
 
         it "returns true for the lower band exemption" do
           expect(presenter.is_discounted_charge?(low_band_exemption)).to be(true)
+        end
+      end
+
+      context "when initial and additional charges are the same" do
+        let(:same_charge_band) do
+          create(:band,
+                 initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 3000),
+                 additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 3000))
+        end
+        let(:first_exemption) { create(:exemption, band: band_3) }
+        let(:second_exemption) { create(:exemption, band: same_charge_band) }
+        let(:exemptions) { [first_exemption, second_exemption] }
+
+        it "returns false when both charges are the same (no actual discount)" do
+          expect(presenter.is_discounted_charge?(second_exemption)).to be(false)
         end
       end
     end

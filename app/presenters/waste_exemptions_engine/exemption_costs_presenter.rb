@@ -105,7 +105,7 @@ module WasteExemptionsEngine
       return false if exemption_in_bucket?(exemption)
       return false if first_exemption_in_highest_band?(exemption)
 
-      exemption.band.additional_compliance_charge.charge_amount.positive?
+      exemption.band.discount_possible?
     end
 
     private
