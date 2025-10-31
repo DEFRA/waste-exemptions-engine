@@ -5,20 +5,21 @@ en:
         title: &title Where will you do the waste activity?
         heading: *title
         legend: *title
-        grid_reference_preferred_option: "Enter the grid reference and site details, or use the address finder to add a site."
-        multisite_instruction: "Click continue to add more sites. Repeat the process until you have added all your sites."
-        postcode_prefix: "Enter a postcode in the"
+        grid_reference_preferred_option: Enter the grid reference and site details, or use the address finder to add a site.
+        multisite_instruction: Click continue to add more sites. Repeat the process until you have added all your sites.
+        postcode_prefix: Enter a postcode in the
         postcode_link_text: address finder
         or: Or
         grid_reference_help_tool_link: UK Grid Reference Finder
-        grid_reference_label: "Enter a grid reference"
+        grid_reference_label: Enter a grid reference
         grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens new window)."
-        grid_reference_hint: "Enter 2 letters and 10 digits. For example, ST 58132 72695"
+        grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
         description_label: Site details
-        description_hint: "For example, nearby landmarks and features, a descriptive name."
+        description_hint: For example, nearby landmarks and features, a descriptive name.
+        mark_as_linear: Mark this registration as linear.
         error_heading: A problem to fix
         next_button: Continue
-        continue_instruction: "Click 'Continue' to review and add more sites."
+        continue_instruction: Click 'Continue' to review and add more sites.
         use_address_link: Use an address instead
   activemodel:
     errors:
@@ -33,5 +34,5 @@ en:
               blank: Enter a site description
               too_long: The site description must be no longer than 500 characters
             token:
-              invalid_format: "The token is not valid"
-              missing: "The token is missing"
+              invalid_format: The token is not valid
+              missing: The token is missing
