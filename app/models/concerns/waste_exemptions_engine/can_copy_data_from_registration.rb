@@ -42,6 +42,7 @@ module WasteExemptionsEngine
 
       assign_attributes(attributes)
 
+      @addresses_mapping = {}
       copy_addresses_from_registration
       copy_temp_addresses_info_from_registration
       copy_people_from_registration
@@ -53,7 +54,7 @@ module WasteExemptionsEngine
 
     def copy_addresses_from_registration
       registration.addresses.each do |address|
-        addresses << TransientAddress.new(
+        transient_address = TransientAddress.new(
           address.attributes.except(
             "created_at",
             "id",
@@ -61,6 +62,8 @@ module WasteExemptionsEngine
             "updated_at"
           )
         )
+        @addresses_mapping[address.id] = transient_address
+        addresses << transient_address
       end
     end
 
@@ -89,6 +92,14 @@ module WasteExemptionsEngine
                         else
                           registration.active_exemptions
                         end
+
+      # set the transient_address_id for each copied registration_exemption
+      registration.registration_exemptions.active.each do |re|
+        transient_re = transient_registration_exemptions.find { |tre| tre.exemption_id == re.exemption_id }
+        if transient_re.present? && @addresses_mapping.key?(re.address_id)
+          transient_re.transient_address = @addresses_mapping[re.address_id]
+        end
+      end
     end
 
     def set_temp_company_no_from_registration
