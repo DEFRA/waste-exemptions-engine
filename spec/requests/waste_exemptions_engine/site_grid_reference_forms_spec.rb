@@ -13,7 +13,7 @@ module WasteExemptionsEngine
         {
           grid_reference: "ST 58337 72855",
           description: "The waste is stored in an out-building next to the barn.",
-          is_legacy_linear: false
+          is_linear: false
         }
       end
 
@@ -72,16 +72,16 @@ module WasteExemptionsEngine
         {
           grid_reference: "ST 58337 72855",
           description: "The waste is stored in an out-building next to the barn.",
-          is_legacy_linear: false
+          is_linear: false
         }
       end
 
       context "when the form is submitted in the front-office" do
         before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
 
-        it "does not change the is_legacy_linear attribute" do
+        it "does not change the is_linear attribute" do
           expect { post site_grid_reference_request_path, params: { site_grid_reference_form: form_data } }
-            .not_to change { form.transient_registration.reload.is_legacy_linear }.from(false)
+            .not_to change { form.transient_registration.reload.is_linear }.from(false)
         end
       end
 
@@ -89,18 +89,18 @@ module WasteExemptionsEngine
         before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true) }
 
         context "when the linear checkbox is not checked" do
-          it "does not change the is_legacy_linear attribute" do
+          it "does not change the is_linear attribute" do
             expect { post site_grid_reference_request_path, params: { site_grid_reference_form: form_data } }
-              .not_to change { form.transient_registration.reload.is_legacy_linear }.from(false)
+              .not_to change { form.transient_registration.reload.is_linear }.from(false)
           end
         end
 
         context "when the linear checkbox is checked" do
-          before { form_data[:is_legacy_linear] = true }
+          before { form_data[:is_linear] = true }
 
-          it "changes the is_legacy_linear attribute" do
+          it "changes the is_linear attribute" do
             expect { post site_grid_reference_request_path, params: { site_grid_reference_form: form_data } }
-              .to change { form.transient_registration.reload.is_legacy_linear }.to(true)
+              .to change { form.transient_registration.reload.is_linear }.to(true)
           end
         end
       end

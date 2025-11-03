@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_31_000708) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_03_134014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -330,7 +330,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_31_000708) do
     t.string "edit_link_requested_by"
     t.boolean "is_multisite_registration"
     t.boolean "is_legacy_bulk", default: false
-    t.boolean "is_legacy_linear", default: false
+    t.boolean "is_linear", default: false
     t.index ["created_at"], name: "index_registrations_on_created_at"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
@@ -447,7 +447,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_31_000708) do
     t.string "reason_for_change", limit: 500
     t.boolean "is_multisite_registration"
     t.boolean "is_legacy_bulk", default: false
-    t.boolean "is_legacy_linear", default: false
+    t.boolean "is_linear", default: false
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
