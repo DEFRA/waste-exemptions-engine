@@ -1,0 +1,16 @@
+en:
+  waste_exemptions_engine:
+    operation_sites_forms:
+      new:
+        title: "Waste operation sites"
+        heading: "Waste operation sites"
+        labels:
+          reference: "WEX reference"
+          location: "Location"
+          details: "Details"
+          ea_area: "EA area"
+          status: "Site status"
+          ceased_or_revoked: "Ceased/revoked exemptions"
+          actions: "Actions"
+        actions:
+          edit: "Edit"

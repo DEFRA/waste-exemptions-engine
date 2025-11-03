@@ -192,6 +192,21 @@ WasteExemptionsEngine::Engine.routes.draw do
                        on: :collection
               end
 
+    resources :operation_sites_forms,
+              only: %i[new create],
+              path: "operation_sites",
+              path_names: { new: "" } do
+                get ":site_id",
+                    to: "operation_sites_forms#edit",
+                    as: "edit",
+                    on: :collection
+
+                post ":site_id",
+                     to: "operation_sites_forms#update",
+                     as: "update",
+                     on: :collection
+              end
+
     resources :on_a_farm_forms,
               only: %i[new create],
               path: "on-a-farm",
@@ -485,6 +500,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                 get "is_a_farmer",
                     to: "back_office_edit_forms#edit_is_a_farmer",
                     as: "is_a_farmer",
+                    on: :collection
+
+                get "operation_sites",
+                    to: "back_office_edit_forms#edit_operation_sites",
+                    as: "operation_sites",
                     on: :collection
 
                 get "site_grid_reference",

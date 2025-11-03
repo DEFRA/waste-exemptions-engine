@@ -80,7 +80,7 @@ module WasteExemptionsEngine
 
     context "when editing an existing multisite address in back office" do
       let(:transient_registration) do
-        create(:new_charged_registration).tap do |registration|
+        create(:back_office_edit_registration).tap do |registration|
           create(:transient_address, :site_using_grid_reference, transient_registration: registration)
           registration.update!(is_multisite_registration: true)
         end
@@ -89,7 +89,6 @@ module WasteExemptionsEngine
       let(:existing_site) { transient_registration.site_addresses.first }
 
       before do
-        allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
         allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
       end
 

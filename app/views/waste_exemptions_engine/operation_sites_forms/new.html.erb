@@ -1,0 +1,70 @@
+<%= render("waste_exemptions_engine/shared/back", token: @operation_sites_form.token) %>
+
+<% content_for :title, t(".heading") %>
+
+<% if @operation_sites_form.present? %>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table" aria-label="<%= t(".heading") %>">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"><%= t(".labels.reference") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.location") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.details") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.ea_area") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.status") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.ceased_or_revoked") %></th>
+            <th class="govuk-table__header" scope="col"><%= t(".labels.actions") %></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <% site_addresses = @operation_sites_form.site_addresses(@page) %>
+          <% site_addresses.each do |site_address| %>
+             <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <%= @operation_sites_form.site_reference(site_address) %>
+              </td>
+              <td class="govuk-table__cell">
+                <%=
+                  if site_address.located_by_grid_reference?
+                    site_address.grid_reference
+                  else
+                    displayable_address(site_address).join(", ")
+                  end
+                %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= site_address.description %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= site_address.area %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= @operation_sites_form.site_status(site_address) %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= @operation_sites_form.ceased_or_revoked_exemptions(site_address) %>
+              </td>
+              <td class="govuk-table__cell">
+                <%= link_to t(".actions.edit"),
+                            edit_operation_sites_forms_path(token: @operation_sites_form.token, 
+                                                            site_id: site_address.id,
+                                                            page: @page), 
+                            class: "govuk-link" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <nav role="navigation" class="pagination" aria-label="Pagination">
+        <div class="pagination__summary govuk-body">
+          <%= page_entries_info site_addresses, entry_name: "item" %>
+        </div>
+        <span class="govuk-body">
+          <%= paginate site_addresses, param_name: :page, views_prefix: "waste_exemptions_engine" %>
+        </span>
+      </nav>
+    </div>
+  </div>
+<% end %>

@@ -54,6 +54,9 @@ en:
           site:
             heading: "Waste operation details"
             labels:
+              site_locations: Site location(s)
+              sites: Sites
+
               grid_reference: Grid reference
               site_details: Site details
               site_address: Site address

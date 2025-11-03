@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      if transient_registration.multisite?
+      if multisite_registration?
         return update_existing_site if existing_site.present?
 
         transient_registration.transient_addresses.create!(
@@ -49,6 +49,10 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def multisite_registration?
+      ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
+    end
 
     def update_existing_site
       existing_site.update!(

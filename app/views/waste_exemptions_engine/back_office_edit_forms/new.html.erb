@@ -277,41 +277,23 @@
       </h2>
 
       <dl class="govuk-summary-list">
-        <% if @back_office_edit_form.site_address&.located_by_grid_reference? %>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <%=t ".sections.site.labels.grid_reference" %>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= @back_office_edit_form.site_address.grid_reference %>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <%= link_to site_grid_reference_back_office_edit_forms_path(@back_office_edit_form.token) do %>
-                <%= t(".edit_links.default") %>
-                <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
-              <% end %>
-            </dd>
-          </div>
-        <% else %>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <%=t ".sections.site.labels.site_address" %>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <ul class="govuk-list">
-                <% displayable_address(@back_office_edit_form.site_address).each do |line| %>
-                  <li><%= line %></li>
-                <% end %>
-              </ul>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <%= link_to site_grid_reference_back_office_edit_forms_path(@back_office_edit_form.token) do %>
-                <%= t(".edit_links.default") %>
-                <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.site_address") %></span>
-              <% end %>
-            </dd>
-          </div>
-        <% end %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <%= t('.sections.site.labels.site_locations') %>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body govuk-!-font-weight-bold">
+              <%= t('.sections.site.labels.sites') %>
+            </p>
+
+            <p class="govuk-body">
+              <%= @back_office_edit_form.site_addresses.count %>
+            </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <%= link_to t(".edit_links.default"), operation_sites_back_office_edit_forms_path(@back_office_edit_form.token), class: "govuk-link" %>
+          </dd>
+        </div>
       </dl>
 
       <h2 class="govuk-heading-m">
