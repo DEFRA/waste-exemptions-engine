@@ -77,5 +77,54 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    context "when editing an existing multisite address" do
+      let(:transient_registration) do
+        create(:back_office_edit_registration).tap do |registration|
+          create(:transient_address, :site_using_grid_reference, transient_registration: registration)
+          registration.update!(is_multisite_registration: true)
+        end
+      end
+
+      let(:existing_site) { transient_registration.addresses.detect(&:site?) }
+
+      before { allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run) }
+
+      it "assigns the existing site to the form" do
+        form = described_class.new(transient_registration)
+        form.assign_existing_site(existing_site)
+
+        # existing_site.reload
+
+        aggregate_failures do
+          expect(form.existing_site).to eq(existing_site)
+          expect(form.existing_site.grid_reference).to eq(existing_site.grid_reference)
+          expect(form.existing_site.description).to eq(existing_site.description)
+        end
+      end
+
+      it "updates the existing site record" do
+        form = described_class.new(transient_registration)
+        form.assign_existing_site(existing_site)
+
+        params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
+
+        expect do
+          form.submit(params)
+        end.to change(existing_site, :grid_reference).to("ST 12345 67890")
+                                                     .and change(existing_site, :description).to("Updated site description")
+      end
+
+      it "doesn't create a duplicate" do
+        form = described_class.new(transient_registration)
+        form.assign_existing_site(existing_site)
+
+        params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
+
+        expect do
+          form.submit(params)
+        end.not_to change(transient_registration.transient_addresses, :count)
+      end
+    end
   end
 end
