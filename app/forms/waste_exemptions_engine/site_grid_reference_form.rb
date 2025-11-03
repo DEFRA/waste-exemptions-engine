@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
     include CanClearAddressFinderError
 
-    delegate :site_address, to: :transient_registration
+    delegate :site_address, :is_legacy_linear, to: :transient_registration
 
     attr_accessor :grid_reference, :description, :existing_site
 
@@ -23,6 +23,10 @@ module WasteExemptionsEngine
     def submit(params)
       self.grid_reference = params[:grid_reference]
       self.description = params[:description]
+
+      # is_legacy_linear apples to the owning transient_registration, not the site address
+      transient_registration.update(is_legacy_linear: params["is_legacy_linear"]) unless params["is_legacy_linear"].nil?
+      params.delete(:is_legacy_linear)
 
       return false unless valid?
 
