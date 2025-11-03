@@ -78,23 +78,24 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when editing an existing multisite address" do
+    context "when editing an existing multisite address in back office" do
       let(:transient_registration) do
-        create(:back_office_edit_registration).tap do |registration|
+        create(:new_charged_registration).tap do |registration|
           create(:transient_address, :site_using_grid_reference, transient_registration: registration)
           registration.update!(is_multisite_registration: true)
         end
       end
 
-      let(:existing_site) { transient_registration.addresses.detect(&:site?) }
+      let(:existing_site) { transient_registration.site_addresses.first }
 
-      before { allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run) }
+      before do
+        allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
+      end
 
       it "assigns the existing site to the form" do
         form = described_class.new(transient_registration)
         form.assign_existing_site(existing_site)
-
-        # existing_site.reload
 
         aggregate_failures do
           expect(form.existing_site).to eq(existing_site)
@@ -108,7 +109,6 @@ module WasteExemptionsEngine
         form.assign_existing_site(existing_site)
 
         params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
-
         expect do
           form.submit(params)
         end.to change(existing_site, :grid_reference).to("ST 12345 67890")
