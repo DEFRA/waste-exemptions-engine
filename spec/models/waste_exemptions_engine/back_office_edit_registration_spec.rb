@@ -92,6 +92,19 @@ module WasteExemptionsEngine
           end
         end
 
+        it "copies the address_id as the transient_address_id for the active registration_exemption" do
+          registration.registration_exemptions.each do |re|
+            re.state = :active
+            re.address_id = registration.addresses.first.id
+            re.save
+          end
+
+          registration.exemptions.each do |exemption|
+            tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == exemption.id }
+            expect(tre.transient_address_id).to be_present
+          end
+        end
+
         it "does not copy the expired exemptions from the registration" do
           registration.registration_exemptions.each do |re|
             re.state = :expired
