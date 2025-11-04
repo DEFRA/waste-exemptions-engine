@@ -59,7 +59,7 @@
       <% end %>
 
       <% if WasteExemptionsEngine.configuration.host_is_back_office? %>
-        <%= f.govuk_check_box :is_legacy_linear,
+        <%= f.govuk_check_box :is_linear,
           1,
           0,
           link_errors: true,
