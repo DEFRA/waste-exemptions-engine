@@ -22,7 +22,7 @@ module WasteExemptionsEngine
     def transient_registration_attributes
       params
         .fetch(:site_grid_reference_form, {})
-        .permit(:description, :grid_reference, :is_legacy_linear)
+        .permit(:description, :grid_reference, :is_linear)
     end
   end
 end
