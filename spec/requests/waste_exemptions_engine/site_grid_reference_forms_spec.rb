@@ -34,7 +34,7 @@ module WasteExemptionsEngine
         it "renders the appropriate template" do
           get site_address_request_path
 
-          expect(response.location).to include(check_site_address_forms_path(token: form.token))
+          expect(response.location).to include(site_postcode_forms_path(token: form.token))
         end
 
         it "returns a 303 status code" do
@@ -45,23 +45,37 @@ module WasteExemptionsEngine
       end
 
       describe "GET site_grid_reference_request_path" do
-        context "when the form is loaded in the front-office" do
-          before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
-
-          it "does not include the linear checkbox" do
+        shared_examples "does not show the linear checkbox" do
+          it do
             get site_grid_reference_request_path
 
             expect(response.body).not_to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.mark_as_linear"))
           end
         end
 
+        context "when the form is loaded in the front-office" do
+          before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false) }
+
+          it_behaves_like "does not show the linear checkbox"
+        end
+
         context "when the form is loaded in the back-office" do
           before { allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true) }
 
-          it "includes the linear checkbox" do
-            get site_grid_reference_request_path
+          context "when the transient registration is multi-site" do
+            before { form.transient_registration.update(is_multisite_registration: true) }
 
-            expect(response.body).to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.mark_as_linear"))
+            it_behaves_like "does not show the linear checkbox"
+          end
+
+          context "when the transient registration is single-site" do
+            before { form.transient_registration.update(is_multisite_registration: false) }
+
+            it "includes the linear checkbox" do
+              get site_grid_reference_request_path
+
+              expect(response.body).to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.mark_as_linear"))
+            end
           end
         end
       end
