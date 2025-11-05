@@ -58,7 +58,7 @@
         </p>
       <% end %>
 
-      <% if WasteExemptionsEngine.configuration.host_is_back_office? %>
+      <% if WasteExemptionsEngine.configuration.host_is_back_office? && !is_multisite %>
         <%= f.govuk_check_box :is_linear,
           1,
           0,

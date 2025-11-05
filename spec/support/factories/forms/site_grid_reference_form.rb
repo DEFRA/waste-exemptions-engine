@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :site_grid_reference_form, class: "WasteExemptionsEngine::SiteGridReferenceForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "site_grid_reference_form"))
+      new(create(:new_charged_registration, workflow_state: "site_grid_reference_form"))
     end
   end
 
@@ -22,7 +22,7 @@ FactoryBot.define do
   factory :check_your_answers_site_grid_reference_form, class: "WasteExemptionsEngine::SiteGridReferenceForm" do
     initialize_with do
       new(
-        create(:new_registration,
+        create(:new_charged_registration,
                workflow_state: "site_grid_reference_form",
                temp_check_your_answers_flow: true)
       )
