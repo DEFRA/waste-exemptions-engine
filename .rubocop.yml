@@ -49,6 +49,7 @@ Metrics/ModuleLength:
     - app/models/concerns/waste_exemptions_engine/can_use_new_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_renewing_registration_workflow.rb
     - app/models/concerns/waste_exemptions_engine/can_use_new_charged_registration_workflow.rb
+    - app/models/concerns/waste_exemptions_engine/can_copy_data_from_registration.rb
     - spec/**/*
 
 # Bad cop: Not all methods returning a boolean are predicates.
