@@ -7,3 +7,10 @@ en:
         hint: "Multiple site registration is when you register the same exemptions at %{count} or more different sites."
         no: "No"
         yes: "Yes, this is a multiple site registration (%{count}+ sites)"
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/is_multisite_registration_form:
+          attributes:
+            is_multisite_registration:
+              inclusion: "You must tell us if this is a multiple site registration"
