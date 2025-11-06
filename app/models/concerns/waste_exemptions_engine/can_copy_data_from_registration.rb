@@ -87,17 +87,27 @@ module WasteExemptionsEngine
     end
 
     def copy_exemptions_from_registration
-      registration_exemptions = registration_exemption_records_to_copy.to_a
+      registration_exemptions = if respond_to?(:registration_exemptions_to_copy)
+                                  registration.registration_exemptions.where(exemption: registration_exemptions_to_copy)
+                                else
+                                  registration.registration_exemptions.active
+                                end
 
-      self.exemptions = registration_exemptions.map(&:exemption)
-
-      transient_exemptions = transient_registration_exemptions.to_a
-
-      registration_exemptions.each_with_index do |registration_exemption, index|
-        transient_exemption = transient_exemptions[index]
-        next unless transient_exemption
-
-        transient_exemption.transient_address = @addresses_mapping[registration_exemption.address_id]
+      registration_exemptions.each do |registration_exemption|
+        tre = TransientRegistrationExemption.new(
+          registration_exemption.attributes.except(
+            "created_at",
+            "id",
+            "registration_id",
+            "updated_at",
+            "address_id",
+            "deregistration_message",
+            "deregistered_at",
+            "reason_for_change"
+          )
+        )
+        tre.transient_address = @addresses_mapping[registration_exemption.address_id]
+        transient_registration_exemptions << tre
       end
     end
 
@@ -107,14 +117,6 @@ module WasteExemptionsEngine
 
     def options
       @_options ||= self.class::COPY_DATA_OPTIONS
-    end
-
-    def registration_exemption_records_to_copy
-      if respond_to?(:registration_exemptions_to_copy)
-        registration.registration_exemptions.where(exemption: registration_exemptions_to_copy)
-      else
-        registration.registration_exemptions.active
-      end
     end
   end
 end
