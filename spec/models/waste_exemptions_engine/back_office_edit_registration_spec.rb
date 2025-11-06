@@ -97,7 +97,7 @@ module WasteExemptionsEngine
             registration.registration_exemptions.each do |re|
               tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
               aggregate_failures do
-                expect(tre.state).to eq(re.state)
+                expect(tre.state).to eq("pending")
                 expect(tre.registered_on).to eq(re.registered_on)
                 expect(tre.expires_on).to eq(re.expires_on)
                 expect(tre.transient_registration_id).to be_present
@@ -115,7 +115,7 @@ module WasteExemptionsEngine
             registration.registration_exemptions.each do |re|
               tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
               aggregate_failures do
-                expect(tre.state).to eq(re.state)
+                expect(tre.state).to eq("pending")
                 expect(tre.registered_on).to eq(re.registered_on)
                 expect(tre.expires_on).to eq(re.expires_on)
                 expect(tre.transient_registration_id).to be_present

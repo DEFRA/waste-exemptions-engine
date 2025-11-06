@@ -103,7 +103,8 @@ module WasteExemptionsEngine
             "address_id",
             "deregistration_message",
             "deregistered_at",
-            "reason_for_change"
+            "reason_for_change",
+            "state"
           )
         )
         tre.transient_address = @addresses_mapping[registration_exemption.address_id]

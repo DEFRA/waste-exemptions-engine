@@ -71,7 +71,7 @@ module WasteExemptionsEngine
       context "when registration is multi-site" do
         let(:edit_registration) { create(:back_office_edit_registration, :multisite, :modified) }
         let(:exemption_skipped_attributes) do
-          skipped_attributes + %w[address_id transient_address_id deregistered_at deregistration_message reason_for_change]
+          skipped_attributes + %w[address_id transient_address_id deregistered_at deregistration_message reason_for_change state]
         end
 
         it "copies the site_addresses from the registration" do
@@ -85,7 +85,7 @@ module WasteExemptionsEngine
 
         it "preserves the exemptions and ensures they match edit_registration" do
           expected_attributes = edit_registration.site_addresses.flat_map do |site_address|
-            site_address.transient_registration_exemptions.map(&:attributes).map do |attrs|
+            edit_registration.transient_registration_exemptions.where(transient_address_id: site_address.id).map(&:attributes).map do |attrs|
               attrs.except(*exemption_skipped_attributes)
             end
           end

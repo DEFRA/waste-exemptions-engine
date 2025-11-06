@@ -33,6 +33,8 @@ module WasteExemptionsEngine
     end
 
     def delete_edit_registration
+      # Clear transient_registration_exemptions first to avoid foreign key violation
+      @edit_registration.transient_registration_exemptions.destroy_all
       @edit_registration.destroy
     end
 
@@ -68,7 +70,7 @@ module WasteExemptionsEngine
       @edit_registration.transient_registration_exemptions.each do |transient_exemption|
         new_address = @addresses_mapping[transient_exemption.transient_address_id]
         @registration.registration_exemptions << RegistrationExemption.new(
-          transient_exemption.exemption_attributes.merge(address: new_address)
+          transient_exemption.exemption_attributes.merge(address: new_address, state: "active")
         )
       end
     end
