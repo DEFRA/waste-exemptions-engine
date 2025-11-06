@@ -25,7 +25,7 @@ module WasteExemptionsEngine
         end
       end
 
-      %i[operator_address contact_address site_address].each do |address_type|
+      %i[operator_address contact_address].each do |address_type|
         it "copies the #{address_type} from the registration" do
           old_attributes = registration.send(address_type).attributes.except(*skipped_attributes)
           new_attributes = edit_registration.send(address_type).attributes.except(*skipped_attributes)
@@ -33,6 +33,72 @@ module WasteExemptionsEngine
           expect { run_service }.to change {
             registration.reload.send(address_type).attributes.except(*skipped_attributes)
           }.from(old_attributes).to(new_attributes)
+        end
+      end
+
+      context "when registration is single-site" do
+        it "copies the site_address from the registration" do
+          old_attributes = registration.site_address.attributes.except(*skipped_attributes)
+          new_attributes = edit_registration.site_address.attributes.except(*skipped_attributes)
+
+          expect { run_service }.to change {
+            registration.reload.site_address.attributes.except(*skipped_attributes)
+          }.from(old_attributes).to(new_attributes)
+        end
+
+        it "preserves the exemptions and ensures they match edit_registration" do
+          exemption_skipped_attributes = skipped_attributes + %w[
+            address_id
+            transient_address_id
+            deregistered_at
+            deregistration_message
+            reason_for_change
+          ]
+
+          expected_attributes = edit_registration.exemptions.map(&:attributes).map do |attrs|
+            attrs.except(*exemption_skipped_attributes)
+          end
+
+          run_service
+
+          actual_attributes = registration.reload.exemptions.map(&:attributes).map do |attrs|
+            attrs.except(*exemption_skipped_attributes)
+          end
+          expect(actual_attributes).to eq(expected_attributes)
+        end
+      end
+
+      context "when registration is multi-site" do
+        let(:edit_registration) { create(:back_office_edit_registration, :multisite, :modified) }
+        let(:exemption_skipped_attributes) do
+          skipped_attributes + %w[address_id transient_address_id deregistered_at deregistration_message reason_for_change]
+        end
+
+        it "copies the site_addresses from the registration" do
+          old_attributes = registration.site_addresses.map(&:attributes).map { |attrs| attrs.except(*skipped_attributes) }
+          new_attributes = edit_registration.site_addresses.map(&:attributes).map { |attrs| attrs.except(*skipped_attributes) }
+
+          expect { run_service }.to change {
+            registration.reload.site_addresses.map(&:attributes).map { |attrs| attrs.except(*skipped_attributes) }
+          }.from(old_attributes).to(new_attributes)
+        end
+
+        it "preserves the exemptions and ensures they match edit_registration" do
+          expected_attributes = edit_registration.site_addresses.flat_map do |site_address|
+            site_address.transient_registration_exemptions.map(&:attributes).map do |attrs|
+              attrs.except(*exemption_skipped_attributes)
+            end
+          end
+
+          run_service
+
+          actual_attributes = registration.reload.site_addresses.flat_map do |site_address|
+            site_address.registration_exemptions.map(&:attributes).map do |attrs|
+              attrs.except(*exemption_skipped_attributes)
+            end
+          end
+
+          expect(actual_attributes).to eq(expected_attributes)
         end
       end
 
