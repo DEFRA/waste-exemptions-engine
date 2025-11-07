@@ -41,8 +41,8 @@ FactoryBot.define do
       after(:build) do |edit_registration|
         edit_registration.addresses.each do |address|
           address.attributes.each do |key, value|
-            # Skip enumed attributes
-            next if %w[address_type mode].include?(key)
+            # Skip enumed attributes and identifiers that shouldn't be modified
+            next if %w[address_type mode site_suffix].include?(key)
 
             # Append 'foo' to the end of all string attributes
             address[key] = "#{value}foo" if value.is_a?(String)
@@ -71,6 +71,12 @@ FactoryBot.define do
             person[key] = "#{value}foo" if value.is_a?(String)
           end
         end
+      end
+    end
+
+    trait :multisite do
+      initialize_with do
+        new(reference: create(:registration, :multisite_complete).reference)
       end
     end
   end

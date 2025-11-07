@@ -92,16 +92,47 @@ module WasteExemptionsEngine
           end
         end
 
-        it "copies the address_id as the transient_address_id for the active registration_exemption" do
-          registration.registration_exemptions.each do |re|
-            re.state = :active
-            re.address_id = registration.addresses.first.id
-            re.save
+        context "when registration is single-site" do
+          it "copies all required attributes of registration_exemption" do
+            registration.registration_exemptions.each do |re|
+              tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
+              aggregate_failures do
+                expect(tre.state).to eq("pending")
+                expect(tre.registered_on).to eq(re.registered_on)
+                expect(tre.expires_on).to eq(re.expires_on)
+                expect(tre.transient_registration_id).to be_present
+                expect(tre.exemption_id).to eq(re.exemption_id)
+              end
+            end
+          end
+        end
+
+        context "when registration is multi-site" do
+          let(:registration) { create(:registration, :multisite_complete) }
+          let(:edit_registration) { described_class.new(reference: registration.reference) }
+
+          it "copies all required attributes of registration_exemption" do
+            registration.registration_exemptions.each do |re|
+              tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
+              aggregate_failures do
+                expect(tre.state).to eq("pending")
+                expect(tre.registered_on).to eq(re.registered_on)
+                expect(tre.expires_on).to eq(re.expires_on)
+                expect(tre.transient_registration_id).to be_present
+                expect(tre.exemption_id).to eq(re.exemption_id)
+                expect(tre.transient_address_id).to be_present
+              end
+            end
           end
 
-          registration.exemptions.each do |exemption|
-            tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == exemption.id }
-            expect(tre.transient_address_id).to be_present
+          it "copies the address_id as the transient_address_id for the active registration_exemption" do
+            registration.registration_exemptions.each do |re|
+              tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
+              aggregate_failures do
+                expect(tre.transient_address_id).to be_present
+                expect(tre.transient_address.site_suffix).to eq(re.address.site_suffix)
+              end
+            end
           end
         end
 
