@@ -130,5 +130,23 @@ FactoryBot.define do
         create_list(:address, 3, :site_address, registration: registration)
       end
     end
+
+    trait :multisite_complete do
+      charged { true }
+      is_multisite_registration { true }
+
+      after(:build) do |registration|
+        registration.registration_exemptions = []
+        registration.site_addresses = (1..30).map do |i|
+          site_address = build(:address, :site_address)
+          # Build exemptions with registration set, so they belong to both registration and address
+          exemptions = build_list(:registration_exemption, 3, registration: registration)
+          site_address.registration_exemptions << exemptions
+          registration.registration_exemptions.concat(exemptions)
+          site_address.site_suffix = format("%05d", i)
+          site_address
+        end
+      end
+    end
   end
 end
