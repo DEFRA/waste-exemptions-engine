@@ -6,7 +6,7 @@ module WasteExemptionsEngine
 
     delegate :site_address, :is_linear, to: :transient_registration
 
-    attr_accessor :grid_reference, :description
+    attr_accessor :grid_reference, :description, :existing_site
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
@@ -30,7 +30,9 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      if transient_registration.multisite?
+      if multisite_registration?
+        return update_existing_site if existing_site.present?
+
         transient_registration.transient_addresses.create!(
           grid_reference: grid_reference,
           description: description,
@@ -42,6 +44,27 @@ module WasteExemptionsEngine
         params.merge!(address_type: :site, mode: :auto)
         super(site_address_attributes: params)
       end
+    end
+
+    def assign_existing_site(site_address)
+      self.existing_site = site_address
+      self.grid_reference = site_address.grid_reference
+      self.description = site_address.description
+    end
+
+    private
+
+    def multisite_registration?
+      ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
+    end
+
+    def update_existing_site
+      existing_site.update!(
+        grid_reference: grid_reference,
+        description: description
+      )
+      WasteExemptionsEngine::AssignSiteDetailsService.run(address: existing_site)
+      true
     end
   end
 end

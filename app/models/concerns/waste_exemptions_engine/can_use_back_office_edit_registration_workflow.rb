@@ -41,6 +41,7 @@ module WasteExemptionsEngine
         state :is_a_farmer_form
 
         # Site questions
+        state :operation_sites_form
         state :site_grid_reference_form
         state :site_postcode_form
         state :site_address_lookup_form
@@ -134,10 +135,17 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form
         end
 
+        # Operation Sites
+
+        event :edit_operation_sites do
+          transitions from: :back_office_edit_form,
+                      to: :operation_sites_form
+        end
+
         # Site questions
 
         event :edit_site_grid_reference do
-          transitions from: :back_office_edit_form,
+          transitions from: :operation_sites_form,
                       to: :site_grid_reference_form
         end
 
@@ -211,6 +219,7 @@ module WasteExemptionsEngine
                                contact_address_manual_form
                                on_a_farm_form
                                is_a_farmer_form
+                               operation_sites_form
                                site_grid_reference_form
                                site_address_lookup_form
                                exemptions_form],

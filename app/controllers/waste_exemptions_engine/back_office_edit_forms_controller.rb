@@ -69,6 +69,10 @@ module WasteExemptionsEngine
       transition_to_edit("edit_is_a_farmer")
     end
 
+    def edit_operation_sites
+      transition_to_edit("edit_operation_sites")
+    end
+
     def edit_site_grid_reference
       transition_to_edit("edit_site_grid_reference")
     end
