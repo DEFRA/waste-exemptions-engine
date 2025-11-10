@@ -150,7 +150,7 @@ module WasteExemptionsEngine
        contact_postcode
        on_a_farm
        is_a_farmer
-       site_grid_reference].each do |edit_action|
+       operation_sites].each do |edit_action|
       describe "GET edit_#{edit_action}" do
         let(:request_path) { "/waste_exemptions_engine/#{form.token}/edit/#{edit_action}" }
 

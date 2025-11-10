@@ -23,7 +23,7 @@ module WasteExemptionsEngine
         contact_postcode_form
         on_a_farm_form
         is_a_farmer_form
-        site_grid_reference_form
+        operation_sites_form
       ]
 
       transitionable_states = editable_form_states + %i[reason_for_change_form confirm_back_office_edit_cancelled_form]
