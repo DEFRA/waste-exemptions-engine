@@ -5,6 +5,7 @@ en:
         title: "Your exemptions and charges"
         heading: "How your charges are calculated"
         description: "(d) indicates a discounted charge"
+        item_heading: "Item"
         exemption_heading: "Exemption"
         charge_heading: "Charge"
         total_heading: "Total"

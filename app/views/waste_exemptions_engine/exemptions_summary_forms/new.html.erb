@@ -5,12 +5,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
-    <p class="govuk-body"><%= t(".description") %></p>
+    <p class="govuk-body" id="charges-legend"><%= t(".description") %></p>
 
-    <table class="govuk-table">
+    <table class="govuk-table" aria-describedby="charges-legend">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header"></th>
+          <th scope="col" class="govuk-table__header"><%= t(".item_heading") %></th>
           <th scope="col" class="govuk-table__header"><%= t(".charge_heading") %></th>
           <% if is_multisite %>
             <th scope="col" class="govuk-table__header"><%= t(".total_heading") %></th>
@@ -21,10 +21,17 @@
         <% if @exemptions_summary_form.farming_exemptions.any? %>
           <% farming_total_charge = @exemptions_summary_form.farming_exemptions_charge %>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__cell">
-              <%= t(".farming_exemptions") %>:<br>
-              <%= @exemptions_summary_form.farming_exemptions_codes %>
-            </th>
+            <% if is_multisite %>
+              <th scope="row" class="govuk-table__cell">
+                <%= t(".farming_exemptions") %>:<br>
+                <%= @exemptions_summary_form.farming_exemptions_codes %>
+              </th>
+            <% else %>
+              <td class="govuk-table__cell">
+                <%= t(".farming_exemptions") %>:<br>
+                <%= @exemptions_summary_form.farming_exemptions_codes %>
+              </td>
+            <% end %>
             <td class="govuk-table__cell">
               <% if is_multisite %>
                 <% farming_single_site_charge = @exemptions_summary_form.farming_exemptions_single_site_charge %>
@@ -45,9 +52,15 @@
           <% total_charge = @exemptions_summary_form.compliance_charge(exemption) %>
           <% is_discounted = @exemptions_summary_form.is_discounted_charge?(exemption) %>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__cell">
-              <%= @exemptions_summary_form.exemption_title_with_band(exemption) %>
-            </th>
+            <% if is_multisite %>
+              <th scope="row" class="govuk-table__cell">
+                <%= @exemptions_summary_form.exemption_title_with_band(exemption) %>
+              </th>
+            <% else %>
+              <td class="govuk-table__cell">
+                <%= @exemptions_summary_form.exemption_title_with_band(exemption) %>
+              </td>
+            <% end %>
             <td class="govuk-table__cell">
               <% if is_multisite %>
                 <% single_site_charge = @exemptions_summary_form.single_site_compliance_charge(exemption) %>
@@ -65,7 +78,11 @@
         <% end %>
 
         <tr class="govuk-table__row" id="registration-charge-row">
-          <th scope="row" class="govuk-table__header"><%= t(".registration_charge") %></th>
+          <% if is_multisite %>
+            <th scope="row" class="govuk-table__header"><%= t(".registration_charge") %></th>
+          <% else %>
+            <td class="govuk-table__cell"><%= t(".registration_charge") %></td>
+          <% end %>
           <td class="govuk-table__cell"><%= @exemptions_summary_form.registration_charge %></td>
           <% if is_multisite %>
             <td class="govuk-table__cell govuk-table__cell--numeric"><%= @exemptions_summary_form.registration_charge %></td>
@@ -73,7 +90,11 @@
         </tr>
 
         <tr class="govuk-table__row" id="vat-exempt-row">
-          <th scope="row" class="govuk-table__header"><%= t(".vat_exempt") %></th>
+          <% if is_multisite %>
+            <th scope="row" class="govuk-table__header"><%= t(".vat_exempt") %></th>
+          <% else %>
+            <td class="govuk-table__cell"><%= t(".vat_exempt") %></td>
+          <% end %>
           <td class="govuk-table__cell">£0</td>
           <% if is_multisite %>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0</td>
