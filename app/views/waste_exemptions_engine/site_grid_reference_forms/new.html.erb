@@ -10,10 +10,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <% form_options = {} %>
-    <% form_options[:url] = @form_url if defined?(@form_url) && @form_url.present? %>
-    <% form_options[:method] = @form_method if defined?(@form_method) && @form_method.present? %>
-    <%= form_for @site_grid_reference_form, form_options do |f| %>
+    <%= form_for @site_grid_reference_form do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 
       <h1 class="govuk-heading-l">
@@ -28,11 +25,9 @@
         <% end %>
       </p>
 
-      <% if !defined?(@allow_skip_to_postcode) || @allow_skip_to_postcode %>
-        <p class="govuk-body">
-          <%= t(".postcode_prefix") %> <%= link_to(t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
-        </p>
-      <% end %>
+      <p class="govuk-body">
+        <%= t(".postcode_prefix") %> <%= link_to(t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
+      </p>
 
       <p class="govuk-body"><%= t(".or") %></p>
 
@@ -51,10 +46,6 @@
           text: t(".grid_reference_hint")
         }
       %>
-
-      <% if defined?(@page) && @page.present? %>
-        <%= hidden_field_tag :page, @page %>
-      <% end %>
 
       <%= f.govuk_text_area :description,
         label: {
