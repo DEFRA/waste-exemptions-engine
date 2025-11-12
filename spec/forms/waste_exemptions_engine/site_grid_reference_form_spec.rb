@@ -87,37 +87,24 @@ module WasteExemptionsEngine
       end
 
       let(:existing_site) { transient_registration.site_addresses.first }
+      let(:form) { described_class.new(transient_registration) }
 
       before do
         allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
-      end
-
-      it "assigns the existing site to the form" do
-        form = described_class.new(transient_registration)
-        form.assign_existing_site(existing_site)
-
-        aggregate_failures do
-          expect(form.existing_site).to eq(existing_site)
-          expect(form.existing_site.grid_reference).to eq(existing_site.grid_reference)
-          expect(form.existing_site.description).to eq(existing_site.description)
-        end
+        transient_registration.update(temp_site_id: existing_site.id)
       end
 
       it "updates the existing site record" do
-        form = described_class.new(transient_registration)
-        form.assign_existing_site(existing_site)
-
         params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
+
         expect do
           form.submit(params)
+          existing_site.reload
         end.to change(existing_site, :grid_reference).to("ST 12345 67890")
                                                      .and change(existing_site, :description).to("Updated site description")
       end
 
       it "doesn't create a duplicate" do
-        form = described_class.new(transient_registration)
-        form.assign_existing_site(existing_site)
-
         params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
 
         expect do

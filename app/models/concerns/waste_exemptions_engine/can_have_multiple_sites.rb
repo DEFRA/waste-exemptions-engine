@@ -11,7 +11,10 @@ module WasteExemptionsEngine
     end
 
     included do
-      has_many :site_addresses, -> { site }, class_name: site_address_class_name, dependent: :destroy
+      has_many :site_addresses,
+               -> { site.order(site_suffix: :asc) },
+               class_name: site_address_class_name,
+               dependent: :destroy
     end
 
     def site_count

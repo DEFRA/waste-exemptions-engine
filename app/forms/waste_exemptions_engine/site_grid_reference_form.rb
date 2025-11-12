@@ -4,17 +4,23 @@ module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
     include CanClearAddressFinderError
 
-    delegate :site_address, :is_linear, to: :transient_registration
+    delegate :site_address, :is_linear, :temp_site_id, to: :transient_registration
 
-    attr_accessor :grid_reference, :description, :existing_site
+    attr_accessor :grid_reference, :description
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
 
     def initialize(transient_registration)
       super
-      # Pre-populate from existing site_address for single-site context
-      return unless site_address.present? && !transient_registration.multisite?
+      # Pre-populate from existing site_address if available
+      site_address = if multisite_registration? && temp_site_id.present?
+                       transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
+                     else
+                       transient_registration.site_address
+                     end
+
+      return unless site_address.present?
 
       self.grid_reference = site_address.grid_reference
       self.description = site_address.description
@@ -31,7 +37,7 @@ module WasteExemptionsEngine
       return false unless valid?
 
       if multisite_registration?
-        return update_existing_site if existing_site.present?
+        return update_existing_site if temp_site_id.present?
 
         transient_registration.transient_addresses.create!(
           grid_reference: grid_reference,
@@ -46,12 +52,6 @@ module WasteExemptionsEngine
       end
     end
 
-    def assign_existing_site(site_address)
-      self.existing_site = site_address
-      self.grid_reference = site_address.grid_reference
-      self.description = site_address.description
-    end
-
     private
 
     def multisite_registration?
@@ -59,11 +59,19 @@ module WasteExemptionsEngine
     end
 
     def update_existing_site
+      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
+      return false unless existing_site.present?
+
       existing_site.update!(
         grid_reference: grid_reference,
-        description: description
+        description: description,
+        address_type: "site",
+        mode: "auto"
       )
-      WasteExemptionsEngine::AssignSiteDetailsService.run(address: existing_site)
+
+      # Clear temp_site_id after updating
+      transient_registration.update(temp_site_id: nil)
+
       true
     end
   end
