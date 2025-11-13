@@ -244,6 +244,11 @@ module WasteExemptionsEngine
           transitions from: :site_grid_reference_form,
                       to: :site_postcode_form
         end
+
+        event :edit_site do
+          transitions from: :operation_sites_form,
+                      to: :site_grid_reference_form
+        end
       end
     end
 

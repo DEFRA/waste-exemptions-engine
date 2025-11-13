@@ -11,32 +11,16 @@ module WasteExemptionsEngine
       super(OperationSitesForm, "operation_sites_form")
     end
 
-    def edit
-      return unless set_up_form(SiteGridReferenceForm, "site_grid_reference_form", params[:token], get_request: false)
+    def edit_site
+      find_or_initialize_registration(params[:token])
+      address = find_site_address(params[:site_id])
 
-      @page = params[:page]
-      @site_address = find_site_address(params[:site_id])
-
-      @site_grid_reference_form.assign_existing_site(@site_address)
-      configure_edit_form_options(@site_address)
-
-      render "waste_exemptions_engine/site_grid_reference_forms/new"
-    end
-
-    def update
-      return unless set_up_form(SiteGridReferenceForm, "site_grid_reference_form", params[:token])
-
-      @page = params[:page]
-      @site_address = find_site_address(params[:site_id])
-
-      @site_grid_reference_form.assign_existing_site(@site_address)
-
-      if @site_grid_reference_form.submit(site_grid_reference_params)
-        redirect_to new_operation_sites_form_path(@transient_registration.token, page: @page)
-      else
-        configure_edit_form_options(@site_address)
-        render "waste_exemptions_engine/site_grid_reference_forms/new", status: :unprocessable_entity
+      if address.present?
+        @transient_registration.update(temp_site_id: params[:site_id])
+        @transient_registration.edit_site if form_matches_state?
       end
+
+      redirect_to_correct_form
     end
 
     private
@@ -52,14 +36,6 @@ module WasteExemptionsEngine
       params
         .fetch(:site_grid_reference_form, {})
         .permit(:grid_reference, :description)
-    end
-
-    def configure_edit_form_options(site_address)
-      @form_url = update_operation_sites_forms_path(token: @transient_registration.token,
-                                                    site_id: site_address.id,
-                                                    page: @page)
-      @form_method = :post
-      @allow_skip_to_postcode = false
     end
 
     def transient_registration_attributes

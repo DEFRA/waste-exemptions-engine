@@ -36,12 +36,12 @@ module WasteExemptionsEngine
     end
 
     def site_status(address)
-      regexemptions = if transient_registration.multisite?
-                        address.registration_exemptions
-                      else
-                        transient_registration.registration_exemptions
-                      end
-      regexemptions.any? { |re| re.state == "active" } ? "active" : "deregistered"
+      regexemptions = transient_registration.transient_registration_exemptions
+      if transient_registration.is_multisite_registration
+        regexemptions = regexemptions.where(transient_address: address)
+      end
+
+      regexemptions.any? { |re| re.state == "pending" } ? "pending" : "deregistered"
     end
 
     def ceased_or_revoked_exemptions(address)
