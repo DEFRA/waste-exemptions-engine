@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class SiteAddressLookupForm < AddressLookupFormBase
-    delegate :temp_site_postcode, to: :transient_registration
+    delegate :temp_site_postcode, :temp_site_id, to: :transient_registration
 
     # This virtual attribute is validated using AddressValidator and populated
     # from incoming params (e.g. { site_address: { uprn: "123" } })
@@ -26,7 +26,9 @@ module WasteExemptionsEngine
 
       return false unless valid? && address_attributes.present?
 
-      if transient_registration.multisite?
+      if multisite_registration?
+        return update_existing_site(address_attributes) if temp_site_id.present?
+
         transient_registration.transient_addresses.create!(
           address_attributes.merge(
             address_type: "site",
@@ -37,6 +39,29 @@ module WasteExemptionsEngine
       else
         super(site_address_attributes: address_attributes)
       end
+    end
+
+    private
+
+    def multisite_registration?
+      ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
+    end
+
+    def update_existing_site(address_attributes)
+      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
+      return false unless existing_site.present?
+
+      existing_site.update!(
+        address_attributes.merge(
+          address_type: "site",
+          mode: "lookup"
+        )
+      )
+
+      # Clear temp_site_id after updating
+      transient_registration.update(temp_site_id: nil)
+
+      true
     end
   end
 end

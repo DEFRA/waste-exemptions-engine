@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_03_134014) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_10_181217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -448,6 +448,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_03_134014) do
     t.boolean "is_multisite_registration"
     t.boolean "is_legacy_bulk", default: false
     t.boolean "is_linear", default: false
+    t.integer "temp_site_id"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end

@@ -197,14 +197,9 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "operation_sites",
               path_names: { new: "" } do
                 get ":site_id",
-                    to: "operation_sites_forms#edit",
-                    as: "edit",
+                    to: "operation_sites_forms#edit_site",
+                    as: "edit_site",
                     on: :collection
-
-                post ":site_id",
-                     to: "operation_sites_forms#update",
-                     as: "update",
-                     on: :collection
               end
 
     resources :on_a_farm_forms,
