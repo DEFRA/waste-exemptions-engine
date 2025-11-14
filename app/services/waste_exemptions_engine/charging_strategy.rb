@@ -18,7 +18,8 @@ module WasteExemptionsEngine
       unless order.charge_detail.present?
         order.charge_detail = ChargeDetail.new(
           registration_charge_amount:,
-          band_charge_details:
+          band_charge_details:,
+          site_count:
         )
       end
       order.charge_detail
@@ -62,7 +63,7 @@ module WasteExemptionsEngine
     def initial_compliance_charge_amount(band)
       return 0 if band != highest_band || chargeable_exemptions(band).none?
 
-      band.initial_compliance_charge.charge_amount * site_count
+      band.initial_compliance_charge.charge_amount * stored_site_count
     end
 
     def additional_compliance_charge_amount(band)
@@ -70,7 +71,11 @@ module WasteExemptionsEngine
       additional_chargeable_count = total_chargeable_count - (band == highest_band ? 1 : 0)
       return 0 if additional_chargeable_count < 1
 
-      (additional_chargeable_count * band.additional_compliance_charge.charge_amount) * site_count
+      (additional_chargeable_count * band.additional_compliance_charge.charge_amount) * stored_site_count
+    end
+
+    def stored_site_count
+      order.charge_detail&.site_count || site_count
     end
 
     def site_count

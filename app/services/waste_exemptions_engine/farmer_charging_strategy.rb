@@ -15,14 +15,15 @@ module WasteExemptionsEngine
         order.charge_detail = ChargeDetail.new(
           registration_charge_amount:,
           band_charge_details:,
-          bucket_charge_amount:
+          bucket_charge_amount:,
+          site_count:
         )
       end
       order.charge_detail
     end
 
     def bucket_charge_amount
-      base_bucket_charge_amount * site_count
+      base_bucket_charge_amount * stored_site_count
     end
 
     def base_bucket_charge_amount

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_03_134014) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_12_151025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -141,6 +141,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_03_134014) do
     t.datetime "updated_at", null: false
     t.bigint "order_id"
     t.integer "total_charge_amount"
+    t.integer "site_count", default: 1
     t.index ["order_id"], name: "index_charge_details_on_order_id"
   end
 
