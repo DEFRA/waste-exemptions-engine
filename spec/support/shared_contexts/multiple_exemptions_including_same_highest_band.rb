@@ -3,20 +3,20 @@
 RSpec.shared_context "with multiple exemptions including same highest band" do
   let(:highest_charge_band) do
     create(:band,
-           initial_compliance_charge: create(:charge, charge_amount: 40_900),
-           additional_compliance_charge: create(:charge, charge_amount: 7400))
+           initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 40_900),
+           additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 7400))
   end
 
   let(:middle_charge_band) do
     create(:band,
-           initial_compliance_charge: create(:charge, charge_amount: 30_000),
-           additional_compliance_charge: create(:charge, charge_amount: 7400))
+           initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 30_000),
+           additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 7400))
   end
 
   let(:lowest_charge_band) do
     create(:band,
-           initial_compliance_charge: create(:charge, charge_amount: 15_000),
-           additional_compliance_charge: create(:charge, charge_amount: 3000))
+           initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 15_000),
+           additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 3000))
   end
 
   let(:exemptions) do

@@ -160,7 +160,7 @@ module WasteExemptionsEngine
       end
 
       context "with an exemption in a band with no charge" do
-        let(:no_charge_band) { create(:band, initial_compliance_charge: create(:charge, charge_amount: 0), additional_compliance_charge: create(:charge, charge_amount: 0)) }
+        let(:no_charge_band) { create(:band, initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 0), additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 0)) }
         let(:exemptions) { [create(:exemption, band: no_charge_band)] }
 
         it "returns £0" do
