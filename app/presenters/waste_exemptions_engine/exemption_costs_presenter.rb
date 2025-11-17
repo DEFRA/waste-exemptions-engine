@@ -157,7 +157,7 @@ module WasteExemptionsEngine
 
     def multisite_charge_for_exemption(base_charge_amount)
       # Apply multisite multiplication if this is a multisite registration
-      site_count = @order.charge_detail&.site_count || 1
+      site_count = @order.charge_detail.site_count
 
       format_currency(base_charge_amount * site_count)
     end
