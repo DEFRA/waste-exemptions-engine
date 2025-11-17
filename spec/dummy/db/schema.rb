@@ -449,6 +449,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_12_151025) do
     t.boolean "is_multisite_registration"
     t.boolean "is_legacy_bulk", default: false
     t.boolean "is_linear", default: false
+    t.integer "temp_site_id"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
   end
