@@ -115,6 +115,23 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when site count changes after charge detail is created" do
+        # rubocop:disable RSpec/MultipleExpectations
+        it "uses the stored site count from charge_details" do
+          initial_total = strategy.total_compliance_charge_amount
+
+          expect(multisite_order.charge_detail.site_count).to eq(site_count)
+
+          create_list(:transient_address, 2, :site_address, transient_registration: multisite_order.order_owner)
+          multisite_order.order_owner.reload
+
+          expect(multisite_order.order_owner.site_count).to be > site_count
+
+          expect(strategy.total_compliance_charge_amount).to eq(initial_total)
+        end
+        # rubocop:enable RSpec/MultipleExpectations
+      end
+
       context "with different site counts" do
         [1, 2, 5, 10].each do |count|
           context "with #{count} sites" do

@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :charge_detail, class: "WasteExemptionsEngine::ChargeDetail" do
     registration_charge_amount { Faker::Number.between(from: 6, to: 11) }
+    site_count { 1 }
     band_charge_details do
       [
         build(:band_charge_detail,
