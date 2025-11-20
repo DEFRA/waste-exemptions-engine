@@ -78,25 +78,10 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when editing an existing multisite address in back office" do
-      let(:transient_registration) do
-        create(:back_office_edit_registration).tap do |registration|
-          create(:transient_address, :site_using_grid_reference, transient_registration: registration)
-          registration.update!(is_multisite_registration: true)
-        end
-      end
-
-      let(:existing_site) { transient_registration.site_addresses.first }
-      let(:form) { described_class.new(transient_registration) }
-
-      before do
-        allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
-        transient_registration.update(temp_site_id: existing_site.id)
-      end
+    shared_examples "updates existing site address without creating duplicates" do
+      let(:params) { { grid_reference: "ST 12345 67890", description: "Updated site description" } }
 
       it "updates the existing site record" do
-        params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
-
         expect do
           form.submit(params)
           existing_site.reload
@@ -105,11 +90,55 @@ module WasteExemptionsEngine
       end
 
       it "doesn't create a duplicate" do
-        params = { grid_reference: "ST 12345 67890", description: "Updated site description" }
-
         expect do
           form.submit(params)
         end.not_to change(transient_registration.transient_addresses, :count)
+      end
+    end
+
+    context "when editing registration in the back office" do
+      let(:transient_registration) do
+        create(:back_office_edit_registration).tap do |registration|
+          create(:transient_address, :site_using_grid_reference, transient_registration: registration)
+        end
+      end
+
+      context "when editing multisite registration address" do
+        let(:existing_site) { transient_registration.site_addresses.first }
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          transient_registration.registration.update!(is_multisite_registration: true)
+          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
+          transient_registration.update(temp_site_id: existing_site.id)
+        end
+
+        it_behaves_like "updates existing site address without creating duplicates"
+      end
+
+      context "when editing single-site registration address with no foreign-keys to registration_exemptions (legacy format)" do
+        let(:existing_site) { transient_registration.site_addresses.first }
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
+          transient_registration.update(temp_site_id: existing_site.id)
+        end
+
+        it_behaves_like "updates existing site address without creating duplicates"
+      end
+
+      context "when editing single-site registration address with foreign-keys to registration_exemptions" do
+        let(:existing_site) { transient_registration.site_addresses.first }
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          transient_registration.transient_registration_exemptions.each { |exemption| exemption.update(transient_address_id: existing_site.id) }
+          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
+          transient_registration.update(temp_site_id: existing_site.id)
+        end
+
+        it_behaves_like "updates existing site address without creating duplicates"
       end
     end
   end
