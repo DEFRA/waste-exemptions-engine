@@ -26,9 +26,9 @@ module WasteExemptionsEngine
 
       return false unless valid? && address_attributes.present?
 
-      if multisite_registration?
-        return update_existing_site(address_attributes) if temp_site_id.present?
+      return update_existing_site(address_attributes) if temp_site_id.present?
 
+      if multisite_registration?
         transient_registration.transient_addresses.create!(
           address_attributes.merge(
             address_type: "site",
@@ -58,8 +58,8 @@ module WasteExemptionsEngine
         )
       )
 
-      # Clear temp_site_id after updating
-      transient_registration.update(temp_site_id: nil)
+      # do not clear temp_site_id after updating
+      # in case of multiple edits using back button
 
       true
     end
