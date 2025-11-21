@@ -66,36 +66,39 @@ module WasteExemptionsEngine
           end
         end
 
-        it "does not copy the expired exemptions from the registration" do
+        it "copies expired exemptions from the registration" do
           registration.registration_exemptions.each do |re|
             re.state = :expired
             re.save
           end
 
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
+          aggregate_failures do
+            expect(edit_registration.exemptions).to match_array(registration.exemptions)
+            expect(edit_registration.transient_registration_exemptions.pluck(:state).uniq).to eq(["expired"])
           end
         end
 
-        it "does not copy revoked exemptions from the registration" do
+        it "copies revoked exemptions from the registration" do
           registration.registration_exemptions.each do |re|
             re.state = :revoked
             re.save
           end
 
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
+          aggregate_failures do
+            expect(edit_registration.exemptions).to match_array(registration.exemptions)
+            expect(edit_registration.transient_registration_exemptions.pluck(:state).uniq).to eq(["revoked"])
           end
         end
 
-        it "does not copy ceased exemptions from the registration" do
+        it "copies ceased exemptions from the registration" do
           registration.registration_exemptions.each do |re|
             re.state = :ceased
             re.save
           end
 
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
+          aggregate_failures do
+            expect(edit_registration.exemptions).to match_array(registration.exemptions)
+            expect(edit_registration.transient_registration_exemptions.pluck(:state).uniq).to eq(["ceased"])
           end
         end
       end
