@@ -73,7 +73,7 @@ module WasteExemptionsEngine
       @edit_registration.transient_registration_exemptions.each do |transient_exemption|
         new_address = @addresses_mapping[transient_exemption.transient_address_id]
         @registration.registration_exemptions << RegistrationExemption.new(
-          transient_exemption.exemption_attributes.merge(address: new_address, state: "active")
+          transient_exemption.exemption_attributes.merge(address: new_address)
         )
       end
     end

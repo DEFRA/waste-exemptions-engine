@@ -10,6 +10,9 @@ module WasteExemptionsEngine
       aasm column: :state do
         state :pending, initial: true
         state :active
+        state :ceased
+        state :revoked
+        state :expired
 
         event :activate do
           transitions from: :pending,

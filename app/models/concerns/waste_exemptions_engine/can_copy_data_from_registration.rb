@@ -89,8 +89,10 @@ module WasteExemptionsEngine
     def copy_exemptions_from_registration
       registration_exemptions = if respond_to?(:registration_exemptions_to_copy)
                                   registration.registration_exemptions.where(exemption: registration_exemptions_to_copy)
-                                else
+                                elsif is_a?(RenewingRegistration)
                                   registration.registration_exemptions.active
+                                else
+                                  registration.registration_exemptions
                                 end
 
       registration_exemptions.each do |registration_exemption|
@@ -101,10 +103,7 @@ module WasteExemptionsEngine
             "registration_id",
             "updated_at",
             "address_id",
-            "deregistration_message",
-            "deregistered_at",
-            "reason_for_change",
-            "state"
+            "reason_for_change"
           )
         )
         tre.transient_address = @addresses_mapping[registration_exemption.address_id]
