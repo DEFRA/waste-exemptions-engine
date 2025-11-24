@@ -26,7 +26,7 @@ module WasteExemptionsEngine
     end
 
     def multisite?
-      charged? && is_multisite_registration == true && WasteExemptionsEngine::FeatureToggle.active?(:enable_multisite)
+      is_multisite_registration == true && WasteExemptionsEngine::FeatureToggle.active?(:enable_multisite)
     end
   end
 end
