@@ -4,7 +4,9 @@ module WasteExemptionsEngine
   class RegistrationCompletionService < BaseService
     # rubocop:disable Metrics/MethodLength
     def run(transient_registration:)
-      @transient_registration = transient_registration
+      @transient_registration = transient_registration.class
+                                                       .includes(transient_addresses: :registration_exemptions)
+                                                       .find(transient_registration.id)
       @registration = nil
 
       @transient_registration.with_lock do
@@ -50,7 +52,15 @@ module WasteExemptionsEngine
     private
 
     def activate_exemptions
-      @transient_registration.transient_registration_exemptions.each(&:activate)
+      @transient_registration.transient_registration_exemptions.each do |exemption|
+        # For renewals, exemptions are already active - just update dates without state transition
+        if exemption.active?
+          exemption.activate_exemption
+        else
+          # For new registrations, activate pending exemptions (includes state transition)
+          exemption.activate
+        end
+      end
     end
 
     def copyable_attributes
