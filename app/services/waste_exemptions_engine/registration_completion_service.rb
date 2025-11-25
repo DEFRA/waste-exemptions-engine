@@ -4,9 +4,7 @@ module WasteExemptionsEngine
   class RegistrationCompletionService < BaseService
     # rubocop:disable Metrics/MethodLength
     def run(transient_registration:)
-      @transient_registration = transient_registration.class
-                                                       .includes(transient_addresses: :registration_exemptions)
-                                                       .find(transient_registration.id)
+      @transient_registration = reload_with_associations(transient_registration)
       @registration = nil
 
       @transient_registration.with_lock do
@@ -175,6 +173,12 @@ module WasteExemptionsEngine
 
     def distinct_recipients
       [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
+    end
+
+    def reload_with_associations(transient_registration)
+      transient_registration.class
+                            .includes(transient_addresses: :registration_exemptions)
+                            .find(transient_registration.id)
     end
   end
 end
