@@ -35,7 +35,9 @@ module WasteExemptionsEngine
     end
 
     def find_or_initialize_registration(token)
-      @transient_registration = TransientRegistration.find_by(token: token) || NewChargedRegistration.new
+      @transient_registration = TransientRegistration.find_by(
+        token: token
+      ) || NewChargedRegistration.new
     end
 
     # Expects a form class name (eg BusinessTypeForm), a snake_case name for the form (eg business_type_form),
