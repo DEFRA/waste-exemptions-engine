@@ -391,6 +391,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.bigint "transient_address_id"
     t.date "deregistered_at"
     t.text "deregistration_message"
+    t.string "reason_for_change", limit: 500
     t.index ["exemption_id"], name: "index_transient_registration_exemptions_on_exemption_id"
     t.index ["transient_address_id"], name: "index_transient_registration_exemptions_on_transient_address_id"
     t.index ["transient_registration_id"], name: "index_trans_reg_exemptions_on_transient_registration_id"
