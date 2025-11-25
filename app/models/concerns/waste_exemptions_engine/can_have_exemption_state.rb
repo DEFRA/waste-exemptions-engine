@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  module CanActivateExemption
+  module CanHaveExemptionState
     extend ActiveSupport::Concern
 
     included do

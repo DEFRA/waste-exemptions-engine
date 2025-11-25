@@ -3,10 +3,10 @@
 RSpec.shared_examples "an activator of exemptions" do |model_factory|
   subject(:instance) { create(model_factory) }
 
-  it "includes CanActivateExemption" do
+  it "includes CanHaveExemptionState" do
     included_modules = described_class.ancestors.select { |ancestor| ancestor.instance_of?(Module) }
 
-    expect(included_modules).to include(WasteExemptionsEngine::CanActivateExemption)
+    expect(included_modules).to include(WasteExemptionsEngine::CanHaveExemptionState)
   end
 
   it "can use AASM defined scopes on statuses" do
