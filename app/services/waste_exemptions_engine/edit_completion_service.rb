@@ -5,6 +5,13 @@ module WasteExemptionsEngine
     def run(edit_registration:)
       @edit_registration = edit_registration
 
+      # Preload associations needed for completion without reloading the object
+      # This avoids N+1 queries while preserving in-memory associations
+      ActiveRecord::Associations::Preloader.new(
+        records: [@edit_registration],
+        associations: { transient_addresses: :registration_exemptions }
+      ).call
+
       ActiveRecord::Base.transaction do
         find_original_registration
         copy_data_from_edit_registration

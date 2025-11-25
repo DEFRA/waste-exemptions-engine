@@ -4,7 +4,8 @@ module WasteExemptionsEngine
   class RegistrationCompletionService < BaseService
     # rubocop:disable Metrics/MethodLength
     def run(transient_registration:)
-      @transient_registration = reload_with_associations(transient_registration)
+      @transient_registration = transient_registration
+      preload_associations
       @registration = nil
 
       @transient_registration.with_lock do
@@ -175,10 +176,13 @@ module WasteExemptionsEngine
       [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
     end
 
-    def reload_with_associations(transient_registration)
-      transient_registration.class
-                            .includes(transient_addresses: :registration_exemptions)
-                            .find(transient_registration.id)
+    def preload_associations
+      # Preload associations needed for completion without reloading the object
+      # This avoids N+1 queries while preserving in-memory associations like order
+      ActiveRecord::Associations::Preloader.new(
+        records: [@transient_registration],
+        associations: { transient_addresses: :registration_exemptions }
+      ).call
     end
   end
 end
