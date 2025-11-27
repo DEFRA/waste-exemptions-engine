@@ -9,12 +9,14 @@ module WasteExemptionsEngine
 
       ActiveRecord::Base.transaction do
         find_original_registration
+        determine_changes
+
         set_paper_trail_whodunnit
         set_paper_trail_reason
+        update_exemptions if exemption_changes?
         copy_attributes if non_exemption_changes?
         copy_addresses if non_exemption_changes?
         copy_exemptions if non_exemption_changes?
-        update_exemptions if exemption_changes?
         send_confirmation_email if non_exemption_changes? && !exemption_changes?
         delete_edit_registration
       end
@@ -48,13 +50,17 @@ module WasteExemptionsEngine
       ExemptionDeregistrationService.run(@edit_registration)
     end
 
+    def determine_changes
+      @exemption_changes = @registration.exemptions.pluck(:code).sort != @edit_registration.exemptions.pluck(:code).sort
+      @non_exemption_changes = @edit_registration.modified?(ignore_exemptions: true)
+    end
+
     def exemption_changes?
-      @exemption_changes ||=
-        @registration.exemptions.pluck(:code).sort != @edit_registration.exemptions.pluck(:code).sort
+      @exemption_changes
     end
 
     def non_exemption_changes?
-      @non_exemption_changes ||= @edit_registration.modified?(ignore_exemptions: true)
+      @non_exemption_changes
     end
 
     def send_confirmation_email
