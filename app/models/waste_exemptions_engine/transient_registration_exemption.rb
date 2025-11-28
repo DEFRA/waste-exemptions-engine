@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class TransientRegistrationExemption < ApplicationRecord
     self.table_name = "transient_registration_exemptions"
 
-    include CanActivateExemption
+    include CanHaveExemptionState
     include CanBeOrderedByStateAndExemptionId
 
     belongs_to :transient_registration

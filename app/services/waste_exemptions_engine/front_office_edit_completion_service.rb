@@ -2,17 +2,26 @@
 
 module WasteExemptionsEngine
   class FrontOfficeEditCompletionService < BaseService
+    include CanCopyAddressesAndExemptions
+
     def run(edit_registration:)
       @edit_registration = edit_registration
 
       ActiveRecord::Base.transaction do
         find_original_registration
+        determine_changes
         preload_associations_for_destruction if non_exemption_changes?
+
         set_paper_trail_whodunnit
         set_paper_trail_reason
-        copy_attributes if non_exemption_changes?
-        copy_addresses if non_exemption_changes?
         update_exemptions if exemption_changes?
+
+        if non_exemption_changes?
+          copy_attributes
+          copy_addresses
+          copy_exemptions
+        end
+
         send_confirmation_email if non_exemption_changes? && !exemption_changes?
         delete_edit_registration
       end
@@ -42,30 +51,21 @@ module WasteExemptionsEngine
       @registration.save!
     end
 
-    def preload_associations_for_destruction
-      # Preload associations that will be destroyed (dependent: :destroy)
-      @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
-    end
-
-    def copy_addresses
-      @registration.addresses = []
-      @edit_registration.transient_addresses.each do |transient_address|
-        new_address = Address.new(transient_address.address_attributes)
-        @registration.addresses << new_address
-      end
-    end
-
     def update_exemptions
       ExemptionDeregistrationService.run(@edit_registration)
     end
 
+    def determine_changes
+      @exemption_changes = @registration.exemptions.pluck(:code).sort != @edit_registration.exemptions.pluck(:code).sort
+      @non_exemption_changes = @edit_registration.modified?(ignore_exemptions: true)
+    end
+
     def exemption_changes?
-      @exemption_changes ||=
-        @registration.exemptions.pluck(:code).sort != @edit_registration.exemptions.pluck(:code).sort
+      @exemption_changes
     end
 
     def non_exemption_changes?
-      @non_exemption_changes ||= @edit_registration.modified?(ignore_exemptions: true)
+      @non_exemption_changes
     end
 
     def send_confirmation_email

@@ -50,9 +50,6 @@ module WasteExemptionsEngine
           exemption_skipped_attributes = skipped_attributes + %w[
             address_id
             transient_address_id
-            deregistered_at
-            deregistration_message
-            reason_for_change
           ]
 
           expected_attributes = edit_registration.exemptions.map(&:attributes).map do |attrs|
@@ -66,12 +63,48 @@ module WasteExemptionsEngine
           end
           expect(actual_attributes).to eq(expected_attributes)
         end
+
+        it "preserves deregistered exemption states after edit" do
+          # Set up registration with ceased exemption
+          registration = create(:registration, :complete)
+          ceased_exemption = registration.registration_exemptions.first
+          ceased_exemption.update(state: "ceased", deregistered_at: Date.today, deregistration_message: "Test message")
+
+          # Set up edit registration from registration
+          edit_registration = WasteExemptionsEngine::BackOfficeEditRegistration.new(reference: registration.reference)
+          edit_registration.save!
+          edit_registration.update(contact_email: "new_email@example.com")
+
+          described_class.run(edit_registration: edit_registration)
+
+          final_exemption = registration.reload.registration_exemptions.find_by(exemption_id: ceased_exemption.exemption_id)
+          expected = { state: "ceased", deregistered_at: Date.today, deregistration_message: "Test message" }
+          expect(final_exemption.slice(:state, :deregistered_at, :deregistration_message).symbolize_keys).to eq(expected)
+        end
       end
 
       context "when registration is multi-site" do
         let(:edit_registration) { create(:back_office_edit_registration, :multisite, :modified) }
         let(:exemption_skipped_attributes) do
-          skipped_attributes + %w[address_id transient_address_id deregistered_at deregistration_message reason_for_change state]
+          skipped_attributes + %w[address_id transient_address_id]
+        end
+
+        it "preserves deregistered exemption states after edit" do
+          # Set up multisite registration with ceased exemption
+          registration = create(:registration, :multisite_complete)
+          ceased_exemption = registration.site_addresses.first.registration_exemptions.first
+          ceased_exemption.update(state: "ceased", deregistered_at: Date.today, deregistration_message: "Test message")
+
+          # Set up edit registration from base registration
+          edit_registration = WasteExemptionsEngine::BackOfficeEditRegistration.new(reference: registration.reference)
+          edit_registration.save!
+          edit_registration.update(contact_email: "new_email@example.com")
+
+          described_class.run(edit_registration: edit_registration)
+
+          final_exemption = registration.reload.registration_exemptions.find_by(exemption_id: ceased_exemption.exemption_id)
+          expected = { state: "ceased", deregistered_at: Date.today, deregistration_message: "Test message" }
+          expect(final_exemption.slice(:state, :deregistered_at, :deregistration_message).symbolize_keys).to eq(expected)
         end
 
         it "copies the site_addresses from the registration" do
