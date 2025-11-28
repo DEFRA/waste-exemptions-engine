@@ -10,13 +10,18 @@ module WasteExemptionsEngine
       ActiveRecord::Base.transaction do
         find_original_registration
         determine_changes
+        preload_associations_for_destruction if non_exemption_changes?
 
         set_paper_trail_whodunnit
         set_paper_trail_reason
         update_exemptions if exemption_changes?
-        copy_attributes if non_exemption_changes?
-        copy_addresses if non_exemption_changes?
-        copy_exemptions if non_exemption_changes?
+
+        if non_exemption_changes?
+          copy_attributes
+          copy_addresses
+          copy_exemptions
+        end
+
         send_confirmation_email if non_exemption_changes? && !exemption_changes?
         delete_edit_registration
       end

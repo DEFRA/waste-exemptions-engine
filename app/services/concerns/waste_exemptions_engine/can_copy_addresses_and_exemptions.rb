@@ -33,5 +33,10 @@ module WasteExemptionsEngine
         )
       end
     end
+
+    def preload_associations_for_destruction
+      # Preload associations that will be destroyed (dependent: :destroy)
+      @registration = @registration.class.includes(addresses: :registration_exemptions).find(@registration.id)
+    end
   end
 end
