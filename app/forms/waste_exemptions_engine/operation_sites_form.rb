@@ -41,7 +41,7 @@ module WasteExemptionsEngine
         regexemptions = regexemptions.where(transient_address: address)
       end
 
-      regexemptions.any? { |re| re.state == "pending" } ? "pending" : "deregistered"
+      regexemptions.all? { |re| re.state == "deregistered" } ? "deregistered" : "pending"
     end
 
     def ceased_or_revoked_exemptions(address)
