@@ -90,7 +90,8 @@ module WasteExemptionsEngine
       registration_exemptions = if respond_to?(:registration_exemptions_to_copy)
                                   registration.registration_exemptions.where(exemption: registration_exemptions_to_copy)
                                 elsif is_a?(RenewingRegistration)
-                                  registration.registration_exemptions.active
+                                  # Copy active and expired exemptions for renewal (not ceased/revoked)
+                                  registration.registration_exemptions.where(state: %w[active expired])
                                 else
                                   registration.registration_exemptions
                                 end

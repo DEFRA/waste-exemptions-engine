@@ -15,7 +15,7 @@ module WasteExemptionsEngine
         state :expired
 
         event :activate do
-          transitions from: :pending,
+          transitions from: %i[pending active expired],
                       to: :active,
                       after: :activate_exemption
         end
