@@ -28,7 +28,7 @@ FactoryBot.define do
     trait :from_multisite_registration do
       # Initialize with a complete multisite registration
       initialize_with do
-        registration = create(:registration, :complete, :multisite)
+        registration = create(:registration, :complete, :multisite_complete)
         new(reference: registration.reference, token: registration.renew_token)
       end
 
