@@ -4,13 +4,12 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe CopyExemptionsService do
-    describe ".run" do
+    RSpec.shared_examples "copy exemptions service tests" do
       let(:registration) { create(:registration) }
       let(:address_mapping) { {} }
 
       context "when exemptions have no transient_address_id (new registration)" do
         context "with multiple sites" do
-          let(:transient_registration) { create(:new_charged_registration) }
           let!(:first_site_address) { create(:address, :site_address, registration: registration) }
           let!(:second_site_address) { create(:address, :site_address, registration: registration) }
 
@@ -60,7 +59,6 @@ module WasteExemptionsEngine
         end
 
         context "with single site" do
-          let(:transient_registration) { create(:new_charged_registration) }
           let!(:site_address) { create(:address, :site_address, registration: registration) }
 
           before do
@@ -161,8 +159,6 @@ module WasteExemptionsEngine
       end
 
       context "when there are no exemptions" do
-        let(:transient_registration) { create(:new_charged_registration) }
-
         it "does not create any registration_exemptions" do
           described_class.run(
             transient_registration: transient_registration,
@@ -172,6 +168,20 @@ module WasteExemptionsEngine
 
           expect(registration.registration_exemptions.count).to eq(0)
         end
+      end
+    end
+
+    describe ".run" do
+      context "with a standard single-site new charged registration" do
+        let(:transient_registration) { create(:new_charged_registration) }
+
+        it_behaves_like "copy exemptions service tests"
+      end
+
+      context "with a multisite new charged registration" do
+        let(:transient_registration) { create(:new_charged_registration, :multisite) }
+
+        it_behaves_like "copy exemptions service tests"
       end
     end
   end

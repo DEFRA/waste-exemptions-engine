@@ -83,6 +83,18 @@ FactoryBot.define do
       on_a_farm { true }
       is_a_farmer { true }
     end
+
+    trait :multisite do
+      is_multisite_registration { true }
+
+      after(:build) do |new_registration|
+        # Create 3 transient site addresses for multisite registration
+        3.times do
+          new_registration.transient_addresses << build(:transient_address, :site_address,
+                                                        transient_registration: new_registration)
+        end
+      end
+    end
   end
 
   factory :new_charged_registration_by_bank_transfer, parent: :new_charged_registration do

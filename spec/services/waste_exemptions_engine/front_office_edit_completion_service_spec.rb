@@ -19,11 +19,9 @@ module WasteExemptionsEngine
         postcode
       ].freeze
 
-    describe "run" do
-
+    RSpec.shared_examples "front office edit completion service tests" do
       subject(:run_service) { described_class.run(edit_registration: edit_registration.reload) }
 
-      let(:edit_registration) { create(:front_office_edit_registration) }
       let(:registration) { edit_registration.registration }
       let(:contact_changes?) { false }
       let(:contact_address_changes?) { false }
@@ -224,6 +222,20 @@ module WasteExemptionsEngine
         it_behaves_like "updates contact address details"
         it_behaves_like "deletes the transient registration"
         it { expect { run_service }.to change { registration.versions.count }.by(2) }
+      end
+    end
+
+    describe "run" do
+      context "with a standard single-site registration" do
+        let(:edit_registration) { create(:front_office_edit_registration) }
+
+        it_behaves_like "front office edit completion service tests"
+      end
+
+      context "with a multisite registration" do
+        let(:edit_registration) { create(:front_office_edit_registration, :from_multisite_registration) }
+
+        it_behaves_like "front office edit completion service tests"
       end
     end
   end

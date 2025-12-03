@@ -16,5 +16,33 @@ FactoryBot.define do
     trait :with_all_addresses do
       # dummy trait to allow use of transient_registration shared_examples
     end
+
+    trait :from_multisite_registration do
+      # Initialize with a complete multisite registration
+      initialize_with do
+        new(reference: create(:registration, :complete, :multisite).reference)
+      end
+
+      after(:build) do |edit_registration|
+        edit_registration.registration.site_addresses.each do |registration_site|
+          # Create a transient address from the registration site
+          transient_site = build(:transient_address,
+                                 registration_site.attributes
+                                 .except("id", "created_at", "updated_at", "registration_id"))
+
+          edit_registration.transient_addresses << transient_site
+
+          # Associate the exemptions from the registration site with this transient site
+          registration_site.registration_exemptions.each do |reg_exemption|
+            # Find the corresponding transient exemption
+            transient_exemption = edit_registration.transient_registration_exemptions.find do |te|
+              te.exemption_id == reg_exemption.exemption_id && te.transient_address_id.nil?
+            end
+
+            transient_exemption&.update(transient_address: transient_site)
+          end
+        end
+      end
+    end
   end
 end
