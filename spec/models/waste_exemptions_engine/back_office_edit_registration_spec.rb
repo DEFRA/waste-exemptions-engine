@@ -97,7 +97,7 @@ module WasteExemptionsEngine
             registration.registration_exemptions.each do |re|
               tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
               aggregate_failures do
-                expect(tre.state).to eq("pending")
+                expect(tre.state).to eq(re.state)
                 expect(tre.registered_on).to eq(re.registered_on)
                 expect(tre.expires_on).to eq(re.expires_on)
                 expect(tre.transient_registration_id).to be_present
@@ -115,7 +115,7 @@ module WasteExemptionsEngine
             registration.registration_exemptions.each do |re|
               tre = edit_registration.transient_registration_exemptions.find { |e| e.exemption_id == re.exemption_id }
               aggregate_failures do
-                expect(tre.state).to eq("pending")
+                expect(tre.state).to eq(re.state)
                 expect(tre.registered_on).to eq(re.registered_on)
                 expect(tre.expires_on).to eq(re.expires_on)
                 expect(tre.transient_registration_id).to be_present
@@ -136,36 +136,27 @@ module WasteExemptionsEngine
           end
         end
 
-        it "does not copy the expired exemptions from the registration" do
+        it "copies expired exemptions from the registration" do
           registration.registration_exemptions.each do |re|
             re.state = :expired
             re.save
           end
 
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
+          aggregate_failures do
+            expect(edit_registration.exemptions).to match_array(registration.exemptions)
+            expect(edit_registration.transient_registration_exemptions.pluck(:state).uniq).to eq(["expired"])
           end
         end
 
-        it "does not copy revoked exemptions from the registration" do
+        it "copies deregistered exemptions from the registration" do
           registration.registration_exemptions.each do |re|
-            re.state = :revoked
+            re.state = %i[revoked ceased].sample
             re.save
           end
 
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
-          end
-        end
-
-        it "does not copy ceased exemptions from the registration" do
-          registration.registration_exemptions.each do |re|
-            re.state = :ceased
-            re.save
-          end
-
-          registration.exemptions.each do |exemption|
-            expect(edit_registration.exemptions).not_to include(exemption)
+          aggregate_failures do
+            expect(edit_registration.exemptions).to match_array(registration.exemptions)
+            expect(edit_registration.transient_registration_exemptions.pluck(:state)).to match_array(registration.registration_exemptions.pluck(:state))
           end
         end
       end

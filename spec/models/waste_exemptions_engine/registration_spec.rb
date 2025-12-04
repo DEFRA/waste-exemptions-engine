@@ -120,10 +120,13 @@ module WasteExemptionsEngine
     describe "#multisite?" do
       let(:registration) { build(:registration) }
 
-      context "when registration is not charged" do
+      before do
+        registration.charged = true
+      end
+
+      context "when is_multisite_registration is false" do
         before do
-          registration.charged = false
-          registration.is_multisite_registration = true
+          registration.is_multisite_registration = false
           allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
         end
 
@@ -132,53 +135,36 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when registration is charged" do
+      context "when is_multisite_registration is true but feature toggle is disabled" do
         before do
-          registration.charged = true
+          registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
         end
 
-        context "when is_multisite_registration is false" do
-          before do
-            registration.is_multisite_registration = false
-            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
-          end
+        it "returns false" do
+          expect(registration.multisite?).to be false
+        end
+      end
 
-          it "returns false" do
-            expect(registration.multisite?).to be false
-          end
+      context "when is_multisite_registration is true and feature toggle is enabled" do
+        before do
+          registration.is_multisite_registration = true
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
         end
 
-        context "when is_multisite_registration is true but feature toggle is disabled" do
-          before do
-            registration.is_multisite_registration = true
-            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
-          end
+        it "returns true" do
+          expect(registration.multisite?).to be true
+        end
+      end
 
-          it "returns false" do
-            expect(registration.multisite?).to be false
-          end
+      context "when is_multisite_registration is nil" do
+        before do
+          registration.is_multisite_registration = nil
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
         end
 
-        context "when is_multisite_registration is true and feature toggle is enabled" do
-          before do
-            registration.is_multisite_registration = true
-            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
-          end
-
-          it "returns true" do
-            expect(registration.multisite?).to be true
-          end
-        end
-
-        context "when is_multisite_registration is nil" do
-          before do
-            registration.is_multisite_registration = nil
-            allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
-          end
-
-          it "returns false" do
-            expect(registration.multisite?).to be false
-          end
+        it "returns false" do
+          expect(registration.multisite?).to be false
         end
       end
     end

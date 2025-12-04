@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WasteExemptionsEngine
-  module CanActivateExemption
+  module CanHaveExemptionState
     extend ActiveSupport::Concern
 
     included do
@@ -10,9 +10,12 @@ module WasteExemptionsEngine
       aasm column: :state do
         state :pending, initial: true
         state :active
+        state :ceased
+        state :revoked
+        state :expired
 
         event :activate do
-          transitions from: :pending,
+          transitions from: %i[pending active expired],
                       to: :active,
                       after: :activate_exemption
         end

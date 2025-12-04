@@ -50,7 +50,7 @@ module WasteExemptionsEngine
     private
 
     def activate_exemptions
-      @transient_registration.transient_registration_exemptions.each(&:activate)
+      @transient_registration.transient_registration_exemptions.each(&:activate!)
     end
 
     def copyable_attributes
@@ -71,6 +71,7 @@ module WasteExemptionsEngine
     end
 
     def copy_addresses_and_assign_site_suffixes
+      @address_mapping = {}
       site_counter = 0
 
       @transient_registration.transient_addresses.each do |transient_address|
@@ -81,18 +82,18 @@ module WasteExemptionsEngine
           address_attrs["site_suffix"] = format("%05d", site_counter)
         end
 
-        @registration.addresses << Address.new(address_attrs)
+        new_address = Address.new(address_attrs)
+        @registration.addresses << new_address
+        @address_mapping[transient_address.id] = new_address if transient_address.site?
       end
     end
 
     def copy_exemptions
-      @registration.addresses.select(&:site?).each do |site_address|
-        CopyExemptionsService.run(
-          site_address: site_address,
-          transient_registration: @transient_registration,
-          registration: @registration
-        )
-      end
+      CopyExemptionsService.run(
+        transient_registration: @transient_registration,
+        registration: @registration,
+        address_mapping: @address_mapping
+      )
     end
 
     def copy_people
