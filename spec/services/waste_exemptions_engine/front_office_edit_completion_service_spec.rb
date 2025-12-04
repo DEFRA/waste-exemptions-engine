@@ -19,6 +19,124 @@ module WasteExemptionsEngine
         postcode
       ].freeze
 
+    RSpec.shared_examples "sets whodunnit" do
+      it { expect { run_service }.to change { PaperTrail.request.whodunnit } }
+    end
+
+    RSpec.shared_examples "sets reason_for_change" do
+      it { expect { run_service }.to change(edit_registration, :reason_for_change) }
+    end
+
+    RSpec.shared_examples "does not send a confirmation email" do
+      it "does not send the email" do
+        run_service
+
+        aggregate_failures do
+          expect(ExemptionDeregistrationService).not_to have_received(:run)
+          expect(RegistrationEditConfirmationEmailService).to have_received(:run).once
+        end
+      end
+    end
+
+    RSpec.shared_examples "sends a confirmation email via the exemption_deregistration_service" do
+      it "sends the email to the contact_email of the transient registration" do
+        run_service
+
+        aggregate_failures do
+          expect(ExemptionDeregistrationService).to have_received(:run)
+          expect(RegistrationEditConfirmationEmailService).to have_received(:run)
+            .with(registration:, recipient: edit_registration.contact_email)
+            .once
+        end
+      end
+    end
+
+    RSpec.shared_examples "sends a confirmation email outside of the exemption_deregistration_service" do
+      it "sends the email" do
+        run_service
+
+        aggregate_failures do
+          expect(ExemptionDeregistrationService).not_to have_received(:run)
+          expect(RegistrationEditConfirmationEmailService).to have_received(:run).once
+        end
+      end
+    end
+
+    RSpec.shared_examples "calls the exemption deregistration service" do
+      it "and changes the active exemption count" do
+        original_count = registration.active_exemptions.length
+
+        run_service
+
+        aggregate_failures do
+          expect(ExemptionDeregistrationService).to have_received(:run)
+          expect(registration.reload.active_exemptions.length).to eq(original_count - 1)
+        end
+      end
+    end
+
+    RSpec.shared_examples "does not call the exemption deregistration service" do
+      it "and does not change the exemption count" do
+        original_count = registration.exemptions.length
+
+        run_service
+
+        aggregate_failures do
+          expect(ExemptionDeregistrationService).not_to have_received(:run)
+          expect(registration.reload.exemptions.length).to eq(original_count)
+        end
+      end
+    end
+
+    RSpec.shared_examples "updates contact attribute" do
+      it { expect { run_service }.to change { registration.reload.send(modified_attribute) } }
+    end
+
+    RSpec.shared_examples "updates contact address attribute" do
+      it { expect { run_service }.to change { registration.reload.contact_address.send(modified_attribute) } }
+    end
+
+    RSpec.shared_examples "does not update contact attribute" do
+      it { expect { run_service }.not_to change { registration.reload.send(modified_attribute) } }
+    end
+
+    RSpec.shared_examples "updates contact details" do
+      editable_attributes.each do |attribute|
+        it_behaves_like "updates contact attribute" do
+          let(:registration) { edit_registration.registration }
+          let(:modified_attribute) { attribute }
+        end
+      end
+    end
+
+    RSpec.shared_examples "updates contact address details" do
+      contact_address_attributes.each do |attribute|
+        it_behaves_like "updates contact address attribute" do
+          let(:registration) { edit_registration.registration }
+          let(:modified_attribute) { attribute }
+        end
+      end
+    end
+
+    RSpec.shared_examples "does not update contact details" do
+      editable_attributes.each do |attribute|
+        it_behaves_like "does not update contact attribute" do
+          let(:registration) { edit_registration.registration }
+          let(:modified_attribute) { attribute }
+        end
+      end
+    end
+
+    RSpec.shared_examples "creates a new paper_trail version" do
+      it "creates a new version" do
+        expect { run_service }.to change { registration.versions.count }.by(1)
+      end
+    end
+
+    RSpec.shared_examples "deletes the transient registration" do
+      it { expect { run_service }.to change(FrontOfficeEditRegistration, :count).by(-1) }
+    end
+
     RSpec.shared_examples "front office edit completion service tests" do
       subject(:run_service) { described_class.run(edit_registration: edit_registration.reload) }
 
@@ -46,124 +164,6 @@ module WasteExemptionsEngine
         edit_registration.save!
 
         registration.update(edit_link_requested_by: edit_registration.contact_email)
-      end
-
-      RSpec.shared_examples "sets whodunnit" do
-        it { expect { run_service }.to change { PaperTrail.request.whodunnit } }
-      end
-
-      RSpec.shared_examples "sets reason_for_change" do
-        it { expect { run_service }.to change(edit_registration, :reason_for_change) }
-      end
-
-      RSpec.shared_examples "does not send a confirmation email" do
-        it "does not send the email" do
-          run_service
-
-          aggregate_failures do
-            expect(ExemptionDeregistrationService).not_to have_received(:run)
-            expect(RegistrationEditConfirmationEmailService).to have_received(:run).once
-          end
-        end
-      end
-
-      RSpec.shared_examples "sends a confirmation email via the exemption_deregistration_service" do
-        it "sends the email to the contact_email of the transient registration" do
-          run_service
-
-          aggregate_failures do
-            expect(ExemptionDeregistrationService).to have_received(:run)
-            expect(RegistrationEditConfirmationEmailService).to have_received(:run)
-              .with(registration:, recipient: edit_registration.contact_email)
-              .once
-          end
-        end
-      end
-
-      RSpec.shared_examples "sends a confirmation email outside of the exemption_deregistration_service" do
-        it "sends the email" do
-          run_service
-
-          aggregate_failures do
-            expect(ExemptionDeregistrationService).not_to have_received(:run)
-            expect(RegistrationEditConfirmationEmailService).to have_received(:run).once
-          end
-        end
-      end
-
-      RSpec.shared_examples "calls the exemption deregistration service" do
-        it "and changes the active exemption count" do
-          original_count = registration.active_exemptions.length
-
-          run_service
-
-          aggregate_failures do
-            expect(ExemptionDeregistrationService).to have_received(:run)
-            expect(registration.reload.active_exemptions.length).to eq(original_count - 1)
-          end
-        end
-      end
-
-      RSpec.shared_examples "does not call the exemption deregistration service" do
-        it "and does not change the exemption count" do
-          original_count = registration.exemptions.length
-
-          run_service
-
-          aggregate_failures do
-            expect(ExemptionDeregistrationService).not_to have_received(:run)
-            expect(registration.reload.exemptions.length).to eq(original_count)
-          end
-        end
-      end
-
-      RSpec.shared_examples "updates contact attribute" do
-        it { expect { run_service }.to change { registration.reload.send(modified_attribute) } }
-      end
-
-      RSpec.shared_examples "updates contact address attribute" do
-        it { expect { run_service }.to change { registration.reload.contact_address.send(modified_attribute) } }
-      end
-
-      RSpec.shared_examples "does not update contact attribute" do
-        it { expect { run_service }.not_to change { registration.reload.send(modified_attribute) } }
-      end
-
-      RSpec.shared_examples "updates contact details" do
-        editable_attributes.each do |attribute|
-          it_behaves_like "updates contact attribute" do
-            let(:registration) { edit_registration.registration }
-            let(:modified_attribute) { attribute }
-          end
-        end
-      end
-
-      RSpec.shared_examples "updates contact address details" do
-        contact_address_attributes.each do |attribute|
-          it_behaves_like "updates contact address attribute" do
-            let(:registration) { edit_registration.registration }
-            let(:modified_attribute) { attribute }
-          end
-        end
-      end
-
-      RSpec.shared_examples "does not update contact details" do
-        editable_attributes.each do |attribute|
-          it_behaves_like "does not update contact attribute" do
-            let(:registration) { edit_registration.registration }
-            let(:modified_attribute) { attribute }
-          end
-        end
-      end
-
-      RSpec.shared_examples "creates a new paper_trail version" do
-        it "creates a new version" do
-          expect { run_service }.to change { registration.versions.count }.by(1)
-        end
-      end
-
-      RSpec.shared_examples "deletes the transient registration" do
-        it { expect { run_service }.to change(FrontOfficeEditRegistration, :count).by(-1) }
       end
 
       context "with no changes" do
