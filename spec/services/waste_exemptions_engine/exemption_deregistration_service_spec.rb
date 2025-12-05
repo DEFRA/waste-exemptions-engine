@@ -65,7 +65,7 @@ module WasteExemptionsEngine
         end
 
         it "sets deregistered_by for each registration_exemption" do
-          registration.edit_link_requested_by = "test@example.com"
+          registration.update_column(:edit_link_requested_by, "test@example.com")
           expect { run_service }.to change { registration.registration_exemptions.pluck(:deregistered_by).uniq }
             .from([nil])
             .to(["test@example.com"])
@@ -135,7 +135,7 @@ module WasteExemptionsEngine
         end
 
         it "sets deregistered_by for each removed exemption" do
-          registration.edit_link_requested_by = "test@example.com"
+          registration.update_column(:edit_link_requested_by, "test@example.com")
           expect { run_service }.to change { removed_registration_exemptions.pluck(:deregistered_by).uniq }
             .to(["test@example.com"])
         end
