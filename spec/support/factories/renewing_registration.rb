@@ -63,5 +63,14 @@ FactoryBot.define do
         new(reference: registration.reference, token: registration.renew_token)
       end
     end
+
+    after(:build) do |transient_registration|
+      transient_address = transient_registration.transient_addresses.find do |x|
+        x.address_type == "site"
+      end || build(:transient_address, :site_address, :manual)
+      transient_registration.transient_registration_exemptions.each do |transient_registration_exemption|
+        transient_registration_exemption.transient_address = transient_address
+      end
+    end
   end
 end

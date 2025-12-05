@@ -30,7 +30,7 @@ module WasteExemptionsEngine
         it "includes site addresses" do
           site_address_a = create(:address, address_type: 3, registration: registration)
           site_address_b = create(:address, address_type: 3, registration: registration)
-          expect(registration.site_addresses).to include(site_address_a, site_address_b)
+          expect(registration.site_addresses.reload).to include(site_address_a, site_address_b)
         end
 
         it "excludes non-site addresses" do

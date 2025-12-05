@@ -87,7 +87,7 @@ module WasteExemptionsEngine
 
             form.submit(ActionController::Parameters.new(valid_params).permit!)
 
-            expect(transient_registration.transient_addresses.count).to eq(1)
+            expect(transient_registration.transient_addresses.reload.count).to eq(1)
             submitted_address = transient_registration.transient_addresses.first
             address_data[:operator_address].each do |key, value|
               expect(submitted_address.send(key)).to eq(value)

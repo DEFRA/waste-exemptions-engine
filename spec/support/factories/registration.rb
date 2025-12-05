@@ -148,5 +148,12 @@ FactoryBot.define do
         end
       end
     end
+
+    after(:build) do |registration|
+      address = registration.site_addresses&.first || build(:address, :site_address, :manual, :postal)
+      registration.registration_exemptions.each do |registration_exemption|
+        registration_exemption.address = address
+      end
+    end
   end
 end

@@ -28,6 +28,7 @@ module WasteExemptionsEngine
           aggregate_failures do
             expect(transient_registration.transient_addresses).to be_empty
             form.submit(valid_params)
+            transient_registration.transient_addresses.reload
             expect(transient_registration.transient_addresses.count).to eq(1)
             expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
           end
