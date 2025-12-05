@@ -53,6 +53,7 @@ module Helpers
       state
       deregistration_message
       deregistered_at
+      deregistered_by
       reason_for_change
       registered_on
       expires_on

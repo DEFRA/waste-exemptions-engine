@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_05_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -288,6 +288,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.date "deregistered_at"
     t.string "reason_for_change", limit: 500
     t.bigint "address_id"
+    t.string "deregistered_by"
     t.index ["address_id"], name: "index_registration_exemptions_on_address_id"
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
     t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
@@ -341,6 +342,22 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.index ["unsubscribe_token"], name: "index_registrations_on_unsubscribe_token", unique: true
   end
 
+  create_table "reports_downloads", force: :cascade do |t|
+    t.string "report_type"
+    t.string "report_file_name"
+    t.string "user_id"
+    t.datetime "downloaded_at"
+  end
+
+  create_table "reports_generated_reports", id: :serial, force: :cascade do |t|
+    t.string "file_name"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.date "data_from_date"
+    t.date "data_to_date"
+    t.string "report_type", default: "bulk", null: false
+  end
+
   create_table "transient_addresses", id: :serial, force: :cascade do |t|
     t.integer "address_type", default: 0
     t.integer "mode", default: 0
@@ -392,6 +409,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.date "deregistered_at"
     t.text "deregistration_message"
     t.string "reason_for_change", limit: 500
+    t.string "deregistered_by"
     t.index ["exemption_id"], name: "index_transient_registration_exemptions_on_exemption_id"
     t.index ["transient_address_id"], name: "index_transient_registration_exemptions_on_transient_address_id"
     t.index ["transient_registration_id"], name: "index_trans_reg_exemptions_on_transient_registration_id"
@@ -455,6 +473,37 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.integer "temp_site_id"
     t.index ["created_at"], name: "index_transient_registrations_on_created_at"
     t.index ["token"], name: "index_transient_registrations_on_token", unique: true
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
+    t.integer "invitation_limit"
+    t.integer "invited_by_id"
+    t.string "invited_by_type"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at", precision: nil
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "session_token"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "role"
+    t.boolean "active", default: true
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   create_table "version_archives", id: :serial, force: :cascade do |t|
