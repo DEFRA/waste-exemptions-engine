@@ -64,6 +64,13 @@ module WasteExemptionsEngine
             .to([I18n.t("self_serve_deregistration.message")])
         end
 
+        it "sets deregistered_by for each registration_exemption" do
+          registration.update_column(:edit_link_requested_by, "test@example.com")
+          expect { run_service }.to change { registration.registration_exemptions.pluck(:deregistered_by).uniq }
+            .from([nil])
+            .to(["test@example.com"])
+        end
+
         with_versioning do
           it "creates a new registration version" do
             expect { run_service }.to change { registration.versions.count }.by(1)
@@ -125,6 +132,12 @@ module WasteExemptionsEngine
         it "sets the self-serve deregistration message for each removed exemption" do
           expect { run_service }.to change { removed_registration_exemptions.pluck(:deregistration_message).uniq }
             .to([I18n.t("self_serve_deregistration.message")])
+        end
+
+        it "sets deregistered_by for each removed exemption" do
+          registration.update_column(:edit_link_requested_by, "test@example.com")
+          expect { run_service }.to change { removed_registration_exemptions.pluck(:deregistered_by).uniq }
+            .to(["test@example.com"])
         end
 
         it "does not modify the remaining exemptions" do

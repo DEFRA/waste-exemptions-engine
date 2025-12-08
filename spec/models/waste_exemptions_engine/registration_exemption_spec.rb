@@ -89,5 +89,36 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#deregistered_by" do
+      subject(:registration_exemption) { create(:registration_exemption) }
+
+      context "when deregistered_by column has a value" do
+        before do
+          registration_exemption.update_columns(deregistered_by: "column@example.com")
+        end
+
+        it "returns the column value" do
+          expect(registration_exemption.deregistered_by).to eq("column@example.com")
+        end
+      end
+
+      context "when deregistered_by column is blank but version exists", :versioning do
+        before do
+          PaperTrail.request.whodunnit = "version@example.com"
+          registration_exemption.update(state: "ceased", deregistered_at: Time.zone.now)
+        end
+
+        it "returns the whodunnit from the version" do
+          expect(registration_exemption.deregistered_by).to eq("version@example.com")
+        end
+      end
+
+      context "when deregistered_by column is blank and no version exists" do
+        it "returns nil" do
+          expect(registration_exemption.deregistered_by).to be_nil
+        end
+      end
+    end
   end
 end

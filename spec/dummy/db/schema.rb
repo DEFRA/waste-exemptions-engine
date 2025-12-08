@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_05_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -288,6 +288,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.date "deregistered_at"
     t.string "reason_for_change", limit: 500
     t.bigint "address_id"
+    t.string "deregistered_by"
     t.index ["address_id"], name: "index_registration_exemptions_on_address_id"
     t.index ["exemption_id"], name: "index_registration_exemptions_on_exemption_id"
     t.index ["registration_id"], name: "index_active_registration_ids_on_registration_exemptions", where: "((state)::text = 'active'::text)"
@@ -392,6 +393,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_21_135154) do
     t.date "deregistered_at"
     t.text "deregistration_message"
     t.string "reason_for_change", limit: 500
+    t.string "deregistered_by"
     t.index ["exemption_id"], name: "index_transient_registration_exemptions_on_exemption_id"
     t.index ["transient_address_id"], name: "index_transient_registration_exemptions_on_transient_address_id"
     t.index ["transient_registration_id"], name: "index_trans_reg_exemptions_on_transient_registration_id"
