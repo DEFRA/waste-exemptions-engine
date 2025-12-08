@@ -88,6 +88,7 @@ module WasteExemptionsEngine
         context "when there are multiple site addresses" do
           let(:new_registration) do
             create(:new_charged_registration, :complete, workflow_state: "registration_complete_form").tap do |reg|
+              reg.update(is_multisite_registration: true)
               create(:transient_address, :site_address, transient_registration: reg)
               create(:transient_address, :site_address, transient_registration: reg)
             end
@@ -98,6 +99,29 @@ module WasteExemptionsEngine
 
             site_addresses = registration.site_addresses.order(:id)
             expect(site_addresses.map(&:site_suffix)).to eq(%w[00001 00002 00003])
+          end
+        end
+
+        context "when switching from multisite to single-site" do
+          let(:new_registration) do
+            create(:new_charged_registration, :complete, workflow_state: "registration_complete_form").tap do |reg|
+              # User selected multisite and added sites, then switched back to single-site
+              reg.update(is_multisite_registration: false)
+              create(:transient_address, :site_address, transient_registration: reg)
+              create(:transient_address, :site_address, transient_registration: reg)
+            end
+          end
+
+          it "only copies the first site address" do
+            run_service
+
+            expect(registration.site_addresses.count).to eq(1)
+          end
+
+          it "assigns site_suffix to the single site address" do
+            run_service
+
+            expect(registration.site_address.site_suffix).to eq("00001")
           end
         end
 

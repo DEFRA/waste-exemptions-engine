@@ -74,7 +74,7 @@ module WasteExemptionsEngine
       @address_mapping = {}
       site_counter = 0
 
-      @transient_registration.transient_addresses.each do |transient_address|
+      transient_addresses_to_copy.each do |transient_address|
         address_attrs = transient_address.address_attributes
 
         if transient_address.site?
@@ -86,6 +86,18 @@ module WasteExemptionsEngine
         @registration.addresses << new_address
         @address_mapping[transient_address.id] = new_address if transient_address.site?
       end
+    end
+
+    def transient_addresses_to_copy
+      addresses = @transient_registration.transient_addresses.to_a
+
+      # For single-site registrations, only copy the first site address
+      unless @transient_registration.multisite?
+        first_site = addresses.find(&:site?)
+        addresses.reject! { |addr| addr.site? && addr != first_site }
+      end
+
+      addresses
     end
 
     def copy_exemptions
