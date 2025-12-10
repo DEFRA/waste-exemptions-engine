@@ -48,8 +48,6 @@ module WasteExemptionsEngine
           address_type: "site",
           mode: "auto"
         )
-        # Clear temp_site_id so next visit shows empty form for adding another
-        transient_registration.update(temp_site_id: nil)
         true
       else
         params.merge!(address_type: :site, mode: :auto)
@@ -73,6 +71,9 @@ module WasteExemptionsEngine
         address_type: "site",
         mode: "auto"
       )
+
+      # do not clear temp_site_id after updating
+      # in case of multiple edits using back button
 
       true
     end

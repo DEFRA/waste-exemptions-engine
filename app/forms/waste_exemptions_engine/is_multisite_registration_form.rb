@@ -9,19 +9,13 @@ module WasteExemptionsEngine
     def submit(attributes)
       # Single-site and multisite are different application types.
       # Reset site addresses when changing selection to avoid inconsistent state.
-      reset_site_addresses
+      transient_registration.transient_addresses.where(address_type: "site").destroy_all
 
       super
     end
 
     def minimum_sites_required
       WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_required
-    end
-
-    private
-
-    def reset_site_addresses
-      transient_registration.transient_addresses.where(address_type: "site").destroy_all
     end
   end
 end

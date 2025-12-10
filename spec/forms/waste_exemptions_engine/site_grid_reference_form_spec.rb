@@ -148,12 +148,6 @@ module WasteExemptionsEngine
         let(:form) { described_class.new(transient_registration) }
         let(:params) { { grid_reference: "ST 12345 67890", description: "New site" } }
 
-        it "clears temp_site_id after creation" do
-          form.submit(params)
-
-          expect(transient_registration.reload.temp_site_id).to be_nil
-        end
-
         it "creates the site address" do
           expect { form.submit(params) }.to change(transient_registration.transient_addresses, :count).by(1)
         end
