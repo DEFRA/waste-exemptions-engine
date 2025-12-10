@@ -7,9 +7,9 @@ module WasteExemptionsEngine
     validates :is_multisite_registration, "defra_ruby/validators/true_false": true
 
     def submit(attributes)
-      # For single-site, set temp_site_id to the first site address (if one exists)
-      # so that site_grid_reference_form edits it instead of creating a new one
-      set_temp_site_id_to_first_site if attributes[:is_multisite_registration] == "false"
+      # Single-site and multisite are different application types.
+      # Reset site addresses when changing selection to avoid inconsistent state.
+      reset_site_addresses
 
       super
     end
@@ -20,9 +20,8 @@ module WasteExemptionsEngine
 
     private
 
-    def set_temp_site_id_to_first_site
-      first_site = transient_registration.transient_addresses.where(address_type: "site").order(:created_at).first
-      transient_registration.temp_site_id = first_site&.id
+    def reset_site_addresses
+      transient_registration.transient_addresses.where(address_type: "site").destroy_all
     end
   end
 end
