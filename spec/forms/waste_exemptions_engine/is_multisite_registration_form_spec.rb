@@ -55,6 +55,31 @@ module WasteExemptionsEngine
             expect(transient_registration.reload.is_multisite_registration).to be_falsey
           end
         end
+
+        context "when selecting single-site and existing site addresses exist" do
+          let(:transient_registration) { form.transient_registration }
+          let!(:first_site) { create(:transient_address, :site_address, transient_registration: transient_registration) }
+
+          before { create(:transient_address, :site_address, transient_registration: transient_registration) }
+
+          it "sets temp_site_id to the first site address" do
+            form.submit(is_multisite_registration: "false")
+
+            expect(transient_registration.reload.temp_site_id).to eq(first_site.id)
+          end
+        end
+
+        context "when selecting multisite" do
+          let(:transient_registration) { form.transient_registration }
+
+          before { create(:transient_address, :site_address, transient_registration: transient_registration) }
+
+          it "does not set temp_site_id" do
+            form.submit(is_multisite_registration: "true")
+
+            expect(transient_registration.reload.temp_site_id).to be_nil
+          end
+        end
       end
     end
   end

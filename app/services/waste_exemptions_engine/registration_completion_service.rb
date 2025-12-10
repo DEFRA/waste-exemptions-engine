@@ -89,9 +89,10 @@ module WasteExemptionsEngine
     end
 
     def transient_addresses_to_copy
-      addresses = @transient_registration.transient_addresses.to_a
+      # Order by created_at to match the site_address association ordering
+      addresses = @transient_registration.transient_addresses.order(:created_at).to_a
 
-      # For single-site registrations, only copy the first site address
+      # For single-site registrations, only copy the first site address (oldest created)
       unless @transient_registration.multisite?
         first_site = addresses.find(&:site?)
         addresses.reject! { |addr| addr.site? && addr != first_site }
