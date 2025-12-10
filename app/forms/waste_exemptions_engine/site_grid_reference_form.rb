@@ -13,9 +13,10 @@ module WasteExemptionsEngine
 
     def initialize(transient_registration)
       super
-      # Pre-populate from existing site_address if available
-      # For multisite: only pre-populate if editing a specific site (temp_site_id set)
-      # For single-site: always pre-populate from site_address
+      # Pre-populate from existing site_address if available:
+      # - If temp_site_id is set, use that specific site (for editing)
+      # - For single-site without temp_site_id, fallback to site_address association
+      # - For multisite without temp_site_id, leave empty (adding new site)
       site_address = if temp_site_id.present?
                        transient_registration.transient_addresses.find_by(id: temp_site_id)
                      elsif !multisite_registration?
