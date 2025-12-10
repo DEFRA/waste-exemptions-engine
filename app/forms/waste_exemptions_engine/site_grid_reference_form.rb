@@ -74,10 +74,6 @@ module WasteExemptionsEngine
         mode: "auto"
       )
 
-      # Clear temp_site_id so "Add another" shows empty form
-      # Edit action will set it again when user clicks edit on a specific site
-      transient_registration.update(temp_site_id: nil)
-
       true
     end
   end

@@ -175,12 +175,6 @@ module WasteExemptionsEngine
         end
         let(:params) { { grid_reference: "ST 99999 88888", description: "Updated" } }
 
-        it "clears temp_site_id after update" do
-          form.submit(params)
-
-          expect(transient_registration.reload.temp_site_id).to be_nil
-        end
-
         it "updates the existing site" do
           form.submit(params)
           existing_site.reload
