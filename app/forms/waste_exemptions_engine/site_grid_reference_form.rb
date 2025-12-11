@@ -13,20 +13,7 @@ module WasteExemptionsEngine
 
     def initialize(transient_registration)
       super
-      # Pre-populate from existing site_address if available:
-      # - If temp_site_id is set, use that specific site (for editing)
-      # - For single-site without temp_site_id, fallback to site_address association
-      # - For multisite without temp_site_id, leave empty (adding new site)
-      site_address = if temp_site_id.present?
-                       transient_registration.transient_addresses.find_by(id: temp_site_id)
-                     elsif !multisite_registration?
-                       transient_registration.site_address
-                     end
-
-      return unless site_address.present?
-
-      self.grid_reference = site_address.grid_reference
-      self.description = site_address.description
+      assign_current_site_values(transient_registration)
     end
 
     def submit(params)
@@ -39,7 +26,7 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      return update_existing_site if temp_site_id.present?
+      return update_existing_site if edit_mode?
 
       if multisite_registration?
         transient_registration.transient_addresses.create!(
@@ -57,8 +44,30 @@ module WasteExemptionsEngine
 
     private
 
+    def assign_current_site_values(transient_registration)
+      site_address = if edit_mode?
+                       transient_registration.transient_addresses.find_by(id: temp_site_id)
+                     elsif single_site_registration?
+                       transient_registration.site_address
+                     end
+
+      return unless site_address.present?
+
+      self.grid_reference = site_address.grid_reference
+      self.description = site_address.description
+    end
+
+    def edit_mode?
+      temp_site_id.present?
+    end
+
+    def single_site_registration?
+      !multisite_registration?
+    end
+
     def multisite_registration?
-      ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
+      @multisite_registration ||= ActiveModel::Type::Boolean
+                                  .new.cast(transient_registration.is_multisite_registration)
     end
 
     def update_existing_site
