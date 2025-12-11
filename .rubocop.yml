@@ -84,6 +84,12 @@ RSpec/ExampleLength:
     - spec/services/waste_exemptions_engine/registration_completion_service_spec.rb
     - spec/support/shared_examples/requests/post_form.rb
 
+# Simply changing these variables to "let" results in many cases in an error because "let"
+# variables are not available on an example group, only in the scope of an example.
+# TODO: Enable this cop and refactor the relevant 137 instances.
+RSpec/LeakyLocalVariable:
+  Enabled: false
+
 # Some examples need to have multiple expectations
 RSpec/MultipleExpectations:
   Exclude:
