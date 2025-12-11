@@ -60,6 +60,18 @@ To run all the tests, use:
 
 `bundle exec rspec`
 
+### Legacy vs New data model
+
+The test factories support both the new and legacy data models. In the new data model, registration exemptions are linked to site addresses. By default, factories will create exemptions linked to a site address.
+
+To run tests with the legacy data model (exemptions not linked to addresses), set the `LEGACY_DATA_MODEL` environment variable:
+
+```bash
+LEGACY_DATA_MODEL=true bundle exec rspec
+```
+
+This is useful when testing against older data structures or during migration periods.
+
 # Contributing to this project
 
 If you have an idea you'd like to contribute please log an issue.
