@@ -6,6 +6,16 @@ module WasteExemptionsEngine
 
     validates :is_multisite_registration, "defra_ruby/validators/true_false": true
 
+    def submit(attributes)
+      reset_site_addresses # avoid inconsistent data when switching from multisite to single site
+
+      super
+    end
+
+    def reset_site_addresses
+      transient_registration.transient_addresses.where(address_type: "site").destroy_all
+    end
+
     def minimum_sites_required
       WasteExemptionsEngine::CanHaveMultipleSites.minimum_sites_required
     end

@@ -148,5 +148,15 @@ FactoryBot.define do
         end
       end
     end
+
+    # ensure that all exemptions are linked to a site address
+    after(:build) do |registration|
+      unless ENV["LEGACY_DATA_MODEL"]
+        address = registration.site_addresses&.first || build(:address, :site_address, :manual, :postal)
+        registration.registration_exemptions.each do |registration_exemption|
+          registration_exemption.address = address
+        end
+      end
+    end
   end
 end
