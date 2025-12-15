@@ -19,7 +19,7 @@ module WasteExemptionsEngine
         order.charge_detail = ChargeDetail.new(
           registration_charge_amount:,
           band_charge_details:,
-          site_count:
+          site_count: effective_site_count
         )
       end
       order.charge_detail
@@ -75,11 +75,11 @@ module WasteExemptionsEngine
     end
 
     def stored_site_count
-      order.charge_detail&.site_count || site_count
+      order.charge_detail&.site_count || effective_site_count
     end
 
-    def site_count
-      order.order_owner&.site_count || 1
+    def effective_site_count
+      order.order_owner&.effective_site_count || 1
     end
   end
 end

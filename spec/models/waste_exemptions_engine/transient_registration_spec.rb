@@ -61,7 +61,7 @@ module WasteExemptionsEngine
         it "returns the count of site addresses" do
           create(:transient_address, :site_address, transient_registration: transient_registration)
           create(:transient_address, :site_address, transient_registration: transient_registration)
-          expect(transient_registration.site_count).to eq(3) # includes the one from factory
+          expect(transient_registration.effective_site_count).to eq(3) # includes the one from factory
         end
       end
 
@@ -71,7 +71,7 @@ module WasteExemptionsEngine
         it "returns 1 regardless of site addresses count" do
           create(:transient_address, :site_address, transient_registration: transient_registration)
           create(:transient_address, :site_address, transient_registration: transient_registration)
-          expect(transient_registration.site_count).to eq(1)
+          expect(transient_registration.effective_site_count).to eq(1)
         end
       end
     end

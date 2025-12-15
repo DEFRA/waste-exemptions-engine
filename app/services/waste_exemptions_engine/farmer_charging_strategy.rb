@@ -16,7 +16,7 @@ module WasteExemptionsEngine
           registration_charge_amount:,
           band_charge_details:,
           bucket_charge_amount:,
-          site_count:
+          site_count: effective_site_count
         )
       end
       order.charge_detail
