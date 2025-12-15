@@ -79,5 +79,16 @@ FactoryBot.define do
         new(reference: create(:registration, :multisite_complete).reference)
       end
     end
+
+    # ensure that all exemptions are linked to a site address
+    after(:build) do |transient_registration|
+      unless ENV["LEGACY_DATA_MODEL"]
+        transient_address = transient_registration.transient_addresses.find(&:site?) || build(:transient_address,
+                                                                                              :site_address, :manual)
+        transient_registration.transient_registration_exemptions.each do |transient_registration_exemption|
+          transient_registration_exemption.transient_address = transient_address
+        end
+      end
+    end
   end
 end
