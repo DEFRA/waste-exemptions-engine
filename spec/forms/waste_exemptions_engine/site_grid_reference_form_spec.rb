@@ -55,6 +55,67 @@ module WasteExemptionsEngine
             .from(true).to(nil)
         end
       end
+
+      context "when multisite and temp_site_id is nil" do
+        let(:transient_registration) do
+          create(:new_charged_registration,
+                 workflow_state: "site_grid_reference_form",
+                 is_multisite_registration: true,
+                 temp_site_id: nil).tap do |reg|
+                   create(:transient_address, :site_address, transient_registration: reg, grid_reference: "ST 12345 67890")
+                 end
+        end
+
+        it "does not pre-populate the form" do
+          form = described_class.new(transient_registration)
+
+          aggregate_failures do
+            expect(form.grid_reference).to be_nil
+            expect(form.description).to be_nil
+          end
+        end
+      end
+
+      context "when multisite and temp_site_id is set" do
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form", is_multisite_registration: true)
+        end
+
+        let!(:site) do
+          create(:transient_address, :site_address, transient_registration: transient_registration,
+                                                    grid_reference: "ST 12345 67890", description: "Test site")
+        end
+
+        before { transient_registration.update(temp_site_id: site.id) }
+
+        it "pre-populates from the specified site" do
+          form = described_class.new(transient_registration)
+
+          aggregate_failures do
+            expect(form.grid_reference).to eq("ST 12345 67890")
+            expect(form.description).to eq("Test site")
+          end
+        end
+      end
+
+      context "when single-site with no temp_site_id" do
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form").tap do |reg|
+            reg.update(is_multisite_registration: false, temp_site_id: nil)
+            create(:transient_address, :site_address, transient_registration: reg,
+                                                      grid_reference: "ST 11111 22222", description: "First site")
+          end
+        end
+
+        it "pre-populates from site_address" do
+          form = described_class.new(transient_registration)
+
+          aggregate_failures do
+            expect(form.grid_reference).to eq("ST 11111 22222")
+            expect(form.description).to eq("First site")
+          end
+        end
+      end
     end
 
     describe "#submit" do
@@ -73,6 +134,48 @@ module WasteExemptionsEngine
 
             expect(transient_registration.site_address.grid_reference).to eq(grid_reference)
             expect(transient_registration.site_address.description).to eq(description)
+          end
+        end
+      end
+
+      context "when creating a new multisite site" do
+        let(:transient_registration) do
+          create(:new_charged_registration,
+                 workflow_state: "site_grid_reference_form",
+                 is_multisite_registration: true,
+                 temp_site_id: nil)
+        end
+        let(:form) { described_class.new(transient_registration) }
+        let(:params) { { grid_reference: "ST 12345 67890", description: "New site" } }
+
+        it "creates the site address" do
+          expect { form.submit(params) }.to change(transient_registration.transient_addresses, :count).by(1)
+        end
+      end
+
+      context "when updating an existing site" do
+        let(:transient_registration) do
+          create(:new_charged_registration,
+                 workflow_state: "site_grid_reference_form",
+                 is_multisite_registration: true)
+        end
+        let!(:existing_site) do
+          create(:transient_address, :site_address, transient_registration: transient_registration,
+                                                    grid_reference: "ST 11111 22222", description: "Original")
+        end
+        let(:form) do
+          transient_registration.update(temp_site_id: existing_site.id)
+          described_class.new(transient_registration)
+        end
+        let(:params) { { grid_reference: "ST 99999 88888", description: "Updated" } }
+
+        it "updates the existing site" do
+          form.submit(params)
+          existing_site.reload
+
+          aggregate_failures do
+            expect(existing_site.grid_reference).to eq("ST 99999 88888")
+            expect(existing_site.description).to eq("Updated")
           end
         end
       end

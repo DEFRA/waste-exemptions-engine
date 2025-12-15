@@ -88,6 +88,7 @@ module WasteExemptionsEngine
         context "when there are multiple site addresses" do
           let(:new_registration) do
             create(:new_charged_registration, :complete, workflow_state: "registration_complete_form").tap do |reg|
+              reg.update(is_multisite_registration: true)
               create(:transient_address, :site_address, transient_registration: reg)
               create(:transient_address, :site_address, transient_registration: reg)
             end

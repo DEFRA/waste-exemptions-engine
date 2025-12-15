@@ -55,6 +55,62 @@ module WasteExemptionsEngine
             expect(transient_registration.reload.is_multisite_registration).to be_falsey
           end
         end
+
+        context "when existing site addresses exist" do
+          let(:transient_registration) { form.transient_registration }
+
+          before do
+            create(:transient_address, :site_address, transient_registration: transient_registration)
+            create(:transient_address, :site_address, transient_registration: transient_registration)
+          end
+
+          it "resets site addresses when selecting single-site" do
+            expect { form.submit(is_multisite_registration: "false") }
+              .to change { transient_registration.transient_addresses.where(address_type: "site").count }
+              .from(2).to(0)
+          end
+
+          it "resets site addresses when selecting multisite" do
+            expect { form.submit(is_multisite_registration: "true") }
+              .to change { transient_registration.transient_addresses.where(address_type: "site").count }
+              .from(2).to(0)
+          end
+        end
+
+        context "when site addresses have linked transient_registration_exemptions" do
+          let(:transient_registration) { form.transient_registration }
+          let(:site_address) do
+            create(:transient_address, :site_address, transient_registration: transient_registration)
+          end
+
+          before do
+            create(:transient_address, :site_address, transient_registration: transient_registration)
+            create(:transient_registration_exemption,
+                   transient_registration: transient_registration,
+                   transient_address: site_address)
+            create(:transient_registration_exemption,
+                   transient_registration: transient_registration,
+                   transient_address: site_address)
+          end
+
+          it "resets site addresses when selecting single-site" do
+            expect { form.submit(is_multisite_registration: "false") }
+              .to change { transient_registration.transient_addresses.where(address_type: "site").count }
+              .from(2).to(0)
+          end
+
+          it "resets site addresses when selecting multisite" do
+            expect { form.submit(is_multisite_registration: "true") }
+              .to change { transient_registration.transient_addresses.where(address_type: "site").count }
+              .from(2).to(0)
+          end
+
+          it "deletes the linked transient_registration_exemptions" do
+            expect { form.submit(is_multisite_registration: "false") }
+              .to change { TransientRegistrationExemption.where(transient_address_id: site_address.id).count }
+              .from(2).to(0)
+          end
+        end
       end
     end
   end
