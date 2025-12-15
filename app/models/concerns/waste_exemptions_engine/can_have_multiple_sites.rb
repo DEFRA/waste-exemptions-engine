@@ -17,16 +17,16 @@ module WasteExemptionsEngine
                dependent: :destroy
     end
 
-    def site_count
-      return 1 unless WasteExemptionsEngine::FeatureToggle.active?(:enable_multisite)
-      return 1 unless is_multisite_registration
+    def effective_site_count
+      # Special case: Assume 1 for a transient registration where the user has indicated
+      # not multi-site and has not yet provided the single site address
+      return 1 if is_a?(WasteExemptionsEngine::TransientRegistration) && !is_multisite_registration
 
-      count = site_addresses.count
-      count.zero? ? 1 : count
+      site_addresses.count
     end
 
     def multisite?
-      is_multisite_registration == true && WasteExemptionsEngine::FeatureToggle.active?(:enable_multisite)
+      is_multisite_registration || effective_site_count > 1
     end
   end
 end

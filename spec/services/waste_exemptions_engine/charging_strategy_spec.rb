@@ -125,7 +125,7 @@ module WasteExemptionsEngine
           create_list(:transient_address, 2, :site_address, transient_registration: multisite_order.order_owner)
           multisite_order.order_owner.reload
 
-          expect(multisite_order.order_owner.site_count).to be > site_count
+          expect(multisite_order.order_owner.effective_site_count).to be > site_count
 
           expect(strategy.total_compliance_charge_amount).to eq(initial_total)
         end
