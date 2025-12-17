@@ -34,7 +34,7 @@ module WasteExemptionsEngine
     end
 
     def band_charge_details
-      bands = Band.where(id: order.exemptions.map(&:band_id).uniq)
+      bands = Band.includes([:initial_compliance_charge]).where(id: order.exemptions.map(&:band_id).uniq)
       bands.map do |band|
 
         initial_compliance_charge_amount = initial_compliance_charge_amount(band)

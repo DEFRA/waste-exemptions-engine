@@ -43,5 +43,6 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.raise = true
+    Bullet.stacktrace_includes = ["app/"]
   end
 end

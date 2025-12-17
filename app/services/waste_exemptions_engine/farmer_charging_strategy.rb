@@ -27,7 +27,8 @@ module WasteExemptionsEngine
     end
 
     def base_bucket_charge_amount
-      order_bucket_exemptions = order.exemptions & bucket.exemptions
+      order_bucket_exemptions = order.exemptions.includes(band: :initial_compliance_charge) &
+                                bucket.exemptions.includes(band: :initial_compliance_charge)
 
       return 0 if order_bucket_exemptions.empty?
 

@@ -23,6 +23,25 @@ module WasteExemptionsEngine
         get request_path
         expect(response.body).to have_valid_html
       end
+
+      context "with a farm bucket" do
+
+        include_context "farm bucket"
+
+        before do
+          form.transient_registration.order = build(:order)
+          form.transient_registration.order.update(bucket: Bucket.farmer_bucket)
+          form.transient_registration.exemptions << farm_exemptions
+          form.transient_registration.update(is_multisite_registration: true)
+        end
+
+        it "includes the farming exemptions", :vcr do
+          get request_path
+          Bucket.farmer_bucket.exemptions.pluck(:code).each do |exemption_code|
+            expect(response.body).to include(exemption_code)
+          end
+        end
+      end
     end
 
     describe "POST exemptions_summary_form" do

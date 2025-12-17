@@ -17,7 +17,7 @@ module WasteExemptionsEngine
              :is_discounted_charge?,
              to: :exemption_costs_presenter
 
-    delegate :farm_affiliated?, :site_count, to: :transient_registration
+    delegate :farm_affiliated?, :effective_site_count, to: :transient_registration
 
     def order
       @order ||= create_or_update_order
