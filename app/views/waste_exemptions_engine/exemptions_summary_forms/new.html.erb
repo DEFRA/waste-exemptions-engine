@@ -35,7 +35,7 @@
             <td class="govuk-table__cell">
               <% if is_multisite %>
                 <% farming_single_site_charge = @exemptions_summary_form.farming_exemptions_single_site_charge %>
-                <%= farming_single_site_charge %> x <%= @exemptions_summary_form.site_count %>
+                <%= farming_single_site_charge %> x <%= @exemptions_summary_form.effective_site_count %>
               <% else %>
                 <%= farming_total_charge %>
               <% end %>
