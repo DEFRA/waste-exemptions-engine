@@ -333,7 +333,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (1.6.2)
+    pg (1.6.3)
     phonelib (0.10.14)
     pp (0.6.3)
       prettyprint
