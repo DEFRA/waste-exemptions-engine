@@ -64,7 +64,7 @@
             <td class="govuk-table__cell">
               <% if is_multisite %>
                 <% single_site_charge = @exemptions_summary_form.single_site_compliance_charge(exemption) %>
-                <%= single_site_charge %><%= " (d)" if is_discounted %> x <%= @exemptions_summary_form.site_count %>
+                <%= single_site_charge %><%= " (d)" if is_discounted %> x <%= @exemptions_summary_form.effective_site_count %>
               <% else %>
                 <%= total_charge %><%= " (d)" if is_discounted %>
               <% end %>
