@@ -42,6 +42,25 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      # To address edge-case defect as reported in https://eaflood.atlassian.net/browse/RUBY-4088?focusedCommentId=814733
+      context "when multisite with discounted charges" do
+        include_context "with bands and charges"
+        include_context "with an order with exemptions"
+
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        before do
+          form.transient_registration.order = order
+          form.transient_registration.exemptions << exemptions
+          form.transient_registration.update(is_multisite_registration: true)
+        end
+
+        it "loads without error" do
+          get request_path
+          expect(response).to have_http_status(:ok)
+        end
+      end
     end
 
     describe "POST exemptions_summary_form" do
