@@ -8,7 +8,7 @@ module WasteExemptionsEngine
 
     let(:t28_exemption) { create(:exemption, code: "T28") }
     let(:t1_exemption) { create(:exemption, code: "T1") }
-    let(:transient_registration) { create(:new_registration) }
+    let(:transient_registration) { create(:new_charged_registration) }
     let(:form) { ActivityExemptionsForm.new(transient_registration) }
 
     context "when a T28 exemption is selected" do

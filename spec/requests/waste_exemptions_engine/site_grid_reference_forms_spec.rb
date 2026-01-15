@@ -135,7 +135,7 @@ module WasteExemptionsEngine
 
     context "when editing site grid reference on Check Your Answers page - new registration" do
       let(:check_site_address_form) { build(:check_your_answers_check_site_address_form) }
-      let(:transient_registration) { create(:new_registration, workflow_state: "check_site_address_form") }
+      let(:transient_registration) { create(:new_charged_registration, workflow_state: "check_site_address_form") }
 
       context "when reusing the operator address" do
         let(:form_data) { { temp_reuse_address_for_site_location: "operator_address_option" } }

@@ -25,12 +25,6 @@ module WasteExemptionsEngine
     end
 
     context "with a new registration" do
-      let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
-
-      it_behaves_like "diplays the prompt to enter a different number"
-    end
-
-    context "with a new charged registration" do
       let(:new_registration) { build(:new_charged_registration, temp_company_no: "12345678") }
 
       it_behaves_like "diplays the prompt to enter a different number"

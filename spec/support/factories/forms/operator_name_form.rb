@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :operator_name_form, class: "WasteExemptionsEngine::OperatorNameForm" do
-    model_factory { :new_registration }
+    model_factory { :new_charged_registration }
 
     trait :charged do
       model_factory { :new_charged_registration }
@@ -27,7 +27,7 @@ FactoryBot.define do
 
   factory :check_your_answers_edit_operator_name_form, class: "WasteExemptionsEngine::OperatorNameForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "operator_name_form", operator_name: "We Operate inc.",
+      new(create(:new_charged_registration, workflow_state: "operator_name_form", operator_name: "We Operate inc.",
                                     temp_check_your_answers_flow: true))
     end
   end

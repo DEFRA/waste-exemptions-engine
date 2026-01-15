@@ -4,7 +4,8 @@ require "rails_helper"
 
 module WasteExemptionsEngine
   RSpec.describe RegistrationCompletionService do
-    let(:new_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
+    let(:new_charged_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
+    let(:new_registration) { new_charged_registration }
     let(:registration) { Registration.last }
 
     describe "#complete" do
@@ -86,7 +87,7 @@ module WasteExemptionsEngine
         end
 
         context "when there are multiple site addresses" do
-          let(:new_registration) do
+          let(:new_charged_registration) do
             create(:new_charged_registration, :complete, workflow_state: "registration_complete_form").tap do |reg|
               reg.update(is_multisite_registration: true)
               create(:transient_address, :site_address, transient_registration: reg)
@@ -131,7 +132,7 @@ module WasteExemptionsEngine
 
         it "deletes the new_registration" do
           run_service
-          expect(NewRegistration.where(reference: new_registration.reference).count).to eq(0)
+          expect(NewChargedRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
         context "when the contact email is not blank (AD)" do
@@ -174,7 +175,7 @@ module WasteExemptionsEngine
           end
 
           context "when applicant and contact emails coincide" do
-            let(:new_registration) { create(:new_registration, :complete, :same_applicant_and_contact_email) }
+            let(:new_charged_registration) { create(:new_charged_registration, :complete, :same_applicant_and_contact_email) }
 
             it "only sends one confirmation email" do
               run_service
@@ -186,7 +187,7 @@ module WasteExemptionsEngine
         end
 
         context "when the contact email is blank (AD)" do
-          let(:new_registration) { create(:new_registration, :complete, :has_no_email) }
+          let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_no_email) }
 
           context "when the applicant email is blank (AD)" do
             before { new_registration.update(applicant_email: new_registration.contact_email) }
@@ -271,7 +272,7 @@ module WasteExemptionsEngine
 
         context "when the transient_registration has people" do
           context "when the organisation is a partnership" do
-            let(:new_registration) { create(:new_registration, :complete, :has_people, :partnership) }
+            let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_people, :partnership) }
 
             it "copies the people" do
               people_count = new_registration.people.count
@@ -283,7 +284,7 @@ module WasteExemptionsEngine
           end
 
           context "when the organisation is not a partnership" do
-            let(:new_registration) { create(:new_registration, :complete, :has_people, :sole_trader) }
+            let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_people, :sole_trader) }
 
             it "does not copy the people" do
               registration = described_class.run(transient_registration: new_registration)
@@ -295,7 +296,7 @@ module WasteExemptionsEngine
 
         context "when the transient_registration has a company_no" do
           context "when the organisation type uses a company_no" do
-            let(:new_registration) { create(:new_registration, :complete, :has_company_no, :limited_company) }
+            let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_company_no, :limited_company) }
 
             it "copies the company_no" do
               company_no = new_registration.company_no
@@ -307,7 +308,7 @@ module WasteExemptionsEngine
           end
 
           context "when the organisation type does not use a company_no" do
-            let(:new_registration) { create(:new_registration, :complete, :has_company_no, :sole_trader) }
+            let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_company_no, :sole_trader) }
 
             it "does not copy the company_no" do
               registration = described_class.run(transient_registration: new_registration)
