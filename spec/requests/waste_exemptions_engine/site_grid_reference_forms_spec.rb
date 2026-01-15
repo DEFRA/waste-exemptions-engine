@@ -140,20 +140,20 @@ module WasteExemptionsEngine
       context "when reusing the operator address" do
         let(:form_data) { { temp_reuse_address_for_site_location: "operator_address_option" } }
 
-        it "redirects back to check-your-answers when submitted" do
+        it "redirects to the operator postcode form" do
           post "/waste_exemptions_engine/#{check_site_address_form.token}/check-site-address",
                params: { check_site_address_form: form_data }
-          expect(response).to redirect_to(check_your_answers_forms_path(check_site_address_form.token))
+          expect(response).to redirect_to(operator_postcode_forms_path(check_site_address_form.token))
         end
       end
 
       context "when selecting another address" do
         let(:form_data) { { temp_reuse_address_for_site_location: "a_different_address" } }
 
-        it "redirects to the post code form when submitted" do
+        it "redirects to the operator postcode form when submitted" do
           post "/waste_exemptions_engine/#{check_site_address_form.token}/check-site-address",
                params: { check_site_address_form: form_data }
-          expect(response).to redirect_to(site_postcode_forms_path(check_site_address_form.token))
+          expect(response).to redirect_to(operator_postcode_forms_path(check_site_address_form.token))
         end
       end
     end

@@ -115,7 +115,7 @@ module WasteExemptionsEngine
       end
 
       context "when the registration is a partnership" do
-        let(:new_charged_registration) do
+        let(:new_registration) do
           create(:new_charged_registration,
                  :complete,
                  :partnership,
@@ -242,7 +242,7 @@ module WasteExemptionsEngine
       end
 
       context "when the registration is multisite" do
-        let(:new_charged_registration) do
+        let(:new_registration) do
           create(:new_charged_registration,
                  :complete,
                  is_multisite_registration: true)
