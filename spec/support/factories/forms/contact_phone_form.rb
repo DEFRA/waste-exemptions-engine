@@ -16,7 +16,7 @@ FactoryBot.define do
   factory :check_your_answers_edit_contact_phone_form, class: "WasteExemptionsEngine::ContactPhoneForm" do
     initialize_with do
       new(create(:new_charged_registration, workflow_state: "contact_phone_form", contact_phone: "01234567890",
-                                    temp_check_your_answers_flow: true))
+                                            temp_check_your_answers_flow: true))
     end
   end
 

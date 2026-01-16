@@ -28,7 +28,7 @@ FactoryBot.define do
   factory :check_your_answers_edit_operator_name_form, class: "WasteExemptionsEngine::OperatorNameForm" do
     initialize_with do
       new(create(:new_charged_registration, workflow_state: "operator_name_form", operator_name: "We Operate inc.",
-                                    temp_check_your_answers_flow: true))
+                                            temp_check_your_answers_flow: true))
     end
   end
 end

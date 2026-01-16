@@ -11,7 +11,7 @@ FactoryBot.define do
           class: "WasteExemptionsEngine::CheckRegisteredNameAndAddressForm" do
     initialize_with do
       new(create(:new_charged_registration, workflow_state: "check_registered_name_and_address_form",
-                                    temp_check_your_answers_flow: true))
+                                            temp_check_your_answers_flow: true))
     end
   end
 

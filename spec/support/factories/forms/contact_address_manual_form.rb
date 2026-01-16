@@ -9,7 +9,8 @@ FactoryBot.define do
 
   factory :check_your_answers_contact_address_manual_form, class: "WasteExemptionsEngine::ContactAddressManualForm" do
     initialize_with do
-      new(create(:new_charged_registration, workflow_state: "contact_address_manual_form", temp_check_your_answers_flow: true))
+      new(create(:new_charged_registration, workflow_state: "contact_address_manual_form",
+                                            temp_check_your_answers_flow: true))
     end
   end
 
