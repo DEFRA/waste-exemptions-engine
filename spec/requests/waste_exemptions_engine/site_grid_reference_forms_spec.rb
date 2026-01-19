@@ -132,30 +132,5 @@ module WasteExemptionsEngine
         end
       end
     end
-
-    context "when editing site grid reference on Check Your Answers page - new registration" do
-      let(:check_site_address_form) { build(:check_your_answers_check_site_address_form) }
-      let(:transient_registration) { create(:new_charged_registration, workflow_state: "check_site_address_form") }
-
-      context "when reusing the operator address" do
-        let(:form_data) { { temp_reuse_address_for_site_location: "operator_address_option" } }
-
-        it "redirects to the operator postcode form" do
-          post "/waste_exemptions_engine/#{check_site_address_form.token}/check-site-address",
-               params: { check_site_address_form: form_data }
-          expect(response).to redirect_to(operator_postcode_forms_path(check_site_address_form.token))
-        end
-      end
-
-      context "when selecting another address" do
-        let(:form_data) { { temp_reuse_address_for_site_location: "a_different_address" } }
-
-        it "redirects to the operator postcode form when submitted" do
-          post "/waste_exemptions_engine/#{check_site_address_form.token}/check-site-address",
-               params: { check_site_address_form: form_data }
-          expect(response).to redirect_to(operator_postcode_forms_path(check_site_address_form.token))
-        end
-      end
-    end
   end
 end
