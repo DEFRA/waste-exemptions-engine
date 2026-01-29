@@ -108,3 +108,8 @@ RSpec/NestedGroups:
 RSpec/SortMetadata:
   Exclude:
     - "spec/**/*"
+
+RSpec/Output:
+  Exclude:
+    - spec/rails_helper.rb
+    - spec/dummy/**/*
