@@ -59,6 +59,78 @@ module WasteExemptionsEngine
             .by(new_exemption.band.additional_compliance_charge.charge_amount)
         end
       end
+
+      context "when only no-charge band exemptions are selected" do
+        let(:no_charge_band) do
+          create(:band,
+                 initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 0),
+                 additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 0))
+        end
+        let(:exemptions) { [create(:exemption, band: no_charge_band)] }
+
+        it "returns a registration charge of zero" do
+          expect(strategy.charge_detail.registration_charge_amount).to be_zero
+        end
+
+        it "returns a total charge of zero" do
+          expect(strategy.total_charge_amount).to be_zero
+        end
+      end
+
+      context "when a mix of no-charge and chargeable exemptions are selected" do
+        let(:no_charge_band) do
+          create(:band,
+                 initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 0),
+                 additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 0))
+        end
+        let(:exemptions) { [create(:exemption, band: no_charge_band), create(:exemption, band: band_1)] }
+
+        it "returns the standard registration charge" do
+          expect(strategy.charge_detail.registration_charge_amount).to eq registration_charge_amount
+        end
+      end
+    end
+
+    describe "#only_no_charge_exemptions?" do
+      subject(:strategy) { described_class.new(order) }
+
+      let(:no_charge_band) do
+        create(:band,
+               initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 0),
+               additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 0))
+      end
+
+      context "when all exemptions are in no-charge bands" do
+        let(:exemptions) { [create(:exemption, band: no_charge_band)] }
+
+        it "returns true" do
+          expect(strategy.only_no_charge_exemptions?).to be true
+        end
+      end
+
+      context "when some exemptions are in chargeable bands" do
+        let(:exemptions) { [create(:exemption, band: no_charge_band), create(:exemption, band: band_1)] }
+
+        it "returns false" do
+          expect(strategy.only_no_charge_exemptions?).to be false
+        end
+      end
+
+      context "when all exemptions are in chargeable bands" do
+        let(:exemptions) { multiple_bands_multiple_exemptions }
+
+        it "returns false" do
+          expect(strategy.only_no_charge_exemptions?).to be false
+        end
+      end
+
+      context "when there are no exemptions" do
+        let(:exemptions) { [] }
+
+        it "returns false" do
+          expect(strategy.only_no_charge_exemptions?).to be false
+        end
+      end
     end
 
     describe "#total_charge_amount" do

@@ -11,6 +11,7 @@ module WasteExemptionsEngine
              :registration_charge_amount,
              :total_charge_amount,
              :total_compliance_charge_amount,
+             :only_no_charge_exemptions?,
              to: :calculator
 
     def initialize(order)

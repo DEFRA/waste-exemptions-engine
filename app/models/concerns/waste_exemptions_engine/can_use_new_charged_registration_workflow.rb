@@ -485,6 +485,10 @@ module WasteExemptionsEngine
           ### DECLARATION
 
           transitions from: :declaration_form,
+                      to: :registration_complete_form,
+                      if: :skip_payment?
+
+          transitions from: :declaration_form,
                       to: :payment_summary_form
 
           ### PAYMENT SUMMARY
@@ -835,6 +839,10 @@ module WasteExemptionsEngine
     def charity_in_front_office?
       business_type == "charity" &&
         !WasteExemptionsEngine.configuration.host_is_back_office?
+    end
+
+    def skip_payment?
+      order&.order_calculator&.only_no_charge_exemptions?
     end
   end
 end
