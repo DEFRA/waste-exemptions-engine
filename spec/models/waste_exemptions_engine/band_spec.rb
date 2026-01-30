@@ -117,6 +117,24 @@ module WasteExemptionsEngine
         end
       end
 
+      describe "#no_charge?" do
+        context "when band charges are set to 0" do
+          it "returns true" do
+            initial_compliance_charge = create(:charge, :initial_compliance_charge, charge_amount: 0)
+            additional_compliance_charge = create(:charge, :additional_compliance_charge, charge_amount: 0)
+            band = create(:band, initial_compliance_charge: initial_compliance_charge, additional_compliance_charge: additional_compliance_charge)
+            expect(band.no_charge?).to be(true)
+          end
+        end
+
+        context "when band has charges" do
+          it "returns false" do
+            band = create(:band)
+            expect(band.no_charge?).to be(false)
+          end
+        end
+      end
+
       describe "#discount_possible?" do
         context "when initial_compliance_charge is greater than additional_compliance_charge" do
           it "returns true" do

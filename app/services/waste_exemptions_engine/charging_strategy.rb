@@ -10,10 +10,6 @@ module WasteExemptionsEngine
       @order = order
     end
 
-    def registration_charge_amount
-      order.exemptions.empty? ? 0 : Charge.find_by(charge_type: "registration_charge").charge_amount
-    end
-
     def charge_detail
       unless order.charge_detail.present?
         order.charge_detail = ChargeDetail.new(
@@ -23,6 +19,17 @@ module WasteExemptionsEngine
         )
       end
       order.charge_detail
+    end
+
+    def registration_charge_amount
+      return 0 if order.exemptions.empty?
+      return 0 if only_no_charge_exemptions?
+
+      Charge.find_by(charge_type: "registration_charge").charge_amount
+    end
+
+    def only_no_charge_exemptions?
+      order.exemptions.present? && order.exemptions.all? { |ex| ex.band&.no_charge? }
     end
 
     def total_compliance_charge_amount
