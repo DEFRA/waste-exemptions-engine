@@ -15,6 +15,8 @@ module WasteExemptionsEngine
              :farming_exemptions_single_site_charge,
              :exemption_title_with_band,
              :is_discounted_charge?,
+             :only_t28_exemption?,
+             :t28_exemption_present?,
              to: :exemption_costs_presenter
 
     delegate :farm_affiliated?, :effective_site_count, to: :transient_registration

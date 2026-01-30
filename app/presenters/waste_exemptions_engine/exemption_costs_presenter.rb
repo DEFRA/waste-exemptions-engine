@@ -108,6 +108,14 @@ module WasteExemptionsEngine
       exemption.band.discount_possible?
     end
 
+    def only_t28_exemption?
+      @order.exemptions.map(&:code) == ["T28"]
+    end
+
+    def t28_exemption_present?
+      @order.exemptions.map(&:code).include?("T28")
+    end
+
     private
 
     def highest_band

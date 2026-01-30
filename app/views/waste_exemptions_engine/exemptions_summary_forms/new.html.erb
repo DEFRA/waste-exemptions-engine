@@ -116,23 +116,31 @@
       </tbody>
     </table>
 
-    <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
-    <p class="govuk-body"><%= is_multisite ? t(".site_payment_info") : t(".single_site_payment_info") %></p>
-    <ul class="govuk-list govuk-list--bullet">
-      <% if @exemptions_summary_form.farm_exemptions_selected? %>
-        <li><%= t(".capped_farming_charge") %></li>
+    <% if @exemptions_summary_form.only_t28_exemption? %>
+      <br>
+      <p class="govuk-body"><%= t(".t28_no_charge") %></p>
+    <% else %>
+      <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
+      <p class="govuk-body"><%= is_multisite ? t(".site_payment_info") : t(".single_site_payment_info") %></p>
+      <ul class="govuk-list govuk-list--bullet">
+        <% if @exemptions_summary_form.farm_exemptions_selected? %>
+          <li><%= t(".capped_farming_charge") %></li>
+        <% end %>
+        <li><%= t(".full_compliance_charge") %></li>
+        <li><%= t(".discounted_charge") %></li>
+        <li><%= t(".band_3_charge") %></li>
+        <% unless is_multisite %>
+          <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
+        <% end %>
+      </ul>
+      <% if @exemptions_summary_form.t28_exemption_present? %>
+        <p class="govuk-body"><%= t(".t28_no_compliance_charge") %></p>
       <% end %>
-      <li><%= t(".full_compliance_charge") %></li>
-      <li><%= t(".discounted_charge") %></li>
-      <li><%= t(".band_3_charge") %></li>
-      <% unless is_multisite %>
-        <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
+      <% if is_multisite %>
+        <p class="govuk-body"><%= t(".multisite_registration_charge_info", charge_amount: @exemptions_summary_form.registration_charge) %></p>
       <% end %>
-    </ul>
-    <% if is_multisite %>
-      <p class="govuk-body"><%= t(".multisite_registration_charge_info", charge_amount: @exemptions_summary_form.registration_charge) %></p>
+      <p class="govuk-body"><%= t(".vat_note") %></p>
     <% end %>
-    <p class="govuk-body"><%= t(".vat_note") %></p>
 
     <%= form_for @exemptions_summary_form do |f| %>
       <%= f.govuk_submit t(".continue") %>

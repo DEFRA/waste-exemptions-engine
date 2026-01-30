@@ -444,5 +444,49 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#only_t28_exemption?" do
+      context "when order has only T28 exemption" do
+        let(:exemptions) { [create(:exemption, code: "T28")] }
+
+        it "returns true" do
+          expect(presenter.only_t28_exemption?).to be(true)
+        end
+      end
+
+      context "when order has T28 and other exemptions" do
+        let(:exemptions) { [create(:exemption, code: "T28"), create(:exemption, code: "U1")] }
+
+        it "returns false" do
+          expect(presenter.only_t28_exemption?).to be(false)
+        end
+      end
+
+      context "when order has no T28 exemption" do
+        let(:exemptions) { [create(:exemption, code: "U1")] }
+
+        it "returns false" do
+          expect(presenter.only_t28_exemption?).to be(false)
+        end
+      end
+    end
+
+    describe "#t28_exemption_present?" do
+      context "when order has T28 exemption" do
+        let(:exemptions) { [create(:exemption, code: "T28"), create(:exemption, code: "U1")] }
+
+        it "returns true" do
+          expect(presenter.t28_exemption_present?).to be(true)
+        end
+      end
+
+      context "when order does not have T28 exemption" do
+        let(:exemptions) { [create(:exemption, code: "U1")] }
+
+        it "returns false" do
+          expect(presenter.t28_exemption_present?).to be(false)
+        end
+      end
+    end
+
   end
 end
