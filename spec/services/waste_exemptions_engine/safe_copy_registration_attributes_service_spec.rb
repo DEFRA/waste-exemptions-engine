@@ -46,8 +46,8 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when the source is a NewRegistration" do
-        let(:source) { create(:new_registration, :complete) }
+      context "when the source is a NewChargedRegistration" do
+        let(:source) { create(:new_charged_registration, :complete) }
 
         it_behaves_like "returns the correct attributes"
       end

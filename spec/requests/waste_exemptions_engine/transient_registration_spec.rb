@@ -9,7 +9,7 @@ module WasteExemptionsEngine
         let(:workflow_state) { "register_in_wales_form" }
         let(:workflow_history) { %w[some_form location_form] }
         let(:transient_registration) do
-          create(:new_registration,
+          create(:new_charged_registration,
                  workflow_state: workflow_state,
                  workflow_history: workflow_history)
         end

@@ -9,7 +9,7 @@ module WasteExemptionsEngine
 
     let(:form_data) { { temp_exemptions: Exemption.limit(3).pluck(:id) } }
 
-    it_behaves_like "GET form", :farm_exemptions_form, "/select-farm-waste-exemptions", is_charged: true
+    it_behaves_like "GET form", :farm_exemptions_form, "/select-farm-waste-exemptions"
     it_behaves_like "POST form", :farm_exemptions_form, "/select-farm-waste-exemptions", empty_form_is_valid: true do
       let(:form_data) { { temp_exemptions: Exemption.limit(3).pluck(:id) } }
     end

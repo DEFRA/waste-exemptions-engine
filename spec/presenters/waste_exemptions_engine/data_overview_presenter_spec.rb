@@ -5,7 +5,7 @@ require "rails_helper"
 module WasteExemptionsEngine
   RSpec.describe DataOverviewPresenter, type: :presenter do
     let(:new_registration) do
-      create(:new_registration,
+      create(:new_charged_registration,
              :complete)
     end
 
@@ -116,7 +116,7 @@ module WasteExemptionsEngine
 
       context "when the registration is a partnership" do
         let(:new_registration) do
-          create(:new_registration,
+          create(:new_charged_registration,
                  :complete,
                  :partnership,
                  :has_people)

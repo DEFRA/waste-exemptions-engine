@@ -11,9 +11,9 @@ module WasteExemptionsEngine
 
         let(:page) { "start_form" }
         let(:route) { "DIGITAL" }
-        let(:transient_registration) { create(:new_registration) }
+        let(:transient_registration) { create(:new_charged_registration) }
         let(:token) { transient_registration.token }
-        let(:expected_journey_type) { "NewRegistration" }
+        let(:expected_journey_type) { "NewChargedRegistration" }
 
         before do
           allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return false
@@ -36,8 +36,8 @@ module WasteExemptionsEngine
           before { run_service }
 
           context "with a registration" do
-            let(:transient_registration) { create(:new_registration) }
-            let(:expected_journey_type) { "NewRegistration" }
+            let(:transient_registration) { create(:new_charged_registration) }
+            let(:expected_journey_type) { "NewChargedRegistration" }
 
             it_behaves_like "new journey"
           end
@@ -54,7 +54,7 @@ module WasteExemptionsEngine
             let(:page) { "start_form" }
 
             before do
-              test_user_journey_registration = Class.new(NewRegistration)
+              test_user_journey_registration = Class.new(NewChargedRegistration)
               stub_const("TestUserJourneyRegistration", test_user_journey_registration)
             end
 
@@ -68,7 +68,7 @@ module WasteExemptionsEngine
 
         context "when a journey already exists for the token" do
           before do
-            Timecop.freeze(10.minutes.ago) { create(:user_journey, journey_type: "NewRegistration", token: transient_registration.token) }
+            Timecop.freeze(10.minutes.ago) { create(:user_journey, journey_type: "NewChargedRegistration", token: transient_registration.token) }
             transient_registration.workflow_state = "location_form"
 
             run_service

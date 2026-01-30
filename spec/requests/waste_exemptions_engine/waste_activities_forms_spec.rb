@@ -9,7 +9,7 @@ module WasteExemptionsEngine
     let(:activity_three) { create(:waste_activity, category: :disposing_of_waste) }
     let(:activity_ids) { [activity_one.id, activity_two.id, activity_three.id] }
 
-    it_behaves_like "GET form", :waste_activities_form, "/select-waste-activities", is_charged: true
+    it_behaves_like "GET form", :waste_activities_form, "/select-waste-activities"
     it_behaves_like "POST form", :waste_activities_form, "/select-waste-activities" do
       let(:form_data) { { temp_waste_activities: activity_ids } }
       let(:invalid_form_data) { [{ temp_waste_activities: nil }] }

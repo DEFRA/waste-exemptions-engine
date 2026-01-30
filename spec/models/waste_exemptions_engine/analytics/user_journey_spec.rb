@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     RSpec.describe UserJourney do
 
       describe "#complete_journey" do
-        let(:transient_registration) { create(:new_registration) }
+        let(:transient_registration) { create(:new_charged_registration) }
         let(:journey) { Timecop.freeze(1.hour.ago) { create(:user_journey, token: transient_registration.token) } }
         let(:completion_time) { Time.zone.now }
 

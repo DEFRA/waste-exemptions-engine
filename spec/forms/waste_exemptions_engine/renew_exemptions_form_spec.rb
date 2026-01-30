@@ -20,7 +20,6 @@ module WasteExemptionsEngine
         transient_registration = form.transient_registration
 
         aggregate_failures do
-          expect(transient_registration.exemptions).to be_empty
           form.submit(valid_params)
           expect(transient_registration.exemptions.map(&:code)).to match_array(exemption_codes)
         end
@@ -30,7 +29,6 @@ module WasteExemptionsEngine
         transient_registration = form.transient_registration
 
         aggregate_failures do
-          expect(transient_registration.exemptions).to be_empty
           form.submit({})
           expect(transient_registration.exemptions).to be_empty
         end

@@ -53,7 +53,7 @@ module WasteExemptionsEngine
       end
 
       describe "GET /check-your-answers/exemptions" do
-        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_exemptions_form_path
+        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_farm_exemptions_form_path
       end
 
       describe "GET /check-your-answers/main-people" do
@@ -141,7 +141,7 @@ module WasteExemptionsEngine
       end
 
       describe "GET /check-your-answers/check-site-address" do
-        it_behaves_like "a valid transition", :check_site_address_check_your_answers_forms_path, :new_check_site_address_form_path
+        it_behaves_like "a valid transition", :check_site_address_check_your_answers_forms_path, :new_site_postcode_form_path
       end
 
       describe "GET /check-your-answers/site-grid-reference" do

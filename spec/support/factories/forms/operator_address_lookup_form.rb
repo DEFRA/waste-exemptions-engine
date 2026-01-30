@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :operator_address_lookup_form, class: "WasteExemptionsEngine::OperatorAddressLookupForm" do
     initialize_with do
       new(
-        create(:new_registration,
+        create(:new_charged_registration,
                workflow_state: "operator_address_lookup_form",
                temp_operator_postcode: "BS1 5AH")
       )
@@ -14,7 +14,7 @@ FactoryBot.define do
   factory :check_your_answers_operator_address_lookup_form, class: "WasteExemptionsEngine::OperatorAddressLookupForm" do
     initialize_with do
       new(
-        create(:new_registration,
+        create(:new_charged_registration,
                workflow_state: "operator_address_lookup_form",
                temp_operator_postcode: "BS1 5AH",
                temp_check_your_answers_flow: true)

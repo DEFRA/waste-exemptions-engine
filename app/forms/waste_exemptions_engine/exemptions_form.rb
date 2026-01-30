@@ -2,6 +2,10 @@
 
 module WasteExemptionsEngine
   class ExemptionsForm < BaseForm
+    def self.can_navigate_flexibly?
+      false
+    end
+
     delegate :exemptions, to: :transient_registration
 
     validates :exemptions, "waste_exemptions_engine/exemptions": true

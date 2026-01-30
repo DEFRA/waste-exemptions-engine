@@ -18,12 +18,12 @@ module WasteExemptionsEngine
         company_status:
       }
     end
-    let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
+    let(:new_registration) { build(:new_charged_registration, temp_company_no: "12345678") }
 
     before do
       allow(DefraRuby::CompaniesHouse::API).to receive(:new).and_return(companies_house_api)
       allow(companies_house_api).to receive(:run).and_return(companies_house_api_reponse)
-      allow(NewRegistration).to receive(:new).and_return(new_registration)
+      allow(NewChargedRegistration).to receive(:new).and_return(new_registration)
     end
 
     it_behaves_like "GET form", :check_registered_name_and_address_form, "/check-registered-name-and-address"
@@ -63,8 +63,6 @@ module WasteExemptionsEngine
     end
 
     context "with a new registration" do
-      let(:new_registration) { build(:new_registration, temp_company_no: "12345678") }
-
       context "when the company status is active" do
         let(:company_status) { :active }
 
@@ -76,12 +74,6 @@ module WasteExemptionsEngine
 
         it_behaves_like "diplays the expected details"
       end
-    end
-
-    context "with a new charged registration" do
-      let(:new_registration) { build(:new_charged_registration, temp_company_no: "12345678") }
-
-      it_behaves_like "diplays the expected details"
     end
 
     context "when checking registered name and address on Check Your Answers page - new registration" do

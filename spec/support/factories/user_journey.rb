@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user_journey, class: "WasteExemptionsEngine::Analytics::UserJourney" do
-    journey_type { "NewRegistration" }
+    journey_type { "NewChargedRegistration" }
     token { SecureRandom.hex(20) }
     started_route { "DIGITAL" }
     registration_data { {} }
@@ -18,7 +18,7 @@ FactoryBot.define do
     end
 
     trait :registration do
-      journey_type { "NewRegistration" }
+      journey_type { "NewChargedRegistration" }
     end
 
     trait :renewal do

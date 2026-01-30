@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :applicant_phone_form, class: "WasteExemptionsEngine::ApplicantPhoneForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "applicant_phone_form"))
+      new(create(:new_charged_registration, workflow_state: "applicant_phone_form"))
     end
   end
 
@@ -15,8 +15,8 @@ FactoryBot.define do
 
   factory :check_your_answers_edit_applicant_phone_form, class: "WasteExemptionsEngine::ApplicantPhoneForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "applicant_phone_form", applicant_phone: "0123456789",
-                                    temp_check_your_answers_flow: true))
+      new(create(:new_charged_registration, workflow_state: "applicant_phone_form", applicant_phone: "0123456789",
+                                            temp_check_your_answers_flow: true))
     end
   end
 
