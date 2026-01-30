@@ -29,7 +29,7 @@ module WasteExemptionsEngine
     end
 
     def only_no_charge_exemptions?
-      order.exemptions.present? && order.exemptions.all? { |ex| ex.band.no_charge? }
+      order.exemptions.present? && order.exemptions.all? { |ex| ex.band&.no_charge? }
     end
 
     def total_compliance_charge_amount
