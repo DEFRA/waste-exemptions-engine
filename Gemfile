@@ -23,7 +23,9 @@ gem "activerecord-postgis-adapter", require: false
 gem "rgeo-geojson"
 
 group :development do
-  gem "github_changelog_generator"
+  # future versions of github_changelog_generator rely on async gem and
+  # do cause errors. So pinning to a version that does not have this dependency.
+  gem "github_changelog_generator", "~> 1.15.2"
   gem "rubocop-factory_bot"
   gem "rubocop-rake"
   gem "rubocop-rspec"
