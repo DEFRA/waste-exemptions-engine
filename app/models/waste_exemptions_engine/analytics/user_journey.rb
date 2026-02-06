@@ -22,9 +22,12 @@ module WasteExemptionsEngine
         front_office_edit_complete_no_changes_form
         back_office_edit_complete_form
         registration_complete_form
+        registration_received_pending_payment_form
         renewal_complete_form
+        renewal_received_pending_payment_form
         deregistration_complete_full_form
         deregistration_complete_no_change_form
+        creating_registration
       ].freeze
 
       def complete_journey(transient_registration)
