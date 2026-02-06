@@ -50,7 +50,7 @@ module WasteExemptionsEngine
 
     context "when editing contact address on Check Your Answers page - new registration" do
       let(:contact_address_manual_form) { build(:check_your_answers_contact_address_manual_form) }
-      let(:transient_registration) { create(:new_registration, workflow_state: "contact_address_manual_form") }
+      let(:transient_registration) { create(:new_charged_registration, workflow_state: "contact_address_manual_form") }
 
       it "redirects back to check-your-answers when submitted" do
         post "/waste_exemptions_engine/#{contact_address_manual_form.token}/contact-address-manual",

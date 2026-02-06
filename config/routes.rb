@@ -222,11 +222,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
-    resources :check_site_address_forms,
-              only: %i[new create],
-              path: "check-site-address",
-              path_names: { new: "" }
-
     resources :site_postcode_forms,
               only: %i[new create],
               path: "site-postcode",

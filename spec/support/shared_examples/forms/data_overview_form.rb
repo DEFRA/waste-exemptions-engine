@@ -2,7 +2,7 @@
 
 RSpec.shared_examples "a data overview form", :vcr do |form_factory|
   let(:form) { build(form_factory) }
-  let(:transient_registration) { build(:new_registration) }
+  let(:transient_registration) { build(:new_charged_registration) }
 
   before do
     allow(WasteExemptionsEngine::TransientRegistration).to receive(:new).and_return(transient_registration)
