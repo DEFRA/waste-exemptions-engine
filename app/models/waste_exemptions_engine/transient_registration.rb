@@ -139,7 +139,7 @@ module WasteExemptionsEngine
     end
 
     def new?
-      is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
+      is_a?(WasteExemptionsEngine::NewChargedRegistration)
     end
 
     private

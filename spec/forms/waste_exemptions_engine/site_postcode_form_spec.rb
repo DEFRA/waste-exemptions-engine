@@ -40,7 +40,7 @@ module WasteExemptionsEngine
 
       context "when the registration is not multisite" do
         let(:transient_registration) do
-          create(:new_registration,
+          create(:new_charged_registration,
                  workflow_state: "site_postcode_form",
                  temp_site_postcode: "BS1 5AH")
         end

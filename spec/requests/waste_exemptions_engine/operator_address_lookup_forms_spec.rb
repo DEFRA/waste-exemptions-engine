@@ -21,7 +21,7 @@ module WasteExemptionsEngine
 
     context "when editing operator address on Check Your Answers page - new registration" do
       let(:operator_address_lookup_form) { build(:check_your_answers_operator_address_lookup_form) }
-      let(:transient_registration) { create(:new_registration, workflow_state: "operator_address_lookup_form") }
+      let(:transient_registration) { create(:new_charged_registration, workflow_state: "operator_address_lookup_form") }
 
       it "redirects back to check-your-answers when submitted" do
         post "/waste_exemptions_engine/#{operator_address_lookup_form.token}/operator-address-lookup",

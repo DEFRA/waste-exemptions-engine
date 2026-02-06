@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe "Activity Exemptions Forms" do
     include_context "farm bucket"
 
-    it_behaves_like "GET form", :activity_exemptions_form, "/select-waste-exemptions", is_charged: true
+    it_behaves_like "GET form", :activity_exemptions_form, "/select-waste-exemptions"
     it_behaves_like "POST form", :activity_exemptions_form, "/select-waste-exemptions" do
       let(:form_data) { { temp_exemptions: Exemption.limit(5).pluck(:id) } }
       let(:invalid_form_data) { [{ temp_exemptions: nil }] }

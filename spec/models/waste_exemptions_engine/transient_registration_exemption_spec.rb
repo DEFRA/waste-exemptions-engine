@@ -33,7 +33,7 @@ module WasteExemptionsEngine
 
       context "with a new registration" do
         subject(:transient_registration_exemption) do
-          build(:transient_registration_exemption, transient_registration: build(:new_registration))
+          build(:transient_registration_exemption, transient_registration: build(:new_charged_registration))
         end
 
         it "sets the expiration date of the exemption to three years from today minus one day" do
