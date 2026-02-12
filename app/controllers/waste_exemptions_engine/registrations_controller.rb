@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     end
 
     def valid_email?(email)
-      [@registration.contact_email].compact.map(&:downcase).include?(email.to_s.strip.downcase)
+      @registration.contact_email.present? && @registration.contact_email.downcase == email.to_s.strip.downcase
     end
   end
 end
