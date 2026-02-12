@@ -111,7 +111,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?
+      send_confirmation_letters if @registration.contact_email.blank?
 
       send_confirmation_emails
     end
@@ -165,7 +165,7 @@ module WasteExemptionsEngine
     end
 
     def distinct_recipients
-      [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
+      [@registration.contact_email].compact.map(&:downcase).uniq
     end
   end
 end

@@ -10,9 +10,6 @@ module WasteExemptionsEngine
       let(:expected_available_states) do
         %i[
           exemptions_form
-          applicant_name_form
-          applicant_phone_form
-          applicant_email_form
           confirm_renewal_form
           contact_name_form
           contact_phone_form

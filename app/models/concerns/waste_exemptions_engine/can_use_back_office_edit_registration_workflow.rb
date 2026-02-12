@@ -14,11 +14,6 @@ module WasteExemptionsEngine
         # Start
         state :back_office_edit_form, initial: true
 
-        # Applicant details
-        state :applicant_name_form
-        state :applicant_phone_form
-        state :applicant_email_form
-
         # Operator details
         state :main_people_form
         state :registration_number_form
@@ -56,23 +51,6 @@ module WasteExemptionsEngine
         state :back_office_edit_cancelled_form
 
         ## Transitions
-
-        # Applicant details
-
-        event :edit_applicant_name do
-          transitions from: :back_office_edit_form,
-                      to: :applicant_name_form
-        end
-
-        event :edit_applicant_phone do
-          transitions from: :back_office_edit_form,
-                      to: :applicant_phone_form
-        end
-
-        event :edit_applicant_email do
-          transitions from: :back_office_edit_form,
-                      to: :applicant_email_form
-        end
 
         # Operator details
 
@@ -200,10 +178,7 @@ module WasteExemptionsEngine
                       to: :back_office_edit_cancelled_form
 
           # Everything else should always return to edit
-          transitions from: %i[applicant_name_form
-                               applicant_phone_form
-                               applicant_email_form
-                               business_type_form
+          transitions from: %i[business_type_form
                                main_people_form
                                registration_number_form
                                operator_name_form

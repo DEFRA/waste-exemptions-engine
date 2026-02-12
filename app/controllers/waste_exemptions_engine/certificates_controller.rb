@@ -51,7 +51,7 @@ module WasteExemptionsEngine
     end
 
     def valid_email?(email)
-      [@resource.contact_email, @resource.applicant_email].compact.map(&:downcase).include?(email.to_s.strip.downcase)
+      [@resource.contact_email].compact.map(&:downcase).include?(email.to_s.strip.downcase)
     end
 
     def ensure_valid_token
