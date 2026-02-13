@@ -90,7 +90,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
         when "WasteExemptionsEngine::FrontOfficeEditRegistration"
           transient_registration.update!(workflow_state: :front_office_edit_form)
         when "WasteExemptionsEngine::RenewingRegistration"
-          transient_registration.update!(workflow_state: :applicant_name_form)
+          transient_registration.update!(workflow_state: :contact_name_form)
         else
           transient_registration.update!(workflow_state: :register_in_wales_form)
         end
@@ -107,7 +107,7 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
         when "WasteExemptionsEngine::FrontOfficeEditRegistration"
           expect(response.location).to include(front_office_edit_forms_path(token: correct_form.token))
         when "WasteExemptionsEngine::RenewingRegistration"
-          expect(response.location).to include(applicant_name_forms_path(token: correct_form.token))
+          expect(response.location).to include(contact_name_forms_path(token: correct_form.token))
         else
           expect(response.location).to include(register_in_wales_forms_path(token: correct_form.token))
         end

@@ -27,24 +27,6 @@ module WasteExemptionsEngine
             expect(described_class.run(reference: reference, email: email.upcase)).to eq(registration)
           end
         end
-
-        context "with registration applicant_email matching" do
-          before do
-            registration.update(reference: reference, applicant_email: email)
-          end
-
-          it "returns matching registration record" do
-            expect(described_class.run(reference: reference, email: email)).to eq(registration)
-          end
-
-          it "performs case insensitive search for registration reference" do
-            expect(described_class.run(reference: reference.downcase, email: email)).to eq(registration)
-          end
-
-          it "performs case insensitive search for email" do
-            expect(described_class.run(reference: reference, email: email.upcase)).to eq(registration)
-          end
-        end
       end
 
       context "when the match is unsuccessful" do

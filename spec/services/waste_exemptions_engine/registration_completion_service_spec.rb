@@ -135,17 +135,13 @@ module WasteExemptionsEngine
           expect(NewChargedRegistration.where(reference: new_registration.reference).count).to eq(0)
         end
 
-        context "when the contact email is not blank (AD)" do
+        context "when the contact email is present" do
           context "when payment method is not bank transfer" do
-            it "sends a confirmation email to both the applicant and the contact emails" do
+            it "sends a confirmation email to the contact email" do
               run_service
 
-              aggregate_failures do
-                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                             recipient: new_registration.applicant_email)
-                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                             recipient: new_registration.contact_email)
-              end
+              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                           recipient: new_registration.contact_email)
             end
           end
 
@@ -154,17 +150,13 @@ module WasteExemptionsEngine
               allow(RegistrationPendingBankTransferEmailService).to receive(:run)
             end
 
-            it "sends a registration pending bank transfer payment email to both the applicant and the contact emails" do
+            it "sends a registration pending bank transfer payment email to the contact email" do
               new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
 
               run_service
 
-              aggregate_failures do
-                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                                                recipient: new_registration.applicant_email)
-                expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                                                recipient: new_registration.contact_email)
-              end
+              expect(RegistrationPendingBankTransferEmailService).to have_received(:run).with(registration: instance_of(Registration),
+                                                                                              recipient: new_registration.contact_email)
             end
           end
 
@@ -173,67 +165,34 @@ module WasteExemptionsEngine
 
             expect(NotifyConfirmationLetterService).not_to have_received(:run)
           end
-
-          context "when applicant and contact emails coincide" do
-            let(:new_charged_registration) { create(:new_charged_registration, :complete, :same_applicant_and_contact_email) }
-
-            it "only sends one confirmation email" do
-              run_service
-
-              expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                           recipient: new_registration.applicant_email).once
-            end
-          end
         end
 
-        context "when the contact email is blank (AD)" do
+        context "when the contact email is blank" do
           let(:new_charged_registration) { create(:new_charged_registration, :complete, :has_no_email) }
 
-          context "when the applicant email is blank (AD)" do
-            before { new_registration.update(applicant_email: new_registration.contact_email) }
+          context "when payment method is not bank transfer" do
+            it "sends a confirmation letter" do
+              run_service
 
-            context "when payment method is not bank transfer" do
-              it "sends a confirmation letter" do
-                run_service
-
-                expect(NotifyConfirmationLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
-              end
-
-              it "does not send any confirmation emails" do
-                run_service
-
-                expect(ConfirmationEmailService).not_to have_received(:run)
-              end
+              expect(NotifyConfirmationLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
             end
 
-            context "when payment method is bank transfer" do
-              before do
-                new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
-              end
+            it "does not send any confirmation emails" do
+              run_service
 
-              it "sends a bank transfer letter" do
-                run_service
-
-                expect(RegistrationPendingBankTransferLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
-              end
-
-              it "does not send a confirmation letter" do
-                run_service
-
-                expect(NotifyConfirmationLetterService).not_to have_received(:run)
-              end
-
-              it "does not send any confirmation emails" do
-                run_service
-
-                expect(ConfirmationEmailService).not_to have_received(:run)
-              end
+              expect(ConfirmationEmailService).not_to have_received(:run)
             end
           end
 
-          context "when the applicant email is not blank" do
+          context "when payment method is bank transfer" do
             before do
-              new_registration.update(applicant_email: "applicant@example.com")
+              new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
+            end
+
+            it "sends a bank transfer letter" do
+              run_service
+
+              expect(RegistrationPendingBankTransferLetterService).to have_received(:run).with(registration: instance_of(Registration)).once
             end
 
             it "does not send a confirmation letter" do
@@ -242,15 +201,10 @@ module WasteExemptionsEngine
               expect(NotifyConfirmationLetterService).not_to have_received(:run)
             end
 
-            it "only emails the applicant email" do
+            it "does not send any confirmation emails" do
               run_service
 
-              aggregate_failures do
-                expect(ConfirmationEmailService).to have_received(:run).with(registration: instance_of(Registration),
-                                                                             recipient: new_registration.applicant_email).once
-                expect(ConfirmationEmailService).not_to have_received(:run).with(registration: instance_of(Registration),
-                                                                                 recipient: new_registration.contact_email)
-              end
+              expect(ConfirmationEmailService).not_to have_received(:run)
             end
           end
         end

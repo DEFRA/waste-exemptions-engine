@@ -25,9 +25,6 @@ module WasteExemptionsEngine
     end
 
     describe "#workflow_state" do
-      it_behaves_like "a renewal start form return transition", current_state: :applicant_email_form
-      it_behaves_like "a renewal start form return transition", current_state: :applicant_name_form
-      it_behaves_like "a renewal start form return transition", current_state: :applicant_phone_form
       it_behaves_like "a renewal start form return transition", current_state: :contact_address_manual_form
       it_behaves_like "a renewal start form return transition", current_state: :contact_email_form
       it_behaves_like "a renewal start form return transition", current_state: :contact_name_form

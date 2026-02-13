@@ -7,11 +7,6 @@ module WasteExemptionsEngine
     delegate :company_rows, :registration_rows, to: :data_overview_presenter
 
     validates :location, "defra_ruby/validators/location": true
-    validates :applicant_first_name, :applicant_last_name, "waste_exemptions_engine/person_name": true
-    validates :applicant_phone, "defra_ruby/validators/phone_number": true
-
-    validates_with WasteExemptionsEngine::OptionalEmailValidator, attributes: [:applicant_email], if: :back_office?
-    validates_with DefraRuby::Validators::EmailValidator, attributes: [:applicant_email], unless: :back_office?
 
     validates :business_type, "defra_ruby/validators/business_type": true
     validates :company_no, "defra_ruby/validators/companies_house_number": true, if: :company_no_required?

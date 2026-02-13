@@ -13,18 +13,6 @@ module WasteExemptionsEngine
       super(BackOfficeEditForm, "back_office_edit_form")
     end
 
-    def edit_applicant_name
-      transition_to_edit("edit_applicant_name")
-    end
-
-    def edit_applicant_phone
-      transition_to_edit("edit_applicant_phone")
-    end
-
-    def edit_applicant_email
-      transition_to_edit("edit_applicant_email")
-    end
-
     def edit_main_people
       transition_to_edit("edit_main_people")
     end

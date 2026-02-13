@@ -33,12 +33,6 @@ module WasteExemptionsEngine
       context "with valid registration reference" do
         let(:registration_reference) { registration.reference }
 
-        context "with valid applicant email address" do
-          let(:email) { registration.applicant_email }
-
-          it_behaves_like "renders registration complete form"
-        end
-
         context "with valid contact email address" do
           let(:email) { registration.contact_email }
 
@@ -50,16 +44,16 @@ module WasteExemptionsEngine
 
           it_behaves_like "renders invalid page"
         end
-      end
 
-      context "with invalid registration reference" do
-        let(:registration_reference) { "INVALID" }
-
-        context "with valid applicant email address" do
+        context "with applicant email address (no longer valid)" do
           let(:email) { registration.applicant_email }
 
           it_behaves_like "renders invalid page"
         end
+      end
+
+      context "with invalid registration reference" do
+        let(:registration_reference) { "INVALID" }
 
         context "with valid contact email address" do
           let(:email) { registration.contact_email }

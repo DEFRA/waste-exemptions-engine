@@ -20,12 +20,6 @@ en:
                 wales: "Wales"
                 scotland: "Scotland"
                 northern_ireland: "Northern Ireland"
-          applicant:
-            heading: "Applicant details"
-            labels:
-              applicant_name: "Name"
-              applicant_phone: "Phone number"
-              applicant_email: "Email address"
           operator:
             heading: "Operator details"
             labels:
@@ -79,9 +73,6 @@ en:
           no_edit: "Cannot edit"
           visually_hidden:
             location: "location"
-            applicant_name: "applicant name"
-            applicant_phone: "applicant phone"
-            applicant_email: "applicant email"
             people: "main people"
             company_no: "Companies House number"
             operator_name: "operator name"

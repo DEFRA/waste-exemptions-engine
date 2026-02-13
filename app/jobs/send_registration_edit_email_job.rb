@@ -16,12 +16,6 @@ class SendRegistrationEditEmailJob < ApplicationJob
         )
       end
 
-      if @registration.applicant_email.present? && @registration.applicant_email != @registration.contact_email
-        WasteExemptionsEngine::RegistrationEditLinkEmailService.run(
-          registration: @registration, magic_link_token:, recipient: @registration.applicant_email
-        )
-      end
-
       set_edit_link_requested_by
     end
   end

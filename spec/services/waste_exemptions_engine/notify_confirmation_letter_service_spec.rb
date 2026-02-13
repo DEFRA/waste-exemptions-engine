@@ -8,11 +8,14 @@ module WasteExemptionsEngine
     describe "run" do
       subject(:service) { described_class.run(registration: registration) }
 
-      # Make sure it's a real postcode for Notify validation purposes
-      let(:address) { build(:address, postcode: "BS1 1AA") }
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
+      let(:notifications_client) { instance_double(Notifications::Client) }
+      let(:mock_response) { instance_double(Notifications::Client::ResponseNotification) }
 
-      before { allow(Address).to receive(:new).and_return(address) }
+      before do
+        allow(Notifications::Client).to receive(:new).and_return(notifications_client)
+        allow(notifications_client).to receive(:send_letter).and_return(mock_response)
+      end
 
       it_behaves_like "CanHaveCommunicationLog" do
         let(:service_class) { described_class }
@@ -20,15 +23,22 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: a_registration } }
       end
 
-      it "sends a letter" do
-        VCR.use_cassette("notify_confirmation_letter") do
-          response = service
+      it "sends a letter with the correct template" do
+        service
 
-          aggregate_failures do
-            expect(response).to be_a(Notifications::Client::ResponseNotification)
-            expect(response.template["id"]).to eq("81cae4bd-9f4c-4e14-bf3c-44573cee4f5b")
-            expect(response.content["subject"]).to include("Confirmation of waste exemption registration")
-          end
+        expect(notifications_client).to have_received(:send_letter).with(
+          hash_including(template_id: "81cae4bd-9f4c-4e14-bf3c-44573cee4f5b")
+        )
+      end
+
+      it "does not include applicant fields in personalisation" do
+        service
+
+        expect(notifications_client).to have_received(:send_letter) do |args|
+          personalisation = args[:personalisation]
+          expect(personalisation).not_to have_key(:applicant_name)
+          expect(personalisation).not_to have_key(:applicant_email)
+          expect(personalisation).not_to have_key(:applicant_phone)
         end
       end
     end
