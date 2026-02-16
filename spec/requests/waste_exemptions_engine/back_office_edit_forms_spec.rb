@@ -136,10 +136,7 @@ module WasteExemptionsEngine
       end
     end
 
-    %w[applicant_name
-       applicant_phone
-       applicant_email
-       main_people
+    %w[main_people
        registration_number
        operator_name
        operator_postcode

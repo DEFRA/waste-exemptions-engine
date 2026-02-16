@@ -32,11 +32,6 @@ module WasteExemptionsEngine
         state :renew_exemptions_form
         state :renew_no_exemptions_form
 
-        # Applicant details
-        state :applicant_name_form
-        state :applicant_phone_form
-        state :applicant_email_form
-
         # Operator details
         state :main_people_form
         state :operator_name_form
@@ -83,7 +78,7 @@ module WasteExemptionsEngine
 
           # Exemptions
           transitions from: :renew_exemptions_form,
-                      to: :applicant_name_form,
+                      to: :contact_name_form,
                       if: :any_exemptions_selected?
 
           transitions from: :renew_exemptions_form,
@@ -155,9 +150,6 @@ module WasteExemptionsEngine
           # Check Your Answers
           transitions from: %i[
                         exemptions_form
-                        applicant_name_form
-                        applicant_phone_form
-                        applicant_email_form
                         contact_address_lookup_form
                         contact_address_manual_form
                         contact_name_form
@@ -189,9 +181,6 @@ module WasteExemptionsEngine
         # These are all the states reachable from :renewal_start_form
         %i[
           exemptions
-          applicant_email
-          applicant_name
-          applicant_phone
           contact_email
           contact_name
           contact_phone
