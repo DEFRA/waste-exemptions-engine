@@ -27,7 +27,7 @@ module WasteExemptionsEngine
         service
 
         expect(notifications_client).to have_received(:send_letter).with(
-          hash_including(template_id: "9e45ffed-0071-4259-8c99-620d4572dc30")
+          hash_including(template_id: WasteExemptionsEngine::NotificationTemplates::CONFIRMATION_LETTER)
         )
       end
 

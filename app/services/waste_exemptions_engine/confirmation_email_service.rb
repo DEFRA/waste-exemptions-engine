@@ -21,7 +21,7 @@ module WasteExemptionsEngine
     end
 
     def template_id
-      @pdf.present? ? "9025773f-35a3-4894-b8c6-105d65c19df4" : "8fcf5d04-944f-4cd1-b261-962fedd3859f"
+      @pdf.present? ? NotificationTemplates::CONFIRMATION_EMAIL_WITH_PDF : NotificationTemplates::CONFIRMATION_EMAIL
     end
 
     # For CanHaveCommunicationLog

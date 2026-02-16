@@ -8,6 +8,7 @@ module WasteExemptionsEngine
     include ApplicationHelper
     include CanHaveCommunicationLog
 
+
     def run(registration:)
       @registration = RegistrationDetailsPresenter.new(registration)
 
@@ -33,7 +34,7 @@ module WasteExemptionsEngine
     private
 
     def template
-      "9e45ffed-0071-4259-8c99-620d4572dc30"
+      NotificationTemplates::CONFIRMATION_LETTER
     end
 
     def personalisation
