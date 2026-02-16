@@ -33,7 +33,7 @@ module WasteExemptionsEngine
     private
 
     def template
-      "81cae4bd-9f4c-4e14-bf3c-44573cee4f5b"
+      "9e45ffed-0071-4259-8c99-620d4572dc30"
     end
 
     def personalisation
