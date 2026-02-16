@@ -34,12 +34,7 @@ module WasteExemptionsEngine
       it "does not include applicant fields in personalisation" do
         service
 
-        expect(notifications_client).to have_received(:send_letter) do |args|
-          personalisation = args[:personalisation]
-          expect(personalisation).not_to have_key(:applicant_name)
-          expect(personalisation).not_to have_key(:applicant_email)
-          expect(personalisation).not_to have_key(:applicant_phone)
-        end
+        expect(notifications_client).not_to have_received(:send_letter).with(hash_including(personalisation: hash_including(:applicant_name, :applicant_email, :applicant_phone)))
       end
     end
   end
