@@ -8,7 +8,6 @@ module WasteExemptionsEngine
     include ApplicationHelper
     include CanHaveCommunicationLog
 
-
     def run(registration:)
       @registration = RegistrationDetailsPresenter.new(registration)
 
