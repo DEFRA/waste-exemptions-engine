@@ -3,19 +3,10 @@
 module WasteExemptionsEngine
   module PluralsHelper
     def confirmation_comms(form)
-      emails = [form.applicant_email, form.contact_email]
-      emails.uniq!
-      emails.delete(nil)
-      emails.delete("")
-
-      if emails.empty?
-        "letter"
-      elsif emails == [form.contact_email]
+      if form.contact_email.present?
         "contact_email"
-      elsif emails == [form.applicant_email]
-        "applicant_email"
       else
-        "both_emails"
+        "letter"
       end
     end
 

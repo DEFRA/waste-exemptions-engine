@@ -3,15 +3,15 @@
 FactoryBot.define do
   factory :check_registered_name_and_address_form, class: "WasteExemptionsEngine::CheckRegisteredNameAndAddressForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "check_registered_name_and_address_form"))
+      new(create(:new_charged_registration, workflow_state: "check_registered_name_and_address_form"))
     end
   end
 
   factory :check_your_answers_check_registered_name_and_address_form,
           class: "WasteExemptionsEngine::CheckRegisteredNameAndAddressForm" do
     initialize_with do
-      new(create(:new_registration, workflow_state: "check_registered_name_and_address_form",
-                                    temp_check_your_answers_flow: true))
+      new(create(:new_charged_registration, workflow_state: "check_registered_name_and_address_form",
+                                            temp_check_your_answers_flow: true))
     end
   end
 

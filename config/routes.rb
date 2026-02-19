@@ -32,21 +32,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "register-in-wales",
               path_names: { new: "" }
 
-    resources :applicant_name_forms,
-              only: %i[new create],
-              path: "applicant-name",
-              path_names: { new: "" }
-
-    resources :applicant_phone_forms,
-              only: %i[new create],
-              path: "applicant-phone",
-              path_names: { new: "" }
-
-    resources :applicant_email_forms,
-              only: %i[new create],
-              path: "applicant-email",
-              path_names: { new: "" }
-
     resources :business_type_forms,
               only: %i[new create],
               path: "business-type",
@@ -112,11 +97,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "operator-address-manual",
               path_names: { new: "" }
 
-    resources :check_contact_name_forms,
-              only: %i[new create],
-              path: "check-contact-name",
-              path_names: { new: "" }
-
     resources :contact_name_forms,
               only: %i[new create],
               path: "contact-name",
@@ -127,19 +107,9 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "contact-position",
               path_names: { new: "" }
 
-    resources :check_contact_phone_forms,
-              only: %i[new create],
-              path: "check-contact-phone",
-              path_names: { new: "" }
-
     resources :contact_phone_forms,
               only: %i[new create],
               path: "contact-phone",
-              path_names: { new: "" }
-
-    resources :check_contact_email_forms,
-              only: %i[new create],
-              path: "check-contact-email",
               path_names: { new: "" }
 
     resources :contact_email_forms,
@@ -222,11 +192,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                     on: :collection
               end
 
-    resources :check_site_address_forms,
-              only: %i[new create],
-              path: "check-site-address",
-              path_names: { new: "" }
-
     resources :site_postcode_forms,
               only: %i[new create],
               path: "site-postcode",
@@ -286,21 +251,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               only: %i[new create],
               path: "check-your-answers",
               path_names: { new: "" } do
-                get "applicant-name",
-                    to: "check_your_answers_forms#edit_applicant_name",
-                    as: "applicant-name",
-                    on: :collection
-
-                get "applicant-phone",
-                    to: "check_your_answers_forms#edit_applicant_phone",
-                    as: "applicant-phone",
-                    on: :collection
-
-                get "applicant-email",
-                    to: "check_your_answers_forms#edit_applicant_email",
-                    as: "applicant-email",
-                    on: :collection
-
                 get "main-people",
                     to: "check_your_answers_forms#edit_main_people",
                     as: "main-people",
@@ -422,21 +372,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               only: %i[new create],
               path: "edit",
               path_names: { new: "" } do
-                get "applicant_name",
-                    to: "back_office_edit_forms#edit_applicant_name",
-                    as: "applicant_name",
-                    on: :collection
-
-                get "applicant_phone",
-                    to: "back_office_edit_forms#edit_applicant_phone",
-                    as: "applicant_phone",
-                    on: :collection
-
-                get "applicant_email",
-                    to: "back_office_edit_forms#edit_applicant_email",
-                    as: "applicant_email",
-                    on: :collection
-
                 get "main_people",
                     to: "back_office_edit_forms#edit_main_people",
                     as: "main_people",
@@ -582,21 +517,6 @@ WasteExemptionsEngine::Engine.routes.draw do
                 get "exemptions",
                     to: "renewal_start_forms#edit_exemptions",
                     as: "exemptions",
-                    on: :collection
-
-                get "applicant-name",
-                    to: "renewal_start_forms#edit_applicant_name",
-                    as: "applicant-name",
-                    on: :collection
-
-                get "applicant-phone",
-                    to: "renewal_start_forms#edit_applicant_phone",
-                    as: "applicant-phone",
-                    on: :collection
-
-                get "applicant-email",
-                    to: "renewal_start_forms#edit_applicant_email",
-                    as: "applicant-email",
                     on: :collection
 
                 get "contact-address",

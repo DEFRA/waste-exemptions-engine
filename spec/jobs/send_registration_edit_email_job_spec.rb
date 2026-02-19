@@ -19,8 +19,8 @@ RSpec.describe SendRegistrationEditEmailJob do
       allow(notifications_client).to receive(:send_email)
     end
 
-    context "when reference and email match is successful and contact_email and applicant_email are identical" do
-      before { registration.update!(contact_email: email, applicant_email: email) }
+    context "when reference and email match is successful" do
+      before { registration.update!(contact_email: email) }
 
       it "sets the edit_link_requested_by attribute" do
         run_job
@@ -28,41 +28,13 @@ RSpec.describe SendRegistrationEditEmailJob do
         expect(registration.reload.edit_link_requested_by).to eq(email)
       end
 
-      it "sends the email" do
+      it "sends the email to the contact email" do
         run_job
 
         expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
           .to have_received(:run)
           .with(registration:, magic_link_token: registration.reload.edit_token, recipient: registration.contact_email)
           .once
-      end
-    end
-
-    context "when reference and email match is successful and contact_email and applicant_email are different" do
-      before { registration.update!(contact_email: email, applicant_email: Faker::Internet.email) }
-
-      it "sets the edit_link_requested_by attribute" do
-        run_job
-
-        expect(registration.reload.edit_link_requested_by).to eq(email)
-      end
-
-      it "sends the email to both email addresses" do
-        run_job
-
-        current_magic_link_token = registration.reload.edit_token
-
-        aggregate_failures do
-          expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
-            .to have_received(:run)
-            .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.contact_email)
-            .once
-
-          expect(WasteExemptionsEngine::RegistrationEditLinkEmailService)
-            .to have_received(:run)
-            .with(registration:, magic_link_token: current_magic_link_token, recipient: registration.applicant_email)
-            .once
-        end
       end
     end
 

@@ -6,57 +6,10 @@ module WasteExemptionsEngine
   RSpec.describe "Activity Exemptions Forms" do
     include_context "farm bucket"
 
-    it_behaves_like "GET form", :activity_exemptions_form, "/select-waste-exemptions", is_charged: true
+    it_behaves_like "GET form", :activity_exemptions_form, "/select-waste-exemptions"
     it_behaves_like "POST form", :activity_exemptions_form, "/select-waste-exemptions" do
       let(:form_data) { { temp_exemptions: Exemption.limit(5).pluck(:id) } }
       let(:invalid_form_data) { [{ temp_exemptions: nil }] }
-    end
-
-    context "when selecting a T28 exemption" do
-      let(:activity_exemptions_form) { build(:activity_exemptions_form) }
-      let(:t28_exemption) { create(:exemption, code: "T28") }
-
-      context "when in the front office" do
-        before do
-          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
-        end
-
-        it "stays on the same page due to T28 validation error" do
-          post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
-               params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
-
-          expect(response).to have_http_status(:ok)
-        end
-
-        it "includes the T28 error message in the response" do
-          post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
-               params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
-
-          expect(response.body).to include(
-            I18n.t("activemodel.errors.models.waste_exemptions_engine/activity_exemptions_form.attributes.temp_exemptions.t28_exemption_selected")
-          )
-        end
-      end
-
-      context "when in the back office" do
-        before do
-          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
-        end
-
-        it "redirects the user as T28 validation is skipped" do
-          post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
-               params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
-
-          expect(response).to have_http_status(:see_other)
-        end
-
-        it "does not show T28 validation errors" do
-          post "/waste_exemptions_engine/#{activity_exemptions_form.token}/select-waste-exemptions",
-               params: { activity_exemptions_form: { temp_exemptions: [t28_exemption.id] } }
-
-          expect(response).not_to have_http_status(:ok)
-        end
-      end
     end
 
     context "when adding exemptions in the new charged registration flow" do

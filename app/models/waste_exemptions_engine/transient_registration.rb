@@ -81,9 +81,6 @@ module WasteExemptionsEngine
                               temp_operator_postcode
                               temp_renew_without_changes
                               temp_reuse_address_for_site_location
-                              temp_reuse_applicant_email
-                              temp_reuse_applicant_name
-                              temp_reuse_applicant_phone
                               temp_reuse_operator_address
                               temp_site_description
                               temp_site_postcode
@@ -139,7 +136,7 @@ module WasteExemptionsEngine
     end
 
     def new?
-      is_a?(WasteExemptionsEngine::NewRegistration) || is_a?(WasteExemptionsEngine::NewChargedRegistration)
+      is_a?(WasteExemptionsEngine::NewChargedRegistration)
     end
 
     private

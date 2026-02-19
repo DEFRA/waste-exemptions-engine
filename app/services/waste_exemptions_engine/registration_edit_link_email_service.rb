@@ -33,7 +33,7 @@ module WasteExemptionsEngine
     private
 
     def template_id
-      "09320726-38c6-4989-a831-17c7d4ff37db"
+      NotificationTemplates::REGISTRATION_EDIT_LINK_EMAIL
     end
 
     def options

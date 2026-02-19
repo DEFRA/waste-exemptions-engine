@@ -129,6 +129,36 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when only no-charge band exemptions are selected" do
+        let(:no_charge_band) do
+          create(:band,
+                 initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 0),
+                 additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 0))
+        end
+        let(:no_charge_exemption) { create(:exemption, band: no_charge_band) }
+        let(:bucket_exemptions) { [no_charge_exemption] }
+        let(:order) { create(:order, exemptions: [no_charge_exemption]) }
+        let(:charge_details) { described_class.new(order).charge_detail }
+
+        before do
+          bucket.exemptions << [no_charge_exemption]
+          order.bucket = bucket
+          create(:charge, :registration_charge)
+        end
+
+        it "returns a registration charge of zero" do
+          expect(charge_details.registration_charge_amount).to be_zero
+        end
+
+        it "returns a bucket charge of zero" do
+          expect(charge_details.bucket_charge_amount).to be_zero
+        end
+
+        it "returns a total charge of zero" do
+          expect(charge_details.total_charge_amount).to be_zero
+        end
+      end
+
       # Ref RUBY-3049
       context "with specific charging scenarios" do
         # The "for charging scenarios" shared context defines bands with names such as "band_upper", "band_u1" etc.

@@ -31,6 +31,8 @@ en:
         total_charge: "Total charge"
         overview_heading: "Overview of charges"
         vat_note: "Waste exemptions are exempt from VAT."
+        t28_no_charge: "There is no charge for a T28 exemption."
+        t28_no_compliance_charge: "There is no compliance charge for a T28 exemption."
         site_payment_info: "For each site you pay:"
         single_site_payment_info: "You pay:"
         multisite_registration_charge_info: "You pay one %{charge_amount} registration charge for all sites."

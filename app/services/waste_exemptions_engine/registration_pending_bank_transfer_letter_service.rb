@@ -34,7 +34,7 @@ module WasteExemptionsEngine
     private
 
     def template
-      "b614d958-8e85-4168-8e20-6f924dc47dff"
+      NotificationTemplates::REGISTRATION_PENDING_BANK_TRANSFER_LETTER
     end
 
     def personalisation

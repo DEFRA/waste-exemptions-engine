@@ -27,11 +27,6 @@ module WasteExemptionsEngine
         state :register_in_scotland_form
         state :register_in_wales_form
 
-        # Applicant details
-        state :applicant_name_form
-        state :applicant_phone_form
-        state :applicant_email_form
-
         # Operator details
         state :business_type_form
         state :charity_register_free_form
@@ -45,12 +40,9 @@ module WasteExemptionsEngine
         state :operator_address_manual_form
 
         # Contact details
-        state :check_contact_name_form
         state :contact_name_form
         state :contact_position_form
-        state :check_contact_phone_form
         state :contact_phone_form
-        state :check_contact_email_form
         state :contact_email_form
         state :check_contact_address_form
         state :contact_postcode_form
@@ -356,87 +348,32 @@ module WasteExemptionsEngine
                       to: :operator_address_manual_form,
                       if: :skip_to_manual_address?
 
-          # Operator Address Lookup -> Applicant Name
+          # Operator Address Lookup -> Contact Name
           transitions from: :operator_address_lookup_form,
-                      to: :applicant_name_form,
+                      to: :contact_name_form,
                       unless: :check_your_answers_flow?
 
-          # Operator Address Manual -> Applicant Name
+          # Operator Address Manual -> Contact Name
           transitions from: :operator_address_manual_form,
-                      to: :applicant_name_form,
-                      unless: :check_your_answers_flow?
-
-          ### APPLICANT DETAILS
-
-          # Applicant Name -> Applicant Phone
-          transitions from: :applicant_name_form,
-                      to: :applicant_phone_form,
-                      unless: :check_your_answers_flow?
-
-          # Applicant Phone -> Applicant Email
-          transitions from: :applicant_phone_form,
-                      to: :applicant_email_form,
-                      unless: :check_your_answers_flow?
-
-          # Applicant Email -> Check Contact Name
-          transitions from: :applicant_email_form,
-                      to: :check_contact_name_form,
+                      to: :contact_name_form,
                       unless: :check_your_answers_flow?
 
           ### CONTACT DETAILS
-
-          # Check Contact Name -> Contact Name
-          transitions from: :check_contact_name_form,
-                      to: :contact_name_form,
-                      unless: :temp_reuse_applicant_name?
-
-          # Check Contact Name -> Contact Position
-          transitions from: :check_contact_name_form,
-                      to: :contact_position_form
 
           # Contact Name -> Contact Position
           transitions from: :contact_name_form,
                       to: :contact_position_form,
                       unless: :check_your_answers_flow?
 
-          # Contact Position -> Check Contact Phone
+          # Contact Position -> Contact Phone
           transitions from: :contact_position_form,
-                      to: :check_contact_phone_form,
-                      unless: :check_your_answers_flow?
-
-          # Check Contact Phone -> Contact Phone
-          transitions from: :check_contact_phone_form,
                       to: :contact_phone_form,
-                      unless: :temp_reuse_applicant_phone?
-
-          # Check Contact Phone -> Contact Email
-          transitions from: :check_contact_phone_form,
-                      to: :contact_email_form,
-                      unless: :applicant_email?
-
-          # Contact Phone -> Contact Email
-          transitions from: :check_contact_phone_form,
-                      to: :check_contact_email_form
-
-          # Contact Phone -> Contact Email
-          transitions from: :contact_phone_form,
-                      to: :contact_email_form,
-                      unless: %i[applicant_email check_your_answers_flow?]
-
-          # Contact Phone -> Check Contact Email
-          transitions from: :contact_phone_form,
-                      to: :check_contact_email_form,
                       unless: :check_your_answers_flow?
 
-          # Check Contact Email -> Contact Email
-          transitions from: :check_contact_email_form,
+          # Contact Phone -> Contact Email
+          transitions from: :contact_phone_form,
                       to: :contact_email_form,
-                      unless: :temp_reuse_applicant_email?
-
-          # Check Contact Email -> Check Contact Address
-          transitions from: :check_contact_email_form,
-                      to: :check_contact_address_form,
-                      if: :temp_reuse_applicant_email?
+                      unless: :check_your_answers_flow?
 
           # Contact Email -> Check Contact Address
           transitions from: :contact_email_form,
@@ -485,6 +422,10 @@ module WasteExemptionsEngine
           ### DECLARATION
 
           transitions from: :declaration_form,
+                      to: :registration_complete_form,
+                      if: :skip_payment?
+
+          transitions from: :declaration_form,
                       to: :payment_summary_form
 
           ### PAYMENT SUMMARY
@@ -505,15 +446,6 @@ module WasteExemptionsEngine
           transitions from: :govpay_form, to: :registration_complete_form
 
           ### CHECK YOUR ANSWERS CHANGE MINI-FLOW
-
-          transitions from: :applicant_name_form,
-                      to: :check_your_answers_form
-
-          transitions from: :applicant_phone_form,
-                      to: :check_your_answers_form
-
-          transitions from: :applicant_email_form,
-                      to: :check_your_answers_form
 
           transitions from: :confirm_farm_exemptions_form,
                       to: :exemptions_summary_form,
@@ -598,24 +530,6 @@ module WasteExemptionsEngine
 
           transitions from: :check_your_answers_form,
                       to: :waste_activities_form,
-                      if: :check_your_answers_flow?
-        end
-
-        event :edit_applicant_name do
-          transitions from: :check_your_answers_form,
-                      to: :applicant_name_form,
-                      if: :check_your_answers_flow?
-        end
-
-        event :edit_applicant_phone do
-          transitions from: :check_your_answers_form,
-                      to: :applicant_phone_form,
-                      if: :check_your_answers_flow?
-        end
-
-        event :edit_applicant_email do
-          transitions from: :check_your_answers_form,
-                      to: :applicant_email_form,
                       if: :check_your_answers_flow?
         end
 
@@ -835,6 +749,10 @@ module WasteExemptionsEngine
     def charity_in_front_office?
       business_type == "charity" &&
         !WasteExemptionsEngine.configuration.host_is_back_office?
+    end
+
+    def skip_payment?
+      order&.order_calculator&.only_no_charge_exemptions?
     end
   end
 end

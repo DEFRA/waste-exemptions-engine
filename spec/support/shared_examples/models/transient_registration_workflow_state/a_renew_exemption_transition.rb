@@ -7,7 +7,7 @@ RSpec.shared_examples "a renew exemption transition" do |factory:|
     subject { create(factory, workflow_state: current_state) }
 
     context "when subject.any_exemptions_selected? is true" do
-      next_state = :applicant_name_form
+      next_state = :contact_name_form
 
       it "transitions from #{current_state} to #{next_state}" do
         permitted_states = Helpers::WorkflowStates.permitted_states(subject)
