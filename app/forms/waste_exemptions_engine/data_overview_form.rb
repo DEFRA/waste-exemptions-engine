@@ -2,8 +2,8 @@
 
 module WasteExemptionsEngine
   module DataOverviewForm
-    delegate :location, :applicant_first_name, :applicant_last_name, to: :transient_registration
-    delegate :contact_first_name, :applicant_phone, :applicant_email, to: :transient_registration
+    delegate :location, to: :transient_registration
+    delegate :contact_first_name, to: :transient_registration
     delegate :business_type, :company_no, :operator_name, :people, :operator_address, to: :transient_registration
     delegate :contact_last_name, :contact_position, :contact_phone, :contact_email, to: :transient_registration
     delegate :contact_address, to: :transient_registration

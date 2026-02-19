@@ -111,7 +111,7 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_messages
-      send_confirmation_letters if [@registration.contact_email, @registration.applicant_email].none?
+      send_confirmation_letters if @registration.contact_email.blank?
 
       send_confirmation_emails
     end
@@ -131,14 +131,14 @@ module WasteExemptionsEngine
     end
 
     def send_confirmation_emails
-      distinct_recipients.each do |recipient|
-        next unless recipient.present?
+      return if @registration.contact_email.blank?
 
-        if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
-          send_registration_pending_bank_transfer_email(recipient)
-        else
-          send_confirmation_email(recipient)
-        end
+      recipient = @registration.contact_email.downcase
+
+      if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
+        send_registration_pending_bank_transfer_email(recipient)
+      else
+        send_confirmation_email(recipient)
       end
     end
 
@@ -162,10 +162,6 @@ module WasteExemptionsEngine
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Registration pending bank transfer email error: #{e}"
-    end
-
-    def distinct_recipients
-      [@registration.applicant_email, @registration.contact_email].compact.map(&:downcase).uniq
     end
   end
 end

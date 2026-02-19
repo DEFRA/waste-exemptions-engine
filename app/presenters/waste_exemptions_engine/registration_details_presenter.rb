@@ -10,14 +10,6 @@ module WasteExemptionsEngine
       registration_exemptions.first.registered_on.to_formatted_s(:day_month_year)
     end
 
-    def applicant_name
-      "#{applicant_first_name} #{applicant_last_name}"
-    end
-
-    def applicant_email_section
-      applicant_email.present? ? applicant_email.to_s : no_email_text
-    end
-
     def contact_name
       "#{contact_first_name} #{contact_last_name}"
     end
