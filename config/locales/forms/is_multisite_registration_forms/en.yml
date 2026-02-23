@@ -2,11 +2,11 @@ en:
   waste_exemptions_engine:
     is_multisite_registration_forms:
       new:
-        title: &title "Is this a multiple site registration (%{count}+ sites)?"
+        title: &title "Do you want to register these exemptions at %{count} or more sites?"
         heading: *title
         hint: "Multiple site registration is when you register the same exemptions at %{count} or more different sites."
-        no: "No"
-        yes: "Yes, this is a multiple site registration (%{count}+ sites)"
+        no: "No, I'm registering these exemptions at one site only"
+        yes: "Yes, I'm registering these exemptions at %{count} or more sites"
   activemodel:
     errors:
       models:
