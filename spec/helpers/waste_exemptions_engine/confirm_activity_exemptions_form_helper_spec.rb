@@ -32,9 +32,11 @@ module WasteExemptionsEngine
 
         result = helper.exemptions_by_band(exemptions)
 
-        expect(result.map { |group| group[:name] }).to eq([bands[0].name, bands[1].name])
-        expect(result.first[:exemptions].map(&:id)).to eq([band_one_exemption_a.id, band_one_exemption_b.id])
-        expect(result.second[:exemptions].map(&:id)).to eq([band_two_exemption_a.id, band_two_exemption_b.id])
+        aggregate_failures do
+          expect(result.map { |group| group[:name] }).to eq([bands[0].name, bands[1].name])
+          expect(result.first[:exemptions].map(&:id)).to eq([band_one_exemption_a.id, band_one_exemption_b.id])
+          expect(result.second[:exemptions].map(&:id)).to eq([band_two_exemption_a.id, band_two_exemption_b.id])
+        end
       end
     end
   end
