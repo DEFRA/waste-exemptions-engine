@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       WasteActivity.where(category: category)
     end
 
-    def exemption_codes_for_activity(activity, transient_registration)
+    def exemption_codes_for_activity(activity, _transient_registration)
       Exemption.for_waste_activities(activity).order(:code).map(&:code).join(", ")
     end
   end

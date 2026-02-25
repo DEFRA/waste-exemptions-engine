@@ -24,11 +24,11 @@ module WasteExemptionsEngine
     describe "#exemptions_by_band" do
       it "groups exemptions by band in band order" do
         exemptions = helper.selected_exemptions([
-          band_two_exemption_b.id,
-          band_one_exemption_b.id,
-          band_two_exemption_a.id,
-          band_one_exemption_a.id
-        ])
+                                                  band_two_exemption_b.id,
+                                                  band_one_exemption_b.id,
+                                                  band_two_exemption_a.id,
+                                                  band_one_exemption_a.id
+                                                ])
 
         result = helper.exemptions_by_band(exemptions)
 
