@@ -10,10 +10,10 @@ module WasteExemptionsEngine
                workflow_state: :exemptions_summary_form)
       end
 
-      it "transitions to site_grid_reference_form" do
+      it "transitions to operator_postcode_form" do
         expect(new_registration)
           .to transition_from(:exemptions_summary_form)
-          .to(:site_grid_reference_form)
+          .to(:operator_postcode_form)
           .on_event(:next)
       end
 

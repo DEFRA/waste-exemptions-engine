@@ -37,7 +37,7 @@ module WasteExemptionsEngine
         before { transient_registration.workflow_state = "location_form" }
 
         it "changes the state" do
-          expect { next_state }.to change(transient_registration, :workflow_state).to("on_a_farm_form")
+          expect { next_state }.to change(transient_registration, :workflow_state).to("business_type_form")
         end
 
         it "adds to workflow history" do

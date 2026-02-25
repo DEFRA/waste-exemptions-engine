@@ -63,10 +63,7 @@ module WasteExemptionsEngine
 
         state :waste_activities_form
         state :activity_exemptions_form
-        state :farm_exemptions_form
         state :confirm_activity_exemptions_form
-        state :confirm_farm_exemptions_form
-        state :no_farm_exemptions_selected_form
         state :exemptions_summary_form
         state :check_your_answers_form
         state :declaration_form
@@ -119,18 +116,18 @@ module WasteExemptionsEngine
                       to: :register_in_wales_form,
                       if: :should_register_in_wales?
 
-          # Location -> On a farm
+          # Location -> Business type
           transitions from: :location_form,
-                      to: :on_a_farm_form
+                      to: :business_type_form
 
           # On a farm -> Is a farmer
           transitions from: :on_a_farm_form,
                       to: :is_a_farmer_form,
                       unless: :check_your_answers_flow?
 
-          # Is a farmer -> Business type
+          # Is a farmer -> Exemptions summary
           transitions from: :is_a_farmer_form,
-                      to: :business_type_form,
+                      to: :exemptions_summary_form,
                       unless: :check_your_answers_flow?
 
           ### PARTNER FLOW
@@ -161,10 +158,6 @@ module WasteExemptionsEngine
 
           # Operator name -> Waste activities
           transitions from: :operator_name_form,
-                      to: :farm_exemptions_form,
-                      if: :farm_affiliated?
-
-          transitions from: :operator_name_form,
                       to: :waste_activities_form,
                       unless: :check_your_answers_flow?
 
@@ -185,10 +178,6 @@ module WasteExemptionsEngine
 
           # Check registered name and address -> Waste activities
           transitions from: :check_registered_name_and_address_form,
-                      to: :farm_exemptions_form,
-                      if: :farm_affiliated?
-
-          transitions from: :check_registered_name_and_address_form,
                       to: :waste_activities_form,
                       unless: :check_your_answers_flow?
 
@@ -206,44 +195,21 @@ module WasteExemptionsEngine
           transitions from: :activity_exemptions_form,
                       to: :confirm_activity_exemptions_form
 
-          transitions from: :farm_exemptions_form,
-                      to: :confirm_farm_exemptions_form
-
           # Confirm Exemptions -> Exemptions Summary
           transitions from: :confirm_activity_exemptions_form,
                       to: :is_multisite_registration_form,
                       if: %i[proceed_with_selected_exemptions? multisite_feature_enabled?],
                       unless: [:check_your_answers_flow?]
 
-          # Confirm Exemptions -> Exemptions Summary (when multisite feature disabled)
+          # Confirm Exemptions -> Site Grid Reference (when multisite feature disabled)
           transitions from: :confirm_activity_exemptions_form,
-                      to: :exemptions_summary_form,
+                      to: :site_grid_reference_form,
                       if: :proceed_with_selected_exemptions?,
                       unless: %i[check_your_answers_flow? multisite_feature_enabled?]
 
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :no_farm_exemptions_selected_form,
-                      if: :no_exemptions_selected?,
-                      unless: :check_your_answers_flow?
-
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :is_multisite_registration_form,
-                      if: %i[proceed_with_selected_farm_exemptions? multisite_feature_enabled?],
-                      unless: :check_your_answers_flow?
-
-          # Confirm Farm Exemptions -> Exemptions Summary (when multisite feature disabled)
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :exemptions_summary_form,
-                      if: :proceed_with_selected_farm_exemptions?,
-                      unless: %i[multisite_feature_enabled? check_your_answers_flow?]
-
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :exemptions_summary_form,
-                      if: %i[proceed_with_selected_farm_exemptions? check_your_answers_flow?]
-
-          # Is multisite registration -> Exemptions Summary (if not multisite, normal flow)
+          # Is multisite registration -> Site Grid Reference (if not multisite, normal flow)
           transitions from: :is_multisite_registration_form,
-                      to: :exemptions_summary_form,
+                      to: :site_grid_reference_form,
                       unless: %i[multisite_flow? check_your_answers_flow?]
 
           # Is multisite registration -> Check Your Answers (if not multisite, check your answers flow)
@@ -264,27 +230,22 @@ module WasteExemptionsEngine
                       unless: :skip_to_manual_address?
 
           transitions from: :sites_form,
-                      to: :exemptions_summary_form
+                      to: :exemptions_summary_form,
+                      if: :check_your_answers_flow?
 
-          # Exemptions Summary -> Operator Postcode (multisite)
-          transitions from: :exemptions_summary_form,
-                      to: :operator_postcode_form,
-                      if: :multisite_flow?,
+          transitions from: :sites_form,
+                      to: :on_a_farm_form,
                       unless: :check_your_answers_flow?
 
-          # Exemptions Summary -> Site Grid Reference (single-site)
+          # Exemptions Summary -> Operator Postcode
           transitions from: :exemptions_summary_form,
-                      to: :site_grid_reference_form,
-                      unless: %i[multisite_flow? check_your_answers_flow?]
+                      to: :operator_postcode_form,
+                      unless: :check_your_answers_flow?
 
           # Confirm Exemptions -> Waste Activities
           transitions from: :confirm_activity_exemptions_form,
                       to: :waste_activities_form,
                       if: :reselect_exemptions?
-
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :waste_activities_form,
-                      if: :add_additional_non_farm_exemptions?
 
           ### SITE LOCATION
 
@@ -318,18 +279,18 @@ module WasteExemptionsEngine
                       to: :site_address_lookup_form,
                       unless: :multisite_flow?
 
-          # Site Address Lookup -> Operator Postcode (single-site)
+          # Site Address Lookup -> On a farm (single-site)
           transitions from: :site_address_lookup_form,
-                      to: :operator_postcode_form,
+                      to: :on_a_farm_form,
                       unless: %i[multisite_flow? check_your_answers_flow?]
 
-          # Check Site Address -> Operator Postcode
+          # Check Site Address -> On a farm
           transitions from: :check_site_address_form,
-                      to: :operator_postcode_form
+                      to: :on_a_farm_form
 
-          # Site Grid Reference -> Operator Postcode (single-site)
+          # Site Grid Reference -> On a farm (single-site)
           transitions from: :site_grid_reference_form,
-                      to: :operator_postcode_form,
+                      to: :on_a_farm_form,
                       unless: %i[multisite_flow? check_your_answers_flow?]
 
           ### OPERATOR LOCATION
@@ -447,10 +408,6 @@ module WasteExemptionsEngine
 
           ### CHECK YOUR ANSWERS CHANGE MINI-FLOW
 
-          transitions from: :confirm_farm_exemptions_form,
-                      to: :exemptions_summary_form,
-                      if: :check_your_answers_flow?
-
           transitions from: :confirm_activity_exemptions_form,
                       to: :exemptions_summary_form,
                       if: :check_your_answers_flow?
@@ -524,10 +481,6 @@ module WasteExemptionsEngine
         end
 
         event :edit_exemptions do
-          transitions from: :check_your_answers_form,
-                      to: :farm_exemptions_form,
-                      if: %i[check_your_answers_flow? farm_affiliated?]
-
           transitions from: :check_your_answers_form,
                       to: :waste_activities_form,
                       if: :check_your_answers_flow?
@@ -730,20 +683,8 @@ module WasteExemptionsEngine
       temp_confirm_exemptions == true
     end
 
-    def proceed_with_selected_farm_exemptions?
-      temp_add_additional_non_bucket_exemptions == false
-    end
-
     def reselect_exemptions?
       temp_confirm_exemptions == false
-    end
-
-    def add_additional_non_farm_exemptions?
-      temp_add_additional_non_bucket_exemptions == true
-    end
-
-    def no_exemptions_selected?
-      (temp_exemptions.nil? || temp_exemptions.empty?) && temp_add_additional_non_bucket_exemptions == false
     end
 
     def charity_in_front_office?

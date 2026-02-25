@@ -8,32 +8,13 @@
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
       <div class="govuk-body">
-        <% if show_farm_exemptions?(@transient_registration) && farm_exemptions(@transient_registration).present? %>
+        <% exemptions_by_band(selected_exemptions(@transient_registration.temp_exemptions)).each do |band| %>
           <section class="govuk-!-margin-bottom-6">
-            <h2 class="govuk-heading-m"><%= t(".farm_exemptions") %></h2>
-            <% farm_exemptions(@transient_registration).each do |exemption| %>
+            <h2 class="govuk-heading-m"><%= band[:name] %> exemptions</h2>
+            <% band[:exemptions].each do |exemption| %>
               <p><%= exemption.code %> <%= exemption.summary %></p>
             <% end %>
           </section>
-
-          <% non_farm_exemptions = non_farm_exemptions(@transient_registration) %>
-          <% exemptions_by_band(non_farm_exemptions).each do |band| %>
-            <section class="govuk-!-margin-bottom-6">
-              <h2 class="govuk-heading-m"><%= band[:name] %> exemptions</h2>
-              <% band[:exemptions].each do |exemption| %>
-                <p><%= exemption.code %> <%= exemption.summary %></p>
-              <% end %>
-            </section>
-          <% end %>
-        <% else %>
-          <% exemptions_by_band(selected_exemptions(@transient_registration.temp_exemptions)).each do |band| %>
-            <section class="govuk-!-margin-bottom-6">
-              <h2 class="govuk-heading-m"><%= band[:name] %> exemptions</h2>
-              <% band[:exemptions].each do |exemption| %>
-                <p><%= exemption.code %> <%= exemption.summary %></p>
-              <% end %>
-            </section>
-          <% end %>
         <% end %>
       </div>
 
@@ -42,11 +23,11 @@
             [
               OpenStruct.new(
                 id: true,
-                name: show_farm_exemptions?(@transient_registration) ? t(".options.farm.true") : t(".options.standard.true")
+                name: t(".options.standard.true")
               ),
               OpenStruct.new(
                 id: false,
-                name: show_farm_exemptions?(@transient_registration) ? t(".options.farm.false") : t(".options.standard.false")
+                name: t(".options.standard.false")
               )
             ],
             :id,
@@ -56,15 +37,6 @@
               hidden: true
             },
             inline: false %>
-
-        <% if show_farm_exemptions?(@transient_registration) %>
-          <p class="govuk-body govuk-!-padding-top-4">
-            <%= t(".farm_link_text") %>
-            <%= link_to t(".farm_link"),
-                        new_farm_exemptions_form_path(@confirm_activity_exemptions_form.token),
-                        class: "govuk-link" %>.
-          </p>
-        <% end %>
 
         <br />
         <%= f.govuk_submit %>

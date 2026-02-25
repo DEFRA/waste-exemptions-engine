@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_05_130000) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_25_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -448,7 +448,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_05_130000) do
     t.text "temp_waste_activities", default: [], array: true
     t.text "temp_exemptions", default: [], array: true
     t.boolean "temp_confirm_exemptions"
-    t.boolean "temp_add_additional_non_bucket_exemptions"
     t.string "temp_govpay_next_url"
     t.string "reason_for_change", limit: 500
     t.boolean "is_multisite_registration"
