@@ -24,7 +24,6 @@ module WasteExemptionsEngine
 
     describe "#exemption_codes_for_activity" do
       let(:activity) { create(:waste_activity) }
-      let(:transient_registration) { create(:new_charged_registration) }
       let(:regular_exemptions) { create_list(:exemption, 3, waste_activity: activity) }
       let(:farm_exemption) { create(:exemption, code: "U4", waste_activity: activity) }
 
@@ -35,7 +34,7 @@ module WasteExemptionsEngine
       end
 
       it "returns a comma-separated list of exemption codes" do
-        result = helper.exemption_codes_for_activity(activity, transient_registration)
+        result = helper.exemption_codes_for_activity(activity)
         result_codes = result.split(", ").sort
         expected_codes = (regular_exemptions + [farm_exemption]).map(&:code).sort
         expect(result_codes).to eq(expected_codes)
@@ -45,7 +44,7 @@ module WasteExemptionsEngine
         let(:activity_without_exemptions) { create(:waste_activity) }
 
         it "returns an empty string" do
-          expect(helper.exemption_codes_for_activity(activity_without_exemptions, transient_registration)).to eq("")
+          expect(helper.exemption_codes_for_activity(activity_without_exemptions)).to eq("")
         end
       end
     end
