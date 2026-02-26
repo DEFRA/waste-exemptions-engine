@@ -38,10 +38,10 @@ module WasteExemptionsEngine
 
         before { allow(new_registration).to receive(:farm_affiliated?).and_return(true) }
 
-        it "changes to farm_exemptions_form after the 'next' event" do
+        it "still changes to waste_activities_form after the 'next' event" do
           expect(new_registration)
             .to transition_from(:check_registered_name_and_address_form)
-            .to(:farm_exemptions_form)
+            .to(:waste_activities_form)
             .on_event(:next)
         end
       end

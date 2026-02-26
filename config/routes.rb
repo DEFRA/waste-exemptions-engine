@@ -212,19 +212,9 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "select-waste-exemptions",
               path_names: { new: "" }
 
-    resources :farm_exemptions_forms,
-              only: %i[new create],
-              path: "select-farm-waste-exemptions",
-              path_names: { new: "" }
-
     resources :confirm_activity_exemptions_forms,
               only: %i[new create],
               path: "your-selected-exemptions",
-              path_names: { new: "" }
-
-    resources :confirm_farm_exemptions_forms,
-              only: %i[new create],
-              path: "your-selected-farm-exemptions",
               path_names: { new: "" }
 
     resources :exemptions_forms,
@@ -240,11 +230,6 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :renew_no_exemptions_forms,
               only: %i[new],
               path: "renew-no-exemptions",
-              path_names: { new: "" }
-
-    resources :no_farm_exemptions_selected_forms,
-              only: %i[new],
-              path: "no-farm-exemptions-selected",
               path_names: { new: "" }
 
     resources :check_your_answers_forms,

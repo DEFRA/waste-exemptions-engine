@@ -41,7 +41,7 @@ module WasteExemptionsEngine
       let(:form_name) { "check_your_answers_form" }
 
       describe "GET /check-your-answers/exemptions" do
-        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_farm_exemptions_form_path
+        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_waste_activities_form_path
       end
 
       describe "GET /check-your-answers/main-people" do
