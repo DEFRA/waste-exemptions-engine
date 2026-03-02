@@ -95,45 +95,5 @@ module WasteExemptionsEngine
         end
       end
     end
-
-    describe "#show_farming_info?" do
-      let(:transient_registration) { create(:new_charged_registration) }
-
-      context "when both farming questions answered yes" do
-        before do
-          transient_registration.update(is_a_farmer: true, on_a_farm: true)
-        end
-
-        it "returns true" do
-          expect(helper.show_farming_info?(transient_registration)).to be true
-        end
-      end
-
-      context "when is_a_farmer is false" do
-        before do
-          transient_registration.update(is_a_farmer: false, on_a_farm: true)
-        end
-
-        it "returns false" do
-          expect(helper.show_farming_info?(transient_registration)).to be false
-        end
-      end
-
-      context "when on_a_farm is false" do
-        before do
-          transient_registration.update(is_a_farmer: true, on_a_farm: false)
-        end
-
-        it "returns false" do
-          expect(helper.show_farming_info?(transient_registration)).to be false
-        end
-      end
-
-      context "when farming questions have not been answered" do
-        it "returns false" do
-          expect(helper.show_farming_info?(transient_registration)).to be false
-        end
-      end
-    end
   end
 end

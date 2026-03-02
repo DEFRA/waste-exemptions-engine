@@ -24,10 +24,6 @@ module WasteExemptionsEngine
       farmer_bucket.exemption_ids.include?(exemption.id.to_s)
     end
 
-    def show_farming_info?(transient_registration)
-      transient_registration.farm_affiliated?
-    end
-
     private
 
     def format_pence_as_pounds(pence)
