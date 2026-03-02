@@ -7,8 +7,6 @@
 
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-      <p class="govuk-body"><%= t(".description") %></p>
-
       <div class="govuk-form-group <%= "govuk-form-group--error" if @activity_exemptions_form.errors[:exemptions].any? %>">
         <fieldset id="<%="matched_exemptions"%>" class="govuk-fieldset">
           <legend class="govuk-visually-hidden"><%= t(".legend") %></legend>
@@ -34,9 +32,9 @@
                       class: "govuk-checkboxes__input",
                     }, exemption.id, nil %>
                   <%= f.label "checkbox-#{exemption.code}", class: "govuk-label govuk-checkboxes__label" do %>
-                  <span class="govuk-!-font-weight-bold"><%= exemption.code %></span> <span class="govuk-!-font-weight-bold"><%= exemption.summary %></span>
-                  - <span><%= exemption.description %></span> <%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>.
-                  <%= exemption.band&.name %>
+                  <span class="govuk-!-font-weight-bold"><%= exemption.code %> <%= exemption.summary %></span>
+                  <br><%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>.
+                  <br><strong><%= exemption_charge_display(exemption) %><%= " (F)" if farming_exemption?(exemption) %></strong>
                 <% end %>
               </div>
 
@@ -44,6 +42,19 @@
           </div>
         </fieldset>
       </div>
+
+      <p class="govuk-body"><%= t(".charges_shown_in_full") %></p>
+      <p class="govuk-body"><%= t(".discounted_charges_in_brackets") %></p>
+
+      <p class="govuk-body"><strong><%= t(".farming_exemption_indicator") %></strong></p>
+
+      <% if show_farming_info?(@transient_registration) %>
+        <p class="govuk-body"><%= t(".farming_capped_charge") %></p>
+      <% end %>
+
+      <p class="govuk-body"><%= t(".charities_free") %></p>
+
+      <p class="govuk-body"><%= t(".see") %> <%= link_to t(".waste_exemption_charges_link"), "https://www.gov.uk/guidance/waste-exemptions-environmental-permits#waste-exemption-charges", target: "_blank" %> <%= t(".opens_in_new_window") %></p>
 
       <%= f.govuk_submit %>
     <% end %>
