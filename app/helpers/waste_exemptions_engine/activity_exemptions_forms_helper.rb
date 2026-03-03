@@ -18,10 +18,14 @@ module WasteExemptionsEngine
     end
 
     def farming_exemption?(exemption)
-      farmer_bucket = WasteExemptionsEngine::Bucket.farmer_bucket
-      return false unless farmer_bucket
+      farming_exemption_ids.include?(exemption.id.to_s)
+    end
 
-      farmer_bucket.exemption_ids.include?(exemption.id.to_s)
+    def farming_exemption_ids
+      @farming_exemption_ids ||= begin
+        farmer_bucket = WasteExemptionsEngine::Bucket.farmer_bucket
+        farmer_bucket ? farmer_bucket.exemption_ids : []
+      end
     end
 
     private
