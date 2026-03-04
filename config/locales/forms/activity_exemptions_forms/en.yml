@@ -2,16 +2,19 @@ en:
   waste_exemptions_engine:
     activity_exemptions_forms:
       new:
-        title: &title Select the waste exemptions you need
+        title: &title Choose your waste exemptions
         heading: *title
         legend: waste exemptions
-        description: |
-          There’s a charge for each exemption, depending on the band it is in. 
-          Upper band is the highest charge and band 3 is the lowest.
         next_button: Continue
         see: See
         opens_in_new_window: (opens in a new window)
         exemption_link_name: "%{exemption_code} guidance"
+        charges_shown_in_full: Compliance charges are shown in full.
+        discounted_charges_in_brackets: Discounted charges are shown in brackets.
+        farming_exemption_indicator: (F) means it is on a list of common farming exemptions.
+        farming_capped_charge: Farmers pay a capped charge of £88 for farming exemptions registered on a farm.
+        charities_free: All exemptions are free for charities.
+        waste_exemption_charges_link: Waste exemption charges
   activemodel:
     errors:
       models:
