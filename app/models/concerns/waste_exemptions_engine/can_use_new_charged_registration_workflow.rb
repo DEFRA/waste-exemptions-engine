@@ -440,10 +440,10 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :on_a_farm_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form
 
           transitions from: :is_a_farmer_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form
 
           transitions from: :exemptions_summary_form,
                       to: :check_your_answers_form

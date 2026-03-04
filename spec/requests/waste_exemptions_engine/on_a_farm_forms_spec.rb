@@ -20,11 +20,11 @@ module WasteExemptionsEngine
 
       end
 
-      it "redirects back to check-your-answers when submitted" do
+      it "redirects to exemptions summary when submitted" do
         post "/waste_exemptions_engine/#{on_a_farm_form.token}/on-a-farm",
              params: { on_a_farm_form: { on_a_farm: false } }
 
-        expect(response).to redirect_to(check_your_answers_forms_path(on_a_farm_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(on_a_farm_form.token))
       end
     end
 
