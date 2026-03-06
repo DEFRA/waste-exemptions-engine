@@ -15,6 +15,7 @@ en:
         farming_capped_charge: Farmers pay a capped charge of £88 for farming exemptions registered on a farm.
         charities_free: All exemptions are free for charities.
         waste_exemption_charges_link: Waste exemption charges
+        waste_exemption_charges_url: https://www.gov.uk/government/publications/waste-exemptions-how-to-choose-register-and-pay/waste-exemption-charges
   activemodel:
     errors:
       models:
