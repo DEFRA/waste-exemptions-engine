@@ -52,6 +52,9 @@ module WasteExemptionsEngine
         # Farm questions
         state :on_a_farm_form
         state :is_a_farmer_form
+        # Charitable purpose
+        state :charitable_purpose_form
+        state :charitable_purpose_declaration_form
         # Multisite questions
         state :is_multisite_registration_form
         state :sites_form
@@ -125,17 +128,28 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form,
                       unless: :check_your_answers_flow?
 
-          # Is a farmer -> Exemptions summary
+          # Is a farmer -> Charitable purpose
           transitions from: :is_a_farmer_form,
+                      to: :charitable_purpose_form,
+                      unless: :check_your_answers_flow?
+
+          # Charitable purpose -> Declaration (if yes)
+          transitions from: :charitable_purpose_form,
+                      to: :charitable_purpose_declaration_form,
+                      if: :charitable_purpose?,
+                      unless: :check_your_answers_flow?
+
+          # Charitable purpose -> Exemptions summary (if no)
+          transitions from: :charitable_purpose_form,
+                      to: :exemptions_summary_form,
+                      unless: :check_your_answers_flow?
+
+          # Charitable purpose declaration -> Exemptions summary
+          transitions from: :charitable_purpose_declaration_form,
                       to: :exemptions_summary_form,
                       unless: :check_your_answers_flow?
 
           ### PARTNER FLOW
-
-          # Business type -> Charity Register Free (charity in front office)
-          transitions from: :business_type_form,
-                      to: :charity_register_free_form,
-                      if: :charity_in_front_office?
 
           # Business type -> Main people (partnership)
           transitions from: :business_type_form,
@@ -445,6 +459,12 @@ module WasteExemptionsEngine
           transitions from: :is_a_farmer_form,
                       to: :check_your_answers_form
 
+          transitions from: :charitable_purpose_form,
+                      to: :check_your_answers_form
+
+          transitions from: :charitable_purpose_declaration_form,
+                      to: :check_your_answers_form
+
           transitions from: :exemptions_summary_form,
                       to: :check_your_answers_form
 
@@ -692,8 +712,12 @@ module WasteExemptionsEngine
         !WasteExemptionsEngine.configuration.host_is_back_office?
     end
 
+    def charitable_purpose?
+      charitable_purpose == true
+    end
+
     def skip_payment?
-      order&.order_calculator&.only_no_charge_exemptions?
+      charitable_purpose? || order&.order_calculator&.only_no_charge_exemptions?
     end
   end
 end

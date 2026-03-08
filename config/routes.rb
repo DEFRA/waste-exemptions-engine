@@ -182,6 +182,16 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "is-a-farmer",
               path_names: { new: "" }
 
+    resources :charitable_purpose_forms,
+              only: %i[new create],
+              path: "charitable-purpose",
+              path_names: { new: "" }
+
+    resources :charitable_purpose_declaration_forms,
+              only: %i[new create],
+              path: "charitable-purpose-declaration",
+              path_names: { new: "" }
+
     resources :site_grid_reference_forms,
               only: %i[new create],
               path: "site-grid-reference",

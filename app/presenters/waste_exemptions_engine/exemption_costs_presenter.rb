@@ -28,6 +28,8 @@ module WasteExemptionsEngine
     end
 
     def compliance_charge(exemption)
+      return format_currency(0) if charitable_purpose?
+
       if exemption_in_bucket?(exemption)
         bucket_exemption_compliance_charge
       elsif first_exemption_in_highest_band?(exemption)
@@ -40,6 +42,8 @@ module WasteExemptionsEngine
     end
 
     def single_site_compliance_charge(exemption)
+      return format_currency(0) if charitable_purpose?
+
       # Get the single-site charge without multisite multiplication
       if exemption_in_bucket?(exemption)
         single_site_bucket_exemption_compliance_charge
@@ -102,6 +106,7 @@ module WasteExemptionsEngine
     end
 
     def is_discounted_charge?(exemption)
+      return false if charitable_purpose?
       return false if exemption_in_bucket?(exemption)
       return false if first_exemption_in_highest_band?(exemption)
 
@@ -117,6 +122,10 @@ module WasteExemptionsEngine
     end
 
     private
+
+    def charitable_purpose?
+      order.order_owner.try(:charitable_purpose) == true
+    end
 
     def highest_band
       @highest_band ||= @order.highest_band
