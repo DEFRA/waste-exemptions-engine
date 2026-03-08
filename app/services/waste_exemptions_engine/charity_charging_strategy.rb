@@ -16,11 +16,11 @@ module WasteExemptionsEngine
 
     private
 
-    def initial_compliance_charge_amount(_band)
+    def initial_compliance_charge_amount(*)
       0
     end
 
-    def additional_compliance_charge_amount(_band)
+    def additional_compliance_charge_amount(*)
       0
     end
   end
