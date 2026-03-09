@@ -42,6 +42,17 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when charitable_purpose is set to false" do
+        it "clears the charitable_purpose_declaration" do
+          transient_registration = form.transient_registration
+          transient_registration.update!(charitable_purpose: true, charitable_purpose_declaration: true)
+
+          form.submit(charitable_purpose: "false")
+
+          expect(transient_registration.reload.charitable_purpose_declaration).to be false
+        end
+      end
     end
   end
 end
