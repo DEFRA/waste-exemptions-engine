@@ -29,7 +29,6 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
-        state :charity_register_free_form
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
@@ -705,11 +704,6 @@ module WasteExemptionsEngine
 
     def reselect_exemptions?
       temp_confirm_exemptions == false
-    end
-
-    def charity_in_front_office?
-      business_type == "charity" &&
-        !WasteExemptionsEngine.configuration.host_is_back_office?
     end
 
     def charitable_purpose?
