@@ -4,7 +4,7 @@ en:
       new:
         title: Business address postcode
         heading:
-          localAuthority: What's the address of the local authority or public body?
+          localAuthority: What is the business address?
           limitedCompany: What's the company address?
           limitedLiabilityPartnership: What's the address of the limited liability partnership?
           partnership: What's the address of the partnership?

@@ -12,7 +12,7 @@ en:
               limited_company: Limited company
               partnership: Partnership
               limited_liability_partnership: Limited liability partnership
-              local_authority: Local authority or public body
+              local_authority: Public sector
               charity: Charity or trust
           business_name:
             operator_name:
