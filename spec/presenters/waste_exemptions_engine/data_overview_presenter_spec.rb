@@ -102,7 +102,7 @@ module WasteExemptionsEngine
       context "when the company is a charity" do
         before do
           new_registration.business_type = "charity"
-          expected_data[0][:value] = "Charity or trust"
+          expected_data[0][:value] = "Third sector, community group or trust"
           expected_data[1][:title] = "Operator name"
           expected_data.slice!(2)
           expected_data[1][:change_url] = "check-your-answers/operator-name"

@@ -13,7 +13,7 @@ en:
               partnership: Partnership
               limited_liability_partnership: Limited liability partnership
               local_authority: Public sector
-              charity: Charity or trust
+              charity: Third sector, community group or trust
           business_name:
             operator_name:
               title: Operator name

@@ -4,12 +4,12 @@ en:
       new:
         title: Operator address
         heading:
-          localAuthority: What is the business address?
+          localAuthority: &business_address What is the business address?
           limitedCompany: What's the company address?
           limitedLiabilityPartnership: What's the address of the limited liability partnership?
           partnership: What's the address of the partnership?
           soleTrader: What's the address of the business?
-          charity: What's the address of the charity or trust?
+          charity: *business_address
         postcode_label: Postcode
         postcode_change_link: "Change postcode"
         address_finder_error_heading: Our address finder is not working

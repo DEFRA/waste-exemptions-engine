@@ -31,7 +31,7 @@ en:
               operator_address: "Address"
             values:
               business_type:
-                charity: "Charity or trust"
+                charity: "Third sector, community group or trust"
                 limitedCompany: "Limited company"
                 limitedLiabilityPartnership: "Limited liability partnership"
                 localAuthority: "Public sector"
