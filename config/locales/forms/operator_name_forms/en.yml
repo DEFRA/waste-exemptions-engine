@@ -11,17 +11,17 @@ en:
           partnership: What is the name of the partnership?
           soleTrader: Who is carrying out the waste activity?
         description:
-          charity: &organisation_description Enter the full name of the organisation
+          charity: ""
           limitedCompany: &operator_description This is the name of the operator responsible for the waste activity
           limitedLiabilityPartnership: *operator_description
-          localAuthority: *organisation_description
+          localAuthority: ""
           partnership: *operator_description
           soleTrader: This is the name of the person responsible for the waste activity
         operator_name_label:
-          charity: ""
+          charity: &organisation_label Enter the full name of the organisation
           limitedCompany: Registered company name
           limitedLiabilityPartnership: Limited liability partnership name
-          localAuthority: ""
+          localAuthority: *organisation_label
           partnership: Partnership name
           soleTrader: Full name
         error_heading: A problem to fix

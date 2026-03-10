@@ -12,12 +12,13 @@
       </h1>
 
       <p class="govuk-hint">
-        <%= t(".description.#{@operator_name_form.business_type}") %>
+        <%= t(".description.#{@operator_name_form.business_type}", default: "") %>
       </p>
 
-      <% operator_name_label = t(".operator_name_label.#{@operator_name_form.business_type}", default: nil) %>
       <%= f.govuk_text_field :operator_name,
-          label: operator_name_label.present? ? { text: operator_name_label } : { content: -> { "" } },
+          label: {
+            text: t(".operator_name_label.#{@operator_name_form.business_type}")
+          },
           autocomplete: "organization" %>
 
       <%= f.govuk_submit %>
