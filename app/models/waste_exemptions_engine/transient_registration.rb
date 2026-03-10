@@ -59,6 +59,7 @@ module WasteExemptionsEngine
     end
 
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
+                              charitable_purpose_declaration
                               companies_house_updated_at
                               created_at
                               declaration

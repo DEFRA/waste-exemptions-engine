@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        href=\"/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_charitable_purpose_form\" id=\"new_charitable_purpose_form\"
+        action=\"/waste_exemptions_engine/7T9WE27YP6eqFnkYgbE8n7MW/charitable-purpose\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">Is your organisation a charity?</h1>\n\n
+        \     <p class=\"govuk-body\">To qualify as a charity and register free exemptions,
+        your organisation must work exclusively for a charitable purpose, as described
+        in the Charities Act.</p>\n\n      <p class=\"govuk-body\">\n        Read
+        <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.gov.uk/government/publications/charitable-purposes\">Charity
+        Commission guidance on charitable purposes</a> to help you decide if you qualify
+        as a charity (opens in a new window).\n      </p>\n\n      <div class=\"govuk-form-group\"><fieldset
+        class=\"govuk-fieldset\"><legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m
+        govuk-visually-hidden\">Is your organisation a charity?</legend><input value=\"\"
+        autocomplete=\"off\" type=\"hidden\" name=\"charitable_purpose_form[charitable_purpose]\"
+        id=\"charitable_purpose_form_charitable_purpose\" /><div class=\"govuk-radios\"
+        data-module=\"govuk-radios\"><div class=\"govuk-radios__item\"><input id=\"charitable-purpose-form-charitable-purpose-field\"
+        class=\"govuk-radios__input\" type=\"radio\" value=\"false\" name=\"charitable_purpose_form[charitable_purpose]\"
+        /><label for=\"charitable-purpose-form-charitable-purpose-field\" class=\"govuk-label
+        govuk-radios__label\">No, my organisation does not work exclusively for a
+        charitable purpose.</label></div><div class=\"govuk-radios__item\"><input
+        id=\"charitable-purpose-form-charitable-purpose-true-field\" class=\"govuk-radios__input\"
+        type=\"radio\" value=\"true\" name=\"charitable_purpose_form[charitable_purpose]\"
+        /><label for=\"charitable-purpose-form-charitable-purpose-true-field\" class=\"govuk-label
+        govuk-radios__label\">Yes, my organisation works exclusively for a charitable
+        purpose.</label></div></div></fieldset></div>\n\n      <button type=\"submit\"
+        formnovalidate=\"formnovalidate\" class=\"govuk-button\" data-module=\"govuk-button\"
+        data-prevent-double-click=\"true\">Continue</button>\n</form>  </div>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 08 Mar 2026 17:20:17 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9d93827daf165781-LHR
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 validator.w3.org
+      X-Request-Id:
+      - 9d93827daf165781
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=1kB5xojOPEKLQs2JURJ3FOao.huit.uxeEJe1rBssWg-1772990417-1.0.1.1-CWtROgQGaOm.gJ.Dmos7VHBNr.QPkTtNR9uow185k3DsOemJtBBoPNpXnUSQLdt2Imw8O6Bl5Sufu5MBtWapqfkjmt1cAkH5GeQhCz9oUUg;
+        path=/; expires=Sun, 08-Mar-26 17:50:17 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ2ZXJzaW9uIjoiMjYuMy41IiwibWVzc2FnZXMiOlt7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjUsImxhc3RDb2x1bW4iOjE2NCwiZmlyc3RDb2x1bW4iOjMsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6Ii90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLTA0MDI0MzgyMzkxYmI5MTA1ODQxNDVkODExM2NmMzVlZjM3NmI1NWQxMjViYjQ1MTZjZWJlYjE0Y2U3ODg1OTcuY3NzXCIgbWVkaWE9XCJhbGxcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjE2Mn0seyJ0eXBlIjoiZXJyb3IiLCJsYXN0TGluZSI6MzEsImxhc3RDb2x1bW4iOjM0NiwiZmlyc3RDb2x1bW4iOjE5NywibWVzc2FnZSI6IkFuIOKAnGlucHV04oCdIGVsZW1lbnQgd2l0aCBhIOKAnHR5cGXigJ0gYXR0cmlidXRlIHdob3NlIHZhbHVlIGlzIOKAnGhpZGRlbuKAnSBtdXN0IG5vdCBoYXZlIGFuIOKAnGF1dG9jb21wbGV0ZeKAnSBhdHRyaWJ1dGUgd2hvc2UgdmFsdWUgaXMg4oCcb27igJ0gb3Ig4oCcb2Zm4oCdLiIsImV4dHJhY3QiOiI/PC9sZWdlbmQ+PGlucHV0IHZhbHVlPVwiXCIgYXV0b2NvbXBsZXRlPVwib2ZmXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZm9ybVtjaGFyaXRhYmxlX3B1cnBvc2VdXCIgaWQ9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZm9ybV9jaGFyaXRhYmxlX3B1cnBvc2VcIiAvPjxkaXYgYyIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxNTB9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MzEsImxhc3RDb2x1bW4iOjM0NiwiZmlyc3RDb2x1bW4iOjE5NywibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiPzwvbGVnZW5kPjxpbnB1dCB2YWx1ZT1cIlwiIGF1dG9jb21wbGV0ZT1cIm9mZlwiIHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwiY2hhcml0YWJsZV9wdXJwb3NlX2Zvcm1bY2hhcml0YWJsZV9wdXJwb3NlXVwiIGlkPVwiY2hhcml0YWJsZV9wdXJwb3NlX2Zvcm1fY2hhcml0YWJsZV9wdXJwb3NlXCIgLz48ZGl2IGMiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTUwfSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjMxLCJsYXN0Q29sdW1uIjo2MDAsImZpcnN0Q29sdW1uIjo0MzIsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6Im9zX19pdGVtXCI+PGlucHV0IGlkPVwiY2hhcml0YWJsZS1wdXJwb3NlLWZvcm0tY2hhcml0YWJsZS1wdXJwb3NlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2lucHV0XCIgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJmYWxzZVwiIG5hbWU9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZm9ybVtjaGFyaXRhYmxlX3B1cnBvc2VdXCIgLz48bGFiZWwiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6MTY5fSx7InR5cGUiOiJpbmZvIiwibGFzdExpbmUiOjMxLCJsYXN0Q29sdW1uIjo5OTIsImZpcnN0Q29sdW1uIjo4MjAsIm1lc3NhZ2UiOiJUcmFpbGluZyBzbGFzaCBvbiB2b2lkIGVsZW1lbnRzIGhhcyBubyBlZmZlY3QgYW5kIGludGVyYWN0cyBiYWRseSB3aXRoIHVucXVvdGVkIGF0dHJpYnV0ZSB2YWx1ZXMuIiwiZXh0cmFjdCI6Im9zX19pdGVtXCI+PGlucHV0IGlkPVwiY2hhcml0YWJsZS1wdXJwb3NlLWZvcm0tY2hhcml0YWJsZS1wdXJwb3NlLXRydWUtZmllbGRcIiBjbGFzcz1cImdvdnVrLXJhZGlvc19faW5wdXRcIiB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cInRydWVcIiBuYW1lPVwiY2hhcml0YWJsZV9wdXJwb3NlX2Zvcm1bY2hhcml0YWJsZV9wdXJwb3NlXVwiIC8+PGxhYmVsIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjE3M30seyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjoyLCJmaXJzdExpbmUiOjEsImxhc3RDb2x1bW4iOjYsImZpcnN0Q29sdW1uIjoxNiwic3ViVHlwZSI6Indhcm5pbmciLCJtZXNzYWdlIjoiQ29uc2lkZXIgYWRkaW5nIGEg4oCcbGFuZ+KAnSBhdHRyaWJ1dGUgdG8gdGhlIOKAnGh0bWzigJ0gc3RhcnQgdGFnIHRvIGRlY2xhcmUgdGhlIGxhbmd1YWdlIG9mIHRoaXMgZG9jdW1lbnQuIiwiZXh0cmFjdCI6IlRZUEUgaHRtbD5cbjxodG1sPlxuPGhlYWQiLCJoaWxpdGVTdGFydCI6MTAsImhpbGl0ZUxlbmd0aCI6N31dLCJzb3VyY2UiOnsidHlwZSI6InRleHQvaHRtbCIsImVuY29kaW5nIjoiVVRGLTgiLCJjb2RlIjoiPCFET0NUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkPlxuICA8dGl0bGU+RHVtbXk8L3RpdGxlPlxuICA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9hc3NldHMvYXBwbGljYXRpb24tMDQwMjQzODIzOTFiYjkxMDU4NDE0NWQ4MTEzY2YzNWVmMzc2YjU1ZDEyNWJiNDUxNmNlYmViMTRjZTc4ODU5Ny5jc3NcIiBtZWRpYT1cImFsbFwiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIiAvPlxuICA8c2NyaXB0IHNyYz1cIi9hc3NldHMvYXBwbGljYXRpb24tMjc2MTAwOTFmNDZlNzI3YTFmNjZmOWNiMTk3MjNjYzg1ZjA2NTBlOTEwNGViZWY4NDkzNGM5ZTljYzliNWViMC5qc1wiIGRhdGEtdHVyYm9saW5rcy10cmFjaz1cInRydWVcIj48L3NjcmlwdD5cbiAgXG48L2hlYWQ+XG48Ym9keT5cblxuXG5cbjxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLXJvd1wiPlxuICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1jb2x1bW4tdHdvLXRoaXJkc1wiPlxuICAgIDxmb3JtIGNsYXNzPVwibmV3X2NoYXJpdGFibGVfcHVycG9zZV9mb3JtXCIgaWQ9XCJuZXdfY2hhcml0YWJsZV9wdXJwb3NlX2Zvcm1cIiBhY3Rpb249XCIvd2FzdGVfZXhlbXB0aW9uc19lbmdpbmUvN1Q5V0UyN1lQNmVxRm5rWWdiRThuN01XL2NoYXJpdGFibGUtcHVycG9zZVwiIGFjY2VwdC1jaGFyc2V0PVwiVVRGLThcIiBtZXRob2Q9XCJwb3N0XCI+XG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICBcbiAgPC9kaXY+XG48L2Rpdj5cblxuXG4gICAgICA8aDEgY2xhc3M9XCJnb3Z1ay1oZWFkaW5nLWxcIj5JcyB5b3VyIG9yZ2FuaXNhdGlvbiBhIGNoYXJpdHk/PC9oMT5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+VG8gcXVhbGlmeSBhcyBhIGNoYXJpdHkgYW5kIHJlZ2lzdGVyIGZyZWUgZXhlbXB0aW9ucywgeW91ciBvcmdhbmlzYXRpb24gbXVzdCB3b3JrIGV4Y2x1c2l2ZWx5IGZvciBhIGNoYXJpdGFibGUgcHVycG9zZSwgYXMgZGVzY3JpYmVkIGluIHRoZSBDaGFyaXRpZXMgQWN0LjwvcD5cblxuICAgICAgPHAgY2xhc3M9XCJnb3Z1ay1ib2R5XCI+XG4gICAgICAgIFJlYWQgPGEgdGFyZ2V0PVwiX2JsYW5rXCIgcmVsPVwibm9vcGVuZXIgbm9yZWZlcnJlclwiIGhyZWY9XCJodHRwczovL3d3dy5nb3YudWsvZ292ZXJubWVudC9wdWJsaWNhdGlvbnMvY2hhcml0YWJsZS1wdXJwb3Nlc1wiPkNoYXJpdHkgQ29tbWlzc2lvbiBndWlkYW5jZSBvbiBjaGFyaXRhYmxlIHB1cnBvc2VzPC9hPiB0byBoZWxwIHlvdSBkZWNpZGUgaWYgeW91IHF1YWxpZnkgYXMgYSBjaGFyaXR5IChvcGVucyBpbiBhIG5ldyB3aW5kb3cpLlxuICAgICAgPC9wPlxuXG4gICAgICA8ZGl2IGNsYXNzPVwiZ292dWstZm9ybS1ncm91cFwiPjxmaWVsZHNldCBjbGFzcz1cImdvdnVrLWZpZWxkc2V0XCI+PGxlZ2VuZCBjbGFzcz1cImdvdnVrLWZpZWxkc2V0X19sZWdlbmQgZ292dWstZmllbGRzZXRfX2xlZ2VuZC0tbSBnb3Z1ay12aXN1YWxseS1oaWRkZW5cIj5JcyB5b3VyIG9yZ2FuaXNhdGlvbiBhIGNoYXJpdHk/PC9sZWdlbmQ+PGlucHV0IHZhbHVlPVwiXCIgYXV0b2NvbXBsZXRlPVwib2ZmXCIgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZm9ybVtjaGFyaXRhYmxlX3B1cnBvc2VdXCIgaWQ9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZm9ybV9jaGFyaXRhYmxlX3B1cnBvc2VcIiAvPjxkaXYgY2xhc3M9XCJnb3Z1ay1yYWRpb3NcIiBkYXRhLW1vZHVsZT1cImdvdnVrLXJhZGlvc1wiPjxkaXYgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2l0ZW1cIj48aW5wdXQgaWQ9XCJjaGFyaXRhYmxlLXB1cnBvc2UtZm9ybS1jaGFyaXRhYmxlLXB1cnBvc2UtZmllbGRcIiBjbGFzcz1cImdvdnVrLXJhZGlvc19faW5wdXRcIiB0eXBlPVwicmFkaW9cIiB2YWx1ZT1cImZhbHNlXCIgbmFtZT1cImNoYXJpdGFibGVfcHVycG9zZV9mb3JtW2NoYXJpdGFibGVfcHVycG9zZV1cIiAvPjxsYWJlbCBmb3I9XCJjaGFyaXRhYmxlLXB1cnBvc2UtZm9ybS1jaGFyaXRhYmxlLXB1cnBvc2UtZmllbGRcIiBjbGFzcz1cImdvdnVrLWxhYmVsIGdvdnVrLXJhZGlvc19fbGFiZWxcIj5ObywgbXkgb3JnYW5pc2F0aW9uIGRvZXMgbm90IHdvcmsgZXhjbHVzaXZlbHkgZm9yIGEgY2hhcml0YWJsZSBwdXJwb3NlLjwvbGFiZWw+PC9kaXY+PGRpdiBjbGFzcz1cImdvdnVrLXJhZGlvc19faXRlbVwiPjxpbnB1dCBpZD1cImNoYXJpdGFibGUtcHVycG9zZS1mb3JtLWNoYXJpdGFibGUtcHVycG9zZS10cnVlLWZpZWxkXCIgY2xhc3M9XCJnb3Z1ay1yYWRpb3NfX2lucHV0XCIgdHlwZT1cInJhZGlvXCIgdmFsdWU9XCJ0cnVlXCIgbmFtZT1cImNoYXJpdGFibGVfcHVycG9zZV9mb3JtW2NoYXJpdGFibGVfcHVycG9zZV1cIiAvPjxsYWJlbCBmb3I9XCJjaGFyaXRhYmxlLXB1cnBvc2UtZm9ybS1jaGFyaXRhYmxlLXB1cnBvc2UtdHJ1ZS1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstcmFkaW9zX19sYWJlbFwiPlllcywgbXkgb3JnYW5pc2F0aW9uIHdvcmtzIGV4Y2x1c2l2ZWx5IGZvciBhIGNoYXJpdGFibGUgcHVycG9zZS48L2xhYmVsPjwvZGl2PjwvZGl2PjwvZmllbGRzZXQ+PC9kaXY+XG5cbiAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGZvcm1ub3ZhbGlkYXRlPVwiZm9ybW5vdmFsaWRhdGVcIiBjbGFzcz1cImdvdnVrLWJ1dHRvblwiIGRhdGEtbW9kdWxlPVwiZ292dWstYnV0dG9uXCIgZGF0YS1wcmV2ZW50LWRvdWJsZS1jbGljaz1cInRydWVcIj5Db250aW51ZTwvYnV0dG9uPlxuPC9mb3JtPiAgPC9kaXY+XG48L2Rpdj5cblxuXG48L2JvZHk+XG48L2h0bWw+In19Cg==
+  recorded_at: Sun, 08 Mar 2026 17:20:17 GMT
+recorded_with: VCR 6.4.0

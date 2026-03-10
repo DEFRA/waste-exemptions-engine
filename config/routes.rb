@@ -37,11 +37,6 @@ WasteExemptionsEngine::Engine.routes.draw do
               path: "business-type",
               path_names: { new: "" }
 
-    resources :charity_register_free_forms,
-              only: %i[new create],
-              path: "charity-register-free",
-              path_names: { new: "" }
-
     resources :registration_number_forms,
               only: %i[new create],
               path: "registration-number",
@@ -180,6 +175,16 @@ WasteExemptionsEngine::Engine.routes.draw do
     resources :is_a_farmer_forms,
               only: %i[new create],
               path: "is-a-farmer",
+              path_names: { new: "" }
+
+    resources :charitable_purpose_forms,
+              only: %i[new create],
+              path: "charitable-purpose",
+              path_names: { new: "" }
+
+    resources :charitable_purpose_declaration_forms,
+              only: %i[new create],
+              path: "charitable-purpose-declaration",
               path_names: { new: "" }
 
     resources :site_grid_reference_forms,
