@@ -20,11 +20,19 @@ module WasteExemptionsEngine
     end
 
     def strategy_type
-      @strategy_type ||= if order.bucket&.farmer?
+      @strategy_type ||= if charitable_purpose?
+                           CharityChargingStrategy
+                         elsif order.bucket&.farmer?
                            FarmerChargingStrategy
                          else
                            RegularChargingStrategy
                          end
+    end
+
+    private
+
+    def charitable_purpose?
+      order.order_owner.try(:charitable_purpose) == true
     end
   end
 end
