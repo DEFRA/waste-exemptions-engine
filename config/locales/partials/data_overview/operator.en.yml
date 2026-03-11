@@ -7,10 +7,10 @@ en:
           business_type:
             limitedCompany_html: "the operator is a <span class=\"strong\">limited company</span>"
             limitedLiabilityPartnership_html: "the operator is a <span class=\"strong\">limited liability partnership</span>"
-            localAuthority_html: "the operator is a <span class=\"strong\">local authority or public body</span>"
+            localAuthority_html: "the operator is a <span class=\"strong\">public sector</span>"
             partnership_html: "the operator is a <span class=\"strong\">partnership</span>"
             soleTrader_html: "the operator is a <span class=\"strong\">individual or sole trader</span>"
-            charity_html: "the operator is a <span class=\"strong\">charity or trust</span>"
+            charity_html: "the operator is a <span class=\"strong\">third sector, community group or trust</span>"
           name:
             limitedCompany_html: "the company name is <span class=\"strong\">%{value}</span>"
             limitedLiabilityPartnership_html: "the partnership name is <span class=\"strong\">%{value}</span>"

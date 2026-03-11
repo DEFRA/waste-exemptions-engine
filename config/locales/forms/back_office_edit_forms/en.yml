@@ -31,10 +31,10 @@ en:
               operator_address: "Address"
             values:
               business_type:
-                charity: "Charity or trust"
+                charity: "Third sector, community group or trust"
                 limitedCompany: "Limited company"
                 limitedLiabilityPartnership: "Limited liability partnership"
-                localAuthority: "Local authority or public body"
+                localAuthority: "Public sector"
                 partnership: "Partnership"
                 soleTrader: "Individual or sole trader"
           contact:

@@ -7,8 +7,8 @@ en:
           limitedCompany: Limited company
           partnership: Partnership
           limitedLiabilityPartnership: Limited liability partnership
-          localAuthority: Local authority or public body
-          charity: Charity or trust
+          localAuthority: Public sector
+          charity: Third sector, community group or trust
         heading: Waste exemption registration %{registration_number}
         confirmation:
           heading: Waste exemption registration %{registration_number}
