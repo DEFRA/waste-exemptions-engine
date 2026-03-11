@@ -301,6 +301,11 @@ WasteExemptionsEngine::Engine.routes.draw do
                     as: "is-a-farmer",
                     on: :collection
 
+                get "charitable-purpose",
+                    to: "check_your_answers_forms#edit_charitable_purpose",
+                    as: "charitable-purpose",
+                    on: :collection
+
                 get "check-site-address",
                     to: "check_your_answers_forms#edit_site_address",
                     as: "check-site-address",

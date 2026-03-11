@@ -20,8 +20,9 @@ module WasteExemptionsEngine
       [
         exemptions_row,
         farm_rows,
+        charitable_purpose_row,
         site_location_rows
-      ].flatten
+      ].flatten.compact
     end
 
     private
@@ -206,6 +207,17 @@ module WasteExemptionsEngine
         change_url: "check-your-answers/is-a-farmer",
         renewal_change_url: "renewal-start/is-a-farmer",
         change_link_suffix: I18n.t("#{reg_i18n_scope}.is_a_farmer.change_link_suffix")
+      }
+    end
+
+    def charitable_purpose_row
+      return nil if charitable_purpose.nil?
+
+      {
+        title: I18n.t("#{reg_i18n_scope}.charitable_purpose.title"),
+        value: I18n.t("#{reg_i18n_scope}.charitable_purpose.value.#{charitable_purpose}"),
+        change_url: "check-your-answers/charitable-purpose",
+        change_link_suffix: I18n.t("#{reg_i18n_scope}.charitable_purpose.change_link_suffix")
       }
     end
 
