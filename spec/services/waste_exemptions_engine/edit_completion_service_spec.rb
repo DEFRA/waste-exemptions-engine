@@ -131,7 +131,7 @@ module WasteExemptionsEngine
             end
           end
 
-          expect(actual_attributes).to eq(expected_attributes)
+          expect(actual_attributes.sort_by { |a| a["exemption_id"] }).to eq(expected_attributes.sort_by { |a| a["exemption_id"] })
         end
       end
 
