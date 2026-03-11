@@ -22,9 +22,7 @@ module WasteExemptionsEngine
         farm_rows,
         charitable_purpose_row,
         site_location_rows
-      ].flatten
-
-      rows.compact
+      ].flatten.compact
     end
 
     private
