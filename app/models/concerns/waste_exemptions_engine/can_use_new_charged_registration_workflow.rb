@@ -132,11 +132,10 @@ module WasteExemptionsEngine
                       to: :charitable_purpose_form,
                       unless: :check_your_answers_flow?
 
-          # Charitable purpose -> Declaration (if yes)
+          # Charitable purpose -> Declaration (if yes, both normal and CYA flow)
           transitions from: :charitable_purpose_form,
                       to: :charitable_purpose_declaration_form,
-                      if: :charitable_purpose?,
-                      unless: :check_your_answers_flow?
+                      if: :charitable_purpose?
 
           # Charitable purpose -> Exemptions summary (if no)
           transitions from: :charitable_purpose_form,
@@ -580,6 +579,12 @@ module WasteExemptionsEngine
         event :edit_is_a_farmer do
           transitions from: :check_your_answers_form,
                       to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_charitable_purpose do
+          transitions from: :check_your_answers_form,
+                      to: :charitable_purpose_form,
                       if: :check_your_answers_flow?
         end
 
