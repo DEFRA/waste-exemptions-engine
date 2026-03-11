@@ -1,0 +1,25 @@
+en:
+  waste_exemptions_engine:
+    charitable_purpose_forms:
+      new:
+        title: &title Is your organisation a charity?
+        heading: *title
+        description_1: "To qualify as a charity and register free exemptions, your organisation must work exclusively for a charitable purpose, as described in the Charities Act."
+        description_2_html: "Read %{link} to help you decide if you qualify as a charity (opens in a new window)."
+        charitable_purpose_link: https://www.gov.uk/government/publications/charitable-purposes
+        charitable_purpose_link_text: Charity Commission guidance on charitable purposes
+        options:
+          "no": "No, my organisation does not work exclusively for a charitable purpose."
+          "yes": "Yes, my organisation works exclusively for a charitable purpose."
+        error_heading: A problem to fix
+        next_button: Continue
+  activemodel:
+    errors:
+      models:
+        waste_exemptions_engine/charitable_purpose_form:
+          attributes:
+            charitable_purpose:
+              inclusion: "Select yes or no"
+            token:
+              invalid_format: "The token is not valid"
+              missing: "The token is missing"

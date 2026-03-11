@@ -51,7 +51,7 @@
 
       <p class="govuk-body"><%= t(".charities_free") %></p>
 
-      <p class="govuk-body"><%= t(".see") %> <%= link_to t(".waste_exemption_charges_link"), "https://www.gov.uk/guidance/waste-exemptions-environmental-permits#waste-exemption-charges", target: "_blank" %> <%= t(".opens_in_new_window") %></p>
+      <p class="govuk-body"><%= t(".see") %> <%= link_to t(".waste_exemption_charges_link"), t(".waste_exemption_charges_url"), target: "_blank" %> <%= t(".opens_in_new_window") %></p>
 
       <%= f.govuk_submit %>
     <% end %>

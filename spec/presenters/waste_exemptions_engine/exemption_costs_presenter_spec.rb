@@ -170,6 +170,30 @@ module WasteExemptionsEngine
       end
     end
 
+    context "when the order owner has charitable_purpose set to true" do
+      let(:exemptions) { multiple_bands_multiple_exemptions }
+
+      before do
+        allow(order).to receive(:order_owner).and_return(double(charitable_purpose: true))
+      end
+
+      describe "#compliance_charge" do
+        it "returns £0 for any exemption" do
+          exemptions.each do |exemption|
+            expect(presenter.compliance_charge(exemption)).to eq("£0")
+          end
+        end
+      end
+
+      describe "#single_site_compliance_charge" do
+        it "returns £0 for any exemption" do
+          exemptions.each do |exemption|
+            expect(presenter.single_site_compliance_charge(exemption)).to eq("£0")
+          end
+        end
+      end
+    end
+
     describe "#registration_charge" do
       let(:exemptions) { multiple_bands_multiple_exemptions }
 

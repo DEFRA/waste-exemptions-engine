@@ -61,6 +61,16 @@ module WasteExemptionsEngine
           expect(service.strategy_type).to eq(FarmerChargingStrategy)
         end
       end
+
+      context "when the order owner has charitable_purpose set to true" do
+        before do
+          allow(order).to receive(:order_owner).and_return(double(charitable_purpose: true))
+        end
+
+        it "returns the charity charging strategy type" do
+          expect(service.strategy_type).to eq(CharityChargingStrategy)
+        end
+      end
     end
 
     # These methods should all pass through to the calculator:

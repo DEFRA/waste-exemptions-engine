@@ -29,7 +29,6 @@ module WasteExemptionsEngine
 
         # Operator details
         state :business_type_form
-        state :charity_register_free_form
         state :main_people_form
         state :registration_number_form
         state :check_registered_name_and_address_form
@@ -52,6 +51,9 @@ module WasteExemptionsEngine
         # Farm questions
         state :on_a_farm_form
         state :is_a_farmer_form
+        # Charitable purpose
+        state :charitable_purpose_form
+        state :charitable_purpose_declaration_form
         # Multisite questions
         state :is_multisite_registration_form
         state :sites_form
@@ -125,17 +127,27 @@ module WasteExemptionsEngine
                       to: :is_a_farmer_form,
                       unless: :check_your_answers_flow?
 
-          # Is a farmer -> Exemptions summary
+          # Is a farmer -> Charitable purpose
           transitions from: :is_a_farmer_form,
+                      to: :charitable_purpose_form,
+                      unless: :check_your_answers_flow?
+
+          # Charitable purpose -> Declaration (if yes, both normal and CYA flow)
+          transitions from: :charitable_purpose_form,
+                      to: :charitable_purpose_declaration_form,
+                      if: :charitable_purpose?
+
+          # Charitable purpose -> Exemptions summary (if no)
+          transitions from: :charitable_purpose_form,
+                      to: :exemptions_summary_form,
+                      unless: :check_your_answers_flow?
+
+          # Charitable purpose declaration -> Exemptions summary
+          transitions from: :charitable_purpose_declaration_form,
                       to: :exemptions_summary_form,
                       unless: :check_your_answers_flow?
 
           ### PARTNER FLOW
-
-          # Business type -> Charity Register Free (charity in front office)
-          transitions from: :business_type_form,
-                      to: :charity_register_free_form,
-                      if: :charity_in_front_office?
 
           # Business type -> Main people (partnership)
           transitions from: :business_type_form,
@@ -440,9 +452,15 @@ module WasteExemptionsEngine
                       to: :check_your_answers_form
 
           transitions from: :on_a_farm_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form
 
           transitions from: :is_a_farmer_form,
+                      to: :exemptions_summary_form
+
+          transitions from: :charitable_purpose_form,
+                      to: :check_your_answers_form
+
+          transitions from: :charitable_purpose_declaration_form,
                       to: :check_your_answers_form
 
           transitions from: :exemptions_summary_form,
@@ -561,6 +579,12 @@ module WasteExemptionsEngine
         event :edit_is_a_farmer do
           transitions from: :check_your_answers_form,
                       to: :is_a_farmer_form,
+                      if: :check_your_answers_flow?
+        end
+
+        event :edit_charitable_purpose do
+          transitions from: :check_your_answers_form,
+                      to: :charitable_purpose_form,
                       if: :check_your_answers_flow?
         end
 
@@ -687,13 +711,12 @@ module WasteExemptionsEngine
       temp_confirm_exemptions == false
     end
 
-    def charity_in_front_office?
-      business_type == "charity" &&
-        !WasteExemptionsEngine.configuration.host_is_back_office?
+    def charitable_purpose?
+      charitable_purpose == true
     end
 
     def skip_payment?
-      order&.order_calculator&.only_no_charge_exemptions?
+      charitable_purpose? || order&.order_calculator&.only_no_charge_exemptions?
     end
   end
 end
