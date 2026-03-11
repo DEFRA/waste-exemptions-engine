@@ -9,17 +9,17 @@ en:
             title: Exemptions
             change_link_suffix: "Exemptions selected"
           on_a_farm:
-            title: Will this waste operation take place on a farm?
+            title: On a farm?
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: Will this operation be carried out on a farm?
+            change_link_suffix: On a farm?
           is_a_farmer:
-            title: Are the waste exemptions used by a farmer or farming business?
+            title: Are you a farmer?
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: "Are these exemptions used by a farmer or farming business?"
+            change_link_suffix: "Are you a farmer?"
           site_address:
             title: Site address
             change_link_suffix: "Site address"
