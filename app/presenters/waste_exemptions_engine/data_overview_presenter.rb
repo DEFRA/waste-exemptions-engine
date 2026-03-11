@@ -17,7 +17,7 @@ module WasteExemptionsEngine
     end
 
     def registration_rows
-      rows = [
+      [
         exemptions_row,
         farm_rows,
         charitable_purpose_row,
