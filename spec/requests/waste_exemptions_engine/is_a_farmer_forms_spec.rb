@@ -19,11 +19,11 @@ module WasteExemptionsEngine
         expect(response.body).to have_tag("input", with: { type: "radio", name: "is_a_farmer_form[is_a_farmer]", checked: "checked", value: "true" })
       end
 
-      it "redirects back to check-your-answers when submitted" do
+      it "redirects to exemptions summary when submitted" do
         post "/waste_exemptions_engine/#{is_a_farmer_form.token}/is-a-farmer",
              params: { is_a_farmer_form: { is_a_farmer: true } }
 
-        expect(response).to redirect_to(check_your_answers_forms_path(is_a_farmer_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(is_a_farmer_form.token))
       end
     end
 
