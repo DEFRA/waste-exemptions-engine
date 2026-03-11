@@ -192,6 +192,35 @@ module WasteExemptionsEngine
         expect(presenter.registration_rows).to eq(expected_data)
       end
 
+      context "when charitable_purpose is set" do
+        before do
+          new_registration.charitable_purpose = true
+        end
+
+        it "includes the charitable purpose row" do
+          charitable_purpose_row = presenter.registration_rows.find { |row| row[:title] == "Charitable purpose" }
+
+          expect(charitable_purpose_row).to eq(
+            title: "Charitable purpose",
+            value: "Yes",
+            change_url: "check-your-answers/charitable-purpose",
+            change_link_suffix: "Charitable purpose"
+          )
+        end
+      end
+
+      context "when charitable_purpose is nil" do
+        before do
+          new_registration.charitable_purpose = nil
+        end
+
+        it "does not include the charitable purpose row" do
+          charitable_purpose_row = presenter.registration_rows.find { |row| row[:title] == "Charitable purpose" }
+
+          expect(charitable_purpose_row).to be_nil
+        end
+      end
+
       context "when the site address is a postal address" do
         before do
           new_registration.site_address = create(:transient_address, :site_address, :using_postal_address)

@@ -20,6 +20,12 @@ en:
               "true": "Yes"
               "false": "No"
             change_link_suffix: "Are these exemptions used by a farmer or farming business?"
+          charitable_purpose:
+            title: &charitable_purpose Charitable purpose
+            value:
+              "true": "Yes"
+              "false": "No"
+            change_link_suffix: *charitable_purpose
           site_address:
             title: Site address
             change_link_suffix: "Site address"
