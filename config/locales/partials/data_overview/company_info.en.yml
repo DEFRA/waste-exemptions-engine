@@ -12,8 +12,8 @@ en:
               limited_company: Limited company
               partnership: Partnership
               limited_liability_partnership: Limited liability partnership
-              local_authority: Local authority or public body
-              charity: Charity or trust
+              local_authority: Public sector
+              charity: Third sector, community group or trust
           business_name:
             operator_name:
               title: Operator name

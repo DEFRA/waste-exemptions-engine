@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://validator.w3.org/nu/?out=json&parser=html&showsource=yes
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html>\n<html>\n<head>\n  <title>Dummy</title>\n  <link rel=\"stylesheet\"
+        href=\"/assets/application-04024382391bb910584145d8113cf35ef376b55d125bb4516cebeb14ce788597.css\"
+        media=\"all\" data-turbolinks-track=\"true\" />\n  <script src=\"/assets/application-27610091f46e727a1f66f9cb19723cc85f0650e9104ebef84934c9e9cc9b5eb0.js\"
+        data-turbolinks-track=\"true\"></script>\n  \n</head>\n<body>\n\n\n\n<div
+        class=\"govuk-grid-row\">\n  <div class=\"govuk-grid-column-two-thirds\">\n
+        \   <form class=\"new_charitable_purpose_declaration_form\" id=\"new_charitable_purpose_declaration_form\"
+        action=\"/waste_exemptions_engine/WTh8zrrrTn6yk8xmfG2m1qwP/charitable-purpose-declaration\"
+        accept-charset=\"UTF-8\" method=\"post\">\n      <div class=\"govuk-grid-row\">\n
+        \ <div class=\"govuk-grid-column-two-thirds\">\n    \n  </div>\n</div>\n\n\n
+        \     <h1 class=\"govuk-heading-l\">Confirm that your organisation works exclusively
+        for a charitable purpose</h1>\n\n      <div class=\"govuk-form-group\"><fieldset
+        class=\"govuk-fieldset\"><legend class=\"govuk-fieldset__legend govuk-fieldset__legend--m
+        govuk-visually-hidden\">Confirm that your organisation works exclusively for
+        a charitable purpose</legend><div class=\"govuk-checkboxes\" data-module=\"govuk-checkboxes\">\n\n
+        \       <div class=\"govuk-checkboxes__item\"><input name=\"charitable_purpose_declaration_form[charitable_purpose_declaration]\"
+        type=\"hidden\" value=\"0\" autocomplete=\"off\" /><input id=\"charitable-purpose-declaration-form-charitable-purpose-declaration-1-field\"
+        class=\"govuk-checkboxes__input\" type=\"checkbox\" value=\"1\" name=\"charitable_purpose_declaration_form[charitable_purpose_declaration]\"
+        /><label for=\"charitable-purpose-declaration-form-charitable-purpose-declaration-1-field\"
+        class=\"govuk-label govuk-checkboxes__label\">I confirm that my organisation
+        works exclusively for a charitable purpose.</label></div>\n</div></fieldset></div>\n
+        \     <button type=\"submit\" formnovalidate=\"formnovalidate\" class=\"govuk-button\"
+        data-module=\"govuk-button\" data-prevent-double-click=\"true\">Continue</button>\n</form>
+        \ </div>\n</div>\n\n\n</body>\n</html>\n"
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Mar 2026 13:27:20 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9da2a7fda990beff-LHR
+      Accept-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - content-type
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 validator.w3.org
+      X-Request-Id:
+      - 9da2a7fda990beff
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=3xg_K_Zjg7.FWYdcz3sZ1zR2AwgXig1zqtYKsgjtmms-1773149240-1.0.1.1-Xqk7RXCfc00RIYPka9nmnEz6rEYK6UNjDhV6K3fNjhTehQEpUd6bfyp1Qj5QGUBK3AIJj.9A3VyAWTtZEfq1WhUgA5jhSuiKnqpQ4rxDrzw;
+        path=/; expires=Tue, 10-Mar-26 13:57:20 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ2ZXJzaW9uIjoiMjYuMy4xMCIsIm1lc3NhZ2VzIjpbeyJ0eXBlIjoiaW5mbyIsImxhc3RMaW5lIjo1LCJsYXN0Q29sdW1uIjoxNjQsImZpcnN0Q29sdW1uIjozLCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiIvdGl0bGU+XG4gIDxsaW5rIHJlbD1cInN0eWxlc2hlZXRcIiBocmVmPVwiL2Fzc2V0cy9hcHBsaWNhdGlvbi0wNDAyNDM4MjM5MWJiOTEwNTg0MTQ1ZDgxMTNjZjM1ZWYzNzZiNTVkMTI1YmI0NTE2Y2ViZWIxNGNlNzg4NTk3LmNzc1wiIG1lZGlhPVwiYWxsXCIgZGF0YS10dXJib2xpbmtzLXRyYWNrPVwidHJ1ZVwiIC8+XG4gIDxzYyIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxNjJ9LHsidHlwZSI6ImVycm9yIiwibGFzdExpbmUiOjI3LCJsYXN0Q29sdW1uIjoxNzEsImZpcnN0Q29sdW1uIjo0NSwibWVzc2FnZSI6IkFuIOKAnGlucHV04oCdIGVsZW1lbnQgd2l0aCBhIOKAnHR5cGXigJ0gYXR0cmlidXRlIHdob3NlIHZhbHVlIGlzIOKAnGhpZGRlbuKAnSBtdXN0IG5vdCBoYXZlIGFuIOKAnGF1dG9jb21wbGV0ZeKAnSBhdHRyaWJ1dGUgd2hvc2UgdmFsdWUgaXMg4oCcb27igJ0gb3Ig4oCcb2Zm4oCdLiIsImV4dHJhY3QiOiJlc19faXRlbVwiPjxpbnB1dCBuYW1lPVwiY2hhcml0YWJsZV9wdXJwb3NlX2RlY2xhcmF0aW9uX2Zvcm1bY2hhcml0YWJsZV9wdXJwb3NlX2RlY2xhcmF0aW9uXVwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIjBcIiBhdXRvY29tcGxldGU9XCJvZmZcIiAvPjxpbnB1dCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxMjd9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MjcsImxhc3RDb2x1bW4iOjE3MSwiZmlyc3RDb2x1bW4iOjQ1LCJtZXNzYWdlIjoiVHJhaWxpbmcgc2xhc2ggb24gdm9pZCBlbGVtZW50cyBoYXMgbm8gZWZmZWN0IGFuZCBpbnRlcmFjdHMgYmFkbHkgd2l0aCB1bnF1b3RlZCBhdHRyaWJ1dGUgdmFsdWVzLiIsImV4dHJhY3QiOiJlc19faXRlbVwiPjxpbnB1dCBuYW1lPVwiY2hhcml0YWJsZV9wdXJwb3NlX2RlY2xhcmF0aW9uX2Zvcm1bY2hhcml0YWJsZV9wdXJwb3NlX2RlY2xhcmF0aW9uXVwiIHR5cGU9XCJoaWRkZW5cIiB2YWx1ZT1cIjBcIiBhdXRvY29tcGxldGU9XCJvZmZcIiAvPjxpbnB1dCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoxMjd9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MjcsImxhc3RDb2x1bW4iOjM5MywiZmlyc3RDb2x1bW4iOjE3MiwibWVzc2FnZSI6IlRyYWlsaW5nIHNsYXNoIG9uIHZvaWQgZWxlbWVudHMgaGFzIG5vIGVmZmVjdCBhbmQgaW50ZXJhY3RzIGJhZGx5IHdpdGggdW5xdW90ZWQgYXR0cmlidXRlIHZhbHVlcy4iLCJleHRyYWN0IjoiZT1cIm9mZlwiIC8+PGlucHV0IGlkPVwiY2hhcml0YWJsZS1wdXJwb3NlLWRlY2xhcmF0aW9uLWZvcm0tY2hhcml0YWJsZS1wdXJwb3NlLWRlY2xhcmF0aW9uLTEtZmllbGRcIiBjbGFzcz1cImdvdnVrLWNoZWNrYm94ZXNfX2lucHV0XCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxXCIgbmFtZT1cImNoYXJpdGFibGVfcHVycG9zZV9kZWNsYXJhdGlvbl9mb3JtW2NoYXJpdGFibGVfcHVycG9zZV9kZWNsYXJhdGlvbl1cIiAvPjxsYWJlbCIsImhpbGl0ZVN0YXJ0IjoxMCwiaGlsaXRlTGVuZ3RoIjoyMjJ9LHsidHlwZSI6ImluZm8iLCJsYXN0TGluZSI6MiwiZmlyc3RMaW5lIjoxLCJsYXN0Q29sdW1uIjo2LCJmaXJzdENvbHVtbiI6MTYsInN1YlR5cGUiOiJ3YXJuaW5nIiwibWVzc2FnZSI6IkNvbnNpZGVyIGFkZGluZyBhIOKAnGxhbmfigJ0gYXR0cmlidXRlIHRvIHRoZSDigJxodG1s4oCdIHN0YXJ0IHRhZyB0byBkZWNsYXJlIHRoZSBsYW5ndWFnZSBvZiB0aGlzIGRvY3VtZW50LiIsImV4dHJhY3QiOiJUWVBFIGh0bWw+XG48aHRtbD5cbjxoZWFkIiwiaGlsaXRlU3RhcnQiOjEwLCJoaWxpdGVMZW5ndGgiOjd9XSwic291cmNlIjp7InR5cGUiOiJ0ZXh0L2h0bWwiLCJlbmNvZGluZyI6IlVURi04IiwiY29kZSI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWw+XG48aGVhZD5cbiAgPHRpdGxlPkR1bW15PC90aXRsZT5cbiAgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLTA0MDI0MzgyMzkxYmI5MTA1ODQxNDVkODExM2NmMzVlZjM3NmI1NWQxMjViYjQ1MTZjZWJlYjE0Y2U3ODg1OTcuY3NzXCIgbWVkaWE9XCJhbGxcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCIgLz5cbiAgPHNjcmlwdCBzcmM9XCIvYXNzZXRzL2FwcGxpY2F0aW9uLTI3NjEwMDkxZjQ2ZTcyN2ExZjY2ZjljYjE5NzIzY2M4NWYwNjUwZTkxMDRlYmVmODQ5MzRjOWU5Y2M5YjVlYjAuanNcIiBkYXRhLXR1cmJvbGlua3MtdHJhY2s9XCJ0cnVlXCI+PC9zY3JpcHQ+XG4gIFxuPC9oZWFkPlxuPGJvZHk+XG5cblxuXG48ZGl2IGNsYXNzPVwiZ292dWstZ3JpZC1yb3dcIj5cbiAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtY29sdW1uLXR3by10aGlyZHNcIj5cbiAgICA8Zm9ybSBjbGFzcz1cIm5ld19jaGFyaXRhYmxlX3B1cnBvc2VfZGVjbGFyYXRpb25fZm9ybVwiIGlkPVwibmV3X2NoYXJpdGFibGVfcHVycG9zZV9kZWNsYXJhdGlvbl9mb3JtXCIgYWN0aW9uPVwiL3dhc3RlX2V4ZW1wdGlvbnNfZW5naW5lL1dUaDh6cnJyVG42eWs4eG1mRzJtMXF3UC9jaGFyaXRhYmxlLXB1cnBvc2UtZGVjbGFyYXRpb25cIiBhY2NlcHQtY2hhcnNldD1cIlVURi04XCIgbWV0aG9kPVwicG9zdFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImdvdnVrLWdyaWQtcm93XCI+XG4gIDxkaXYgY2xhc3M9XCJnb3Z1ay1ncmlkLWNvbHVtbi10d28tdGhpcmRzXCI+XG4gICAgXG4gIDwvZGl2PlxuPC9kaXY+XG5cblxuICAgICAgPGgxIGNsYXNzPVwiZ292dWstaGVhZGluZy1sXCI+Q29uZmlybSB0aGF0IHlvdXIgb3JnYW5pc2F0aW9uIHdvcmtzIGV4Y2x1c2l2ZWx5IGZvciBhIGNoYXJpdGFibGUgcHVycG9zZTwvaDE+XG5cbiAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1mb3JtLWdyb3VwXCI+PGZpZWxkc2V0IGNsYXNzPVwiZ292dWstZmllbGRzZXRcIj48bGVnZW5kIGNsYXNzPVwiZ292dWstZmllbGRzZXRfX2xlZ2VuZCBnb3Z1ay1maWVsZHNldF9fbGVnZW5kLS1tIGdvdnVrLXZpc3VhbGx5LWhpZGRlblwiPkNvbmZpcm0gdGhhdCB5b3VyIG9yZ2FuaXNhdGlvbiB3b3JrcyBleGNsdXNpdmVseSBmb3IgYSBjaGFyaXRhYmxlIHB1cnBvc2U8L2xlZ2VuZD48ZGl2IGNsYXNzPVwiZ292dWstY2hlY2tib3hlc1wiIGRhdGEtbW9kdWxlPVwiZ292dWstY2hlY2tib3hlc1wiPlxuXG4gICAgICAgIDxkaXYgY2xhc3M9XCJnb3Z1ay1jaGVja2JveGVzX19pdGVtXCI+PGlucHV0IG5hbWU9XCJjaGFyaXRhYmxlX3B1cnBvc2VfZGVjbGFyYXRpb25fZm9ybVtjaGFyaXRhYmxlX3B1cnBvc2VfZGVjbGFyYXRpb25dXCIgdHlwZT1cImhpZGRlblwiIHZhbHVlPVwiMFwiIGF1dG9jb21wbGV0ZT1cIm9mZlwiIC8+PGlucHV0IGlkPVwiY2hhcml0YWJsZS1wdXJwb3NlLWRlY2xhcmF0aW9uLWZvcm0tY2hhcml0YWJsZS1wdXJwb3NlLWRlY2xhcmF0aW9uLTEtZmllbGRcIiBjbGFzcz1cImdvdnVrLWNoZWNrYm94ZXNfX2lucHV0XCIgdHlwZT1cImNoZWNrYm94XCIgdmFsdWU9XCIxXCIgbmFtZT1cImNoYXJpdGFibGVfcHVycG9zZV9kZWNsYXJhdGlvbl9mb3JtW2NoYXJpdGFibGVfcHVycG9zZV9kZWNsYXJhdGlvbl1cIiAvPjxsYWJlbCBmb3I9XCJjaGFyaXRhYmxlLXB1cnBvc2UtZGVjbGFyYXRpb24tZm9ybS1jaGFyaXRhYmxlLXB1cnBvc2UtZGVjbGFyYXRpb24tMS1maWVsZFwiIGNsYXNzPVwiZ292dWstbGFiZWwgZ292dWstY2hlY2tib3hlc19fbGFiZWxcIj5JIGNvbmZpcm0gdGhhdCBteSBvcmdhbmlzYXRpb24gd29ya3MgZXhjbHVzaXZlbHkgZm9yIGEgY2hhcml0YWJsZSBwdXJwb3NlLjwvbGFiZWw+PC9kaXY+XG48L2Rpdj48L2ZpZWxkc2V0PjwvZGl2PlxuICAgICAgPGJ1dHRvbiB0eXBlPVwic3VibWl0XCIgZm9ybW5vdmFsaWRhdGU9XCJmb3Jtbm92YWxpZGF0ZVwiIGNsYXNzPVwiZ292dWstYnV0dG9uXCIgZGF0YS1tb2R1bGU9XCJnb3Z1ay1idXR0b25cIiBkYXRhLXByZXZlbnQtZG91YmxlLWNsaWNrPVwidHJ1ZVwiPkNvbnRpbnVlPC9idXR0b24+XG48L2Zvcm0+ICA8L2Rpdj5cbjwvZGl2PlxuXG5cbjwvYm9keT5cbjwvaHRtbD4ifX0K
+  recorded_at: Tue, 10 Mar 2026 13:27:20 GMT
+recorded_with: VCR 6.4.0
