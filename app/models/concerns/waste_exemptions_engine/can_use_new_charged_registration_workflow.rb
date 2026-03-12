@@ -458,10 +458,10 @@ module WasteExemptionsEngine
                       to: :exemptions_summary_form
 
           transitions from: :charitable_purpose_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form
 
           transitions from: :charitable_purpose_declaration_form,
-                      to: :check_your_answers_form
+                      to: :exemptions_summary_form
 
           transitions from: :exemptions_summary_form,
                       to: :check_your_answers_form
