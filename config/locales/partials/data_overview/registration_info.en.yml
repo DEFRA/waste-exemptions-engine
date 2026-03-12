@@ -3,34 +3,40 @@ en:
     shared:
       data_overview:
         registration_info:
-          subheading: Registration details
-          table_summary: The information you've given us about the registration
+          subheading: "Registration details"
+          table_summary: "The information you've given us about the registration"
           exemptions:
-            title: Exemptions
+            title: "Exemptions"
             change_link_suffix: "Exemptions selected"
           on_a_farm:
-            title: On a farm?
+            title: "On a farm?"
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: On a farm?
+            change_link_suffix: "On a farm?"
           is_a_farmer:
-            title: Are you a farmer?
+            title: "Are you a farmer?"
             value:
               "true": "Yes"
               "false": "No"
             change_link_suffix: "Are you a farmer?"
+          charitable_purpose:
+            title: "Charitable purpose"
+            value:
+              "true": "Yes"
+              "false": "No"
+            change_link_suffix: "Charitable purpose"
           site_address:
-            title: Site address
+            title: "Site address"
             change_link_suffix: "Site address"
           site_details:
-            title: Site details
+            title: "Site details"
             value: "Number of sites: %{count}"
             change_link_suffix: "Site details"
           grid_reference:
-            title: Grid reference
+            title: "Grid reference"
             change_link_suffix: "Grid reference"
           site_description:
-            title: Site description
+            title: "Site description"
             change_link_suffix: "Site description"
-          change_link: Change
+          change_link: "Change"
