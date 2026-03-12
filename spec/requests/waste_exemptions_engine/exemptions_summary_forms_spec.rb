@@ -74,9 +74,9 @@ module WasteExemptionsEngine
         expect(response.code).to eq(status_code.to_s)
       end
 
-      it "redirects to the operator postcode form" do
+      it "redirects to the business type form" do
         post request_path, params: request_body
-        expect(response).to redirect_to(operator_postcode_forms_path(form.token))
+        expect(response).to redirect_to(business_type_forms_path(form.token))
       end
     end
 
