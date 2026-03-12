@@ -20,6 +20,12 @@ en:
               "true": "Yes"
               "false": "No"
             change_link_suffix: "Are you a farmer?"
+          charitable_purpose:
+            title: "Charitable purpose"
+            value:
+              "true": "Yes"
+              "false": "No"
+            change_link_suffix: "Charitable purpose"
           site_address:
             title: Site address
             change_link_suffix: "Site address"
