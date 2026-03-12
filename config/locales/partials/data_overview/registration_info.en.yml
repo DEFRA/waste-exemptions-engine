@@ -6,6 +6,7 @@ en:
           subheading: "Registration details"
           table_summary: "The information you've given us about the registration"
           exemptions:
+<<<<<<< Updated upstream
             title: "Exemptions"
             change_link_suffix: "Exemptions selected"
           on_a_farm:
@@ -16,27 +17,55 @@ en:
             change_link_suffix: "On a farm?"
           is_a_farmer:
             title: "Are you a farmer?"
+=======
+            title: Exemptions
+            change_link_suffix: Exemptions selected
+          on_a_farm:
+            title: &on_a_farm On a farm?
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: "Are you a farmer?"
+            change_link_suffix: *on_a_farm
+          is_a_farmer:
+            title: &is_a_farmer Are you a farmer?
+>>>>>>> Stashed changes
+            value:
+              "true": "Yes"
+              "false": "No"
+            change_link_suffix: *is_a_farmer
           charitable_purpose:
-            title: "Charitable purpose"
+            title: &charitable_purpose Charitable purpose
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: "Charitable purpose"
+            change_link_suffix: *charitable_purpose
           site_address:
+<<<<<<< Updated upstream
             title: "Site address"
             change_link_suffix: "Site address"
           site_details:
             title: "Site details"
+=======
+            title: &site_address Site address
+            change_link_suffix: *site_address
+          site_details:
+            title: &site_details Site details
+>>>>>>> Stashed changes
             value: "Number of sites: %{count}"
-            change_link_suffix: "Site details"
+            change_link_suffix: *site_details
           grid_reference:
+<<<<<<< Updated upstream
             title: "Grid reference"
             change_link_suffix: "Grid reference"
           site_description:
             title: "Site description"
             change_link_suffix: "Site description"
           change_link: "Change"
+=======
+            title: &grid_reference Grid reference
+            change_link_suffix: *grid_reference
+          site_description:
+            title: &site_description Site description
+            change_link_suffix: *site_description
+          change_link: Change
+>>>>>>> Stashed changes
