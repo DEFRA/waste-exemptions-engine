@@ -113,3 +113,25 @@ RSpec/Output:
   Exclude:
     - spec/rails_helper.rb
     - spec/dummy/**/*
+
+Style/OneClassPerFile:
+  # Legacy spec exclusions: these files predate current style rules.
+  Exclude:
+    - spec/models/concerns/waste_exemptions_engine/can_have_registration_attributes_spec.rb
+    - spec/models/concerns/waste_exemptions_engine/can_have_view_certificate_token_spec.rb
+    - spec/models/concerns/waste_exemptions_engine/can_sort_exemptions_spec.rb
+    - spec/validators/waste_exemptions_engine/address_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/manual_address_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/matching_email_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/operator_name_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/optional_email_form_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/optional_email_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/payment_type_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/person_name_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/postcode_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/reusing_address_for_site_address_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/site_description_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/start_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/waste_activities_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/exemptions_validator_spec.rb
+    - spec/validators/waste_exemptions_engine/registration_lookup_validator_spec.rb

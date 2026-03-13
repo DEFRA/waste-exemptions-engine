@@ -31,7 +31,7 @@ RSpec::Matchers.define :have_valid_html do
   end
 
   failure_message do |_actual|
-    "Invalid HTML: \n#{@results.errors.map(&:to_s).join("\n")}"
+    "Invalid HTML: \n#{@results.errors.join("\n")}"
   end
 end
 

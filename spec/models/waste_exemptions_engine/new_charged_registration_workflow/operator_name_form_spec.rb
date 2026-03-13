@@ -12,16 +12,16 @@ module WasteExemptionsEngine
       context "when the registration is not farm_affiliated" do
         before { allow(new_registration).to receive(:farm_affiliated?).and_return(false) }
 
-        it "changes to waste_activities_form after the 'next' event" do
-          expect(new_registration).to transition_from(current_state).to(:waste_activities_form).on_event(:next)
+        it "changes to operator_postcode_form after the 'next' event" do
+          expect(new_registration).to transition_from(current_state).to(:operator_postcode_form).on_event(:next)
         end
       end
 
       context "when the registration is farm_affiliated" do
         before { allow(new_registration).to receive(:farm_affiliated?).and_return(true) }
 
-        it "still changes to waste_activities_form after the 'next' event" do
-          expect(new_registration).to transition_from(current_state).to(:waste_activities_form).on_event(:next)
+        it "still changes to operator_postcode_form after the 'next' event" do
+          expect(new_registration).to transition_from(current_state).to(:operator_postcode_form).on_event(:next)
         end
       end
     end
