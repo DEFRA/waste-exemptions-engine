@@ -118,9 +118,9 @@ module WasteExemptionsEngine
                       to: :register_in_wales_form,
                       if: :should_register_in_wales?
 
-          # Location -> Business type
+          # Location -> Waste activities
           transitions from: :location_form,
-                      to: :business_type_form
+                      to: :waste_activities_form
 
           # On a farm -> Is a farmer
           transitions from: :on_a_farm_form,
@@ -168,9 +168,9 @@ module WasteExemptionsEngine
 
           ### PARTNER && NON COMPANY FLOW
 
-          # Operator name -> Waste activities
+          # Operator name -> Operator postcode
           transitions from: :operator_name_form,
-                      to: :waste_activities_form,
+                      to: :operator_postcode_form,
                       unless: :check_your_answers_flow?
 
           ### COMPANY FLOW (limited and llp))
@@ -188,9 +188,9 @@ module WasteExemptionsEngine
                       to: :incorrect_company_form,
                       if: :companies_house_details_incorrect?
 
-          # Check registered name and address -> Waste activities
+          # Check registered name and address -> Operator postcode
           transitions from: :check_registered_name_and_address_form,
-                      to: :waste_activities_form,
+                      to: :operator_postcode_form,
                       unless: :check_your_answers_flow?
 
           # Incorrect company -> Registration number
@@ -249,9 +249,9 @@ module WasteExemptionsEngine
                       to: :on_a_farm_form,
                       unless: :check_your_answers_flow?
 
-          # Exemptions Summary -> Operator Postcode
+          # Exemptions Summary -> Business type
           transitions from: :exemptions_summary_form,
-                      to: :operator_postcode_form,
+                      to: :business_type_form,
                       unless: :check_your_answers_flow?
 
           # Confirm Exemptions -> Waste Activities
