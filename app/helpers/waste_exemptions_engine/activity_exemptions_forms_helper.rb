@@ -21,6 +21,13 @@ module WasteExemptionsEngine
       farming_exemption_ids.include?(exemption.id.to_s)
     end
 
+    def farming_capped_charge_amount
+      bucket = WasteExemptionsEngine::Bucket.farmer_bucket
+      return "£0" unless bucket&.initial_compliance_charge
+
+      "£#{format_pence_as_pounds(bucket.initial_compliance_charge.charge_amount)}"
+    end
+
     def farming_exemption_ids
       @farming_exemption_ids ||= begin
         farmer_bucket = WasteExemptionsEngine::Bucket.farmer_bucket
