@@ -68,6 +68,21 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#farming_capped_charge_amount" do
+      context "when a farmer bucket exists" do
+        let(:farmer_bucket) do
+          create(:bucket, bucket_type: "farmer",
+                          initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 8800))
+        end
+
+        before { farmer_bucket }
+
+        it "returns the formatted farmer bucket charge" do
+          expect(helper.farming_capped_charge_amount).to eq("£88")
+        end
+      end
+    end
+
     describe "#farming_exemption?" do
       let(:exemption) { create(:exemption) }
 

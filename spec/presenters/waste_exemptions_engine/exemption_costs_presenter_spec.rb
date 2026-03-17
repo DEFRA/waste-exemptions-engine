@@ -468,6 +468,43 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#band_3_compliance_charge_amount" do
+      let(:exemptions) { [] }
+
+      context "when band with sequence 3 exists" do
+        let(:band_seq_3) do
+          create(:band,
+                 sequence: 3,
+                 initial_compliance_charge: build(:charge, :initial_compliance_charge, charge_amount: 3000),
+                 additional_compliance_charge: build(:charge, :additional_compliance_charge, charge_amount: 3000))
+        end
+
+        before { band_seq_3 }
+
+        it "returns the formatted additional compliance charge" do
+          expect(presenter.band_3_compliance_charge_amount).to eq("£30")
+        end
+      end
+
+      context "when band with sequence 3 does not exist" do
+        it "returns £0" do
+          expect(presenter.band_3_compliance_charge_amount).to eq("£0")
+        end
+      end
+    end
+
+    describe "#capped_farming_charge_amount" do
+      let(:exemptions) { [] }
+
+      context "when farmer bucket exists" do
+        it "returns the formatted farmer bucket charge" do
+          bucket = Bucket.farmer_bucket
+          expected = "£#{format('%.2f', bucket.initial_compliance_charge.charge_amount / 100.0)}"
+          expect(presenter.capped_farming_charge_amount).to eq(expected)
+        end
+      end
+    end
+
     describe "#only_t28_exemption?" do
       context "when order has only T28 exemption" do
         let(:exemptions) { [create(:exemption, code: "T28")] }

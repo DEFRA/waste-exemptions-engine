@@ -113,6 +113,20 @@ module WasteExemptionsEngine
       exemption.band.discount_possible?
     end
 
+    def band_3_compliance_charge_amount
+      band = Band.includes(:additional_compliance_charge).find_by(sequence: 3)
+      return format_currency(0) unless band&.additional_compliance_charge
+
+      format_charge_as_currency(band.additional_compliance_charge)
+    end
+
+    def capped_farming_charge_amount
+      bucket = Bucket.farmer_bucket
+      return format_currency(0) unless bucket&.initial_compliance_charge
+
+      format_charge_as_currency(bucket.initial_compliance_charge)
+    end
+
     def only_t28_exemption?
       @order.exemptions.map(&:code) == ["T28"]
     end

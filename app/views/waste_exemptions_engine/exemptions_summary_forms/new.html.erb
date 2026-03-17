@@ -124,11 +124,11 @@
       <p class="govuk-body"><%= is_multisite ? t(".site_payment_info") : t(".single_site_payment_info") %></p>
       <ul class="govuk-list govuk-list--bullet">
         <% if @exemptions_summary_form.farm_exemptions_selected? %>
-          <li><%= t(".capped_farming_charge") %></li>
+          <li><%= t(".capped_farming_charge", charge_amount: @exemptions_summary_form.capped_farming_charge_amount) %></li>
         <% end %>
         <li><%= t(".full_compliance_charge") %></li>
         <li><%= t(".discounted_charge") %></li>
-        <li><%= t(".band_3_charge") %></li>
+        <li><%= t(".band_3_charge", charge_amount: @exemptions_summary_form.band_3_compliance_charge_amount) %></li>
         <% unless is_multisite %>
           <li><%= t(".registration_fee", charge_amount: @exemptions_summary_form.registration_charge) %></li>
         <% end %>
