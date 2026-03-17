@@ -116,11 +116,13 @@
       </tbody>
     </table>
 
+    <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
+
     <% if @exemptions_summary_form.only_t28_exemption? %>
-      <br>
       <p class="govuk-body"><%= t(".t28_no_charge") %></p>
+    <% elsif @exemptions_summary_form.charitable_purpose? %>
+      <p class="govuk-body"><%= t(".charitable_purpose_payment_info") %></p>
     <% else %>
-      <h2 class="govuk-heading-m"><%= t(".overview_heading") %></h2>
       <p class="govuk-body"><%= is_multisite ? t(".site_payment_info") : t(".single_site_payment_info") %></p>
       <ul class="govuk-list govuk-list--bullet">
         <% if @exemptions_summary_form.farm_exemptions_selected? %>

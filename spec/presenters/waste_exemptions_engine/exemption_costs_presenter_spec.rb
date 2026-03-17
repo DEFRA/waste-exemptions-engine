@@ -531,6 +531,50 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#charitable_purpose?" do
+      let(:exemptions) { [] }
+
+      context "when the order owner has charitable_purpose set to true" do
+        before do
+          allow(order).to receive(:order_owner).and_return(double(charitable_purpose: true))
+        end
+
+        it "returns true" do
+          expect(presenter.charitable_purpose?).to be(true)
+        end
+      end
+
+      context "when the order owner has charitable_purpose set to false" do
+        before do
+          allow(order).to receive(:order_owner).and_return(double(charitable_purpose: false))
+        end
+
+        it "returns false" do
+          expect(presenter.charitable_purpose?).to be(false)
+        end
+      end
+
+      context "when the order owner is nil" do
+        before do
+          allow(order).to receive(:order_owner).and_return(nil)
+        end
+
+        it "returns false" do
+          expect(presenter.charitable_purpose?).to be(false)
+        end
+      end
+
+      context "when the order owner does not respond to charitable_purpose" do
+        before do
+          allow(order).to receive(:order_owner).and_return(double)
+        end
+
+        it "returns false" do
+          expect(presenter.charitable_purpose?).to be(false)
+        end
+      end
+    end
+
     describe "#t28_exemption_present?" do
       context "when order has T28 exemption" do
         let(:exemptions) { [create(:exemption, code: "T28"), create(:exemption, code: "U1")] }
