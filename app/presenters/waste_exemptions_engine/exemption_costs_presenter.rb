@@ -135,11 +135,11 @@ module WasteExemptionsEngine
       @order.exemptions.map(&:code).include?("T28")
     end
 
-    private
-
     def charitable_purpose?
       order.order_owner.try(:charitable_purpose) == true
     end
+
+    private
 
     def highest_band
       @highest_band ||= @order.highest_band
