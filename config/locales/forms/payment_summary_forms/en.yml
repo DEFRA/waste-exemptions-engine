@@ -4,18 +4,17 @@ en:
       new:
         title: Payment summary
         heading: Payment summary
-        payment_summary: Payment summary
+        payment_summary: Charges
         charges:
           compliance_charge: Compliance charge
           registration_charge: Registration charge
           total_charge: Total amount due
-        vat_note: All charges are outside the scope of VAT.
+        vat_note: All charges are exempt from VAT.
         temp_payment_method_legend: Make a payment
         payment_options:
           card: Pay by credit, debit card, Google or Apple Pay
           card_hint: You will be transferred to our secure GovPay site. We accept MasterCard, Maestro and Visa.
-          bank: Pay by bank transfer and then email us to confirm payment
-          bank_hint: We cannot send you a confirmation email until your payment clears.
+          bank: Pay by bank transfer
         payment_submit_button_label: Proceed to payment
   activemodel:
     errors:
