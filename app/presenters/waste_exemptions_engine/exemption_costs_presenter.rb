@@ -19,9 +19,7 @@ module WasteExemptionsEngine
         non_farm_exemptions = all_exemptions.reject { |e| farmer_bucket_exemption?(e) }
 
         sorted_farm_exemptions = sorted_exemptions(farm_exemptions)
-        sorted_non_farm_exemptions = non_farm_exemptions.sort_by do |e|
-          [-e.band.initial_compliance_charge.charge_amount, e.code]
-        end
+        sorted_non_farm_exemptions = sorted_exemptions(non_farm_exemptions)
 
         sorted_farm_exemptions + sorted_non_farm_exemptions
       end
