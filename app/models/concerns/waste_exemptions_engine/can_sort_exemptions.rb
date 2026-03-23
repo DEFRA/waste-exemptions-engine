@@ -27,8 +27,8 @@ module WasteExemptionsEngine
       def sort_order(category, number)
         case category
         when "U" then [0, number]
-        when "T" then [1, number]
-        when "D" then [2, number]
+        when "D" then [1, number]
+        when "T" then [2, number]
         when "S" then [3, number]
         else [4, number] # In case there's an unexpected category
         end

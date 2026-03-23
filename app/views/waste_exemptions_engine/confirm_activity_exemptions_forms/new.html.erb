@@ -7,16 +7,11 @@
 
       <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
 
-      <div class="govuk-body">
-        <% exemptions_by_band(selected_exemptions(@transient_registration.temp_exemptions)).each do |band| %>
-          <section class="govuk-!-margin-bottom-6">
-            <h2 class="govuk-heading-m"><%= band[:name] %> exemptions</h2>
-            <% band[:exemptions].each do |exemption| %>
-              <p><%= exemption.code %> <%= exemption.summary %></p>
-            <% end %>
-          </section>
-        <% end %>
-      </div>
+      <p class="govuk-body"><%= t(".description") %></p>
+
+      <% selected_exemptions(@transient_registration.temp_exemptions).each do |exemption| %>
+        <p class="govuk-body govuk-!-font-weight-bold"><%= exemption.code %> <%= exemption.summary %></p>
+      <% end %>
 
       <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_activity_exemptions_form.errors[:workflow_state].any? %>">
         <%= f.govuk_collection_radio_buttons :temp_confirm_exemptions,

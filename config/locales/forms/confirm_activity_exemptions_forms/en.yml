@@ -3,15 +3,16 @@ en:
     confirm_activity_exemptions_forms:
       new:
         back_link: Back
-        heading: Your selected exemptions
+        heading: Your waste exemptions
+        description: These are the exemptions you have chosen
         options:
           standard:
-            "true": "I want to proceed with the exemptions I've selected"
-            "false": "I want to change the exemptions I've selected"
+            "true": I want to continue with these exemptions
+            "false": I want to change my exemptions
   activemodel:
     errors:
       models:
         waste_exemptions_engine/confirm_activity_exemptions_form:
           attributes:
             temp_confirm_exemptions:
-              inclusion: "If you want to continue you need to select either I want to proceed with the exemptions or I want to change the exemptions."
+              inclusion: "You must select whether you want to continue with these exemptions or change them."

@@ -33,8 +33,7 @@
         link_errors: true do %>
     <% end %>
     <%= f.govuk_radio_button :temp_payment_method, "bank_transfer",
-      label: { text: t(".payment_options.bank") },
-      hint: { text: t(".payment_options.bank_hint") } %>
+      label: { text: t(".payment_options.bank") } %>
   <% end %>
   <%= f.govuk_submit t(".payment_submit_button_label") %>
 <% end %>
