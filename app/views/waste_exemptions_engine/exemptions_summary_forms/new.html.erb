@@ -105,7 +105,10 @@
           <th scope="row" class="govuk-table__header govuk-!-font-weight-bold govuk-!-padding-top-5">
             <%= t(".total_charge") %>
           </th>
-          <td class="govuk-table__cell govuk-!-font-weight-bold govuk-!-padding-top-5" colspan="2">
+          <% if is_multisite %>
+            <td class="govuk-table__cell govuk-!-font-weight-bold govuk-!-padding-top-5"></td>
+          <% end %>
+          <td class="govuk-table__cell govuk-!-font-weight-bold govuk-!-padding-top-5">
             <%= @exemptions_summary_form.total_charge %>
           </td>
         </tr>
