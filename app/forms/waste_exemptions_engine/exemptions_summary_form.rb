@@ -19,6 +19,7 @@ module WasteExemptionsEngine
              :capped_farming_charge_amount,
              :only_t28_exemption?,
              :t28_exemption_present?,
+             :charitable_purpose?,
              to: :exemption_costs_presenter
 
     delegate :farm_affiliated?, :effective_site_count, to: :transient_registration
