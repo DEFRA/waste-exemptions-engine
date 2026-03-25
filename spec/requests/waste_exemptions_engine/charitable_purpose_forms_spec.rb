@@ -19,11 +19,18 @@ module WasteExemptionsEngine
         expect(response.body).to have_tag("input", with: { type: "radio", name: "charitable_purpose_form[charitable_purpose]", checked: "checked", value: "true" })
       end
 
-      it "redirects back to check-your-answers when submitted" do
+      it "redirects to the declaration form when charitable purpose is true" do
+        post "/waste_exemptions_engine/#{charitable_purpose_form.token}/charitable-purpose",
+             params: { charitable_purpose_form: { charitable_purpose: true } }
+
+        expect(response).to redirect_to(charitable_purpose_declaration_forms_path(charitable_purpose_form.token))
+      end
+
+      it "redirects to exemptions summary when charitable purpose is false" do
         post "/waste_exemptions_engine/#{charitable_purpose_form.token}/charitable-purpose",
              params: { charitable_purpose_form: { charitable_purpose: false } }
 
-        expect(response).to redirect_to(check_your_answers_forms_path(charitable_purpose_form.token))
+        expect(response).to redirect_to(exemptions_summary_forms_path(charitable_purpose_form.token))
       end
     end
   end

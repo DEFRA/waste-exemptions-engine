@@ -7,19 +7,19 @@ en:
           table_summary: The information you've given us about the registration
           exemptions:
             title: Exemptions
-            change_link_suffix: "Exemptions selected"
+            change_link_suffix: Exemptions selected
           on_a_farm:
-            title: Will this waste operation take place on a farm?
+            title: &on_a_farm On a farm?
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: Will this operation be carried out on a farm?
+            change_link_suffix: *on_a_farm
           is_a_farmer:
-            title: Are the waste exemptions used by a farmer or farming business?
+            title: &is_a_farmer Are you a farmer?
             value:
               "true": "Yes"
               "false": "No"
-            change_link_suffix: "Are these exemptions used by a farmer or farming business?"
+            change_link_suffix: *is_a_farmer
           charitable_purpose:
             title: &charitable_purpose Charitable purpose
             value:
@@ -27,16 +27,16 @@ en:
               "false": "No"
             change_link_suffix: *charitable_purpose
           site_address:
-            title: Site address
-            change_link_suffix: "Site address"
+            title: &site_address Site address
+            change_link_suffix: *site_address
           site_details:
-            title: Site details
+            title: &site_details Site details
             value: "Number of sites: %{count}"
-            change_link_suffix: "Site details"
+            change_link_suffix: *site_details
           grid_reference:
-            title: Grid reference
-            change_link_suffix: "Grid reference"
+            title: &grid_reference Grid reference
+            change_link_suffix: *grid_reference
           site_description:
-            title: Site description
-            change_link_suffix: "Site description"
+            title: &site_description Site description
+            change_link_suffix: *site_description
           change_link: Change

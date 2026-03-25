@@ -19,9 +19,7 @@ module WasteExemptionsEngine
         non_farm_exemptions = all_exemptions.reject { |e| farmer_bucket_exemption?(e) }
 
         sorted_farm_exemptions = sorted_exemptions(farm_exemptions)
-        sorted_non_farm_exemptions = non_farm_exemptions.sort_by do |e|
-          [-e.band.initial_compliance_charge.charge_amount, e.code]
-        end
+        sorted_non_farm_exemptions = sorted_exemptions(non_farm_exemptions)
 
         sorted_farm_exemptions + sorted_non_farm_exemptions
       end
@@ -113,6 +111,20 @@ module WasteExemptionsEngine
       exemption.band.discount_possible?
     end
 
+    def band_3_compliance_charge_amount
+      band = Band.includes(:additional_compliance_charge).find_by(sequence: 3)
+      return format_currency(0) unless band&.additional_compliance_charge
+
+      format_charge_as_currency(band.additional_compliance_charge)
+    end
+
+    def capped_farming_charge_amount
+      bucket = Bucket.farmer_bucket
+      return format_currency(0) unless bucket&.initial_compliance_charge
+
+      format_charge_as_currency(bucket.initial_compliance_charge)
+    end
+
     def only_t28_exemption?
       @order.exemptions.map(&:code) == ["T28"]
     end
@@ -121,11 +133,11 @@ module WasteExemptionsEngine
       @order.exemptions.map(&:code).include?("T28")
     end
 
-    private
-
     def charitable_purpose?
       order.order_owner.try(:charitable_purpose) == true
     end
+
+    private
 
     def highest_band
       @highest_band ||= @order.highest_band
