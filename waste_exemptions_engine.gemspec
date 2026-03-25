@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aasm", "~> 5.5"
 
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 7.2.2.1"
+  s.add_dependency "rails", "~> 7.2.3.1"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
