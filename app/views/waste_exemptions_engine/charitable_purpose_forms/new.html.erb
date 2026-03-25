@@ -1,0 +1,41 @@
+<%= render("waste_exemptions_engine/shared/back", token: @charitable_purpose_form.token) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_for(@charitable_purpose_form) do |f| %>
+      <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
+
+      <h1 class="govuk-heading-l"><%= t(".heading") %></h1>
+
+      <p class="govuk-body"><%= t(".description_1") %></p>
+
+      <p class="govuk-body">
+        <%= t(".description_2_html",
+              link: link_to(t(".charitable_purpose_link_text"),
+                            t(".charitable_purpose_link"),
+                            target: "_blank",
+                            rel: "noopener noreferrer")) %>
+      </p>
+
+      <%= f.govuk_collection_radio_buttons :charitable_purpose,
+        [
+          OpenStruct.new(
+            id: false,
+            name: t(".options.no")
+          ),
+          OpenStruct.new(
+            id: true,
+            name: t(".options.yes")
+          )
+        ],
+        :id,
+        :name,
+        legend: {
+          text: t(".heading"),
+          hidden: true
+        } %>
+
+      <%= f.govuk_submit %>
+    <% end %>
+  </div>
+</div>

@@ -27,7 +27,7 @@ module WasteExemptionsEngine
       let(:transient_registration) { form.transient_registration }
       let(:exemptions) { transient_registration.exemptions }
       let(:exemption_ids_to_remove) { [exemptions.first, exemptions.last].pluck(:id) }
-      let(:exemption_ids_to_retain) { (exemptions.pluck(:id) - exemption_ids_to_remove) }
+      let(:exemption_ids_to_retain) { exemptions.pluck(:id) - exemption_ids_to_remove }
 
       context "when selecting the no option" do
         let(:valid_params) do

@@ -45,10 +45,6 @@ module WasteExemptionsEngine
     # temp_confirm_exemptions - a temporary field for storing whether the user
     # has confirmed the exemptions they have selected, boolean
 
-    # temp_add_additional_non_bucket_exemptions - a temporary field for storing
-    # when a user during the farmer journey has selected to add non-farm
-    # exemptions, after selecting farm exemptions, boolean
-
     alias addresses transient_addresses
     def addresses=(address_array)
       update(transient_addresses: address_array)
@@ -63,6 +59,7 @@ module WasteExemptionsEngine
     end
 
     TRANSIENT_ATTRIBUTES = %w[address_finder_error
+                              charitable_purpose_declaration
                               companies_house_updated_at
                               created_at
                               declaration
@@ -73,7 +70,6 @@ module WasteExemptionsEngine
                               temp_waste_activities
                               temp_exemptions
                               temp_confirm_exemptions
-                              temp_add_additional_non_bucket_exemptions
                               temp_confirm_exemption_edits
                               temp_confirm_no_exemption_changes
                               temp_contact_postcode
@@ -81,9 +77,6 @@ module WasteExemptionsEngine
                               temp_operator_postcode
                               temp_renew_without_changes
                               temp_reuse_address_for_site_location
-                              temp_reuse_applicant_email
-                              temp_reuse_applicant_name
-                              temp_reuse_applicant_phone
                               temp_reuse_operator_address
                               temp_site_description
                               temp_site_postcode

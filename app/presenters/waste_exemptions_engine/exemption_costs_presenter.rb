@@ -19,15 +19,15 @@ module WasteExemptionsEngine
         non_farm_exemptions = all_exemptions.reject { |e| farmer_bucket_exemption?(e) }
 
         sorted_farm_exemptions = sorted_exemptions(farm_exemptions)
-        sorted_non_farm_exemptions = non_farm_exemptions.sort_by do |e|
-          [-e.band.initial_compliance_charge.charge_amount, e.code]
-        end
+        sorted_non_farm_exemptions = sorted_exemptions(non_farm_exemptions)
 
         sorted_farm_exemptions + sorted_non_farm_exemptions
       end
     end
 
     def compliance_charge(exemption)
+      return format_currency(0) if charitable_purpose?
+
       if exemption_in_bucket?(exemption)
         bucket_exemption_compliance_charge
       elsif first_exemption_in_highest_band?(exemption)
@@ -40,6 +40,8 @@ module WasteExemptionsEngine
     end
 
     def single_site_compliance_charge(exemption)
+      return format_currency(0) if charitable_purpose?
+
       # Get the single-site charge without multisite multiplication
       if exemption_in_bucket?(exemption)
         single_site_bucket_exemption_compliance_charge
@@ -102,10 +104,25 @@ module WasteExemptionsEngine
     end
 
     def is_discounted_charge?(exemption)
+      return false if charitable_purpose?
       return false if exemption_in_bucket?(exemption)
       return false if first_exemption_in_highest_band?(exemption)
 
       exemption.band.discount_possible?
+    end
+
+    def band_3_compliance_charge_amount
+      band = Band.includes(:additional_compliance_charge).find_by(sequence: 3)
+      return format_currency(0) unless band&.additional_compliance_charge
+
+      format_charge_as_currency(band.additional_compliance_charge)
+    end
+
+    def capped_farming_charge_amount
+      bucket = Bucket.farmer_bucket
+      return format_currency(0) unless bucket&.initial_compliance_charge
+
+      format_charge_as_currency(bucket.initial_compliance_charge)
     end
 
     def only_t28_exemption?
@@ -114,6 +131,10 @@ module WasteExemptionsEngine
 
     def t28_exemption_present?
       @order.exemptions.map(&:code).include?("T28")
+    end
+
+    def charitable_purpose?
+      order.order_owner.try(:charitable_purpose) == true
     end
 
     private

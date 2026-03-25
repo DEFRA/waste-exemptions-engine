@@ -47,55 +47,6 @@
       </dl>
 
       <h2 class="govuk-heading-m">
-        <%= t(".sections.applicant.heading") %>
-      </h2>
-
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <%= t(".sections.applicant.labels.applicant_name") %>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= format_names(@back_office_edit_form.applicant_first_name, @back_office_edit_form.applicant_last_name) %>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <%= link_to applicant_name_back_office_edit_forms_path(@back_office_edit_form.token) do %>
-              <%= t(".edit_links.default") %>
-              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_name") %></span>
-            <% end %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <%= t(".sections.applicant.labels.applicant_phone") %>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= @back_office_edit_form.applicant_phone %>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <%= link_to applicant_phone_back_office_edit_forms_path(@back_office_edit_form.token) do %>
-              <%= t(".edit_links.default") %>
-              <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_phone") %></span>
-            <% end %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <%= t(".sections.applicant.labels.applicant_email") %>
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= @back_office_edit_form.applicant_email %>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-              <%= link_to applicant_email_back_office_edit_forms_path(@back_office_edit_form.token) do %>
-                <%= t(".edit_links.default") %>
-                <span class="govuk-visually-hidden"> <%= t(".edit_links.visually_hidden.applicant_email") %></span>
-              <% end %>
-          </dd>
-        </div>
-      </dl>
-
-      <h2 class="govuk-heading-m">
         <%= t(".sections.operator.heading") %>
       </h2>
 

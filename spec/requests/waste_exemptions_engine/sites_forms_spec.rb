@@ -47,9 +47,9 @@ module WasteExemptionsEngine
         expect(response.code).to eq(status_code.to_s)
       end
 
-      it "redirects to the exemptions summary form" do
+      it "redirects to the on a farm form" do
         post request_path, params: request_body
-        expect(response).to redirect_to(exemptions_summary_forms_path(form.token))
+        expect(response).to redirect_to(on_a_farm_forms_path(form.token))
       end
 
       context "with page parameter" do

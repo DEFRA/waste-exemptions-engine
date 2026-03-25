@@ -38,10 +38,10 @@ module WasteExemptionsEngine
             allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(false)
           end
 
-          it "transitions to :exemptions_summary_form" do
+          it "transitions to :site_grid_reference_form" do
             expect(new_registration)
               .to transition_from(:confirm_activity_exemptions_form)
-              .to(:exemptions_summary_form)
+              .to(:site_grid_reference_form)
               .on_event(:next)
           end
         end

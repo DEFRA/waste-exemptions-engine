@@ -1,10 +1,4 @@
-<% if WasteExemptionsEngine.configuration.host_is_back_office? %>
-  <%= render("waste_exemptions_engine/shared/back", 
-            token: @site_grid_reference_form.token,
-            back_path: operation_sites_forms_path(@site_grid_reference_form.token, page: @page)) %>
-<% else %>
-  <%= render("waste_exemptions_engine/shared/back", token: @site_grid_reference_form.token) %>
-<% end %>
+<%= render("waste_exemptions_engine/shared/back", token: @site_grid_reference_form.token) %>
 
 <% is_multisite = @site_grid_reference_form.transient_registration.multisite? %>
 

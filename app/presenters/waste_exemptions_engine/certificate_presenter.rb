@@ -11,10 +11,6 @@ module WasteExemptionsEngine
       end.join("</br>").html_safe
     end
 
-    def applicant_name
-      format_name(applicant_first_name, applicant_last_name)
-    end
-
     def human_business_type
       I18n.t("waste_exemptions_engine.pdfs.certificate.business_types.#{business_type}")
     end

@@ -102,7 +102,7 @@ module WasteExemptionsEngine
       context "when the company is a charity" do
         before do
           new_registration.business_type = "charity"
-          expected_data[0][:value] = "Charity or trust"
+          expected_data[0][:value] = "Third sector, community group or trust"
           expected_data[1][:title] = "Operator name"
           expected_data.slice!(2)
           expected_data[1][:change_url] = "check-your-answers/operator-name"
@@ -159,39 +159,18 @@ module WasteExemptionsEngine
             renewal_change_url: "renewal-start/exemptions"
           },
           {
-            title: "Will this waste operation take place on a farm?",
+            title: "On a farm?",
             value: "Yes",
-            change_link_suffix: "Will this operation be carried out on a farm?",
+            change_link_suffix: "On a farm?",
             change_url: "check-your-answers/on-a-farm",
             renewal_change_url: "renewal-start/on-a-farm"
           },
           {
-            title: "Are the waste exemptions used by a farmer or farming business?",
+            title: "Are you a farmer?",
             value: "Yes",
-            change_link_suffix: "Are these exemptions used by a farmer or farming business?",
+            change_link_suffix: "Are you a farmer?",
             change_url: "check-your-answers/is-a-farmer",
             renewal_change_url: "renewal-start/is-a-farmer"
-          },
-          {
-            title: "Form completed by",
-            value: "#{new_registration.applicant_first_name} #{new_registration.applicant_last_name}",
-            change_link_suffix: "Form completed by",
-            change_url: "check-your-answers/applicant-name",
-            renewal_change_url: "renewal-start/applicant-name"
-          },
-          {
-            title: "Telephone number",
-            value: new_registration.applicant_phone,
-            change_link_suffix: "Telephone number of the person filling in this form",
-            change_url: "check-your-answers/applicant-phone",
-            renewal_change_url: "renewal-start/applicant-phone"
-          },
-          {
-            title: "Email address",
-            value: new_registration.applicant_email,
-            change_link_suffix: "Email address of the person filling in this form",
-            change_url: "check-your-answers/applicant-email",
-            renewal_change_url: "renewal-start/applicant-email"
           },
           {
             title: "Grid reference",
@@ -211,6 +190,35 @@ module WasteExemptionsEngine
 
       it "returns the properly-formatted data" do
         expect(presenter.registration_rows).to eq(expected_data)
+      end
+
+      context "when charitable_purpose is set" do
+        before do
+          new_registration.charitable_purpose = true
+        end
+
+        it "includes the charitable purpose row" do
+          charitable_purpose_row = presenter.registration_rows.find { |row| row[:title] == "Charitable purpose" }
+
+          expect(charitable_purpose_row).to eq(
+            title: "Charitable purpose",
+            value: "Yes",
+            change_url: "check-your-answers/charitable-purpose",
+            change_link_suffix: "Charitable purpose"
+          )
+        end
+      end
+
+      context "when charitable_purpose is nil" do
+        before do
+          new_registration.charitable_purpose = nil
+        end
+
+        it "does not include the charitable purpose row" do
+          charitable_purpose_row = presenter.registration_rows.find { |row| row[:title] == "Charitable purpose" }
+
+          expect(charitable_purpose_row).to be_nil
+        end
       end
 
       context "when the site address is a postal address" do

@@ -16,21 +16,6 @@ en:
           attributes:
             location:
               inclusion: "You need to tell us if you are registering a waste operation based in England"
-            applicant_first_name:
-              blank: "You need to enter your first name"
-              invalid: "Your first name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
-              too_long: "Your first name must have no more than 70 characters"
-            applicant_last_name:
-              blank: "You need to enter your last name"
-              invalid: "Your last name must contain only letters, spaces, commas, full stops, hyphens and apostrophes"
-              too_long: "Your last name must have no more than 70 characters"
-            applicant_phone:
-              blank: "You need to enter your telephone number"
-              invalid_format: "Your phone number is not a valid number"
-              too_long: "Your phone number should have no more than than 15 characters"
-            applicant_email:
-              blank: "You need to enter your email address"
-              invalid_format: "Your email is not a valid email address"
             business_type:
               inclusion: "You need to tell us what type of organisation the operator is"
             company_no:

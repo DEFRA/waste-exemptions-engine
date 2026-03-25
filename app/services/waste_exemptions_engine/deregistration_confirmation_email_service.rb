@@ -32,7 +32,7 @@ module WasteExemptionsEngine
     private
 
     def template_id
-      "aea54f90-d36c-4fe7-a589-062446e549ca"
+      NotificationTemplates::DEREGISTRATION_CONFIRMATION_EMAIL
     end
 
     def options

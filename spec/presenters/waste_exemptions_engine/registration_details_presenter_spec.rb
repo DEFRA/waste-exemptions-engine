@@ -15,29 +15,6 @@ module WasteExemptionsEngine
       end
     end
 
-    describe "#applicant_name" do
-      it "returns the correct value" do
-        expect(presenter.applicant_name).to eq("#{registration.applicant_first_name} #{registration.applicant_last_name}")
-      end
-    end
-
-    describe "#applicant_email" do
-      context "when an email is present" do
-        it "returns the correcrt value" do
-          expect(presenter.applicant_email_section).to eq(registration.applicant_email.to_s)
-        end
-      end
-
-      context "when an email isn't present" do
-        let(:registration) { create(:registration, :complete, :with_active_exemptions, applicant_email: email) }
-        let(:email) { nil }
-
-        it "returns the correct value" do
-          expect(presenter.applicant_email_section).to eq("Email: Not present")
-        end
-      end
-    end
-
     describe "#contact_name" do
       it "returns the correct value" do
         expect(presenter.contact_name).to eq("#{registration.contact_first_name} #{registration.contact_last_name}")

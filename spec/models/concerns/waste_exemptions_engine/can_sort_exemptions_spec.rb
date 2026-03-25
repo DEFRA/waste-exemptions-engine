@@ -39,7 +39,7 @@ module WasteExemptionsEngine
 
     describe "#sorted_exemption_codes" do
       it "sorts exemption codes correctly" do
-        expect(sortable.sorted_exemption_codes(exemptions)).to eq(%w[U2 U11 U15 T5 T21 D1 D7 S1 S8])
+        expect(sortable.sorted_exemption_codes(exemptions)).to eq(%w[U2 U11 U15 D1 D7 T5 T21 S1 S8])
       end
     end
 
@@ -50,10 +50,10 @@ module WasteExemptionsEngine
             exemption_U2,
             exemption_U11,
             exemption_U15,
-            exemption_T5,
-            exemption_T21,
             exemption_D1,
             exemption_D7,
+            exemption_T5,
+            exemption_T21,
             exemption_S1,
             exemption_S8
           ]

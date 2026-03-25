@@ -74,9 +74,9 @@ module WasteExemptionsEngine
         expect(response.code).to eq(status_code.to_s)
       end
 
-      it "redirects to the site grid reference form" do
+      it "redirects to the business type form" do
         post request_path, params: request_body
-        expect(response).to redirect_to(site_grid_reference_forms_path(form.token))
+        expect(response).to redirect_to(business_type_forms_path(form.token))
       end
     end
 

@@ -32,10 +32,10 @@ module WasteExemptionsEngine
           let(:is_multisite_registration) { false }
 
           context "when not in check your answers flow" do
-            it "transitions to :exemptions_summary_form" do
+            it "transitions to :site_grid_reference_form" do
               expect(new_registration)
                 .to transition_from(current_state)
-                .to(:exemptions_summary_form)
+                .to(:site_grid_reference_form)
                 .on_event(:next)
             end
           end
@@ -64,10 +64,10 @@ module WasteExemptionsEngine
           let(:is_multisite_registration) { true }
 
           context "when not in check your answers flow" do
-            it "transitions to :exemptions_summary_form" do
+            it "transitions to :site_grid_reference_form" do
               expect(new_registration)
                 .to transition_from(current_state)
-                .to(:exemptions_summary_form)
+                .to(:site_grid_reference_form)
                 .on_event(:next)
             end
           end
@@ -90,10 +90,10 @@ module WasteExemptionsEngine
           let(:is_multisite_registration) { false }
 
           context "when not in check your answers flow" do
-            it "transitions to :exemptions_summary_form" do
+            it "transitions to :site_grid_reference_form" do
               expect(new_registration)
                 .to transition_from(current_state)
-                .to(:exemptions_summary_form)
+                .to(:site_grid_reference_form)
                 .on_event(:next)
             end
           end

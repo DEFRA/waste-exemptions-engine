@@ -3,23 +3,42 @@
 module WasteExemptionsEngine
   module ActivityExemptionsFormsHelper
     def selected_activity_exemptions(transient_registration)
-      exemptions = WasteExemptionsEngine::Exemption.for_waste_activities(transient_registration.temp_waste_activities)
+      WasteExemptionsEngine::Exemption.for_waste_activities(transient_registration.temp_waste_activities)
+    end
 
-      # If user doesn't want farming exemptions and there is a farmer bucket,
-      # exclude exemptions that are in the farmer bucket
-      farmer_bucket = WasteExemptionsEngine::Bucket.farmer_bucket
-      if farmer_bucket.present? && exclude_farming_exemptions?(transient_registration)
-        exemptions = exemptions.where.not(id: farmer_bucket.exemption_ids)
+    def exemption_charge_display(exemption)
+      band = exemption.band
+      return "£0" unless band&.charged?
+
+      initial = format_pence_as_pounds(band.initial_compliance_charge.charge_amount)
+      return "£#{initial}" unless band.discount_possible?
+
+      additional = format_pence_as_pounds(band.additional_compliance_charge.charge_amount)
+      "£#{initial} (£#{additional})"
+    end
+
+    def farming_exemption?(exemption)
+      farming_exemption_ids.include?(exemption.id.to_s)
+    end
+
+    def farming_capped_charge_amount
+      bucket = WasteExemptionsEngine::Bucket.farmer_bucket
+      return "£0" unless bucket&.initial_compliance_charge
+
+      "£#{format_pence_as_pounds(bucket.initial_compliance_charge.charge_amount)}"
+    end
+
+    def farming_exemption_ids
+      @farming_exemption_ids ||= begin
+        farmer_bucket = WasteExemptionsEngine::Bucket.farmer_bucket
+        farmer_bucket ? farmer_bucket.exemption_ids : []
       end
-
-      exemptions
     end
 
     private
 
-    def exclude_farming_exemptions?(transient_registration)
-      transient_registration.temp_add_additional_non_bucket_exemptions == true &&
-        transient_registration.farm_affiliated?
+    def format_pence_as_pounds(pence)
+      WasteExemptionsEngine::CurrencyConversionService.convert_pence_to_pounds(pence, hide_pence_if_zero: true)
     end
   end
 end

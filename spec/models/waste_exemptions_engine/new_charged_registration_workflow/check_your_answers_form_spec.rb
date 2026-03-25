@@ -43,9 +43,9 @@ module WasteExemptionsEngine
           new_registration.temp_check_your_answers_flow = true
         end
 
-        it "may transition to farm_exemptions_form after the 'next' event" do
+        it "may transition to waste_activities_form after the 'next' event" do
           permitted_states = Helpers::WorkflowStates.permitted_states(new_registration)
-          expect(permitted_states).to include(:farm_exemptions_form)
+          expect(permitted_states).to include(:waste_activities_form)
         end
       end
     end

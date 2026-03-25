@@ -40,20 +40,8 @@ module WasteExemptionsEngine
     context "when editing data on Check Your Answers" do
       let(:form_name) { "check_your_answers_form" }
 
-      describe "GET /check-your-answers/applicant-name" do
-        it_behaves_like "a valid transition", :applicant_name_check_your_answers_forms_path, :new_applicant_name_form_path
-      end
-
-      describe "GET /check-your-answers/applicant-phone" do
-        it_behaves_like "a valid transition", :applicant_phone_check_your_answers_forms_path, :new_applicant_phone_form_path
-      end
-
-      describe "GET /check-your-answers/applicant-email" do
-        it_behaves_like "a valid transition", :applicant_email_check_your_answers_forms_path, :new_applicant_email_form_path
-      end
-
       describe "GET /check-your-answers/exemptions" do
-        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_farm_exemptions_form_path
+        it_behaves_like "a valid transition", :exemptions_check_your_answers_forms_path, :new_waste_activities_form_path
       end
 
       describe "GET /check-your-answers/main-people" do
@@ -138,6 +126,10 @@ module WasteExemptionsEngine
 
       describe "GET /check-your-answers/is-a-farmer" do
         it_behaves_like "a valid transition", :is_a_farmer_check_your_answers_forms_path, :new_is_a_farmer_form_path
+      end
+
+      describe "GET /check-your-answers/charitable-purpose" do
+        it_behaves_like "a valid transition", :charitable_purpose_check_your_answers_forms_path, :new_charitable_purpose_form_path
       end
 
       describe "GET /check-your-answers/check-site-address" do

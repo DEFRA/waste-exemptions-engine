@@ -17,7 +17,7 @@ module WasteExemptionsEngine
         it "transitions to :operator_postcode_form" do
           expect(new_registration)
             .to transition_from(:check_registered_name_and_address_form)
-            .to(:waste_activities_form)
+            .to(:operator_postcode_form)
             .on_event(:next)
         end
       end
@@ -38,10 +38,10 @@ module WasteExemptionsEngine
 
         before { allow(new_registration).to receive(:farm_affiliated?).and_return(true) }
 
-        it "changes to farm_exemptions_form after the 'next' event" do
+        it "still changes to operator_postcode_form after the 'next' event" do
           expect(new_registration)
             .to transition_from(:check_registered_name_and_address_form)
-            .to(:farm_exemptions_form)
+            .to(:operator_postcode_form)
             .on_event(:next)
         end
       end
