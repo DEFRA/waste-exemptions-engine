@@ -34,6 +34,35 @@ module WasteExemptionsEngine
           expect(response).to have_http_status(:ok)
         end
       end
+
+      context "when there are multiple pages of sites" do
+        before do
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with("MULTISITE_PAGINATION_SIZE", 20).and_return("2")
+
+          create(:transient_address, :site_using_grid_reference,
+                 transient_registration: form.transient_registration,
+                 description: "Site 1 description",
+                 grid_reference: "ST 11111 11111")
+          create(:transient_address, :site_using_grid_reference,
+                 transient_registration: form.transient_registration,
+                 description: "Site 2 description",
+                 grid_reference: "ST 22222 22222")
+          create(:transient_address, :site_using_grid_reference,
+                 transient_registration: form.transient_registration,
+                 description: "Site 3 description",
+                 grid_reference: "ST 33333 33333")
+        end
+
+        it "defaults to the last numbered page when no page is provided" do
+          get request_path
+
+          aggregate_failures do
+            expect(response.body).to include("Site 3 description")
+            expect(response.body).not_to include("Site 1 description")
+          end
+        end
+      end
     end
 
     describe "POST sites_form" do
@@ -93,9 +122,58 @@ module WasteExemptionsEngine
         end
 
         context "with page parameter" do
-          it "preserves the page parameter in redirect" do
+          it "redirects without a page parameter so the last page is shown" do
             delete request_path, params: { page: 2 }
-            expect(response).to redirect_to(new_sites_form_path(form.token, page: 2))
+            expect(response).to redirect_to(new_sites_form_path(form.token))
+          end
+        end
+
+        context "when removing a site changes the last page" do
+          let!(:site_address) do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   description: "Site 1 description",
+                   grid_reference: "ST 11111 11111")
+          end
+          let!(:site_2) do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   description: "Site 2 description",
+                   grid_reference: "ST 22222 22222")
+          end
+          let!(:site_3) do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   description: "Site 3 description",
+                   grid_reference: "ST 33333 33333")
+          end
+          let!(:site_4) do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   description: "Site 4 description",
+                   grid_reference: "ST 44444 44444")
+          end
+          let!(:site_5) do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   description: "Site 5 description",
+                   grid_reference: "ST 55555 55555")
+          end
+          let(:request_path) { remove_site_sites_forms_path(form.token, site_id: site_address.id) }
+
+          before do
+            allow(ENV).to receive(:fetch).and_call_original
+            allow(ENV).to receive(:fetch).with("MULTISITE_PAGINATION_SIZE", 20).and_return("2")
+          end
+
+          it "shows the final numbered page after redirecting" do
+            delete request_path, params: { page: 3 }
+            follow_redirect!
+
+            aggregate_failures do
+              expect(response.body).to include("Site 5 description")
+              expect(response.body).not_to include("Site 2 description")
+            end
           end
         end
       end
