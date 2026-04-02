@@ -135,35 +135,23 @@ module WasteExemptionsEngine
                    description: "Site 1 description",
                    grid_reference: "ST 11111 11111")
           end
-          let!(:site_2) do
-            create(:transient_address, :site_using_grid_reference,
-                   transient_registration: transient_registration,
-                   description: "Site 2 description",
-                   grid_reference: "ST 22222 22222")
-          end
-          let!(:site_3) do
-            create(:transient_address, :site_using_grid_reference,
-                   transient_registration: transient_registration,
-                   description: "Site 3 description",
-                   grid_reference: "ST 33333 33333")
-          end
-          let!(:site_4) do
-            create(:transient_address, :site_using_grid_reference,
-                   transient_registration: transient_registration,
-                   description: "Site 4 description",
-                   grid_reference: "ST 44444 44444")
-          end
-          let!(:site_5) do
-            create(:transient_address, :site_using_grid_reference,
-                   transient_registration: transient_registration,
-                   description: "Site 5 description",
-                   grid_reference: "ST 55555 55555")
-          end
           let(:request_path) { remove_site_sites_forms_path(form.token, site_id: site_address.id) }
 
           before do
             allow(ENV).to receive(:fetch).and_call_original
             allow(ENV).to receive(:fetch).with("MULTISITE_PAGINATION_SIZE", 20).and_return("2")
+
+            [
+              ["Site 2 description", "ST 22222 22222"],
+              ["Site 3 description", "ST 33333 33333"],
+              ["Site 4 description", "ST 44444 44444"],
+              ["Site 5 description", "ST 55555 55555"]
+            ].each do |description, grid_reference|
+              create(:transient_address, :site_using_grid_reference,
+                     transient_registration: transient_registration,
+                     description: description,
+                     grid_reference: grid_reference)
+            end
           end
 
           it "shows the final numbered page after redirecting" do
