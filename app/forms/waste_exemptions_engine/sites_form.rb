@@ -33,7 +33,7 @@ module WasteExemptionsEngine
     end
 
     def sites_per_page
-      ENV.fetch("MULTISITE_PAGINATION_SIZE", 3).to_i
+      ENV.fetch("MULTISITE_PAGINATION_SIZE", 20).to_i
     end
 
     private
