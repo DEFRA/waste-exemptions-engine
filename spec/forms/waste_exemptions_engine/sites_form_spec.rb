@@ -75,6 +75,53 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#last_page" do
+      let(:transient_registration) { form.transient_registration }
+
+      before { allow(form).to receive(:sites_per_page).and_return(2) }
+
+      context "when there are no site addresses" do
+        it "returns 1" do
+          expect(form.last_page).to eq(1)
+        end
+      end
+
+      context "when there are multiple pages of site addresses" do
+        before do
+          create_list(:transient_address, 5,
+                      transient_registration: transient_registration,
+                      address_type: "site")
+        end
+
+        it "returns the final numbered page" do
+          expect(form.last_page).to eq(3)
+        end
+      end
+    end
+
+    describe "#page_to_display" do
+      let(:transient_registration) { form.transient_registration }
+
+      before do
+        allow(form).to receive(:sites_per_page).and_return(2)
+        create_list(:transient_address, 5,
+                    transient_registration: transient_registration,
+                    address_type: "site")
+      end
+
+      it "defaults to the last page when no page is requested" do
+        expect(form.page_to_display).to eq(3)
+      end
+
+      it "returns the requested page when it is within range" do
+        expect(form.page_to_display(2)).to eq(2)
+      end
+
+      it "clamps an out of range page to the last page" do
+        expect(form.page_to_display(99)).to eq(3)
+      end
+    end
+
     describe "#can_continue?" do
       let(:transient_registration) { form.transient_registration }
 

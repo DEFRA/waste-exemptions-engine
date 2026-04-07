@@ -4,7 +4,9 @@ module WasteExemptionsEngine
   class SitesFormsController < FormsController
     def new
       super(SitesForm, "sites_form")
-      @page = params[:page] || 1
+      return unless @sites_form
+
+      @page = @sites_form.page_to_display(params[:page])
     end
 
     def create
@@ -16,7 +18,7 @@ module WasteExemptionsEngine
 
       @transient_registration.addresses.find_by(address_type: "site", id: params[:site_id])&.destroy
 
-      redirect_to new_sites_form_path(@sites_form.token, page: params[:page])
+      redirect_to_correct_form
     end
 
     private
