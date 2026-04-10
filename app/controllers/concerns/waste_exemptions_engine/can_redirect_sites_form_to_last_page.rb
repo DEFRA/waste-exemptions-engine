@@ -7,7 +7,10 @@ module WasteExemptionsEngine
     private
 
     def form_path
-      return new_sites_form_path(token: @transient_registration.token, page: "last") if @transient_registration.workflow_state == "sites_form"
+      if @transient_registration.workflow_state == "sites_form"
+        return new_sites_form_path(token: @transient_registration.token,
+                                   page: "last")
+      end
 
       super
     end
