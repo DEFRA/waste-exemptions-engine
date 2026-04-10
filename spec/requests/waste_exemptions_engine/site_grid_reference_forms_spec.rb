@@ -118,6 +118,16 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when the registration is multisite" do
+        before { form.transient_registration.update!(is_multisite_registration: true) }
+
+        it "redirects to the last sites page after adding a site" do
+          post site_grid_reference_request_path, params: { site_grid_reference_form: form_data }
+
+          expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
+        end
+      end
     end
 
     context "when editing an existing registration" do

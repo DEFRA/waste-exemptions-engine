@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteGridReferenceFormsController < FormsController
+    include CanRedirectSitesFormToLastPage
+
     def new
       super(SiteGridReferenceForm, "site_grid_reference_form")
     end
