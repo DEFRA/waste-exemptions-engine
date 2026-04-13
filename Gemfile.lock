@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DEFRA/defra-ruby-map.git
-  revision: 7584c77d329fb89eb3e4c84805f1bb56b25cf479
+  revision: ca0971fb06dfcaf7c9d5f7c89c37ad6e95b83264
   branch: nominatim_dataset
   specs:
     defra_ruby_map (0.1.0)

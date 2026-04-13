@@ -91,14 +91,14 @@
 </div>
 
 <% if WasteExemptionsEngine::FeatureToggle.active?(:enable_interactive_map) %>
-  <%= stylesheet_link_tag "defra-interactive-map/interactive-map", media: "all" %>
-  <%= stylesheet_link_tag "defra-interactive-map/interact-plugin", media: "all" %>
-  <%= stylesheet_link_tag "defra-interactive-map/search-plugin", media: "all" %>
-  <%= javascript_include_tag "proj4js/proj4" %>
-  <%= javascript_include_tag "defra-interactive-map/index" %>
-  <%= javascript_include_tag "maplibre-provider/index" %>
-  <%= javascript_include_tag "interact-plugin/index" %>
-  <%= javascript_include_tag "search-plugin/index" %>
+  <link rel="stylesheet" href="<%= defra_map_asset_path('css/interactive-map.css') %>" media="all" />
+  <link rel="stylesheet" href="<%= defra_map_asset_path('css/interact-plugin.css') %>" media="all" />
+  <link rel="stylesheet" href="<%= defra_map_asset_path('css/search-plugin.css') %>" media="all" />
+  <script src="<%= defra_map_asset_path('proj4js/proj4.js') %>"></script>
+  <script src="<%= defra_map_asset_path('defra-interactive-map/index.js') %>"></script>
+  <script src="<%= defra_map_asset_path('maplibre-provider/index.js') %>"></script>
+  <script src="<%= defra_map_asset_path('interact-plugin/index.js') %>"></script>
+  <script src="<%= defra_map_asset_path('search-plugin/index.js') %>"></script>
   <%= javascript_include_tag "defra-ruby-map/grid_reference_converter" %>
   <%= javascript_include_tag "defra-ruby-map/map_init" %>
   <%= javascript_include_tag "waste_exemptions_engine/interactive_map_init" %>
