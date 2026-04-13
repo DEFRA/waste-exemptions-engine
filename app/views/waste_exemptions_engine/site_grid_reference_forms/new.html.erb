@@ -23,23 +23,40 @@
         <%= t(".postcode_prefix") %> <%= link_to(t(".postcode_link_text"), skip_to_address_site_grid_reference_forms_path(@site_grid_reference_form.token)) %>
       </p>
 
-      <p class="govuk-body"><%= t(".or") %></p>
-
-      <% grid_ref_finder_link = link_to(t(".grid_reference_help_tool_link"), "http://gridreferencefinder.com/", rel: "external", target: "_blank") %>
-
-      <p class="govuk-body">
-        <%= t(".grid_reference_link_hint", grid_ref_finder_link:).html_safe %>
-      </p>
+      
 
       <%= f.govuk_text_field :grid_reference,
         label: {
-          text: t(".grid_reference_label")
+          text: t(".grid_reference_label"),
+          size: "s"
         },
         width: "one-third",
         hint: {
           text: t(".grid_reference_hint")
         }
       %>
+
+      <% if WasteExemptionsEngine::FeatureToggle.active?(:enable_interactive_map) %>
+        <div id="interactive-map-container"
+             class="govuk-!-display-none"
+             data-module="defra-interactive-map"
+             data-initial-grid-reference="<%= @site_grid_reference_form.grid_reference %>"
+             data-center="-1.5,52.5"
+             data-zoom="6">
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              <%= t(".how_to_use_map") %>
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body"><%= t(".map_instruction_mouse") %></p>
+            <p class="govuk-body"><%= t(".map_instruction_keyboard") %></p>
+          </div>
+        </details>
+      <% end %>
 
       <%= f.govuk_text_area :description,
         label: {
@@ -72,3 +89,17 @@
     <% end %>
   </div>
 </div>
+
+<% if WasteExemptionsEngine::FeatureToggle.active?(:enable_interactive_map) %>
+  <%= stylesheet_link_tag "defra-interactive-map/interactive-map", media: "all" %>
+  <%= stylesheet_link_tag "defra-interactive-map/interact-plugin", media: "all" %>
+  <%= stylesheet_link_tag "defra-interactive-map/search-plugin", media: "all" %>
+  <%= javascript_include_tag "proj4js/proj4" %>
+  <%= javascript_include_tag "defra-interactive-map/index" %>
+  <%= javascript_include_tag "maplibre-provider/index" %>
+  <%= javascript_include_tag "interact-plugin/index" %>
+  <%= javascript_include_tag "search-plugin/index" %>
+  <%= javascript_include_tag "defra-ruby-map/grid_reference_converter" %>
+  <%= javascript_include_tag "defra-ruby-map/map_init" %>
+  <%= javascript_include_tag "waste_exemptions_engine/interactive_map_init" %>
+<% end %>

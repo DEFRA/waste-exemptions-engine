@@ -13,3 +13,5 @@ string_true_test_feature:
   active: "true"
 enable_multisite:
   active: <%= ENV.fetch("ENABLE_MULTISITE", "true") %>
+enable_interactive_map:
+  active: <%= ENV.fetch("ENABLE_INTERACTIVE_MAP", "true") %>

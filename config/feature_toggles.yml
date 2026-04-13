@@ -1,3 +1,5 @@
 ---
 enable_multisite:
   active: <%= ENV.fetch("ENABLE_MULTISITE", "false") %>
+enable_interactive_map:
+  active: <%= ENV.fetch("ENABLE_INTERACTIVE_MAP", "false") %>

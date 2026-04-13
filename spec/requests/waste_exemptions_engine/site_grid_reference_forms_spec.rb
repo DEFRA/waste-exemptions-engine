@@ -120,6 +120,67 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "interactive map integration" do
+      context "when the interactive map feature toggle is active" do
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_interactive_map).and_return(true)
+        end
+
+        it "renders the map container with correct data attributes" do
+          get site_grid_reference_request_path
+
+          aggregate_failures do
+            expect(response.body).to include('data-module="defra-interactive-map"')
+            expect(response.body).to include("data-initial-grid-reference")
+            expect(response.body).to include("data-center")
+            expect(response.body).to include("data-zoom")
+          end
+        end
+
+        it "renders the sub-heading" do
+          get site_grid_reference_request_path
+
+          expect(response.body).to have_html_escaped_string(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.grid_reference_label"))
+        end
+
+        it "renders the 'How to use the map' details component" do
+          get site_grid_reference_request_path
+
+          expect(response.body).to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.how_to_use_map"))
+        end
+
+        it "does not render the external grid reference finder link" do
+          get site_grid_reference_request_path
+
+          expect(response.body).not_to include("gridreferencefinder.com")
+        end
+
+        it "still renders the address finder link" do
+          get site_grid_reference_request_path
+
+          expect(response.body).to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.postcode_link_text"))
+        end
+      end
+
+      context "when the interactive map feature toggle is inactive" do
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_interactive_map).and_return(false)
+        end
+
+        it "does not render the map container" do
+          get site_grid_reference_request_path
+
+          expect(response.body).not_to include('data-module="defra-interactive-map"')
+        end
+
+        it "does not render the 'How to use the map' details component" do
+          get site_grid_reference_request_path
+
+          expect(response.body).not_to include(I18n.t(".waste_exemptions_engine.site_grid_reference_forms.new.how_to_use_map"))
+        end
+      end
+    end
+
     context "when editing an existing registration" do
       let(:edit_site_grid_reference_form) { build(:edit_site_grid_reference_form) }
 
@@ -129,6 +190,18 @@ module WasteExemptionsEngine
         aggregate_failures do
           expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.grid_reference)
           expect(response.body).to have_html_escaped_string(edit_site_grid_reference_form.description)
+        end
+      end
+
+      context "when the interactive map is active" do
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).with(:enable_interactive_map).and_return(true)
+        end
+
+        it "populates data-initial-grid-reference with the stored grid reference" do
+          get "/waste_exemptions_engine/#{edit_site_grid_reference_form.token}/site-grid-reference"
+
+          expect(response.body).to include("data-initial-grid-reference=\"#{edit_site_grid_reference_form.grid_reference}\"")
         end
       end
     end
