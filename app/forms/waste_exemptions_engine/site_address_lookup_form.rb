@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteAddressLookupForm < AddressLookupFormBase
+    include CanRestrictSiteLocationsToEngland
+
     delegate :temp_site_postcode, :temp_site_id, to: :transient_registration
 
     # This virtual attribute is validated using AddressValidator and populated
@@ -16,6 +18,7 @@ module WasteExemptionsEngine
     end
 
     validates :site_address, "waste_exemptions_engine/address": true
+    validate :selected_address_must_be_in_england, if: :check_selected_address_location?
 
     def submit(params)
       site_address_params = params.fetch(:site_address, {})
@@ -45,6 +48,26 @@ module WasteExemptionsEngine
 
     def multisite_registration?
       ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
+    end
+
+    def request_matching_addresses
+      super.select do |address|
+        site_location_in_england?(easting: address["x"], northing: address["y"])
+      end
+    end
+
+    def check_selected_address_location?
+      restrict_site_locations_to_england? && site_address.present? && site_address[:uprn].present?
+    end
+
+    def selected_address_must_be_in_england
+      return if selected_address_in_filtered_results?
+
+      errors.add(:site_address, :not_in_england)
+    end
+
+    def selected_address_in_filtered_results?
+      get_address_data(site_address[:uprn], :site).present?
     end
 
     def update_existing_site(address_attributes)

@@ -179,6 +179,59 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when the England-only restriction is enabled in front office" do
+        let(:params) { { grid_reference: "ST 12345 67890", description: "New site" } }
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+            .with(grid_reference: params[:grid_reference], easting: nil, northing: nil)
+            .and_return(false)
+        end
+
+        it "returns false" do
+          expect(form.submit(params)).to be(false)
+        end
+
+        it "adds an England-only validation error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :outside_england)).to be(true)
+        end
+
+        it "does not save the site address" do
+          form.submit(params)
+
+          expect(transient_registration.reload.site_address).to be_nil
+        end
+      end
+
+      context "when the England-only restriction is enabled in the back office host" do
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run).and_return(false)
+        end
+
+        it "still allows the submission" do
+          expect(form.submit(grid_reference: "ST 12345 67890", description: "Updated")).to be(true)
+        end
+      end
     end
 
     shared_examples "updates existing site address without creating duplicates" do
@@ -243,6 +296,7 @@ module WasteExemptionsEngine
 
         it_behaves_like "updates existing site address without creating duplicates"
       end
+
     end
   end
 end

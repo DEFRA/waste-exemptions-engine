@@ -19,6 +19,7 @@ en:
               blank: Enter a postcode
               wrong_format: Enter a valid UK postcode
               no_results: We cannot find any addresses for that postcode. Check the postcode or use a grid reference instead.
+              not_in_england: We cannot find an address in England for that postcode. Check the postcode or use a grid reference for a site in England.
             token:
               invalid_format: The token is not valid
               missing: The token is missing

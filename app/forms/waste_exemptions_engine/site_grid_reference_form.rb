@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
     include CanClearAddressFinderError
+    include CanRestrictSiteLocationsToEngland
 
     delegate :site_address, :is_linear, :temp_site_id, to: :transient_registration
 
@@ -10,6 +11,7 @@ module WasteExemptionsEngine
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
+    validate :grid_reference_must_be_in_england, if: :check_grid_reference_location?
 
     def initialize(transient_registration)
       super
@@ -85,6 +87,16 @@ module WasteExemptionsEngine
       # in case of multiple edits using back button
 
       true
+    end
+
+    def check_grid_reference_location?
+      grid_reference.present?
+    end
+
+    def grid_reference_must_be_in_england
+      return if site_location_in_england?(grid_reference:)
+
+      errors.add(:grid_reference, :outside_england)
     end
   end
 end

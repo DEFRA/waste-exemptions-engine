@@ -34,6 +34,49 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when the England-only restriction is enabled" do
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_address_lookup_form", temp_site_postcode: "BS1 5AH")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+        end
+
+        it "filters out addresses confirmed to be outside England" do
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+            .with(grid_reference: nil, easting: "358205.03", northing: "172708.07")
+            .and_return(true)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+            .with(grid_reference: nil, easting: "358130.1", northing: "172687.87")
+            .and_return(false)
+
+          filtered_form = described_class.new(transient_registration)
+
+          expect(filtered_form.temp_addresses.pluck("uprn")).to contain_exactly(340_116)
+        end
+
+        context "when the submitted address is outside England" do
+          before do
+            allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run).and_return(false)
+          end
+
+          it "returns false for a submitted address outside England" do
+            expect(form.submit(site_address: { uprn: "340116" })).to be(false)
+          end
+
+          it "adds an England-only validation error for a submitted address outside England" do
+            form.submit(site_address: { uprn: "340116" })
+
+            expect(form.errors.added?(:site_address, :not_in_england)).to be(true)
+          end
+        end
+      end
     end
 
     it_behaves_like "a validated form", :site_address_lookup_form do
