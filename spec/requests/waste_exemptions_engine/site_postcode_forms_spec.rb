@@ -22,7 +22,7 @@ module WasteExemptionsEngine
 
     context "when the England-only restriction is enabled" do
       let(:form) { build(:site_postcode_form) }
-      let(:response) do
+      let(:address_lookup_response) do
         instance_double(
           DefraRuby::Address::Response,
           successful?: true,
@@ -36,7 +36,7 @@ module WasteExemptionsEngine
         allow(WasteExemptionsEngine::FeatureToggle)
           .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
         allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
-        allow(WasteExemptionsEngine::AddressLookupService).to receive(:run).with("BS1 5AH").and_return(response)
+        allow(WasteExemptionsEngine::AddressLookupService).to receive(:run).with("BS1 5AH").and_return(address_lookup_response)
         allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run).and_return(false)
       end
 
