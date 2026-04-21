@@ -17,6 +17,10 @@ module WasteExemptionsEngine
       transient_registration.site_address
     end
 
+    def show_england_only_results_notice?
+      !!@show_england_only_results_notice
+    end
+
     validates :site_address, "waste_exemptions_engine/address": true
     validate :selected_address_must_be_in_england, if: :check_selected_address_location?
 
@@ -51,9 +55,16 @@ module WasteExemptionsEngine
     end
 
     def request_matching_addresses
-      super.select do |address|
+      matching_addresses = super
+
+      english_addresses = matching_addresses.select do |address|
         site_location_in_england?(easting: address["x"], northing: address["y"])
       end
+
+      @show_england_only_results_notice = english_addresses.any? &&
+                                          english_addresses.length < matching_addresses.length
+
+      english_addresses
     end
 
     def check_selected_address_location?
