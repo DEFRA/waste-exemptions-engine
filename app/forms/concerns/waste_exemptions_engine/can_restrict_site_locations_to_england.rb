@@ -9,7 +9,7 @@ module WasteExemptionsEngine
         !WasteExemptionsEngine.configuration.host_is_back_office?
     end
 
-    def site_location_in_england?(grid_reference: nil, easting: nil, northing: nil)
+    def site_location_allowed?(grid_reference: nil, easting: nil, northing: nil)
       return true unless restrict_site_locations_to_england?
 
       CheckSiteLocationIsInEnglandService.run(

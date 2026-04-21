@@ -58,7 +58,7 @@ module WasteExemptionsEngine
       matching_addresses = super
 
       english_addresses = matching_addresses.select do |address|
-        site_location_in_england?(easting: address["x"], northing: address["y"])
+        site_location_allowed?(easting: address["x"], northing: address["y"])
       end
 
       @show_england_only_results_notice = english_addresses.any? &&

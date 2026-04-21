@@ -94,7 +94,7 @@ module WasteExemptionsEngine
     end
 
     def grid_reference_must_be_in_england
-      return if site_location_in_england?(grid_reference:)
+      return if site_location_allowed?(grid_reference:)
 
       errors.add(:grid_reference, :outside_england)
     end

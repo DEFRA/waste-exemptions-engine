@@ -52,7 +52,7 @@ module WasteExemptionsEngine
 
     def selectable_address_found?(results)
       results.any? do |address|
-        site_location_in_england?(easting: address["x"], northing: address["y"])
+        site_location_allowed?(easting: address["x"], northing: address["y"])
       end
     end
   end
