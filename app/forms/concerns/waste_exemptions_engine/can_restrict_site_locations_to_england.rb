@@ -12,11 +12,13 @@ module WasteExemptionsEngine
     def site_location_allowed?(grid_reference: nil, easting: nil, northing: nil)
       return true unless restrict_site_locations_to_england?
 
-      CheckSiteLocationIsInEnglandService.run(
+      in_england = CheckSiteLocationIsInEnglandService.run(
         grid_reference:,
         easting:,
         northing:
       )
+
+      in_england.nil? || in_england
     end
   end
 end

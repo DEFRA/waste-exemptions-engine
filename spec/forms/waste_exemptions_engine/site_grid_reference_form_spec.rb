@@ -214,6 +214,33 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when the England-only restriction is enabled and the grid reference is invalid" do
+        let(:params) { { grid_reference: "ZZ 00001 00001", description: "New site" } }
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+        end
+
+        it "adds the grid reference validation error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :invalid)).to be(true)
+        end
+
+        it "does not add the England-only error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :outside_england)).to be(false)
+        end
+      end
+
       context "when the England-only restriction is enabled in the back office host" do
         let(:transient_registration) do
           create(:new_charged_registration, workflow_state: "site_grid_reference_form")

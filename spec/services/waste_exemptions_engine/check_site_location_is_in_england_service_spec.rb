@@ -32,6 +32,25 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when a grid reference cannot be converted to valid coordinates" do
+        let(:coordinates) { { easting: 0.0, northing: 0.0 } }
+
+        before do
+          allow(DetermineEastingAndNorthingService).to receive(:run).with(grid_reference:, postcode: nil).and_return(coordinates)
+          allow(DetermineAreaService).to receive(:run)
+        end
+
+        it "returns nil" do
+          expect(described_class.run(grid_reference:)).to be_nil
+        end
+
+        it "does not attempt an area lookup" do
+          described_class.run(grid_reference:)
+
+          expect(DetermineAreaService).not_to have_received(:run)
+        end
+      end
+
       context "when coordinates are provided directly" do
         before do
           allow(DetermineEastingAndNorthingService).to receive(:run)
@@ -52,26 +71,16 @@ module WasteExemptionsEngine
           allow(DetermineEastingAndNorthingService).to receive(:run).with(grid_reference:, postcode: nil).and_return(coordinates)
           allow(DetermineAreaService).to receive(:run).with(coordinates).and_raise(error)
           allow(Rails.logger).to receive(:error)
-          allow(Airbrake).to receive(:notify) if defined?(Airbrake)
         end
 
-        it "allows the journey to continue" do
-          expect(described_class.run(grid_reference:)).to be(true)
+        it "returns nil" do
+          expect(described_class.run(grid_reference:)).to be_nil
         end
 
         it "logs the error" do
           described_class.run(grid_reference:)
 
           expect(Rails.logger).to have_received(:error).with("Site location England check failed:\n #{error}")
-        end
-
-        it "notifies Airbrake if defined" do
-          return unless defined?(Airbrake)
-
-          described_class.run(grid_reference:)
-
-          expect(Airbrake).to have_received(:notify)
-            .with(error, grid_reference: grid_reference, easting: nil, northing: nil)
         end
       end
     end

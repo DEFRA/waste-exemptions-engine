@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class CheckSiteLocationIsInEnglandService < BaseService
     def run(grid_reference: nil, easting: nil, northing: nil)
       coordinates = determine_coordinates(grid_reference:, easting:, northing:)
-      return true unless valid_coordinates?(coordinates[:easting], coordinates[:northing])
+      return nil unless valid_coordinates?(coordinates[:easting], coordinates[:northing])
 
       area = DetermineAreaService.run(
         easting: coordinates[:easting],
@@ -13,9 +13,8 @@ module WasteExemptionsEngine
 
       area != EaPublicFaceArea::OUTSIDE_ENGLAND_NAME
     rescue StandardError => e
-      Airbrake.notify(e, grid_reference: grid_reference, easting: easting, northing: northing) if defined?(Airbrake)
       Rails.logger.error "Site location England check failed:\n #{e}"
-      true
+      nil
     end
 
     private
