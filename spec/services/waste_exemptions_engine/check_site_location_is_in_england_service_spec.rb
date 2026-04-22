@@ -46,13 +46,32 @@ module WasteExemptionsEngine
       end
 
       context "when the area lookup errors" do
+        let(:error) { StandardError.new("lookup failed") }
+
         before do
           allow(DetermineEastingAndNorthingService).to receive(:run).with(grid_reference:, postcode: nil).and_return(coordinates)
-          allow(DetermineAreaService).to receive(:run).with(coordinates).and_raise(StandardError, "lookup failed")
+          allow(DetermineAreaService).to receive(:run).with(coordinates).and_raise(error)
+          allow(Rails.logger).to receive(:error)
+          allow(Airbrake).to receive(:notify) if defined?(Airbrake)
         end
 
         it "allows the journey to continue" do
           expect(described_class.run(grid_reference:)).to be(true)
+        end
+
+        it "logs the error" do
+          described_class.run(grid_reference:)
+
+          expect(Rails.logger).to have_received(:error).with("Site location England check failed:\n #{error}")
+        end
+
+        it "notifies Airbrake if defined" do
+          return unless defined?(Airbrake)
+
+          described_class.run(grid_reference:)
+
+          expect(Airbrake).to have_received(:notify)
+            .with(error, grid_reference: grid_reference, easting: nil, northing: nil)
         end
       end
     end

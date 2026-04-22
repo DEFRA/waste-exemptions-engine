@@ -12,7 +12,9 @@ module WasteExemptionsEngine
       )
 
       area != EaPublicFaceArea::OUTSIDE_ENGLAND_NAME
-    rescue StandardError
+    rescue StandardError => e
+      Airbrake.notify(e, grid_reference: grid_reference, easting: easting, northing: northing) if defined?(Airbrake)
+      Rails.logger.error "Site location England check failed:\n #{e}"
       true
     end
 
