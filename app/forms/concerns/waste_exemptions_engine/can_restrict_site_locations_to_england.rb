@@ -18,6 +18,7 @@ module WasteExemptionsEngine
         northing:
       )
 
+      # If we can't determine if the location, prevent blocking flow
       in_england.nil? || in_england
     end
   end
