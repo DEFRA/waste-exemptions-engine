@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-4063\] Refactor site pagination logic and improve page handling in forms [\#1473](https://github.com/DEFRA/waste-exemptions-engine/pull/1473) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4185\] \[RUBY-4234\] Reorder exemption on exemptions summary page [\#1470](https://github.com/DEFRA/waste-exemptions-engine/pull/1470) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4178\] Update payment summary labels and hints for clarity and accuracy [\#1467](https://github.com/DEFRA/waste-exemptions-engine/pull/1467) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4123\] Content updates to confirm activity exemptions page [\#1466](https://github.com/DEFRA/waste-exemptions-engine/pull/1466) ([jjromeo](https://github.com/jjromeo))
@@ -96,6 +97,7 @@
 
 **Fixed bugs:**
 
+- RUBY 4063 wex multiple site improve the ux on the site page [\#1480](https://github.com/DEFRA/waste-exemptions-engine/pull/1480) ([jjromeo](https://github.com/jjromeo))
 - RUBY 4180 wex npj check your answers charitable purpose flow [\#1460](https://github.com/DEFRA/waste-exemptions-engine/pull/1460) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4165\] Update link for waste exemption charges in new form view [\#1452](https://github.com/DEFRA/waste-exemptions-engine/pull/1452) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4124\] Fix issue with "no" and "yes" being reserved key words in yaml [\#1447](https://github.com/DEFRA/waste-exemptions-engine/pull/1447) ([jjromeo](https://github.com/jjromeo))
@@ -157,6 +159,10 @@
 
 **Merged pull requests:**
 
+- Bump addressable from 2.8.9 to 2.9.0 [\#1478](https://github.com/DEFRA/waste-exemptions-engine/pull/1478) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rack-session from 2.1.1 to 2.1.2 [\#1477](https://github.com/DEFRA/waste-exemptions-engine/pull/1477) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump rack from 3.2.5 to 3.2.6 [\#1475](https://github.com/DEFRA/waste-exemptions-engine/pull/1475) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG [\#1472](https://github.com/DEFRA/waste-exemptions-engine/pull/1472) ([jjromeo](https://github.com/jjromeo))
 - Bump gem dependencies 2026-03-24 [\#1471](https://github.com/DEFRA/waste-exemptions-engine/pull/1471) ([brujeo](https://github.com/brujeo))
 - Bump json from 2.19.1 to 2.19.2 [\#1469](https://github.com/DEFRA/waste-exemptions-engine/pull/1469) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump webmock from 3.26.1 to 3.26.2 [\#1465](https://github.com/DEFRA/waste-exemptions-engine/pull/1465) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -255,12 +261,6 @@
 - feature/RUBY-3408\_company\_ltd\_llp\_only [\#1114](https://github.com/DEFRA/waste-exemptions-engine/pull/1114) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump wicked\_pdf from 2.8.1 to 2.8.2 [\#1113](https://github.com/DEFRA/waste-exemptions-engine/pull/1113) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.9.2 to 0.9.3 [\#1112](https://github.com/DEFRA/waste-exemptions-engine/pull/1112) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump factory\_bot\_rails from 6.4.3 to 6.4.4 [\#1111](https://github.com/DEFRA/waste-exemptions-engine/pull/1111) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump rubocop-rspec from 3.1.0 to 3.2.0 [\#1110](https://github.com/DEFRA/waste-exemptions-engine/pull/1110) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump webrick from 1.8.1 to 1.8.2 [\#1109](https://github.com/DEFRA/waste-exemptions-engine/pull/1109) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump pg from 1.5.8 to 1.5.9 [\#1108](https://github.com/DEFRA/waste-exemptions-engine/pull/1108) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump database\_cleaner from 2.0.2 to 2.1.0 [\#1107](https://github.com/DEFRA/waste-exemptions-engine/pull/1107) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Bump activerecord from 7.1.4 to 7.1.4.2 [\#1105](https://github.com/DEFRA/waste-exemptions-engine/pull/1105) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 
 
