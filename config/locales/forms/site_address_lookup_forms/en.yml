@@ -6,6 +6,7 @@ en:
         heading: Select the address of the waste operation
         postcode_label: Postcode
         postcode_change_link: "Change postcode"
+        england_only_results_notice: Only addresses in England are shown.
         grid_reference_link: "Use grid reference instead"
         error_heading: A problem to fix
         next_button: Continue
@@ -16,3 +17,4 @@ en:
           attributes:
             site_address:
               blank: "You must select an address"
+              not_in_england: "You must select an address in England"

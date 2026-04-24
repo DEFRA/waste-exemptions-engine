@@ -128,6 +128,25 @@ module WasteExemptionsEngine
           expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
         end
       end
+
+      context "when the England-only restriction is enabled" do
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run).and_return(false)
+        end
+
+        it "re-renders the form with an England-only error" do
+          post site_grid_reference_request_path, params: { site_grid_reference_form: form_data }
+
+          aggregate_failures do
+            expect(response).to have_http_status(:ok)
+            expect(response.body).to include("The grid reference must be in England")
+          end
+        end
+      end
     end
 
     context "when editing an existing registration" do

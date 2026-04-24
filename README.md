@@ -72,6 +72,22 @@ LEGACY_DATA_MODEL=true bundle exec rspec
 
 This is useful when testing against older data structures or during migration periods.
 
+## EA area lookup
+
+Site location checks use the local `ea_public_face_areas` table rather than an external EA area API.
+That table is populated from the EA public face area boundary dataset via the back-office `load_admin_areas` task.
+The postcode address finder is still an external address lookup; for that route, coordinates come from the address lookup response.
+Grid reference to easting/northing conversion is done locally.
+
+For site addresses, the flow is:
+
+1. Get coordinates from the selected address lookup response, or derive them from the submitted grid reference.
+2. Query `WasteExemptionsEngine::EaPublicFaceArea` with PostGIS via `DetermineAreaService`.
+3. Treat locations with no matching polygon as `Outside England`.
+4. If the EA area lookup errors, log and notify Airbrake, but allow the front-office journey to continue.
+
+The front-office England-only restriction is behind the `restrict_site_locations_to_england` feature toggle.
+
 # Contributing to this project
 
 If you have an idea you'd like to contribute please log an issue.

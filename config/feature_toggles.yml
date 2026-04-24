@@ -1,3 +1,5 @@
 ---
 enable_multisite:
   active: <%= ENV.fetch("ENABLE_MULTISITE", "false") %>
+restrict_site_locations_to_england:
+  active: <%= ENV.fetch("RESTRICT_SITE_LOCATIONS_TO_ENGLAND", "false") %>
