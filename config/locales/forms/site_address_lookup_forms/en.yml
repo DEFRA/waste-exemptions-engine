@@ -17,4 +17,4 @@ en:
           attributes:
             site_address:
               blank: "You must select an address"
-              not_in_england: "You must select an address in England"
+              not_in_england: "This service only accepts sites in England. Select an address in England."
