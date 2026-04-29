@@ -41,7 +41,7 @@ module WasteExemptionsEngine
       it "shows a notice that only addresses in England are shown" do
         get site_address_lookup_forms_path(token: form.token)
 
-        expect(response.body).to include("Only addresses in England are shown.")
+        expect(response.body).to include("This service only shows addresses in England.")
       end
     end
   end
