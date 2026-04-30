@@ -143,7 +143,7 @@ module WasteExemptionsEngine
 
           aggregate_failures do
             expect(response).to have_http_status(:ok)
-            expect(response.body).to include("The grid reference must be in England")
+            expect(response.body).to include("This service only accepts sites in England.")
           end
         end
       end

@@ -45,7 +45,7 @@ module WasteExemptionsEngine
 
         aggregate_failures do
           expect(response).to have_http_status(:ok)
-          expect(response.body).to include("We cannot find an address in England for that postcode.")
+          expect(response.body).to include("This service only accepts sites in England.")
         end
       end
     end
