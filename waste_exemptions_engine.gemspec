@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
 
   # Validations
   # A defra created gem of shared validators
-  s.add_dependency "defra_ruby_validators", "~> 3.0"
+  s.add_dependency "defra_ruby_validators"
 
   # Use the companies house gem to access the Companies House API
   s.add_dependency "defra_ruby_companies_house"
