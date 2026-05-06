@@ -10,7 +10,7 @@ PATH
       defra_ruby_companies_house
       defra_ruby_email
       defra_ruby_govpay
-      defra_ruby_validators (~> 3.0)
+      defra_ruby_validators
       ffi-geos (~> 1.2.0)
       high_voltage (~> 3.1)
       kaminari
@@ -158,7 +158,7 @@ GEM
     defra_ruby_govpay (1.1.0)
       rest-client (~> 2.1)
     defra_ruby_style (0.4.1)
-    defra_ruby_validators (3.0.0)
+    defra_ruby_validators (3.0.1)
       activemodel
       defra_ruby_companies_house
       i18n
