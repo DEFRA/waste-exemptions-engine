@@ -9,7 +9,7 @@ FactoryBot.define do
 
   factory :edit_site_grid_reference_form, class: "WasteExemptionsEngine::SiteGridReferenceForm" do
     initialize_with do
-      new(create(:back_office_edit_registration, workflow_state: "site_grid_reference_form"))
+      new(create(:new_charged_registration, :complete, workflow_state: "site_grid_reference_form"))
     end
   end
 

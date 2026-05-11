@@ -13,10 +13,4 @@ FactoryBot.define do
     end
   end
 
-  factory :back_office_edit_registration_number_form, class: "WasteExemptionsEngine::RegistrationNumberForm" do
-    initialize_with do
-      new(create(:back_office_edit_registration, workflow_state: "registration_number_form",
-                                                 temp_company_no: "09360070"))
-    end
-  end
 end

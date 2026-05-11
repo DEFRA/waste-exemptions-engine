@@ -90,27 +90,6 @@ module WasteExemptionsEngine
           end
         end
 
-        # Tehse specs are specific to back_office_edit_registrations which, unlike front-end
-        # transient registrations, do not have a confirmation page.
-        context "when the registration number form is submitted in the back office" do
-          subject(:form) { build(:back_office_edit_registration_number_form) }
-
-          let(:transient_registration) { form.transient_registration }
-
-          before { valid_params[:temp_company_no] = "12345678" }
-
-          # This spec is to ensure that a company number entered during a back-office edit is stored
-          # as a copyable attribute on the transient registration.
-          it "updates the company_no attribute on the transient registration" do
-            expect { form.submit(valid_params) }.to change { transient_registration.reload.company_no }.to("12345678")
-          end
-
-          # This spec is to ensure that the registered company name retrieved during a back-office edit is stored
-          # as a copyable attribute on the transient registration.
-          it "updates the operator_name attribute on the transient registration" do
-            expect { form.submit(valid_params) }.to change { transient_registration.reload.operator_name }.to(company_name)
-          end
-        end
       end
     end
   end

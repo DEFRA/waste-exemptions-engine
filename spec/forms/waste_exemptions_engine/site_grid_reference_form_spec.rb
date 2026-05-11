@@ -279,9 +279,9 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when editing registration in the back office" do
+    context "when updating an existing site address" do
       let(:transient_registration) do
-        create(:back_office_edit_registration).tap do |registration|
+        create(:new_charged_registration, :complete).tap do |registration|
           create(:transient_address, :site_using_grid_reference, transient_registration: registration)
         end
       end
