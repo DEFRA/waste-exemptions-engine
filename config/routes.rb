@@ -676,4 +676,6 @@ WasteExemptionsEngine::Engine.routes.draw do
   get "/registrations/unsubscribe_successful", to: "unsubscribe#unsubscribe_successful",
                                                as: "unsubscribe_registration_successful"
   get "/registrations/unsubscribe_failed", to: "unsubscribe#unsubscribe_failed", as: "unsubscribe_registration_failed"
+
+  mount DefraRubyMap::Engine, at: "/defra-ruby-map"
 end

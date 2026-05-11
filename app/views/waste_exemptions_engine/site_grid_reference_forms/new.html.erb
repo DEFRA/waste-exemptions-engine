@@ -41,6 +41,8 @@
              class="govuk-!-display-none"
              data-module="defra-interactive-map"
              data-initial-grid-reference="<%= @site_grid_reference_form.grid_reference %>"
+             data-proxy-url="/defra-ruby-map"
+             data-images-url="<%= defra_map_asset_path("images") %>"
              data-center="-1.5,52.5"
              data-zoom="6">
         </div>
@@ -94,11 +96,15 @@
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/interactive-map.css') %>" media="all" />
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/interact-plugin.css') %>" media="all" />
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/search-plugin.css') %>" media="all" />
+  <link rel="stylesheet" href="<%= defra_map_asset_path('css/map-styles-plugin.css') %>" media="all" />
+  <link rel="stylesheet" href="<%= defra_map_asset_path('css/scale-bar-plugin.css') %>" media="all" />
   <script src="<%= defra_map_asset_path('proj4js/proj4.js') %>"></script>
   <script src="<%= defra_map_asset_path('defra-interactive-map/index.js') %>"></script>
   <script src="<%= defra_map_asset_path('maplibre-provider/index.js') %>"></script>
   <script src="<%= defra_map_asset_path('interact-plugin/index.js') %>"></script>
   <script src="<%= defra_map_asset_path('search-plugin/index.js') %>"></script>
+  <script src="<%= defra_map_asset_path('map-styles-plugin/index.js') %>"></script>
+  <script src="<%= defra_map_asset_path('scale-bar-plugin/index.js') %>"></script>
   <%= javascript_include_tag "defra-ruby-map/grid_reference_converter" %>
   <%= javascript_include_tag "defra-ruby-map/map_init" %>
   <%= javascript_include_tag "waste_exemptions_engine/interactive_map_init" %>
