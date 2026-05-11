@@ -10,7 +10,7 @@ module WasteExemptionsEngine
 
     def submit(params)
       params[:temp_company_no] = process_company_no(params[:temp_company_no])
-      temp_company_no = params[:temp_company_no]
+      params[:temp_company_no]
 
       super
     end
