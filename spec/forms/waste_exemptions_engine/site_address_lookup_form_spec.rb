@@ -118,7 +118,7 @@ module WasteExemptionsEngine
         let(:form) { build(:site_address_lookup_form, transient_registration: transient_registration) }
 
         before do
-          transient_registration.registration.update!(is_multisite_registration: true)
+          transient_registration.update!(is_multisite_registration: true)
           allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
           transient_registration.update(temp_site_id: existing_site.id)
         end
