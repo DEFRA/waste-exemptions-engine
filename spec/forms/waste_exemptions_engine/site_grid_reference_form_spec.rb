@@ -143,10 +143,12 @@ module WasteExemptionsEngine
           params = { grid_reference: "  ST 58337 72855  ", description: "A site description" }
           transient_registration = form.transient_registration
 
-          expect(form.submit(params)).to be(true)
+          aggregate_failures do
+            expect(form.submit(params)).to be(true)
 
-          transient_registration.reload
-          expect(transient_registration.site_address.grid_reference).to eq("ST 58337 72855")
+            transient_registration.reload
+            expect(transient_registration.site_address.grid_reference).to eq("ST 58337 72855")
+          end
         end
       end
 
