@@ -138,6 +138,20 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when the grid reference has leading or trailing whitespace" do
+        it "strips whitespace and submits successfully" do
+          params = { grid_reference: "  ST 58337 72855  ", description: "A site description" }
+          transient_registration = form.transient_registration
+
+          aggregate_failures do
+            expect(form.submit(params)).to be(true)
+
+            transient_registration.reload
+            expect(transient_registration.site_address.grid_reference).to eq("ST 58337 72855")
+          end
+        end
+      end
+
       context "when creating a new multisite site" do
         let(:transient_registration) do
           create(:new_charged_registration,

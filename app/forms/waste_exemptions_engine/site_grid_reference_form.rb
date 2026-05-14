@@ -19,6 +19,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
+      params[:grid_reference] = params[:grid_reference]&.strip
       self.grid_reference = params[:grid_reference]
       self.description = params[:description]
 
