@@ -10,7 +10,11 @@ module WasteExemptionsEngine
 
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
       let(:notifications_client) { instance_double(Notifications::Client) }
-      let(:mock_response) { instance_double(Notifications::Client::ResponseNotification) }
+      let(:mock_response) do
+        instance_double(Notifications::Client::ResponseNotification,
+                        id: SecureRandom.uuid,
+                        content: { "body" => "Letter content", "subject" => "Letter subject" })
+      end
 
       before do
         allow(Notifications::Client).to receive(:new).and_return(notifications_client)
