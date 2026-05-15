@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_08_120002) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_14_163943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -164,6 +164,10 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_08_120002) do
     t.string "template_id"
     t.string "template_label"
     t.string "sent_to"
+    t.string "notification_id"
+    t.string "subject"
+    t.text "body"
+    t.string "status", default: "sent"
   end
 
   create_table "companies", force: :cascade do |t|
