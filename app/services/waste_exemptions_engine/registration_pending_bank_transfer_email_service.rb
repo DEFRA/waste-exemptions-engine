@@ -17,7 +17,7 @@ module WasteExemptionsEngine
 
       result = client.send_email(options)
 
-      create_log(registration:)
+      create_log(registration:, notify_response: result)
 
       result
     end
