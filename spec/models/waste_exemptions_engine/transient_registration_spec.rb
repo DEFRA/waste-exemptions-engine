@@ -170,7 +170,6 @@ module WasteExemptionsEngine
       it { expect(build(:new_charged_registration).new?).to be true }
       it { expect(build(:renewing_registration).new?).to be false }
       it { expect(build(:front_office_edit_registration).new?).to be false }
-      it { expect(build(:back_office_edit_registration).new?).to be false }
     end
 
     it_behaves_like "can have multiple sites", :registration

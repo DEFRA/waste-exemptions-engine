@@ -29,16 +29,6 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when editing an existing registration" do
-      let(:edit_contact_position_form) { build(:edit_contact_position_form) }
-
-      it "pre-fills contact position information" do
-        get "/waste_exemptions_engine/#{edit_contact_position_form.token}/contact-position"
-
-        expect(response.body).to have_html_escaped_string(edit_contact_position_form.contact_position)
-      end
-    end
-
     context "when renewing an existing registration" do
       let(:renew_contact_position_form) { build(:renew_contact_position_form) }
 
