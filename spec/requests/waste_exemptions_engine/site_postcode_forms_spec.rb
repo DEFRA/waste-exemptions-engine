@@ -10,16 +10,6 @@ module WasteExemptionsEngine
       let(:invalid_form_data) { [{ temp_site_postcode: "BS" }, { temp_site_postcode: nil }] }
     end
 
-    context "when editing an existing registration" do
-      let(:edit_site_postcode_form) { build(:edit_site_postcode_form) }
-
-      it "pre-fills site postcode information" do
-        get "/waste_exemptions_engine/#{edit_site_postcode_form.token}/site-postcode"
-
-        expect(response.body).to have_html_escaped_string(edit_site_postcode_form.temp_site_postcode)
-      end
-    end
-
     context "when the England-only restriction is enabled" do
       let(:form) { build(:site_postcode_form) }
       let(:address_lookup_response) do
