@@ -2,6 +2,10 @@
 
 module WasteExemptionsEngine
   class NotifyCallbacksController < ::WasteExemptionsEngine::ApplicationController
+    class TokenNotConfiguredError < StandardError; end
+    class MissingAuthorizationError < StandardError; end
+    class InvalidTokenError < StandardError; end
+
     protect_from_forgery with: :null_session
 
     def process_callback
@@ -23,15 +27,15 @@ module WasteExemptionsEngine
 
     def validate_bearer_token!
       expected_token = ENV.fetch("NOTIFY_CALLBACK_BEARER_TOKEN", nil)
-      raise "Notify callback bearer token not configured" if expected_token.blank?
+      raise TokenNotConfiguredError, "Notify callback bearer token not configured" if expected_token.blank?
 
       auth_header = request.headers["Authorization"]
-      raise "Missing Authorization header" if auth_header.blank?
+      raise MissingAuthorizationError, "Missing Authorization header" if auth_header.blank?
 
       token = auth_header.sub(/\ABearer\s+/, "")
       return if ActiveSupport::SecurityUtils.secure_compare(token, expected_token)
 
-      raise "Invalid bearer token"
+      raise InvalidTokenError, "Invalid bearer token"
     end
   end
 end
