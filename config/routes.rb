@@ -556,6 +556,9 @@ WasteExemptionsEngine::Engine.routes.draw do
   # GOV.uk pay webhook callback route
   post "/govpay_payment_update", to: "govpay_webhook_callbacks#process_webhook", as: "process_govpay_webhook"
 
+  # GOV.UK Notify callback route
+  post "/notify_callback", to: "notify_callbacks#process_callback", as: "notify_callback"
+
   # Static pages with HighVoltage
   resources :pages, only: [:show], controller: "pages"
 

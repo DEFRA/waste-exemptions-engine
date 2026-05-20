@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+module WasteExemptionsEngine
+  class NotifyCallbacksController < ::WasteExemptionsEngine::ApplicationController
+    protect_from_forgery with: :null_session
+
+    def process_callback
+      validate_bearer_token!
+
+      request.body.rewind
+      body = request.body.read
+      payload = JSON.parse(body)
+
+      NotifyCallbackJob.perform_later(payload)
+    rescue StandardError => e
+      Rails.logger.error "Notify callback error: #{e}"
+      Airbrake.notify(e)
+    ensure
+      head :ok
+    end
+
+    private
+
+    def validate_bearer_token!
+      expected_token = ENV.fetch("NOTIFY_CALLBACK_BEARER_TOKEN", nil)
+      raise "Notify callback bearer token not configured" if expected_token.blank?
+
+      auth_header = request.headers["Authorization"]
+      raise "Missing Authorization header" if auth_header.blank?
+
+      token = auth_header.sub(/\ABearer\s+/, "")
+      return if ActiveSupport::SecurityUtils.secure_compare(token, expected_token)
+
+      raise "Invalid bearer token"
+    end
+  end
+end
