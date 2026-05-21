@@ -44,38 +44,34 @@ module WasteExemptionsEngine
           allow(Rails.logger).to receive(:error)
         end
 
-        it "notifies Airbrake" do
-          perform_now
+        context "with a delivery receipt callback payload" do
+          it "notifies Airbrake" do
+            perform_now
 
-          expect(Airbrake).to have_received(:notify).with(
-            an_instance_of(StandardError),
-            hash_including(notification_id: "test-uuid")
-          )
+            expect(Airbrake).to have_received(:notify).with(
+              an_instance_of(StandardError),
+              hash_including(notification_id: "test-uuid")
+            )
+          end
+
+          it "logs the error" do
+            perform_now
+
+            expect(Rails.logger).to have_received(:error).with(/Error running NotifyCallbackJob/)
+          end
         end
 
-        it "logs the error" do
-          perform_now
+        context "with a returned letter callback payload" do
+          let(:callback_payload) { { "notification_id" => "letter-uuid", "template_name" => "confirmation" } }
 
-          expect(Rails.logger).to have_received(:error).with(/Error running NotifyCallbackJob/)
-        end
-      end
+          it "extracts notification_id from the returned letter payload" do
+            perform_now
 
-      context "with a returned letter payload" do
-        let(:callback_payload) { { "notification_id" => "letter-uuid", "template_name" => "confirmation" } }
-
-        before do
-          allow(NotifyCallbackHandlerService).to receive(:run).and_raise(StandardError.new("Test error"))
-          allow(Airbrake).to receive(:notify)
-          allow(Rails.logger).to receive(:error)
-        end
-
-        it "extracts notification_id from the returned letter payload" do
-          perform_now
-
-          expect(Airbrake).to have_received(:notify).with(
-            an_instance_of(StandardError),
-            hash_including(notification_id: "letter-uuid")
-          )
+            expect(Airbrake).to have_received(:notify).with(
+              an_instance_of(StandardError),
+              hash_including(notification_id: "letter-uuid")
+            )
+          end
         end
       end
     end
