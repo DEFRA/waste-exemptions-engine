@@ -11,6 +11,7 @@ module WasteExemptionsEngine
     def process_callback
       validate_bearer_token!
 
+      # need to rewind in case already read
       request.body.rewind
       body = request.body.read
       payload = JSON.parse(body)

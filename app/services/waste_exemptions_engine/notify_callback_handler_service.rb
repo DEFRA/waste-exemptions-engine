@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class NotifyCallbackHandlerService < BaseService
-    NOTIFICATION_STATUSES = %w[delivered permanent-failure technical-failure returned].freeze
+    TERMINAL_STATUSES = %w[delivered permanent-failure technical-failure returned].freeze
 
     def run(callback_payload)
       @payload = callback_payload.deep_symbolize_keys
@@ -44,7 +44,7 @@ module WasteExemptionsEngine
         return { notification_id: notification_id, status: "not_found" }
       end
 
-      if NOTIFICATION_STATUSES.include?(communication_log.status)
+      if TERMINAL_STATUSES.include?(communication_log.status)
         Rails.logger.info "Ignoring Notify callback for notification_id #{notification_id}: " \
                           "already in terminal status '#{communication_log.status}'"
         return { notification_id: notification_id, status: communication_log.status }
