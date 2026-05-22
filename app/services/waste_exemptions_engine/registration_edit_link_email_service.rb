@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       {
         message_type: "email",
         template_id: template_id,
-        template_label: "Registration edit link email",
+        template_label: template_label,
         sent_to: @recipient
       }
     end
@@ -37,6 +37,14 @@ module WasteExemptionsEngine
         NotificationTemplates::REGISTRATION_EDIT_LINK_MULTI_SITE_EMAIL
       else
         NotificationTemplates::REGISTRATION_EDIT_LINK_EMAIL
+      end
+    end
+
+    def template_label
+      if @registration.multisite?
+        "Registration edit link multi-site email"
+      else
+        "Registration edit link email"
       end
     end
 

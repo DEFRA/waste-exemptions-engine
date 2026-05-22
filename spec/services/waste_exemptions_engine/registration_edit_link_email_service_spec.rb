@@ -102,6 +102,13 @@ module WasteExemptionsEngine
           hash_including(personalisation: satisfy { |p| !p.key?(:site_details) })
         )
       end
+
+      it "logs the communication with a multi-site template label" do
+        run_service
+
+        expect(WasteExemptionsEngine::CommunicationLog.last.template_label)
+          .to eq("Registration edit link multi-site email")
+      end
     end
   end
 end
