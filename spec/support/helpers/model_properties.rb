@@ -31,6 +31,10 @@ module Helpers
       template_id
       template_label
       sent_to
+      notification_id
+      status
+      subject
+      body
     ].freeze
 
     EXEMPTION = %i[

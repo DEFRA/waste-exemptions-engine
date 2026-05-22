@@ -25,6 +25,7 @@ jobs:
       TZ: UTC
       WEX_GOVPAY_CALLBACK_WEBHOOK_SIGNING_SECRET: foo
       WEX_GOVPAY_BACK_OFFICE_CALLBACK_WEBHOOK_SIGNING_SECRET: foo2
+      NOTIFY_CALLBACK_BEARER_TOKEN: test-notify-bearer-token
 
 
     # Service containers to run with `runner-job`
