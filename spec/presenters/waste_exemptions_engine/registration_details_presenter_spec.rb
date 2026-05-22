@@ -188,10 +188,11 @@ module WasteExemptionsEngine
 
     describe "#multisite_location_section" do
       let(:registration) { create(:registration, :complete, :multisite) }
+      let(:site_addresses) { registration.site_addresses.reload }
 
       context "when sites are located by grid reference" do
         before do
-          registration.site_addresses.each_with_index do |address, index|
+          site_addresses.each_with_index do |address, index|
             address.update!(
               mode: WasteExemptionsEngine::Address.modes[:auto],
               grid_reference: "ST 5833#{index} 7285#{index}",
@@ -201,17 +202,20 @@ module WasteExemptionsEngine
         end
 
         it "returns one entry per site with location and description" do
-          expected = registration.site_addresses.each_with_index.map do |address, index|
+          expected = site_addresses.each_with_index.map do |address, index|
             "Location: #{address.grid_reference}\nDescription: Description for site #{index + 1}"
           end
 
-          expect(presenter.multisite_location_section).to eq(expected)
+          aggregate_failures do
+            expect(expected).not_to be_empty
+            expect(presenter.multisite_location_section).to eq(expected)
+          end
         end
       end
 
       context "when a site is located by postal address" do
         before do
-          registration.site_addresses.first.update!(
+          site_addresses.first.update!(
             mode: WasteExemptionsEngine::Address.modes[:manual],
             premises: "1 Example Way",
             street_address: "Some Street",
@@ -230,7 +234,7 @@ module WasteExemptionsEngine
 
       context "when a site has no description" do
         before do
-          registration.site_addresses.first.update!(
+          site_addresses.first.update!(
             mode: WasteExemptionsEngine::Address.modes[:auto],
             grid_reference: "ST 58337 72855",
             description: nil

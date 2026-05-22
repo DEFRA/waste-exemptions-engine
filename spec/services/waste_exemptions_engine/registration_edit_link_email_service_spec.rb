@@ -52,12 +52,18 @@ module WasteExemptionsEngine
       let(:recipient) { registration.contact_email }
       let(:magic_link_token) { registration.edit_token }
       let(:notifications_client) { instance_double(Notifications::Client) }
-      let(:send_email_response) { instance_double(Notifications::Client::ResponseNotification) }
+      let(:send_email_response) do
+        instance_double(
+          Notifications::Client::ResponseNotification,
+          id: "notify-id-123",
+          content: { "body" => "body", "subject" => "subject" }
+        )
+      end
 
       subject(:run_service) { described_class.run(registration:, recipient:, magic_link_token:) }
 
       before do
-        registration.site_addresses.each_with_index do |address, index|
+        registration.site_addresses.reload.each_with_index do |address, index|
           address.update!(
             mode: WasteExemptionsEngine::Address.modes[:auto],
             grid_reference: "ST 5833#{index} 7285#{index}",
