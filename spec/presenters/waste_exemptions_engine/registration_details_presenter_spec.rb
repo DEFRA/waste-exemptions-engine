@@ -201,13 +201,13 @@ module WasteExemptionsEngine
           end
         end
 
-        it "returns one entry per site with location and description" do
+        it "returns a numbered, double-newline-separated string with one entry per site" do
           expected = site_addresses.each_with_index.map do |address, index|
-            "Location: #{address.grid_reference}\nDescription: Description for site #{index + 1}"
-          end
+            "#{index + 1}. Location: #{address.grid_reference}\nDescription: Description for site #{index + 1}"
+          end.join("\n\n")
 
           aggregate_failures do
-            expect(expected).not_to be_empty
+            expect(site_addresses).not_to be_empty
             expect(presenter.multisite_location_section).to eq(expected)
           end
         end
@@ -225,10 +225,9 @@ module WasteExemptionsEngine
           )
         end
 
-        it "renders the address on the location line" do
-          entry = presenter.multisite_location_section.first
-
-          expect(entry).to start_with("Waste operation location: 1 Example Way, Some Street, Locality, City, BS1 1AA")
+        it "renders the address on the location line of the first entry" do
+          expect(presenter.multisite_location_section)
+            .to start_with("1. Waste operation location: 1 Example Way, Some Street, Locality, City, BS1 1AA")
         end
       end
 
@@ -242,9 +241,8 @@ module WasteExemptionsEngine
         end
 
         it "omits the description line for that site" do
-          entry = presenter.multisite_location_section.first
-
-          expect(entry).to eq("Location: ST 58337 72855")
+          expect(presenter.multisite_location_section)
+            .to start_with("1. Location: ST 58337 72855\n\n")
         end
       end
     end
