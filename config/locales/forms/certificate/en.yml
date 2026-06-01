@@ -36,7 +36,7 @@ en:
           heading: Registration details
           registration_details:
             heading: Registration details
-            reference_number: Reference Number
+            reference_number: Reference number
             date_registered: Date registered
             expiry_date: Expiry date
           exemptions:
