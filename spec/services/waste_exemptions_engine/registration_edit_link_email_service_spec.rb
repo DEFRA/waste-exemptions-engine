@@ -83,15 +83,15 @@ module WasteExemptionsEngine
         )
       end
 
-      it "sends one sites entry per site formatted with grid reference and description" do
+      it "sends sites as a numbered string with one entry per site" do
         run_service
 
-        expected_entries = registration.site_addresses.map do |address|
-          "Location: #{address.grid_reference}\nDescription: #{address.description}"
-        end
+        expected_sites = registration.site_addresses.each_with_index.map do |address, index|
+          "#{index + 1}. Location: #{address.grid_reference}\nDescription: #{address.description}"
+        end.join("\n\n")
 
         expect(notifications_client).to have_received(:send_email).with(
-          hash_including(personalisation: hash_including(sites: expected_entries))
+          hash_including(personalisation: hash_including(sites: expected_sites))
         )
       end
 
@@ -100,6 +100,21 @@ module WasteExemptionsEngine
 
         expect(notifications_client).to have_received(:send_email).with(
           hash_including(personalisation: satisfy { |p| !p.key?(:site_details) })
+        )
+      end
+
+      it "de-duplicates exemptions so each exemption code appears once" do
+        exemption = registration.registration_exemptions.active.first.exemption
+        registration.registration_exemptions.active.each do |re|
+          re.update!(exemption: exemption)
+        end
+
+        run_service
+
+        expected_row = "#{exemption.code} #{exemption.summary}"
+
+        expect(notifications_client).to have_received(:send_email).with(
+          hash_including(personalisation: hash_including(exemptions: [expected_row]))
         )
       end
 

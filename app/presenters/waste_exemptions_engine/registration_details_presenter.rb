@@ -58,7 +58,9 @@ module WasteExemptionsEngine
     end
 
     def multisite_location_section
-      site_addresses.map { |address| multisite_site_entry(address) }
+      site_addresses.each_with_index.map do |address, index|
+        "#{index + 1}. #{multisite_site_entry(address)}"
+      end.join("\n\n")
     end
 
     def exemptions_section
