@@ -19,6 +19,21 @@ module WasteExemptionsEngine
       format_name(contact_first_name, contact_last_name)
     end
 
+    def unique_active_registration_exemptions
+      seen = Set.new
+      sorted_active_registration_exemptions.select { |re| seen.add?(re.exemption_id) }
+    end
+
+    def deregistered_exemptions_for_site(address)
+      address.registration_exemptions.includes(:exemption)
+             .where(state: %i[ceased revoked])
+             .order_by_state_then_exemption_id
+    end
+
+    def expiry_date
+      expires_on&.to_formatted_s(:day_month_year)
+    end
+
     def ceased_or_revoked_on(registration_exemption)
       case registration_exemption.state
       when "revoked"
