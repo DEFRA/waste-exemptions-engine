@@ -88,6 +88,29 @@ For site addresses, the flow is:
 
 The front-office England-only restriction is behind the `restrict_site_locations_to_england` feature toggle.
 
+## Preparing a release
+
+The `bin/prepare-release` script automates the changelog and dependency update steps for a new release. Run it from the `main` branch:
+
+```bash
+bin/prepare-release
+```
+
+The script will:
+
+1. Verify you are on `main` and pull the latest changes.
+2. Check that `CHANGELOG_GITHUB_TOKEN` is set (a GitHub personal access token required by the changelog generator).
+3. Create a `chore/changelog-DD/MM/YYYY` branch.
+4. Optionally run `bundle update`, RuboCop, and RSpec — if you choose to update dependencies.
+5. Commit `Gemfile.lock` (with a detailed message listing gem version changes).
+6. Generate the changelog via `bundle exec rake changelog`.
+7. Commit `CHANGELOG.md`.
+8. Print next steps (push the branch and open a PR).
+
+The script **does not** push the branch or create the pull request — those are left for you to do manually.
+
+If the script is re-run on an existing `chore/changelog-*` branch it will skip the main-branch check and resume from where it left off.
+
 # Contributing to this project
 
 If you have an idea you'd like to contribute please log an issue.
