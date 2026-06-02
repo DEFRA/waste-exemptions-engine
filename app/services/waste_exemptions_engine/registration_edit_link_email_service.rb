@@ -77,7 +77,11 @@ module WasteExemptionsEngine
     end
 
     def active_exemptions_text
-      @registration.registration_exemptions.active.map { |re| exemption_row(re.exemption) }
+      WasteExemptionsEngine::Exemption
+        .joins(:registration_exemptions)
+        .merge(@registration.registration_exemptions.active)
+        .distinct
+        .map { |exemption| exemption_row(exemption) }
     end
 
     def exemption_row(exemption)

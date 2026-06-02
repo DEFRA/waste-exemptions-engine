@@ -65,6 +65,33 @@ module WasteExemptionsEngine
             expect(response).to have_http_status(:ok)
           end
         end
+
+        context "with a multisite registration" do
+          let(:registration) do
+            reg = create(:registration, :complete, contact_email: "contact@example.com")
+            reg.site_addresses.first || create(:address, :site_using_grid_reference, registration: reg)
+            site2 = create(:address, :site_using_grid_reference, registration: reg,
+                                                                 grid_reference: "ST 12345 67890",
+                                                                 description: "Second site description")
+            create(:registration_exemption, registration: reg, address: site2, state: :ceased,
+                                            deregistered_at: 1.day.ago)
+            reg.tap(&:generate_view_certificate_token!)
+          end
+
+          it "renders all sites and deregistered exemptions section" do
+            get_certificate
+
+            aggregate_failures do
+              expect(response).to have_http_status(:ok)
+              expect(response.body).to include("1.")
+              expect(response.body).to include("2.")
+              expect(response.body).to include("ST 12345 67890")
+              expect(response.body).to include("Second site description")
+              expect(response.body).to include("Deregistered exemptions")
+              expect(response.body).to include("Site location")
+            end
+          end
+        end
       end
 
       context "with valid email in session but invalid token" do
