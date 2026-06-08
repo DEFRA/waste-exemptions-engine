@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DEFRA/defra-ruby-map.git
-  revision: 9ba63442adcf03aa2e2ab0388a433796dbf092cb
+  revision: a56d90243a417622f4ba46af27eb53dbe0687994
   branch: osplaces_dataset
   specs:
     defra_ruby_map (0.2.0)
