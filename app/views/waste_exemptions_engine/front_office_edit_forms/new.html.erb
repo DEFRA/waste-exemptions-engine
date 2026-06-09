@@ -27,12 +27,12 @@
             <%= t(".row_labels.exemptions") %>
           </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              <% transient_registration.exemptions.each do |exemption| %>
-                <li><%= exemption.code %> <%= exemption.summary %></li>
-              <% end %>
-            </ul>
             <% if transient_registration.registration.multisite? %>
+              <ul class="govuk-list govuk-list--bullet">
+                <% transient_registration.exemptions.each do |exemption| %>
+                  <li><%= exemption.code %> <%= exemption.summary %></li>
+                <% end %>
+              </ul>
               <p class="govuk-body govuk-!-margin-bottom-1"><%= t(".locations_heading") %></p>
               <ol class="govuk-list govuk-list--number">
                 <% transient_registration.registration.site_addresses.each do |site| %>
@@ -43,6 +43,8 @@
               <p class="govuk-body govuk-!-margin-bottom-0"><%= t(".contact_telephone") %></p>
               <p class="govuk-body govuk-!-margin-bottom-0"><%= t(".contact_telephone_international") %></p>
               <p class="govuk-body"><%= t(".contact_hours") %></p>
+            <% else %>
+              <%= exemptions_list(transient_registration) %>
             <% end %>
           </dd>
           <% unless transient_registration.registration.multisite? %>
