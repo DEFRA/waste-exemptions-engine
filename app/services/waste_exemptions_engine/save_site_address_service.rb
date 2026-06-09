@@ -50,7 +50,7 @@ module WasteExemptionsEngine
 
     def site_address_to_save
       if editing_site?
-        return transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
+        return transient_registration.transient_addresses.site.find_by(id: transient_registration.temp_site_id)
       end
 
       return single_site_address unless multisite_registration?
