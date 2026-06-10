@@ -4,7 +4,7 @@ module WasteExemptionsEngine
   class SiteAddressLookupForm < AddressLookupFormBase
     include CanRestrictSiteLocationsToEngland
 
-    delegate :temp_site_postcode, :temp_site_id, to: :transient_registration
+    delegate :temp_site_postcode, to: :transient_registration
 
     # This virtual attribute is validated using AddressValidator and populated
     # from incoming params (e.g. { site_address: { uprn: "123" } })
@@ -33,19 +33,11 @@ module WasteExemptionsEngine
 
       return false unless valid? && address_attributes.present?
 
-      return update_existing_site(address_attributes) if temp_site_id.present?
-
-      if multisite_registration?
-        transient_registration.transient_addresses.create!(
-          address_attributes.merge(
-            address_type: "site",
-            mode: "lookup"
-          )
-        )
-        true
-      else
-        super(site_address_attributes: address_attributes)
-      end
+      SaveSiteAddressService.run(
+        transient_registration: transient_registration,
+        address_attributes: address_attributes,
+        mode: :lookup
+      )
     end
 
     private
@@ -79,23 +71,6 @@ module WasteExemptionsEngine
 
     def selected_address_in_filtered_results?
       get_address_data(site_address[:uprn], :site).present?
-    end
-
-    def update_existing_site(address_attributes)
-      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
-      return false unless existing_site.present?
-
-      existing_site.update!(
-        address_attributes.merge(
-          address_type: "site",
-          mode: "lookup"
-        )
-      )
-
-      # do not clear temp_site_id after updating
-      # in case of multiple edits using back button
-
-      true
     end
   end
 end

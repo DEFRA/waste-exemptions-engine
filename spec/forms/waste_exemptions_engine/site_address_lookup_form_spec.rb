@@ -33,6 +33,49 @@ module WasteExemptionsEngine
             expect(transient_registration.transient_addresses.first.uprn).to eq(address_uprn)
           end
         end
+
+        context "when the registration already has a single site address" do
+          let(:transient_registration) do
+            create(:new_charged_registration,
+                   workflow_state: "site_address_lookup_form",
+                   temp_site_postcode: "BS1 5AH")
+          end
+          let(:form) { described_class.new(transient_registration) }
+
+          before do
+            create(:transient_address, :site_address,
+                   transient_registration: transient_registration,
+                   uprn: "340116",
+                   mode: :lookup)
+          end
+
+          it "updates the existing site address instead of creating another one" do
+            expect { form.submit(site_address: { uprn: "340116" }) }
+              .not_to change { transient_registration.transient_addresses.site.count }
+          end
+        end
+
+        context "when a multisite registration already has the selected site address" do
+          let(:transient_registration) do
+            create(:new_charged_registration,
+                   workflow_state: "site_address_lookup_form",
+                   temp_site_postcode: "BS1 5AH",
+                   is_multisite_registration: true)
+          end
+          let(:form) { described_class.new(transient_registration) }
+
+          before do
+            create(:transient_address, :site_address,
+                   transient_registration: transient_registration,
+                   uprn: "340116",
+                   mode: :lookup)
+          end
+
+          it "does not create a duplicate site address" do
+            expect { form.submit(site_address: { uprn: "340116" }) }
+              .not_to change { transient_registration.transient_addresses.site.count }
+          end
+        end
       end
 
       context "when the England-only restriction is enabled" do
