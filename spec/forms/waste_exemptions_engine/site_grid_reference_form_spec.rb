@@ -165,6 +165,20 @@ module WasteExemptionsEngine
         it "creates the site address" do
           expect { form.submit(params) }.to change(transient_registration.transient_addresses, :count).by(1)
         end
+
+        context "when the same site address already exists" do
+          before do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   grid_reference: "ST 12345 67890",
+                   description: "New site")
+          end
+
+          it "does not create a duplicate site address" do
+            expect { form.submit(params) }
+              .not_to change { transient_registration.transient_addresses.site.count }
+          end
+        end
       end
 
       context "when updating an existing site" do
@@ -191,6 +205,28 @@ module WasteExemptionsEngine
             expect(existing_site.grid_reference).to eq("ST 99999 88888")
             expect(existing_site.description).to eq("Updated")
           end
+        end
+      end
+
+      context "when the single-site registration already has a site address" do
+        let(:transient_registration) do
+          create(:new_charged_registration,
+                 workflow_state: "site_grid_reference_form",
+                 is_multisite_registration: false)
+        end
+        let(:form) { described_class.new(transient_registration) }
+        let(:params) { { grid_reference: "ST 99999 88888", description: "Updated" } }
+
+        before do
+          create(:transient_address, :site_using_grid_reference,
+                 transient_registration: transient_registration,
+                 grid_reference: "ST 11111 22222",
+                 description: "Original")
+        end
+
+        it "updates the existing site address instead of creating another one" do
+          expect { form.submit(params) }
+            .not_to change { transient_registration.transient_addresses.site.count }
         end
       end
 

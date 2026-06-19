@@ -29,20 +29,16 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      return update_existing_site if edit_mode?
+      address_attributes = {
+        grid_reference: grid_reference,
+        description: description
+      }
 
-      if multisite_registration?
-        transient_registration.transient_addresses.create!(
-          grid_reference: grid_reference,
-          description: description,
-          address_type: "site",
-          mode: "auto"
-        )
-        true
-      else
-        params.merge!(address_type: :site, mode: :auto)
-        super(site_address_attributes: params)
-      end
+      SaveSiteAddressService.run(
+        transient_registration: transient_registration,
+        address_attributes: address_attributes,
+        mode: :auto
+      )
     end
 
     private
@@ -71,23 +67,6 @@ module WasteExemptionsEngine
     def multisite_registration?
       @multisite_registration ||= ActiveModel::Type::Boolean
                                   .new.cast(transient_registration.is_multisite_registration)
-    end
-
-    def update_existing_site
-      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
-      return false unless existing_site.present?
-
-      existing_site.update!(
-        grid_reference: grid_reference,
-        description: description,
-        address_type: "site",
-        mode: "auto"
-      )
-
-      # do not clear temp_site_id after updating
-      # in case of multiple edits using back button
-
-      true
     end
 
     def check_grid_reference_location?
