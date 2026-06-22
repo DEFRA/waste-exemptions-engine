@@ -6,6 +6,12 @@ en:
         title: You can update some of your registration details
         heading: You can update some of your registration details
         paragraph_1: You can deregister your exemptions and update the contact details of your registration here. If you need to change any other details you will have to call us.
+        paragraph_1_multisite: You can update contact details for your multi-site registration using this service. To deregister exemptions or make other changes, call us.
+        locations_heading: "Locations:"
+        paragraph_multisite_deregister: Contact us if you need to deregister exemptions at some or all of your site locations.
+        contact_telephone: "Telephone 03708 506 506"
+        contact_telephone_international: "Telephone from outside the UK :+44 (0) 114 282 5312"
+        contact_hours: Monday to Friday, 8am to 6pm GMT
         row_labels:
           exemptions: Exemptions
           contact_name: Contact name

@@ -53,6 +53,17 @@ module WasteExemptionsEngine
         end
 
         context "when the registration is single-site" do
+          let(:exemption_one) { create(:exemption, code: "SS1", summary: "Single site summary one") }
+          let(:exemption_two) { create(:exemption, code: "SS2", summary: "Single site summary two") }
+          let(:registration) do
+            create(:registration,
+                   edit_token: valid_edit_token,
+                   edit_token_created_at:).tap do |registration|
+              create(:registration_exemption, registration:, exemption: exemption_one)
+              create(:registration_exemption, registration:, exemption: exemption_two)
+            end
+          end
+
           it "the page includes the expected edit links including exemptions" do
             aggregate_failures do
               expect(response.body).to include edit_exemptions_front_office_edit_forms_path(transient_registration_token)
@@ -60,6 +71,15 @@ module WasteExemptionsEngine
               expect(response.body).to include contact_phone_front_office_edit_forms_path(transient_registration_token)
               expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
               expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
+            end
+          end
+
+          it "keeps the existing exemptions display" do
+            aggregate_failures do
+              expect(response.body).to include "SS1, SS2"
+              expect(response.body).not_to include "Single site summary one"
+              expect(response.body).not_to include "Locations:"
+              expect(response.body).not_to include "Contact us if you need to deregister exemptions"
             end
           end
         end
