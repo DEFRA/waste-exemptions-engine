@@ -298,7 +298,7 @@ module WasteExemptionsEngine
         context "when the payment does not have a successful registration associated with it" do
           it "redirects to new_start_form_path" do
             get payment_callback_govpay_forms_path(token, payment.payment_uuid)
-            expect(response.location).to match(%r{/start})
+            expect(response.location).to include("/start")
           end
 
           it "does not log an error" do
