@@ -85,12 +85,22 @@ module WasteExemptionsEngine
         end
 
         context "when the registration is multi-site" do
+          let(:duplicate_exemption) { create(:exemption, code: "MS9", summary: "Repeated multisite summary") }
           let(:registration) do
             create(:registration,
                    :complete,
                    :multisite,
                    edit_token: valid_edit_token,
-                   edit_token_created_at:)
+                   edit_token_created_at:).tap do |registration|
+              create(:registration_exemption,
+                     registration:,
+                     exemption: duplicate_exemption,
+                     address: registration.site_addresses.first)
+              create(:registration_exemption,
+                     registration:,
+                     exemption: duplicate_exemption,
+                     address: registration.site_addresses.second)
+            end
           end
 
           before do
@@ -108,6 +118,10 @@ module WasteExemptionsEngine
               expect(response.body).to include contact_email_front_office_edit_forms_path(transient_registration_token)
               expect(response.body).to include contact_postcode_front_office_edit_forms_path(transient_registration_token)
             end
+          end
+
+          it "shows each exemption once" do
+            expect(response.body.scan("MS9 Repeated multisite summary").size).to eq(1)
           end
         end
       end
