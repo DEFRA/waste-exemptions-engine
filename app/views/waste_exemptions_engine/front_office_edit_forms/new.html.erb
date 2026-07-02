@@ -29,7 +29,7 @@
           <dd class="govuk-summary-list__value">
             <% if transient_registration.registration.multisite? %>
               <ul class="govuk-list govuk-list--bullet">
-                <% transient_registration.exemptions.each do |exemption| %>
+                <% transient_registration.exemptions.distinct.each do |exemption| %>
                   <li><%= exemption.code %> <%= exemption.summary %></li>
                 <% end %>
               </ul>
