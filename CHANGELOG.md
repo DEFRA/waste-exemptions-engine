@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-4297\] Update front office edit form for multisite registration handling [\#1515](https://github.com/DEFRA/waste-exemptions-engine/pull/1515) ([jjromeo](https://github.com/jjromeo))
 - Feature/ruby 4268 wex multiple site update registration certificate [\#1507](https://github.com/DEFRA/waste-exemptions-engine/pull/1507) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4260\] Add multisite support for registration edit link email service [\#1502](https://github.com/DEFRA/waste-exemptions-engine/pull/1502) ([jjromeo](https://github.com/jjromeo))
 - implement message delivery status call back [\#1501](https://github.com/DEFRA/waste-exemptions-engine/pull/1501) ([brujeo](https://github.com/brujeo))
@@ -91,13 +92,12 @@
 - Feature/ruby 3536 farmer exemptions only journey [\#1162](https://github.com/DEFRA/waste-exemptions-engine/pull/1162) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - RUBY-3232: wex charging private beta invite token [\#1161](https://github.com/DEFRA/waste-exemptions-engine/pull/1161) ([brujeo](https://github.com/brujeo))
 - RUBY-3270:  wex charging update page sequence for charged registration journey [\#1152](https://github.com/DEFRA/waste-exemptions-engine/pull/1152) ([brujeo](https://github.com/brujeo))
-- Feature/ruby 3498 registration fee content [\#1138](https://github.com/DEFRA/waste-exemptions-engine/pull/1138) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- RUBY-3055 & RUBY-3452: New exemptions workflow: select waste activities, select exemptions, confirm exemptions pages [\#1134](https://github.com/DEFRA/waste-exemptions-engine/pull/1134) ([brujeo](https://github.com/brujeo))
-- RUBY 2703 wex charging bo 3 1 2 increase or decrease a charge page [\#1129](https://github.com/DEFRA/waste-exemptions-engine/pull/1129) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-3406\] Add `Company` model and migration for `companies` table [\#1103](https://github.com/DEFRA/waste-exemptions-engine/pull/1103) ([jjromeo](https://github.com/jjromeo))
 
 **Fixed bugs:**
 
+- \[RUBY-4297\] Deduplicate multisite edit exemptions [\#1523](https://github.com/DEFRA/waste-exemptions-engine/pull/1523) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-4312\] Refactor site address handling to use SaveSiteAddressService [\#1513](https://github.com/DEFRA/waste-exemptions-engine/pull/1513) ([jjromeo](https://github.com/jjromeo))
 - RUBY 4260 wex multiple site update self serve invite email [\#1506](https://github.com/DEFRA/waste-exemptions-engine/pull/1506) ([jjromeo](https://github.com/jjromeo))
 - RUBY 4063 wex multiple site improve the ux on the site page [\#1480](https://github.com/DEFRA/waste-exemptions-engine/pull/1480) ([jjromeo](https://github.com/jjromeo))
 - RUBY 4180 wex npj check your answers charitable purpose flow [\#1460](https://github.com/DEFRA/waste-exemptions-engine/pull/1460) ([jjromeo](https://github.com/jjromeo))
@@ -155,11 +155,12 @@
 - \[RUBY-3496\] payment summary translation message error [\#1149](https://github.com/DEFRA/waste-exemptions-engine/pull/1149) ([brujeo](https://github.com/brujeo))
 - Fix/ruby 3432 companies house number [\#1143](https://github.com/DEFRA/waste-exemptions-engine/pull/1143) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Delete deregistration transient registrations on completion [\#1141](https://github.com/DEFRA/waste-exemptions-engine/pull/1141) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- RUBY-3055 & RUBY-3452: Choose my exemptions layout adjustments [\#1139](https://github.com/DEFRA/waste-exemptions-engine/pull/1139) ([brujeo](https://github.com/brujeo))
-- \[RUBY-3055\] Fixed an issue with pre-selected waste activities [\#1136](https://github.com/DEFRA/waste-exemptions-engine/pull/1136) ([brujeo](https://github.com/brujeo))
 
 **Merged pull requests:**
 
+- Update gem dependencies [\#1521](https://github.com/DEFRA/waste-exemptions-engine/pull/1521) ([brujeo](https://github.com/brujeo))
+- Feature/ruby 4332 wex security enable bundler cooldown give new gems a few days to be vetted [\#1520](https://github.com/DEFRA/waste-exemptions-engine/pull/1520) ([brujeo](https://github.com/brujeo))
+- chore/changelog 04/06/2026 [\#1511](https://github.com/DEFRA/waste-exemptions-engine/pull/1511) ([jjromeo](https://github.com/jjromeo))
 - Feature/ruby 4325 automate release preparation process [\#1508](https://github.com/DEFRA/waste-exemptions-engine/pull/1508) ([brujeo](https://github.com/brujeo))
 - Bump spring from 4.5.0 to 4.6.0 [\#1505](https://github.com/DEFRA/waste-exemptions-engine/pull/1505) ([dependabot[bot]](https://github.com/apps/dependabot))
 - update-dependencies-2026-05-26 [\#1504](https://github.com/DEFRA/waste-exemptions-engine/pull/1504) ([jjromeo](https://github.com/jjromeo))
@@ -261,8 +262,6 @@
 - Chore/ruby 3441 companies house gem [\#1151](https://github.com/DEFRA/waste-exemptions-engine/pull/1151) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump activerecord from 7.1.4.2 to 7.1.5.1 [\#1142](https://github.com/DEFRA/waste-exemptions-engine/pull/1142) ([dependabot[bot]](https://github.com/apps/dependabot))
 - \[RUBY-2704\] Refactor payment scopes in `Payment` model [\#1135](https://github.com/DEFRA/waste-exemptions-engine/pull/1135) ([jjromeo](https://github.com/jjromeo))
-- RUBY 2713 Extend payment model and add migration to enable reversal functionality [\#1127](https://github.com/DEFRA/waste-exemptions-engine/pull/1127) ([jjromeo](https://github.com/jjromeo))
-- Bump webrick from 1.8.1 to 1.8.2 [\#1109](https://github.com/DEFRA/waste-exemptions-engine/pull/1109) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 
 
