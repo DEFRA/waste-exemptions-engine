@@ -94,7 +94,6 @@
 
 <% if WasteExemptionsEngine::FeatureToggle.active?(:enable_interactive_map) %>
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/interactive-map.css') %>" media="all" />
-  <link rel="stylesheet" href="<%= defra_map_asset_path('css/interact-plugin.css') %>" media="all" />
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/search-plugin.css') %>" media="all" />
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/map-styles-plugin.css') %>" media="all" />
   <link rel="stylesheet" href="<%= defra_map_asset_path('css/scale-bar-plugin.css') %>" media="all" />
@@ -106,6 +105,7 @@
   <script src="<%= defra_map_asset_path('map-styles-plugin/index.js') %>"></script>
   <script src="<%= defra_map_asset_path('scale-bar-plugin/index.js') %>"></script>
   <%= javascript_include_tag "defra-ruby-map/grid_reference_converter" %>
+  <%= javascript_include_tag "defra-ruby-map/grid_ref_sync" %>
   <%= javascript_include_tag "defra-ruby-map/map_init" %>
   <%= javascript_include_tag "waste_exemptions_engine/interactive_map_init" %>
 <% end %>

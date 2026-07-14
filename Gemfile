@@ -60,8 +60,7 @@ end
 
 gemspec
 
-gem "defra_ruby_map", github: "DEFRA/defra-ruby-map", branch: "osplaces_dataset"
-# gem "defra_ruby_map", path: "../defra-ruby-map"
+gem "defra_ruby_map", github: "DEFRA/defra-ruby-map", branch: "main"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
