@@ -19,7 +19,7 @@ PATH
       defra_ruby_email
       defra_ruby_govpay
       defra_ruby_map
-      defra_ruby_validators (~> 3.0)
+      defra_ruby_validators
       ffi-geos (~> 1.2.0)
       high_voltage (~> 3.1)
       kaminari
