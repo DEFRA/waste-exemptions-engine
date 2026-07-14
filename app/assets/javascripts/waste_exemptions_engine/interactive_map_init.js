@@ -5,7 +5,7 @@
   "use strict";
 
   function init() {
-    var container = document.getElementById("interactive-map-container");
+    const container = document.getElementById("interactive-map-container");
     if (!container || typeof DefraMap === "undefined") { return; }
 
     DefraMap.init(container, {
