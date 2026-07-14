@@ -7,6 +7,7 @@ module WasteExemptionsEngine
     validates :code, presence: true
 
     OUTSIDE_ENGLAND_CODE = "OUTSIDE_ENGLAND"
+    OUTSIDE_ENGLAND_NAME = "Outside England"
 
     scope :containing_point, lambda { |easting, northing|
       point = RGeo::Cartesian.factory.point(easting, northing)
@@ -19,7 +20,7 @@ module WasteExemptionsEngine
 
     def self.outside_england_area
       find_or_create_by(code: OUTSIDE_ENGLAND_CODE) do |area|
-        area.name = "Outside England"
+        area.name = OUTSIDE_ENGLAND_NAME
         area.area_id = "OUTSIDE_ENGLAND"
       end
     end

@@ -21,7 +21,7 @@ module WasteExemptionsEngine
         it do
           described_class.send(level.to_sym, "foo")
 
-          expect(Rails.logger).not_to have_received(level)
+          expect(Rails.logger).not_to have_received(level).with("foo")
         end
       end
 
@@ -37,7 +37,7 @@ module WasteExemptionsEngine
         it do
           described_class.send(level.to_sym, "foo")
 
-          expect(Rails.logger).to have_received(level)
+          expect(Rails.logger).to have_received(level).with("foo")
         end
       end
 

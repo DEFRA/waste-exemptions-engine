@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SiteAddressLookupFormsController < AddressLookupFormsController
+    include CanRedirectSitesFormToLastPage
+
     def new
       super(SiteAddressLookupForm, "site_address_lookup_form")
     end

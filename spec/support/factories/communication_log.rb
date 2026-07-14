@@ -5,5 +5,7 @@ FactoryBot.define do
     message_type { %w[letter email text].sample }
     template_id { SecureRandom.hex(12) }
     template_label { Faker::Lorem.word }
+    notification_id { SecureRandom.uuid }
+    status { "sent" }
   end
 end

@@ -7,12 +7,6 @@ FactoryBot.define do
     end
   end
 
-  factory :edit_contact_position_form, class: "WasteExemptionsEngine::ContactPositionForm" do
-    initialize_with do
-      new(create(:back_office_edit_registration, workflow_state: "contact_position_form"))
-    end
-  end
-
   factory :check_your_answers_edit_contact_position_form, class: "WasteExemptionsEngine::ContactPositionForm" do
     initialize_with do
       new(create(:new_charged_registration, workflow_state: "contact_position_form", contact_position: "Manager",

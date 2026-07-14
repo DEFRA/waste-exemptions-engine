@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
       notify_result = client.send_email(options)
 
-      create_log(registration:)
+      create_log(registration:, notify_response: notify_result)
 
       notify_result
     end
@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       {
         message_type: "email",
         template_id: template_id,
-        template_label: "Registration edit link email",
+        template_label: template_label,
         sent_to: @recipient
       }
     end
@@ -33,21 +33,42 @@ module WasteExemptionsEngine
     private
 
     def template_id
-      NotificationTemplates::REGISTRATION_EDIT_LINK_EMAIL
+      if @registration.multisite?
+        NotificationTemplates::REGISTRATION_EDIT_LINK_MULTI_SITE_EMAIL
+      else
+        NotificationTemplates::REGISTRATION_EDIT_LINK_EMAIL
+      end
+    end
+
+    def template_label
+      if @registration.multisite?
+        "Registration edit link multi-site email"
+      else
+        "Registration edit link email"
+      end
     end
 
     def options
       {
         email_address: @recipient,
         template_id: template_id,
-        personalisation: {
-          reference: @registration.reference,
-          contact_name: @registration.contact_name,
-          site_details: @registration.location_section,
-          magic_link_url: magic_link_url,
-          exemptions: active_exemptions_text
-        }
+        personalisation: personalisation
       }
+    end
+
+    def personalisation
+      base = {
+        reference: @registration.reference,
+        contact_name: @registration.contact_name,
+        magic_link_url: magic_link_url,
+        exemptions: active_exemptions_text
+      }
+
+      if @registration.multisite?
+        base.merge(sites: @registration.multisite_location_section)
+      else
+        base.merge(site_details: @registration.location_section)
+      end
     end
 
     def magic_link_url
@@ -56,7 +77,11 @@ module WasteExemptionsEngine
     end
 
     def active_exemptions_text
-      @registration.registration_exemptions.active.map { |re| exemption_row(re.exemption) }
+      WasteExemptionsEngine::Exemption
+        .joins(:registration_exemptions)
+        .merge(@registration.registration_exemptions.active)
+        .distinct
+        .map { |exemption| exemption_row(exemption) }
     end
 
     def exemption_row(exemption)

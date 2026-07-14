@@ -20,6 +20,10 @@
         <%= link_to(t("#{i18n_scope}.postcode_change_link"), go_back_forms_path(@site_address_lookup_form.token)) %>
       </p>
 
+      <% if @site_address_lookup_form.show_england_only_results_notice? %>
+        <p class="govuk-body"><%= t("#{i18n_scope}.england_only_results_notice") %></p>
+      <% end %>
+
       <%= f.fields_for :site_address do |address_f| %>
         <%= render("waste_exemptions_engine/shared/select_address", 
             form: @site_address_lookup_form, 

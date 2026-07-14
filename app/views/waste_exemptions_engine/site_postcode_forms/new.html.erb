@@ -18,7 +18,8 @@
 
       <%= f.govuk_submit t("#{i18n_scope}.next_button") %>
 
-      <% if @site_postcode_form.errors.added?(:temp_site_postcode, :no_results) %>
+      <% if @site_postcode_form.errors.added?(:temp_site_postcode, :no_results) ||
+            @site_postcode_form.errors.added?(:temp_site_postcode, :not_in_england) %>
         <div class="govuk-body">
           <%= link_to(t("#{i18n_scope}.grid_reference_link"), new_site_grid_reference_form_path(@site_postcode_form.token)) %>
         </div>

@@ -109,12 +109,16 @@ module WasteExemptionsEngine
                     address_type: "site")
       end
 
-      it "defaults to the last page when no page is requested" do
-        expect(form.page_to_display).to eq(3)
+      it "defaults to the first page when no page is requested" do
+        expect(form.page_to_display).to eq(1)
       end
 
       it "returns the requested page when it is within range" do
         expect(form.page_to_display(2)).to eq(2)
+      end
+
+      it "returns the last page when explicitly requested" do
+        expect(form.page_to_display("last")).to eq(3)
       end
 
       it "clamps an out of range page to the last page" do

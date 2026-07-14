@@ -68,6 +68,53 @@ module WasteExemptionsEngine
           end
         end
       end
+
+      context "when the England-only restriction is enabled" do
+        let(:transient_registration) { create(:new_charged_registration, workflow_state: "site_postcode_form") }
+        let(:form) { described_class.new(transient_registration) }
+        let(:response) do
+          instance_double(
+            DefraRuby::Address::Response,
+            successful?: true,
+            results: [{ "x" => "358205.03", "y" => "172708.07" }],
+            error: nil
+          )
+        end
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+          allow(WasteExemptionsEngine::AddressLookupService).to receive(:run).with("BS1 5AH").and_return(response)
+        end
+
+        context "when all matching addresses are outside England" do
+          before do
+            allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+              .with(grid_reference: nil, easting: "358205.03", northing: "172708.07")
+              .and_return(false)
+          end
+
+          it "returns false when all matching addresses are outside England" do
+            expect(form.submit(temp_site_postcode: "BS1 5AH")).to be(false)
+          end
+
+          it "adds an England-only error when all matching addresses are outside England" do
+            form.submit(temp_site_postcode: "BS1 5AH")
+
+            expect(form.errors.added?(:temp_site_postcode, :not_in_england)).to be(true)
+          end
+        end
+
+        it "allows the user to continue if EA area lookup errors" do
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+            .with(grid_reference: nil, easting: "358205.03", northing: "172708.07")
+            .and_return(true)
+
+          expect(form.submit(temp_site_postcode: "BS1 5AH")).to be(true)
+        end
+      end
     end
   end
 end

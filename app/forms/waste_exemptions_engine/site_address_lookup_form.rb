@@ -2,7 +2,9 @@
 
 module WasteExemptionsEngine
   class SiteAddressLookupForm < AddressLookupFormBase
-    delegate :temp_site_postcode, :temp_site_id, to: :transient_registration
+    include CanRestrictSiteLocationsToEngland
+
+    delegate :temp_site_postcode, to: :transient_registration
 
     # This virtual attribute is validated using AddressValidator and populated
     # from incoming params (e.g. { site_address: { uprn: "123" } })
@@ -15,7 +17,12 @@ module WasteExemptionsEngine
       transient_registration.site_address
     end
 
+    def show_england_only_results_notice?
+      !!@show_england_only_results_notice
+    end
+
     validates :site_address, "waste_exemptions_engine/address": true
+    validate :selected_address_must_be_in_england, if: :check_selected_address_location?
 
     def submit(params)
       site_address_params = params.fetch(:site_address, {})
@@ -26,19 +33,11 @@ module WasteExemptionsEngine
 
       return false unless valid? && address_attributes.present?
 
-      return update_existing_site(address_attributes) if temp_site_id.present?
-
-      if multisite_registration?
-        transient_registration.transient_addresses.create!(
-          address_attributes.merge(
-            address_type: "site",
-            mode: "lookup"
-          )
-        )
-        true
-      else
-        super(site_address_attributes: address_attributes)
-      end
+      SaveSiteAddressService.run(
+        transient_registration: transient_registration,
+        address_attributes: address_attributes,
+        mode: :lookup
+      )
     end
 
     private
@@ -47,21 +46,31 @@ module WasteExemptionsEngine
       ActiveModel::Type::Boolean.new.cast(transient_registration.is_multisite_registration)
     end
 
-    def update_existing_site(address_attributes)
-      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
-      return false unless existing_site.present?
+    def request_matching_addresses
+      matching_addresses = super
 
-      existing_site.update!(
-        address_attributes.merge(
-          address_type: "site",
-          mode: "lookup"
-        )
-      )
+      english_addresses = matching_addresses.select do |address|
+        site_location_allowed?(easting: address["x"], northing: address["y"])
+      end
 
-      # do not clear temp_site_id after updating
-      # in case of multiple edits using back button
+      @show_england_only_results_notice = english_addresses.any? &&
+                                          english_addresses.length < matching_addresses.length
 
-      true
+      english_addresses
+    end
+
+    def check_selected_address_location?
+      restrict_site_locations_to_england? && site_address.present? && site_address[:uprn].present?
+    end
+
+    def selected_address_must_be_in_england
+      return if selected_address_in_filtered_results?
+
+      errors.add(:site_address, :not_in_england)
+    end
+
+    def selected_address_in_filtered_results?
+      get_address_data(site_address[:uprn], :site).present?
     end
   end
 end

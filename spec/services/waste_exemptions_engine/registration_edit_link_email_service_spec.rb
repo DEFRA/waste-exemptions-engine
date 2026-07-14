@@ -46,5 +46,84 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "run with a multi-site registration" do
+      let(:registration) { create(:registration, :complete, :multisite) }
+      let(:recipient) { registration.contact_email }
+      let(:magic_link_token) { registration.edit_token }
+      let(:notifications_client) { instance_double(Notifications::Client) }
+      let(:send_email_response) do
+        instance_double(
+          Notifications::Client::ResponseNotification,
+          id: "notify-id-123",
+          content: { "body" => "body", "subject" => "subject" }
+        )
+      end
+
+      subject(:run_service) { described_class.run(registration:, recipient:, magic_link_token:) }
+
+      before do
+        registration.site_addresses.reload.each_with_index do |address, index|
+          address.update!(
+            mode: WasteExemptionsEngine::Address.modes[:auto],
+            grid_reference: "ST 5833#{index} 7285#{index}",
+            description: "Description for site #{index + 1}"
+          )
+        end
+
+        allow(Notifications::Client).to receive(:new).and_return(notifications_client)
+        allow(notifications_client).to receive(:send_email).and_return(send_email_response)
+      end
+
+      it "uses the multi-site Notify template" do
+        run_service
+
+        expect(notifications_client).to have_received(:send_email).with(
+          hash_including(template_id: WasteExemptionsEngine::NotificationTemplates::REGISTRATION_EDIT_LINK_MULTI_SITE_EMAIL)
+        )
+      end
+
+      it "sends sites as a numbered string with one entry per site" do
+        run_service
+
+        expected_sites = registration.site_addresses.each_with_index.map do |address, index|
+          "#{index + 1}. Location: #{address.grid_reference}\nDescription: #{address.description}"
+        end.join("\n\n")
+
+        expect(notifications_client).to have_received(:send_email).with(
+          hash_including(personalisation: hash_including(sites: expected_sites))
+        )
+      end
+
+      it "does not pass the single-site site_details key" do
+        run_service
+
+        expect(notifications_client).to have_received(:send_email).with(
+          hash_including(personalisation: satisfy { |p| !p.key?(:site_details) })
+        )
+      end
+
+      it "de-duplicates exemptions so each exemption code appears once" do
+        exemption = registration.registration_exemptions.active.first.exemption
+        registration.registration_exemptions.active.each do |re|
+          re.update!(exemption: exemption)
+        end
+
+        run_service
+
+        expected_row = "#{exemption.code} #{exemption.summary}"
+
+        expect(notifications_client).to have_received(:send_email).with(
+          hash_including(personalisation: hash_including(exemptions: [expected_row]))
+        )
+      end
+
+      it "logs the communication with a multi-site template label" do
+        run_service
+
+        expect(WasteExemptionsEngine::CommunicationLog.last.template_label)
+          .to eq("Registration edit link multi-site email")
+      end
+    end
   end
 end

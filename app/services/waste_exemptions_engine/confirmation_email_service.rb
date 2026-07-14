@@ -15,7 +15,7 @@ module WasteExemptionsEngine
 
       result = client.send_email(@pdf.present? ? options_with_certificate : options_without_certificate)
 
-      create_log(registration:)
+      create_log(registration:, notify_response: result)
 
       result
     end

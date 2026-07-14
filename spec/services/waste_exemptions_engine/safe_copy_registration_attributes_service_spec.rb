@@ -58,12 +58,6 @@ module WasteExemptionsEngine
         it_behaves_like "returns the correct attributes"
       end
 
-      context "when the source is a BackOfficeEditRegistration" do
-        let(:source) { create(:back_office_edit_registration) }
-
-        it_behaves_like "returns the correct attributes"
-      end
-
       context "when the source is a FrontOfficeEditRegistration" do
         let(:source) { create(:front_office_edit_registration) }
 

@@ -7,13 +7,18 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l"><%= t(".heading", reference: @front_office_edit_form.reference) %></h1>
 
-      <p class="govuk-body"><%= t(".paragraph_1") %></p>
+      <% transient_registration = @front_office_edit_form.transient_registration %>
+
+      <% if transient_registration.registration.multisite? %>
+        <p class="govuk-body"><%= t(".paragraph_1_multisite") %></p>
+      <% else %>
+        <p class="govuk-body"><%= t(".paragraph_1") %></p>
+      <% end %>
     </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <% transient_registration = @front_office_edit_form.transient_registration %>
 
       <dl class="govuk-summary-list">
 
@@ -22,7 +27,25 @@
             <%= t(".row_labels.exemptions") %>
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= exemptions_list(transient_registration) %>
+            <% if transient_registration.registration.multisite? %>
+              <ul class="govuk-list govuk-list--bullet">
+                <% transient_registration.exemptions.distinct.each do |exemption| %>
+                  <li><%= exemption.code %> <%= exemption.summary %></li>
+                <% end %>
+              </ul>
+              <p class="govuk-body govuk-!-margin-bottom-1"><%= t(".locations_heading") %></p>
+              <ol class="govuk-list govuk-list--number">
+                <% transient_registration.registration.site_addresses.each do |site| %>
+                  <li><%= site.site_identifier %></li>
+                <% end %>
+              </ol>
+              <p class="govuk-body"><%= t(".paragraph_multisite_deregister") %></p>
+              <p class="govuk-body govuk-!-margin-bottom-0"><%= t(".contact_telephone") %></p>
+              <p class="govuk-body govuk-!-margin-bottom-0"><%= t(".contact_telephone_international") %></p>
+              <p class="govuk-body"><%= t(".contact_hours") %></p>
+            <% else %>
+              <%= exemptions_list(transient_registration) %>
+            <% end %>
           </dd>
           <% unless transient_registration.registration.multisite? %>
             <dd class="govuk-summary-list__actions">

@@ -54,8 +54,17 @@ module WasteExemptionsEngine
                  grid_reference: "ST 33333 33333")
         end
 
-        it "defaults to the last numbered page when no page is provided" do
+        it "shows the first page when no page is provided" do
           get request_path
+
+          aggregate_failures do
+            expect(response.body).to include("Site 1 description")
+            expect(response.body).not_to include("Site 3 description")
+          end
+        end
+
+        it "shows the last numbered page when page=last is provided" do
+          get request_path, params: { page: "last" }
 
           aggregate_failures do
             expect(response.body).to include("Site 3 description")
@@ -112,7 +121,7 @@ module WasteExemptionsEngine
               delete request_path
             end.to change { transient_registration.addresses.where(address_type: "site").count }.by(-1)
 
-            expect(response).to redirect_to(new_sites_form_path(form.token, page: nil))
+            expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
           end
         end
 
@@ -122,9 +131,9 @@ module WasteExemptionsEngine
         end
 
         context "with page parameter" do
-          it "redirects without a page parameter so the last page is shown" do
+          it "redirects to the explicit last page" do
             delete request_path, params: { page: 2 }
-            expect(response).to redirect_to(new_sites_form_path(form.token))
+            expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
           end
         end
 
@@ -172,7 +181,7 @@ module WasteExemptionsEngine
 
         it "redirects back to sites page with error" do
           delete invalid_request_path
-          expect(response).to redirect_to(new_sites_form_path(form.token, page: nil))
+          expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
         end
 
         it "does not remove any sites" do
@@ -195,7 +204,7 @@ module WasteExemptionsEngine
 
         it "redirects back to sites page" do
           delete other_site_request_path
-          expect(response).to redirect_to(new_sites_form_path(form.token, page: nil))
+          expect(response).to redirect_to(new_sites_form_path(token: form.token, page: "last"))
         end
       end
 

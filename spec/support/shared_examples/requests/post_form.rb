@@ -85,8 +85,6 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
 
       before do
         case transient_registration.class.name
-        when "WasteExemptionsEngine::BackOfficeEditRegistration"
-          transient_registration.update!(workflow_state: :back_office_edit_form)
         when "WasteExemptionsEngine::FrontOfficeEditRegistration"
           transient_registration.update!(workflow_state: :front_office_edit_form)
         when "WasteExemptionsEngine::RenewingRegistration"
@@ -102,8 +100,6 @@ RSpec.shared_examples "POST form" do |form_factory, path, empty_form_is_valid = 
         post_request
 
         case transient_registration.class.name
-        when "WasteExemptionsEngine::BackOfficeEditRegistration"
-          expect(response.location).to include(back_office_edit_forms_path(token: correct_form.token))
         when "WasteExemptionsEngine::FrontOfficeEditRegistration"
           expect(response.location).to include(front_office_edit_forms_path(token: correct_form.token))
         when "WasteExemptionsEngine::RenewingRegistration"

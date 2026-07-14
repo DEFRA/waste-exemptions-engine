@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class SitesFormsController < FormsController
+    include CanRedirectSitesFormToLastPage
+
     def new
       super(SitesForm, "sites_form")
       return unless @sites_form

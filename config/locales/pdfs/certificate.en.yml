@@ -34,8 +34,9 @@ en:
           heading: Registration details
           registration_details:
             heading: Registration details
-            reference_number: Reference Number
+            reference_number: Reference number
             date_registered: Date registered
+            expiry_date: Expiry date
           exemptions:
             active_heading: Waste exemptions
             expires_on: Expires on %{expire_date}
@@ -60,6 +61,12 @@ en:
             email: Email
           waste_operations_details:
             heading: Waste operation details
+            grid_reference: Grid reference
+            location: Location
+            site_details: Site details
+          deregistered_exemptions:
+            heading: Deregistered exemptions
+            site_location: Site location
       site_address_grid_reference:
         registration_details:
           waste_operations_details:

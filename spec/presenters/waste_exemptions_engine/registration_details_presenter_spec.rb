@@ -186,6 +186,67 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#multisite_location_section" do
+      let(:registration) { create(:registration, :complete, :multisite) }
+      let(:site_addresses) { registration.site_addresses.reload }
+
+      context "when sites are located by grid reference" do
+        before do
+          site_addresses.each_with_index do |address, index|
+            address.update!(
+              mode: WasteExemptionsEngine::Address.modes[:auto],
+              grid_reference: "ST 5833#{index} 7285#{index}",
+              description: "Description for site #{index + 1}"
+            )
+          end
+        end
+
+        it "returns a numbered, double-newline-separated string with one entry per site" do
+          expected = site_addresses.each_with_index.map do |address, index|
+            "#{index + 1}. Location: #{address.grid_reference}\nDescription: Description for site #{index + 1}"
+          end.join("\n\n")
+
+          aggregate_failures do
+            expect(site_addresses).not_to be_empty
+            expect(presenter.multisite_location_section).to eq(expected)
+          end
+        end
+      end
+
+      context "when a site is located by postal address" do
+        before do
+          site_addresses.first.update!(
+            mode: WasteExemptionsEngine::Address.modes[:manual],
+            premises: "1 Example Way",
+            street_address: "Some Street",
+            locality: "Locality",
+            city: "City",
+            postcode: "BS1 1AA"
+          )
+        end
+
+        it "renders the address on the location line of the first entry" do
+          expect(presenter.multisite_location_section)
+            .to start_with("1. Waste operation location: 1 Example Way, Some Street, Locality, City, BS1 1AA")
+        end
+      end
+
+      context "when a site has no description" do
+        before do
+          site_addresses.first.update!(
+            mode: WasteExemptionsEngine::Address.modes[:auto],
+            grid_reference: "ST 58337 72855",
+            description: nil
+          )
+        end
+
+        it "omits the description line for that site" do
+          expect(presenter.multisite_location_section)
+            .to start_with("1. Location: ST 58337 72855\n\n")
+        end
+      end
+    end
+
     describe "#exemptions_section" do
       let(:registration) { create(:registration, :complete, :with_active_exemptions) }
       let(:expected_expiry_date) { 3.years.from_now.strftime("%-d %B %Y") }

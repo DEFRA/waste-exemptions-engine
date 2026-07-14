@@ -7,12 +7,6 @@ FactoryBot.define do
     end
   end
 
-  factory :edit_business_type_form, class: "WasteExemptionsEngine::BusinessTypeForm" do
-    initialize_with do
-      new(create(:back_office_edit_registration, workflow_state: "business_type_form"))
-    end
-  end
-
   factory :renew_business_type_form, class: "WasteExemptionsEngine::BusinessTypeForm" do
     initialize_with do
       new(create(:renewing_registration, workflow_state: "business_type_form"))

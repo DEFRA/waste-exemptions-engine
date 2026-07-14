@@ -4,7 +4,7 @@ require "kaminari"
 
 module WasteExemptionsEngine
   class SitesForm < BaseForm
-    def site_addresses(page = nil)
+    def site_addresses(page = 1)
       Kaminari.paginate_array(site_addresses_scope.to_a)
               .page(page_to_display(page))
               .per(sites_per_page)
@@ -19,9 +19,10 @@ module WasteExemptionsEngine
     end
 
     def page_to_display(page = nil)
-      return last_page if page.blank?
+      return last_page if page == "last"
 
-      page.to_i.clamp(1, last_page)
+      page_number = page.presence || 1
+      page_number.to_i.clamp(1, last_page)
     end
 
     def can_continue?

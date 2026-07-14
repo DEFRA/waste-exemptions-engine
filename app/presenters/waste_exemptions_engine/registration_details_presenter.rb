@@ -57,6 +57,12 @@ module WasteExemptionsEngine
       items
     end
 
+    def multisite_location_section
+      site_addresses.each_with_index.map do |address, index|
+        "#{index + 1}. #{multisite_site_entry(address)}"
+      end.join("\n\n")
+    end
+
     def exemptions_section
       sorted_active_registration_exemptions.map do |registration_exemption|
         exemption_text(registration_exemption)
@@ -135,6 +141,21 @@ module WasteExemptionsEngine
     def site_address_text
       address = address_lines(site_address).join(", ")
       label_and_value("waste_operation_location.address", address)
+    end
+
+    def multisite_site_entry(address)
+      location_line = if address.located_by_grid_reference?
+                        label_and_value("waste_operation_location.multisite_location", address.grid_reference)
+                      else
+                        label_and_value("waste_operation_location.address", address_lines(address).join(", "))
+                      end
+
+      lines = [location_line]
+
+      if address.description.present?
+        lines << label_and_value("waste_operation_location.multisite_description", address.description)
+      end
+      lines.join("\n")
     end
 
     # Exemptions

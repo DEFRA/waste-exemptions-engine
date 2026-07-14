@@ -34,6 +34,8 @@ en:
       address: "Waste operation location:"
       ngr: "Grid reference:"
       details: "Site details:"
+      multisite_location: "Location:"
+      multisite_description: "Description:"
     waste_exemptions:
       status:
         active: "Expires on %{display_date}"

@@ -72,6 +72,45 @@ LEGACY_DATA_MODEL=true bundle exec rspec
 
 This is useful when testing against older data structures or during migration periods.
 
+## EA area lookup
+
+Site location checks use the local `ea_public_face_areas` table rather than an external EA area API.
+That table is populated from the EA public face area boundary dataset via the back-office `load_admin_areas` task.
+The postcode address finder is still an external address lookup; for that route, coordinates come from the address lookup response.
+Grid reference to easting/northing conversion is done locally.
+
+For site addresses, the flow is:
+
+1. Get coordinates from the selected address lookup response, or derive them from the submitted grid reference.
+2. Query `WasteExemptionsEngine::EaPublicFaceArea` with PostGIS via `DetermineAreaService`.
+3. Treat locations with no matching polygon as `Outside England`.
+4. If the EA area lookup errors, log and notify Airbrake, but allow the front-office journey to continue.
+
+The front-office England-only restriction is behind the `restrict_site_locations_to_england` feature toggle.
+
+## Preparing a release
+
+The `bin/prepare-release` script automates the changelog and dependency update steps for a new release. Run it from the `main` branch:
+
+```bash
+bin/prepare-release
+```
+
+The script will:
+
+1. Verify you are on `main` and pull the latest changes.
+2. Check that `CHANGELOG_GITHUB_TOKEN` is set (a GitHub personal access token required by the changelog generator).
+3. Create a `chore/changelog-DD/MM/YYYY` branch.
+4. Optionally run `bundle update`, RuboCop, and RSpec — if you choose to update dependencies.
+5. Commit `Gemfile.lock` (with a detailed message listing gem version changes).
+6. Generate the changelog via `bundle exec rake changelog`.
+7. Commit `CHANGELOG.md`.
+8. Print next steps (push the branch and open a PR).
+
+The script **does not** push the branch or create the pull request — those are left for you to do manually.
+
+If the script is re-run on an existing `chore/changelog-*` branch it will skip the main-branch check and resume from where it left off.
+
 # Contributing to this project
 
 If you have an idea you'd like to contribute please log an issue.

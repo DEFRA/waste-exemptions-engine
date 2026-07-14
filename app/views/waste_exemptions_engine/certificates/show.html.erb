@@ -72,46 +72,14 @@
                       <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.date_registered" %></th>
                       <td class="govuk-table__cell"><%= @presenter.submitted_at.to_formatted_s(:day_month_year) %></td>
                     </tr>
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="row"><%=t ".registration_details.registration_details.expiry_date" %></th>
+                      <td class="govuk-table__cell"><%= @presenter.expiry_date %></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
-              <div class="table-wrapper">
-                <table class="govuk-table">
-                  <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.active_heading" %></caption>
-                  <tbody class="govuk-table__body">
-                    <% @presenter.sorted_active_registration_exemptions.each do |registration_exemption| %>
-                      <tr class="govuk-table__row">
-                        <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
-                        <td class="govuk-table__cell">
-                          <%=t(".registration_details.exemptions.expires_on",
-                              expire_date: registration_exemption.expires_on.to_formatted_s(:day_month_year)) %>
-                        </td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-
-              <% if @presenter.sorted_deregistered_registration_exemptions.any? %>
-                <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.inactive_heading" %></h2>
-                <div class="table-wrapper">
-                  <table class="govuk-table">
-                    <caption class="govuk-visually-hidden"><%=t ".registration_details.exemptions.inactive_heading" %></caption>
-                    <tbody class="govuk-table__body">
-                      <% @presenter.sorted_deregistered_registration_exemptions.each do |registration_exemption| %>
-                        <tr class="govuk-table__row">
-                          <th class="govuk-table__header" scope="row"><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></th>
-                          <td class="govuk-table__cell">
-                            <%= @presenter.ceased_or_revoked_on(registration_exemption) %>
-                          </td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
-              <% end %>
 
               <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.business_details.heading" %></h2>
               <div class="table-wrapper">
@@ -178,18 +146,61 @@
                 </table>
               </div>
 
+              <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.exemptions.active_heading" %></h2>
+              <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                <% @presenter.unique_active_registration_exemptions.each do |registration_exemption| %>
+                  <li><%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %></li>
+                <% end %>
+              </ul>
+
               <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.waste_operations_details.heading" %></h2>
-              <div class="table-wrapper">
-                <table class="govuk-table">
-                  <tbody class="govuk-table__body">
-                    <% if @presenter.site_address&.located_by_grid_reference? %>
-                      <%= render "waste_exemptions_engine/pdfs/site_address_grid_reference", address: @presenter.site_address %>
-                    <% else %>
-                      <%= render "waste_exemptions_engine/pdfs/site_address_lines", address: @presenter.site_address %>
+                <% @presenter.site_addresses.each_with_index do |address, index| %>
+                  <div class="table-wrapper">
+                    <table class="govuk-table">
+                      <tbody class="govuk-table__body">
+                      <% if address.located_by_grid_reference? %>
+                        <tr class="govuk-table__row">
+                          <th class="govuk-table__header" scope="row"><%= "#{index + 1}." %> <%=t ".registration_details.waste_operations_details.grid_reference" %></th>
+                          <td class="govuk-table__cell"><%= address.grid_reference %></td>
+                        </tr>
+                      <% else %>
+                        <tr class="govuk-table__row">
+                          <th class="govuk-table__header" scope="row"><%= "#{index + 1}." %> <%=t ".registration_details.waste_operations_details.location" %></th>
+                          <td class="govuk-table__cell">
+                            <% displayable_address(address).each do |line| %>
+                              <%= line %><br>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                      <% if address.description.present? %>
+                        <tr class="govuk-table__row">
+                          <th class="govuk-table__header" scope="row"><%=t ".registration_details.waste_operations_details.site_details" %></th>
+                          <td class="govuk-table__cell"><%= address.description %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              <% end %>
+
+              <% deregistered_by_site = @presenter.site_addresses.filter_map { |a| exs = @presenter.deregistered_exemptions_for_site(a).to_a; [a, exs] if exs.any? } %>
+              <% if deregistered_by_site.any? %>
+                <h2 class="govuk-!-margin-top-9 govuk-heading-m"><%=t ".registration_details.deregistered_exemptions.heading" %></h2>
+                <% deregistered_by_site.each do |address, deregistered_exemptions| %>
+                  <p class="govuk-body govuk-!-font-weight-bold">
+                    <%=t ".registration_details.deregistered_exemptions.site_location" %>: <%= address.located_by_grid_reference? ? address.grid_reference : displayable_address(address).join(", ") %>
+                  </p>
+                  <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-2">
+                    <% deregistered_exemptions.each do |registration_exemption| %>
+                      <li>
+                        <%= "#{registration_exemption.exemption.code}: #{registration_exemption.exemption.summary}" %>
+                        <br><%= @presenter.ceased_or_revoked_on(registration_exemption) %>
+                      </li>
                     <% end %>
-                  </tbody>
-                </table>
-              </div>
+                  </ul>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </main>

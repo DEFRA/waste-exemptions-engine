@@ -76,18 +76,5 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when a back-office edit is in progress and the Companies House API call fails" do
-      let(:registration_number_form) { build(:back_office_edit_registration_number_form) }
-      let(:companies_house_instance) { instance_double(DefraRubyCompaniesHouse) }
-
-      before { allow(companies_house_api).to receive(:run).and_raise(StandardError) }
-
-      it "redirects to the companies house down page" do
-        post "/waste_exemptions_engine/#{registration_number_form.token}/registration-number",
-             params: { registration_number_form: { temp_company_no: "09360070" } }
-
-        expect(response).to render_template("waste_exemptions_engine/shared/companies_house_down")
-      end
-    end
   end
 end

@@ -138,6 +138,20 @@ module WasteExemptionsEngine
         end
       end
 
+      context "when the grid reference has leading or trailing whitespace" do
+        it "strips whitespace and submits successfully" do
+          params = { grid_reference: "  ST 58337 72855  ", description: "A site description" }
+          transient_registration = form.transient_registration
+
+          aggregate_failures do
+            expect(form.submit(params)).to be(true)
+
+            transient_registration.reload
+            expect(transient_registration.site_address.grid_reference).to eq("ST 58337 72855")
+          end
+        end
+      end
+
       context "when creating a new multisite site" do
         let(:transient_registration) do
           create(:new_charged_registration,
@@ -150,6 +164,20 @@ module WasteExemptionsEngine
 
         it "creates the site address" do
           expect { form.submit(params) }.to change(transient_registration.transient_addresses, :count).by(1)
+        end
+
+        context "when the same site address already exists" do
+          before do
+            create(:transient_address, :site_using_grid_reference,
+                   transient_registration: transient_registration,
+                   grid_reference: "ST 12345 67890",
+                   description: "New site")
+          end
+
+          it "does not create a duplicate site address" do
+            expect { form.submit(params) }
+              .not_to change { transient_registration.transient_addresses.site.count }
+          end
         end
       end
 
@@ -179,70 +207,109 @@ module WasteExemptionsEngine
           end
         end
       end
-    end
 
-    shared_examples "updates existing site address without creating duplicates" do
-      let(:params) { { grid_reference: "ST 12345 67890", description: "Updated site description" } }
+      context "when the single-site registration already has a site address" do
+        let(:transient_registration) do
+          create(:new_charged_registration,
+                 workflow_state: "site_grid_reference_form",
+                 is_multisite_registration: false)
+        end
+        let(:form) { described_class.new(transient_registration) }
+        let(:params) { { grid_reference: "ST 99999 88888", description: "Updated" } }
 
-      it "updates the existing site record" do
-        expect do
+        before do
+          create(:transient_address, :site_using_grid_reference,
+                 transient_registration: transient_registration,
+                 grid_reference: "ST 11111 22222",
+                 description: "Original")
+        end
+
+        it "updates the existing site address instead of creating another one" do
+          expect { form.submit(params) }
+            .not_to change { transient_registration.transient_addresses.site.count }
+        end
+      end
+
+      context "when the England-only restriction is enabled in front office" do
+        let(:params) { { grid_reference: "ST 12345 67890", description: "New site" } }
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run)
+            .with(grid_reference: params[:grid_reference], easting: nil, northing: nil)
+            .and_return(false)
+        end
+
+        it "returns false" do
+          expect(form.submit(params)).to be(false)
+        end
+
+        it "adds an England-only validation error" do
           form.submit(params)
-          existing_site.reload
-        end.to change(existing_site, :grid_reference).to("ST 12345 67890")
-                                                     .and change(existing_site, :description).to("Updated site description")
-      end
 
-      it "doesn't create a duplicate" do
-        expect do
+          expect(form.errors.added?(:grid_reference, :outside_england)).to be(true)
+        end
+
+        it "does not save the site address" do
           form.submit(params)
-        end.not_to change(transient_registration.transient_addresses, :count)
+
+          expect(transient_registration.reload.site_address).to be_nil
+        end
+      end
+
+      context "when the England-only restriction is enabled and the grid reference is invalid" do
+        let(:params) { { grid_reference: "ZZ 00001 00001", description: "New site" } }
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
+        end
+
+        it "adds the grid reference validation error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :invalid)).to be(true)
+        end
+
+        it "does not add the England-only error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :outside_england)).to be(false)
+        end
+      end
+
+      context "when the England-only restriction is enabled in the back office host" do
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(true)
+          allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(true)
+          allow(WasteExemptionsEngine::CheckSiteLocationIsInEnglandService).to receive(:run).and_return(false)
+        end
+
+        it "still allows the submission" do
+          expect(form.submit(grid_reference: "ST 12345 67890", description: "Updated")).to be(true)
+        end
       end
     end
 
-    context "when editing registration in the back office" do
-      let(:transient_registration) do
-        create(:back_office_edit_registration).tap do |registration|
-          create(:transient_address, :site_using_grid_reference, transient_registration: registration)
-        end
-      end
-
-      context "when editing multisite registration address" do
-        let(:existing_site) { transient_registration.site_addresses.first }
-        let(:form) { described_class.new(transient_registration) }
-
-        before do
-          transient_registration.registration.update!(is_multisite_registration: true)
-          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
-          transient_registration.update(temp_site_id: existing_site.id)
-        end
-
-        it_behaves_like "updates existing site address without creating duplicates"
-      end
-
-      context "when editing single-site registration address with no foreign-keys to registration_exemptions (legacy format)" do
-        let(:existing_site) { transient_registration.site_addresses.first }
-        let(:form) { described_class.new(transient_registration) }
-
-        before do
-          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
-          transient_registration.update(temp_site_id: existing_site.id)
-        end
-
-        it_behaves_like "updates existing site address without creating duplicates"
-      end
-
-      context "when editing single-site registration address with foreign-keys to registration_exemptions" do
-        let(:existing_site) { transient_registration.site_addresses.first }
-        let(:form) { described_class.new(transient_registration) }
-
-        before do
-          transient_registration.transient_registration_exemptions.each { |exemption| exemption.update(transient_address_id: existing_site.id) }
-          allow(WasteExemptionsEngine::AssignSiteDetailsService).to receive(:run)
-          transient_registration.update(temp_site_id: existing_site.id)
-        end
-
-        it_behaves_like "updates existing site address without creating duplicates"
-      end
-    end
   end
 end

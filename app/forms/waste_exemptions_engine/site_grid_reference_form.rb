@@ -3,6 +3,7 @@
 module WasteExemptionsEngine
   class SiteGridReferenceForm < BaseForm
     include CanClearAddressFinderError
+    include CanRestrictSiteLocationsToEngland
 
     delegate :site_address, :is_linear, :temp_site_id, to: :transient_registration
 
@@ -10,6 +11,7 @@ module WasteExemptionsEngine
 
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
+    validate :grid_reference_must_be_in_england, if: :check_grid_reference_location?
 
     def initialize(transient_registration)
       super
@@ -17,6 +19,7 @@ module WasteExemptionsEngine
     end
 
     def submit(params)
+      params[:grid_reference] = params[:grid_reference]&.strip
       self.grid_reference = params[:grid_reference]
       self.description = params[:description]
 
@@ -26,20 +29,16 @@ module WasteExemptionsEngine
 
       return false unless valid?
 
-      return update_existing_site if edit_mode?
+      address_attributes = {
+        grid_reference: grid_reference,
+        description: description
+      }
 
-      if multisite_registration?
-        transient_registration.transient_addresses.create!(
-          grid_reference: grid_reference,
-          description: description,
-          address_type: "site",
-          mode: "auto"
-        )
-        true
-      else
-        params.merge!(address_type: :site, mode: :auto)
-        super(site_address_attributes: params)
-      end
+      SaveSiteAddressService.run(
+        transient_registration: transient_registration,
+        address_attributes: address_attributes,
+        mode: :auto
+      )
     end
 
     private
@@ -70,21 +69,14 @@ module WasteExemptionsEngine
                                   .new.cast(transient_registration.is_multisite_registration)
     end
 
-    def update_existing_site
-      existing_site = transient_registration.transient_addresses.find_by(id: transient_registration.temp_site_id)
-      return false unless existing_site.present?
+    def check_grid_reference_location?
+      grid_reference.present?
+    end
 
-      existing_site.update!(
-        grid_reference: grid_reference,
-        description: description,
-        address_type: "site",
-        mode: "auto"
-      )
+    def grid_reference_must_be_in_england
+      return if site_location_allowed?(grid_reference:)
 
-      # do not clear temp_site_id after updating
-      # in case of multiple edits using back button
-
-      true
+      errors.add(:grid_reference, :outside_england)
     end
   end
 end
