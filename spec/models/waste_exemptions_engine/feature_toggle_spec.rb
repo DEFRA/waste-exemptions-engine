@@ -70,6 +70,7 @@ module WasteExemptionsEngine
               # Change the environment variable value for this test only
               allow(ENV).to receive(:fetch).with("ENV_VARIABLE_TEST_FEATURE", any_args).and_return("true")
               allow(ENV).to receive(:fetch).with("ENABLE_MULTISITE", any_args).and_return("true")
+              allow(ENV).to receive(:fetch).with("ENABLE_INTERACTIVE_MAP", any_args).and_return("true")
               # Force reload of the toggle settings after setting the environment variable
               described_class.send("reload_feature_toggles")
             end

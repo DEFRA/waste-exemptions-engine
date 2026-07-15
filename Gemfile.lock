@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/DEFRA/defra-ruby-map.git
+  revision: 872da8847e3acf23a0c31cd08473ba5452138fa8
+  branch: main
+  specs:
+    defra_ruby_map (0.2.0)
+      rails (>= 7.0)
+
 PATH
   remote: .
   specs:
@@ -10,6 +18,7 @@ PATH
       defra_ruby_companies_house
       defra_ruby_email
       defra_ruby_govpay
+      defra_ruby_map
       defra_ruby_validators
       ffi-geos (~> 1.2.0)
       high_voltage (~> 3.1)
@@ -250,7 +259,7 @@ GEM
     loofah (2.25.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
@@ -523,6 +532,7 @@ DEPENDENCIES
   activerecord-postgis-adapter
   bullet
   database_cleaner
+  defra_ruby_map!
   defra_ruby_style
   dotenv-rails
   factory_bot_rails
