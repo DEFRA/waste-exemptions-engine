@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/DEFRA/defra-ruby-map.git
-  revision: 1bde47714456f9b5d6f2343ba4422218d04243b4
+  revision: 872da8847e3acf23a0c31cd08473ba5452138fa8
   branch: main
   specs:
     defra_ruby_map (0.2.0)
@@ -259,7 +259,7 @@ GEM
     loofah (2.25.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
