@@ -478,8 +478,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sucker_punch (3.3.0)
-      concurrent-ruby (~> 1.0)
     thor (1.5.0)
     tilt (2.7.0)
     timecop (0.9.11)
@@ -547,7 +545,6 @@ DEPENDENCIES
   simplecov (~> 0.22.0)
   spring
   spring-commands-rspec
-  sucker_punch (~> 3.1)
   timecop
   vcr
   w3c_validators
