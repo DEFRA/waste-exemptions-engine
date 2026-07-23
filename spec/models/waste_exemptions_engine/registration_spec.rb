@@ -333,9 +333,10 @@ module WasteExemptionsEngine
       end
 
       context "when the record is new" do
-        it "does not generate an unsubscribe token" do
+        # Rails 7.1+ defaults generate secure tokens on initialize rather than on create
+        it "generates an unsubscribe token on initialization" do
           registration = build(:registration)
-          expect(registration.unsubscribe_token).to be_nil
+          expect(registration.unsubscribe_token).to be_a(String)
         end
       end
     end
