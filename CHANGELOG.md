@@ -152,12 +152,12 @@
 - Fix payment callback URL for back-office [\#1165](https://github.com/DEFRA/waste-exemptions-engine/pull/1165) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Fix/ruby 3232 post qa fixes [\#1164](https://github.com/DEFRA/waste-exemptions-engine/pull/1164) ([brujeo](https://github.com/brujeo))
 - fix/RUBY-3411\_back\_office\_edit\_company\_number [\#1155](https://github.com/DEFRA/waste-exemptions-engine/pull/1155) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- \[RUBY-3496\] payment summary translation message error [\#1149](https://github.com/DEFRA/waste-exemptions-engine/pull/1149) ([brujeo](https://github.com/brujeo))
 - Fix/ruby 3432 companies house number [\#1143](https://github.com/DEFRA/waste-exemptions-engine/pull/1143) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- Delete deregistration transient registrations on completion [\#1141](https://github.com/DEFRA/waste-exemptions-engine/pull/1141) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 
 **Merged pull requests:**
 
+- Bump activestorage from 7.2.3.1 to 7.2.3.2 [\#1528](https://github.com/DEFRA/waste-exemptions-engine/pull/1528) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update CHANGELOG for v4.2.3 [\#1524](https://github.com/DEFRA/waste-exemptions-engine/pull/1524) ([jjromeo](https://github.com/jjromeo))
 - Update gem dependencies [\#1521](https://github.com/DEFRA/waste-exemptions-engine/pull/1521) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 4332 wex security enable bundler cooldown give new gems a few days to be vetted [\#1520](https://github.com/DEFRA/waste-exemptions-engine/pull/1520) ([brujeo](https://github.com/brujeo))
 - chore/changelog 04/06/2026 [\#1511](https://github.com/DEFRA/waste-exemptions-engine/pull/1511) ([jjromeo](https://github.com/jjromeo))
@@ -261,7 +261,6 @@
 - Bump defra\_ruby\_companies\_house from 1.0.0 to 1.0.3 [\#1154](https://github.com/DEFRA/waste-exemptions-engine/pull/1154) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Chore/ruby 3441 companies house gem [\#1151](https://github.com/DEFRA/waste-exemptions-engine/pull/1151) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - Bump activerecord from 7.1.4.2 to 7.1.5.1 [\#1142](https://github.com/DEFRA/waste-exemptions-engine/pull/1142) ([dependabot[bot]](https://github.com/apps/dependabot))
-- \[RUBY-2704\] Refactor payment scopes in `Payment` model [\#1135](https://github.com/DEFRA/waste-exemptions-engine/pull/1135) ([jjromeo](https://github.com/jjromeo))
 
 
 
