@@ -23,6 +23,9 @@ group :development do
   # future versions of github_changelog_generator rely on async gem and
   # do cause errors. So pinning to a version that does not have this dependency.
   gem "github_changelog_generator", "~> 1.15.2"
+  # Explicit dependency of github_changelog_generator: benchmark leaves Ruby's
+  # default gems in 3.5, so relying on the stdlib copy warns under Ruby 3.4
+  gem "benchmark"
   gem "rubocop-factory_bot"
   gem "rubocop-rake"
   gem "rubocop-rspec"
