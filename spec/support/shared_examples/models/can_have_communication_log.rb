@@ -24,7 +24,7 @@ RSpec.shared_examples "CanHaveCommunicationLog" do
       it "populates the expected values" do
         run_service
 
-        log_instance = WasteExemptionsEngine::CommunicationLog.first
+        log_instance = WasteExemptionsEngine::CommunicationLog.order(:id).first
 
         aggregate_failures do
           expect(log_instance.message_type).to eq service.communications_log_params[:message_type]
@@ -37,7 +37,7 @@ RSpec.shared_examples "CanHaveCommunicationLog" do
       it "message type and label match" do
         run_service
 
-        log_instance = WasteExemptionsEngine::CommunicationLog.first
+        log_instance = WasteExemptionsEngine::CommunicationLog.order(:id).first
 
         expect(log_instance.template_label).to end_with(log_instance.message_type)
       end

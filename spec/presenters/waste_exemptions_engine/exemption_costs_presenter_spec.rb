@@ -246,7 +246,7 @@ module WasteExemptionsEngine
       end
 
       context "when the order has exemptions from the farm bucket" do
-        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.order(:id).first] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 
@@ -266,8 +266,8 @@ module WasteExemptionsEngine
       end
 
       context "when the order has farming exemptions" do
-        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.first }
-        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.second }
+        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).first }
+        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).second }
         let(:non_farming_exemption) { create(:exemption, band: band_1) }
         let(:exemptions) { [first_farming_exemption, non_farming_exemption, second_farming_exemption] }
 
@@ -281,7 +281,7 @@ module WasteExemptionsEngine
 
     describe "#non_farming_exemptions" do
       context "when the order has no non-farming exemptions" do
-        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.order(:id).first] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 
@@ -291,7 +291,7 @@ module WasteExemptionsEngine
       end
 
       context "when the order has mixed exemptions" do
-        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).first }
         let(:first_non_farming_exemption) { create(:exemption, band: band_1) }
         let(:second_non_farming_exemption) { create(:exemption, band: band_2) }
         let(:exemptions) { [farming_exemption, first_non_farming_exemption, second_non_farming_exemption] }
@@ -314,8 +314,8 @@ module WasteExemptionsEngine
       end
 
       context "when there are farming exemptions" do
-        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.first }
-        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.second }
+        let(:first_farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).first }
+        let(:second_farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).second }
         let(:exemptions) { [first_farming_exemption, second_farming_exemption] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
@@ -338,7 +338,7 @@ module WasteExemptionsEngine
       end
 
       context "when there are farming exemptions" do
-        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.first }
+        let(:farming_exemption) { Bucket.farmer_bucket.exemptions.order(:id).first }
         let(:exemptions) { [farming_exemption] }
 
         before do
@@ -366,7 +366,7 @@ module WasteExemptionsEngine
       end
 
       context "when there are farming exemptions" do
-        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.order(:id).first] }
 
         before do
           order.update(bucket: Bucket.farmer_bucket)
@@ -411,7 +411,7 @@ module WasteExemptionsEngine
 
     describe "#is_discounted_charge?" do
       context "when exemption is in a bucket" do
-        let(:exemptions) { [Bucket.farmer_bucket.exemptions.first] }
+        let(:exemptions) { [Bucket.farmer_bucket.exemptions.order(:id).first] }
 
         before { order.update(bucket: Bucket.farmer_bucket) }
 

@@ -41,7 +41,7 @@ module WasteExemptionsEngine
         let(:easting) { 447_051.92 }
         let(:northing) { 342_377.23 }
         let(:result) { described_class.containing_point(easting, northing) }
-        let(:found_area) { result.first }
+        let(:found_area) { result.order(:id).first }
 
         it "includes the correct area in the result" do
           expect(result).to include(east_midlands_area)
@@ -64,7 +64,7 @@ module WasteExemptionsEngine
         let(:easting) { 459_170.35 }
         let(:northing) { 463_696.92 }
         let(:result) { described_class.containing_point(easting, northing) }
-        let(:found_area) { result.first }
+        let(:found_area) { result.order(:id).first }
 
         it "includes the correct area in the result" do
           expect(result).to include(yorkshire_area)
@@ -87,7 +87,7 @@ module WasteExemptionsEngine
         let(:easting) { 419_294.16 }
         let(:northing) { 579_576.53 }
         let(:result) { described_class.containing_point(easting, northing) }
-        let(:found_area) { result.first }
+        let(:found_area) { result.order(:id).first }
 
         it "includes the correct area in the result" do
           expect(result).to include(north_east_area)

@@ -123,7 +123,7 @@ module WasteExemptionsEngine
       subject(:registration) { create(:registration, :with_active_exemptions) }
 
       it "returns a list of registrations in an active status" do
-        pending_exemption = registration.registration_exemptions.first
+        pending_exemption = registration.registration_exemptions.order(:id).first
         pending_exemption.state = :pending
         pending_exemption.save
 
@@ -135,7 +135,7 @@ module WasteExemptionsEngine
       subject(:registration) { create(:registration, :with_expired_exemptions) }
 
       it "returns a list of registrations in an expired status" do
-        pending_exemption = registration.registration_exemptions.first
+        pending_exemption = registration.registration_exemptions.order(:id).first
         pending_exemption.state = :pending
         pending_exemption.save
 
@@ -147,7 +147,7 @@ module WasteExemptionsEngine
       subject(:registration) { create(:registration, :with_expired_and_active_exemptions) }
 
       it "returns a list of registrations in an active status" do
-        pending_exemption = registration.registration_exemptions.first
+        pending_exemption = registration.registration_exemptions.order(:id).first
         pending_exemption.state = :pending
         pending_exemption.save
 

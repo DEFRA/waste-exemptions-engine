@@ -123,8 +123,8 @@ module WasteExemptionsEngine
         end
 
         before do
-          first_partner = new_registration.transient_people.first
-          second_partner = new_registration.transient_people.last
+          first_partner = new_registration.transient_people.order(:id).first
+          second_partner = new_registration.transient_people.order(:id).last
           partner_text = "#{first_partner.first_name} #{first_partner.last_name}<br>" \
                          "#{second_partner.first_name} #{second_partner.last_name}".html_safe
 

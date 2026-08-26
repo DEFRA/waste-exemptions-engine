@@ -61,7 +61,7 @@ module WasteExemptionsEngine
 
         context "with a subset of exemptions removed" do
           before do
-            transient_registration.excluded_exemptions = [original_exemptions.first.id, original_exemptions.last.id]
+            transient_registration.excluded_exemptions = [original_exemptions.order(:id).first.id, original_exemptions.order(:id).last.id]
             transient_registration.save!
           end
 
