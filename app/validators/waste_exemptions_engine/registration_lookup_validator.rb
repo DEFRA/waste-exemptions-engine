@@ -5,7 +5,7 @@ module WasteExemptionsEngine
     include CanAddValidationErrors
 
     def validate(record)
-      registration = Registration.where(reference: record.reference).first
+      registration = Registration.find_by(reference: record.reference)
 
       return false unless valid_reference?(record, registration)
 

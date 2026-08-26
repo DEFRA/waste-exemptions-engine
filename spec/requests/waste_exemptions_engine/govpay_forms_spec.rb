@@ -266,7 +266,7 @@ module WasteExemptionsEngine
 
       context "when the transient registration is not found" do
         before do
-          allow(TransientRegistration).to receive(:where).and_return(TransientRegistration.where(token: "NOT_EXISTING"))
+          allow(TransientRegistration).to receive(:find_by).with(token: token).and_return(nil)
           allow(Rails.logger).to receive(:error)
         end
 
