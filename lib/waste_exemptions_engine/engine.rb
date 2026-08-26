@@ -39,5 +39,18 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    # HighVoltage's own route drawing passes a hash argument to `get`, which
+    # Rails 8.1 deprecates and 8.2 removes; the gem is unfixed as of 5.0.
+    # Draw the identical route in keyword form on the gem's behalf so every
+    # host app gets it warning-free.
+    # TODO: remove once high_voltage draws its route with keyword arguments.
+    initializer :high_voltage_keyword_routes do |app|
+      HighVoltage.routes = false
+      app.routes.append do
+        get "/#{HighVoltage.content_path}*id",
+            to: "high_voltage/pages#show", as: :page, format: false
+      end
+    end
   end
 end
