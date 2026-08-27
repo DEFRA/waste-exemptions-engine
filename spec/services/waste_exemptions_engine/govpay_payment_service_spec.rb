@@ -72,16 +72,16 @@ module WasteExemptionsEngine
 
           it "returns the existing payment" do
             response = govpay_service.prepare_for_payment
-            expect(response[:payment].id).to eq(Payment.last.id)
+            expect(response[:payment].id).to eq(Payment.order(:id).last.id)
           end
 
           it "updates the govpay_id of the existing payment" do
             response = govpay_service.prepare_for_payment
-            expect(response[:payment].govpay_id).to eq Payment.last.govpay_id
+            expect(response[:payment].govpay_id).to eq Payment.order(:id).last.govpay_id
           end
 
           it "changes the govpay_id if one already exists" do
-            Payment.last.update(govpay_id: "old-id")
+            Payment.order(:id).last.update(govpay_id: "old-id")
             response = govpay_service.prepare_for_payment
             expect(response[:payment].govpay_id).not_to eq("old-id")
           end
@@ -276,7 +276,7 @@ module WasteExemptionsEngine
 
         it "returns the existing payment" do
           payment = govpay_service.send(:find_or_create_payment)
-          expect(payment.id).to eq(Payment.last.id)
+          expect(payment.id).to eq(Payment.order(:id).last.id)
         end
       end
 

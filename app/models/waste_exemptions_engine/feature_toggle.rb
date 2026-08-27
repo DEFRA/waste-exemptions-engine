@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     self.table_name = "feature_toggles"
 
     def self.active?(feature_name)
-      from_database = where(key: feature_name).first
+      from_database = find_by(key: feature_name)
       return from_file(feature_name) unless from_database.present?
 
       from_database.active

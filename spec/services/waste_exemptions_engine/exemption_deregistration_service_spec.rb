@@ -83,13 +83,13 @@ module WasteExemptionsEngine
           end
 
           it "creates a new registration exemption version" do
-            expect { run_service }.to change { registration.registration_exemptions.first.versions.count }.by(1)
+            expect { run_service }.to change { registration.registration_exemptions.order(:id).first.versions.count }.by(1)
           end
 
           it "sets whodunnit for registration exemption version" do
             registration.edit_link_requested_by = "test@example.com"
             run_service
-            expect(registration.registration_exemptions.first.versions.last.whodunnit).to eq("test@example.com")
+            expect(registration.registration_exemptions.order(:id).first.versions.last.whodunnit).to eq("test@example.com")
           end
         end
 
@@ -104,7 +104,7 @@ module WasteExemptionsEngine
       end
 
       context "with a subset of exemptions removed" do
-        let(:removed_exemption_ids) { [registration.registration_exemptions.first.exemption_id, registration.registration_exemptions.last.exemption_id] }
+        let(:removed_exemption_ids) { [registration.registration_exemptions.order(:id).first.exemption_id, registration.registration_exemptions.order(:id).last.exemption_id] }
 
         before do
           transient_registration.exemptions = transient_registration.exemptions.reject do |tre|
@@ -150,7 +150,7 @@ module WasteExemptionsEngine
           end
 
           it "creates a new registration exemption version" do
-            expect { run_service }.to change { registration.registration_exemptions.first.versions.count }.by(1)
+            expect { run_service }.to change { registration.registration_exemptions.order(:id).first.versions.count }.by(1)
           end
         end
 

@@ -10,7 +10,7 @@ module WasteExemptionsEngine
     end
 
     def registration_expires_day_month_year(registration)
-      registration_expires_on = registration.registration_exemptions.first.expires_on
+      registration_expires_on = registration.registration_exemptions.take.expires_on
 
       registration_expires_on.to_formatted_s(:day_month_year)
     end

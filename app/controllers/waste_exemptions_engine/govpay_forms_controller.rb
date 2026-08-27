@@ -19,7 +19,7 @@ module WasteExemptionsEngine
     end
 
     def payment_callback
-      @transient_registration ||= TransientRegistration.where(token: params[:token]).first
+      @transient_registration ||= TransientRegistration.find_by(token: params[:token])
 
       # If transient_registration is not found, then possibly the payment
       # has already been processed by webhook handler

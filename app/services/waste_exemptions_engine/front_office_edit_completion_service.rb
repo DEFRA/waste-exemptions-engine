@@ -30,7 +30,7 @@ module WasteExemptionsEngine
     private
 
     def find_original_registration
-      @registration = Registration.where(reference: @edit_registration.reference).first
+      @registration = Registration.find_by(reference: @edit_registration.reference)
     end
 
     def set_paper_trail_whodunnit

@@ -16,7 +16,7 @@ module WasteExemptionsEngine
       context "when an exemption has been removed" do
         subject(:edit_registration) { create(:front_office_edit_registration, :modified, workflow_state: current_state) }
 
-        before { edit_registration.excluded_exemptions << edit_registration.registration_exemptions.first }
+        before { edit_registration.excluded_exemptions << edit_registration.registration_exemptions.order(:id).first }
 
         it { expect(edit_registration).to transition_from(current_state).to("confirm_edit_exemptions_form").on_event(:next) }
       end

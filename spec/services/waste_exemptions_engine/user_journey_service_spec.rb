@@ -23,13 +23,13 @@ module WasteExemptionsEngine
 
         shared_examples "new journey" do
           let(:user_journey) { UserJourney.find_by(token: token) }
-          let(:page_view) { user_journey.page_views.last }
+          let(:page_view) { user_journey.page_views.order(:id).last }
 
           it { expect(UserJourney).to have_received(:new) }
           it { expect(PageView).to have_received(:new) }
-          it { expect(UserJourney.last.page_views.last.page).to eq page }
-          it { expect(UserJourney.last.token).to eq token }
-          it { expect(UserJourney.last.journey_type).to eq expected_journey_type }
+          it { expect(UserJourney.order(:id).last.page_views.order(:id).last.page).to eq page }
+          it { expect(UserJourney.order(:id).last.token).to eq token }
+          it { expect(UserJourney.order(:id).last.journey_type).to eq expected_journey_type }
         end
 
         context "when a journey does not already exist for the token" do
@@ -61,7 +61,7 @@ module WasteExemptionsEngine
             it "records the correct journey type" do
               described_class.run(transient_registration: TestUserJourneyRegistration.new(token: "foo"))
 
-              expect(UserJourney.last.journey_type).to eq "TestUserJourneyRegistration"
+              expect(UserJourney.order(:id).last.journey_type).to eq "TestUserJourneyRegistration"
             end
           end
         end
@@ -79,7 +79,7 @@ module WasteExemptionsEngine
           end
 
           it "updates the journey's updated_at timestamp" do
-            expect(UserJourney.last.updated_at).to be > UserJourney.last.created_at
+            expect(UserJourney.order(:id).last.updated_at).to be > UserJourney.order(:id).last.created_at
           end
 
           it "creates a page view" do
@@ -87,10 +87,10 @@ module WasteExemptionsEngine
           end
 
           context "when the service is run twice consecutively for the same page" do
-            before { UserJourney.last.page_views.create(page: "location_form", time: Time.zone.now, route: "DIGITAL") }
+            before { UserJourney.order(:id).last.page_views.create(page: "location_form", time: Time.zone.now, route: "DIGITAL") }
 
             it "is idempotent" do
-              expect { described_class.run(transient_registration:) }.not_to change { UserJourney.last.reload.page_views.length }
+              expect { described_class.run(transient_registration:) }.not_to change { UserJourney.order(:id).last.reload.page_views.length }
             end
           end
         end
@@ -103,10 +103,10 @@ module WasteExemptionsEngine
               described_class.run(transient_registration:)
             end
 
-            it { expect(UserJourney.last.completed_route).not_to be_nil }
+            it { expect(UserJourney.order(:id).last.completed_route).not_to be_nil }
 
             it do
-              expect(UserJourney.last.registration_data).to include(
+              expect(UserJourney.order(:id).last.registration_data).to include(
                 transient_registration.attributes.slice(:business_type, :registration_type, :declared_convictions)
               )
             end
@@ -133,8 +133,8 @@ module WasteExemptionsEngine
             described_class.run(transient_registration:)
           end
 
-          it { expect(UserJourney.last.started_route).to eq "DIGITAL" }
-          it { expect(UserJourney.last.page_views.last.route).to eq "DIGITAL" }
+          it { expect(UserJourney.order(:id).last.started_route).to eq "DIGITAL" }
+          it { expect(UserJourney.order(:id).last.page_views.order(:id).last.route).to eq "DIGITAL" }
         end
 
         context "when it runs in the back office" do
@@ -144,8 +144,8 @@ module WasteExemptionsEngine
             described_class.run(transient_registration:)
           end
 
-          it { expect(UserJourney.last.started_route).to eq "ASSISTED_DIGITAL" }
-          it { expect(UserJourney.last.page_views.last.route).to eq "ASSISTED_DIGITAL" }
+          it { expect(UserJourney.order(:id).last.started_route).to eq "ASSISTED_DIGITAL" }
+          it { expect(UserJourney.order(:id).last.page_views.order(:id).last.route).to eq "ASSISTED_DIGITAL" }
         end
 
         context "with a logged-in user" do
@@ -154,7 +154,7 @@ module WasteExemptionsEngine
           it "stores the current user's email address on the user journey" do
             described_class.run(transient_registration:, current_user:)
 
-            expect(UserJourney.last.user).to eq current_user.email
+            expect(UserJourney.order(:id).last.user).to eq current_user.email
           end
         end
       end

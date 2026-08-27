@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "aasm", "~> 5.5"
 
   s.add_dependency "high_voltage", "~> 3.1"
-  s.add_dependency "rails", "~> 7.2.3.1"
+  s.add_dependency "rails", "~> 8.1.0"
 
   # Use rest-client for external requests, eg. to Companies House
   s.add_dependency "rest-client", "~> 2.1"
@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "pg"
 
-  s.add_dependency "activerecord-postgis-adapter", "~> 10.0.0"
+  s.add_dependency "activerecord-postgis-adapter", "~> 11.1"
   s.add_dependency "ffi-geos", "~> 1.2.0"
   s.add_dependency "rgeo"
 

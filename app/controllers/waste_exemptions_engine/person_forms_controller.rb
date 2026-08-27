@@ -28,9 +28,8 @@ module WasteExemptionsEngine
       return unless set_up_form(form_class, form, params[:token])
 
       respond_to do |format|
-        # Check if there are any matches first, to avoid a Mongoid error
-        people_with_id = @transient_registration.transient_people.where(id: params[:id])
-        people_with_id.first.delete if people_with_id.any?
+        person = @transient_registration.transient_people.find_by(id: params[:id])
+        person&.delete
 
         format.html { redirect_to_correct_form }
       end

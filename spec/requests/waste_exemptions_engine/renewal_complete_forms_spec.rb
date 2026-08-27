@@ -37,7 +37,7 @@ module WasteExemptionsEngine
       it "displays the correct reference number", :vcr do
         get request_path
 
-        expect(response.body).to include(Registration.last.reference)
+        expect(response.body).to include(Registration.order(:id).last.reference)
       end
 
       it "returns W3C valid HTML content", :vcr do

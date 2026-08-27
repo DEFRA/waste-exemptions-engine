@@ -3,10 +3,10 @@
 module WasteExemptionsEngine
   class RegistrationEmailMatchService < BaseService
     def run(reference:, email:)
-      WasteExemptionsEngine::Registration.where(
+      WasteExemptionsEngine::Registration.find_by(
         "reference ilike ? and contact_email ilike ?",
         reference, email
-      ).first || false
+      ) || false
     end
   end
 end

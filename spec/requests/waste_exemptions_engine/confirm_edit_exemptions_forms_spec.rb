@@ -26,7 +26,7 @@ module WasteExemptionsEngine
 
       let(:transient_registration) { form.transient_registration }
       let(:exemptions) { transient_registration.exemptions }
-      let(:exemption_ids_to_remove) { [exemptions.first, exemptions.last].pluck(:id) }
+      let(:exemption_ids_to_remove) { [exemptions.order(:id).first, exemptions.order(:id).last].pluck(:id) }
       let(:exemption_ids_to_retain) { exemptions.pluck(:id) - exemption_ids_to_remove }
 
       context "when selecting the no option" do
@@ -65,7 +65,7 @@ module WasteExemptionsEngine
         end
 
         context "with a subset of exemptions removed" do
-          let(:exemption_ids_to_remove) { [exemptions.first, exemptions.last].pluck(:id) }
+          let(:exemption_ids_to_remove) { [exemptions.order(:id).first, exemptions.order(:id).last].pluck(:id) }
 
           it "redirects to the main edit page" do
             post request_path, params: valid_params

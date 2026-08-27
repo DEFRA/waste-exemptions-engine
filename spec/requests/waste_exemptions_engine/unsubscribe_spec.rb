@@ -33,7 +33,7 @@ module WasteExemptionsEngine
             get unsubscribe_registration_path(unsubscribe_token:)
           end
 
-          let(:communication_log) { registration.communication_logs.last }
+          let(:communication_log) { registration.communication_logs.order(:id).last }
 
           it "has the correct message_type" do
             expect(communication_log.message_type).to eq("email")

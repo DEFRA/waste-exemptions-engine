@@ -16,7 +16,8 @@ module WasteExemptionsEngine
         @journey = find_or_create_user_journey(journey_type, token)
 
         # Log consecutive views of the same page once only
-        return if @journey.page_views.last.present? && @journey.page_views.last.page == page
+        last_page_view = @journey.page_views.order(:id).last
+        return if last_page_view.present? && last_page_view.page == page
 
         journey.page_views.create!(page:, route:, time: Time.zone.now)
 
@@ -31,7 +32,7 @@ module WasteExemptionsEngine
       private
 
       def find_or_create_user_journey(journey_type, token)
-        user_journey = UserJourney.where(token: token).first
+        user_journey = UserJourney.find_by(token: token)
         return user_journey if user_journey.present?
 
         user_journey = UserJourney.create!(

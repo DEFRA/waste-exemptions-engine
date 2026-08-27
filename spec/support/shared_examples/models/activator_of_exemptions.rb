@@ -4,7 +4,7 @@ RSpec.shared_examples "an activator of exemptions" do |model_factory|
   subject(:instance) { create(model_factory) }
 
   it "can use AASM defined scopes on statuses" do
-    expect { described_class.active.first }.not_to raise_error
+    expect { described_class.active.order(:id).first }.not_to raise_error
   end
 
   describe "#activate_exemption" do

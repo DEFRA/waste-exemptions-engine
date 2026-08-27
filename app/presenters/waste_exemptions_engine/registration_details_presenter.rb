@@ -7,7 +7,7 @@ module WasteExemptionsEngine
 
     def date_registered
       # Currently you can only add exemptions when you register, so we can assume they expire at the same time
-      registration_exemptions.first.registered_on.to_formatted_s(:day_month_year)
+      registration_exemptions.take.registered_on.to_formatted_s(:day_month_year)
     end
 
     def contact_name

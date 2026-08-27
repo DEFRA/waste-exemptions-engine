@@ -104,7 +104,7 @@ module WasteExemptionsEngine
       end
 
       it "de-duplicates exemptions so each exemption code appears once" do
-        exemption = registration.registration_exemptions.active.first.exemption
+        exemption = registration.registration_exemptions.active.order(:id).first.exemption
         registration.registration_exemptions.active.each do |re|
           re.update!(exemption: exemption)
         end
@@ -121,7 +121,7 @@ module WasteExemptionsEngine
       it "logs the communication with a multi-site template label" do
         run_service
 
-        expect(WasteExemptionsEngine::CommunicationLog.last.template_label)
+        expect(WasteExemptionsEngine::CommunicationLog.order(:id).last.template_label)
           .to eq("Registration edit link multi-site email")
       end
     end
