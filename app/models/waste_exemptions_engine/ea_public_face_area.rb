@@ -15,7 +15,7 @@ module WasteExemptionsEngine
     }
 
     def self.find_by_coordinates(easting, northing)
-      containing_point(easting, northing).first
+      containing_point(easting, northing).take
     end
 
     def self.outside_england_area

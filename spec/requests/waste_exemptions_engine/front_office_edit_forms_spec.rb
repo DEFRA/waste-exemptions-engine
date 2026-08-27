@@ -8,7 +8,7 @@ module WasteExemptionsEngine
     let(:edit_token) { valid_edit_token }
     let(:edit_token_created_at) { 1.hour.ago }
     let(:registration) { create(:registration, edit_token: valid_edit_token, edit_token_created_at:) }
-    let(:transient_registration_token) { FrontOfficeEditRegistration.last.token }
+    let(:transient_registration_token) { FrontOfficeEditRegistration.order(:id).last.token }
 
     describe "GET /waste_exemptions_engine/edit_registration/edit_token" do
 

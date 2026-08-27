@@ -6,7 +6,7 @@ module WasteExemptionsEngine
   RSpec.describe RegistrationCompletionService do
     let(:new_charged_registration) { create(:new_charged_registration, :complete, workflow_state: "registration_complete_form") }
     let(:new_registration) { new_charged_registration }
-    let(:registration) { Registration.last }
+    let(:registration) { Registration.order(:id).last }
 
     describe "#complete" do
 

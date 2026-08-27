@@ -41,12 +41,12 @@ module WasteExemptionsEngine
 
       it "creates a payment" do
         get new_govpay_form_path(token)
-        expect(Registration.last.account.payments.length).to eq(1)
+        expect(Registration.order(:id).last.account.payments.length).to eq(1)
       end
 
       it "populates govpay_id on the payment" do
         get new_govpay_form_path(token)
-        expect(Registration.last.account.payments.last.govpay_id).to be_present
+        expect(Registration.order(:id).last.account.payments.order(:id).last.govpay_id).to be_present
       end
 
       it "redirects to govpay" do
@@ -266,7 +266,7 @@ module WasteExemptionsEngine
 
       context "when the transient registration is not found" do
         before do
-          allow(TransientRegistration).to receive(:where).and_return(TransientRegistration.where(token: "NOT_EXISTING"))
+          allow(TransientRegistration).to receive(:find_by).with(token: token).and_return(nil)
           allow(Rails.logger).to receive(:error)
         end
 

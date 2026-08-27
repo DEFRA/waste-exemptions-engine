@@ -46,7 +46,7 @@ module WasteExemptionsEngine
     private
 
     def registration
-      @registration ||= Registration.where(edit_token: params[:edit_token].split("/")[0]).first
+      @registration ||= Registration.find_by(edit_token: params[:edit_token].split("/")[0])
     end
 
     def token_expired?

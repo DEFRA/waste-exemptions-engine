@@ -38,7 +38,7 @@ end
 
 RSpec.shared_examples "a valid payment status transition" do |old_status, new_status|
   before do
-    WasteExemptionsEngine::Payment.last.update(payment_status: old_status)
+    WasteExemptionsEngine::Payment.order(:id).last.update(payment_status: old_status)
     assign_webhook_status(new_status)
     allow(Airbrake).to receive(:notify)
     allow(Rails.logger).to receive(:info)

@@ -31,7 +31,7 @@ module WasteExemptionsEngine
             expect(transient_registration.transient_people).to be_empty
             form.submit(valid_params)
             expect(transient_registration.transient_people.count).to eq(1)
-            person = transient_registration.transient_people.first
+            person = transient_registration.transient_people.order(:id).first
             expect(person.first_name).to eq(first_name)
             expect(person.last_name).to eq(last_name)
           end

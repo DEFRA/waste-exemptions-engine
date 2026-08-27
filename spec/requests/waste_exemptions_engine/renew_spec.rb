@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       let(:request_path) { "/waste_exemptions_engine/renew/#{token}" }
       let(:company_name) { Faker::Company.name }
       let(:company_address) { ["10 Downing St", "Horizon House", "Bristol", "BS1 5AH"] }
-      let(:transient_registration_token) { RenewingRegistration.first.token }
+      let(:transient_registration_token) { RenewingRegistration.order(:id).first.token }
       let(:companies_house_api) { instance_double(DefraRuby::CompaniesHouse::API) }
       let(:companies_house_api_reponse) do
         {
@@ -95,7 +95,7 @@ module WasteExemptionsEngine
                 get request_path
 
                 # Update the workflow of the transient registration
-                renewing_registration = RenewingRegistration.last
+                renewing_registration = RenewingRegistration.order(:id).last
                 renewing_registration.update workflow_state: "location_form"
 
                 get request_path
@@ -111,7 +111,7 @@ module WasteExemptionsEngine
                 get request_path
 
                 # Update the workflow of the transient registration
-                renewing_registration = RenewingRegistration.last
+                renewing_registration = RenewingRegistration.order(:id).last
                 renewing_registration.update workflow_state: "location_form"
 
                 get request_path
@@ -129,7 +129,7 @@ module WasteExemptionsEngine
                 get request_path
 
                 # Update the workflow of the transient registration
-                renewing_registration = RenewingRegistration.last
+                renewing_registration = RenewingRegistration.order(:id).last
                 renewing_registration.update workflow_state: "location_form"
 
                 get request_path
@@ -145,7 +145,7 @@ module WasteExemptionsEngine
                 get request_path
 
                 # Update the workflow of the transient registration
-                renewing_registration = RenewingRegistration.last
+                renewing_registration = RenewingRegistration.order(:id).last
                 renewing_registration.update workflow_state: "location_form"
 
                 get request_path

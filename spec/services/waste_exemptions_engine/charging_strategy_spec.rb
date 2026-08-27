@@ -51,7 +51,7 @@ module WasteExemptionsEngine
       it { expect(strategy.charge_detail.bucket_charge_amount).to be_zero }
 
       context "when order details are changed" do
-        let(:new_exemption) { build(:exemption, band: Band.last) }
+        let(:new_exemption) { build(:exemption, band: Band.order(:id).last) }
 
         it "returns a different result" do
           expect { order.exemptions << new_exemption }

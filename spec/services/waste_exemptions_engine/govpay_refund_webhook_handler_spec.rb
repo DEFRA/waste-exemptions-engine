@@ -63,7 +63,7 @@ module WasteExemptionsEngine
 
           it "creates a refund with correct attributes" do
             run_service
-            new_refund = Payment.last
+            new_refund = Payment.order(:id).last
 
             aggregate_failures do
               expect(new_refund.payment_type).to eq Payment::PAYMENT_TYPE_REFUND
@@ -108,7 +108,7 @@ module WasteExemptionsEngine
               run_service
 
               # £8.32 total refunded to date minus £3.00 previously refunded
-              expect(Payment.last.payment_amount).to eq(-532)
+              expect(Payment.order(:id).last.payment_amount).to eq(-532)
             end
 
             it "has the correct balance" do

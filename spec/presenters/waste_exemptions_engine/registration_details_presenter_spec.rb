@@ -50,8 +50,8 @@ module WasteExemptionsEngine
         let(:registration) { create(:registration, :complete, :partnership, :with_active_exemptions) }
 
         it "returns an array with the correct data and labels" do
-          first_partner = "#{registration.people.first.first_name} #{registration.people.first.last_name}"
-          second_partner = "#{registration.people.last.first_name} #{registration.people.last.last_name}"
+          first_partner = "#{registration.people.order(:id).first.first_name} #{registration.people.order(:id).first.last_name}"
+          second_partner = "#{registration.people.order(:id).last.first_name} #{registration.people.order(:id).last.last_name}"
           address = registration.operator_address
           address_text = [
             address.organisation,

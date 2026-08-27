@@ -97,8 +97,8 @@ module WasteExemptionsEngine
         get "/waste_exemptions_engine/#{main_people_form.token}/main-people"
 
         aggregate_failures do
-          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.first.first_name)
-          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.first.last_name)
+          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.order(:id).first.first_name)
+          expect(response.body).to have_html_escaped_string(main_people_form.transient_registration.people.order(:id).first.last_name)
         end
       end
 

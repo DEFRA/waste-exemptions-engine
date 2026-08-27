@@ -37,7 +37,7 @@ module WasteExemptionsEngine
                            WasteExemptionsEngine::Registration.find_by(reference:).account.payments
                          end
 
-      payment = account_payments.where(payment_type: Payment::PAYMENT_TYPE_GOVPAY).last
+      payment = account_payments.where(payment_type: Payment::PAYMENT_TYPE_GOVPAY).order(:id).last
 
       return false if payment.blank?
 
