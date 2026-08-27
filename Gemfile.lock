@@ -141,7 +141,7 @@ GEM
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.1.0)
     date (3.5.1)
-    defra_ruby_address (0.3.0)
+    defra_ruby_address (0.4.0)
       rest-client (~> 2.0)
     defra_ruby_alert (2.2.1)
       airbrake
