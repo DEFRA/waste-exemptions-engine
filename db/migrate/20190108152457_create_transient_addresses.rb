@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateTransientAddresses < ActiveRecord::Migration[4.2]
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable-next Metrics/MethodLength
   def change
     create_table :transient_addresses do |t|
       t.integer :address_type, default: 0
@@ -28,5 +28,4 @@ class CreateTransientAddresses < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end
