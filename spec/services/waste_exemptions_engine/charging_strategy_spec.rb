@@ -188,7 +188,7 @@ module WasteExemptionsEngine
       end
 
       context "when site count changes after charge detail is created" do
-        # rubocop:disable RSpec/MultipleExpectations
+        # rubocop:disable-next RSpec/MultipleExpectations
         it "uses the stored site count from charge_details" do
           initial_total = strategy.total_compliance_charge_amount
 
@@ -201,7 +201,6 @@ module WasteExemptionsEngine
 
           expect(strategy.total_compliance_charge_amount).to eq(initial_total)
         end
-        # rubocop:enable RSpec/MultipleExpectations
       end
 
       context "with different site counts" do

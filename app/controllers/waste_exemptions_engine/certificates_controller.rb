@@ -29,13 +29,13 @@ module WasteExemptionsEngine
 
     def pdf
       @presenter = WasteExemptionsEngine::CertificatePresenter.new(@resource)
-      render  pdf: @resource.reference,
-              layout: false,
-              page_size: "A4",
-              margin: { top: "10mm", bottom: "10mm", left: "10mm", right: "10mm" },
-              print_media_type: true,
-              template: "waste_exemptions_engine/pdfs/certificate",
-              enable_local_file_access: true
+      render pdf: @resource.reference,
+             layout: false,
+             page_size: "A4",
+             margin: { top: "10mm", bottom: "10mm", left: "10mm", right: "10mm" },
+             print_media_type: true,
+             template: "waste_exemptions_engine/pdfs/certificate",
+             enable_local_file_access: true
     end
 
     private

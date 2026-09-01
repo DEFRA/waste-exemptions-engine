@@ -13,7 +13,7 @@ module WasteExemptionsEngine
   module CanConvertPenceToPounds
     extend ActiveSupport::Concern
 
-    # rubocop:disable Metrics/BlockLength -- Splitting this method up would force block limits to be exceeded
+    # rubocop:disable-next Metrics/BlockLength -- Splitting this method up would force block limits to be exceeded
     class_methods do
       def pence_to_pounds_fields(opts = {})
         pence_to_pounds_fields = opts[:only]
@@ -52,6 +52,5 @@ module WasteExemptionsEngine
         validate :"validate_#{field}_in_pounds"
       end
     end
-    # rubocop:enable Metrics/BlockLength
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/ContextWording
+# rubocop:disable-next RSpec/ContextWording
 RSpec.shared_context "farm bucket" do
   include_context "with bands and charges"
 
@@ -32,4 +32,3 @@ RSpec.shared_context "farm bucket" do
   end
 
 end
-# rubocop:enable RSpec/ContextWording

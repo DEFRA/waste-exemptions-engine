@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   class RegistrationCompletionService < BaseService
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable-next Metrics/MethodLength
     def run(transient_registration:)
       @transient_registration = transient_registration
       @registration = nil
@@ -45,7 +45,6 @@ module WasteExemptionsEngine
       Rails.logger.error "Completing registration error: #{e}"
       raise e
     end
-    # rubocop:enable Metrics/MethodLength
 
     private
 
