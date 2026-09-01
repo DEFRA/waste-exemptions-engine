@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-# rubocop:disable RSpec/MultipleExpectations
+# rubocop:disable-next RSpec/MultipleExpectations
 module WasteExemptionsEngine
   RSpec.describe SaveSiteAddressService do
     subject(:run_service) do
@@ -273,4 +273,3 @@ module WasteExemptionsEngine
     end
   end
 end
-# rubocop:enable RSpec/MultipleExpectations

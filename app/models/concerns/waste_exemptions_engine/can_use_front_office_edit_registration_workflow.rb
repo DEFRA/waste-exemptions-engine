@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
+# rubocop:disable-next Metrics/ModuleLength
 module WasteExemptionsEngine
   module CanUseFrontOfficeEditRegistrationWorkflow
     extend ActiveSupport::Concern
@@ -174,4 +174,3 @@ module WasteExemptionsEngine
     end
   end
 end
-# rubocop:enable Metrics/ModuleLength
