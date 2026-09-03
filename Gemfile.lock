@@ -307,7 +307,7 @@ GEM
       hashery (~> 2.0)
       ttfunk
     pg (1.6.3)
-    phonelib (0.10.25)
+    phonelib (0.10.27)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
