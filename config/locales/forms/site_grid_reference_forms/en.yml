@@ -9,11 +9,8 @@ en:
         multisite_instruction: Click continue to add more sites. Repeat the process until you have added all your sites.
         postcode_prefix: Enter a postcode in the
         postcode_link_text: address finder
-        or: Or
-        grid_reference_help_tool_link: UK Grid Reference Finder
-        grid_reference_label: Enter a grid reference
-        grid_reference_link_hint: "Use the %{grid_ref_finder_link} (opens new window)."
-        grid_reference_hint: Enter 2 letters and 10 digits. For example, ST 58132 72695
+        grid_reference_label: What's the grid reference of the waste activity?
+        grid_reference_hint: An Ordnance Survey grid reference number is made up of 2 letters followed by 10 numbers, for example, TQ 39392 76816
         description_label: Site details
         description_hint: For example, nearby landmarks and features, a descriptive name.
         mark_as_linear: Mark this registration as linear.
@@ -21,6 +18,9 @@ en:
         next_button: Continue
         continue_instruction: Click 'Continue' to review and add more sites.
         use_address_link: Use an address instead
+        how_to_use_map: How to use the map
+        map_instruction_mouse: If using a mouse, click on a point to update the location.
+        map_instruction_keyboard: If using a keyboard, navigate to the point, centering the crosshair at the location and press enter.
   activemodel:
     errors:
       models:
