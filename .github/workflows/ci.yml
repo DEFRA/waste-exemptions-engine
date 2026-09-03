@@ -4,6 +4,7 @@ on:
   push:
     paths-ignore:
       - 'CHANGELOG.md'
+  workflow_dispatch:
   schedule:
     - cron: '30 15 * * 2'
 

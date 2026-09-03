@@ -11,3 +11,6 @@ Rails.application.config.assets.version = "1.0"
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w[certificates.css]
+
+# Interactive map init script (loaded per-page on the site-grid-reference page)
+Rails.application.config.assets.precompile += %w[waste_exemptions_engine/interactive_map_init.js]

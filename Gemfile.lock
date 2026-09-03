@@ -10,6 +10,7 @@ PATH
       defra_ruby_companies_house
       defra_ruby_email
       defra_ruby_govpay
+      defra_ruby_map
       defra_ruby_validators
       ffi-geos (~> 1.2.0)
       high_voltage (~> 3.1)
@@ -157,6 +158,8 @@ GEM
       sprockets-rails
     defra_ruby_govpay (1.1.0)
       rest-client (~> 2.1)
+    defra_ruby_map (0.2.2)
+      rails (>= 7.0)
     defra_ruby_style (0.4.1)
     defra_ruby_validators (3.1.0)
       activemodel
@@ -276,7 +279,7 @@ GEM
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.2)
+    net-protocol (0.3.0)
       timeout
     net-smtp (0.5.1)
       net-protocol
@@ -521,6 +524,7 @@ DEPENDENCIES
   benchmark
   bullet
   database_cleaner
+  defra_ruby_map (>= 0.2.2)
   defra_ruby_style
   dotenv-rails
   factory_bot_rails

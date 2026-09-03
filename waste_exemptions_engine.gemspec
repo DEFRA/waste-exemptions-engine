@@ -86,4 +86,7 @@ Gem::Specification.new do |s|
 
   # Used to handle payments via Govpay API
   s.add_dependency "defra_ruby_govpay"
+
+  # Interactive map component for site grid reference
+  s.add_dependency "defra_ruby_map"
 end
