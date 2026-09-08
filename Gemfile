@@ -10,7 +10,10 @@ source "https://rubygems.org", cooldown: 7
 # See: https://github.com/sass/sassc-rails/issues/114
 gem "sassc-rails"
 
-gem "govuk_design_system_formbuilder"
+# GOV.UK design system styling
+gem "defra_ruby_template", "~> 6.4"
+# GOV.UK design system forms
+gem "govuk_design_system_formbuilder", "~> 6.4"
 
 gem "matrix"
 
