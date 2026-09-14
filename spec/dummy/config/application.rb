@@ -48,6 +48,8 @@ module Dummy
     # https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#active-record-belongs-to-required-by-default-option
     config.active_record.belongs_to_required_by_default = false
 
+    config.sass.silence_deprecations = ["import"]
+
     # https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#expiry-in-signed-or-encrypted-cookie-is-now-embedded-in-the-cookies-values
     # config.action_dispatch.use_authenticated_cookie_encryption = false
 
