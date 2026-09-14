@@ -6,11 +6,13 @@ source "https://rubygems.org", cooldown: 7
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 
-# Temporary workaround until we implement webpack assets
-# See: https://github.com/sass/sassc-rails/issues/114
-gem "sassc-rails"
+# Use Dart Sass with the Sprockets asset pipeline
+gem "dartsass-sprockets"
 
-gem "govuk_design_system_formbuilder"
+# GOV.UK design system styling
+gem "defra_ruby_template", "~> 6.4"
+# GOV.UK design system forms
+gem "govuk_design_system_formbuilder", "~> 6.4"
 
 gem "matrix"
 
