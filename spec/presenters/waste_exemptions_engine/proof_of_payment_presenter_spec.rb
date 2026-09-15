@@ -57,18 +57,28 @@ module WasteExemptionsEngine
         "* VAT exempt: £0"
     end
 
-    it "provides the Notify template values" do
-      expect(personalisation).to eq(
+    def expected_personalisation
+      {
         reg_identifier: "WEX123456",
         first_name: "Jo",
         last_name: "Bloggs",
+        " last_name" => "Bloggs",
+        date_registered: "1 September 2026",
         "Date" => "1 September 2026",
         date_paid: "2 September 2026",
+        "Date_paid" => "2 September 2026",
         payment_method: "Card",
+        "Payment_Method" => "Card",
         payment_amount: "495.00",
+        "payment_Amount" => "£495.00",
+        "Exemption_Total" => "495.00",
         exemption_breakdown: expected_breakdown,
         public_register_link: described_class::PUBLIC_REGISTER_LINK
-      )
+      }
+    end
+
+    it "provides the Notify template values" do
+      expect(personalisation).to eq(expected_personalisation)
     end
 
     context "with a BACS payment" do

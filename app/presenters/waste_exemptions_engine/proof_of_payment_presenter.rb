@@ -18,14 +18,26 @@ module WasteExemptionsEngine
     end
 
     def personalisation
+      # Notify placeholder names are case-sensitive. The supplied templates currently
+      # use a mixture of canonical and legacy names, so provide both sets of values.
+      registration_date = registration.submitted_at.to_date.to_fs(:day_month_year)
+      paid_date = payment_date.to_date.to_fs(:day_month_year)
+      method = PAYMENT_METHOD_LABELS.fetch(latest_payment.payment_type, latest_payment.payment_type.humanize)
+
       {
         reg_identifier: registration.reference,
         first_name: registration.contact_first_name,
         last_name: registration.contact_last_name,
-        "Date" => registration.submitted_at.to_date.to_fs(:day_month_year),
-        date_paid: payment_date.to_date.to_fs(:day_month_year),
-        payment_method: PAYMENT_METHOD_LABELS.fetch(latest_payment.payment_type, latest_payment.payment_type.humanize),
+        " last_name" => registration.contact_last_name,
+        date_registered: registration_date,
+        "Date" => registration_date,
+        date_paid: paid_date,
+        "Date_paid" => paid_date,
+        payment_method: method,
+        "Payment_Method" => method,
         payment_amount: formatted_payment_amount,
+        "payment_Amount" => "£#{formatted_payment_amount}",
+        "Exemption_Total" => formatted_payment_amount,
         exemption_breakdown: exemption_breakdown,
         public_register_link: PUBLIC_REGISTER_LINK
       }
