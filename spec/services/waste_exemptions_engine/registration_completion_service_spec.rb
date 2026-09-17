@@ -64,6 +64,7 @@ module WasteExemptionsEngine
           allow(NotifyConfirmationLetterService).to receive(:run)
           allow(RegistrationPendingBankTransferLetterService).to receive(:run)
           allow(RegistrationPendingBankTransferEmailService).to receive(:run)
+          allow(ProofOfPaymentService).to receive(:run)
         end
 
         it "copies attributes from the new_registration to the registration" do
@@ -164,6 +165,26 @@ module WasteExemptionsEngine
             run_service
 
             expect(NotifyConfirmationLetterService).not_to have_received(:run)
+          end
+        end
+
+        context "when payment was made by card" do
+          it "sends proof of payment" do
+            run_service
+
+            expect(ProofOfPaymentService).to have_received(:run).with(registration: instance_of(Registration))
+          end
+        end
+
+        context "when payment will be made by bank transfer" do
+          before do
+            new_registration.update(temp_payment_method: Payment::PAYMENT_TYPE_BANK_TRANSFER)
+          end
+
+          it "does not send proof of payment before payment is received" do
+            run_service
+
+            expect(ProofOfPaymentService).not_to have_received(:run)
           end
         end
 

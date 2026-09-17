@@ -39,6 +39,7 @@ module WasteExemptionsEngine
       end
 
       send_confirmation_messages
+      send_proof_of_payment
       @registration
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration&.reference) if defined?(Airbrake)
@@ -161,6 +162,15 @@ module WasteExemptionsEngine
     rescue StandardError => e
       Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
       Rails.logger.error "Registration pending bank transfer email error: #{e}"
+    end
+
+    def send_proof_of_payment
+      return if @payment_method == Payment::PAYMENT_TYPE_BANK_TRANSFER
+
+      ProofOfPaymentService.run(registration: @registration)
+    rescue StandardError => e
+      Airbrake.notify(e, reference: @registration.reference) if defined?(Airbrake)
+      Rails.logger.error "Proof of payment error: #{e}"
     end
   end
 end
