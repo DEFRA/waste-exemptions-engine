@@ -1,0 +1,11 @@
+en:
+  waste_exemptions_engine:
+    proof_of_payment:
+      farming_exemptions: "Farming exemptions"
+      registration_charge: "Registration charge"
+      vat_exempt: "VAT exempt"
+      payment_methods:
+        bank_transfer: "BACS"
+        govpay_payment: "Card"
+        missing_card_payment: "Card"
+        other_payment: "Other"

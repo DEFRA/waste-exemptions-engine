@@ -2,13 +2,6 @@
 
 module WasteExemptionsEngine
   class ProofOfPaymentPresenter
-    PAYMENT_METHOD_LABELS = {
-      Payment::PAYMENT_TYPE_GOVPAY => "Card",
-      Payment::PAYMENT_TYPE_MISSING_CARD_PAYMENT => "Card",
-      Payment::PAYMENT_TYPE_BANK_TRANSFER => "BACS",
-      Payment::PAYMENT_TYPE_OTHER => "Other"
-    }.freeze
-
     def initialize(registration:)
       @registration = registration
     end
@@ -20,7 +13,8 @@ module WasteExemptionsEngine
         last_name: registration.contact_last_name,
         date_registered: registration.submitted_at.to_date.to_fs(:day_month_year),
         date_paid: payment_date.to_date.to_fs(:day_month_year),
-        payment_method: PAYMENT_METHOD_LABELS.fetch(latest_payment.payment_type, latest_payment.payment_type.humanize),
+        payment_method: translate("payment_methods.#{latest_payment.payment_type}",
+                                  default: latest_payment.payment_type.humanize),
         payment_amount: formatted_payment_amount,
         exemption_breakdown: exemption_breakdown
       }
@@ -55,8 +49,8 @@ module WasteExemptionsEngine
     def order_breakdown(order)
       breakdown = OrderChargeBreakdown.new(order:)
       lines = exemption_lines(breakdown)
-      lines << "* Registration charge: #{format_charge(breakdown.registration_charge_amount)}"
-      lines << "* VAT exempt: £0"
+      lines << "* #{translate(:registration_charge)}: #{format_charge(breakdown.registration_charge_amount)}"
+      lines << "* #{translate(:vat_exempt)}: £0"
     end
 
     def exemption_lines(breakdown)
@@ -64,7 +58,7 @@ module WasteExemptionsEngine
 
       if breakdown.bucket_exemptions.any?
         codes = breakdown.bucket_exemptions.map(&:code).join(", ")
-        lines << "* Farming exemptions (#{codes}): #{format_charge(breakdown.bucket_charge_amount)}"
+        lines << "* #{translate(:farming_exemptions)} (#{codes}): #{format_charge(breakdown.bucket_charge_amount)}"
       end
 
       breakdown.exemption_charges.each do |item|
@@ -78,6 +72,10 @@ module WasteExemptionsEngine
 
     def format_charge(amount)
       "£#{CurrencyConversionService.convert_pence_to_pounds(amount)}"
+    end
+
+    def translate(key, **)
+      I18n.t(key, scope: "waste_exemptions_engine.proof_of_payment", **)
     end
   end
 end
