@@ -84,6 +84,77 @@ module WasteExemptionsEngine
       end
     end
 
+    context "with multiple successful payments" do
+      before do
+        latest_payment = instance_double(Payment,
+                                         success?: true,
+                                         payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
+                                         payment_amount: 10_000,
+                                         date_time: Time.zone.local(2026, 9, 3, 12),
+                                         created_at: Time.zone.local(2026, 9, 3, 12),
+                                         id: 2)
+        allow(account).to receive(:payments).and_return([payment, latest_payment])
+      end
+
+      it "shows the total paid and details of the latest payment" do
+        expect(personalisation).to include(
+          payment_amount: "595.00",
+          payment_method: "BACS",
+          date_paid: "3 September 2026"
+        )
+      end
+    end
+
+    context "with an unsuccessful payment after the successful payment" do
+      before do
+        failed_payment = instance_double(Payment,
+                                         success?: false,
+                                         payment_type: Payment::PAYMENT_TYPE_BANK_TRANSFER,
+                                         payment_amount: 10_000,
+                                         date_time: Time.zone.local(2026, 9, 3, 12),
+                                         created_at: Time.zone.local(2026, 9, 3, 12),
+                                         id: 2)
+        allow(account).to receive(:payments).and_return([payment, failed_payment])
+      end
+
+      it "excludes the unsuccessful payment" do
+        expect(personalisation).to include(
+          payment_amount: "495.00",
+          payment_method: "Card",
+          date_paid: "2 September 2026"
+        )
+      end
+    end
+
+    context "with a successful refund" do
+      before do
+        refund = instance_double(Payment,
+                                 success?: true,
+                                 payment_type: Payment::PAYMENT_TYPE_REFUND,
+                                 payment_amount: -500,
+                                 date_time: Time.zone.local(2026, 9, 3, 12),
+                                 created_at: Time.zone.local(2026, 9, 3, 12),
+                                 id: 2)
+        allow(account).to receive(:payments).and_return([payment, refund])
+      end
+
+      it "shows the net amount while retaining the latest positive payment details" do
+        expect(personalisation).to include(
+          payment_amount: "490.00",
+          payment_method: "Card",
+          date_paid: "2 September 2026"
+        )
+      end
+    end
+
+    context "when the payment date is not recorded" do
+      before { allow(payment).to receive(:date_time).and_return(nil) }
+
+      it "uses the payment creation date" do
+        expect(personalisation[:date_paid]).to eq("2 September 2026")
+      end
+    end
+
     context "with multiple exemptions in the same band" do
       let(:exemptions) do
         [

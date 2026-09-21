@@ -64,6 +64,93 @@ module WasteExemptionsEngine
       end
     end
 
+    context "with multiple successful payments" do
+      before do
+        payment.update!(payment_amount: order.total_charge_amount - 100)
+        create(:payment,
+               account: registration.account,
+               payment_status: Payment::PAYMENT_STATUS_SUCCESS,
+               payment_amount: 100)
+      end
+
+      it "sends proof when the payments together clear the balance" do
+        run_service
+
+        expect(ProofOfPaymentEmailService).to have_received(:run)
+      end
+    end
+
+    context "when a failed payment would have cleared the balance" do
+      before do
+        payment.update!(payment_amount: order.total_charge_amount - 100)
+        create(:payment,
+               account: registration.account,
+               payment_status: Payment::PAYMENT_STATUS_FAILED,
+               payment_amount: 100)
+      end
+
+      it "does not count the failed payment" do
+        run_service
+
+        expect_no_proof_of_payment
+      end
+    end
+
+    context "when a successful refund clears an overpayment" do
+      before do
+        payment.update!(payment_amount: order.total_charge_amount + 100)
+        create(:payment,
+               account: registration.account,
+               payment_type: Payment::PAYMENT_TYPE_REFUND,
+               payment_status: Payment::PAYMENT_STATUS_SUCCESS,
+               payment_amount: -100)
+      end
+
+      it "sends proof for the net amount paid" do
+        run_service
+
+        expect(ProofOfPaymentEmailService).to have_received(:run)
+      end
+    end
+
+    context "with an increased charge" do
+      before do
+        persist_charge_adjustment(registration.account, adjustment_type: :increase, amount: 100)
+        payment.update!(payment_amount: order.total_charge_amount + 100)
+      end
+
+      it "sends proof when the payment includes the increase" do
+        run_service
+
+        expect(ProofOfPaymentEmailService).to have_received(:run)
+      end
+    end
+
+    context "with a decreased charge" do
+      before do
+        persist_charge_adjustment(registration.account, adjustment_type: :decrease, amount: 1)
+        payment.update!(payment_amount: order.total_charge_amount - 1)
+      end
+
+      it "sends proof when the reduced charge is fully paid" do
+        run_service
+
+        expect(ProofOfPaymentEmailService).to have_received(:run)
+      end
+    end
+
+    context "when a charge increase remains unpaid" do
+      before do
+        persist_charge_adjustment(registration.account, adjustment_type: :increase, amount: 100)
+      end
+
+      it "does not send proof of payment" do
+        run_service
+
+        expect_no_proof_of_payment
+      end
+    end
+
     context "when there was no charge" do
       before do
         order.charge_detail.update!(registration_charge_amount: 0,
@@ -105,6 +192,14 @@ module WasteExemptionsEngine
 
         expect_no_proof_of_payment
       end
+    end
+
+    def persist_charge_adjustment(account, adjustment_type:, amount:)
+      account.charge_adjustments.create!(
+        adjustment_type:,
+        amount:,
+        reason: "Proof of payment spec"
+      )
     end
 
     def expect_no_proof_of_payment
