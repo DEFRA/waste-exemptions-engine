@@ -7,6 +7,8 @@ module WasteExemptionsEngine
     let(:form) { build(:exemptions_summary_form) }
 
     describe "GET exemptions_summary_form" do
+      include_context "with bands and charges"
+
       let(:request_path) { "/waste_exemptions_engine/#{form.token}/exemptions-summary" }
 
       it "renders the appropriate template", :vcr do
@@ -59,6 +61,46 @@ module WasteExemptionsEngine
         it "loads without error" do
           get request_path
           expect(response).to have_http_status(:ok)
+        end
+      end
+
+      # Guards against near-empty registrations being created by skipping earlier steps - see RUBY-4386
+      context "when registration data is missing" do
+        let(:request_path) { "/waste_exemptions_engine/#{transient_registration.token}/exemptions-summary" }
+
+        shared_examples "redirects to the start page" do
+          it "responds with a #{WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE} status code" do
+            get request_path
+            expect(response.code).to eq(WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE.to_s)
+          end
+
+          it "redirects to the start page" do
+            get request_path
+            expect(response).to redirect_to(new_start_form_path)
+          end
+        end
+
+        context "when there are no exemptions and no site" do
+          let(:transient_registration) { create(:new_charged_registration, workflow_state: "exemptions_summary_form") }
+
+          it_behaves_like "redirects to the start page"
+        end
+
+        context "when there is a site but no exemptions" do
+          let(:transient_registration) do
+            create(:new_charged_registration, :with_all_addresses, workflow_state: "exemptions_summary_form")
+          end
+
+          it_behaves_like "redirects to the start page"
+        end
+
+        context "when there is an exemption but no site" do
+          let(:transient_registration) do
+            create(:new_charged_registration, workflow_state: "exemptions_summary_form",
+                                              exemptions: [create(:exemption)])
+          end
+
+          it_behaves_like "redirects to the start page"
         end
       end
     end
