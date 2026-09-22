@@ -7,6 +7,11 @@ module WasteExemptionsEngine
 
     validates :temp_payment_method, "waste_exemptions_engine/payment_method": true
 
+    # Only reachable via the declaration form transition (or go_back from govpay), never by direct navigation
+    def self.can_navigate_flexibly?
+      false
+    end
+
     def exemption_costs_presenter
       @exemption_costs_presenter ||= WasteExemptionsEngine::ExemptionCostsPresenter.new(order: order)
     end

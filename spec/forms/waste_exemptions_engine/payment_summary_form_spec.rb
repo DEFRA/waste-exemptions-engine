@@ -14,6 +14,12 @@ module WasteExemptionsEngine
       expect(validators[:temp_payment_method].first.class).to eq(WasteExemptionsEngine::PaymentMethodValidator)
     end
 
+    describe ".can_navigate_flexibly?" do
+      it "returns false" do
+        expect(described_class).not_to be_can_navigate_flexibly
+      end
+    end
+
     it_behaves_like "a validated form", :payment_summary_form do
       let(:valid_params) { { temp_payment_method: "bank_transfer" } }
       let(:invalid_params) do
