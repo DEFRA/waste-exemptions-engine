@@ -14,7 +14,7 @@ module WasteExemptionsEngine
                       submitted_at: Date.new(2026, 9, 1),
                       account:)
     end
-    let(:account) { instance_double(Account, payments: [payment], orders: [order]) }
+    let(:account) { instance_double(Account, payments: [payment], orders: [order], charge_adjustments: []) }
     let(:order) do
       instance_double(Order,
                       id: 1,

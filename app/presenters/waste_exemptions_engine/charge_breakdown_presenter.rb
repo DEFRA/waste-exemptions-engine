@@ -7,7 +7,9 @@ module WasteExemptionsEngine
     end
 
     def breakdown
-      registration.account.orders.flat_map { |order| order_breakdown(order) }.join("\n")
+      lines = registration.account.orders.flat_map { |order| order_breakdown(order) }
+      lines.concat(adjustment_lines)
+      lines.join("\n")
     end
 
     private
@@ -36,6 +38,23 @@ module WasteExemptionsEngine
       end
 
       lines
+    end
+
+    def adjustment_lines
+      adjustments = registration.account.charge_adjustments
+
+      [
+        adjustment_line(adjustments.select(&:increase?), :additional_charges),
+        adjustment_line(adjustments.select(&:decrease?), :reductions_in_charges, negative: true)
+      ].compact
+    end
+
+    def adjustment_line(adjustments, label, negative: false)
+      return if adjustments.empty?
+
+      charge = format_charge(adjustments.sum(&:amount))
+      charge = "-#{charge}" if negative
+      "* #{translate(label)}: #{charge}"
     end
 
     def format_charge(amount)

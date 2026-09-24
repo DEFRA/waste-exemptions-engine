@@ -7,7 +7,8 @@ module WasteExemptionsEngine
     subject(:breakdown) { described_class.new(registration:).breakdown }
 
     let(:registration) { instance_double(Registration, account:) }
-    let(:account) { instance_double(Account, orders: [order]) }
+    let(:account) { instance_double(Account, orders: [order], charge_adjustments:) }
+    let(:charge_adjustments) { [] }
     let(:order) { instance_double(Order, exemptions:, bucket:, charge_detail:) }
     let(:exemptions) { [exemption] }
     let(:bucket) { nil }
@@ -79,6 +80,27 @@ module WasteExemptionsEngine
           "* Farming exemptions (U1): £311.14\n" \
           "* Registration charge: £59.04\n" \
           "* VAT exempt: £0"
+        )
+      end
+    end
+
+    context "with multiple charge adjustments" do
+      let(:charge_adjustments) do
+        [
+          instance_double(ChargeAdjustment, increase?: true, decrease?: false, amount: 2000),
+          instance_double(ChargeAdjustment, increase?: true, decrease?: false, amount: 1250),
+          instance_double(ChargeAdjustment, increase?: false, decrease?: true, amount: 500),
+          instance_double(ChargeAdjustment, increase?: false, decrease?: true, amount: 250)
+        ]
+      end
+
+      it "groups increases and decreases into customer-facing totals" do
+        expect(breakdown).to eq(
+          "* U1 Using waste in construction: £435.96\n" \
+          "* Registration charge: £59.04\n" \
+          "* VAT exempt: £0\n" \
+          "* Additional charges: £32.50\n" \
+          "* Reductions in charges: -£7.50"
         )
       end
     end
