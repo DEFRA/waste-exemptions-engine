@@ -27,6 +27,29 @@ module WasteExemptionsEngine
         get request_path
         expect(response.body).to have_valid_html
       end
+
+      # Guards against skipping straight to payment from an earlier (flexible) step - see RUBY-4386
+      context "when the registration is in an earlier workflow state" do
+        let(:transient_registration) { create(:new_charged_registration, workflow_state: "exemptions_summary_form") }
+        let(:request_path) { "/waste_exemptions_engine/#{transient_registration.token}/payment-summary" }
+
+        status_code = WasteExemptionsEngine::ApplicationController::UNSUCCESSFUL_REDIRECTION_CODE
+
+        it "responds with a #{status_code} status code" do
+          get request_path
+          expect(response.code).to eq(status_code.to_s)
+        end
+
+        it "redirects to the form for the current workflow state" do
+          get request_path
+          expect(response).to redirect_to(new_exemptions_summary_form_path(transient_registration.token))
+        end
+
+        it "does not update the workflow state" do
+          get request_path
+          expect(transient_registration.reload.workflow_state).to eq("exemptions_summary_form")
+        end
+      end
     end
 
     describe "POST payment_summary_form" do
