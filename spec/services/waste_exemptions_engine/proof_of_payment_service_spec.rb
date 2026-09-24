@@ -54,13 +54,13 @@ module WasteExemptionsEngine
       end
     end
 
-    context "when the balance is above zero" do
+    context "when the registration is overpaid" do
       before { payment.update!(payment_amount: order.total_charge_amount + 1) }
 
-      it "does not send proof of payment" do
+      it "sends proof of payment" do
         run_service
 
-        expect_no_proof_of_payment
+        expect(ProofOfPaymentEmailService).to have_received(:run)
       end
     end
 
