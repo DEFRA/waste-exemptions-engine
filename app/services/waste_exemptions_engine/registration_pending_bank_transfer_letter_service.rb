@@ -26,7 +26,7 @@ module WasteExemptionsEngine
       {
         message_type: "letter",
         template_id: template,
-        template_label: "Registration pending bank transfer payment letter",
+        template_label: "Breakdown of charges letter",
         sent_to: recipient
       }
     end
@@ -34,7 +34,7 @@ module WasteExemptionsEngine
     private
 
     def template
-      NotificationTemplates::REGISTRATION_PENDING_BANK_TRANSFER_LETTER
+      NotificationTemplates::BREAKDOWN_OF_CHARGES_LETTER
     end
 
     def personalisation
@@ -47,10 +47,12 @@ module WasteExemptionsEngine
         account_number: I18n.t("#{payment_details_path}.account_number_value"),
         sort_code: I18n.t("#{payment_details_path}.sort_code_value"),
         payment_due: payment_due,
-        iban: I18n.t("#{payment_details_path}.iban"),
-        swiftbic: I18n.t("#{payment_details_path}.swift_bic"),
-        currency: "Sterling",
-        reg_identifier: @registration.reference
+        iban: I18n.t("#{payment_details_path}.iban_value"),
+        swiftbic: I18n.t("#{payment_details_path}.swift_bic_value"),
+        currency: I18n.t("#{payment_details_path}.currency_value"),
+        reg_identifier: @registration.reference,
+        date_registered: @registration.submitted_at.to_date.to_fs(:day_month_year),
+        exemption_breakdown: ChargeBreakdownPresenter.new(registration: @registration).breakdown
       }.merge(address_lines)
     end
 
