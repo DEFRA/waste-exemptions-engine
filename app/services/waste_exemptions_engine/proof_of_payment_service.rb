@@ -37,7 +37,7 @@ module WasteExemptionsEngine
     end
 
     def fully_paid?
-      account.balance.zero?
+      !account.balance.negative?
     end
 
     def successful_payment?
