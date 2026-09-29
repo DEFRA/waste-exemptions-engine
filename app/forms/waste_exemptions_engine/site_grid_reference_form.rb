@@ -70,7 +70,7 @@ module WasteExemptionsEngine
     end
 
     def check_grid_reference_location?
-      grid_reference.present?
+      grid_reference.present? && errors[:grid_reference].empty?
     end
 
     def grid_reference_must_be_in_england
