@@ -6,6 +6,10 @@
 
 **Implemented enhancements:**
 
+- \[RUBY-4387\] Updated content on deregistration completion page [\#1553](https://github.com/DEFRA/waste-exemptions-engine/pull/1553) ([brujeo](https://github.com/brujeo))
+- \[RUBY-4386\] Validate registration data on summary pages [\#1551](https://github.com/DEFRA/waste-exemptions-engine/pull/1551) ([brujeo](https://github.com/brujeo))
+- RUBY 4396 wex automatic sending of breakdown of charges [\#1550](https://github.com/DEFRA/waste-exemptions-engine/pull/1550) ([jjromeo](https://github.com/jjromeo))
+- \[RUBY-4395\] Automate proof of payment notifications [\#1549](https://github.com/DEFRA/waste-exemptions-engine/pull/1549) ([jjromeo](https://github.com/jjromeo))
 - Upgrade to Rails 8.1 and clean up obsolete configurations [\#1536](https://github.com/DEFRA/waste-exemptions-engine/pull/1536) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 4241 wex defra map in service [\#1525](https://github.com/DEFRA/waste-exemptions-engine/pull/1525) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4297\] Update front office edit form for multisite registration handling [\#1515](https://github.com/DEFRA/waste-exemptions-engine/pull/1515) ([jjromeo](https://github.com/jjromeo))
@@ -87,14 +91,11 @@
 - Feature/ruby 3615 declaration content [\#1176](https://github.com/DEFRA/waste-exemptions-engine/pull/1176) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3598\] Updating exemptions.csv file [\#1175](https://github.com/DEFRA/waste-exemptions-engine/pull/1175) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3609\] Simplified exemptions summary form [\#1173](https://github.com/DEFRA/waste-exemptions-engine/pull/1173) ([jjromeo](https://github.com/jjromeo))
-- Feature/ruby 3608 3594 bypass payments [\#1171](https://github.com/DEFRA/waste-exemptions-engine/pull/1171) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- \[RUBY-3233\] Update Beta Start Form for Waste Exemptions Private Beta [\#1170](https://github.com/DEFRA/waste-exemptions-engine/pull/1170) ([jjromeo](https://github.com/jjromeo))
-- \[RUBY-3609\] Update exemptions summary page content for private beta [\#1168](https://github.com/DEFRA/waste-exemptions-engine/pull/1168) ([jjromeo](https://github.com/jjromeo))
-- Adding method to generate private beta invite link [\#1166](https://github.com/DEFRA/waste-exemptions-engine/pull/1166) ([brujeo](https://github.com/brujeo))
 - \[RUBY-3406\] Add `Company` model and migration for `companies` table [\#1103](https://github.com/DEFRA/waste-exemptions-engine/pull/1103) ([jjromeo](https://github.com/jjromeo))
 
 **Fixed bugs:**
 
+- \[RUBY-4395\] Send proof of payment for overpayments [\#1552](https://github.com/DEFRA/waste-exemptions-engine/pull/1552) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4241\] Require defra\_ruby\_map in the engine [\#1544](https://github.com/DEFRA/waste-exemptions-engine/pull/1544) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4297\] Deduplicate multisite edit exemptions [\#1523](https://github.com/DEFRA/waste-exemptions-engine/pull/1523) ([jjromeo](https://github.com/jjromeo))
 - \[RUBY-4312\] Refactor site address handling to use SaveSiteAddressService [\#1513](https://github.com/DEFRA/waste-exemptions-engine/pull/1513) ([jjromeo](https://github.com/jjromeo))
@@ -148,10 +149,10 @@
 - Fix/ruby 3582 ch number link [\#1189](https://github.com/DEFRA/waste-exemptions-engine/pull/1189) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 - \[RUBY-3537\] Update exemption selection logic for farmer and non-farmer journeys [\#1185](https://github.com/DEFRA/waste-exemptions-engine/pull/1185) ([jjromeo](https://github.com/jjromeo))
 - Completion page content tweaks [\#1172](https://github.com/DEFRA/waste-exemptions-engine/pull/1172) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- Fix/ruby 3536 farm exemptions only [\#1169](https://github.com/DEFRA/waste-exemptions-engine/pull/1169) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md [\#1548](https://github.com/DEFRA/waste-exemptions-engine/pull/1548) ([jjromeo](https://github.com/jjromeo))
 - WEX: Update defra-ruby-template to version 6.4.0 [\#1547](https://github.com/DEFRA/waste-exemptions-engine/pull/1547) ([jjromeo](https://github.com/jjromeo))
 - Bump phonelib from 0.10.25 to 0.10.27 [\#1543](https://github.com/DEFRA/waste-exemptions-engine/pull/1543) ([dependabot[bot]](https://github.com/apps/dependabot))
 - chore/changelog-01\_09\_2026 [\#1541](https://github.com/DEFRA/waste-exemptions-engine/pull/1541) ([brujeo](https://github.com/brujeo))
@@ -261,7 +262,6 @@
 - Bump bullet from 8.0.0 to 8.0.1 [\#1191](https://github.com/DEFRA/waste-exemptions-engine/pull/1191) ([dependabot[bot]](https://github.com/apps/dependabot))
 - tech debt: Removing exemptions.csv and seed job to import exemptions [\#1183](https://github.com/DEFRA/waste-exemptions-engine/pull/1183) ([brujeo](https://github.com/brujeo))
 - Update CHANGELOG [\#1181](https://github.com/DEFRA/waste-exemptions-engine/pull/1181) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
-- Bump govuk\_design\_system\_formbuilder from 5.7.1 to 5.8.0 [\#1158](https://github.com/DEFRA/waste-exemptions-engine/pull/1158) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 
 
