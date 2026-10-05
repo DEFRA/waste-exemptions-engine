@@ -305,16 +305,49 @@ module WasteExemptionsEngine
           allow(WasteExemptionsEngine.configuration).to receive(:host_is_back_office?).and_return(false)
         end
 
-        it "adds an England-only validation error" do
+        it "adds a single England-only validation error" do
           form.submit(params)
 
-          expect(form.errors.added?(:grid_reference, :outside_england)).to be(true)
+          aggregate_failures do
+            expect(form.errors.added?(:grid_reference, :outside_england)).to be(true)
+            expect(form.errors[:grid_reference].size).to eq(1)
+          end
         end
 
         it "does not save the site address" do
           form.submit(params)
 
           expect(transient_registration.reload.site_address).to be_nil
+        end
+
+        context "when only the northing is zero" do
+          let(:params) { { grid_reference: "SV 12345 00000", description: "New site" } }
+
+          it "adds an England-only validation error" do
+            form.submit(params)
+
+            expect(form.errors.added?(:grid_reference, :outside_england)).to be(true)
+          end
+        end
+      end
+
+      context "when the England-only restriction is disabled and the grid reference resolves to zero coordinates" do
+        let(:params) { { grid_reference: "SV 00000 00000", description: "New site" } }
+        let(:transient_registration) do
+          create(:new_charged_registration, workflow_state: "site_grid_reference_form")
+        end
+        let(:form) { described_class.new(transient_registration) }
+
+        before do
+          allow(WasteExemptionsEngine::FeatureToggle).to receive(:active?).and_call_original
+          allow(WasteExemptionsEngine::FeatureToggle)
+            .to receive(:active?).with(:restrict_site_locations_to_england).and_return(false)
+        end
+
+        it "does not add an England-only validation error" do
+          form.submit(params)
+
+          expect(form.errors.added?(:grid_reference, :outside_england)).to be(false)
         end
       end
 

@@ -32,7 +32,7 @@ module WasteExemptionsEngine
         end
       end
 
-      context "when a grid reference resolves to zero coordinates" do
+      context "when a grid reference cannot be converted to valid coordinates" do
         let(:coordinates) { { easting: 0.0, northing: 0.0 } }
 
         before do
@@ -40,30 +40,12 @@ module WasteExemptionsEngine
           allow(DetermineAreaService).to receive(:run)
         end
 
-        it "returns false" do
-          expect(described_class.run(grid_reference:)).to be(false)
+        it "returns nil" do
+          expect(described_class.run(grid_reference:)).to be_nil
         end
 
         it "does not attempt an area lookup" do
           described_class.run(grid_reference:)
-
-          expect(DetermineAreaService).not_to have_received(:run)
-        end
-      end
-
-      context "when zero coordinates are provided directly" do
-        let(:coordinates) { { easting: 0.0, northing: 0.0 } }
-
-        before do
-          allow(DetermineAreaService).to receive(:run)
-        end
-
-        it "returns nil so an address lookup failure does not block the journey" do
-          expect(described_class.run(easting: coordinates[:easting], northing: coordinates[:northing])).to be_nil
-        end
-
-        it "does not attempt an area lookup" do
-          described_class.run(easting: coordinates[:easting], northing: coordinates[:northing])
 
           expect(DetermineAreaService).not_to have_received(:run)
         end

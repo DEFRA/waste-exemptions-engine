@@ -4,11 +4,7 @@ module WasteExemptionsEngine
   class CheckSiteLocationIsInEnglandService < BaseService
     def run(grid_reference: nil, easting: nil, northing: nil)
       coordinates = determine_coordinates(grid_reference:, easting:, northing:)
-      unless valid_coordinates?(coordinates[:easting], coordinates[:northing])
-        return false if grid_reference.present?
-
-        return nil
-      end
+      return nil unless valid_coordinates?(coordinates[:easting], coordinates[:northing])
 
       area = DetermineAreaService.run(
         easting: coordinates[:easting],
