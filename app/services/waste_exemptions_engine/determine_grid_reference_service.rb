@@ -5,8 +5,6 @@ module WasteExemptionsEngine
     # Easting and northing is just another name for x & y. We've gone with
     # easting and northing here purely to keep rubocop happy!
     def run(easting:, northing:)
-      return "" unless valid_coordinates?(easting, northing)
-
       # easting and northing values of fewer than 6 digits need to be left-zero-padded for OS Map Ref
       location = os_map_ref_location("#{format('%<e>06d', e: easting)}, #{format('%<n>06d', n: northing)}")
 
@@ -17,10 +15,6 @@ module WasteExemptionsEngine
     end
 
     private
-
-    def valid_coordinates?(easting, northing)
-      easting.is_a?(Numeric) && northing.is_a?(Numeric) && easting.positive? && northing.positive?
-    end
 
     def os_map_ref_location(coordinates)
       OsMapRef::Location.for(coordinates)

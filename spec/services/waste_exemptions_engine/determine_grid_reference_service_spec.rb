@@ -45,15 +45,6 @@ module WasteExemptionsEngine
         end
       end
 
-      context "with zero coordinates" do
-        let(:easting) { 0.0 }
-        let(:northing) { 0.0 }
-
-        it "does not create an SV 00000 00000 grid reference" do
-          expect(described_class.run(easting: easting, northing: northing)).to be_empty
-        end
-      end
-
       context "when an error happens" do
         before do
           allow(OsMapRef::Location).to receive(:for).and_raise(StandardError)
