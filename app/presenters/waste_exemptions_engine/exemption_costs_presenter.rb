@@ -161,7 +161,7 @@ module WasteExemptionsEngine
       return false if exemption_in_bucket?(exemption)
 
       non_bucket_exemptions = exemptions.reject { |e| exemption_in_bucket?(e) }
-      exemption.band == highest_band && exemption == non_bucket_exemptions.first
+      exemption == non_bucket_exemptions.find { |ex| ex.band == highest_band }
     end
 
     def farmer_bucket_in_order?
