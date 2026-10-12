@@ -24,6 +24,8 @@ en:
           zero: No addresses found
           one: 1 address found
           other: "%{count} addresses found"
+      banner:
+        banner_title: Important
     farmer_bucket: Farmer exemptions
     edited_via_self_serve_reason: Edited via self-serve
       
