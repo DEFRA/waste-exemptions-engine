@@ -11,8 +11,6 @@ en:
           opens_in_new_window: (opens in new window)
         reg_reform_banner:
           message_html: Waste exemptions are changing.<br>Read %{link} (opens in a new window)
-          link_text: New rules from January 2027
-          link_url: https://www.gov.uk/government/publications/publications/waste-exemptions-how-to-choose-register-and-pay/waste-exemptions-new-rules-from-january-2027
         select_this_category_for: "Select this category for:"
         waste_activities:
           categories:
