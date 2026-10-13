@@ -58,6 +58,23 @@ module WasteExemptionsEngine
           end
         end
 
+        context "when the notification was sent for several registrations" do
+          let(:other_communication_log) do
+            log = create(:communication_log, notification_id: notification_id, status: "sent")
+            create(:registration).communication_logs << log
+            log
+          end
+
+          before { other_communication_log }
+
+          it "updates the communication log status for every registration" do
+            described_class.run(payload)
+
+            expect([communication_log, other_communication_log].map { |log| log.reload.status })
+              .to eq(%w[delivered delivered])
+          end
+        end
+
         context "when the communication log is not found" do
           let(:payload) do
             {
