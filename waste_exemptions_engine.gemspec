@@ -89,4 +89,7 @@ Gem::Specification.new do |s|
 
   # Interactive map component for site grid reference
   s.add_dependency "defra_ruby_map"
+
+  # Used by lib/tasks/changelog.rake, pinned as that patches the gem's internals
+  s.add_dependency "github_changelog_generator", "~> 1.18.0"
 end
