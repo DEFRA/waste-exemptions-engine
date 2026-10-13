@@ -36,7 +36,8 @@ module WasteExemptionsEngine
       update_communication_logs(notification_id, "returned")
     end
 
-    # A notification has one log per registration it was sent for
+    # A single notification can be linked to several communication logs, one per registration,
+    # e.g. when one email is sent to a contact email address shared by several registrations
     def update_communication_logs(notification_id, new_status)
       communication_logs = CommunicationLog.where(notification_id: notification_id).to_a
 
