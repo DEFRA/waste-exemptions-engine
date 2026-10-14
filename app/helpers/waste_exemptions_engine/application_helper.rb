@@ -2,7 +2,7 @@
 
 module WasteExemptionsEngine
   module ApplicationHelper
-    REG_REFORM_LINK_URL_DEFAULT = "https://www.gov.uk/government/publications/publications/waste-exemptions-how-to-choose-register-and-pay/waste-exemptions-new-rules-from-january-2027"
+    REG_REFORM_LINK_URL_DEFAULT = "https://www.gov.uk/government/publications/waste-exemptions-how-to-choose-register-and-pay/waste-exemptions-new-rules-from-january-2027"
 
     def title
       title_elements = [error_title, title_text, "Register your waste exemptions", "GOV.UK"]
