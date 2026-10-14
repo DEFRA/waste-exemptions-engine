@@ -2,6 +2,16 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <% if WasteExemptionsEngine::FeatureToggle.active?(:enable_reg_reform_content) && @waste_activities_form.errors.empty? %>
+      <%= render("waste_exemptions_engine/shared/banner",
+                banner_text: t(".reg_reform_banner.message_html",
+                            link: link_to(t("waste_exemptions_engine.shared.reg_reform.link_text"),
+                                          reg_reform_link_url,
+                                          class: "govuk-notification-banner__link",
+                                          target: "_blank",
+                                          rel: "noopener noreferrer"))) %>
+    <% end %>
+
     <%= form_for @waste_activities_form do |f| %>
       <%= render partial: "waste_exemptions_engine/shared/error_summary", locals: { f: f } %>
 

@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   class ConfirmActivityExemptionsFormsController < FormsController
+    helper ActivityExemptionsFormsHelper
+
     def new
       super(ConfirmActivityExemptionsForm, "confirm_activity_exemptions_form")
     end

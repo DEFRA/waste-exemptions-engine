@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   module ApplicationHelper
+    REG_REFORM_LINK_URL_DEFAULT = "https://www.gov.uk/government/publications/waste-exemptions-how-to-choose-register-and-pay/waste-exemptions-new-rules-from-january-2027"
+
     def title
       title_elements = [error_title, title_text, "Register your waste exemptions", "GOV.UK"]
       # Remove empty elements, for example if no specific title is set
@@ -17,6 +19,10 @@ module WasteExemptionsEngine
 
     def format_names(first_name, last_name)
       "#{first_name} #{last_name}"
+    end
+
+    def reg_reform_link_url
+      ENV.fetch("REG_REFORM_LINK_URL", REG_REFORM_LINK_URL_DEFAULT)
     end
 
     def current_git_commit

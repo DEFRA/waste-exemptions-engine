@@ -9,6 +9,8 @@ en:
           link_text: full list of waste exemption guides
           link_url: https://www.gov.uk/government/collections/waste-exemptions-using-waste
           opens_in_new_window: (opens in new window)
+        reg_reform_banner:
+          message_html: Waste exemptions are changing.<br>Read %{link} (opens in a new window)
         select_this_category_for: "Select this category for:"
         waste_activities:
           categories:

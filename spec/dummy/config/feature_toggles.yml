@@ -15,3 +15,5 @@ enable_multisite:
   active: <%= ENV.fetch("ENABLE_MULTISITE", "true") %>
 enable_interactive_map:
   active: <%= ENV.fetch("ENABLE_INTERACTIVE_MAP", "true") %>
+enable_reg_reform_content:
+  active: <%= ENV.fetch("ENABLE_REG_REFORM_CONTENT", "false") %>

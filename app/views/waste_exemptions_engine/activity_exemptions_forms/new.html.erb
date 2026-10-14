@@ -16,6 +16,7 @@
           <% end %>
           <div class="govuk-checkboxes">
             <% current_activity = nil %>
+            <% reg_reform_content_active = WasteExemptionsEngine::FeatureToggle.active?(:enable_reg_reform_content) %>
             <% selected_activity_exemptions(@transient_registration).each do |exemption|  %>
 
               <% if current_activity != exemption.waste_activity_id %>
@@ -35,6 +36,16 @@
                   <span class="govuk-!-font-weight-bold"><%= exemption.code %> <%= exemption.summary %></span>
                   <br><%= t(".see") %> <%= link_to t(".exemption_link_name", exemption_code: exemption.code), exemption.url, target: "_blank" %> <%= t(".opens_in_new_window") %>.
                   <br><strong><%= exemption_charge_display(exemption) %><%= " (F)" if farming_exemption?(exemption) %></strong>
+                  <% if reg_reform_content_active && exemption_due_to_be_withdrawn?(exemption) %>
+                    <span class="govuk-!-display-block govuk-!-margin-top-2">
+                      <%= t(".reg_reform_withdrawal_html",
+                            exemption_code: exemption.code,
+                            link: link_to(t("waste_exemptions_engine.shared.reg_reform.link_text"),
+                                          reg_reform_link_url,
+                                          target: "_blank",
+                                          rel: "noopener noreferrer")) %>
+                    </span>
+                  <% end %>
                 <% end %>
               </div>
 

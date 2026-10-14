@@ -110,5 +110,25 @@ module WasteExemptionsEngine
         end
       end
     end
+
+    describe "#exemption_due_to_be_withdrawn?" do
+      %w[T8 T9 U16].each do |code|
+        context "when the exemption code is #{code}" do
+          let(:exemption) { build(:exemption, code:) }
+
+          it "returns true" do
+            expect(helper.exemption_due_to_be_withdrawn?(exemption)).to be true
+          end
+        end
+      end
+
+      context "when the exemption code is not due to be withdrawn" do
+        let(:exemption) { build(:exemption, code: "U1") }
+
+        it "returns false" do
+          expect(helper.exemption_due_to_be_withdrawn?(exemption)).to be false
+        end
+      end
+    end
   end
 end
