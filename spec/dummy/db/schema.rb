@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_19_173129) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_05_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "postgis"
@@ -339,6 +339,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_173129) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "view_certificate_token"
     t.datetime "view_certificate_token_created_at"
+    t.string "permit_application_number"
+    t.string "permit_application_status"
     t.index ["created_at"], name: "index_registrations_on_created_at"
     t.index ["deregistration_email_sent_at"], name: "index_registrations_on_deregistration_email_sent_at"
     t.index ["edit_token"], name: "index_registrations_on_edit_token", unique: true
