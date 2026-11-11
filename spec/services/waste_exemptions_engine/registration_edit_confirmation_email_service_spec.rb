@@ -17,6 +17,11 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
       end
 
+      it_behaves_like "calls notify with reference" do
+        let(:send_action) { :send_email }
+        let(:reference) { registration.reference }
+      end
+
       before do
         allow(registration).to receive(:reference).and_return(reference)
       end

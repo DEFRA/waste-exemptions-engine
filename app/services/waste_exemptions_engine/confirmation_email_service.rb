@@ -11,7 +11,7 @@ module WasteExemptionsEngine
       @recipient = recipient
       @pdf = generate_pdf_certificate
 
-      client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
+      client = NotifyClient.new(reference: @registration.reference)
 
       result = client.send_email(@pdf.present? ? options_with_certificate : options_without_certificate)
 

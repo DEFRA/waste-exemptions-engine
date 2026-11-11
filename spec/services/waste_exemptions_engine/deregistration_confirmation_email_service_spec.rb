@@ -21,6 +21,11 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
       end
 
+      it_behaves_like "calls notify with reference" do
+        let(:send_action) { :send_email }
+        let(:reference) { registration.reference }
+      end
+
       it "sends an email" do
         VCR.use_cassette("registration_edit_confirmation_email") do
           expect(run_service).to be_a(Notifications::Client::ResponseNotification)
