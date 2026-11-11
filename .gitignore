@@ -34,6 +34,6 @@ pkg/
 # Entries added to .gitignore by default after a rails plugin new --full
 spec/dummy/db/*.sqlite3
 spec/dummy/db/*.sqlite3-journal
-spec/dummy/log/*.log
+spec/dummy/log/*.log*
 spec/dummy/tmp/
 spec/dummy/.sass-cache
