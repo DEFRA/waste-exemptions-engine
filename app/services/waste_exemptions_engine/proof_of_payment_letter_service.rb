@@ -14,7 +14,7 @@ module WasteExemptionsEngine
       result = client.send_letter(
         template_id: NotificationTemplates::PROOF_OF_PAYMENT_LETTER,
         personalisation: personalisation
-        )
+      )
 
       create_log(registration:, notify_response: result)
 
