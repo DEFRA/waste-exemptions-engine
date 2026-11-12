@@ -10,10 +10,11 @@ module WasteExemptionsEngine
     def run(registration:)
       @registration = registration
 
-      result = Notifications::Client
-               .new(WasteExemptionsEngine.configuration.notify_api_key)
-               .send_letter(template_id: NotificationTemplates::PROOF_OF_PAYMENT_LETTER,
-                            personalisation: personalisation)
+      client = NotifyClient.new(reference: @registration.reference)
+      result = client.send_letter(
+        template_id: NotificationTemplates::PROOF_OF_PAYMENT_LETTER,
+        personalisation: personalisation
+        )
 
       create_log(registration:, notify_response: result)
 
