@@ -11,7 +11,7 @@ module WasteExemptionsEngine
       @recipient = recipient
       @magic_link_token = magic_link_token
 
-      client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
+      client = NotifyClient.new(reference: @registration.reference)
 
       notify_result = client.send_email(options)
 

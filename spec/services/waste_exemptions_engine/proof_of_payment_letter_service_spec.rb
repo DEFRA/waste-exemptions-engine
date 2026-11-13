@@ -22,11 +22,17 @@ module WasteExemptionsEngine
       allow(client).to receive(:send_letter)
     end
 
+    it_behaves_like "calls notify with reference" do
+      let(:send_action) { :send_letter }
+      let(:reference) { registration.reference }
+    end
+
     it "sends the proof of payment letter using the new template and postal address" do
       run_service
 
       expect(client).to have_received(:send_letter).with(
         template_id: NotificationTemplates::PROOF_OF_PAYMENT_LETTER,
+        reference: registration.reference,
         personalisation: hash_including(personalisation.merge(
                                           "address_line_1" => "Jo Bloggs",
                                           "address_line_6" => "BS1 1AA"

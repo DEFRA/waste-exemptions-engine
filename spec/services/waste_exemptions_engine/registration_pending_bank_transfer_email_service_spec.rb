@@ -21,6 +21,11 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: registration, recipient: registration.contact_email } }
       end
 
+      it_behaves_like "calls notify with reference" do
+        let(:send_action) { :send_email }
+        let(:reference) { registration.reference }
+      end
+
       before do
         allow(registration).to receive(:reference).and_return(reference)
         allow(ChargeBreakdownPresenter).to receive(:new).with(registration:).and_return(breakdown_presenter)
@@ -33,6 +38,7 @@ module WasteExemptionsEngine
         expect(notifications_client).to have_received(:send_email).with(
           email_address: recipient,
           template_id: NotificationTemplates::BREAKDOWN_OF_CHARGES_EMAIL,
+          reference: registration.reference,
           personalisation: hash_including(
             reg_identifier: reference,
             date_registered: "23 September 2026",

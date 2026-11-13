@@ -18,10 +18,16 @@ module WasteExemptionsEngine
       allow(client).to receive(:send_email)
     end
 
+    it_behaves_like "calls notify with reference" do
+      let(:send_action) { :send_email }
+      let(:reference) { registration.reference }
+    end
+
     it "sends the proof of payment email using the new template" do
       run_service
 
       expect(client).to have_received(:send_email).with(
+        reference: registration.reference,
         email_address: recipient,
         template_id: NotificationTemplates::PROOF_OF_PAYMENT_EMAIL,
         personalisation:

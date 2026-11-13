@@ -12,7 +12,7 @@ module WasteExemptionsEngine
     def run(registration:)
       @registration = RegistrationDetailsPresenter.new(registration)
 
-      client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
+      client = NotifyClient.new(reference: @registration.reference)
 
       notify_result = client.send_letter(template_id: template, personalisation: personalisation)
 

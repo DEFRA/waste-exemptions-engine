@@ -35,11 +35,16 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: a_registration } }
       end
 
+      it_behaves_like "calls notify with reference" do
+        let(:send_action) { :send_letter }
+      end
+
       it "sends the breakdown of charges letter using the new template and postal address" do
         run_service
 
         expect(notifications_client).to have_received(:send_letter).with(
           template_id: NotificationTemplates::BREAKDOWN_OF_CHARGES_LETTER,
+          reference: registration.reference,
           personalisation: hash_including(
             reg_identifier: reference,
             date_registered: "23 September 2026",
