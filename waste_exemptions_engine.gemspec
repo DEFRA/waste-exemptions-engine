@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.metadata["rubygems_mfa_required"] = "true"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  s.required_ruby_version = ">= 3.2"
+  s.required_ruby_version = ">= 3.4"
 
   # Use AASM to manage states and transitions
   s.add_dependency "aasm", "~> 5.5"
