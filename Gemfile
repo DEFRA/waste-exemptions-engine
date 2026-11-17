@@ -22,12 +22,6 @@ gem "activerecord-postgis-adapter", require: false
 gem "rgeo-geojson"
 
 group :development do
-  # future versions of github_changelog_generator rely on async gem and
-  # do cause errors. So pinning to a version that does not have this dependency.
-  gem "github_changelog_generator", "~> 1.15.2"
-  # Explicit dependency of github_changelog_generator: benchmark leaves Ruby's
-  # default gems in 3.5, so relying on the stdlib copy warns under Ruby 3.4
-  gem "benchmark"
   gem "rubocop-factory_bot"
   gem "rubocop-rake"
   gem "rubocop-rspec"
@@ -62,7 +56,7 @@ end
 
 gemspec
 
-gem "defra_ruby_map", ">= 0.2.2"
+gem "defra_ruby_map", ">= 0.2.3"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

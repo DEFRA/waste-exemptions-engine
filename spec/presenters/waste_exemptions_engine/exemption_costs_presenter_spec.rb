@@ -17,6 +17,97 @@ module WasteExemptionsEngine
 
     subject(:presenter) { described_class.new(order: order) }
 
+    shared_examples "correct charges when code order differs from band order" do |full_charge, additional_charge, lower_band_charge|
+      describe "#compliance_charge" do
+        it "returns the full charge for the first exemption in the highest band" do
+          expect(presenter.compliance_charge(highest_band_exemption)).to eq(full_charge)
+        end
+
+        it "returns the additional charge for another exemption in the highest band" do
+          expect(presenter.compliance_charge(additional_highest_band_exemption)).to eq(additional_charge)
+        end
+
+        it "returns the additional charge for the lower band exemption" do
+          expect(presenter.compliance_charge(lower_band_exemption)).to eq(lower_band_charge)
+        end
+      end
+
+      describe "#single_site_compliance_charge" do
+        it "returns the full charge for the first exemption in the highest band" do
+          expect(presenter.single_site_compliance_charge(highest_band_exemption)).to eq("£0.10")
+        end
+
+        it "returns the additional charge for another exemption in the highest band" do
+          expect(presenter.single_site_compliance_charge(additional_highest_band_exemption)).to eq("£0.07")
+        end
+
+        it "returns the additional charge for the lower band exemption" do
+          expect(presenter.single_site_compliance_charge(lower_band_exemption)).to eq("£0.05")
+        end
+      end
+
+      describe "#is_discounted_charge?" do
+        it "returns false for the first exemption in the highest band" do
+          expect(presenter.is_discounted_charge?(highest_band_exemption)).to be(false)
+        end
+
+        it "returns true for another exemption in the highest band" do
+          expect(presenter.is_discounted_charge?(additional_highest_band_exemption)).to be(true)
+        end
+
+        it "returns true for the lower band exemption" do
+          expect(presenter.is_discounted_charge?(lower_band_exemption)).to be(true)
+        end
+      end
+
+      describe "#total_compliance_charge" do
+        it "returns the sum of the displayed compliance charges" do
+          displayed_charges = presenter.non_farming_exemptions.sum do |exemption|
+            presenter.compliance_charge(exemption).delete("£,").to_d
+          end
+          displayed_charges += presenter.farming_exemptions_charge.delete("£,").to_d
+
+          expect(presenter.total_compliance_charge.delete("£,").to_d).to eq(displayed_charges)
+        end
+      end
+    end
+
+    context "when a lower band exemption sorts before the highest band exemptions" do
+      let(:lower_band_exemption) { create(:exemption, code: "U2", band: band_1) }
+      let(:highest_band_exemption) { create(:exemption, code: "S2", band: band_3) }
+      let(:additional_highest_band_exemption) { create(:exemption, code: "S3", band: band_3) }
+      let(:exemptions) { [additional_highest_band_exemption, lower_band_exemption, highest_band_exemption] }
+      let(:site_count) { 1 }
+
+      before do
+        allow(FeatureToggle).to receive(:active?).with(:enable_multisite).and_return(true)
+        order.update!(order_owner: create(:new_charged_registration, is_multisite_registration: site_count > 1))
+        create_list(:transient_address, site_count, :site_address, transient_registration: order.order_owner)
+      end
+
+      it_behaves_like "correct charges when code order differs from band order", "£0.10", "£0.07", "£0.05"
+
+      context "when the registration is multisite" do
+        let(:site_count) { 3 }
+
+        it_behaves_like "correct charges when code order differs from band order", "£0.30", "£0.21", "£0.15"
+      end
+
+      context "when the order includes farming exemptions" do
+        let(:exemptions) { super() + farm_exemptions }
+
+        before { order.update!(bucket: Bucket.farmer_bucket) }
+
+        it_behaves_like "correct charges when code order differs from band order", "£0.10", "£0.07", "£0.05"
+
+        context "when the registration is multisite" do
+          let(:site_count) { 3 }
+
+          it_behaves_like "correct charges when code order differs from band order", "£0.30", "£0.21", "£0.15"
+        end
+      end
+    end
+
     describe "#exemptions" do
       context "with an empty order" do
         let(:exemptions) { [] }

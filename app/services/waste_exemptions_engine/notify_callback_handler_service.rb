@@ -25,7 +25,7 @@ module WasteExemptionsEngine
       raise ArgumentError, "Missing id in delivery receipt" if notification_id.blank?
       raise ArgumentError, "Missing status in delivery receipt" if new_status.blank?
 
-      update_communication_log(notification_id, new_status)
+      update_communication_logs(notification_id, new_status)
     end
 
     def process_returned_letter
@@ -33,24 +33,28 @@ module WasteExemptionsEngine
 
       raise ArgumentError, "Missing notification_id in returned letter" if notification_id.blank?
 
-      update_communication_log(notification_id, "returned")
+      update_communication_logs(notification_id, "returned")
     end
 
-    def update_communication_log(notification_id, new_status)
-      communication_log = CommunicationLog.find_by(notification_id: notification_id)
+    # A single notification can be linked to several communication logs, one per registration,
+    # e.g. when one email is sent to a contact email address shared by several registrations
+    def update_communication_logs(notification_id, new_status)
+      communication_logs = CommunicationLog.where(notification_id: notification_id).to_a
 
-      unless communication_log
+      if communication_logs.empty?
         Rails.logger.warn "CommunicationLog not found for notification_id: #{notification_id}"
         return { notification_id: notification_id, status: "not_found" }
       end
 
-      if TERMINAL_STATUSES.include?(communication_log.status)
+      logs_to_update = communication_logs.reject { |log| TERMINAL_STATUSES.include?(log.status) }
+
+      if logs_to_update.empty?
         Rails.logger.info "Ignoring Notify callback for notification_id #{notification_id}: " \
-                          "already in terminal status '#{communication_log.status}'"
-        return { notification_id: notification_id, status: communication_log.status }
+                          "already in terminal status '#{communication_logs.first.status}'"
+        return { notification_id: notification_id, status: communication_logs.first.status }
       end
 
-      communication_log.update!(status: new_status)
+      logs_to_update.each { |log| log.update!(status: new_status) }
 
       { notification_id: notification_id, status: new_status }
     end

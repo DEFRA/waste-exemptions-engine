@@ -10,7 +10,7 @@ module WasteExemptionsEngine
       @registration = registration
       @recipient = recipient
 
-      client = Notifications::Client.new(WasteExemptionsEngine.configuration.notify_api_key)
+      client = NotifyClient.new(reference: @registration.reference)
 
       notify_result = client.send_email(options)
 

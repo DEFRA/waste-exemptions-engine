@@ -9,6 +9,7 @@ en:
         see: See
         opens_in_new_window: (opens in a new window)
         exemption_link_name: "%{exemption_code} guidance"
+        reg_reform_withdrawal_html: "%{exemption_code} exemption is due to be withdrawn.<br>Read %{link} (opens in a new window)"
         charges_shown_in_full: Compliance charges are shown in full.
         discounted_charges_in_brackets: Discounted charges are shown in brackets.
         farming_exemption_indicator: (F) means it is on a list of common farming exemptions.

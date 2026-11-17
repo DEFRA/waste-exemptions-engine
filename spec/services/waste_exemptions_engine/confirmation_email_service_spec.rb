@@ -21,6 +21,11 @@ module WasteExemptionsEngine
         let(:parameters) { { registration: a_registration, recipient: a_registration.contact_email } }
       end
 
+      it_behaves_like "calls notify with reference" do
+        let(:send_action) { :send_email }
+        let(:reference) { registration.reference }
+      end
+
       context "when the PDF is generated" do
         it "sends an email" do
           VCR.use_cassette("confirmation_email") do

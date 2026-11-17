@@ -5,6 +5,7 @@ en:
         back_link: Back
         heading: Your waste exemptions
         description: These are the exemptions you have chosen
+        reg_reform_withdrawal_html: U16, T8 and T9 exemptions are due to be withdrawn. Read<br> %{link} (opens in a new window)
         options:
           standard:
             "true": I want to continue with these exemptions

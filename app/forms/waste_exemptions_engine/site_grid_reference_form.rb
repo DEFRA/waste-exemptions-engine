@@ -12,6 +12,7 @@ module WasteExemptionsEngine
     validates :grid_reference, "defra_ruby/validators/grid_reference": true
     validates :description, "waste_exemptions_engine/site_description": true
     validate :grid_reference_must_be_in_england, if: :check_grid_reference_location?
+    validate :grid_reference_must_not_have_zero_coordinates, if: :check_grid_reference_location?
 
     def initialize(transient_registration)
       super
@@ -70,11 +71,22 @@ module WasteExemptionsEngine
     end
 
     def check_grid_reference_location?
-      grid_reference.present?
+      grid_reference.present? && errors[:grid_reference].empty?
     end
 
     def grid_reference_must_be_in_england
       return if site_location_allowed?(grid_reference:)
+
+      errors.add(:grid_reference, :outside_england)
+    end
+
+    # The England check treats zero coordinates as an unknown location and lets them through, but a
+    # grid reference with a zero easting or northing, such as SV 00000 00000, is a real point at sea
+    def grid_reference_must_not_have_zero_coordinates
+      return unless restrict_site_locations_to_england?
+
+      location = OsMapRef::Location.for(grid_reference)
+      return unless location.easting.to_f.zero? || location.northing.to_f.zero?
 
       errors.add(:grid_reference, :outside_england)
     end

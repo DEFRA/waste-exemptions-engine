@@ -27,6 +27,7 @@ module WasteExemptionsEngine
       before do
         allow(Rails.logger).to receive(:warn)
         allow(Rails.logger).to receive(:error)
+        allow(ProofOfPaymentService).to receive(:run)
       end
 
       shared_examples "an invalid payment status transition" do |old_status, new_status|
@@ -180,6 +181,12 @@ module WasteExemptionsEngine
                 it "does not update the balance" do
                   expect { run_service }.not_to change { registration.account.reload.balance }
                 end
+
+                it "does not trigger proof of payment" do
+                  run_service
+
+                  expect(ProofOfPaymentService).not_to have_received(:run)
+                end
               end
 
               context "when the webhook changes the status to success" do
@@ -193,6 +200,12 @@ module WasteExemptionsEngine
 
                 it "sets the payment reference to the payment uuid" do
                   expect { run_service }.to change { wex_payment.reload.reference }.to(wex_payment.payment_uuid)
+                end
+
+                it "triggers proof of payment for the registration" do
+                  run_service
+
+                  expect(ProofOfPaymentService).to have_received(:run).with(registration:)
                 end
               end
             end

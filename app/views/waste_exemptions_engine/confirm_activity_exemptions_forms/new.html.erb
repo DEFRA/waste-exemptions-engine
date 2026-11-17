@@ -9,8 +9,19 @@
 
       <p class="govuk-body"><%= t(".description") %></p>
 
-      <% selected_exemptions(@transient_registration.temp_exemptions).each do |exemption| %>
+      <% exemptions = selected_exemptions(@transient_registration.temp_exemptions) %>
+      <% exemptions.each do |exemption| %>
         <p class="govuk-body govuk-!-font-weight-bold"><%= exemption.code %> <%= exemption.summary %></p>
+      <% end %>
+
+      <% if WasteExemptionsEngine::FeatureToggle.active?(:enable_reg_reform_content) && exemptions.any? { |exemption| exemption_due_to_be_withdrawn?(exemption) } %>
+        <p class="govuk-body">
+          <%= t(".reg_reform_withdrawal_html",
+                link: link_to(t("waste_exemptions_engine.shared.reg_reform.link_text"),
+                              reg_reform_link_url,
+                              target: "_blank",
+                              rel: "noopener noreferrer")) %>
+        </p>
       <% end %>
 
       <div class="govuk-form-group govuk-!-padding-top-3 <%= "govuk-form-group--error" if @confirm_activity_exemptions_form.errors[:workflow_state].any? %>">

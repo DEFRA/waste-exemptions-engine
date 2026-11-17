@@ -37,6 +37,7 @@ module WasteExemptionsEngine
     def update_payment_status_and_reference(registration, payment, status)
       payment.update(payment_status: status, reference: payment.payment_uuid)
       complete_renewal_if_ready(registration, status)
+      send_proof_of_payment(registration, status)
     end
 
     def complete_renewal_if_ready(registration, status)
@@ -44,6 +45,12 @@ module WasteExemptionsEngine
       return unless status == "success"
 
       RenewalCompletionService.new(registration).complete_renewal
+    end
+
+    def send_proof_of_payment(registration, status)
+      return unless status == Payment::PAYMENT_STATUS_SUCCESS
+
+      ProofOfPaymentService.run(registration:)
     end
 
     def registration_by_govpay_id

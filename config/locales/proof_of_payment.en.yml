@@ -1,0 +1,8 @@
+en:
+  waste_exemptions_engine:
+    proof_of_payment:
+      payment_methods:
+        bank_transfer: "BACS"
+        govpay_payment: "Card"
+        missing_card_payment: "Card"
+        other_payment: "Other"

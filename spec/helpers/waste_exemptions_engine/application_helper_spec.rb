@@ -10,6 +10,30 @@ module WasteExemptionsEngine
       end
     end
 
+    describe "#reg_reform_link_url" do
+      context "when REG_REFORM_LINK_URL is set" do
+        before do
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with("REG_REFORM_LINK_URL", anything).and_return("https://www.gov.uk/reg-reform")
+        end
+
+        it "returns the configured url" do
+          expect(helper.reg_reform_link_url).to eq("https://www.gov.uk/reg-reform")
+        end
+      end
+
+      context "when REG_REFORM_LINK_URL is not set" do
+        before do
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with("REG_REFORM_LINK_URL", anything) { |_key, default| default }
+        end
+
+        it "returns the default url" do
+          expect(helper.reg_reform_link_url).to eq(described_class::REG_REFORM_LINK_URL_DEFAULT)
+        end
+      end
+    end
+
     describe "title" do
       context "when a specific title is provided" do
         before do

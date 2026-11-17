@@ -23,11 +23,11 @@
 
       <h2 class="govuk-heading-m"><%= t(".subheading") %></h2>
 
-      <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_full_form.contact_email) %></p>
       <p class="govuk-body"><%= t(".paragraph_1") %></p>
       <p class="govuk-body"><%= t(".paragraph_2") %></p>
-      <p class="govuk-body"><%= t(".paragraph_3") %>
-        <%= link_to(t(".survey_link"), t(".survey_link"), target: "_blank") %> <%= t(".survey_link_hint") %>
+      <p class="govuk-body"><%= t(".confirmation_email_text", contact_email: @deregistration_complete_full_form.contact_email) %></p>
+      <p class="govuk-body">
+        <%= link_to(t(".survey_link_text"), t(".survey_link"), target: "_blank") %> <%= t(".paragraph_3") %> <%= t(".survey_link_hint") %>
       </p>
     <% end %>
   </div>
