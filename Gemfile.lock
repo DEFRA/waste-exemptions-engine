@@ -190,7 +190,7 @@ GEM
     defra_ruby_map (0.2.3)
       rails (>= 7.0)
     defra_ruby_style (0.4.1)
-    defra_ruby_template (6.4.0)
+    defra_ruby_template (6.6.0)
     defra_ruby_validators (3.1.0)
       activemodel
       defra_ruby_companies_house
