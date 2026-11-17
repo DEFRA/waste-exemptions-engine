@@ -71,6 +71,7 @@ module WasteExemptionsEngine
               allow(ENV).to receive(:fetch).with("ENV_VARIABLE_TEST_FEATURE", any_args).and_return("true")
               allow(ENV).to receive(:fetch).with("ENABLE_MULTISITE", any_args).and_return("true")
               allow(ENV).to receive(:fetch).with("ENABLE_INTERACTIVE_MAP", any_args).and_return("true")
+              allow(ENV).to receive(:fetch).with("ENABLE_REG_REFORM_CONTENT", any_args).and_return("false")
               # Force reload of the toggle settings after setting the environment variable
               described_class.send("reload_feature_toggles")
             end

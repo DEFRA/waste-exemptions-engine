@@ -2,15 +2,18 @@ en:
   waste_exemptions_engine:
     registration_complete_forms:
       new:
-        title: You have registered your exemptions for 3 years
-        heading: You have registered your exemptions for 3 years
+        title: You have registered your exemptions.
+        heading: You have registered your exemptions.
         highlight_text: "Your registration number is"
-        subheading: What will happen next
-        confirmation_email_text:
+        subheading: What happens next
+        confirmation_text:
           letter: "We have sent a confirmation letter to your contact address."
           contact_email: "We have sent a confirmation email to %{contact}."
-        paragraph_1: These exemptions will expire on %{expire_day_month_year}. We will send you a reminder 1 month before they are due to expire.
-        paragraph_2: We will add your registration to the public register. This includes the name and address of the individual or organisation responsible, the site address and the exemptions you have registered.
+        paragraph_1: Your registration will be on the public register. It will include your business name and address, site address and the exemptions you have registered.
+        reg_reform:
+          heading: Exemptions are changing
+          paragraph: All exemptions are affected.
+          read_more_html: Read %{link} to find out more (opens in a new window)
         error_heading: A problem to fix
         next_button: Finished
         survey_link_text: What do you think of this service?

@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.metadata["rubygems_mfa_required"] = "true"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  s.required_ruby_version = ">= 3.2"
+  s.required_ruby_version = ">= 3.4"
 
   # Use AASM to manage states and transitions
   s.add_dependency "aasm", "~> 5.5"
@@ -89,4 +89,7 @@ Gem::Specification.new do |s|
 
   # Interactive map component for site grid reference
   s.add_dependency "defra_ruby_map"
+
+  # Used by lib/tasks/changelog.rake, pinned as that patches the gem's internals
+  s.add_dependency "github_changelog_generator", "~> 1.18.0"
 end

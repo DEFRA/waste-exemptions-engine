@@ -2,6 +2,8 @@
 
 module WasteExemptionsEngine
   module ActivityExemptionsFormsHelper
+    WITHDRAWN_EXEMPTION_CODES = %w[T8 T9 U16].freeze
+
     def selected_activity_exemptions(transient_registration)
       WasteExemptionsEngine::Exemption.for_waste_activities(transient_registration.temp_waste_activities)
     end
@@ -19,6 +21,10 @@ module WasteExemptionsEngine
 
     def farming_exemption?(exemption)
       farming_exemption_ids.include?(exemption.id.to_s)
+    end
+
+    def exemption_due_to_be_withdrawn?(exemption)
+      WITHDRAWN_EXEMPTION_CODES.include?(exemption.code)
     end
 
     def farming_capped_charge_amount

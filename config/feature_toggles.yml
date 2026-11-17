@@ -5,3 +5,5 @@ enable_interactive_map:
   active: <%= ENV.fetch("ENABLE_INTERACTIVE_MAP", "false") %>
 restrict_site_locations_to_england:
   active: <%= ENV.fetch("RESTRICT_SITE_LOCATIONS_TO_ENGLAND", "false") %>
+enable_reg_reform_content:
+  active: <%= ENV.fetch("ENABLE_REG_REFORM_CONTENT", "false") %>
