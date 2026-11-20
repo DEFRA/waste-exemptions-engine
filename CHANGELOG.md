@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Feature/ruby 4499 notify references [\#1564](https://github.com/DEFRA/waste-exemptions-engine/pull/1564) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- \[RUBY-4498\] Add permit application fields to registrations table [\#1563](https://github.com/DEFRA/waste-exemptions-engine/pull/1563) ([brujeo](https://github.com/brujeo))
 - Feature/ruby 4496 wex inservice reg reform coming content changes [\#1558](https://github.com/DEFRA/waste-exemptions-engine/pull/1558) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4387\] Updated content on deregistration completion page [\#1553](https://github.com/DEFRA/waste-exemptions-engine/pull/1553) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4386\] Validate registration data on summary pages [\#1551](https://github.com/DEFRA/waste-exemptions-engine/pull/1551) ([brujeo](https://github.com/brujeo))
@@ -550,6 +552,13 @@
 
 **Merged pull requests:**
 
+- \[RUBY-4603\] Bump Ruby version to 3.4.13 [\#1578](https://github.com/DEFRA/waste-exemptions-engine/pull/1578) ([brujeo](https://github.com/brujeo))
+- \[RUBY-4580\] Index communication logs on template ID and label [\#1577](https://github.com/DEFRA/waste-exemptions-engine/pull/1577) ([jjromeo](https://github.com/jjromeo))
+- Bump rspec-rails from 8.0.4 to 8.1.0 [\#1573](https://github.com/DEFRA/waste-exemptions-engine/pull/1573) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump activestorage from 8.1.4 to 8.1.4.1 [\#1568](https://github.com/DEFRA/waste-exemptions-engine/pull/1568) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Chore/fix dependencies 261117 [\#1566](https://github.com/DEFRA/waste-exemptions-engine/pull/1566) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- bump dependencies [\#1565](https://github.com/DEFRA/waste-exemptions-engine/pull/1565) ([PaulDoyle-EA](https://github.com/PaulDoyle-EA))
+- Update CHANGELOG [\#1562](https://github.com/DEFRA/waste-exemptions-engine/pull/1562) ([brujeo](https://github.com/brujeo))
 - Bump defra\_ruby\_map and update gem versions [\#1561](https://github.com/DEFRA/waste-exemptions-engine/pull/1561) ([brujeo](https://github.com/brujeo))
 - \[RUBY-4494\] Fix changelog rate limiting [\#1560](https://github.com/DEFRA/waste-exemptions-engine/pull/1560) ([jjromeo](https://github.com/jjromeo))
 - Bump gem dependencies and update CHANGELOG [\#1559](https://github.com/DEFRA/waste-exemptions-engine/pull/1559) ([brujeo](https://github.com/brujeo))
@@ -558,6 +567,7 @@
 - \[RUBY-4366\] Reject zero-coordinate grid references [\#1554](https://github.com/DEFRA/waste-exemptions-engine/pull/1554) ([jjromeo](https://github.com/jjromeo))
 - Update CHANGELOG.md [\#1548](https://github.com/DEFRA/waste-exemptions-engine/pull/1548) ([jjromeo](https://github.com/jjromeo))
 - WEX: Update defra-ruby-template to version 6.4.0 [\#1547](https://github.com/DEFRA/waste-exemptions-engine/pull/1547) ([jjromeo](https://github.com/jjromeo))
+- Bump bullet from 8.1.3 to 8.2.0 [\#1545](https://github.com/DEFRA/waste-exemptions-engine/pull/1545) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump phonelib from 0.10.25 to 0.10.27 [\#1543](https://github.com/DEFRA/waste-exemptions-engine/pull/1543) ([dependabot[bot]](https://github.com/apps/dependabot))
 - chore/changelog-01\_09\_2026 [\#1541](https://github.com/DEFRA/waste-exemptions-engine/pull/1541) ([brujeo](https://github.com/brujeo))
 - Bump activestorage from 8.1.3 to 8.1.3.1 [\#1539](https://github.com/DEFRA/waste-exemptions-engine/pull/1539) ([dependabot[bot]](https://github.com/apps/dependabot))
