@@ -39,7 +39,7 @@ module WasteExemptionsEngine
     # A single notification can be linked to several communication logs, one per registration,
     # e.g. when one email is sent to a contact email address shared by several registrations
     def update_communication_logs(notification_id, new_status)
-      communication_logs = CommunicationLog.where(notification_id: notification_id).to_a
+      communication_logs = logs_for(notification_id)
 
       if communication_logs.empty?
         Rails.logger.warn "CommunicationLog not found for notification_id: #{notification_id}"
@@ -54,9 +54,14 @@ module WasteExemptionsEngine
         return { notification_id: notification_id, status: communication_logs.first.status }
       end
 
-      logs_to_update.each { |log| log.update!(status: new_status) }
+      CommunicationLog.where(id: logs_to_update).update_all(status: new_status, updated_at: Time.zone.now)
 
       { notification_id: notification_id, status: new_status }
+    end
+
+    # A log written before its message was sent still holds the placeholder we gave Notify as the reference
+    def logs_for(notification_id)
+      CommunicationLog.where(notification_id: [notification_id, @payload[:reference]].compact).to_a
     end
   end
 end

@@ -75,6 +75,21 @@ module WasteExemptionsEngine
           end
         end
 
+        context "when the logs still hold the placeholder sent as the reference" do
+          let(:payload) { super().merge("reference" => "a-placeholder-we-minted") }
+          let(:logs_for_the_send) do
+            create_list(:communication_log, 3, notification_id: "a-placeholder-we-minted")
+          end
+
+          before { logs_for_the_send }
+
+          it "updates every log for the send, before Notify's id has been recorded on them" do
+            described_class.run(payload)
+
+            expect(logs_for_the_send.map { |log| log.reload.status }).to all(eq("delivered"))
+          end
+        end
+
         context "when the communication log is not found" do
           let(:payload) do
             {
